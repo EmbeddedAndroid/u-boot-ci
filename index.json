@@ -1,0 +1,121 @@
+{
+ "adhoc": [
+  {
+   "base": {
+    "branch": "main",
+    "commit": "f97bb5c1ad78e95856917b92c7270c82d4b11e21",
+    "repo": "https://git.u-boot-project.org/u-boot/u-boot.git"
+   },
+   "baseline": null,
+   "cells": [
+    {
+     "board": "ventuno-q",
+     "boot": "not-run",
+     "boot_stage": "not-reached",
+     "boot_url": "",
+     "counts": {
+      "fail": 0,
+      "flaky": 0,
+      "pass": 0,
+      "skip": 0,
+      "unknown": 0
+     },
+     "diff": {},
+     "distance": {},
+     "fingerprint": "ubci-40101351343-1-main-stock-ventuno-q",
+     "gate": "not-run",
+     "job_url": "",
+     "new_fail": 0,
+     "queue_position": null,
+     "run": "ubci-40101351343-1-main",
+     "stack": "stock",
+     "state": "skipped",
+     "state_detail": "does not apply: qcom: qcs8300/monaco-evk: pinctrl and RPMH clock v4, patch None/5: ",
+     "versus": "unknown"
+    },
+    {
+     "board": "ventuno-q",
+     "boot": "not-run",
+     "boot_stage": "not-reached",
+     "boot_url": "",
+     "counts": {
+      "fail": 0,
+      "flaky": 0,
+      "pass": 0,
+      "skip": 0,
+      "unknown": 0
+     },
+     "diff": {},
+     "distance": {
+      "optee": 0,
+      "tf-a": 12
+     },
+     "fingerprint": "ubci-40101351343-1-main-open-ventuno-q",
+     "gate": "not-run",
+     "job_url": "",
+     "new_fail": 0,
+     "queue_position": null,
+     "run": "ubci-40101351343-1-main",
+     "stack": "open",
+     "state": "skipped",
+     "state_detail": "does not apply: qcom: qcs8300/monaco-evk: pinctrl and RPMH clock v4, patch None/5: ",
+     "versus": "unknown"
+    }
+   ],
+   "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/40101351343",
+   "created": "2026-10-24T14:29:23Z",
+   "run": "ubci-40101351343-1-main",
+   "stack": [
+    {
+     "applied": false,
+     "failed_patch": {
+      "error": "fatal: could not open 'work/stack/s01.mbx' for reading: No such file or directory",
+      "number": null,
+      "subject": ""
+     },
+     "link": "https://lore.kernel.org/r/20261021-b4-monaco-v4-0-c90f0c01d312@oss.qualcomm.com",
+     "message_id": "20261021-b4-monaco-v4-0-c90f0c01d312@oss.qualcomm.com",
+     "patches": 5,
+     "title": "qcom: qcs8300/monaco-evk: pinctrl and RPMH clock",
+     "unresolved_prerequisites": [],
+     "version": 4
+    },
+    {
+     "applied": null,
+     "link": "https://lore.kernel.org/r/20260928-monaco-ventuno-q-v2-0-0e046c8242be@oss.qualcomm.com",
+     "message_id": "20260928-monaco-ventuno-q-v2-0-0e046c8242be@oss.qualcomm.com",
+     "patches": 4,
+     "title": "qcom: add support for the Arduino VENTUNO Q",
+     "unresolved_prerequisites": [],
+     "version": 2
+    }
+   ],
+   "state": "done",
+   "title": "QCS8300 v4 + VENTUNO Q v2"
+  }
+ ],
+ "branches": {},
+ "case_history": {},
+ "default_branch": null,
+ "history": {},
+ "host_checks": [],
+ "latest_nightly": null,
+ "linux": null,
+ "matrix": [],
+ "pin_candidates": {},
+ "runs": [
+  {
+   "base": {
+    "branch": "main",
+    "commit": "f97bb5c1ad78e95856917b92c7270c82d4b11e21",
+    "repo": "https://git.u-boot-project.org/u-boot/u-boot.git"
+   },
+   "created": "2026-10-24T14:29:23Z",
+   "id": "ubci-40101351343-1-main",
+   "kind": "adhoc",
+   "state": "done",
+   "title": "QCS8300 v4 + VENTUNO Q v2"
+  }
+ ],
+ "updated": "2026-10-24T14:29:26Z"
+}

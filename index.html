@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>U-Boot on Qualcomm</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>U-Boot on Qualcomm boards</h1>
+  <p class="sub">Nightly <code>next</code> on real hardware, stock and open firmware, booting a pristine linux-next.
+    <span id="updated"></span></p>
+</header>
+<main>
+  <section id="alerts" aria-live="polite"></section>
+  <section>
+    <h2>Latest nightly <span id="branches"></span> <span id="run-title" class="muted"></span></h2>
+    <p id="run-meta" class="muted"></p>
+    <div class="matrix-wrap"><table id="matrix" class="matrix"></table></div>
+    <p class="legend">Each cell: run state, fingerprint gate (the console showed this build), <b>boots Linux</b>
+      (login prompt on pristine linux-next), test cases, and distance to upstream of the pinned open stack.</p>
+  </section>
+  <section>
+    <h2>Host checks</h2>
+    <ul id="host" class="checks"></ul>
+  </section>
+  <section>
+    <h2>Detail <span id="detail-title" class="muted"></span></h2>
+    <div id="detail"><p class="muted">Select a cell above.</p></div>
+  </section>
+  <section id="adhoc-section" hidden>
+    <h2>Ad-hoc runs</h2>
+    <p class="legend">Series stacked onto a base branch, in order, compared case by case with the latest
+      nightly of that branch on the same board and stack.</p>
+    <div id="adhoc"></div>
+  </section>
+  <section id="candidates-section" hidden>
+    <h2>Stock pin candidates</h2>
+    <p class="legend">A newer stock firmware release in the board's meta layer, tested on the nightly
+      <code>main</code> against the current pin before its pull request is merged.</p>
+    <div id="candidates"></div>
+  </section>
+  <section>
+    <h2>History of the branch</h2>
+    <div id="history"></div>
+  </section>
+  <section>
+    <h2>Runs</h2>
+    <ul id="runs" class="runs"></ul>
+  </section>
+</main>
+<footer>Data: <a href="index.json">index.json</a>, one document per run in <a href="runs/">runs/</a>
+  (schema fwci-run/1). Source: <a href="https://github.com/EmbeddedAndroid/u-boot-ci">EmbeddedAndroid/u-boot-ci</a>.</footer>
+<script src="app.js"></script>
+</body>
+</html>
