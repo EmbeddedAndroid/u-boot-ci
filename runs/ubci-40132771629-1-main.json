@@ -88,10 +88,10 @@
    }
   ],
   "title": "QCS8300 v4 + VENTUNO Q v2",
-  "updated": "2026-10-24T22:20:28Z"
+  "updated": "2026-10-24T22:25:35Z"
  },
  "schema": "fwci-run/1",
- "state": "testing",
+ "state": "done",
  "targets": [
   {
    "board": "ventuno-q",
@@ -209,11 +209,11 @@
    },
    "queue_position": null,
    "recovery": {
-    "health": null,
+    "health": "Complete",
     "job_id": 511650,
     "url": "https://lava.infra.foundries.io/scheduler/job/511650"
    },
-   "restore": "recovery-job",
+   "restore": "pass",
    "stack": "stock",
    "state": "done",
    "state_detail": "LAVA job incomplete"
@@ -338,7 +338,8 @@
    },
    "restore": "not-run",
    "stack": "open",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "BL2 pin not available: PIN_BL2_VENTUNO_Q is not set"
   }
  ]
 }
