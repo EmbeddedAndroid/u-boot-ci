@@ -1,6 +1,54 @@
 {
- "host_checks": [],
- "linux": null,
+ "host_checks": [
+  {
+   "name": "buildman",
+   "result": "pass",
+   "summary": "every snapdragon board built without warnings"
+  },
+  {
+   "name": "carry",
+   "result": "pass",
+   "summary": "carry.yaml matches the pins"
+  },
+  {
+   "name": "checkpatch",
+   "result": "fail",
+   "summary": "9 new commits: 4 with errors, 3 with warnings only"
+  },
+  {
+   "name": "docs",
+   "result": "pass",
+   "summary": "htmldocs built without warnings"
+  },
+  {
+   "name": "fragments",
+   "result": "pass",
+   "summary": "1 combinations built"
+  },
+  {
+   "name": "qemu_arm64",
+   "result": "pass",
+   "summary": "250 passed, 600 skipped, 2 deselected in 119.21s (0:01:59)"
+  },
+  {
+   "name": "sandbox",
+   "result": "fail",
+   "summary": "sandbox did not build"
+  },
+  {
+   "name": "size",
+   "result": "pass",
+   "summary": "ventuno-q-open 1663128 B, ventuno-q-stock 1670048 B"
+  }
+ ],
+ "linux": {
+  "commit": "20a33c6b6cbe7e4805dfb6cd68816937443aa148",
+  "config": "arch/arm64/configs/defconfig",
+  "image_sha256": "bdfa4856f7c6cde00967c209a94b6835fb5527ee6dd335b51cf371007b91e46d",
+  "modules_sha256": "4fee8a6200e7e339dda1702281f2bffe776b43a69e5515be19fe7052ff26c0a8",
+  "release": "7.3.0-next-20261023",
+  "tag": "next-20261023"
+ },
  "project": "u-boot",
  "run": {
   "base": {
@@ -40,7 +88,7 @@
    }
   ],
   "title": "QCS8300 v4 + VENTUNO Q v2",
-  "updated": "2026-10-24T21:13:02Z"
+  "updated": "2026-10-24T22:15:22Z"
  },
  "schema": "fwci-run/1",
  "state": "building",
@@ -66,11 +114,18 @@
    ],
    "fingerprint": "ubci-40132771629-1-main-stock-ventuno-q",
    "fingerprint_gate": "not-run",
-   "linux_boot": {
-    "gaps": [],
-    "stage": "not-reached",
-    "verdict": "not-run"
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 511644,
+    "url": "https://lava.infra.foundries.io/scheduler/job/511644"
    },
+   "linux_boot": {
+    "stage": "not-reached",
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
+   },
+   "queue_position": 3,
    "restore": "not-run",
    "stack": "stock",
    "state": "queued"
@@ -190,7 +245,8 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "restore": "not-run",
    "stack": "open",
