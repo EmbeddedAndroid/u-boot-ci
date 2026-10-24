@@ -1,0 +1,23 @@
+# Unit tests and the offline dry run for every change to this repository.
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: [self-hosted, cil, 4c-8g-30g]
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build --network host -q -t u-boot-ci:1 docker
+      - run: scripts/in-container.sh python3 -m pytest -q tests
+      - run: scripts/in-container.sh scripts/dry-run.sh work/dry-run

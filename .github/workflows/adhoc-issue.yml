@@ -1,0 +1,52 @@
+# Ad-hoc run requested with the issue form
+# (.github/ISSUE_TEMPLATE/adhoc-run.yml). Anyone may open the issue; the
+# run starts only when someone with triage rights adds the adhoc-approved
+# label, so LAVA time is never spent on an unreviewed request.
+name: adhoc-issue
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: read
+
+jobs:
+  request:
+    if: github.event.label.name == 'adhoc-approved'
+    runs-on: [self-hosted, cil, 2c-4g-20g]
+    permissions:
+      contents: read
+      issues: write
+    outputs:
+      series: ${{ steps.check.outputs.series }}
+      base: ${{ steps.check.outputs.base }}
+      targets: ${{ steps.check.outputs.targets }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: check
+        env:
+          BODY: ${{ github.event.issue.body }}
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ github.event.issue.number }}
+        run: |
+          printf '%s' "$BODY" > "$RUNNER_TEMP/issue.md"
+          if python3 -m ubci.request issue "$RUNNER_TEMP/issue.md" > "$RUNNER_TEMP/request" 2> "$RUNNER_TEMP/error"; then
+            grep -v '^request=' "$RUNNER_TEMP/request" >> "$GITHUB_OUTPUT"
+            gh issue comment "$ISSUE" -R "$GITHUB_REPOSITORY" --body "Run started: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID (results on the dashboard under Ad-hoc runs)."
+          else
+            gh issue comment "$ISSUE" -R "$GITHUB_REPOSITORY" --body "Not started: $(cat "$RUNNER_TEMP/error")"
+            exit 1
+          fi
+  run:
+    needs: request
+    uses: ./.github/workflows/run.yml
+    permissions:
+      contents: write
+    with:
+      kind: adhoc
+      base: ${{ needs.request.outputs.base }}
+      series: ${{ needs.request.outputs.series }}
+      targets: ${{ needs.request.outputs.targets }}
+      title: ${{ github.event.issue.title }}
+    secrets: inherit

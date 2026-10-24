@@ -1,0 +1,34 @@
+# Nightly run of U-Boot main and master on the Qualcomm boards
+# (docs/architecture.md). Each branch is one run of run.yml; the lab-wide
+# cap in ubci.run keeps the two from crowding the shared boards.
+name: nightly
+
+on:
+  schedule:
+    - cron: "17 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nightly
+  cancel-in-progress: false
+
+jobs:
+  main:
+    uses: ./.github/workflows/run.yml
+    permissions:
+      contents: write
+    with:
+      kind: nightly
+      base: main
+    secrets: inherit
+  master:
+    uses: ./.github/workflows/run.yml
+    permissions:
+      contents: write
+    with:
+      kind: nightly
+      base: master
+    secrets: inherit

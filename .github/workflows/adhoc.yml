@@ -1,0 +1,56 @@
+# Ad-hoc run of one or more series from the list, applied in order onto
+# main or master (docs/adhoc-runs.md). Runs from main only: the lava-hw
+# environment of the submit job allows no other branch.
+name: adhoc
+
+on:
+  workflow_dispatch:
+    inputs:
+      series:
+        description: Message-IDs or lore links, space separated, in the order to apply them
+        required: true
+      base:
+        description: Branch to apply the series onto
+        type: choice
+        options: [main, master]
+        default: main
+      boards:
+        description: Space separated boards (empty for all)
+        default: ""
+      stacks:
+        description: Space separated stacks, stock and/or open (empty for both)
+        default: ""
+      title:
+        description: Shown on the dashboard
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  request:
+    runs-on: [self-hosted, cil, 2c-4g-20g]
+    outputs:
+      series: ${{ steps.check.outputs.series }}
+      targets: ${{ steps.check.outputs.targets }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: check
+        env:
+          SERIES: ${{ inputs.series }}
+          BASE: ${{ inputs.base }}
+          BOARDS: ${{ inputs.boards }}
+          STACKS: ${{ inputs.stacks }}
+        run: python3 -m ubci.request inputs "$SERIES" "$BASE" "$BOARDS" "$STACKS" | grep -v '^request=' >> "$GITHUB_OUTPUT"
+  run:
+    needs: request
+    uses: ./.github/workflows/run.yml
+    permissions:
+      contents: write
+    with:
+      kind: adhoc
+      base: ${{ inputs.base }}
+      series: ${{ needs.request.outputs.series }}
+      targets: ${{ needs.request.outputs.targets }}
+      title: ${{ inputs.title }}
+    secrets: inherit

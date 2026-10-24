@@ -1,0 +1,67 @@
+# GitHub and lab setup
+
+What the workflows expect from the repository settings. No secret is set
+at repository level: every secret lives in one of two environments, and
+only the job that submits to LAVA declares one.
+
+## Environments
+
+| environment | deployment branches | reviewers | used by |
+|---|---|---|---|
+| `lava-hw` | `main` only | none | `submit` of `run.yml`: the nightly (`main` and `master`) and ad-hoc runs (`adhoc.yml`, `adhoc-issue.yml`) |
+
+The environment holds these secrets:
+
+| secret | content |
+|---|---|
+| `LAVA_TOKEN` | the LAVA token of the CI user `robotyler` |
+| `STOCK_RESTORE_URL_RB3GEN2` | the stock image an RB3 Gen 2 job restores at the end |
+| `STOCK_RESTORE_URL_VENTUNO_Q` | the same for VENTUNO Q |
+| `PIN_BL2_RB3GEN2` | the open-stack BL2 (`tz.mbn`) of RB3 Gen 2: `gzip -9 < tz-rb3gen2.mbn \| base64 -w0` |
+| `PIN_BL2_VENTUNO_Q` | the same for VENTUNO Q |
+
+The restore URLs are secrets, so they never appear in a log, the run
+documents or the dashboard; the job reads them from the environment and
+put them only in the LAVA job definition. Without `LAVA_TOKEN` a run
+does its host checks and marks hardware `skipped`.
+
+The BL2 images are not redistributable and are not published anywhere:
+the build jobs leave `tz.mbn` out of the open-stack packages, and the
+submit job adds it from the secret after checking it against the sha256
+pinned in `config/pins.yaml`. A missing or mismatching secret skips that
+target with "BL2 pin not available". The dashboard shows the sha256 only.
+(A LAVA artifact would have served too, but the LAVA artifact store keeps
+uploads for at most 6 hours.)
+
+## Variables (repository level)
+
+| variable | value |
+|---|---|
+| `STOCK_RESTORE_TOKEN` | `Q_QLI_S3_TOKEN`: the name of the LAVA remote artifact token that authorizes the restore images (a name, not the secret) |
+| `STOCK_RESTORE_HEADER` | `QLIAuthorization`: the header it goes in |
+
+## Actions permissions
+
+- Workflow permissions: read repository contents by default; every job
+  that writes declares it (`contents: write` to push the `gh-pages`
+  dashboard data, `issues: write` to answer an ad-hoc request).
+- Labels: `adhoc-run` (set by the issue form) and `adhoc-approved` (added
+  by someone with triage rights to start a requested run).
+
+## Not set up yet
+
+- Pages: source "Deploy from a branch", branch `gh-pages`, folder `/`.
+  Until then the dashboard data is on the `gh-pages` branch only.
+- The CIL bridge concurrency cap of this repository (a nightly uses up to
+  8 runners per branch at once: 4 builds and the host-check matrix of 7;
+  the other jobs are sequential).
+
+## The LAVA user
+
+`robotyler` needs submit rights on `qcs6490-rb3gen2` and
+`monaco-arduino-monza`, the artifact store of the LAVA MCP endpoint (the
+packages are uploaded there for the length of a run) and the remote
+artifact token named by `STOCK_RESTORE_TOKEN`. The runs never use the
+production boards: `config/project.yaml` `lava.exclude_devices` keeps
+them out of the device choice, and every job is pinned to the device it
+was chosen for.
