@@ -1,0 +1,15 @@
+# docker compose -f docker/compose.yaml run --rm ci <command>
+# The repository is mounted at /work, the work tree (sources, builds,
+# caches; never /tmp on the host) at /build.
+services:
+  ci:
+    build: .
+    image: u-boot-ci:1
+    user: "${UID:-1000}:${GID:-1000}"
+    working_dir: /work
+    environment:
+      - UBCI_FINGERPRINT
+      - UBCI_WORK=/build
+    volumes:
+      - ..:/work
+      - ${UBCI_WORK:-../../work}:/build

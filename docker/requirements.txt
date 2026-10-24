@@ -1,0 +1,47 @@
+# U-Boot main (2026-10-24): test/py, doc/sphinx, tools/{buildman,binman,
+# u_boot_pylib} requirements, merged; then what u-boot-ci itself needs.
+alabaster==1.0.0
+babel==2.16.0
+certifi==2024.8.30
+charset-normalizer==3.4.0
+concurrencytest==0.1.2
+coverage==7.8.0
+docutils==0.21.2
+FATtools==1.0.42
+filelock==3.20.3
+idna==3.10
+imagesize==1.4.1
+importlib_resources==6.5.2
+Jinja2==3.1.4
+jsonschema==4.23.0
+MarkupSafe==3.0.2
+packaging==24.1
+pycryptodomex==3.21.0
+pyelftools==0.31
+Pygments==2.18.0
+pytest==8.4.2
+pytest-xdist==2.5.0
+requests==2.32.4
+six==1.16.0
+snowballstemmer==2.2.0
+Sphinx==8.1.3
+sphinx-prompt==1.9.0
+sphinx-reredirects==0.1.5
+sphinx-rtd-theme==3.0.1
+sphinxcontrib-applehelp==2.0.0
+sphinxcontrib-devhelp==2.0.0
+sphinxcontrib-htmlhelp==2.1.0
+sphinxcontrib-jquery==4.1
+sphinxcontrib-jsmath==1.0.1
+sphinxcontrib-qthelp==2.0.0
+sphinxcontrib-serializinghtml==2.0.0
+urllib3==2.8.0
+yamllint==1.35.1
+# upstream CI installs these too (python3-cryptography, setuptools)
+cryptography==44.0.2
+setuptools==80.9.0
+# u-boot-ci: b4 fetches series for stacked runs; ukify runs in this venv
+# and needs pefile
+b4==0.15.2
+pefile==2024.8.26
+PyYAML==6.0.2
