@@ -1,6 +1,53 @@
 {
- "host_checks": [],
- "linux": null,
+ "host_checks": [
+  {
+   "name": "buildman",
+   "result": "skip",
+   "summary": "did not run"
+  },
+  {
+   "name": "carry",
+   "result": "skip",
+   "summary": "did not run"
+  },
+  {
+   "name": "checkpatch",
+   "result": "skip",
+   "summary": "did not run"
+  },
+  {
+   "name": "docs",
+   "result": "skip",
+   "summary": "did not run"
+  },
+  {
+   "name": "fragments",
+   "result": "skip",
+   "summary": "did not run"
+  },
+  {
+   "name": "qemu_arm64",
+   "result": "skip",
+   "summary": "did not run"
+  },
+  {
+   "name": "sandbox",
+   "result": "skip",
+   "summary": "did not run"
+  },
+  {
+   "name": "size",
+   "result": "pass"
+  }
+ ],
+ "linux": {
+  "commit": "20a33c6b6cbe7e4805dfb6cd68816937443aa148",
+  "config": "arch/arm64/configs/defconfig",
+  "image_sha256": "b9391fb068ec7ea82efbd6c4452e85476b5545d41c82d6136942c53f3556f501",
+  "modules_sha256": "e8e5c14ed6e9c4d443dae9d52b22833fea3997247c7703ff03d391eb0289d601",
+  "release": "7.3.0-next-20261023",
+  "tag": "next-20261023"
+ },
  "project": "u-boot",
  "run": {
   "base": {
@@ -40,7 +87,7 @@
    }
   ],
   "title": "QCS8300 v4 + VENTUNO Q v2",
-  "updated": "2026-10-24T14:29:23Z"
+  "updated": "2026-10-24T17:21:58Z"
  },
  "schema": "fwci-run/1",
  "state": "done",
