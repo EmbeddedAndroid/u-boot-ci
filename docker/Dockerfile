@@ -8,6 +8,27 @@
 # ukify with the arm64 systemd-boot stub, mtools) and Buildroot's host
 # needs, and the host tools sandbox test.py and the docs build use
 # (as upstream installs them).
+#
+# Two images from this file: the default (last) stage, u-boot-ci:1, and
+# `--target control` (u-boot-ci-control:1), the few tools of the jobs that
+# never run U-Boot code (in run.yml, prepare: fetch and apply series with
+# b4 and git am, create and publish the run document; submit: upload with
+# curl, submit to LAVA and collect, publish), small enough to build in a
+# few minutes on the small arm64 runners those jobs use.
+FROM ubuntu:noble-20251013 AS control
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+	ca-certificates curl git python3 python3-venv \
+	&& rm -rf /var/lib/apt/lists/*
+COPY requirements-control.txt /tmp/requirements-control.txt
+RUN python3 -m venv /opt/venv \
+	&& /opt/venv/bin/pip install --no-cache-dir -r /tmp/requirements-control.txt \
+	&& rm /tmp/requirements-control.txt
+ENV PATH=/opt/venv/bin:$PATH HOME=/tmp/home
+RUN mkdir -m 1777 /tmp/home && git config --system --add safe.directory '*'
+WORKDIR /work
+
 FROM ubuntu:noble-20251013
 
 ENV DEBIAN_FRONTEND=noninteractive
