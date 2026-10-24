@@ -1,0 +1,609 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fwci-run/1",
+  "title": "One CI run of a firmware component on hardware and in host checks",
+  "type": "object",
+  "required": [
+    "schema",
+    "project",
+    "run",
+    "state",
+    "host_checks",
+    "targets"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "fwci-run/1"
+    },
+    "project": {
+      "type": "string",
+      "minLength": 1
+    },
+    "run": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "created",
+        "updated",
+        "base"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "kind": {
+          "enum": [
+            "nightly",
+            "series",
+            "pin-candidate",
+            "adhoc"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ci_url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "base": {
+          "$ref": "#/$defs/source"
+        },
+        "series": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "required": [
+            "message_id"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "message_id": {
+              "type": "string"
+            },
+            "version": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "link": {
+              "type": "string"
+            }
+          }
+        },
+        "baseline": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "run id this run is compared with"
+        },
+        "stack": {
+          "type": "array",
+          "description": "series applied onto the base, in order (ad-hoc and series runs)",
+          "items": {
+            "type": "object",
+            "required": [
+              "message_id",
+              "version",
+              "patches",
+              "title",
+              "applied"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "message_id": {
+                "type": "string"
+              },
+              "link": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "patches": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "applied": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "added_as_prerequisite_of": {
+                "type": "string"
+              },
+              "failed_patch": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "number": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "subject": {
+                    "type": "string"
+                  },
+                  "error": {
+                    "type": "string"
+                  }
+                }
+              },
+              "unresolved_prerequisites": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "state": {
+      "$ref": "#/$defs/state"
+    },
+    "note": {
+      "type": "string"
+    },
+    "linux": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "tag",
+        "commit",
+        "release",
+        "image_sha256"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "tag": {
+          "type": "string",
+          "pattern": "^next-[0-9]{8}$"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "release": {
+          "type": "string"
+        },
+        "config": {
+          "type": "string"
+        },
+        "image_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "modules_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "host_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "result"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "result": {
+            "enum": [
+              "pass",
+              "fail",
+              "skip",
+              "queued",
+              "running"
+            ]
+          },
+          "summary": {
+            "type": "string"
+          },
+          "log": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/target"
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "state": {
+      "enum": [
+        "queued",
+        "building",
+        "flashing",
+        "testing",
+        "done",
+        "skipped",
+        "error"
+      ]
+    },
+    "result": {
+      "enum": [
+        "pass",
+        "fail",
+        "skip",
+        "unknown"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "repo",
+        "commit"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "repo": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7,40}$"
+        }
+      }
+    },
+    "component": {
+      "type": "object",
+      "required": [
+        "name",
+        "role"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "under-test",
+            "pinned",
+            "stock"
+          ]
+        },
+        "repo": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "release": {
+          "type": "string"
+        },
+        "fingerprint": {
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "upstream": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "distance to upstream: patches this pin carries that upstream does not have",
+          "required": [
+            "base",
+            "distance",
+            "carried"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "repo": {
+              "type": "string"
+            },
+            "base": {
+              "type": "string"
+            },
+            "distance": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "carried": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "commit",
+                  "subject"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "commit": {
+                    "type": "string"
+                  },
+                  "subject": {
+                    "type": "string"
+                  },
+                  "review": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "case": {
+      "type": "object",
+      "required": [
+        "suite",
+        "name",
+        "result"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "suite": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "result": {
+          "$ref": "#/$defs/result"
+        },
+        "url": {
+          "type": "string"
+        },
+        "flake": {
+          "type": "string",
+          "description": "flake list entry id when this case is a known flake"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "linux_boot": {
+      "type": "object",
+      "required": [
+        "verdict",
+        "stage"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "verdict": {
+          "enum": [
+            "pass",
+            "fail",
+            "not-run"
+          ]
+        },
+        "stage": {
+          "enum": [
+            "login",
+            "no-efi-stub",
+            "hang-before-console",
+            "early-panic",
+            "no-login",
+            "not-reached"
+          ]
+        },
+        "detail": {
+          "type": "string"
+        },
+        "last_lines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "url": {
+          "type": "string"
+        },
+        "versus_baseline": {
+          "enum": [
+            "regression",
+            "upstream-gap",
+            "fixed",
+            "same",
+            "unknown"
+          ]
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "required": [
+        "board",
+        "stack",
+        "state"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "board": {
+          "type": "string"
+        },
+        "stack": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/$defs/state"
+        },
+        "state_detail": {
+          "type": "string"
+        },
+        "queue_position": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "fingerprint": {
+          "type": "string"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/component"
+          }
+        },
+        "lava": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "required": [
+            "job_id",
+            "url"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "job_id": {
+              "type": "integer"
+            },
+            "url": {
+              "type": "string"
+            },
+            "device": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "health": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "fingerprint_gate": {
+          "enum": [
+            "pass",
+            "fail",
+            "not-run"
+          ]
+        },
+        "linux_boot": {
+          "$ref": "#/$defs/linux_boot"
+        },
+        "restore": {
+          "enum": [
+            "pass",
+            "fail",
+            "not-run",
+            "recovery-job"
+          ]
+        },
+        "cases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/case"
+          }
+        },
+        "diff": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "new_fail": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "new_pass": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "still_fail": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "recovery": {
+          "type": "object",
+          "required": [
+            "job_id",
+            "url"
+          ],
+          "additionalProperties": false,
+          "description": "the job that put the stock image back after this target's job stopped before its own restore",
+          "properties": {
+            "job_id": {
+              "type": "integer"
+            },
+            "url": {
+              "type": "string"
+            },
+            "health": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
