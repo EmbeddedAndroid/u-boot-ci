@@ -77,8 +77,11 @@ Everything runs in the build container, the same one the CI runners use:
     docker compose -f docker/compose.yaml run --rm ci scripts/dry-run.sh /build/dry-run
 
 The dry run renders the LAVA job of every board and stack (validated by
-LAVA when `LAVA_TOKEN` is set) and builds the dashboard from sample
-results into `../work/dry-run/site` (serve it with any static server).
+LAVA when `LAVA_TOKEN` is set), builds the dashboard from sample
+results into `../work/dry-run/site` (serve it with any static server), and
+runs the CI job's script (`scripts/run-all.sh`) with stand-ins for the
+checks and builds, once passing and once with a check and a build forced
+to fail, to show that every step still runs and the job fails at the end.
 Building a real run: see [docs/architecture.md](docs/architecture.md).
 
 ## Documentation

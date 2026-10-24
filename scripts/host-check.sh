@@ -9,6 +9,8 @@
 #   docs       make htmldocs with KDOC_WERROR=1 and Sphinx warnings as errors
 #   sandbox    test.py on sandbox
 #   qemu_arm64 test.py on QEMU with the upstream test hooks
+#   carry      config/carry.yaml matches the pins (ubci.carry --check; this
+#              repository, not the U-Boot source)
 #   size       text/data/bss and image size of every hardware build in
 #              <output dir>/../<board>-<stack>/
 # Writes <output dir>/<check>.log and <output dir>/<check>.json
@@ -37,6 +39,9 @@ PY
 
 cd "$src"
 case $check in
+carry)
+	if (cd "$repo" && python3 -m ubci.carry --check) >"$log" 2>&1; then r=pass; else r=fail; fi
+	result $r "$(tail -1 "$log")" ;;
 buildman)
 	if tools/buildman/buildman -o "$out/buildman" -P -E -W -M -e -j "$jobs" snapdragon >"$log" 2>&1; then
 		result pass "every snapdragon board built without warnings"
