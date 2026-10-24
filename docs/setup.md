@@ -9,8 +9,12 @@ only the job that submits to LAVA declares one.
 | environment | deployment branches | reviewers | used by |
 |---|---|---|---|
 | `lava-hw` | `main` only | none | `submit` of `run.yml`: the nightly (`main` and `master`) and ad-hoc runs (`adhoc.yml`, `adhoc-issue.yml`) |
+| `lava-pr` | any | Tyler (required) | `submit` of `pin-candidate.yml`, the one job that runs code from a PR branch with LAVA access |
 
-The environment holds these secrets:
+A job waiting on `lava-pr` shows "Waiting for review" in the run; nothing
+touches the lab until it is approved (pin bumps, docs/pins.md).
+
+Both environments hold the same secrets:
 
 | secret | content |
 |---|---|
@@ -21,7 +25,7 @@ The environment holds these secrets:
 | `PIN_BL2_VENTUNO_Q` | the same for VENTUNO Q |
 
 The restore URLs are secrets, so they never appear in a log, the run
-documents or the dashboard; the job reads them from the environment and
+documents or the dashboard; the jobs read them from the environment and
 put them only in the LAVA job definition. Without `LAVA_TOKEN` a run
 does its host checks and marks hardware `skipped`.
 
@@ -44,7 +48,12 @@ uploads for at most 6 hours.)
 
 - Workflow permissions: read repository contents by default; every job
   that writes declares it (`contents: write` to push the `gh-pages`
-  dashboard data, `issues: write` to answer an ad-hoc request).
+  dashboard data or the pin branches, `pull-requests: write` to open or
+  comment on the pin PRs, `issues: write` to answer an ad-hoc request,
+  `actions: write` to dispatch `pin-candidate`).
+- "Allow GitHub Actions to create and approve pull requests" is on: the
+  pin watcher opens its PRs with the workflow token (bot identity
+  `u-boot-ci`).
 - Labels: `adhoc-run` (set by the issue form) and `adhoc-approved` (added
   by someone with triage rights to start a requested run).
 

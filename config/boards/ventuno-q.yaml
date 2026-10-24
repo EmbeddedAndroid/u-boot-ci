@@ -23,6 +23,20 @@ stock:
     file: cdt_qcs8275-Monza.bin
   xbl_config: xbl_config.elf
   partitions: {board: platforms/boards/qcs8275-monza.yaml, storage: emmc}
+  # Where this pin comes from; the pin watcher (python3 -m ubci.stockpin)
+  # opens a PR when a layer moves on.
+  upstream:
+    layers:
+      meta-qcom: {repo: https://github.com/qualcomm-linux/meta-qcom, branch: master}
+      meta-qcom-arduino: {repo: https://github.com/qualcomm-linux/meta-qcom-arduino, branch: main}
+    bootbinaries:
+      layer: meta-qcom
+      recipe: recipes-bsp/firmware-boot/firmware-qcom-boot-qcs8300_*.bb
+      release: QCS8300 boot binaries {pv}
+    cdt:
+      layer: meta-qcom-arduino
+      recipe: recipes-bsp/firmware-boot/firmware-qcom-cdt-ventuno-q.bb
+      name: cdt-qcs8275-monza
 u-boot:
   # stock: U-Boot replaces UEFI in uefi_a/uefi_b, as meta-qcom-arduino
   # does; no VENTUNO Q config on main, so the QCS8300 one with the

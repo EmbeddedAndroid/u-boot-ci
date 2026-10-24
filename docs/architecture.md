@@ -28,7 +28,9 @@ The security split: list patches are untrusted code, so the jobs that
 build or execute U-Boot hold no secrets, declare no environment and get a
 read-only token (prepare may also write gh-pages; it applies patches but
 runs nothing from them). Only the submit job declares an environment
-([setup.md](setup.md)): `lava-hw`, which deploys from `main` only.
+([setup.md](setup.md)): `lava-hw`, which deploys from `main` only, for
+the nightly and ad-hoc runs; `lava-pr`, which waits for a reviewer, for
+the pin-candidate job that runs PR-branch code.
 The submit job only moves the packages those jobs produced (opaque bytes)
 to LAVA and reads results back; it never executes them. Console text that
 comes back is data: the dashboard sets it as text, never as HTML.

@@ -24,6 +24,19 @@ stock:
     file: cdt_core_kit.bin
   xbl_config: xbl_config.elf
   partitions: {conf: platforms/qcs6490-rb3gen2/ufs/partitions.conf}
+  # Where this pin comes from; the pin watcher (python3 -m ubci.stockpin)
+  # opens a PR when the layer moves on.
+  upstream:
+    layers:
+      meta-qcom: {repo: https://github.com/qualcomm-linux/meta-qcom, branch: master}
+    bootbinaries:
+      layer: meta-qcom
+      recipe: recipes-bsp/firmware-boot/firmware-qcom-boot-qcs6490_*.bb
+      release: QCM6490 boot binaries {pv}
+    cdt:
+      layer: meta-qcom
+      recipe: recipes-bsp/firmware-boot/firmware-qcom-cdt-qcs6490.bb
+      name: rb3gen2-core-kit
 u-boot:
   # stock: U-Boot replaces UEFI in uefi_a/uefi_b, as doc/board/qualcomm/rb3gen2.rst.
   stock:

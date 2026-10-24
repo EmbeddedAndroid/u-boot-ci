@@ -1,0 +1,133 @@
+# Validation of a stock pin bump (a pin/stock-<board> branch from
+# pin-watch): the nightly `main` baseline on that board with the current
+# (main) and the candidate (branch) stock firmware, on the dashboard and
+# summarized in the branch's PR. pin-watch dispatches it (pushes made with
+# the workflow token start no runs); a push by hand to the PR runs it too.
+# Same-repository branches only; the bridge drops fork PRs.
+name: pin-candidate
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths: ["config/boards/*.yaml"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pin-candidate-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+env:
+  UBOOT_REPO: https://git.u-boot-project.org/u-boot/u-boot.git
+  LINUX_NEXT: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+  FINGERPRINT: ubci-${{ github.run_id }}-${{ github.run_attempt }}-pin
+  CI_RUN: scripts/in-container.sh
+
+jobs:
+  build:
+    if: startsWith(github.head_ref || github.ref_name, 'pin/stock-')
+    runs-on: [self-hosted, cil, 16c-16g-60g]
+    outputs:
+      board: ${{ steps.refs.outputs.board }}
+      commit: ${{ steps.refs.outputs.commit }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: refs
+        env:
+          BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          board=${BRANCH#pin/stock-}
+          case $board in *[!a-z0-9-]*|"") echo "bad board name '$board'" >&2; exit 1 ;; esac
+          [ -f "config/boards/$board.yaml" ] || { echo "no board $board" >&2; exit 1; }
+          echo "board=$board" >> "$GITHUB_OUTPUT"
+          echo "commit=$(git ls-remote "$UBOOT_REPO" refs/heads/main | cut -f1)" >> "$GITHUB_OUTPUT"
+          echo "tag=$(git ls-remote --tags "$LINUX_NEXT" 'refs/tags/next-*' | sed -n 's|.*refs/tags/\(next-[0-9]\{8\}\)$|\1|p' | sort | tail -1)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        with:
+          path: work/out/linux
+          key: linux-${{ steps.refs.outputs.tag }}-${{ hashFiles('scripts/build-linux.sh', 'docker/Dockerfile') }}
+      - uses: actions/cache@v4
+        with:
+          path: work/out/initramfs
+          key: initramfs-${{ hashFiles('config/buildroot/*', 'scripts/build-initramfs.sh', 'docker/Dockerfile') }}
+      - name: Build main with the current and the candidate stock firmware
+        env:
+          b: ${{ steps.refs.outputs.board }}
+          BASE: ${{ github.base_ref || 'main' }}
+        run: |
+          docker build --network host -q -t u-boot-ci:1 docker
+          [ -f work/out/linux/linux.json ] || $CI_RUN scripts/build-linux.sh "${{ steps.refs.outputs.tag }}" work/out/linux
+          [ -f work/out/initramfs/initramfs.json ] || $CI_RUN scripts/build-initramfs.sh work/out/initramfs
+          git clone -q --filter=blob:none "$UBOOT_REPO" work/u-boot
+          git -C work/u-boot checkout -q "${{ steps.refs.outputs.commit }}"
+          $CI_RUN scripts/build-target.sh work/u-boot "$b" stock-candidate "$FINGERPRINT" work/out/linux work/out/initramfs work/out/candidate
+          release() { sed -n 's/^  release: //p' "$1"; }
+          new=$(release "config/boards/$b.yaml")
+          git show "origin/$BASE:config/boards/$b.yaml" > "config/boards/$b.yaml"
+          old=$(release "config/boards/$b.yaml")
+          $CI_RUN scripts/build-target.sh work/u-boot "$b" stock "$FINGERPRINT" work/out/linux work/out/initramfs work/out/candidate
+          git checkout -q -- "config/boards/$b.yaml"
+          $CI_RUN python3 -m ubci.run new "work/$FINGERPRINT.json" --id "$FINGERPRINT" --kind pin-candidate \
+            --commit "${{ steps.refs.outputs.commit }}" --fingerprint "$FINGERPRINT" \
+            --linux work/out/linux/linux.json --targets "$b:stock,$b:stock-candidate" \
+            --stock-release "stock=$old" --stock-release "stock-candidate=$new" \
+            --title "stock pin candidate: $old -> $new" \
+            --ci-url "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: candidate
+          path: |
+            work/out/candidate/*.qcomflash.tar.gz
+            work/${{ env.FINGERPRINT }}.json
+          retention-days: 3
+
+  submit:
+    # Holds LAVA_TOKEN and runs this job from the PR branch, so it waits
+    # in the lava-pr environment for a required reviewer before it starts.
+    needs: build
+    runs-on: [self-hosted, cil, 2c-4g-20g]
+    environment: lava-pr
+    timeout-minutes: 300
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      LAVA_TOKEN: ${{ secrets.LAVA_TOKEN }}
+      STOCK_RESTORE_URL_RB3GEN2: ${{ secrets.STOCK_RESTORE_URL_RB3GEN2 }}
+      STOCK_RESTORE_URL_VENTUNO_Q: ${{ secrets.STOCK_RESTORE_URL_VENTUNO_Q }}
+      STOCK_RESTORE_TOKEN: ${{ vars.STOCK_RESTORE_TOKEN }}
+      STOCK_RESTORE_HEADER: ${{ vars.STOCK_RESTORE_HEADER }}
+      PIN_BL2_RB3GEN2: ${{ secrets.PIN_BL2_RB3GEN2 }}
+      PIN_BL2_VENTUNO_Q: ${{ secrets.PIN_BL2_VENTUNO_Q }}
+      GH_TOKEN: ${{ github.token }}
+      BRANCH: ${{ github.head_ref || github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: candidate
+          path: work/artifacts
+      - name: Submit, collect, publish and summarize in the PR
+        run: |
+          docker build --network host -q -t u-boot-ci:1 docker
+          run="work/artifacts/$FINGERPRINT.json"
+          git fetch -q origin gh-pages && git worktree add -q site origin/gh-pages
+          if [ -z "$LAVA_TOKEN" ]; then
+            $CI_RUN python3 -m ubci.run skip "$run" "hardware skipped: no LAVA_TOKEN in the lava-pr environment"
+          else
+            # A failed pass (network, a concurrent publish) is retried on the next one.
+            until $CI_RUN python3 -m ubci.run finished "$run"; do
+              $CI_RUN python3 -m ubci.run submit "$run" work/artifacts/out/candidate || echo "submit failed, retrying"
+              $CI_RUN python3 -m ubci.run collect "$run" || echo "collect failed, retrying"
+              $CI_RUN scripts/publish-site.sh site "$run" || echo "publish failed, retrying"
+              sleep 300
+            done
+          fi
+          $CI_RUN scripts/publish-site.sh site "$run"
+          $CI_RUN python3 -m ubci.run summary "$run" > work/summary.md
+          pr=$(gh pr view "$BRANCH" --json number --jq .number) || exit 0
+          gh pr comment "$pr" --edit-last --body-file work/summary.md ||
+            gh pr comment "$pr" --body-file work/summary.md

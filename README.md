@@ -7,7 +7,7 @@ firmware stacks, booting a pristine linux-next. The output is a public
 dashboard on GitHub Pages; nothing is posted to the mailing list.
 
 It runs nightly on `main` and on `master`, and on demand for series from
-the list stacked onto either, on two
+the list stacked onto either ([ad-hoc runs](docs/adhoc-runs.md)), on two
 boards:
 
 | board | SoC | LAVA device type |
@@ -88,8 +88,11 @@ Building a real run: see [docs/architecture.md](docs/architecture.md).
 - [Boards](docs/boards/): per-board boot paths and known gaps.
 - [Firmware stacks](docs/firmware-stacks.md): stock and open, pins,
   distance to upstream.
+- [How pins are updated](docs/pins.md): the stock pin watcher and its
+  validation, open-stack pins.
 - [Linux payload](docs/linux-payload.md): what the boards boot.
 - [Results schema](docs/results-schema.md): the run document.
+- [Ad-hoc runs](docs/adhoc-runs.md): testing stacked series.
 - [Flake policy](docs/flake-policy.md): flakes, allowlisted kernel
   errors, known gaps.
 - [Adding a board](docs/adding-a-board.md).

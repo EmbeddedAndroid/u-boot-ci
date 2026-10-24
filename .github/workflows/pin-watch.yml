@@ -1,0 +1,73 @@
+# Daily stock firmware pin watcher (docs/pins.md): one PR per board whose
+# meta layer ships boot binaries or a CDT other than the pin. No secrets
+# beyond GITHUB_TOKEN; recipes are only parsed, never run.
+name: pin-watch
+
+on:
+  schedule:
+    - cron: "41 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pin-watch
+  cancel-in-progress: false
+
+jobs:
+  stock:
+    runs-on: [self-hosted, cil, 2c-4g-20g]
+    # Pushes the pin/stock-* branches, opens their PRs and dispatches
+    # pin-candidate (pushes made with the workflow token start no runs).
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: docker build --network host -q -t u-boot-ci:1 docker
+      - name: Compare every board's stock pin with its meta layer
+        run: scripts/in-container.sh python3 -m ubci.stockpin work/pins || echo "failed=1" >> "$GITHUB_ENV"
+      - name: Open or update one PR per board
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "u-boot-ci"
+          git config user.email "u-boot-ci@users.noreply.github.com"
+          for title in work/pins/*.title; do
+            [ -e "$title" ] || continue
+            b=$(basename "$title" .title)
+            branch=pin/stock-$b
+            git switch -q -C "$branch" origin/main
+            cp "work/pins/$b.yaml" "config/boards/$b.yaml"
+            git commit -q -F - config/boards/$b.yaml <<MSG
+          $(cat "$title")
+
+          $(sed -n '1p' "work/pins/$b.body")
+          MSG
+            r=$(python3 -m fwci.pinwatch pr "$branch" "$title" "work/pins/$b.body" --check)
+            [ "$r" = declined ] && { echo "$b: this bump was declined"; continue; }
+            # Push and validate only when the bump differs from what the branch
+            # holds. Pushes with the workflow token start no workflow runs, so
+            # the validation is dispatched.
+            pushed=0
+            if ! git diff --quiet "origin/$branch" HEAD -- config 2>/dev/null; then
+              git push -q -f origin "$branch"
+              pushed=1
+            fi
+            out=$(python3 -m fwci.pinwatch pr "$branch" "$title" "work/pins/$b.body")
+            echo "$b: $out"
+            # A new PR is validated too, in case an earlier run pushed but failed
+            # before dispatching.
+            if [ $pushed = 1 ] || [ "${out%% *}" = created ]; then
+              gh workflow run pin-candidate.yml --ref "$branch"
+            fi
+          done
+          git switch -q --detach origin/main
+      - if: env.failed == '1'
+        run: |
+          cat work/pins/summary.json
+          exit 1
