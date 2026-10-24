@@ -102,4 +102,5 @@ def test_workflows_touch_the_site_worktree_only_in_the_container():
     assert not bad, bad
     uses = sum(open(wf).read().count("scripts/site-checkout.sh site")
                for wf in glob.glob(os.path.join(REPO, ".github", "workflows", "*.yml")))
-    assert uses == 3
+    # prepare, submit and finalize of run.yml; pin-candidate's submit.
+    assert uses == 4

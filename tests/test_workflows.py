@@ -23,7 +23,7 @@ LEASE_TTL_MIN = 360
 # The pool of every job, per workflow; a job not listed calls run.yml.
 # Light jobs go to arm64 to keep load and power draw off the xeons.
 LEASED = {
-    "run.yml": {"prepare": "arm64", "ci": "xeon", "submit": "arm64"},
+    "run.yml": {"prepare": "arm64", "ci": "xeon", "submit": "arm64", "finalize": "arm64"},
     "adhoc.yml": {"request": "arm64"},
     "adhoc-issue.yml": {"request": "arm64"},
     "nightly.yml": {},
@@ -70,9 +70,33 @@ def job_conditions():
                 yield f"{os.path.basename(wf)}:{n}", m.group(1)
 
 
+# The only job that may start after a cancel: it closes the run document.
+AFTER_CANCEL = {"run.yml": {"finalize"}}
+
+
 def test_no_job_runs_after_a_cancel():
     bad = [f"{where}: {cond}" for where, cond in job_conditions() if "always()" in cond]
     assert not bad, bad
+    for wf in LEASED:
+        late = {n for n, j in jobs(wf).items() if re.search(r"\bcancelled\(\)", str(j.get("if", "")))
+                and "!cancelled()" not in str(j.get("if", "")).replace(" ", "")}
+        assert late == AFTER_CANCEL.get(wf, set()), (wf, late)
+
+
+def test_finalize_closes_runs_that_ended_before_submit():
+    js = jobs("run.yml")
+    fin = js["finalize"]
+    assert set(fin["needs"]) == {"prepare", "ci", "submit"}
+    assert fin["if"] == "${{ cancelled() || (failure() && needs.submit.result != 'success') }}"
+    assert fin["permissions"] == {"contents": "write"} and "environment" not in fin
+    assert fin["env"]["UBCI_IMAGE"] == "u-boot-ci-control:1"
+    assert "contains(needs.*.result, 'cancelled')" in fin["env"]["CONCLUSION"]
+    text = run_text(fin)
+    assert not PATCH_CODE.search(text)
+    # The published document (submit may have moved it on), not prepare's artifact.
+    assert 'doc="site/runs/$FINGERPRINT.json"' in text
+    assert re.search(r'ubci\.run close "work/\$FINGERPRINT\.json" "\$CONCLUSION"', text)
+    assert text.index("ubci.run close") < text.index("scripts/publish-site.sh")
 
 
 def test_submit_runs_after_a_failed_check_but_not_after_a_cancel():
@@ -96,8 +120,9 @@ def test_every_job_leases_from_its_pool(wf):
 
 def test_a_run_is_one_xeon_lease_and_two_arm64_leases():
     js = jobs("run.yml")
-    assert set(js) == {"prepare", "ci", "submit"}
-    pools = sorted(lease(j)[0] for j in js.values())
+    assert set(js) == {"prepare", "ci", "submit", "finalize"}
+    # finalize only leases when the run ended early.
+    pools = sorted(lease(j)[0] for n, j in js.items() if n != "finalize")
     assert pools == ["arm64", "arm64", "xeon"]
 
 
@@ -138,10 +163,10 @@ def test_patch_code_runs_only_in_the_ci_job():
     assert "scripts/run-all.sh" in run_text(js["ci"])
 
 
-def test_only_prepare_and_submit_write_and_only_submit_has_the_environment():
+def test_only_the_control_jobs_write_and_only_submit_has_the_environment():
     js = jobs("run.yml")
     assert {n for n, j in js.items() if (j.get("permissions") or {}).get("contents") == "write"} == \
-        {"prepare", "submit"}
+        {"prepare", "submit", "finalize"}
     assert {n for n, j in js.items() if "environment" in j} == {"submit"}
     sub = js["submit"]
     assert sub["environment"] == "lava-hw"

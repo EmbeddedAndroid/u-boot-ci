@@ -2,9 +2,10 @@
 # ad-hoc run of series stacked onto one of them (docs/adhoc-runs.md).
 # Called by nightly.yml, adhoc.yml and adhoc-issue.yml.
 #
-# Three jobs, one after the other, each on its own CIL lease: one xeon
-# lease for the heavy work, small arm64 leases for the rest (the xeon
-# pool's load and power draw are the scarce ones).
+# Three jobs, one after the other (a fourth when the run ends early),
+# each on its own CIL lease: one xeon lease for the heavy work, small
+# arm64 leases for the rest (the xeon pool's load and power draw are the
+# scarce ones).
 #   prepare  arm64: resolves the refs, fetches and applies the series
 #            (git am, nothing from them runs), creates the run document
 #            and publishes it (writes gh-pages).
@@ -16,7 +17,9 @@
 #            only): holds LAVA_TOKEN, the restore URLs and the BL2 pins;
 #            runs no U-Boot code: adds the BL2 to the packages, uploads
 #            them, submits, reads results back and publishes.
-# prepare and submit run their commands in the control image.
+#   finalize arm64, only when the run ended before submit did (a cancel
+#            or a failure): closes the published run document.
+# prepare, submit and finalize run their commands in the control image.
 name: run
 
 on:
@@ -283,3 +286,31 @@ jobs:
             sleep 300
           done
           ci scripts/publish-site.sh site "$run"
+
+  finalize:
+    # The one job that starts after a cancel: when the run ended before
+    # submit finished (a cancel, or a failure that kept submit from
+    # running or ending), nothing else closes the published run document
+    # and the dashboard would show it in progress for ever. Runs no U-Boot
+    # code; writes gh-pages.
+    needs: [prepare, ci, submit]
+    if: ${{ cancelled() || (failure() && needs.submit.result != 'success') }}
+    runs-on: [self-hosted, cil, arm64, 2c-4g-20g]
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    env:
+      UBCI_IMAGE: u-boot-ci-control:1
+      CONCLUSION: ${{ contains(needs.*.result, 'cancelled') && 'cancelled' || 'failure' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Close the run document
+        run: |
+          docker build --network host -q --target control -t "$UBCI_IMAGE" docker
+          $CI_RUN scripts/site-checkout.sh site
+          # prepare publishes it last: a run stopped before that has none.
+          doc="site/runs/$FINGERPRINT.json"
+          [ -f "$doc" ] || { echo "no run document published"; exit 0; }
+          mkdir -p work && cp "$doc" "work/$FINGERPRINT.json"
+          $CI_RUN python3 -m ubci.run close "work/$FINGERPRINT.json" "$CONCLUSION"
+          $CI_RUN scripts/publish-site.sh site "work/$FINGERPRINT.json"

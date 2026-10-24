@@ -88,3 +88,12 @@ def test_branches_and_adhoc_runs(tmp_path):
     a = idx["adhoc"][0]
     assert a["run"] == "a1" and a["baseline"] == "n1" and a["stack"][0]["version"] == 4
     assert a["cells"][0]["diff"]["new_pass"] == ["smoke/usb"]
+
+
+def test_a_closed_run_shows_its_state(tmp_path):
+    r = run("a1", kind="adhoc", targets=[target(state="cancelled")])
+    r["state"] = "cancelled"
+    write(tmp_path, r)
+    idx = site.write(str(tmp_path))
+    assert idx["runs"][0]["state"] == "cancelled"
+    assert idx["adhoc"][0]["state"] == "cancelled" and idx["adhoc"][0]["cells"][0]["state"] == "cancelled"

@@ -422,3 +422,58 @@ def test_a_stack_that_does_not_apply_skips_every_target(tmp_path):
     assert r["targets"][0]["state_detail"] == \
         "does not apply: qcs8300 pinctrl and clocks v4, patch 3/5: [PATCH v4 3/5] pinctrl: qcom: Add QCS8300"
     assert r["state"] == "done"
+
+
+def test_close_cancelled_run_left_building(doc, capsys):
+    # ubci-40121088154-1-main: cancelled during the host checks, published
+    # by prepare as "building" with every target queued, never touched again.
+    urun.main(["host", doc, "docs", "running"])
+    r = json.load(open(doc))
+    r["targets"][1]["state"] = "testing"
+    r["targets"][1]["lava"] = {"job_id": 511644, "url": "u", "device": "d", "health": None}
+    r["targets"][2]["state"] = "skipped"
+    json.dump(r, open(doc, "w"))
+    urun.main(["close", doc, "cancelled"])
+    r = json.load(open(doc))
+    assert schema.errors(r) == []
+    assert r["state"] == "cancelled" and r["note"] == "workflow cancelled"
+    assert [t["state"] for t in r["targets"]] == ["cancelled", "cancelled", "skipped", "cancelled"]
+    assert r["targets"][0]["state_detail"] == "workflow cancelled before this target finished"
+    assert r["targets"][1]["state_detail"].endswith("; LAVA job 511644 was not collected")
+    assert r["host_checks"] == [{"name": "docs", "result": "skip",
+                                 "summary": "did not finish: workflow cancelled"}]
+    assert "ubci-1: cancelled" in capsys.readouterr().out
+    # Closed for good: a later save does not reopen it.
+    urun.save(doc, r)
+    assert json.load(open(doc))["state"] == "cancelled"
+
+
+def test_close_failed_run_is_an_error(doc):
+    urun.main(["close", doc, "failure"])
+    r = json.load(open(doc))
+    assert r["state"] == "error" and {t["state"] for t in r["targets"]} == {"error"}
+    assert r["targets"][0]["state_detail"] == "workflow failed before this target finished"
+
+
+def test_close_leaves_a_finished_run_alone(doc, capsys):
+    urun.main(["skip", doc, "no LAVA_TOKEN"])
+    before = json.load(open(doc))
+    assert before["state"] == "done"
+    urun.main(["close", doc, "cancelled"])
+    assert json.load(open(doc)) == before
+    assert "already done" in capsys.readouterr().out
+
+
+def test_close_takes_only_a_workflow_conclusion(doc):
+    with pytest.raises(SystemExit):
+        urun.main(["close", doc, "success"])
+
+
+def test_a_cancelled_run_stays_cancelled_when_every_target_was_over(doc):
+    urun.main(["host", doc, "docs", "running"])
+    urun.main(["skip", doc, "no LAVA_TOKEN"])
+    assert json.load(open(doc))["state"] != "done"  # docs still running
+    urun.main(["close", doc, "cancelled"])
+    r = json.load(open(doc))
+    urun.save(doc, r)
+    assert json.load(open(doc))["state"] == "cancelled"

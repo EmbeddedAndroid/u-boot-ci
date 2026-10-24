@@ -41,7 +41,7 @@ def test_control_has_what_submit_needs():
         assert tool in apt, (tool, apt)
 
 
-@pytest.mark.parametrize("job", ["prepare", "submit"])
+@pytest.mark.parametrize("job", ["prepare", "submit", "finalize"])
 def test_prepare_and_submit_run_their_commands_in_the_control_image(job):
     j = yaml.safe_load(open(os.path.join(REPO, ".github", "workflows", "run.yml")))["jobs"][job]
     assert j["env"]["UBCI_IMAGE"] == "u-boot-ci-control:1"

@@ -13,13 +13,16 @@ built). The same schema serves u-boot-ci, tf-a-ci and optee-ci.
   series fetched because a cover letter named it, `failed_patch` (number,
   subject, git's error) and `unresolved_prerequisites` (prerequisite
   patch ids a cover letter declares that the stack does not carry).
-- `state`: `queued`, `building`, `testing`, `done` (or `error`).
+- `state`: `queued`, `building`, `testing`, `done`, or `error` /
+  `cancelled` when the workflow failed or was cancelled before the run
+  finished (`ubci.run close`; `note` says which). `done`, `error` and
+  `cancelled` are final.
 - `linux`: the linux-next tag, commit, kernel release, config and the
   sha256 of the Image and modules every board booted.
 - `host_checks[]`: name, result, summary, log link.
 - `targets[]`, one per board and firmware stack:
   - `state` (`queued`, `building`, `flashing`, `testing`, `done`,
-    `skipped`, `error`), `state_detail`, `queue_position`;
+    `skipped`, `error`, `cancelled`), `state_detail`, `queue_position`;
   - `fingerprint` and `components[]`: name, role (`under-test`, `pinned`,
     `stock`), repository, branch, commit or release, fingerprint, and for
     pinned components `upstream`: base, `distance` and the `carried`

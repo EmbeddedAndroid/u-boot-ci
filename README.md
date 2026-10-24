@@ -21,7 +21,8 @@ on the boards follow in later phases.
 ## Reading the dashboard
 
 The page polls `index.json` once a minute, so a run is visible while it
-moves through `queued`, `building`, `flashing`, `testing` and `done`.
+moves through `queued`, `building`, `flashing`, `testing` and `done`
+(or `cancelled` / `error` when its workflow was cancelled or failed).
 
 **The matrix** has one cell per board and firmware stack for the latest
 nightly of the branch selected above it (`main` or `master`):

@@ -8,6 +8,7 @@ python3 -m ubci.run render <run.json> <board> <stack> <package url> <token name>
         <package path> --restore-url U --restore-token T [--restore-header H]
 python3 -m ubci.run submit <run.json> <packages dir>   (holds LAVA_TOKEN)
 python3 -m ubci.run skip <run.json> <reason>
+python3 -m ubci.run close <run.json> <cancelled|failure>
 python3 -m ubci.run collect <run.json> [--baseline base.json] [--wait [--packages DIR]]
 python3 -m ubci.run site <site dir>
 """
@@ -37,6 +38,11 @@ GATE_SUITES = [jobs.GATE_SUITE, jobs.GATE_SUITE + "-reset"]
 BOOT_START = r"resetting \.\.\."
 
 
+# A run in one of these states is over; nothing changes it any more.
+CLOSED = ("done", "error", "cancelled")
+UNFINISHED = ("queued", "building", "flashing", "testing")
+
+
 def load(path):
     return json.load(open(path))
 
@@ -44,7 +50,7 @@ def load(path):
 def save(path, run):
     run["run"]["updated"] = schema.now()
     states = {t["state"] for t in run["targets"]}
-    if run["state"] != "error":
+    if run["state"] not in CLOSED:
         run["state"] = ("done" if states <= {"done", "skipped", "error"} and
                         all(h["result"] not in ("queued", "running") for h in run["host_checks"])
                         else "testing" if states & {"flashing", "testing", "done"}
@@ -374,6 +380,33 @@ def skip(args):
     save(args.run, run)
 
 
+def close(args):
+    """The workflow ended before the run did (a cancel, or a job that
+    failed before submit finished): close the run so the dashboard does
+    not show it in progress for ever. Targets and host checks that did not
+    finish say why; a run that is already over is left as it is."""
+    run = load(args.run)
+    if run["state"] in CLOSED:
+        print("%s: already %s" % (run["run"]["id"], run["state"]))
+        return
+    cancelled = args.conclusion == "cancelled"
+    why = "workflow %s" % ("cancelled" if cancelled else "failed")
+    for t in run["targets"]:
+        if t["state"] in UNFINISHED:
+            job = (t.get("lava") or {}).get("job_id")
+            t["state"] = "cancelled" if cancelled else "error"
+            t["state_detail"] = why + " before this target finished" + (
+                "; LAVA job %d was not collected" % job if job else "")
+    for h in run["host_checks"]:
+        if h["result"] in ("queued", "running"):
+            h["result"] = "skip"
+            h["summary"] = "did not finish: " + why
+    run["state"] = "cancelled" if cancelled else "error"
+    run["note"] = "; ".join(x for x in (run.get("note"), why) if x)
+    save(args.run, run)
+    print("%s: %s" % (run["run"]["id"], run["state"]))
+
+
 def collect(args):
     run = load(args.run)
     base = load(args.baseline) if args.baseline else None
@@ -432,6 +465,9 @@ def main(argv=None):
     a = sub.add_parser("skip")
     a.add_argument("run")
     a.add_argument("reason")
+    a = sub.add_parser("close")
+    a.add_argument("run")
+    a.add_argument("conclusion", choices=["cancelled", "failure"])
     a = sub.add_parser("collect")
     a.add_argument("run")
     a.add_argument("--baseline")
@@ -444,7 +480,7 @@ def main(argv=None):
         site.write(args.site_dir)
     else:
         {"new": new, "host": host, "render": render, "submit": submit, "skip": skip, "summary": summary, "finished": finished, "linux": set_linux,
-         "collect": collect}[args.cmd](args)
+         "collect": collect, "close": close}[args.cmd](args)
 
 
 if __name__ == "__main__":

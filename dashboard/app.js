@@ -33,10 +33,12 @@ function el(tag, attrs, ...kids) {
 function badge(cls, text) { return el("span", {class: "badge " + cls}, text); }
 function link(href, text) { return href ? el("a", {href: href, rel: "noopener"}, text) : text; }
 function verdictClass(v) { return v === "pass" ? "pass" : v === "fail" ? "fail" : "none"; }
+// A run or target in one of these states is over (fwci-run/1).
+const CLOSED = {done: "none", cancelled: "warn", error: "fail"};
+function runBadge(state) { return badge(CLOSED[state] || "info", state); }
 function stateBadge(c) {
-  if (c.state === "done") return badge("none", "done");
+  if (c.state in CLOSED) return runBadge(c.state);
   if (c.state === "skipped") return badge("warn", "skipped");
-  if (c.state === "error") return badge("fail", "error");
   const q = c.queue_position !== null && c.queue_position !== undefined ? " #" + c.queue_position : "";
   return badge("info", c.state + q);
 }
@@ -99,7 +101,7 @@ function renderHost() {
 }
 
 async function run(id) {
-  if (!runCache[id] || runCache[id].state !== "done") {
+  if (!runCache[id] || !(runCache[id].state in CLOSED)) {
     const r = await fetch("runs/" + encodeURIComponent(id) + ".json", {cache: "no-store"});
     runCache[id] = await r.json();
   }
@@ -181,7 +183,7 @@ function renderCandidates() {
   document.getElementById("candidates-section").hidden = !Object.keys(c).length;
   document.getElementById("candidates").replaceChildren(...Object.entries(c).sort().map(([board, r]) =>
     el("div", {}, el("h3", {}, board + " ", el("span", {class: "muted"}, r.title || ""), " ",
-                     badge(r.state === "done" ? "none" : "info", r.state), " ", r.ci_url ? link(r.ci_url, "workflow run") : null),
+                     runBadge(r.state), " ", r.ci_url ? link(r.ci_url, "workflow run") : null),
       el("table", {class: "cases"},
         el("tr", {}, el("th", {}, "stack"), el("th", {}, "firmware"), el("th", {}, "fingerprint"),
            el("th", {}, "boots Linux"), el("th", {}, "cases"), el("th", {}, "LAVA")),
@@ -212,7 +214,7 @@ function renderAdhoc() {
   const runs = index.adhoc || [];
   document.getElementById("adhoc-section").hidden = !runs.length;
   document.getElementById("adhoc").replaceChildren(...runs.map(r =>
-    el("div", {}, el("h3", {}, el("code", {}, r.run), " ", r.title || "", " ", badge(r.state === "done" ? "none" : "info", r.state)),
+    el("div", {}, el("h3", {}, el("code", {}, r.run), " ", r.title || "", " ", runBadge(r.state)),
       el("p", {class: "muted"}, "on " + r.base.branch + " " + r.base.commit.slice(0, 12) +
          (r.baseline ? " · compared with " + r.baseline : " · no baseline"), r.ci_url ? [" · ", link(r.ci_url, "workflow run")] : null),
       el("ol", {}, r.stack.map(seriesLine)),
@@ -229,7 +231,7 @@ function renderAdhoc() {
 
 function renderRuns() {
   document.getElementById("runs").replaceChildren(...(index.runs || []).map(r =>
-    el("li", {}, el("code", {}, r.id), badge(r.state === "done" ? "none" : "info", r.state), r.kind,
+    el("li", {}, el("code", {}, r.id), runBadge(r.state), r.kind,
        el("span", {class: "muted"}, r.created.replace("T", " ").replace("Z", " UTC")),
        el("code", {}, r.base.commit.slice(0, 12)), el("span", {}, r.title || ""))));
 }

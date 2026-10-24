@@ -10,8 +10,9 @@ branch every night; `adhoc.yml` (workflow_dispatch) and `adhoc-issue.yml`
 (an issue form, started by the `adhoc-approved` label) call it for
 ad-hoc runs.
 
-A run is three jobs, one after the other, each on its own self-hosted CIL
-runner (`runs-on: [self-hosted, cil, [arm64,] <cpu>c-<ram>g-<disk>g]`):
+A run is three jobs (four when it ends early, see `finalize`), one after
+the other, each on its own self-hosted CIL runner
+(`runs-on: [self-hosted, cil, [arm64,] <cpu>c-<ram>g-<disk>g]`):
 one ephemeral VM per job, sized from the label; fork pull requests are
 dropped before they reach a runner. Only `ci`, which does all the work on
 the code under test, leases from the xeon pool (at most 32 CPUs, 32 GB,
@@ -23,13 +24,15 @@ Every job builds a container from `docker/` and runs the repository's
 commands in it (`scripts/in-container.sh`), the same container used
 locally: the CI image for `ci`, the control image (`--target control`:
 git, curl, b4 and the Python of the run document and the LAVA client)
-for `prepare` and `submit`. Both images build on x86_64 and arm64.
+for `prepare`, `submit` and `finalize`. Both images build on x86_64 and
+arm64.
 
 | job | runner | runs U-Boot code | secrets | does |
 |---|---|---|---|---|
 | prepare | CIL arm64, `2c-4g-20g` | no | none (writes gh-pages) | resolves the branch commit, the newest linux-next tag and the latest nightly of that branch (the baseline); for an ad-hoc run fetches the series with b4 and applies them with `git am` (`ubci.stack`); creates the run document (`ubci.run new`) and publishes it, state `building` |
 | ci | CIL xeon, `32c-32g-200g` | yes | none | builds pristine linux-next and the initramfs once per tag and config (Actions cache, [linux-payload.md](linux-payload.md)) and uploads them, then `scripts/run-all.sh`: applies the stack of an ad-hoc run, runs the host checks (`scripts/host-check.sh`: carry, buildman, fragments, checkpatch, docs, sandbox and QEMU test.py), builds every queued board and stack (`scripts/build-target.sh`: U-Boot with the run fingerprint, for the open stack TF-A BL31 + OP-TEE from the pins and the FIP, the ESP with the UKI, the qcomflash package) and sizes every build |
 | submit | CIL arm64, `2c-4g-20g` | no | environment `lava-hw`: `LAVA_TOKEN`, restore URLs, BL2 pins (writes gh-pages) | records the Linux payload and the host checks, adds the BL2 to the open-stack packages, uploads each package to the LAVA artifact store, submits the jobs (device choice and cap below), collects results every 5 minutes and republishes the dashboard until the run is done |
+| finalize | CIL arm64, `2c-4g-20g`, only when the run ended before `submit` did | no | none (writes gh-pages) | closes the published run document (`ubci.run close`): the run and its unfinished targets become `cancelled` after a cancel, `error` after a failure, with the reason |
 
 `run-all.sh` runs every step whatever the earlier ones did: a failing check,
 a check that could not run or a failed build is recorded and the next step
@@ -40,7 +43,11 @@ are the `<base>-packages` artifact, and a failed build leaves no package.
 When the stack of an ad-hoc run does not apply, only carry and size run.
 `submit` starts when `ci` failed too (`!cancelled()`), so the host checks
 and the boards that did build still reach the dashboard and LAVA; it does
-not start after a cancel.
+not start after a cancel. `finalize` is the one job that does, and it
+also starts when `submit` failed or never ran: without it the run
+document stays `building` or `testing` on the dashboard for ever. A LAVA
+job of a cancelled run is not cancelled; its target says it was not
+collected.
 
 The security split: list patches are untrusted code, so `ci`, the only job
 that builds or executes it, holds no secret, declares no environment, gets
