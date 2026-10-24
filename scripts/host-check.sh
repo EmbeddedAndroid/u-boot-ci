@@ -103,6 +103,10 @@ sandbox|qemu_arm64)
 			{ result fail "qemu_arm64 did not build"; exit 0; }
 		extra=(--id na -k "not sleep")
 	else
+		# sandbox is a host program. The image's CROSS_COMPILE names the
+		# nolibc aarch64 toolchain: on an x86_64 host it finds no C library
+		# headers, on an aarch64 host it falls back to the host's.
+		unset CROSS_COMPILE
 		make -s O="$b" sandbox_defconfig >"$log" 2>&1 && make -s O="$b" -j"$jobs" >>"$log" 2>&1 ||
 			{ result fail "sandbox did not build"; exit 0; }
 		# binman (test_vboot) imports the pylibfdt of the build, as upstream CI sets it.
