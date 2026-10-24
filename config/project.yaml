@@ -1,0 +1,20 @@
+# What the nightly tests and how it talks to the lab.
+project: u-boot
+under_test:
+  name: u-boot
+  repo: https://git.u-boot-project.org/u-boot/u-boot.git
+  branch: main
+boards: [rb3gen2, ventuno-q]
+stacks: [stock, open]
+lava:
+  url: https://lava.infra.foundries.io
+  # Jobs of this project in flight per device type; the submitter waits
+  # for a slot so the nightly never crowds out port work.
+  max_in_flight_per_device_type: 1
+  # Devices jobs are never pinned to (other teams' production boards).
+  exclude_devices: ["*-production-*"]
+host_checks:
+  # defconfig + fragment combinations (buildman builds defconfigs only;
+  # scripts/host-check.sh buildman covers every snapdragon defconfig).
+  fragments:
+    - [qcom_defconfig, tfa-optee.config]

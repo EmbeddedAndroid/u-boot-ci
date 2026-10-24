@@ -1,0 +1,68 @@
+# Open firmware stack per board: the pinned components around the U-Boot
+# under test. Bumping a pin is a PR reviewed by Tyler; `python3 -m ubci
+# carry` refreshes the carried lists (distance to upstream) and CI checks
+# they match the pinned commits.
+boards:
+  rb3gen2:
+    tf-a:
+      repo: https://github.com/EmbeddedAndroid/arm-trusted-firmware
+      branch: kodiak-native-v4
+      commit: 23b6bf615281242ddf71c5e652aca534dff123d9
+      flags: PLAT=rb3gen2 SPD=opteed
+      fip_load_addr: "0x9fc00000"
+      upstream:
+        repo: https://review.trustedfirmware.org/TF-A/trusted-firmware-a
+        branch: master
+        gerrit: https://review.trustedfirmware.org
+        project: TF-A/trusted-firmware-a
+    bl2:
+      # TF-A BL2 of the tf-a pin, signed with the OEM TEST key of
+      # Qualcomm's public sectools (scripts/sign-bl2-oem.sh); XBL loads it
+      # from tz_a/tz_b.
+      file: tz-rb3gen2.mbn
+      # Not public: CI reads it (gzip + base64) from this secret of the
+      # LAVA environments; locally it is staged in $UBCI_WORK/pins.
+      secret: PIN_BL2_RB3GEN2
+      profile:
+        url: https://raw.githubusercontent.com/EmbeddedAndroid/qcom-buildroot/301396cb55898bbadf885717d59cdd4aa18844cb/kodiak/security/kodiak_tzt_security_profile.xml
+        sha256: 1ace4f443fab34b9b19a4d3a104983089a6d2b0d46765b200c9f7ef5f052c37f
+      sha256: b46c27937615bfa1ca3c3963b1cf866ac8c2c6a4e099bd5daecc983ca2a544d4
+      fingerprint: ubci-pin-bl2-rb3gen2-261024-0109
+    optee:
+      repo: https://github.com/OP-TEE/optee_os
+      branch: master
+      commit: 2cabb6d063513e1718f7627e16b0a5ce1bfd5516
+      platform: qcom-kodiak
+      upstream:
+        repo: https://github.com/OP-TEE/optee_os
+        branch: master
+  ventuno-q:
+    tf-a:
+      repo: https://github.com/EmbeddedAndroid/arm-trusted-firmware
+      branch: ventuno-q-v3
+      commit: 4930db330cb03cfe2124f41bf1852cff9e7abd22
+      flags: PLAT=monza SPD=opteed
+      fip_load_addr: "0xaf000000"
+      upstream:
+        repo: https://review.trustedfirmware.org/TF-A/trusted-firmware-a
+        branch: master
+        gerrit: https://review.trustedfirmware.org
+        project: TF-A/trusted-firmware-a
+    bl2:
+      # TF-A BL2 of the tf-a pin with a QTI signature (this XBL accepts no
+      # test signature on tz); pre-signed, so it keeps its own fingerprint.
+      file: tz-ventuno-q.mbn
+      secret: PIN_BL2_VENTUNO_Q
+      sha256: 91f4618318d49d15440ac31101cdf4ab2e4c8693c95f4867ebf2e65ed30e100f
+      fingerprint: MONZAFP-261008-154802-pr2-fs
+    optee:
+      repo: https://github.com/OP-TEE/optee_os
+      branch: master
+      commit: 2cabb6d063513e1718f7627e16b0a5ce1bfd5516
+      platform: qcom-monaco
+      upstream:
+        repo: https://github.com/OP-TEE/optee_os
+        branch: master
+qtestsign:
+  repo: https://github.com/msm8916-mainline/qtestsign
+  commit: 0eef3b552b1ada848f22bad38ab2e40407307c5b

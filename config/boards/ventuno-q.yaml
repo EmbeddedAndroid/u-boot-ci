@@ -1,0 +1,62 @@
+# Arduino VENTUNO Q (QCS8275, Monaco). See docs/boards/ventuno-q.md.
+name: ventuno-q
+title: VENTUNO Q
+soc: QCS8275 (Monaco)
+lava:
+  device_type: monaco-arduino-monza
+  storage: emmc
+  luns: [0, 1]
+  firehose: prog_firehose_ddr.elf
+  xbl_marker: "SBL1, End"
+stock:
+  # The boot binaries and CDT meta-qcom-arduino pins for ventuno-q
+  # (firmware-qcom-boot-qcs8300_00142.bb, firmware-qcom-cdt-ventuno-q.bb).
+  release: QCS8300 boot binaries 00142
+  bootbinaries:
+    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS8300_bootbinaries.1.0/qcs8300_bootbinaries.1.0-test-device-public/00142/QCS8300_bootbinaries_00142.zip
+      sha256: 22182317cfe5b09f8cc9bc428d755391561cb9d25c9e77aeca4e62195d4b97e8
+    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS8300_bootbinaries.1.0/qcs8300_bootbinaries.1.0-test-device-public/00142/QCS8300_bootbinaries_immutable_00142.zip
+      sha256: ffc05bf1323d828f8c944421d8cadaf1c45697032b26b9f34ecce042ddae291d
+  cdt:
+    url: https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS8300/cdt/qcs8275-Monza_v1.zip
+    sha256: 8484beb2ac1ff74a129c586f6d5331536765975dbabfb0600509f11010ec1c41
+    file: cdt_qcs8275-Monza.bin
+  xbl_config: xbl_config.elf
+  partitions: {board: platforms/boards/qcs8275-monza.yaml, storage: emmc}
+u-boot:
+  # stock: U-Boot replaces UEFI in uefi_a/uefi_b, as meta-qcom-arduino
+  # does; no VENTUNO Q config on main, so the QCS8300 one with the
+  # board's upstream DT (mkmbn takes the qcom,qcs8300 load address). The
+  # QCS8300 series renames it qcom_monaco_defconfig.
+  stock:
+    configs: ["qcom_monaco_defconfig|qcom_qcs8300_defconfig"]
+    device_tree: qcom/monaco-arduino-monza
+    image: u-boot.mbn
+  # open: the board fragment comes with the VENTUNO Q series.
+  open:
+    configs: [qcom_defconfig, tfa-optee.config, "arduino-ventuno-q.config?"]
+    device_tree: qcom/monaco-arduino-monza
+    image: u-boot.bin
+linux:
+  dtb: qcom/monaco-arduino-monza.dtb
+  overlays:
+    stock: []
+    open: [qcom/monaco-el2.dtbo]
+  gaps: {}
+  cmdline: console=ttyMSM0,115200n8
+uboot_checks:
+  - [bdinfo, bdinfo, "boot_params"]
+  - [dm-tree, dm tree, "root_driver"]
+  - [clocks, clk dump, "Usecnt"]
+  - [storage, mmc info, "Capacity:"]
+  - [usb, usb tree, "USB device tree"]
+  - [efi-media, efidebug dh, "Block IO"]
+  - [bootflow, bootflow scan -l, "efi"]
+smoke:
+  cpus: 8
+  storage: "ls /sys/class/block | grep -q '^mmcblk0$' && dd if=/dev/mmcblk0 of=/dev/null bs=1M count=16"
+  usb: "ls /sys/bus/usb/devices | grep -q '^usb[0-9]'"
+  network: "ls /sys/class/net | grep -qv '^lo$'"
+restore:
+  env: VENTUNO_Q
+  path: flash_monaco-arduino-monza_emmc

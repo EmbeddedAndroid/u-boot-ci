@@ -1,0 +1,74 @@
+# Qualcomm RB3 Gen 2 (QCS6490, Kodiak). See docs/boards/rb3gen2.md.
+name: rb3gen2
+title: RB3 Gen 2
+soc: QCS6490 (Kodiak)
+lava:
+  device_type: qcs6490-rb3gen2
+  storage: ufs
+  luns: [0, 1, 2, 3, 4, 5]
+  firehose: prog_firehose_ddr.elf
+  # First line every boot prints from XBL, cold or warm.
+  xbl_marker: "SBL1, End"
+stock:
+  # The boot binaries and CDT meta-qcom pins for rb3gen2-core-kit
+  # (firmware-qcom-boot-qcs6490_00142.bb, firmware-qcom-cdt-qcs6490.bb).
+  release: QCM6490 boot binaries 00142
+  bootbinaries:
+    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCM6490_bootbinaries.1.0/qcm6490_bootbinaries.1.0-test-device-public/00142/QCM6490_bootbinaries_00142.zip
+      sha256: 22e45047b3349a1611d27167616dd04f08e8351120ac121f6921b47b9f709216
+    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCM6490_bootbinaries.1.0/qcm6490_bootbinaries.1.0-test-device-public/00142/QCM6490_bootbinaries_immutable_00142.zip
+      sha256: a5f48c1646eb640377b66fa13064f2efe6f667e60f714b0e06c34dc66b7c94fb
+  cdt:
+    url: https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS6490/cdt/rb3gen2-core-kit.zip
+    sha256: 0fe1c0b4050cf54203203812b2c1f0d9698823d8defc8b6516414a4e5e0c557e
+    file: cdt_core_kit.bin
+  xbl_config: xbl_config.elf
+  partitions: {conf: platforms/qcs6490-rb3gen2/ufs/partitions.conf}
+u-boot:
+  # stock: U-Boot replaces UEFI in uefi_a/uefi_b, as doc/board/qualcomm/rb3gen2.rst.
+  stock:
+    configs: [qcm6490_defconfig]
+    device_tree: qcom/qcs6490-rb3gen2
+    image: u-boot.mbn
+  # open: U-Boot is BL33 in the FIP that TF-A BL2 loads.
+  open:
+    configs: [qcom_defconfig, tfa-optee.config]
+    device_tree: qcom/qcs6490-rb3gen2
+    image: u-boot.bin
+linux:
+  dtb: qcom/qcs6490-rb3gen2.dtb
+  overlays:
+    stock: []
+    # Linux runs at EL2 on the open stack; linux-next has no Kodiak EL2
+    # overlay, so the base DT is used as is.
+    open: []
+  gaps:
+    open: ["no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"]
+  cmdline: console=ttyMSM0,115200n8
+uboot_checks:
+  - [bdinfo, bdinfo, "boot_params"]
+  - [dm-tree, dm tree, "root_driver"]
+  - [clocks, clk dump, "Usecnt"]
+  - [storage, scsi info, "Vendor:"]
+  - [usb, usb tree, "USB device tree"]
+  - [efi-media, efidebug dh, "Block IO"]
+  - [bootflow, bootflow scan -l, "efi"]
+smoke:
+  cpus: 8
+  storage: "ls /sys/class/block | grep -q '^sd[a-z]$' && dd if=/dev/sda of=/dev/null bs=1M count=16"
+  usb: "ls /sys/bus/usb/devices | grep -q '^usb[0-9]'"
+  network: "ls /sys/class/net | grep -qv '^lo$'"
+# Cases this board cannot pass for a reason outside the code under test;
+# a failure counts as skipped with the reason (docs/boards/rb3gen2.md).
+known_gaps:
+  smoke/usb: >-
+    the USB-A ports sit behind a Renesas uPD720201 xHCI that needs
+    renesas_usb_fw.mem, which is not redistributable; the Type-C port is a
+    USB peripheral in the upstream DT
+restore:
+  # The lab health-check image (full flash of the board's stock image).
+  # URL and header come from the environment (STOCK_RESTORE_URL_RB3GEN2,
+  # STOCK_RESTORE_HEADER), repository variables: lab hosts stay out
+  # of this repository.
+  env: RB3GEN2
+  path: lmp-factory-image-qcm6490-kernelci

@@ -1,0 +1,46 @@
+# Kernel error lines (dmesg level 0-3) the dmesg-errors check does not
+# count. Same bar as config/flakes.yaml (docs/flake-policy.md): a
+# `pattern` (POSIX extended regex, no single quotes) seen on the base
+# branch without a code change at least 3 times in 14 days on at least 2
+# boards, a link to the evidence, a named cause, confirmed in the last 30
+# days. Only lines caused by a firmware file the minimal initramfs does
+# not carry belong here; every other error still fails the check.
+# Changes are PRs reviewed by Tyler.
+errors:
+  - id: E1
+    pattern: 'Direct firmware load for [^ ]+ failed with error -2|request_firmware failed: -2|Failed to request file: [^ ]+ \(-2\)|failed to load firmware [^ ]+: -2|firmware download failed -2|ERROR\* failed to load [^ ]+'
+    boards: [rb3gen2]
+    issue: https://lava.infra.foundries.io/scheduler/job/509892
+    suspected_cause: >-
+      firmware files (DSP, GPU, video, Bluetooth, Wi-Fi, Renesas xHCI) are
+      not in the minimal initramfs; the drivers report the missing file
+    confirmed: 2026-10-24
+    failures:
+      - {run: "509867", date: 2026-10-24, board: rb3g2-hyd-01}
+      - {run: "509884", date: 2026-10-24, board: rb3g2-03}
+      - {run: "509892", date: 2026-10-24, board: rb3g2-hyd-01}
+      - {run: "509899", date: 2026-10-24, board: rb3g2-matthart-production-01}
+  - id: E2
+    pattern: 'spi master firmware load failed ret: -517'
+    boards: [rb3gen2]
+    issue: https://lava.infra.foundries.io/scheduler/job/509892
+    suspected_cause: >-
+      the GENI SPI driver defers until qcom/qcs6490/qupv3fw.elf, which the
+      initramfs does not carry, appears
+    confirmed: 2026-10-24
+    failures:
+      - {run: "509867", date: 2026-10-24, board: rb3g2-hyd-01}
+      - {run: "509884", date: 2026-10-24, board: rb3g2-03}
+      - {run: "509892", date: 2026-10-24, board: rb3g2-hyd-01}
+  - id: E3
+    pattern: 'probe with driver (xhci-pci-renesas|ath11k) failed with error -2|ath11k [^ ]+: failed to (power up|create soc core|init core|boot the remote processor)|qcom-iris [^ ]+: core init failed'
+    boards: [rb3gen2]
+    issue: https://lava.infra.foundries.io/scheduler/job/509892
+    suspected_cause: >-
+      the probes that need those files fail after the missing-file line of
+      E1 (renesas_usb_fw.mem, the Wi-Fi Q6 image, the video firmware)
+    confirmed: 2026-10-24
+    failures:
+      - {run: "509867", date: 2026-10-24, board: rb3g2-hyd-01}
+      - {run: "509884", date: 2026-10-24, board: rb3g2-03}
+      - {run: "509892", date: 2026-10-24, board: rb3g2-hyd-01}

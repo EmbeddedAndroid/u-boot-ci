@@ -1,0 +1,8 @@
+# Known flakes (docs/flake-policy.md). An entry needs: id, case
+# (suite/name), issue (link), suspected_cause, confirmed (date), and the
+# failures that qualify it (run, date, board; base-branch runs without a
+# code change): 3 or more in 14 days on 2 or more boards, or set
+# single_board_type for a device type the lab has one board of. Optional
+# boards / stacks limit where it applies. Entries expire 30 days after
+# confirmed. Changes are PRs reviewed by Tyler.
+flakes: []
