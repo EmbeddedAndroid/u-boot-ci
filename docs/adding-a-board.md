@@ -15,9 +15,9 @@
      (`STOCK_RESTORE_URL_<SUFFIX>`) and the directory inside that image.
 2. For an open stack, its pins in `config/pins.yaml` (TF-A, OP-TEE, a
    signed BL2) and `python3 -m ubci.carry`.
-3. Add it to `boards` in `config/project.yaml`, the linux artifact list
-   (its DTB and overlays) and the build matrix in
-   `.github/workflows/nightly.yml`.
+3. Add it to `boards` in `config/project.yaml` (the `ci` job builds every
+   board and stack of the run document) and its DTB and overlays to the
+   `<base>-linux` artifact of the `ci` job in `.github/workflows/run.yml`.
 4. `docs/boards/<board>.md`: the stock boot path chosen and why (replace
    UEFI where U-Boot is meant to be the UEFI, chainload from ABL where that
    is the upstream norm), the open stack, known gaps.

@@ -4,6 +4,9 @@ what those jobs run."""
 import os
 import re
 
+import pytest
+import yaml
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -37,3 +40,12 @@ def test_control_has_what_submit_needs():
     for tool in ("curl", "git", "python3"):
         assert tool in apt, (tool, apt)
 
+
+@pytest.mark.parametrize("job", ["prepare", "submit"])
+def test_prepare_and_submit_run_their_commands_in_the_control_image(job):
+    j = yaml.safe_load(open(os.path.join(REPO, ".github", "workflows", "run.yml")))["jobs"][job]
+    assert j["env"]["UBCI_IMAGE"] == "u-boot-ci-control:1"
+    builds = [line.strip() for s in j["steps"] for line in s.get("run", "").splitlines()
+              if "docker build" in line]
+    assert builds == ['docker build --network host -q --target control -t "$UBCI_IMAGE" docker']
+    assert '"${UBCI_IMAGE:-u-boot-ci:1}"' in open(os.path.join(REPO, "scripts", "in-container.sh")).read()

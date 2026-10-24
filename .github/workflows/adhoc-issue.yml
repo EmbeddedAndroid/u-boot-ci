@@ -14,7 +14,9 @@ permissions:
 jobs:
   request:
     if: github.event.label.name == 'adhoc-approved'
-    runs-on: [self-hosted, cil, 2c-4g-20g]
+    # Only parses the form (standard library Python) and comments: a small
+    # arm64 lease.
+    runs-on: [self-hosted, cil, arm64, 2c-4g-20g]
     permissions:
       contents: read
       issues: write

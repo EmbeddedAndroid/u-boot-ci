@@ -29,7 +29,8 @@ permissions:
 
 jobs:
   request:
-    runs-on: [self-hosted, cil, 2c-4g-20g]
+    # Only parses the inputs (standard library Python): a small arm64 lease.
+    runs-on: [self-hosted, cil, arm64, 2c-4g-20g]
     outputs:
       series: ${{ steps.check.outputs.series }}
       targets: ${{ steps.check.outputs.targets }}

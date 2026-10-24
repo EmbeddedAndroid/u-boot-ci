@@ -8,32 +8,55 @@ ad-hoc run, the series to stack on the base
 ([adhoc-runs.md](adhoc-runs.md)). `nightly.yml` calls it once per
 branch every night; `adhoc.yml` (workflow_dispatch) and `adhoc-issue.yml`
 (an issue form, started by the `adhoc-approved` label) call it for
-ad-hoc runs. It runs on the
-self-hosted CIL runners (`runs-on: [self-hosted, cil, <cpu>c-<ram>g-<disk>g]`):
-one ephemeral VM per job, fork pull requests are dropped before they reach
-a runner. Every job builds the container in `docker/` and runs the
-repository's commands in it (`scripts/in-container.sh`), the same container
-used locally.
+ad-hoc runs.
 
-| job | runs U-Boot code | secrets | does |
-|---|---|---|---|
-| prepare | no | none (writes gh-pages) | resolves the branch commit, the newest linux-next tag and the latest nightly of that branch (the baseline); for an ad-hoc run fetches the series with b4 and applies them with `git am` (`ubci.stack`); creates the run document (`ubci.run new`) and publishes it, state `building` |
-| linux | no | none | builds pristine linux-next and the initramfs once per tag and config (Actions cache), [linux-payload.md](linux-payload.md) |
-| build (board x stack) | yes | none | applies the stack of an ad-hoc run, then `scripts/build-target.sh`: U-Boot with the run fingerprint, for the open stack TF-A BL31 + OP-TEE from the pins and the FIP, the ESP with the UKI, the qcomflash package |
-| host-checks (matrix) | yes | none | `scripts/host-check.sh`: buildman, fragments, checkpatch, docs, sandbox and QEMU test.py; `ubci.carry --check` |
-| size | no | none | text/data/bss and image size of every hardware build |
-| submit | no | environment `lava-hw`: `LAVA_TOKEN`, restore URLs, BL2 pins (writes gh-pages) | records the Linux payload and the host checks, adds the BL2 to the open-stack packages, uploads each package to the LAVA artifact store, submits the jobs (device choice and cap below), collects results every 5 minutes and republishes the dashboard until the run is done |
+A run is three jobs, one after the other, each on its own self-hosted CIL
+runner (`runs-on: [self-hosted, cil, [arm64,] <cpu>c-<ram>g-<disk>g]`):
+one ephemeral VM per job, sized from the label; fork pull requests are
+dropped before they reach a runner. Only `ci`, which does all the work on
+the code under test, leases from the xeon pool (at most 32 CPUs, 32 GB,
+750 GB per lease, one host). `prepare` and `submit`, and the request jobs
+of the ad-hoc workflows, carry the `arm64` label and lease small VMs from
+the arm64 pool (at most 4 CPUs, 8 GB, 200 GB per lease; one host, two
+leases at a time), which keeps their load and power draw off the xeons.
+Every job builds a container from `docker/` and runs the repository's
+commands in it (`scripts/in-container.sh`), the same container used
+locally: the CI image for `ci`, the control image (`--target control`:
+git, curl, b4 and the Python of the run document and the LAVA client)
+for `prepare` and `submit`. Both images build on x86_64 and arm64.
 
-The security split: list patches are untrusted code, so the jobs that
-build or execute U-Boot hold no secrets, declare no environment and get a
-read-only token (prepare may also write gh-pages; it applies patches but
-runs nothing from them). Only the submit job declares an environment
+| job | runner | runs U-Boot code | secrets | does |
+|---|---|---|---|---|
+| prepare | CIL arm64, `2c-4g-20g` | no | none (writes gh-pages) | resolves the branch commit, the newest linux-next tag and the latest nightly of that branch (the baseline); for an ad-hoc run fetches the series with b4 and applies them with `git am` (`ubci.stack`); creates the run document (`ubci.run new`) and publishes it, state `building` |
+| ci | CIL xeon, `32c-32g-200g` | yes | none | builds pristine linux-next and the initramfs once per tag and config (Actions cache, [linux-payload.md](linux-payload.md)) and uploads them, then `scripts/run-all.sh`: applies the stack of an ad-hoc run, runs the host checks (`scripts/host-check.sh`: carry, buildman, fragments, checkpatch, docs, sandbox and QEMU test.py), builds every queued board and stack (`scripts/build-target.sh`: U-Boot with the run fingerprint, for the open stack TF-A BL31 + OP-TEE from the pins and the FIP, the ESP with the UKI, the qcomflash package) and sizes every build |
+| submit | CIL arm64, `2c-4g-20g` | no | environment `lava-hw`: `LAVA_TOKEN`, restore URLs, BL2 pins (writes gh-pages) | records the Linux payload and the host checks, adds the BL2 to the open-stack packages, uploads each package to the LAVA artifact store, submits the jobs (device choice and cap below), collects results every 5 minutes and republishes the dashboard until the run is done |
+
+`run-all.sh` runs every step whatever the earlier ones did: a failing check,
+a check that could not run or a failed build is recorded and the next step
+runs; the job fails at the end when any did. Each check leaves its
+`<check>.json` (result and summary) and `<check>.log`, each build its
+`build-<board>-<stack>.log`, all in the `<base>-host` artifact; the packages
+are the `<base>-packages` artifact, and a failed build leaves no package.
+When the stack of an ad-hoc run does not apply, only carry and size run.
+`submit` starts when `ci` failed too (`!cancelled()`), so the host checks
+and the boards that did build still reach the dashboard and LAVA; it does
+not start after a cancel.
+
+The security split: list patches are untrusted code, so `ci`, the only job
+that builds or executes it, holds no secret, declares no environment, gets
+a read-only token and does not leave that token in the checkout
+(`persist-credentials: false`). It saves the Linux payload to the Actions
+cache and uploads it before the first patch is applied, so a series cannot
+change the kernel later runs boot, or its own. `prepare` writes gh-pages;
+it applies patches but runs nothing from them. Only the submit job declares an environment
 ([setup.md](setup.md)): `lava-hw`, which deploys from `main` only, for
 the nightly and ad-hoc runs; `lava-pr`, which waits for a reviewer, for
 the pin-candidate job that runs PR-branch code.
-The submit job only moves the packages those jobs produced (opaque bytes)
+The submit job only moves the packages `ci` produced (opaque bytes)
 to LAVA and reads results back; it never executes them. Console text that
-comes back is data: the dashboard sets it as text, never as HTML.
+comes back is data: the dashboard sets it as text, never as HTML. The
+host-check results `ci` reports are data from untrusted code too: a
+series can fake its own run's results, never another run's.
 
 Each job is pinned to a device: the submit job picks a board of the
 device type in Good health, idle ones first, leaving out the devices

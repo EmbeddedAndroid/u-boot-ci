@@ -61,9 +61,13 @@ uploads for at most 6 hours.)
 
 - Pages: source "Deploy from a branch", branch `gh-pages`, folder `/`.
   Until then the dashboard data is on the `gh-pages` branch only.
-- The CIL bridge concurrency cap of this repository (a nightly uses up to
-  8 runners per branch at once: 4 builds and the host-check matrix of 7;
-  the other jobs are sequential).
+- The CIL bridge concurrency cap of this repository. A run holds one CIL
+  runner at a time (ad-hoc request, `prepare`, `ci`, `submit`), so the
+  nightly holds two (one per branch); 4 covers the nightly and an ad-hoc
+  run side by side. Only `ci` is a xeon lease. The arm64 pool takes two
+  leases at a time, and a `submit` holds its lease while LAVA runs (up to
+  6 h): while both nightly submits run, an ad-hoc run waits for an arm64
+  slot before it starts.
 
 ## The LAVA user
 

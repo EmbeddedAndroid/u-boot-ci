@@ -2,13 +2,21 @@
 # ad-hoc run of series stacked onto one of them (docs/adhoc-runs.md).
 # Called by nightly.yml, adhoc.yml and adhoc-issue.yml.
 #
-# Security split: the jobs that build or run U-Boot or patch code
-# (prepare, linux, build, host-checks, size) declare no environment, so
-# they get no secret and a read-only token (prepare may also write the
-# gh-pages branch). Only `submit` declares the `lava-hw` environment
-# (deployments from main only) and holds LAVA_TOKEN, the restore URLs and
-# the BL2 pins; it runs no U-Boot code: it adds the BL2 to the packages,
-# uploads them, submits, reads results back and publishes.
+# Three jobs, one after the other, each on its own CIL lease: one xeon
+# lease for the heavy work, small arm64 leases for the rest (the xeon
+# pool's load and power draw are the scarce ones).
+#   prepare  arm64: resolves the refs, fetches and applies the series
+#            (git am, nothing from them runs), creates the run document
+#            and publishes it (writes gh-pages).
+#   ci       xeon: everything that builds or runs U-Boot or patch code
+#            (Linux payload, the 8 host checks, every board and stack,
+#            scripts/run-all.sh). No environment, no secret, a read-only
+#            token that is not left in the checkout.
+#   submit   arm64, in the lava-hw environment (deployments from main
+#            only): holds LAVA_TOKEN, the restore URLs and the BL2 pins;
+#            runs no U-Boot code: adds the BL2 to the packages, uploads
+#            them, submits, reads results back and publishes.
+# prepare and submit run their commands in the control image.
 name: run
 
 on:
@@ -46,15 +54,17 @@ env:
 
 jobs:
   prepare:
-    runs-on: [self-hosted, cil, 4c-8g-30g]
+    # No U-Boot code runs here, so it may write gh-pages.
+    runs-on: [self-hosted, cil, arm64, 2c-4g-20g]
     permissions:
       contents: write
+    env:
+      UBCI_IMAGE: u-boot-ci-control:1
     outputs:
       commit: ${{ steps.refs.outputs.commit }}
       linux_tag: ${{ steps.refs.outputs.linux_tag }}
       baseline: ${{ steps.refs.outputs.baseline }}
       base_commit: ${{ steps.refs.outputs.base_commit }}
-      matrix: ${{ steps.doc.outputs.matrix }}
     steps:
       - uses: actions/checkout@v4
       - id: refs
@@ -78,8 +88,8 @@ jobs:
           PY
           )
           { echo "commit=$commit"; echo "linux_tag=$tag"; echo "baseline=${baseline#-}"; echo "base_commit=${base_commit#-}"; } >> "$GITHUB_OUTPUT"
-      - name: Build the CI container
-        run: docker build --network host -q -t u-boot-ci:1 docker
+      - name: Build the control container
+        run: docker build --network host -q --target control -t "$UBCI_IMAGE" docker
       - name: Fetch and apply the series (ad-hoc runs)
         if: inputs.series != ''
         env:
@@ -92,8 +102,7 @@ jobs:
           git -C work/u-boot checkout -q "${{ steps.refs.outputs.commit }}"
           $CI_RUN python3 -m ubci.stack fetch work/stack $ids
           $CI_RUN python3 -m ubci.stack apply work/u-boot work/stack
-      - id: doc
-        name: Create the run document and publish it
+      - name: Create the run document and publish it
         env:
           KIND: ${{ inputs.kind }}
           BASE: ${{ inputs.base }}
@@ -107,8 +116,6 @@ jobs:
           [ -n "$TITLE" ] && args+=(--title "$TITLE")
           [ -f work/stack/stack.json ] && args+=(--stack work/stack/stack.json)
           $CI_RUN python3 -m ubci.run new "work/$FINGERPRINT.json" "${args[@]}"
-          matrix=$(python3 -c 'import json, sys; d = json.load(open(sys.argv[1])); print(json.dumps({"include": [{"board": t["board"], "stack": t["stack"]} for t in d["targets"] if t["state"] == "queued"] or [{"board": "none", "stack": "none"}]}))' "work/$FINGERPRINT.json")
-          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
           $CI_RUN scripts/site-checkout.sh site
           $CI_RUN scripts/publish-site.sh site "work/$FINGERPRINT.json"
       - uses: actions/upload-artifact@v4
@@ -119,28 +126,52 @@ jobs:
             work/stack/
           retention-days: 7
 
-  linux:
+  ci:
+    # Runs U-Boot and patch code: no environment, no secret, a read-only
+    # token. The Linux payload is cached and uploaded before any patch
+    # code runs, so a series cannot change what later runs or its own
+    # hardware jobs boot.
     needs: prepare
-    runs-on: [self-hosted, cil, 32c-32g-100g]
+    runs-on: [self-hosted, cil, 32c-32g-200g]
+    timeout-minutes: 300
+    permissions:
+      contents: read
+    env:
+      LINUX_TAG: ${{ needs.prepare.outputs.linux_tag }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/cache@v4
+        with:
+          persist-credentials: false
+      - name: Build the CI container
+        run: docker build --network host -q -t u-boot-ci:1 docker
+      - uses: actions/cache/restore@v4
         id: linux
         with:
           path: work/out/linux
-          key: linux-${{ needs.prepare.outputs.linux_tag }}-${{ hashFiles('scripts/build-linux.sh', 'docker/Dockerfile') }}
-      - uses: actions/cache@v4
+          key: linux-${{ env.LINUX_TAG }}-${{ hashFiles('scripts/build-linux.sh', 'docker/Dockerfile') }}
+      - uses: actions/cache/restore@v4
         id: initramfs
         with:
           path: work/out/initramfs
           key: initramfs-${{ hashFiles('config/buildroot/*', 'scripts/build-initramfs.sh', 'docker/Dockerfile') }}
       - name: Build pristine linux-next and the initramfs (once per tag / config)
         if: steps.linux.outputs.cache-hit != 'true' || steps.initramfs.outputs.cache-hit != 'true'
+        # A failed payload fails the builds in run-all.sh, not the checks.
+        continue-on-error: true
         run: |
-          docker build --network host -q -t u-boot-ci:1 docker
-          [ -f work/out/linux/linux.json ] || $CI_RUN scripts/build-linux.sh "${{ needs.prepare.outputs.linux_tag }}" work/out/linux
+          [ -f work/out/linux/linux.json ] || $CI_RUN scripts/build-linux.sh "$LINUX_TAG" work/out/linux
           [ -f work/out/initramfs/initramfs.json ] || $CI_RUN scripts/build-initramfs.sh work/out/initramfs
           rm -rf work/linux-next-* work/buildroot-*
+      - uses: actions/cache/save@v4
+        if: steps.linux.outputs.cache-hit != 'true' && hashFiles('work/out/linux/linux.json') != ''
+        with:
+          path: work/out/linux
+          key: ${{ steps.linux.outputs.cache-primary-key }}
+      - uses: actions/cache/save@v4
+        if: steps.initramfs.outputs.cache-hit != 'true' && hashFiles('work/out/initramfs/initramfs.json') != ''
+        with:
+          path: work/out/initramfs
+          key: ${{ steps.initramfs.outputs.cache-primary-key }}
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.base }}-linux
@@ -153,113 +184,48 @@ jobs:
             work/out/linux/dtbs/qcom/monaco-el2.dtbo
             work/out/initramfs/
           retention-days: 3
-
-  build:
-    needs: [prepare, linux]
-    runs-on: [self-hosted, cil, 8c-16g-60g]
-    strategy:
-      fail-fast: false
-      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
-    steps:
-      - uses: actions/checkout@v4
-        if: matrix.board != 'none'
-      - uses: actions/download-artifact@v4
-        if: matrix.board != 'none'
-        with:
-          name: ${{ inputs.base }}-linux
-          path: work/out
-      - uses: actions/download-artifact@v4
-        if: matrix.board != 'none'
-        with:
-          name: ${{ inputs.base }}-run
-          path: work/run
-      - name: Build U-Boot (with the stack), the firmware stack, the ESP and the package
-        if: matrix.board != 'none'
-        run: |
-          git clone -q --filter=blob:none "$UBOOT_REPO" work/u-boot
-          git -C work/u-boot checkout -q "${{ needs.prepare.outputs.commit }}"
-          docker build --network host -q -t u-boot-ci:1 docker
-          if [ -f work/run/stack/stack.json ]; then
-            $CI_RUN python3 -m ubci.stack apply work/u-boot work/run/stack | grep -qx applies
-          fi
-          $CI_RUN scripts/build-target.sh work/u-boot ${{ matrix.board }} ${{ matrix.stack }} "$FINGERPRINT" \
-            work/out/linux work/out/initramfs work/out/targets
-      - uses: actions/upload-artifact@v4
-        if: matrix.board != 'none'
-        with:
-          name: ${{ inputs.base }}-package-${{ matrix.board }}-${{ matrix.stack }}
-          path: |
-            work/out/targets/${{ matrix.board }}-${{ matrix.stack }}.qcomflash.tar.gz
-            work/out/targets/${{ matrix.board }}-${{ matrix.stack }}/*.json
-            work/out/targets/${{ matrix.board }}-${{ matrix.stack }}/u-boot.elf
-            work/out/targets/${{ matrix.board }}-${{ matrix.stack }}/u-boot.[mb][bi][n]
-          retention-days: 3
-
-  host-checks:
-    needs: prepare
-    runs-on: [self-hosted, cil, 16c-16g-60g]
-    strategy:
-      fail-fast: false
-      matrix:
-        check: [buildman, fragments, checkpatch, docs, sandbox, qemu_arm64, carry]
-    steps:
-      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
           name: ${{ inputs.base }}-run
           path: work/run
-      - name: Run ${{ matrix.check }}
+      - name: Host checks, every board and stack, sizes
+        env:
+          COMMIT: ${{ needs.prepare.outputs.commit }}
+          BASE_COMMIT: ${{ needs.prepare.outputs.base_commit }}
         run: |
-          docker build --network host -q -t u-boot-ci:1 docker
-          mkdir -p work/out/host
-          if [ "${{ matrix.check }}" = carry ]; then
-            if $CI_RUN python3 -m ubci.carry --check > work/out/host/carry.log 2>&1; then r=pass; else r=fail; fi
-            printf '{"result": "%s", "summary": "%s"}\n' "$r" "$(tail -1 work/out/host/carry.log | tr -d '"')" > work/out/host/carry.json
-            exit 0
-          fi
           git clone -q --filter=blob:none "$UBOOT_REPO" work/u-boot
-          git -C work/u-boot checkout -q "${{ needs.prepare.outputs.commit }}"
+          git -C work/u-boot checkout -q "$COMMIT"
           # An ad-hoc run checks the stack: checkpatch from the base commit.
-          since=${{ needs.prepare.outputs.base_commit }}
+          since=$BASE_COMMIT stack=()
           if [ -f work/run/stack/stack.json ]; then
-            $CI_RUN python3 -m ubci.stack apply work/u-boot work/run/stack | grep -qx applies || exit 0
-            since=${{ needs.prepare.outputs.commit }}
+            since=$COMMIT stack=(work/run/stack)
           fi
-          $CI_RUN scripts/host-check.sh ${{ matrix.check }} work/u-boot work/out/host $since
+          $CI_RUN scripts/run-all.sh work/u-boot "work/run/$FINGERPRINT.json" "$FINGERPRINT" "$since" \
+            work/out/linux work/out/initramfs work/out "${stack[@]}"
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: ${{ !cancelled() }}
         with:
-          name: ${{ inputs.base }}-host-${{ matrix.check }}
-          path: work/out/host/${{ matrix.check }}.*
+          name: ${{ inputs.base }}-host
+          path: |
+            work/out/host/*.json
+            work/out/host/*.log
           retention-days: 14
-
-  size:
-    needs: build
-    if: ${{ !cancelled() }}
-    runs-on: [self-hosted, cil, 2c-4g-20g]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          pattern: ${{ inputs.base }}-package-*
-          path: work/artifacts
-      - name: Image sizes of every hardware build
-        run: |
-          docker build --network host -q -t u-boot-ci:1 docker
-          mkdir -p work/out/targets
-          for d in work/artifacts/*-package-*/*-*/; do [ -d "$d" ] && cp -r "$d" work/out/targets/; done
-          $CI_RUN scripts/host-check.sh size . work/out/targets/host
       - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
         with:
-          name: ${{ inputs.base }}-host-size
-          path: work/out/targets/host/size.*
-          retention-days: 14
+          name: ${{ inputs.base }}-packages
+          path: |
+            work/out/targets/*.qcomflash.tar.gz
+            work/out/targets/*-*/*.json
+            work/out/targets/*-*/u-boot.elf
+            work/out/targets/*-*/u-boot.[mb][bi][n]
+          retention-days: 3
 
   submit:
     # Holds LAVA_TOKEN; runs no U-Boot code.
-    needs: [prepare, build, host-checks, size]
+    needs: [prepare, ci]
     if: ${{ !cancelled() && needs.prepare.result == 'success' }}
-    runs-on: [self-hosted, cil, 2c-4g-20g]
+    runs-on: [self-hosted, cil, arm64, 2c-4g-20g]
     environment: lava-hw
     timeout-minutes: 360
     permissions:
@@ -273,6 +239,7 @@ jobs:
       PIN_BL2_RB3GEN2: ${{ secrets.PIN_BL2_RB3GEN2 }}
       PIN_BL2_VENTUNO_Q: ${{ secrets.PIN_BL2_VENTUNO_Q }}
       BASE: ${{ inputs.base }}
+      UBCI_IMAGE: u-boot-ci-control:1
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
@@ -281,11 +248,11 @@ jobs:
           path: work/artifacts
       - name: Record the Linux payload and the host checks
         run: |
-          docker build --network host -q -t u-boot-ci:1 docker
+          docker build --network host -q --target control -t "$UBCI_IMAGE" docker
           run="work/artifacts/$BASE-run/$FINGERPRINT.json"
           [ -f work/artifacts/$BASE-linux/linux/linux.json ] && $CI_RUN python3 -m ubci.run linux "$run" work/artifacts/$BASE-linux/linux/linux.json
           for c in buildman fragments checkpatch docs sandbox qemu_arm64 carry size; do
-            f=work/artifacts/$BASE-host-$c/$c.json
+            f=work/artifacts/$BASE-host/$c.json
             if [ -f "$f" ]; then
               r=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["result"])' "$f")
               s=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["summary"])' "$f")
@@ -294,7 +261,7 @@ jobs:
               $CI_RUN python3 -m ubci.run host "$run" "$c" skip --summary "did not run"
             fi
           done
-          mkdir -p work/packages && mv work/artifacts/$BASE-package-*/*.qcomflash.tar.gz work/packages/ 2>/dev/null || true
+          mkdir -p work/packages && mv work/artifacts/$BASE-packages/*.qcomflash.tar.gz work/packages/ 2>/dev/null || true
       - name: Submit to LAVA and collect, publishing the dashboard as it goes
         run: |
           run="work/artifacts/$BASE-run/$FINGERPRINT.json"
