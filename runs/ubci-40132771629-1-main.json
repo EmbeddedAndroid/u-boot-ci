@@ -88,14 +88,95 @@
    }
   ],
   "title": "QCS8300 v4 + VENTUNO Q v2",
-  "updated": "2026-10-24T22:15:22Z"
+  "updated": "2026-10-24T22:20:28Z"
  },
  "schema": "fwci-run/1",
- "state": "building",
+ "state": "testing",
  "targets": [
   {
    "board": "ventuno-q",
-   "cases": [],
+   "cases": [
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "fail",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "fail",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "fail",
+     "suite": "linux-version"
+    },
+    {
+     "name": "uefi_ver",
+     "result": "fail",
+     "suite": "stock-restore"
+    }
+   ],
    "components": [
     {
      "branch": "main",
@@ -113,22 +194,29 @@
     }
    ],
    "fingerprint": "ubci-40132771629-1-main-stock-ventuno-q",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "fail",
    "lava": {
-    "device": null,
-    "health": "Unknown",
+    "device": "ventunoq-hyd-02",
+    "health": "Incomplete",
     "job_id": 511644,
     "url": "https://lava.infra.foundries.io/scheduler/job/511644"
    },
    "linux_boot": {
+    "last_lines": [],
     "stage": "not-reached",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
-   "queue_position": 3,
-   "restore": "not-run",
+   "queue_position": null,
+   "recovery": {
+    "health": null,
+    "job_id": 511650,
+    "url": "https://lava.infra.foundries.io/scheduler/job/511650"
+   },
+   "restore": "recovery-job",
    "stack": "stock",
-   "state": "queued"
+   "state": "done",
+   "state_detail": "LAVA job incomplete"
   },
   {
    "board": "ventuno-q",
