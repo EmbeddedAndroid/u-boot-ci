@@ -235,7 +235,7 @@ jobs:
 
   size:
     needs: build
-    if: always()
+    if: ${{ !cancelled() }}
     runs-on: [self-hosted, cil, 2c-4g-20g]
     steps:
       - uses: actions/checkout@v4
@@ -258,7 +258,7 @@ jobs:
   submit:
     # Holds LAVA_TOKEN; runs no U-Boot code.
     needs: [prepare, build, host-checks, size]
-    if: always() && needs.prepare.result == 'success'
+    if: ${{ !cancelled() && needs.prepare.result == 'success' }}
     runs-on: [self-hosted, cil, 2c-4g-20g]
     environment: lava-hw
     timeout-minutes: 360
