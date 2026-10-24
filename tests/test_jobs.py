@@ -55,7 +55,7 @@ def test_uboot_checks_come_from_the_board():
     job = jobs.render("rb3gen2", "stock", "ubci-9", PKG, LINUX, RESTORE)
     steps = [a for a in job["actions"] if "test" in a and "interactive" in a["test"]][0]
     names = [s["name"] for s in steps["test"]["interactive"][0]["script"]]
-    assert names[:3] == ["autoboot", "u-boot-prompt", "uboot-version"] and names[-1] == "uboot-reset"
+    assert names[:4] == ["autoboot", "u-boot-prompt", "u-boot-sync", "uboot-version"] and names[-1] == "uboot-reset"
     assert "uboot-storage" in names
 
 

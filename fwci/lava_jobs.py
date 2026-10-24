@@ -84,8 +84,10 @@ def fingerprint_gate(name, start, end, expect, minutes=5):
 
 
 def interactive(name, prompts, steps, minutes=10):
-    """steps: dicts with name, command (None waits without sending) and
-    optional success / failure messages (regex)."""
+    """steps: dicts with name, command (None waits without sending),
+    optional success / failure messages (regex) and wait_for_prompt
+    (False: a matched success or failure ends the step, without waiting
+    for a prompt)."""
     script = []
     for s in steps:
         item = {"name": s["name"], "command": s.get("command")}
@@ -93,6 +95,8 @@ def interactive(name, prompts, steps, minutes=10):
             item["successes"] = [{"message": s["success"]}]
         if s.get("failure"):
             item["failures"] = [{"message": s["failure"]}]
+        if s.get("wait_for_prompt") is False:
+            item["wait_for_prompt"] = False
         script.append(item)
     return {"test": {
         "interactive": [{"name": name, "prompts": prompts, "echo": "discard",

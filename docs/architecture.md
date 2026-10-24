@@ -84,7 +84,12 @@ low priority:
    OP-TEE and U-Boot (open) must each print their fingerprint.
 3. Stop autoboot and run the **U-Boot checks** of the board config
    (`version`, `bdinfo`, `dm tree`, `clk dump`, storage, `usb tree`,
-   `efidebug dh`, `bootflow scan -l`), then `reset`.
+   `efidebug dh`, `bootflow scan -l`), then `reset`. Each command line
+   ends with an `echo` of an end marker and its step waits for that
+   marker, not for the `=> ` prompt, after one sync step that does
+   nothing else: a stray prompt (line noise run as a command at the first
+   prompt) cannot shift the checks onto each other's output, and no
+   command is typed while U-Boot is still printing.
 4. The gate again on that boot (the fingerprint gate passes only when
    both boots show the build), then U-Boot autoboots (its default
    `bootefi bootmgr`) the UKI from the ESP.

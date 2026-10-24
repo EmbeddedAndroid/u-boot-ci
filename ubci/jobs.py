@@ -26,6 +26,12 @@ SHELL_PROMPT = "\n# "
 LOGIN_PROMPT = "buildroot login:"
 AUTOBOOT = "Hit any key to stop autoboot"
 UBOOT_FAILURE = r"Unknown command|Error|ERROR|error:|failed|FAILED"
+# Every U-Boot step but the first two and reset ends on this marker, which
+# only the echo command prints (the echoed command line shows it split in
+# two). The prompt takes the newline too, so that the next step's "echo:
+# discard" reads that step's own command line.
+UBOOT_END = "@@ uboot end@@"
+UBOOT_END_PROMPT = UBOOT_END + r"\r?\n"
 GATE_SUITE = "firmware-fingerprint"
 # The stock UEFI of the lab image reports "UEFI Ver    : 6.0.<date>...".
 STOCK_UEFI = {"6.0": "pass"}
@@ -85,6 +91,33 @@ def smoke_checks(board, tag, today=None):
     ]
 
 
+def uboot_command(cmd=None):
+    echo = 'echo "%s""@@"' % UBOOT_END[:-2]
+    return "%s; %s" % (cmd, echo) if cmd else echo
+
+
+def uboot_steps(fp, checks):
+    """The U-Boot console script: stop autoboot, sync, the checks, reset.
+
+    A step waits for its own end marker, never for "=> ": a stray prompt
+    (line noise executed as a command at the first prompt) would otherwise
+    answer the next step, every check would read the output of the one
+    before, and the next command would be typed while U-Boot is still
+    printing, where the UART drops characters."""
+    steps = [
+        {"name": "autoboot", "command": None, "success": AUTOBOOT, "wait_for_prompt": False},
+        # The newline stops autoboot and ends whatever is on the line.
+        {"name": "u-boot-prompt", "command": "", "success": UBOOT_PROMPT, "wait_for_prompt": False},
+        {"name": "u-boot-sync", "command": uboot_command()},
+        {"name": "uboot-version", "command": uboot_command("version"), "success": fp},
+    ]
+    steps += [{"name": c["name"], "command": uboot_command(c["command"]),
+               "success": c["success"], "failure": c["failure"]} for c in checks]
+    steps.append({"name": "uboot-reset", "command": "reset", "success": r"resetting \.\.\.",
+                  "wait_for_prompt": False})
+    return steps
+
+
 def render(board_name, stack, fp, package, linux, restore, metadata=None, device=None):
     """package: {url, token, path}; linux: {tag, release, image_sha256};
     restore: {url, header, token, path} of the lab stock image, or the
@@ -100,13 +133,7 @@ def render(board_name, stack, fp, package, linux, restore, metadata=None, device
         lj.boot_qdl(package["path"], lava["storage"], lava["luns"], lava["firehose"]),
         lj.power_on(),
         lj.fingerprint_gate(GATE_SUITE, xbl, "DRAM:", expect),
-        lj.interactive("u-boot", [UBOOT_PROMPT, AUTOBOOT, r"resetting \.\.\."], [
-            {"name": "autoboot", "command": None},
-            {"name": "u-boot-prompt", "command": ""},
-            {"name": "uboot-version", "command": "version", "success": fp},
-        ] + checks + [
-            {"name": "uboot-reset", "command": "reset"},
-        ]),
+        lj.interactive("u-boot", [UBOOT_END_PROMPT], uboot_steps(fp, checks)),
         lj.fingerprint_gate(GATE_SUITE + "-reset", xbl, AUTOBOOT, expect),
         lj.monitor(LINUX_SUITE, "Booting Linux on physical CPU",
                    "Run /init as init process|Kernel panic",
