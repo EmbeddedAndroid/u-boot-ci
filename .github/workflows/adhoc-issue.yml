@@ -30,12 +30,19 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           ISSUE: ${{ github.event.issue.number }}
         run: |
+          # The CIL runner image has curl but no gh.
+          comment() {
+            python3 -c 'import json, sys; print(json.dumps({"body": sys.argv[1]}))' "$1" |
+              curl -fsS -o /dev/null -X POST -H "Authorization: Bearer $GH_TOKEN" \
+                -H "Accept: application/vnd.github+json" --data-binary @- \
+                "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/issues/$ISSUE/comments"
+          }
           printf '%s' "$BODY" > "$RUNNER_TEMP/issue.md"
           if python3 -m ubci.request issue "$RUNNER_TEMP/issue.md" > "$RUNNER_TEMP/request" 2> "$RUNNER_TEMP/error"; then
             grep -v '^request=' "$RUNNER_TEMP/request" >> "$GITHUB_OUTPUT"
-            gh issue comment "$ISSUE" -R "$GITHUB_REPOSITORY" --body "Run started: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID (results on the dashboard under Ad-hoc runs)."
+            comment "Run started: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID (results on the dashboard under Ad-hoc runs)."
           else
-            gh issue comment "$ISSUE" -R "$GITHUB_REPOSITORY" --body "Not started: $(cat "$RUNNER_TEMP/error")"
+            comment "Not started: $(cat "$RUNNER_TEMP/error")"
             exit 1
           fi
   run:
