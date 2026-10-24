@@ -1,0 +1,38 @@
+name: Ad-hoc run of stacked series
+description: Test one or more series from the list, applied in order onto main or master, on the boards.
+title: "Ad-hoc run: "
+labels: ["adhoc-run"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A maintainer starts the run by adding the `adhoc-approved` label.
+        Results appear on the dashboard under "Ad-hoc runs" and are linked here.
+  - type: textarea
+    id: series
+    attributes:
+      label: Series
+      description: Message-IDs or lore links of the cover letters (or first patches), one per line, in the order to apply them.
+      placeholder: |
+        20261021-b4-monaco-v4-0-c90f0c01d312@oss.qualcomm.com
+        https://lore.kernel.org/u-boot/20260928-monaco-ventuno-q-v2-0-0e046c8242be@oss.qualcomm.com/
+    validations:
+      required: true
+  - type: dropdown
+    id: base
+    attributes:
+      label: Base
+      options: [main, master]
+      default: 0
+    validations:
+      required: true
+  - type: input
+    id: boards
+    attributes:
+      label: Boards
+      description: Space separated; empty for all (rb3gen2 ventuno-q).
+  - type: input
+    id: stacks
+    attributes:
+      label: Stacks
+      description: Space separated; empty for both (stock open).
