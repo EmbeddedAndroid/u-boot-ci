@@ -91,6 +91,18 @@ def test_two_series_stack_applies_in_order(tree, tmp_path):
         "board: add the VENTUNO Q", "pinctrl: add the TLMM driver", "clk: add the SDCC clocks"]
 
 
+def test_stack_applies_from_paths_relative_to_the_caller(tree, tmp_path, monkeypatch):
+    # The prepare job runs "ubci.stack apply work/u-boot work/stack" from the
+    # checkout root: both paths are relative to the caller, not the tree.
+    repo, mail, base = tree
+    monkeypatch.chdir(tmp_path)
+    stack.fetch("stack", ["clk@example.com", "board@example.com"], am=am_from(mail))
+    assert json.load(open("stack/stack.json"))[0]["mbx"] == os.path.join("stack", "s01.mbx")
+    assert stack.apply("src", "stack")
+    assert [s["applied"] for s in json.load(open("stack/stack.json"))] == [True, True]
+    assert len(sh(repo, "log", "--format=%s", "%s..HEAD" % base).splitlines()) == 3
+
+
 def test_missing_prerequisite_is_reported(tree, tmp_path):
     repo, mail, base = tree
     d = tmp_path / "stack"

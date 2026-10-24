@@ -81,7 +81,8 @@ def apply(src, stack, ident=("u-boot-ci", "u-boot-ci@users.noreply.github.com"))
         if failed:
             s["applied"] = None
             continue
-        r = git(src, *env, "am", "--3way", s["mbx"], check=False)
+        # git -C resolves a relative mbox against the checkout, not the caller.
+        r = git(src, *env, "am", "--3way", os.path.abspath(s["mbx"]), check=False)
         if r.returncode == 0:
             s["applied"] = True
             continue
