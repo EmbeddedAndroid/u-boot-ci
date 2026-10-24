@@ -38,7 +38,7 @@ same && exit 0
 publish
 for i in 1 2 3; do
 	git -C "$site" push -q origin HEAD:gh-pages && exit 0
-	git -C "$site" fetch -q origin gh-pages
+	git -C "$site" fetch -q origin +gh-pages:refs/remotes/origin/gh-pages
 	git -C "$site" reset -q --hard origin/gh-pages
 	publish
 done

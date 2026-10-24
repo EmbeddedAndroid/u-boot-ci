@@ -109,7 +109,7 @@ jobs:
           $CI_RUN python3 -m ubci.run new "work/$FINGERPRINT.json" "${args[@]}"
           matrix=$(python3 -c 'import json, sys; d = json.load(open(sys.argv[1])); print(json.dumps({"include": [{"board": t["board"], "stack": t["stack"]} for t in d["targets"] if t["state"] == "queued"] or [{"board": "none", "stack": "none"}]}))' "work/$FINGERPRINT.json")
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
-          git worktree add -q site origin/gh-pages 2>/dev/null || git worktree add -q --orphan -b gh-pages site
+          $CI_RUN scripts/site-checkout.sh site
           $CI_RUN scripts/publish-site.sh site "work/$FINGERPRINT.json"
       - uses: actions/upload-artifact@v4
         with:
@@ -299,7 +299,7 @@ jobs:
         run: |
           run="work/artifacts/$BASE-run/$FINGERPRINT.json"
           ci() { $CI_RUN "$@"; }
-          git fetch -q origin gh-pages && git worktree add -q site origin/gh-pages
+          ci scripts/site-checkout.sh site
           if [ -z "$LAVA_TOKEN" ]; then
             ci python3 -m ubci.run skip "$run" "hardware skipped: no LAVA_TOKEN in the lava-hw environment"
             ci scripts/publish-site.sh site "$run"

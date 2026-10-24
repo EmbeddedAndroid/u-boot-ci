@@ -114,7 +114,7 @@ jobs:
         run: |
           docker build --network host -q -t u-boot-ci:1 docker
           run="work/artifacts/$FINGERPRINT.json"
-          git fetch -q origin gh-pages && git worktree add -q site origin/gh-pages
+          $CI_RUN scripts/site-checkout.sh site
           if [ -z "$LAVA_TOKEN" ]; then
             $CI_RUN python3 -m ubci.run skip "$run" "hardware skipped: no LAVA_TOKEN in the lava-pr environment"
           else
