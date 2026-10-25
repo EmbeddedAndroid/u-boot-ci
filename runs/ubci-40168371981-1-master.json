@@ -1,6 +1,54 @@
 {
- "host_checks": [],
- "linux": null,
+ "host_checks": [
+  {
+   "name": "buildman",
+   "result": "pass",
+   "summary": "every snapdragon board built without warnings"
+  },
+  {
+   "name": "carry",
+   "result": "pass",
+   "summary": "carry.yaml matches the pins"
+  },
+  {
+   "name": "checkpatch",
+   "result": "pass",
+   "summary": "0 new commits: 0 with errors, 0 with warnings only"
+  },
+  {
+   "name": "docs",
+   "result": "pass",
+   "summary": "htmldocs built without warnings"
+  },
+  {
+   "name": "fragments",
+   "result": "pass",
+   "summary": "1 combinations built"
+  },
+  {
+   "name": "qemu_arm64",
+   "result": "pass",
+   "summary": "241 passed, 556 skipped, 2 deselected in 113.49s (0:01:53)"
+  },
+  {
+   "name": "sandbox",
+   "result": "pass",
+   "summary": "1317 passed, 216 skipped, 3 deselected, 1 xfailed in 722.30s (0:12:02)"
+  },
+  {
+   "name": "size",
+   "result": "pass",
+   "summary": "rb3gen2-open 1562088 B, rb3gen2-stock 1630024 B"
+  }
+ ],
+ "linux": {
+  "commit": "20a33c6b6cbe7e4805dfb6cd68816937443aa148",
+  "config": "arch/arm64/configs/defconfig",
+  "image_sha256": "bdfa4856f7c6cde00967c209a94b6835fb5527ee6dd335b51cf371007b91e46d",
+  "modules_sha256": "4fee8a6200e7e339dda1702281f2bffe776b43a69e5515be19fe7052ff26c0a8",
+  "release": "7.3.0-next-20261023",
+  "tag": "next-20261023"
+ },
  "project": "u-boot",
  "run": {
   "base": {
@@ -8,14 +56,14 @@
    "commit": "ece349ade2973e220f524ce59e59711cc919263f",
    "repo": "https://git.u-boot-project.org/u-boot/u-boot.git"
   },
-  "baseline": null,
+  "baseline": "ubci-40152748187-1-master",
   "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/40168371981",
   "created": "2026-10-25T06:18:05Z",
   "id": "ubci-40168371981-1-master",
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-10-25T06:18:05Z"
+  "updated": "2026-10-25T07:05:35Z"
  },
  "schema": "fwci-run/1",
  "state": "building",
@@ -41,11 +89,18 @@
    ],
    "fingerprint": "ubci-40168371981-1-master-stock-rb3gen2",
    "fingerprint_gate": "not-run",
-   "linux_boot": {
-    "gaps": [],
-    "stage": "not-reached",
-    "verdict": "not-run"
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 512813,
+    "url": "https://lava.infra.foundries.io/scheduler/job/512813"
    },
+   "linux_boot": {
+    "stage": "not-reached",
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
+   },
+   "queue_position": 1,
    "restore": "not-run",
    "stack": "stock",
    "state": "queued"
@@ -157,7 +212,8 @@
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
     ],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "restore": "not-run",
    "stack": "open",
@@ -189,11 +245,13 @@
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
     ],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "restore": "not-run",
    "stack": "stock",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree"
   },
   {
    "board": "ventuno-q",
@@ -312,11 +370,13 @@
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
     ],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "restore": "not-run",
    "stack": "open",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree"
   }
  ]
 }
