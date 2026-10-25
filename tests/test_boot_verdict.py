@@ -22,6 +22,8 @@ KERNEL = ("[    0.000000] Booting Linux on physical CPU 0x0000000000",
     (HANDOFF + STUB + KERNEL + ("Run /init as init process",), "no-login", "fail"),
     (HANDOFF + STUB, "hang-before-console", "fail"),
     (HANDOFF, "no-efi-stub", "fail"),
+    # The size query as LAVA logged it in job 511932.
+    (("7[r[999;999H[6n8\x00",), "no-efi-stub", "fail"),
     (("U-Boot 2026.10", "=> "), "not-reached", "not-run"),
     ((), "not-reached", "not-run"),
 ])

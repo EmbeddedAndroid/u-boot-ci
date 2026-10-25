@@ -16,8 +16,9 @@ import re
 
 MARKERS = {
     # U-Boot's autoboot countdown reaching 0, or an EFI application taking
-    # the console (the terminal size query U-Boot's EFI console sends).
-    "handoff": r"autoboot: +0|\x1b\[6n|Booting: |bootefi|EFI stub: ",
+    # the console (the terminal size query U-Boot's EFI console sends,
+    # logged by LAVA without its ESC bytes).
+    "handoff": r"autoboot: +0|\[6n|Booting: |bootefi|EFI stub: ",
     "efi_stub": r"EFI stub: ",
     "kernel": r"Booting Linux on physical CPU|Linux version \d",
     "panic": r"Kernel panic - not syncing|Internal error: |Unable to handle kernel|Oops",
