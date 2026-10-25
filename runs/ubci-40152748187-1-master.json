@@ -1,6 +1,54 @@
 {
- "host_checks": [],
- "linux": null,
+ "host_checks": [
+  {
+   "name": "buildman",
+   "result": "pass",
+   "summary": "every snapdragon board built without warnings"
+  },
+  {
+   "name": "carry",
+   "result": "pass",
+   "summary": "carry.yaml matches the pins"
+  },
+  {
+   "name": "checkpatch",
+   "result": "pass",
+   "summary": "0 new commits: 0 with errors, 0 with warnings only"
+  },
+  {
+   "name": "docs",
+   "result": "pass",
+   "summary": "htmldocs built without warnings"
+  },
+  {
+   "name": "fragments",
+   "result": "pass",
+   "summary": "1 combinations built"
+  },
+  {
+   "name": "qemu_arm64",
+   "result": "pass",
+   "summary": "241 passed, 556 skipped, 2 deselected in 116.35s (0:01:56)"
+  },
+  {
+   "name": "sandbox",
+   "result": "pass",
+   "summary": "1317 passed, 216 skipped, 3 deselected, 1 xfailed in 726.92s (0:12:06)"
+  },
+  {
+   "name": "size",
+   "result": "pass",
+   "summary": "rb3gen2-open 1562088 B"
+  }
+ ],
+ "linux": {
+  "commit": "20a33c6b6cbe7e4805dfb6cd68816937443aa148",
+  "config": "arch/arm64/configs/defconfig",
+  "image_sha256": "bdfa4856f7c6cde00967c209a94b6835fb5527ee6dd335b51cf371007b91e46d",
+  "modules_sha256": "4fee8a6200e7e339dda1702281f2bffe776b43a69e5515be19fe7052ff26c0a8",
+  "release": "7.3.0-next-20261023",
+  "tag": "next-20261023"
+ },
  "project": "u-boot",
  "run": {
   "base": {
@@ -15,7 +63,7 @@
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-10-25T02:02:24Z"
+  "updated": "2026-10-25T02:52:36Z"
  },
  "schema": "fwci-run/1",
  "state": "building",
@@ -44,11 +92,13 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "restore": "not-run",
    "stack": "stock",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no package (build failed)"
   },
   {
    "board": "rb3gen2",
@@ -157,11 +207,13 @@
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
     ],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "restore": "not-run",
    "stack": "open",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to "
   },
   {
    "board": "ventuno-q",
@@ -187,7 +239,8 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "restore": "not-run",
    "stack": "stock",
@@ -308,7 +361,8 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "restore": "not-run",
    "stack": "open",
