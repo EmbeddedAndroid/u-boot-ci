@@ -18,15 +18,19 @@ in [boards/](boards/).
 
 The open-source stack: TF-A BL2 in `tz_a`/`tz_b`, which loads a FIP from
 `uefi_a`/`uefi_b` holding TF-A BL31, OP-TEE (BL32) and U-Boot (BL33), all
-other boot firmware as in the stock stack.
+other boot firmware as in the stock stack. On an SPL boot chain (the TF-A
+pin's `image: uefi.itb`) U-Boot SPL sits in `tz` and loads a FIT from
+`uefi` holding BL31, OP-TEE, U-Boot and its control DTB at the pin's `fit`
+load addresses (`ubci/fit.py`).
 
 Pins (`config/pins.yaml`), per board:
 
-- `tf-a`: repository, branch and commit, build flags, FIP load address.
+- `tf-a`: repository, branch and commit, build flags, FIP load address
+  or FIT addresses.
   BL31 is built from it on every run, with the run fingerprint as the
   build string.
 - `optee`: same, built on every run with the run fingerprint as its
-  version.
+  version and the pin's extra `make_args` (early TAs).
 - `bl2`: the TF-A BL2 of the tf-a pin, signed in advance (XBL only starts
   a signed tz image) and pinned by file name, sha256 and its own
   fingerprint. RB3 Gen 2 takes an OEM TEST signature from Qualcomm's
@@ -36,6 +40,9 @@ Pins (`config/pins.yaml`), per board:
   LAVA environments, only in the submit job, and checks the sha256 before
   adding them to the package ([setup.md](setup.md)); the dashboard shows
   the sha256 only.
+- `pending`: set while the pinned commit is not public yet. The open
+  stack of that board is then skipped with "open-stack pin not public
+  yet" instead of failing its build, and carries no distance to upstream.
 - `qtestsign`: the tool that wraps the FIP in a signed ELF (and signs
   `u-boot.elf` for the stock stack on a tree without `mkmbn`).
 

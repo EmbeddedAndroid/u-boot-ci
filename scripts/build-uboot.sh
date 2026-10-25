@@ -46,6 +46,10 @@ else
 fi
 cp "$build/$image" "$out/"
 cp "$build/u-boot.dtb" "$out/u-boot.dtb"
+# The FIT of an SPL boot chain is made with the mkimage of this tree.
+if [ "$stack" = open ] && [ -x "$build/tools/mkimage" ]; then
+	cp "$build/tools/mkimage" "$out/mkimage"
+fi
 cp "$build/u-boot" "$out/u-boot.elf"
 cp "$build/.config" "$out/u-boot.config"
 printf '{"board": "%s", "stack": "%s", "fingerprint": "%s", "commit": "%s", "configs": "%s", "device_tree": "%s", "image": "%s", "sha256": "%s"}\n' \

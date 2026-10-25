@@ -46,3 +46,12 @@ def test_resolve_gerrit():
 
 def test_review_link_without_a_resolver_is_none():
     assert carry.review_link("fix: x\n\nChange-Id: I" + "2" * 40) is None
+
+
+def test_a_pending_pin_is_not_fetched(monkeypatch):
+    from ubci import carry as ucarry, config
+    pins = {"b": {"tf-a": {"repo": "r", "commit": "c", "upstream": {}, "pending": "not pushed yet"},
+                  "optee": {"repo": "r2", "commit": "d", "upstream": {}}}}
+    monkeypatch.setattr(config, "pins", lambda: pins)
+    monkeypatch.setattr(ucarry, "component", lambda pin: {"pin": pin["commit"]})
+    assert ucarry.generate() == {"b": {"optee": {"pin": "d"}}}

@@ -5,8 +5,9 @@ shell scripts); lists print one item per line.
 python3 -m ubci.config configs <board> <stack> <u-boot source>
     prints the U-Boot configs to build with, resolved against the tree.
 python3 -m ubci.config missing <board> <stack> <u-boot source>
-    prints why the tree cannot build the board (its device tree or a
-    config is not in it), nothing when it can.
+    prints why the target cannot be built (its device tree or a config is
+    not in the tree, or an open-stack pin is not public yet), nothing
+    when it can.
 python3 -m ubci.config bootimg <board> <stack>
     prints the ubci.bootimg options of a stack that boots U-Boot as an
     Android boot image."""
@@ -29,6 +30,20 @@ def downstream(b, stack):
     if stack == "open" and b.get("downstream_open"):
         return b["downstream_open"]
     return b["downstream"]
+
+
+def pending(b, stack):
+    """Why a stack cannot be built yet although the base has the board:
+    an open-stack pin whose commit is not published (pins.yaml pending),
+    or None."""
+    if stack != "open":
+        return None
+    for name in ("tf-a", "optee", "bl2"):
+        pin = (b.get("pins") or {}).get(name) or {}
+        if pin.get("pending"):
+            return "open-stack pin not public yet: %s %s (%s)" % (
+                name, pin.get("commit", "")[:12], pin["pending"])
+    return None
 
 
 def board(name):
@@ -88,17 +103,19 @@ def _dt_in_tree(src, dt):
 
 
 def missing(name, stack, src):
-    """Why the tree at src does not have the board for this stack, or
-    None. A base that predates the board (master before the board's DT
-    was imported) skips it instead of failing its build."""
-    u = board(name)["u-boot"][stack]
+    """Why the target cannot be built from the tree at src, or None: the
+    base predates the board (master before the board's DT was imported;
+    "board not in this base: ...") or an open-stack pin is not public
+    yet. Either skips the target instead of failing its build."""
+    b = board(name)
+    u = b["u-boot"][stack]
     if not _dt_in_tree(src, u["device_tree"]):
-        return "no %s device tree" % u["device_tree"]
+        return "board not in this base: no %s device tree" % u["device_tree"]
     try:
         resolve_configs(u["configs"], src)
     except SystemExit as e:
-        return str(e).replace(" in %s" % src, "")
-    return None
+        return "board not in this base: " + str(e).replace(" in %s" % src, "")
+    return pending(b, stack)
 
 
 if __name__ == "__main__":

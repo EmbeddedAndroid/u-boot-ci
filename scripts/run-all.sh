@@ -13,7 +13,8 @@
 # <output dir>/host/build-<board>-<stack>.log, and the packages and
 # per-target files in <output dir>/targets/. A target without a package
 # gets <output dir>/targets/<board>-<stack>.build.json saying why: "skip"
-# when the tree does not have the board (ubci.config missing), "fail"
+# when the tree does not have the board or an open-stack pin is not
+# public yet (ubci.config missing), "fail"
 # when its build failed. When the stack does not
 # apply there is no tree to check or build: only carry and size run (the
 # run document already marks every target skipped).
@@ -99,8 +100,8 @@ for t in json.load(open(sys.argv[1]))["targets"]:
 		why=$(cd "$repo" && python3 -m ubci.config missing "$board" "${st%-candidate}" "$src")
 		if [ -n "$why" ]; then
 			echo "$why" >"$log"
-			status "$board" "$st" skip "board not in this base: $why"
-			echo "build $board/$st: skipped: board not in this base: $why"
+			status "$board" "$st" skip "$why"
+			echo "build $board/$st: skipped: $why"
 			continue
 		fi
 		if [ ! -f "$linux/linux.json" ] || [ ! -f "$initramfs/initramfs.json" ]; then

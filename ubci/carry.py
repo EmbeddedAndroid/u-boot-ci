@@ -41,8 +41,9 @@ def component(pin):
 def generate():
     out = {}
     for board, pins in sorted(config.pins().items()):
+        # A pending pin's commit cannot be fetched: no distance yet.
         out[board] = {name: component(pin) for name, pin in sorted(pins.items())
-                      if isinstance(pin, dict) and "upstream" in pin}
+                      if isinstance(pin, dict) and "upstream" in pin and not pin.get("pending")}
     return out
 
 
