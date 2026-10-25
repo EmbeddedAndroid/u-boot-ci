@@ -88,7 +88,7 @@
    }
   ],
   "title": "QCS8300 v4 + VENTUNO Q v2",
-  "updated": "2026-10-25T01:26:49Z"
+  "updated": "2026-10-25T01:37:09Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -231,11 +231,11 @@
    },
    "queue_position": null,
    "recovery": {
-    "health": null,
+    "health": "Complete",
     "job_id": 511940,
     "url": "https://lava.infra.foundries.io/scheduler/job/511940"
    },
-   "restore": "recovery-job",
+   "restore": "pass",
    "stack": "stock",
    "state": "done",
    "state_detail": "LAVA job incomplete"
@@ -352,12 +352,18 @@
    ],
    "fingerprint": "ubci-40146866222-1-main-open-ventuno-q",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 511978,
+    "url": "https://lava.infra.foundries.io/scheduler/job/511978"
+   },
    "linux_boot": {
-    "gaps": [],
     "stage": "not-reached",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": 3,
    "restore": "not-run",
    "stack": "open",
    "state": "queued"
