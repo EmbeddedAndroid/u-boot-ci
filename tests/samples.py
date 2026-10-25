@@ -23,7 +23,7 @@ def target(board="rb3gen2", stack="stock", boot="pass", stage="login", cases=Non
                                  "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/1"}]}}],
             "lava": {"job_id": 1, "url": "https://lava.example/scheduler/job/1", "device": "d1",
                      "health": "Complete"},
-            "fingerprint_gate": gate, "restore": "pass",
+            "fingerprint_gate": gate,
             "linux_boot": {"verdict": boot, "stage": stage},
             "cases": cases if cases is not None else [case("usb", "pass"), case("storage", "fail")]}
 
@@ -36,3 +36,13 @@ def run(rid="n1", kind="nightly", created="2026-10-24T01:00:00Z", targets=None):
             "state": "done", "linux": dict(LINUX),
             "host_checks": [{"name": "buildman", "result": "pass", "summary": "ok"}],
             "targets": copy.deepcopy(targets if targets is not None else [target()])}
+
+
+def legacy_target(**kw):
+    """A target as run documents before 2026-10-25 wrote it: the jobs
+    restored the lab image and a recovery job could follow."""
+    t = target(**kw)
+    t["restore"] = "recovery-job"
+    t["recovery"] = {"job_id": 512761, "url": "https://lava.example/scheduler/job/512761", "health": "Complete"}
+    t["cases"].append(case("uefi_ver", "pass", suite="stock-restore"))
+    return t

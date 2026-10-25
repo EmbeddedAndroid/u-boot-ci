@@ -133,7 +133,9 @@ package (step 1), so the next job, of this CI or the lab's health check,
 never depends on what the one before left on the board. Lemans is the
 one partial case: its package does not write the SAIL NOR, so the board
 runs whatever SAIL NOR image the lab last flashed
-([boards/lemans-evk.md](boards/lemans-evk.md)).
+([boards/lemans-evk.md](boards/lemans-evk.md)). Run documents from
+before 2026-10-25 still carry the old per-target `restore` and
+`recovery` fields; the schema accepts them as legacy.
 
 U-Boot's own test.py on the boards (LAVA board sessions as the hooks) is
 phase 3.

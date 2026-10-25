@@ -762,6 +762,7 @@
           "$ref": "#/$defs/linux_boot"
         },
         "restore": {
+          "description": "legacy, documents before 2026-10-25: the end-of-job lab firmware restore; jobs no longer restore",
           "enum": [
             "pass",
             "fail",
@@ -806,7 +807,7 @@
             "url"
           ],
           "additionalProperties": false,
-          "description": "the job that put the stock image back after this target's job stopped before its own restore",
+          "description": "legacy, documents before 2026-10-25: the job that put the lab image back after this target's job stopped before its own restore",
           "properties": {
             "job_id": {
               "type": "integer"

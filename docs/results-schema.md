@@ -39,13 +39,10 @@ built). The same schema serves u-boot-ci, tf-a-ci and optee-ci.
     at that commit, `dtb_sha256` of the DTB the UKI carries;
   - `boot_chain[]`: every boot stage with its `origin` (`upstream`,
     `downstream`, `none`), the component it links to and a detail;
-  - `lava`: job id, link, device, health; `recovery` when a recovery job
-    had to restore the board;
+  - `lava`: job id, link, device, health;
   - `fingerprint_gate`: `pass` only when the console showed every
     component with its expected fingerprint;
   - `linux_boot`: the boots-Linux verdict (below);
-  - `restore`: the end-of-job lab firmware restore (`pass`, `fail`, `not-run`,
-    `recovery-job` while a recovery job runs);
   - `cases[]`: suite, name, result, link to the log line, flake id,
     `note` (for example the known gap that made a case `skip`, or "no
     verdict" for a shell check that never finished) and, for a failed
@@ -54,6 +51,14 @@ built). The same schema serves u-boot-ci, tf-a-ci and optee-ci.
     most 200, the link points at the first);
   - `diff`: `new_fail`, `new_pass`, `still_fail` against the baseline
     (only when both fingerprint gates passed).
+
+Documents written before 2026-10-25 may also carry, per target,
+`restore` (the end-of-job lab firmware restore: `pass`, `fail`,
+`not-run`, `recovery-job`) and `recovery` (the recovery job that put the
+lab image back), and cases of the `stock-restore` suite. Jobs no longer
+restore the lab image, so new documents have neither; the schema keeps
+both as optional legacy fields so the published history still validates,
+and the dashboard ignores them.
 
 ## The boots-Linux verdict
 

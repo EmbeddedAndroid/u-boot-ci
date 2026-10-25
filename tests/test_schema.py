@@ -2,7 +2,7 @@ import pytest
 
 from fwci import schema
 
-from samples import run, target
+from samples import legacy_target, run, target
 
 
 def test_sample_run_is_valid():
@@ -45,3 +45,23 @@ def test_a_failed_case_may_carry_its_output():
     r = run()
     r["targets"][0]["cases"][1].update(output=["<3>[ 0.364596] qcom-smem smem: Found an unknown type"])
     assert schema.errors(r) == []
+
+
+def test_new_targets_carry_no_restore():
+    assert "restore" not in target() and "recovery" not in target()
+
+
+@pytest.mark.parametrize("restore", ["pass", "fail", "not-run", "recovery-job"])
+def test_legacy_restore_fields_still_validate(restore):
+    r = run(targets=[legacy_target()])
+    r["targets"][0]["restore"] = restore
+    assert schema.errors(r) == []
+
+
+def test_legacy_restore_fields_keep_their_shape():
+    r = run(targets=[legacy_target()])
+    r["targets"][0]["restore"] = "maybe"
+    assert any(e.startswith("targets/0/restore") for e in schema.errors(r))
+    r = run(targets=[legacy_target()])
+    del r["targets"][0]["recovery"]["url"]
+    assert any(e.startswith("targets/0/recovery") for e in schema.errors(r))

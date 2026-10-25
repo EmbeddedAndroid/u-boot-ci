@@ -2,7 +2,7 @@ import json
 
 from fwci import site
 
-from samples import case, run, target
+from samples import case, legacy_target, run, target
 
 
 def write(d, r):
@@ -116,3 +116,11 @@ def test_cell_flags_a_board_fragment_the_base_does_not_have(tmp_path):
     assert idx["matrix"][1]["fragments_missing"] == []
     assert idx["runs"][0]["base"]["url"] == \
         "https://git.u-boot-project.org/u-boot/u-boot/-/commit/f97bb5c1ad78e95856917b92c7270c82d4b11e21"
+
+
+def test_legacy_run_documents_with_a_restore_still_build(tmp_path):
+    write(tmp_path, run("n1", created="2026-10-24T01:00:00Z", targets=[legacy_target()]))
+    write(tmp_path, run("n2", created="2026-10-25T01:00:00Z", targets=[target()]))
+    idx = site.write(str(tmp_path))
+    assert [r["id"] for r in idx["runs"]] == ["n2", "n1"]
+    assert idx["case_history"]["rb3gen2/stock"]["cases"]["stock-restore/uefi_ver"] == "p-"

@@ -197,8 +197,6 @@ async function renderDetail() {
   parts.push(el("p", {}, "Fingerprint ", el("code", {}, t.fingerprint || ""), " · ",
     t.lava ? link(t.lava.url, "LAVA job " + t.lava.job_id) : "not submitted",
     t.lava && t.lava.device ? " on " + t.lava.device : "",
-    " · lab firmware restore: ", badge(verdictClass(t.restore === "recovery-job" ? "" : t.restore), t.restore || "not-run"),
-    t.recovery ? [" ", link(t.recovery.url, "recovery job")] : null,
     " · ", link("runs/" + encodeURIComponent(r.run.id) + ".json", "run document")));
   if (t.state_detail) parts.push(el("p", {class: "muted"}, t.state + ": " + t.state_detail));
   // Run documents from before the boot chain was recorded have none.
