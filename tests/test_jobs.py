@@ -88,6 +88,19 @@ def restore_tail(board, stack="stock"):
     return job["actions"][i:]
 
 
+@pytest.mark.parametrize("board", ["uno-q", "qcs615-ride", "lemans-evk"])
+def test_restore_checks_the_exact_lab_uefi_build(board):
+    r = config.board(board)["restore"]
+    m = monitors({"actions": restore_tail(board)})[jobs.RESTORE_SUITE]
+    assert m["end"] == "UEFI Total" and m["expected"] == ["uefi_ver"]
+    line = "UEFI Ver    : " + r["uefi_ver"]
+    hit = re.search(m["pattern"], line)
+    assert hit and m["fixupdict"][hit.group("result")] == "pass"
+    # Any other build, ours or a newer lab image, does not pass.
+    other = re.sub(r"\d(?=[^\d]*$)", lambda d: str((int(d.group()) + 1) % 10), r["uefi_ver"])
+    assert not re.search(m["pattern"], "UEFI Ver    : " + other)
+
+
 def test_restore_flashes_the_lab_images_listed_for_the_board(monkeypatch):
     import copy
     b = copy.deepcopy(config.board("rb3gen2"))
@@ -108,3 +121,9 @@ def test_restore_flashes_the_lab_images_listed_for_the_board(monkeypatch):
 def test_a_board_without_an_anchor_keeps_the_uefi_6_check():
     m = monitors({"actions": restore_tail("rb3gen2")})[jobs.RESTORE_SUITE]
     assert m["end"] == "Boot Device" and m["fixupdict"] == {"6.0": "pass"}
+
+
+def test_lemans_restore_writes_the_sail_nor_before_ufs():
+    boots = [a["boot"] for a in restore_tail("lemans-evk") if "boot" in a and a["boot"]["method"] == "qdl"]
+    assert [(b["path"], b["storage"]) for b in boots] == [("stock/sail_nor", "spinor"), ("stock", "ufs")]
+    assert boots[1]["rawprogram"].split() == ["rawprogram%d.xml" % n for n in range(6)]

@@ -101,7 +101,9 @@ def ci_job(out, fail=""):
 def ci_jobs(out):
     """Both passes of the combined job; prints what ran, returns failures."""
     p = config.project()
-    targets = ["%s-%s" % (b, s) for b in p["boards"] for s in p["stacks"]]
+    # An open stack whose pin is not public yet is skipped, not built.
+    targets = ["%s-%s" % (b, s) for b in p["boards"] for s in p["stacks"]
+               if not config.pending(config.board(b), s)]
     want = ["check " + c for c in CHECKS[:-1]] + ["build " + t for t in targets] + ["check size"]
     failed = 0
     for name, fail, rc_want in (("all pass", "", 0), ("forced failure", "sandbox " + targets[0], 1)):

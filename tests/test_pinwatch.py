@@ -13,7 +13,7 @@ ROOTS = {"meta-qcom": os.path.join(DATA, "meta-qcom"),
          "meta-qcom-arduino": os.path.join(DATA, "meta-qcom-arduino")}
 
 
-@pytest.mark.parametrize("board", ["rb3gen2", "ventuno-q"])
+@pytest.mark.parametrize("board", config.boards())
 def test_real_recipes_give_the_current_pin(board):
     b = config.board(board)
     up = stockpin.upstream(b["downstream"]["upstream"], ROOTS)
@@ -82,12 +82,33 @@ def test_bump_writes_the_pr_and_keeps_the_rest_of_the_config(tmp_path, monkeypat
     assert "source: {meta-qcom: %s}" % ("c" * 40) in new
 
 
+def test_board_without_a_cdt_recipe_bumps_its_boot_firmware_and_its_section_only(tmp_path, monkeypatch):
+    root = tmp_path / "meta-qcom-arduino"
+    shutil.copytree(ROOTS["meta-qcom-arduino"], root)
+    d = root / "recipes-bsp" / "firmware-boot"
+    text = (d / "firmware-qcom-boot-qrb2210-arduino-imola_251020.bb").read_text()
+    (d / "firmware-qcom-boot-qrb2210-arduino-imola_251110.bb").write_text(
+        text.replace("c606e95d0107f8c58d0dd9494e00624d1db7c4361cca20513bc78ef02ca28dd1", "2" * 64))
+    roots = dict(ROOTS, **{"meta-qcom-arduino": str(root)})
+    monkeypatch.setattr(stockpin, "checkout", lambda name, layer: (roots[name], name[-1] * 40))
+    out = tmp_path / "out"
+    out.mkdir()
+    r = stockpin.check("uno-q", str(out), verify=False)
+    assert r["result"] == "bump" and r["to"] == "Arduino UNO Q boot firmware 251110"
+    new = (out / "uno-q.yaml").read_text()
+    head, opn = new.split("\ndownstream_open:\n")
+    assert "unoq-bootloader-emmc-linux-251110.zip" in head and "2" * 64 in head
+    assert "meta-qcom: %s" % ("m" * 40) in head and "meta-qcom-arduino: %s" % ("o" * 40) in head
+    # downstream_open was not read at the new commits: its pin stays.
+    assert "source: {meta-qcom: c853febcdeb149021fd043ac7a5eaae88f29f7b7}" in opn
+    assert "| CDT |" not in (out / "uno-q.body").read_text()
+
+
 def test_a_cdt_appearing_or_vanishing_is_bumped_by_hand():
     old = {"release": "a", "bootbinaries": [{"url": "u", "sha256": "1"}], "cdt": None}
     new = dict(old, release="b", cdt={"url": "c", "sha256": "2"})
     with pytest.raises(pinwatch.PinError, match="by hand"):
         stockpin.bump("x\ndownstream:\n  release: a\n", old, new)
-
 
 
 def test_sha_mismatch_opens_no_pr(tmp_path, monkeypatch):
@@ -173,3 +194,28 @@ def test_unparsable_src_uri_append_is_an_error(tmp_path):
 
 def test_diff():
     assert pinwatch.diff({"a": 1, "b": 2}, {"a": 1, "b": 3}) == {"b": (2, 3)}
+
+
+def test_bump_of_a_board_whose_downstream_section_is_an_anchor(tmp_path, monkeypatch):
+    import yaml
+    root = tmp_path / "meta-qcom"
+    shutil.copytree(ROOTS["meta-qcom"], root)
+    d = root / "recipes-bsp" / "firmware-boot"
+    text = (d / "firmware-qcom-boot-qcs9100_00142.bb").read_text()
+    (d / "firmware-qcom-boot-qcs9100_00150.bb").write_text(
+        text.replace("17d2c5bae5c17b665bafd9bba8962f41aec7be2f874cde90b0976730f0098bf6", "3" * 64)
+            .replace("1aa0b67671ef026a40ca133f32128d07fffd614a47cf51eaa5cd5c7d4941d034", "4" * 64))
+    monkeypatch.setattr(stockpin, "checkout", lambda name, layer: (str(root), "c" * 40))
+    out = tmp_path / "out"
+    out.mkdir()
+    assert stockpin.check("lemans-evk", str(out), verify=False)["result"] == "bump"
+    b = yaml.safe_load((out / "lemans-evk.yaml").read_text())
+    assert b["downstream"]["release"] == "QCS9100 boot binaries 00150"
+    assert b["downstream"]["source"] == {"meta-qcom": "c" * 40}
+    # downstream_open is the same release with its own XBLConfig.
+    assert b["downstream_open"]["bootbinaries"] == b["downstream"]["bootbinaries"]
+    assert b["downstream_open"]["xbl_config"] == "xbl_config_spl.elf"
+    # The watcher goes on to the next board.
+    monkeypatch.setattr(config, "boards", lambda: ["lemans-evk", "rb3gen2"])
+    assert stockpin.main([str(tmp_path / "all"), "--no-verify"]) == 0
+    assert [r["result"] for r in json.load(open(tmp_path / "all" / "summary.json"))] == ["bump", "up to date"]

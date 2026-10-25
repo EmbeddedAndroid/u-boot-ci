@@ -2,11 +2,14 @@
 a build used, and why a target cannot be built."""
 import copy
 import os
+import subprocess
 
 import pytest
 
 from ubci import config
 from ubci.dryrun import board_tree
+
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def test_open_stack_on_its_own_downstream_firmware():
@@ -53,6 +56,16 @@ def test_fragments_flags_a_missing_board_fragment():
     assert config.fragments(entries, entries[:2] + ["arduino-ventuno-q.config"])[2]["used"] is True
 
 
+def cli(*args):
+    return subprocess.run(["python3", "-m", "ubci.config"] + list(args), cwd=REPO, capture_output=True,
+                          text=True, check=True).stdout.strip()
+
+
+def test_bootimg_options_for_abl_chainload_only():
+    assert cli("bootimg", "uno-q", "stock") == "--base 0x80000000 --pagesize 4096"
+    assert cli("bootimg", "rb3gen2", "stock") == ""
+
+
 @pytest.mark.parametrize("board", config.boards())
 def test_every_board_is_complete(board):
     b = config.board(board)
@@ -66,3 +79,11 @@ def test_every_board_is_complete(board):
     assert b["restore"]["env"] and b["restore"]["path"]
     for name in ("tf-a", "optee", "bl2"):
         assert b["pins"][name]
+
+
+def test_lemans_open_stack_takes_the_spl_xblconfig():
+    # XBL takes the U-Boot SPL path only with this XBLConfig (LAVA 512763).
+    b = config.board("lemans-evk")
+    assert config.downstream(b, "open")["xbl_config"] == "xbl_config_spl.elf"
+    assert config.downstream(b, "open")["bootbinaries"] == config.downstream(b, "stock")["bootbinaries"]
+    assert config.downstream(b, "stock")["xbl_config"] == "xbl_config.elf"

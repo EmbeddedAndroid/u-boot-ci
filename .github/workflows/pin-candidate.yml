@@ -99,10 +99,16 @@ jobs:
       LAVA_TOKEN: ${{ secrets.LAVA_TOKEN }}
       STOCK_RESTORE_URL_RB3GEN2: ${{ secrets.STOCK_RESTORE_URL_RB3GEN2 }}
       STOCK_RESTORE_URL_VENTUNO_Q: ${{ secrets.STOCK_RESTORE_URL_VENTUNO_Q }}
+      STOCK_RESTORE_URL_UNO_Q: ${{ secrets.STOCK_RESTORE_URL_UNO_Q }}
+      STOCK_RESTORE_URL_QCS615_RIDE: ${{ secrets.STOCK_RESTORE_URL_QCS615_RIDE }}
+      STOCK_RESTORE_URL_LEMANS_EVK: ${{ secrets.STOCK_RESTORE_URL_LEMANS_EVK }}
       STOCK_RESTORE_TOKEN: ${{ vars.STOCK_RESTORE_TOKEN }}
       STOCK_RESTORE_HEADER: ${{ vars.STOCK_RESTORE_HEADER }}
       PIN_BL2_RB3GEN2: ${{ secrets.PIN_BL2_RB3GEN2 }}
       PIN_BL2_VENTUNO_Q: ${{ secrets.PIN_BL2_VENTUNO_Q }}
+      PIN_BL2_UNO_Q: ${{ secrets.PIN_BL2_UNO_Q }}
+      PIN_BL2_QCS615_RIDE: ${{ secrets.PIN_BL2_QCS615_RIDE }}
+      PIN_BL2_LEMANS_EVK: ${{ secrets.PIN_BL2_LEMANS_EVK }}
       GH_TOKEN: ${{ github.token }}
       BRANCH: ${{ github.head_ref || github.ref_name }}
     steps:

@@ -8,13 +8,19 @@ import subprocess
 
 import pytest
 
+from ubci import config
 from ubci import run as urun
 from ubci.dryrun import board_tree
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STUBS = os.path.join(REPO, "tests", "stubs")
 CHECKS = ["carry", "buildman", "fragments", "checkpatch", "docs", "sandbox", "qemu_arm64"]
-TARGETS = ["rb3gen2-stock", "rb3gen2-open", "ventuno-q-stock", "ventuno-q-open"]
+# Every board and stack of the nightly but the open stacks whose pins are
+# not public yet: those are skipped (test_a_pending_pin_skips_its_target).
+TARGETS = ["%s-%s" % (b, s) for b in config.project()["boards"] for s in config.project()["stacks"]
+           if not config.pending(config.board(b), s)]
+PENDING = ["%s-%s" % (b, s) for b in config.project()["boards"] for s in config.project()["stacks"]
+           if config.pending(config.board(b), s)]
 
 
 @pytest.fixture
@@ -159,7 +165,7 @@ def test_only_queued_targets_are_built(job):
     json.dump(run, open(job.doc, "w"))
     p, steps, _ = job()
     assert p.returncode == 0
-    assert steps == every_step(["rb3gen2-stock", "rb3gen2-open"])
+    assert steps == every_step([t for t in TARGETS if not t.startswith("ventuno-q-")])
 
 
 def test_checkpatch_gets_the_base_commit_and_builds_the_fingerprint(job):
@@ -219,3 +225,13 @@ def test_host_check_knows_every_check_the_job_runs():
     text = open(os.path.join(REPO, "scripts", "host-check.sh")).read()
     for c in CHECKS + ["size"]:
         assert "\n%s)" % c in text or "\n%s|" % c in text or "|%s)" % c in text, c
+
+
+def test_a_pending_pin_skips_its_target(job):
+    assert PENDING, "no board with a pending pin to test"
+    p, steps, _ = job()
+    assert p.returncode == 0, p.stdout + p.stderr
+    for t in PENDING:
+        assert "build " + t not in steps
+        st = json.load(open(job.tmp / "out" / "targets" / (t + ".build.json")))
+        assert st["result"] == "skip" and st["reason"].startswith("open-stack pin not public yet: tf-a ")

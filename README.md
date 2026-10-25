@@ -7,13 +7,16 @@ firmware stacks, booting a pristine linux-next. The output is a public
 dashboard on GitHub Pages; nothing is posted to the mailing list.
 
 It runs nightly on `main` and on `master`, and on demand for series from
-the list stacked onto either ([ad-hoc runs](docs/adhoc-runs.md)), on two
+the list stacked onto either ([ad-hoc runs](docs/adhoc-runs.md)), on these
 boards:
 
-| board | SoC | LAVA device type |
-|---|---|---|
-| Qualcomm RB3 Gen 2 | QCS6490 (Kodiak) | `qcs6490-rb3gen2` |
-| Arduino VENTUNO Q | QCS8275 (Monaco) | `monaco-arduino-monza` |
+| board | SoC | LAVA device type | U-Boot on the stock firmware |
+|---|---|---|---|
+| Qualcomm RB3 Gen 2 | QCS6490 (Kodiak) | `qcs6490-rb3gen2` | replaces UEFI |
+| Arduino VENTUNO Q | QCS8275 (Monaco) | `monaco-arduino-monza` | replaces UEFI |
+| Arduino UNO Q | QRB2210 (Agatti) | `qrb2210-arduino-imola` | chainloaded by ABL |
+| Qualcomm QCS615 Ride | QCS615 (Talos) | `qcs615-ride` | replaces UEFI |
+| Qualcomm IQ-9075 EVK | QCS9075 (Lemans) | `lemans-evk` | replaces UEFI |
 
 Automatic intake of every series from the list and U-Boot's own test.py
 on the boards follow in later phases.

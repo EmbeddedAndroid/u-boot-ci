@@ -18,6 +18,7 @@ done
 if [ -z "$lv" ]; then echo "CONFIG_ARM=y" >"$o/.config"; exit 0; fi
 for f in u-boot u-boot.elf u-boot.bin u-boot-nodtb.bin; do echo "U-Boot 2026.07$lv" >"$o/$f"; done
 echo "control dtb" >"$o/u-boot.dtb"
+if [ -n "${STUB_NODTB_WITHOUT_FP:-}" ]; then echo "U-Boot 2026.07" >"$o/u-boot-nodtb.bin"; fi
 if grep -qs '^u-boot\.mbn:' "$src/board/qualcomm/config.mk"; then
 	{ echo "in-tree mbn"; cat "$o/u-boot.elf"; } >"$o/u-boot.mbn"
 fi
@@ -39,7 +40,7 @@ def build(tmp_path):
     qts = tmp_path / "qtestsign.py"
     qts.write_text(QTESTSIGN)
 
-    def go(rule, board="rb3gen2", stack="stock"):
+    def go(rule, board="rb3gen2", stack="stock", env_extra=None):
         src = tmp_path / "u-boot"
         (src / "configs").mkdir(parents=True, exist_ok=True)
         for c in ("qcm6490_defconfig", "qcom_defconfig", "tfa-optee.config"):
@@ -52,7 +53,7 @@ def build(tmp_path):
                         "commit", "-q", "--allow-empty", "-m", "base"], check=True)
         out = tmp_path / "out"
         env = dict(os.environ, PATH="%s:%s" % (bin_, os.environ["PATH"]),
-                   UBCI_WORK=str(tmp_path / "work"), UBCI_QTESTSIGN=str(qts))
+                   UBCI_WORK=str(tmp_path / "work"), UBCI_QTESTSIGN=str(qts), **(env_extra or {}))
         p = subprocess.run([os.path.join(REPO, "scripts", "build-uboot.sh"), str(src), board, stack,
                             "ubci-t-%s-%s" % (stack, board), str(out)],
                            env=env, capture_output=True, text=True)
@@ -83,3 +84,22 @@ def test_the_open_stack_never_signs_u_boot(build):
     assert p.returncode == 0, p.stderr
     assert calls == [] and (out / "u-boot.bin").exists()
 
+
+def test_abl_chainload_builds_an_android_boot_image(build):
+    import zlib
+    from ubci import bootimg
+    p, out, calls = build(rule=False, board="uno-q")
+    assert p.returncode == 0, p.stderr
+    assert calls == [] and not (out / "u-boot.mbn").exists()
+    img = (out / "boot.img").read_bytes()
+    h = bootimg.parse(img)
+    assert h["kernel_addr"] == 0x80008000 and h["page_size"] == 4096
+    d = zlib.decompressobj(16 + zlib.MAX_WBITS)
+    assert d.decompress(img[4096:4096 + h["kernel_size"]]) == b"U-Boot 2026.07-ubci-t-stock-uno-q\n"
+    assert d.unused_data == (out / "u-boot.dtb").read_bytes() == b"control dtb\n"
+
+
+def test_a_boot_image_without_the_fingerprint_fails(build):
+    p, out, calls = build(rule=False, board="uno-q", env_extra={"STUB_NODTB_WITHOUT_FP": "1"})
+    assert p.returncode != 0 and "u-boot-nodtb.bin lacks the fingerprint" in p.stderr
+    assert not (out / "boot.img").exists()

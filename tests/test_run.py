@@ -25,14 +25,14 @@ def test_new_run_has_every_board_and_stack_with_distance(doc):
     r = json.load(open(doc))
     assert schema.errors(r) == []
     assert [(t["board"], t["stack"]) for t in r["targets"]] == [
-        ("rb3gen2", "stock"), ("rb3gen2", "open"), ("ventuno-q", "stock"), ("ventuno-q", "open")]
+        (b, s) for b in ("rb3gen2", "ventuno-q", "uno-q", "qcs615-ride", "lemans-evk") for s in ("stock", "open")]
     open_rb3 = r["targets"][1]
     tfa = [c for c in open_rb3["components"] if c["name"] == "tf-a"][0]
     assert tfa["role"] == "pinned" and tfa["upstream"]["distance"] == len(tfa["upstream"]["carried"])
     optee = [c for c in open_rb3["components"] if c["name"] == "optee"][0]
     assert optee["upstream"]["distance"] == 0
     assert open_rb3["linux_boot"]["gaps"]
-    for vq in r["targets"][2:]:
+    for vq in r["targets"][2:4]:
         assert vq["linux_boot"]["gaps"][0].startswith("upstream U-Boot does not support this board")
     assert r["targets"][0]["components"][1]["role"] == "stock"
 
@@ -440,7 +440,7 @@ def test_close_cancelled_run_left_building(doc, capsys):
     r = json.load(open(doc))
     assert schema.errors(r) == []
     assert r["state"] == "cancelled" and r["note"] == "workflow cancelled"
-    assert [t["state"] for t in r["targets"]] == ["cancelled", "cancelled", "skipped", "cancelled"]
+    assert [t["state"] for t in r["targets"]] == ["cancelled", "cancelled", "skipped"] + ["cancelled"] * 7
     assert r["targets"][0]["state_detail"] == "workflow cancelled before this target finished"
     assert r["targets"][1]["state_detail"].endswith("; LAVA job 511644 was not collected")
     assert r["host_checks"] == [{"name": "docs", "result": "skip",
@@ -618,20 +618,26 @@ def test_every_target_names_its_exact_software(doc):
         assert lx["url"].endswith("/commit/?id=" + LINUX["commit"]) and lx["branch"] == "next-20261023"
         assert lx["config"]["url"].endswith("arch/arm64/configs/defconfig?id=" + LINUX["commit"])
         assert t["boot_chain"][0]["stage"] == "XBL" and t["boot_chain"][-1]["component"] == "linux"
-    dtbs = [d["name"] for d in comp(target_of(r, "ventuno-q", "open"), "linux")["dtbs"]]
-    assert dtbs == ["qcom/monaco-arduino-monza.dtb", "qcom/monaco-el2.dtbo"]
-    assert comp(target_of(r, "ventuno-q", "open"), "linux")["dtbs"][1]["url"].split("?")[0].endswith(
-        "arch/arm64/boot/dts/qcom/monaco-el2.dtso")
+    # UNO Q: the open stack sits on other boot firmware than ABL chainload.
+    assert comp(target_of(r, "uno-q", "stock"), "downstream firmware")["release"] != \
+        comp(target_of(r, "uno-q", "open"), "downstream firmware")["release"]
+    dtbs = [d["name"] for d in comp(target_of(r, "lemans-evk", "open"), "linux")["dtbs"]]
+    assert dtbs == ["qcom/lemans-evk.dtb", "qcom/lemans-el2.dtbo"]
+    assert comp(target_of(r, "lemans-evk", "open"), "linux")["dtbs"][1]["url"].split("?")[0].endswith(
+        "arch/arm64/boot/dts/qcom/lemans-el2.dtso")
 
 
-def test_open_stack_pins_link_their_commits(doc):
+def test_open_stack_pins_link_their_commits_and_say_when_not_public(doc):
     r = json.load(open(doc))
-    t = target_of(r, "rb3gen2", "open")
-    tfa = comp(t, "tf-a")
+    tfa = comp(target_of(r, "qcs615-ride", "open"), "tf-a")
     assert tfa["url"] == "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/" + tfa["commit"]
-    assert "pending" not in tfa and tfa["upstream"]["distance"] == len(tfa["upstream"]["carried"])
-    bl2 = comp(t, "tf-a bl2")
-    assert bl2["origin"] == "upstream" and bl2["commit"] == tfa["commit"]
+    assert tfa["pending"] and tfa["soc_branch"]["name"] == "qcom/talos" and tfa["upstream"] is None
+    assert "pending" not in comp(target_of(r, "rb3gen2", "open"), "tf-a")
+    spl = comp(target_of(r, "lemans-evk", "open"), "u-boot spl")
+    assert spl["origin"] == "downstream" and "commit" not in spl and spl["fingerprint"].startswith("LEMANSFP-")
+    bl2 = comp(target_of(r, "uno-q", "open"), "tf-a bl2")
+    assert bl2["origin"] == "upstream" and bl2["commit"] == comp(target_of(r, "uno-q", "open"), "tf-a")["commit"]
+
 
 def test_built_records_the_configs_the_base_had(doc, tmp_path):
     d = tmp_path / "targets" / "ventuno-q-open"

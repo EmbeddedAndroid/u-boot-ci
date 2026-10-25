@@ -20,9 +20,9 @@ Both environments hold the same secrets:
 |---|---|
 | `LAVA_TOKEN` | the LAVA token of the CI user `robotyler` |
 | `STOCK_RESTORE_URL_RB3GEN2` | the stock image an RB3 Gen 2 job restores at the end |
-| `STOCK_RESTORE_URL_VENTUNO_Q` | the same for VENTUNO Q |
+| `STOCK_RESTORE_URL_VENTUNO_Q`, `_UNO_Q`, `_QCS615_RIDE`, `_LEMANS_EVK` | the same for VENTUNO Q, UNO Q, QCS615 Ride and Lemans EVK |
 | `PIN_BL2_RB3GEN2` | the open-stack BL2 (`tz.mbn`) of RB3 Gen 2: `gzip -9 < tz-rb3gen2.mbn \| base64 -w0` |
-| `PIN_BL2_VENTUNO_Q` | the same for VENTUNO Q |
+| `PIN_BL2_VENTUNO_Q`, `_UNO_Q`, `_QCS615_RIDE`, `_LEMANS_EVK` | the same for the other boards (Lemans: its U-Boot SPL) |
 
 The restore URLs are secrets, so they never appear in a log, the run
 documents or the dashboard; the jobs read them from the environment and
@@ -71,8 +71,9 @@ uploads for at most 6 hours.)
 
 ## The LAVA user
 
-`robotyler` needs submit rights on `qcs6490-rb3gen2` and
-`monaco-arduino-monza`, the artifact store of the LAVA MCP endpoint (the
+`robotyler` needs submit rights on `qcs6490-rb3gen2`,
+`monaco-arduino-monza`, `qrb2210-arduino-imola`, `qcs615-ride` and
+`lemans-evk`, the artifact store of the LAVA MCP endpoint (the
 packages are uploaded there for the length of a run) and the remote
 artifact token named by `STOCK_RESTORE_TOKEN`. The runs never use the
 production boards: `config/project.yaml` `lava.exclude_devices` keeps

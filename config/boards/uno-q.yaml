@@ -1,0 +1,114 @@
+# Arduino UNO Q (QRB2210, Agatti). See docs/boards/uno-q.md.
+name: uno-q
+title: UNO Q
+soc: QRB2210 (Agatti)
+lava:
+  device_type: qrb2210-arduino-imola
+  storage: emmc
+  luns: [0]
+  firehose: prog_firehose_ddr.elf
+  xbl_marker: "SBL1, End"
+downstream:
+  # The boot firmware meta-qcom-arduino pins for uno-q
+  # (firmware-qcom-boot-qrb2210-arduino-imola_251020.bb): XBL, TZ, the
+  # QTI hypervisor and ABL, which loads U-Boot from boot_a/boot_b. Its
+  # CDT is in the board's eMMC boot partition and is not rewritten.
+  release: Arduino UNO Q boot firmware 251020
+  bootbinaries:
+    - url: https://downloads.arduino.cc/debian-im/unoq-bootloader-emmc-linux-251020.zip
+      sha256: c606e95d0107f8c58d0dd9494e00624d1db7c4361cca20513bc78ef02ca28dd1
+  partitions: {board: platforms/boards/qrb2210-unoq-abl-arduino.yaml, storage: emmc}
+  required: [xbl.elf, xbl_feature_config.elf, tz.mbn, abl.elf]
+  source: {meta-qcom: c853febcdeb149021fd043ac7a5eaae88f29f7b7, meta-qcom-arduino: 66170f27dea1c40781b871b6482ef886a7663232}
+  upstream:
+    layers:
+      meta-qcom: {repo: https://github.com/qualcomm-linux/meta-qcom, branch: master}
+      meta-qcom-arduino: {repo: https://github.com/qualcomm-linux/meta-qcom-arduino, branch: main}
+    bootbinaries:
+      layer: meta-qcom-arduino
+      recipe: recipes-bsp/firmware-boot/firmware-qcom-boot-qrb2210-arduino-imola_*.bb
+      release: Arduino UNO Q boot firmware {pv}
+downstream_open:
+  # The open stack needs an XBL that loads TF-A BL2 from tz and the FIP
+  # from uefi: the edk2-based QRB2210 release meta-qcom pins
+  # (firmware-qcom-boot-qrb2210_00021.bb), the one uno-q used before
+  # meta-qcom-arduino 36740ca went back to the ABL firmware. Pinned by
+  # hand; the pin watcher follows the downstream section only.
+  release: QRB2210 boot binaries 00021
+  bootbinaries:
+    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QRB2210_bootbinaries.1.0/qrb2210_bootbinaries.1.0-test-device-public/00021/Agatti_bootbinaries_00021.zip
+      sha256: 26a8681834363cb8bc9e8149db27388406daf22af15d3b43c9649e180afb47f2
+  partitions: {board: platforms/boards/qrb2210-unoq-arduino.yaml, storage: emmc}
+  required: [xbl.elf, tz.mbn]
+  source: {meta-qcom: c853febcdeb149021fd043ac7a5eaae88f29f7b7}
+  upstream:
+    layers:
+      meta-qcom: {repo: https://github.com/qualcomm-linux/meta-qcom, branch: master}
+    bootbinaries:
+      layer: meta-qcom
+      recipe: recipes-bsp/firmware-boot/firmware-qcom-boot-qrb2210_*.bb
+      release: QRB2210 boot binaries {pv}
+u-boot:
+  # stock: ABL chainloads U-Boot as an Android boot image (boot_a/boot_b),
+  # as meta-qcom-arduino builds it: gzipped u-boot-nodtb.bin with the
+  # board DTB appended, base 0x80000000, 4 KiB pages.
+  stock:
+    configs: [qcom_defconfig]
+    device_tree: qcom/qrb2210-arduino-imola
+    image: boot.img
+    slot: boot.img
+    bootimg: {base: "0x80000000", pagesize: 4096}
+  # open: the board fragment comes with the UNO Q series.
+  open:
+    configs: [qcom_defconfig, tfa-optee.config, "arduino-uno-q.config?"]
+    device_tree: qcom/qrb2210-arduino-imola
+    image: u-boot.bin
+linux:
+  dtb: qcom/qrb2210-arduino-imola.dtb
+  overlays:
+    stock: []
+    # Linux runs at EL2 on the open stack; linux-next has no Agatti EL2
+    # overlay, so the base DT is used as is.
+    open: []
+  gaps:
+    open: ["no Agatti EL2 overlay in linux-next"]
+  cmdline: console=ttyMSM0,115200n8
+boot_chain:
+  stock:
+    - {stage: XBL, origin: downstream}
+    - {stage: TZ (QTEE), origin: downstream}
+    - {stage: hypervisor (QTI hyp), origin: downstream}
+    - {stage: ABL, origin: downstream}
+    - {stage: U-Boot, origin: upstream, component: u-boot, detail: Android boot image chainloaded by ABL}
+    - {stage: Linux, origin: upstream, component: linux}
+  open:
+    - {stage: XBL, origin: downstream}
+    - {stage: TF-A BL2, origin: upstream, component: tf-a bl2}
+    - {stage: TF-A BL31, origin: upstream, component: tf-a}
+    - {stage: OP-TEE, origin: upstream, component: optee}
+    - {stage: hypervisor, origin: none}
+    - {stage: U-Boot, origin: upstream, component: u-boot, detail: BL33 in the FIP}
+    - {stage: Linux, origin: upstream, component: linux, detail: EL2}
+uboot_checks:
+  - [bdinfo, bdinfo, "boot_params"]
+  - [dm-tree, dm tree, "root_driver"]
+  - [clocks, clk dump, "Usecnt"]
+  - [storage, mmc info, "Capacity:"]
+  - [usb, usb tree, "USB device tree"]
+  - [efi-media, efidebug dh, "Block IO"]
+  - [bootflow, bootflow scan -l, "efi"]
+smoke:
+  cpus: 4
+  storage: "ls /sys/class/block | grep -q '^mmcblk0$' && dd if=/dev/mmcblk0 of=/dev/null bs=1M count=16"
+  usb: "ls /sys/bus/usb/devices | grep -q '^usb[0-9]'"
+  network: "ls /sys/class/net | grep -qv '^lo$'"
+restore:
+  # The lab health-check image (flash-emmc, the Arduino ABL firmware) and
+  # its UEFI build, as proven on this device type (LAVA job 511299).
+  env: UNO_Q
+  path: flash_qrb2210-arduino-imola_emmc
+  deploy_minutes: 40
+  qdl_minutes: 20
+  uefi_ver: 5.0.250619.BOOT.XF.4.1.2-00023-KAMORTALAZ-5
+  end: UEFI Total
+  check_minutes: 10

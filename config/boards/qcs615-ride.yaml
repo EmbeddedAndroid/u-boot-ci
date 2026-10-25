@@ -1,0 +1,93 @@
+# Qualcomm QCS615 Ride (ADP Air, Talos). See docs/boards/qcs615-ride.md.
+name: qcs615-ride
+title: QCS615 Ride
+soc: QCS615 (Talos)
+lava:
+  device_type: qcs615-ride
+  storage: ufs
+  luns: [0, 1, 2, 3, 4]
+  firehose: prog_firehose_ddr.elf
+  xbl_marker: "SBL1, End"
+downstream:
+  # The boot binaries and CDT meta-qcom pins for qcs615-ride
+  # (firmware-qcom-boot-qcs615_00142.bb, firmware-qcom-cdt-qcs615.bb,
+  # QCOM_CDT_FILE cdt_adp_air_sa6155p).
+  release: QCS615 boot binaries 00142
+  bootbinaries:
+    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS615_bootbinaries.1.0/qcs615_bootbinaries.1.0-test-device-public/00142/QCS615_bootbinaries_00142.zip
+      sha256: 4704b117672ef778c4680522b753af00641e91fc2f7fb351d942559e09458352
+  cdt:
+    url: https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS615/cdt/ADP_AIR_SA6155P_V2.zip
+    sha256: 37d99eb113e286400bce0d70aa12a74d05f93d01f045bf67e7a46b3c606c8fd0
+    file: cdt_adp_air_sa6155p.bin
+  xbl_config: xbl_config.elf
+  partitions: {conf: platforms/qcs615-ride/ufs/partitions.conf}
+  source: {meta-qcom: c853febcdeb149021fd043ac7a5eaae88f29f7b7}
+  upstream:
+    layers:
+      meta-qcom: {repo: https://github.com/qualcomm-linux/meta-qcom, branch: master}
+    bootbinaries:
+      layer: meta-qcom
+      recipe: recipes-bsp/firmware-boot/firmware-qcom-boot-qcs615_*.bb
+      release: QCS615 boot binaries {pv}
+    cdt:
+      layer: meta-qcom
+      recipe: recipes-bsp/firmware-boot/firmware-qcom-cdt-qcs615.bb
+      name: qcs615-adp-air
+u-boot:
+  # stock: U-Boot replaces UEFI in uefi_a/uefi_b, as doc/board/qualcomm/
+  # dragonwing.rst documents for QCS615 and meta-qcom builds it
+  # (UBOOT_CONFIG[qcs615-ride] = qcom_qcs615_defconfig).
+  stock:
+    configs: [qcom_qcs615_defconfig]
+    device_tree: qcom/qcs615-ride
+    image: u-boot.mbn
+  # open: the board fragment comes with the QCS615 OP-TEE series.
+  open:
+    configs: [qcom_defconfig, tfa-optee.config, "qcs615-ride.config?"]
+    device_tree: qcom/qcs615-ride
+    image: u-boot.bin
+linux:
+  dtb: qcom/qcs615-ride.dtb
+  overlays:
+    stock: []
+    open: [qcom/talos-el2.dtbo]
+  gaps: {}
+  cmdline: console=ttyMSM0,115200n8
+boot_chain:
+  stock:
+    - {stage: XBL, origin: downstream}
+    - {stage: TZ (QTEE), origin: downstream}
+    - {stage: hypervisor (Gunyah), origin: downstream}
+    - {stage: U-Boot, origin: upstream, component: u-boot, detail: in place of UEFI}
+    - {stage: Linux, origin: upstream, component: linux}
+  open:
+    - {stage: XBL, origin: downstream}
+    - {stage: TF-A BL2, origin: upstream, component: tf-a bl2}
+    - {stage: TF-A BL31, origin: upstream, component: tf-a}
+    - {stage: OP-TEE, origin: upstream, component: optee}
+    - {stage: hypervisor, origin: none}
+    - {stage: U-Boot, origin: upstream, component: u-boot, detail: BL33 in the FIP}
+    - {stage: Linux, origin: upstream, component: linux, detail: EL2}
+uboot_checks:
+  - [bdinfo, bdinfo, "boot_params"]
+  - [dm-tree, dm tree, "root_driver"]
+  - [clocks, clk dump, "Usecnt"]
+  - [storage, scsi info, "Vendor:"]
+  - [usb, usb tree, "USB device tree"]
+  - [efi-media, efidebug dh, "Block IO"]
+  - [bootflow, bootflow scan -l, "efi"]
+smoke:
+  cpus: 8
+  storage: "ls /sys/class/block | grep -q '^sd[a-z]$' && dd if=/dev/sda of=/dev/null bs=1M count=16"
+  usb: "ls /sys/bus/usb/devices | grep -q '^usb[0-9]'"
+  network: "ls /sys/class/net | grep -qv '^lo$'"
+restore:
+  # The lab health-check image (LUNs 0-4) and its UEFI build, as proven on
+  # this device type (LAVA job 511301).
+  env: QCS615_RIDE
+  path: core-image-base-qcs615-ride
+  qdl_minutes: 20
+  uefi_ver: 6.0.260521.BOOT.MXF.1.0.c1-00497.7-KODIAKLA-1
+  end: UEFI Total
+  check_minutes: 10

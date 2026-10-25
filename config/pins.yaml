@@ -63,6 +63,107 @@ boards:
       upstream:
         repo: https://github.com/OP-TEE/optee_os
         branch: master
+  # The three boards below pin the hardware-gated qcom/integration
+  # snapshot of 2026-10-24/25. Those commits are not on the public forks
+  # yet ("pending"): the open stack of these boards is skipped with that
+  # reason until qcom/integration is pushed, and the pins then move to
+  # its head in one PR. soc_branch records the per-platform branch head
+  # the snapshot integrated.
+  uno-q:
+    tf-a:
+      repo: https://github.com/EmbeddedAndroid/arm-trusted-firmware
+      branch: qcom/integration
+      commit: f2b3d43e002c0866ec3cbea21285f790603a4865
+      soc_branch: {name: qcom/agatti, commit: 7f4a15b09c264fce5b9aeb67c08ae1b9d0c9e94e}
+      pending: gated qcom/integration snapshot, not pushed yet
+      flags: PLAT=uno_q SPD=opteed
+      fip_load_addr: "0x5f800000"
+      upstream: &tfa-upstream
+        repo: https://review.trustedfirmware.org/TF-A/trusted-firmware-a
+        branch: master
+        gerrit: https://review.trustedfirmware.org
+        project: TF-A/trusted-firmware-a
+    bl2:
+      # TF-A BL2 of the tf-a pin with a QTI signature (this XBL accepts no
+      # test signature on tz); pre-signed, so it keeps its own fingerprint.
+      file: tz-uno-q.mbn
+      secret: PIN_BL2_UNO_Q
+      sha256: 09d1770fcdbd12fd18fd1cca84cfeaf3f1a915a851cff673ab24d4e48b10ecff
+      fingerprint: QCDFP-261024-68
+    optee:
+      repo: https://github.com/EmbeddedAndroid/optee_os
+      branch: qcom/integration
+      commit: bd6f523e58b41486ebb280de43898b3bff92f0c2
+      soc_branch: {name: qcom/agatti, commit: 2518bc06b2f0a658e9f3d2752d692881869eae50}
+      pending: gated qcom/integration snapshot, not pushed yet
+      platform: qcom-agatti
+      upstream: &optee-upstream
+        repo: https://github.com/OP-TEE/optee_os
+        branch: master
+  qcs615-ride:
+    tf-a:
+      repo: https://github.com/EmbeddedAndroid/arm-trusted-firmware
+      branch: qcom/integration
+      commit: f2b3d43e002c0866ec3cbea21285f790603a4865
+      soc_branch: {name: qcom/talos, commit: b3fbecd10dddb51ff7b5a9cdceb37a6e43a50ac9}
+      pending: gated qcom/integration snapshot, not pushed yet
+      flags: PLAT=qcs615_ride SPD=opteed
+      fip_load_addr: "0x9fc00000"
+      upstream: *tfa-upstream
+    bl2:
+      file: tz-qcs615-ride.mbn
+      secret: PIN_BL2_QCS615_RIDE
+      sha256: 4616ba74a1285ab764399f7c6d29fccc4267702bce6d0b22cb0f24f9b566332a
+      fingerprint: QCDFP-261024-62
+    optee:
+      repo: https://github.com/EmbeddedAndroid/optee_os
+      branch: qcom/integration
+      commit: bd6f523e58b41486ebb280de43898b3bff92f0c2
+      soc_branch: {name: qcom/talos, commit: 120a891f1f421c916fc9141a6bf380770ab8ba9c}
+      pending: gated qcom/integration snapshot, not pushed yet
+      platform: qcom-talos
+      # The early TAs the board's remoteprocs need (qcom_pas) and
+      # trusted keys, as the gated build; one make argument per item.
+      make_args:
+        - CFG_USER_TA_TARGETS=ta_arm64
+        - DEBUG=0
+        - CFG_IN_TREE_EARLY_TAS=trusted_keys/f04a0fe7-1f5d-4b9b-abf7-619b85b4ce8c qcom_pas/cff7d191-7ca0-4784-af13-48223b9a4fbe
+      upstream: *optee-upstream
+  lemans-evk:
+    tf-a:
+      repo: https://github.com/EmbeddedAndroid/arm-trusted-firmware
+      branch: qcom/integration
+      commit: f2b3d43e002c0866ec3cbea21285f790603a4865
+      soc_branch: {name: qcom/lemans, commit: 4c50b71bf488f50c8d07f50f6de17efa6d164fc5}
+      pending: gated qcom/integration snapshot, not pushed yet
+      flags: PLAT=lemans_evk SPD=opteed
+      # U-Boot SPL loads a FIT, not a FIP: BL31, OP-TEE, U-Boot.
+      image: uefi.itb
+      fit: {atf: "0x1c200000", optee: "0x1c300000", uboot: "0xaf000000"}
+      upstream: *tfa-upstream
+    bl2:
+      # What XBL loads from tz on this boot chain: U-Boot SPL, pre-built
+      # and test-signed, from a tree that is not public (no Lemans SPL
+      # on U-Boot main yet). Downstream until it is.
+      name: u-boot spl
+      banner: U-Boot SPL
+      origin: downstream
+      file: tz-lemans-evk.mbn
+      secret: PIN_BL2_LEMANS_EVK
+      sha256: c6cb506e3e51172446b8ec456dd647d9556ad55d5c6b94bc5ca3e39edc9a3893
+      fingerprint: LEMANSFP-261009-030954-lpb4
+    optee:
+      repo: https://github.com/EmbeddedAndroid/optee_os
+      branch: qcom/integration
+      commit: bd6f523e58b41486ebb280de43898b3bff92f0c2
+      soc_branch: {name: qcom/lemans, commit: 2b08ee870554d435a77266525b31bd00a537d986}
+      pending: gated qcom/integration snapshot, not pushed yet
+      platform: qcom-lemans
+      make_args:
+        - CFG_USER_TA_TARGETS=ta_arm64
+        - DEBUG=0
+        - CFG_IN_TREE_EARLY_TAS=trusted_keys/f04a0fe7-1f5d-4b9b-abf7-619b85b4ce8c qcom_pas/cff7d191-7ca0-4784-af13-48223b9a4fbe
+      upstream: *optee-upstream
 qtestsign:
   repo: https://github.com/msm8916-mainline/qtestsign
   commit: 0eef3b552b1ada848f22bad38ab2e40407307c5b

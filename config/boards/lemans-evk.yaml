@@ -1,0 +1,105 @@
+# Qualcomm IQ-9075 EVK (QCS9075, Lemans). See docs/boards/lemans-evk.md.
+name: lemans-evk
+title: Lemans EVK
+soc: QCS9075 (Lemans)
+lava:
+  device_type: lemans-evk
+  storage: ufs
+  luns: [0, 1, 2, 3, 4, 5]
+  firehose: prog_firehose_ddr.elf
+  xbl_marker: "SBL1, End"
+downstream: &downstream
+  # The boot binaries and CDT meta-qcom pins for iq-9075-evk
+  # (firmware-qcom-boot-qcs9100_00142.bb, firmware-qcom-cdt-qcs9100.bb,
+  # QCOM_CDT_FILE cdt_rb8_core_kit). The SAIL NOR image of the release is
+  # not flashed: the board keeps the lab's.
+  release: QCS9100 boot binaries 00142
+  bootbinaries:
+    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00142/QCS9100_bootbinaries_00142.zip
+      sha256: 17d2c5bae5c17b665bafd9bba8962f41aec7be2f874cde90b0976730f0098bf6
+    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00142/QCS9100_bootbinaries_immutable_00142.zip
+      sha256: 1aa0b67671ef026a40ca133f32128d07fffd614a47cf51eaa5cd5c7d4941d034
+  cdt:
+    url: https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS9100/cdt/rb8_core_kit.zip
+    sha256: a252244f800d7c9e15883e12935af4113f9f2ecba6490e46cd9b943169f15bfa
+    file: cdt_rb8_core_kit.bin
+  xbl_config: xbl_config.elf
+  partitions: {board: platforms/boards/iq-9075-evk.yaml, storage: ufs}
+  source: {meta-qcom: c853febcdeb149021fd043ac7a5eaae88f29f7b7}
+  upstream:
+    layers:
+      meta-qcom: {repo: https://github.com/qualcomm-linux/meta-qcom, branch: master}
+    bootbinaries:
+      layer: meta-qcom
+      recipe: recipes-bsp/firmware-boot/firmware-qcom-boot-qcs9100_*.bb
+      release: QCS9100 boot binaries {pv}
+    cdt:
+      layer: meta-qcom
+      recipe: recipes-bsp/firmware-boot/firmware-qcom-cdt-qcs9100.bb
+      name: qcs9100-rb8-ck
+downstream_open:
+  # The same release with its SPL XBLConfig: XBL takes the U-Boot SPL path
+  # only with xbl_config_spl.elf (meta-qcom qcom-uboot-spl-fit.inc). With
+  # the default one XBL loads uefi as an ELF and stops (Error code
+  # 82000035 at boot_elf_driver.c, LAVA 512763).
+  <<: *downstream
+  xbl_config: xbl_config_spl.elf
+u-boot:
+  # stock: U-Boot replaces UEFI in uefi_a/uefi_b, as meta-qcom builds it
+  # for iq-9075-evk (qcom_lemans_defconfig there; main has the QCS9100
+  # one, whose mkmbn entry qcom,qcs9100 the board DT also matches).
+  stock:
+    configs: ["qcom_lemans_defconfig|qcom_qcs9100_defconfig"]
+    device_tree: qcom/lemans-evk
+    image: u-boot.mbn
+  # open: U-Boot proper in the FIT the pinned U-Boot SPL loads.
+  open:
+    configs: [qcom_defconfig, tfa-optee.config]
+    device_tree: qcom/lemans-evk
+    image: u-boot.bin
+linux:
+  dtb: qcom/lemans-evk.dtb
+  overlays:
+    stock: []
+    open: [qcom/lemans-el2.dtbo]
+  gaps: {}
+  cmdline: console=ttyMSM0,115200n8
+boot_chain:
+  stock:
+    - {stage: XBL, origin: downstream}
+    - {stage: TZ (QTEE), origin: downstream}
+    - {stage: hypervisor (Gunyah), origin: downstream}
+    - {stage: U-Boot, origin: upstream, component: u-boot, detail: in place of UEFI}
+    - {stage: Linux, origin: upstream, component: linux}
+  open:
+    - {stage: XBL, origin: downstream}
+    - {stage: U-Boot SPL, origin: downstream, component: u-boot spl, detail: "pre-built, not from a public commit"}
+    - {stage: TF-A BL31, origin: upstream, component: tf-a}
+    - {stage: OP-TEE, origin: upstream, component: optee}
+    - {stage: hypervisor, origin: none}
+    - {stage: U-Boot, origin: upstream, component: u-boot, detail: in the SPL FIT}
+    - {stage: Linux, origin: upstream, component: linux, detail: EL2}
+uboot_checks:
+  - [bdinfo, bdinfo, "boot_params"]
+  - [dm-tree, dm tree, "root_driver"]
+  - [clocks, clk dump, "Usecnt"]
+  - [storage, scsi info, "Vendor:"]
+  - [usb, usb tree, "USB device tree"]
+  - [efi-media, efidebug dh, "Block IO"]
+  - [bootflow, bootflow scan -l, "efi"]
+smoke:
+  cpus: 8
+  storage: "ls /sys/class/block | grep -q '^sd[a-z]$' && dd if=/dev/sda of=/dev/null bs=1M count=16"
+  usb: "ls /sys/bus/usb/devices | grep -q '^usb[0-9]'"
+  network: "ls /sys/class/net | grep -qv '^lo$'"
+restore:
+  # The lab health-check image: SAIL NOR first, then UFS, and its UEFI
+  # build, as proven on this device type (LAVA jobs 509671, 511912).
+  env: LEMANS_EVK
+  path: core-image-base-iq-9075-evk
+  pre:
+    - {subdir: sail_nor, storage: spinor, luns: [0]}
+  deploy_minutes: 20
+  uefi_ver: 6.0.260520.BOOT.MXF.1.0.c1-00508-KODIAKLA-1
+  end: UEFI Total
+  check_minutes: 30
