@@ -123,6 +123,14 @@ def test_a_board_without_an_anchor_keeps_the_uefi_6_check():
     assert m["end"] == "Boot Device" and m["fixupdict"] == {"6.0": "pass"}
 
 
+def test_job_names_say_downstream_firmware():
+    assert jobs.render("uno-q", "stock", "ubci-9", PKG, LINUX, RESTORE)["job_name"] == \
+        "u-boot-ci uno-q downstream ubci-9"
+    assert jobs.render("uno-q", "stock-candidate", "f", PKG, LINUX, RESTORE)["job_name"].startswith(
+        "u-boot-ci uno-q downstream-candidate ")
+    assert jobs.stack_label("open") == "open"
+
+
 def test_lemans_restore_writes_the_sail_nor_before_ufs():
     boots = [a["boot"] for a in restore_tail("lemans-evk") if "boot" in a and a["boot"]["method"] == "qdl"]
     assert [(b["path"], b["storage"]) for b in boots] == [("stock/sail_nor", "spinor"), ("stock", "ufs")]

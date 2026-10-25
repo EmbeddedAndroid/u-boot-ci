@@ -4,7 +4,8 @@ Flow (docs/architecture.md): flash the package, power on, fingerprint
 gate up to U-Boot's DRAM line, stop autoboot and run the U-Boot checks,
 reset; on that boot the gate again and U-Boot autoboots the linux-next
 UKI from the ESP; Linux version gate, login, smoke checks, reboot (gate
-and login once more), poweroff; then flash the lab's stock image back.
+and login once more), poweroff; then flash the lab's image back (its
+downstream firmware).
 A job that stops on the way (a hang or a timeout ends a LAVA job) does
 not reach its restore; the collector then submits a recovery job
 (ubci/restore.py) to the same device.
@@ -34,11 +35,21 @@ UBOOT_FAILURE = r"Unknown command|Error|ERROR|error:|failed|FAILED"
 UBOOT_END = "@@ uboot end@@"
 UBOOT_END_PROMPT = UBOOT_END + r"\r?\n"
 GATE_SUITE = "firmware-fingerprint"
-# The stock UEFI of the lab image reports "UEFI Ver    : 6.0.<date>...".
+# The downstream UEFI of the lab image reports "UEFI Ver    : 6.0.<date>...".
 STOCK_UEFI = {"6.0": "pass"}
 LINUX_SUITE = "linux-version"
 # The suite name stays as in earlier run documents (case history).
 RESTORE_SUITE = "stock-restore"
+
+
+# What a reader sees for a stack id. The ids stay as they are in run
+# documents, fingerprints and the case history ("stock" is the stack on
+# the board's downstream firmware).
+STACK_LABEL = {"stock": "downstream", "open": "open", "stock-candidate": "downstream-candidate"}
+
+
+def stack_label(stack):
+    return STACK_LABEL.get(stack, stack)
 
 
 def target_fingerprint(fp, board, stack):
@@ -48,7 +59,7 @@ def target_fingerprint(fp, board, stack):
 
 def base_stack(stack):
     """The firmware stack a target builds: a pin candidate ("stock-candidate")
-    is the stock stack with the candidate firmware."""
+    is the stock (downstream firmware) stack with the candidate firmware."""
     return "stock" if stack.startswith("stock") else stack
 
 
@@ -124,7 +135,7 @@ def uboot_steps(fp, checks):
 
 def render(board_name, stack, fp, package, linux, restore, metadata=None, device=None):
     """package: {url, token, path}; linux: {tag, release, image_sha256};
-    restore: {url, header, token, path} of the lab stock image."""
+    restore: {url, header, token, path} of the lab image."""
     b = config.board(board_name)
     lava = b["lava"]
     xbl = lava["xbl_marker"]
@@ -156,7 +167,7 @@ def render(board_name, stack, fp, package, linux, restore, metadata=None, device
     meta = {"project": "u-boot-ci", "board": board_name, "stack": stack,
             "fingerprint": fp, "linux": linux["tag"], "linux-sha256": linux["image_sha256"]}
     meta.update(metadata or {})
-    job = lj.job(lava["device_type"], "u-boot-ci %s %s %s" % (board_name, stack, fp),
+    job = lj.job(lava["device_type"], "u-boot-ci %s %s %s" % (board_name, stack_label(stack), fp),
                  actions, meta)
     if device:
         job["device"] = device

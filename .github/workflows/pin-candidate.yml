@@ -1,6 +1,6 @@
 # Validation of a stock pin bump (a pin/stock-<board> branch from
 # pin-watch): the nightly `main` baseline on that board with the current
-# (main) and the candidate (branch) stock firmware, on the dashboard and
+# (main) and the candidate (branch) downstream firmware, on the dashboard and
 # summarized in the branch's PR. pin-watch dispatches it (pushes made with
 # the workflow token start no runs); a push by hand to the PR runs it too.
 # Same-repository branches only; the bridge drops fork PRs.
@@ -53,7 +53,7 @@ jobs:
         with:
           path: work/out/initramfs
           key: initramfs-${{ hashFiles('config/buildroot/*', 'scripts/build-initramfs.sh', 'docker/Dockerfile') }}
-      - name: Build main with the current and the candidate stock firmware
+      - name: Build main with the current and the candidate downstream firmware
         env:
           b: ${{ steps.refs.outputs.board }}
           BASE: ${{ github.base_ref || 'main' }}
@@ -74,7 +74,7 @@ jobs:
             --commit "${{ steps.refs.outputs.commit }}" --fingerprint "$FINGERPRINT" \
             --linux work/out/linux/linux.json --targets "$b:stock,$b:stock-candidate" \
             --stock-release "stock=$old" --stock-release "stock-candidate=$new" \
-            --title "stock pin candidate: $old -> $new" \
+            --title "downstream pin candidate: $old -> $new" \
             --ci-url "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
           $CI_RUN python3 -m ubci.run built "work/$FINGERPRINT.json" work/out/candidate
       - uses: actions/upload-artifact@v4

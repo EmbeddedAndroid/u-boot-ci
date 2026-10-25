@@ -1,4 +1,4 @@
-# Daily stock firmware pin watcher (docs/pins.md): one PR per board whose
+# Daily downstream firmware pin watcher (docs/pins.md): one PR per board whose
 # meta layer ships boot binaries or a CDT other than the pin. No secrets
 # beyond GITHUB_TOKEN; recipes are only parsed, never run.
 name: pin-watch
@@ -29,7 +29,7 @@ jobs:
         with:
           fetch-depth: 0
       - run: docker build --network host -q -t u-boot-ci:1 docker
-      - name: Compare every board's stock pin with its meta layer
+      - name: Compare every board's downstream pin with its meta layer
         run: scripts/in-container.sh python3 -m ubci.stockpin work/pins || echo "failed=1" >> "$GITHUB_ENV"
       - name: Open or update one PR per board
         env:

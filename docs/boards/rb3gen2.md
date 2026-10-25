@@ -3,14 +3,14 @@
 LAVA device type `qcs6490-rb3gen2`, UFS (LUNs 0 to 5), debug UART
 `ttyMSM0`.
 
-## Stock boot path
+## Downstream boot path
 
 QCM6490 boot binaries 00142 with the rb3gen2-core-kit CDT (what
 meta-qcom's rb3gen2-core-kit pins), default `xbl_config.elf`. U-Boot is
 built with `qcm6490_defconfig` and `DEVICE_TREE=qcom/qcs6490-rb3gen2` and
 replaces UEFI in `uefi_a`/`uefi_b`, as doc/board/qualcomm/rb3gen2.rst in
 U-Boot describes: on this board U-Boot is meant to be the UEFI, so this is
-the realistic path. XBL starts it at EL1 under the stock hypervisor; Linux
+the realistic path. XBL starts it at EL1 under Gunyah; Linux
 runs at EL1.
 
 meta-qcom's kvm variant (`xbl_config_kvm.elf`) pairs the boot binaries

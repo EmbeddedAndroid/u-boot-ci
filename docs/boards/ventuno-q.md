@@ -3,7 +3,7 @@
 LAVA device type `monaco-arduino-monza`, eMMC (user area and boot area),
 debug UART `ttyMSM0`.
 
-## Stock boot path
+## Downstream boot path
 
 QCS8300 boot binaries 00142 with the Monza CDT and the qcs8275-monza eMMC
 layout (what meta-qcom-arduino's ventuno-q pins), default

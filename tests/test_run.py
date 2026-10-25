@@ -55,7 +55,7 @@ def test_submit_skips_boards_without_a_stock_restore(doc, tmp_path, monkeypatch)
     monkeypatch.setattr(urun, "Lava", lambda: object())
     urun.main(["submit", doc, str(tmp_path)])
     r = json.load(open(doc))
-    assert {t["state_detail"] for t in r["targets"]} == {"no stock restore image configured"}
+    assert {t["state_detail"] for t in r["targets"]} == {"no lab restore image configured"}
 
 
 class Lab:
@@ -179,7 +179,7 @@ def test_pin_candidate_run(tmp_path, capsys):
         "QCM6490 boot binaries 00142", "QCM6490 boot binaries 00150"]
     urun.main(["summary", p])
     out = capsys.readouterr().out
-    assert "| rb3gen2 | stock-candidate | QCM6490 boot binaries 00150 |" in out
+    assert "| rb3gen2 | downstream-candidate | QCM6490 boot binaries 00150 |" in out
 
 
 def test_candidate_job_is_the_stock_job():

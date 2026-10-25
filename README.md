@@ -3,14 +3,15 @@
 Open CI for upstream U-Boot on Qualcomm boards. Every night it takes
 U-Boot `main`, runs the checks upstream U-Boot CI runs that matter for the
 Qualcomm platforms, and tests it on real boards in a LAVA lab on two
-firmware stacks, booting a pristine linux-next. The output is a public
+firmware stacks (each board's downstream firmware, and an open stack of
+TF-A and OP-TEE), booting a pristine linux-next. The output is a public
 dashboard on GitHub Pages; nothing is posted to the mailing list.
 
 It runs nightly on `main` and on `master`, and on demand for series from
 the list stacked onto either ([ad-hoc runs](docs/adhoc-runs.md)), on these
 boards:
 
-| board | SoC | LAVA device type | U-Boot on the stock firmware |
+| board | SoC | LAVA device type | U-Boot on the downstream firmware |
 |---|---|---|---|
 | Qualcomm RB3 Gen 2 | QCS6490 (Kodiak) | `qcs6490-rb3gen2` | replaces UEFI |
 | Arduino VENTUNO Q | QCS8275 (Monaco) | `monaco-arduino-monza` | replaces UEFI |
@@ -45,8 +46,8 @@ nightly of the branch selected above it (`main` or `master`):
   console never came up, an early panic, no login prompt), the last
   console lines and a link to that line in the LAVA log.
 - *cases*: passed, failed and skipped test cases (U-Boot commands, Linux
-  smoke checks, the fingerprint gates, the stock restore), flaky ones
-  marked.
+  smoke checks, the fingerprint gates, the lab firmware restore), flaky
+  ones marked.
 - *distance to upstream*: for the open stack, how many patches each pinned
   component carries on top of its upstream. The detail view lists each one
   with its review link. Zero everywhere is the goal.
@@ -93,9 +94,9 @@ Building a real run: see [docs/architecture.md](docs/architecture.md).
 - [Architecture](docs/architecture.md): pipeline, jobs, the security
   split, the LAVA job flow and the boundary of the shared `fwci` package.
 - [Boards](docs/boards/): per-board boot paths and known gaps.
-- [Firmware stacks](docs/firmware-stacks.md): stock and open, pins,
+- [Firmware stacks](docs/firmware-stacks.md): downstream and open, pins,
   distance to upstream.
-- [How pins are updated](docs/pins.md): the stock pin watcher and its
+- [How pins are updated](docs/pins.md): the downstream pin watcher and its
   validation, open-stack pins.
 - [Linux payload](docs/linux-payload.md): what the boards boot.
 - [Results schema](docs/results-schema.md): the run document.

@@ -19,10 +19,14 @@ Both environments hold the same secrets:
 | secret | content |
 |---|---|
 | `LAVA_TOKEN` | the LAVA token of the CI user `robotyler` |
-| `STOCK_RESTORE_URL_RB3GEN2` | the stock image an RB3 Gen 2 job restores at the end |
+| `STOCK_RESTORE_URL_RB3GEN2` | the lab image (its downstream firmware) an RB3 Gen 2 job restores at the end |
 | `STOCK_RESTORE_URL_VENTUNO_Q`, `_UNO_Q`, `_QCS615_RIDE`, `_LEMANS_EVK` | the same for VENTUNO Q, UNO Q, QCS615 Ride and Lemans EVK |
-| `PIN_BL2_RB3GEN2` | the open-stack BL2 (`tz.mbn`) of RB3 Gen 2: `gzip -9 < tz-rb3gen2.mbn \| base64 -w0` |
+| `PIN_BL2_RB3GEN2` | the open-stack tz image (`tz.mbn`) of RB3 Gen 2: `gzip -9 < tz-rb3gen2.mbn \| base64 -w0` |
 | `PIN_BL2_VENTUNO_Q`, `_UNO_Q`, `_QCS615_RIDE`, `_LEMANS_EVK` | the same for the other boards (Lemans: its U-Boot SPL) |
+
+The names keep `STOCK_` from before the downstream rename: they are
+secret names in both environments, and renaming them means setting them
+again.
 
 The restore URLs are secrets, so they never appear in a log, the run
 documents or the dashboard; the jobs read them from the environment and

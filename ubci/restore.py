@@ -1,4 +1,4 @@
-"""A recovery job that only flashes the lab's stock image back onto one
+"""A recovery job that only flashes the lab's image back onto one
 device, for a test job that ended before its own restore.
 
 python3 -m ubci.restore <board> <device> <restore url> <token name> [<header>]"""
@@ -11,7 +11,7 @@ from . import config, jobs
 
 def render(board_name, device, restore):
     b = config.board(board_name)
-    job = lj.job(b["lava"]["device_type"], "u-boot-ci restore stock %s %s" % (board_name, device),
+    job = lj.job(b["lava"]["device_type"], "u-boot-ci restore lab image %s %s" % (board_name, device),
                  jobs.restore_actions(b, restore), {"project": "u-boot-ci", "board": board_name,
                                                     "restore-for": device},
                  priority="medium", job_minutes=60)

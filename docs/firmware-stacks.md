@@ -1,52 +1,71 @@
 # Firmware stacks
 
-Each board is tested on two stacks; only U-Boot changes between runs.
+Each board is tested on two stacks; only U-Boot changes between runs. The
+stack ids in run documents, fingerprints and the case history are `stock`
+and `open`; the dashboard and the job names say "downstream firmware" for
+`stock`.
 
-## stock
+## Downstream firmware (`stock`)
 
-The boot firmware meta-qcom ships for the board: the public boot binaries
-and CDT its recipes pin (URLs and sha256 in `config/boards/<board>.yaml`),
-with the partition layout qcom-ptool generates for the board. U-Boot under
-test replaces UEFI in `uefi_a`/`uefi_b` (as `u-boot.mbn`, signed by
-U-Boot's own `mkmbn`; a tree without it, `master` at v2026.07, has
-`u-boot.elf` signed by the pinned `qtestsign -v6 aboot` as its board docs
-say), which is how the upstream U-Boot docs install it on these boards. Everything else, including the QTEE `tz.mbn` and the
-hypervisor, is the release as published. The per-board choice and why is
-in [boards/](boards/).
+The boot firmware the board's meta layer ships: the public boot binaries
+and CDT its recipes pin (`downstream` in `config/boards/<board>.yaml`:
+URL and sha256 of each archive and the meta layer commit the pin was read
+at), with the partition layout qcom-ptool generates for the board. The
+U-Boot under test goes where that firmware loads it, per board
+([boards/](boards/) says which and why):
 
-## open
+- in place of UEFI in `uefi_a`/`uefi_b` (RB3 Gen 2, VENTUNO Q, QCS615 Ride,
+  Lemans EVK), as `u-boot.mbn` signed by U-Boot's own `mkmbn` (a tree
+  without it, `master` at v2026.07, has `u-boot.elf` signed by the pinned
+  `qtestsign -v6 aboot` as its board docs say);
+- as the Android boot image ABL chainloads from `boot_a`/`boot_b` (UNO Q:
+  `u-boot.stock.slot: boot.img`, built by `ubci.bootimg`).
 
-The open-source stack: TF-A BL2 in `tz_a`/`tz_b`, which loads a FIP from
-`uefi_a`/`uefi_b` holding TF-A BL31, OP-TEE (BL32) and U-Boot (BL33), all
-other boot firmware as in the stock stack. On an SPL boot chain (the TF-A
-pin's `image: uefi.itb`) U-Boot SPL sits in `tz` and loads a FIT from
-`uefi` holding BL31, OP-TEE, U-Boot and its control DTB at the pin's `fit`
-load addresses (`ubci/fit.py`).
+Everything else, including the QTEE `tz.mbn` and the hypervisor, is the
+release as published. The run document lists the release, every archive
+with its download link and sha256, and the meta layer commit with a link.
+
+## Open
+
+The open-source stack: what XBL loads from `tz_a`/`tz_b` and from
+`uefi_a`/`uefi_b`, every other boot image as in the downstream package
+(or `downstream_open`, when the board's open stack needs other boot
+firmware: UNO Q). By the TF-A pin's `image`:
+
+- `fip.elf` (default): TF-A BL2 in `tz`, which loads a FIP from `uefi`
+  holding TF-A BL31, OP-TEE (BL32) and U-Boot (BL33);
+- `uefi.itb` (Lemans): U-Boot SPL in `tz`, which loads a FIT from `uefi`
+  holding BL31, OP-TEE, U-Boot and its control DTB (`ubci/fit.py`, the
+  load addresses in the pin's `fit`).
 
 Pins (`config/pins.yaml`), per board:
 
 - `tf-a`: repository, branch and commit, build flags, FIP load address
-  or FIT addresses.
-  BL31 is built from it on every run, with the run fingerprint as the
-  build string.
+  or FIT addresses, the platform branch the commit integrates
+  (`soc_branch`) where there is one. BL31 is built from it on every run,
+  with the run fingerprint as the build string.
 - `optee`: same, built on every run with the run fingerprint as its
   version and the pin's extra `make_args` (early TAs).
-- `bl2`: the TF-A BL2 of the tf-a pin, signed in advance (XBL only starts
+- `bl2`: the image XBL loads from `tz`, signed in advance (XBL only starts
   a signed tz image) and pinned by file name, sha256 and its own
-  fingerprint. RB3 Gen 2 takes an OEM TEST signature from Qualcomm's
-  public sectools (`scripts/sign-bl2-oem.sh`); VENTUNO Q's XBL needs a QTI
-  signature, so its BL2 is a pre-signed binary. The binaries are not
-  redistributable: CI gets them from the `PIN_BL2_<BOARD>` secrets of the
-  LAVA environments, only in the submit job, and checks the sha256 before
+  fingerprint: TF-A BL2 of the tf-a pin (RB3 Gen 2 with an OEM TEST
+  signature from Qualcomm's public sectools, `scripts/sign-bl2-oem.sh`;
+  the other boards with a QTI signature, pre-signed), or on Lemans a
+  pre-built U-Boot SPL (`banner: U-Boot SPL`, `origin: downstream`: there
+  is no Lemans SPL in U-Boot `main`). The binaries are not redistributable:
+  CI gets them from the `PIN_BL2_<BOARD>` secrets of the LAVA
+  environments, only in the submit job, and checks the sha256 before
   adding them to the package ([setup.md](setup.md)); the dashboard shows
   the sha256 only.
-- `pending`: set while the pinned commit is not public yet. The open
-  stack of that board is then skipped with "open-stack pin not public
-  yet" instead of failing its build, and carries no distance to upstream.
+- `pending`: set while the pinned commit is not public yet (the new
+  boards pin the hardware-gated `qcom/integration` snapshot until that
+  branch is pushed). The open stack of that board is then skipped with
+  "open-stack pin not public yet" instead of failing its build, and
+  carries no distance to upstream.
 - `qtestsign`: the tool that wraps the FIP in a signed ELF (and signs
-  `u-boot.elf` for the stock stack on a tree without `mkmbn`).
+  `u-boot.elf` for the downstream stack on a tree without `mkmbn`).
 
-The FIP is rebuilt for every run with the U-Boot under test
+The FIP or FIT is rebuilt for every run with the U-Boot under test
 (`scripts/build-open-stack.sh`).
 
 ## The boot chain
@@ -56,7 +75,7 @@ The FIP is rebuilt for every run with the U-Boot under test
 as the hypervisor on the open stack), with the component it links to.
 Every target of a run document carries it, and the dashboard shows it per
 cell and in the detail view, so a reader sees at a glance what runs
-downstream (XBL, QTEE, Gunyah) and what upstream
+downstream (XBL, QTEE, Gunyah, ABL, the Lemans SPL) and what upstream
 (TF-A, OP-TEE, U-Boot, Linux) on every board.
 
 ## Distance to upstream
@@ -66,10 +85,11 @@ carries that its upstream does not have, each with its review link (the
 Gerrit change for TF-A, a `Link:` trailer otherwise; none when the patch was
 never posted). It is generated by `python3 -m ubci.carry` (patch-id and
 subject match against upstream) and checked in CI; the run document and
-the dashboard show the count and the list per board and component. The
-end state is zero everywhere: then the open stack is plain upstream.
+the dashboard show the count and the list per board and component. A
+pending pin has none until its commit is public. The end state is zero
+everywhere: then the open stack is plain upstream.
 
 ## Bumping a pin
 
-See [pins.md](pins.md): stock pins are bumped by the pin watcher's pull
-requests, open-stack pins by hand, all reviewed by Tyler.
+See [pins.md](pins.md): downstream pins are bumped by the pin watcher's
+pull requests, open-stack pins by hand, all reviewed by Tyler.

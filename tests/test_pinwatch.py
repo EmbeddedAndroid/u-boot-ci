@@ -76,7 +76,7 @@ def test_bump_writes_the_pr_and_keeps_the_rest_of_the_config(tmp_path, monkeypat
     old = open(os.path.join(config.CONFIG, "boards", "rb3gen2.yaml")).read()
     assert "1" * 64 in new and "00150/QCM6490_bootbinaries_00150.zip" in new
     assert new.count("\n") == old.count("\n") and "# Qualcomm RB3 Gen 2" in new
-    assert (out / "rb3gen2.title").read_text().startswith("config: rb3gen2: bump stock firmware")
+    assert (out / "rb3gen2.title").read_text().startswith("config: rb3gen2: bump downstream firmware")
     assert "https://github.com/qualcomm-linux/meta-qcom/commit/" + "c" * 40 in (out / "rb3gen2.body").read_text()
     # The pin records the layer commit it was read at.
     assert "source: {meta-qcom: %s}" % ("c" * 40) in new

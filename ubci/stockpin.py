@@ -1,8 +1,9 @@
-"""Stock firmware pin watcher (docs/pins.md).
+"""Downstream firmware pin watcher (docs/pins.md). The module keeps its
+old name: workflows and run documents refer to it.
 
 python3 -m ubci.stockpin <out dir> [--no-verify]
 
-For every board, read the layer recipes its stock pin follows
+For every board, read the layer recipes its downstream pin follows
 (downstream.upstream in config/boards/<board>.yaml), and when they name
 other boot binaries or another CDT than the pin: download and check the
 new files, then write <out>/<board>.yaml (the board config with the
@@ -103,7 +104,7 @@ def bump(text, old, new, source=None):
 
 
 def body(board, old, new, links):
-    lines = ["Bump the %s stock firmware pin to what its meta layer now ships." % board, "",
+    lines = ["Bump the %s downstream firmware pin to what its meta layer now ships." % board, "",
              "| | pin | upstream |", "|---|---|---|",
              "| release | %s | %s |" % (old["release"], new["release"])]
     for i, (o, n) in enumerate(zip(old["bootbinaries"], new["bootbinaries"])):
@@ -137,7 +138,7 @@ def check(board_name, out, verify=True):
     path = os.path.join(config.CONFIG, "boards", board_name + ".yaml")
     open(os.path.join(out, board_name + ".yaml"), "w").write(bump(open(path).read(), old, new, source))
     open(os.path.join(out, board_name + ".title"), "w").write(
-        "config: %s: bump stock firmware to %s\n" % (board_name, new["release"]))
+        "config: %s: bump downstream firmware to %s\n" % (board_name, new["release"]))
     open(os.path.join(out, board_name + ".body"), "w").write(body(board_name, old, new, links))
     return {"board": board_name, "result": "bump", "from": old["release"], "to": new["release"]}
 

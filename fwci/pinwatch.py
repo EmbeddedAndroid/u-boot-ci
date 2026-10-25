@@ -1,6 +1,6 @@
 """Pin watcher: compare a pin with what its upstream now names, verify
 the new files, and keep one pull request per pin up to date. Used for the
-stock firmware pins; open-stack pins (TF-A, OP-TEE tips) plug in the same
+downstream firmware pins; open-stack pins (TF-A, OP-TEE tips) plug in the same
 way with their own `current`/`upstream` readers.
 
 python3 -m fwci.pinwatch pr <branch> <title file> <body file> [--check]

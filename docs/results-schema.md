@@ -44,7 +44,7 @@ built). The same schema serves u-boot-ci, tf-a-ci and optee-ci.
   - `fingerprint_gate`: `pass` only when the console showed every
     component with its expected fingerprint;
   - `linux_boot`: the boots-Linux verdict (below);
-  - `restore`: the end-of-job stock restore (`pass`, `fail`, `not-run`,
+  - `restore`: the end-of-job lab firmware restore (`pass`, `fail`, `not-run`,
     `recovery-job` while a recovery job runs);
   - `cases[]`: suite, name, result, link to the log line, flake id, and
     `note` (for example the known gap that made a case `skip`);

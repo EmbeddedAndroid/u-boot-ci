@@ -89,8 +89,8 @@ outcome unknown") and is never resubmitted, so a job is never duplicated.
 
 When `LAVA_TOKEN` is not set the submit job marks every hardware cell
 `skipped` with the reason and publishes the host checks alone. A board
-with no stock restore image configured is skipped the same way, because
-every job must end on stock firmware.
+with no lab restore image configured is skipped the same way, because
+every job must end on the lab's downstream firmware.
 
 ## Hardware tests
 
@@ -99,7 +99,7 @@ low priority:
 
 1. Flash the package with qdl (full layout, as the lab's own images do).
 2. Power on; **fingerprint gate** from XBL's `SBL1, End` to U-Boot's
-   `DRAM:` line: U-Boot (stock), or BL2 (pinned fingerprint), BL31,
+   `DRAM:` line: U-Boot (downstream firmware stack), or BL2 or SPL (pinned fingerprint), BL31,
    OP-TEE and U-Boot (open) must each print their fingerprint.
 3. Stop autoboot and run the **U-Boot checks** of the board config
    (`version`, `bdinfo`, `dm tree`, `clk dump`, storage, `usb tree`,
@@ -121,7 +121,7 @@ low priority:
    config lists under `known_gaps` (RB3 Gen 2 USB) is reported `skip`
    with the gap as its note, not as a failure.
 6. `reboot`: the gate a third time and a second login (warm reset path).
-7. `poweroff`, then flash the lab's stock image back and check its UEFI
+7. `poweroff`, then flash the lab's image back and check its UEFI
    starts.
 
 The Linux the boards boot is a pristine linux-next (latest tag, upstream

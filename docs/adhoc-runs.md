@@ -14,7 +14,7 @@ From the Actions tab: workflow **adhoc**, "Run workflow" on `main`, with
 | series | Message-IDs or lore links of the cover letters (or of the first patch when there is no cover), space separated, in the order to apply them |
 | base | `main` (default) or `master` |
 | boards | space separated (`rb3gen2`, `ventuno-q`); empty for both |
-| stacks | `stock` and/or `open`; empty for both |
+| stacks | `stock` (downstream firmware) and/or `open`; empty for both |
 | title | shown on the dashboard (optional) |
 
 or with the GitHub CLI:
@@ -85,7 +85,7 @@ reboot-mode changes). The run shows them as unresolved prerequisites of
 series 2; the stack still applies.
 
 QCS8300 v4 renames `qcom_qcs8300_defconfig` to `qcom_monaco_defconfig`.
-Board configs name alternatives for such cases: the VENTUNO Q stock stack
+Board configs name alternatives for such cases: the VENTUNO Q downstream stack
 builds `qcom_monaco_defconfig|qcom_qcs8300_defconfig` (the first one the
 tree has), and the open stack adds `arduino-ventuno-q.config?` (the
 board fragment of VENTUNO Q v2, used when present), so the same board

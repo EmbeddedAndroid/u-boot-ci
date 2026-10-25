@@ -273,7 +273,7 @@ def target(run, board, stack):
 
 
 def restore_for(board, args=None):
-    """The stock image a job restores: the lab image named by the
+    """The image a job restores: the lab image named by the
     environment (STOCK_RESTORE_URL_<BOARD>, STOCK_RESTORE_TOKEN), or None."""
     env = config.board(board)["restore"]["env"]
     url = os.environ.get("STOCK_RESTORE_URL_" + env)
@@ -344,8 +344,8 @@ def submit(args):
     max_in_flight_per_device_type jobs of this run per device type. One
     pass, called again on every collect pass until every target is
     submitted; each job is recorded as soon as it is submitted. A target
-    whose board has no stock restore image configured is skipped: every
-    job must end on stock firmware."""
+    whose board has no lab restore image configured is skipped: every
+    job must end on the lab's downstream firmware."""
     submit_pass(args.run, load(args.run), Lava(), args.packages)
 
 
@@ -354,7 +354,7 @@ def no_package(t, restore, pkg):
     build status the ci job leaves next to the packages (run-all.sh): a
     board the base does not have is skipped, a failed build is an error."""
     if restore is None:
-        return "skipped", "no stock restore image configured"
+        return "skipped", "no lab restore image configured"
     try:
         st = json.load(open(pkg[:-len(".qcomflash.tar.gz")] + ".build.json"))
     except (OSError, ValueError):
@@ -433,14 +433,14 @@ def submit_pass(path, run, lava, packages):
 
 
 def recover(t, lava):
-    """The job stopped before its own stock restore (a hang or timeout
-    ends a LAVA job): put the stock image back with a recovery job pinned
+    """The job stopped before its own restore (a hang or timeout ends a
+    LAVA job): put the lab image back with a recovery job pinned
     to the same device."""
     restore = restore_for(t["board"])
     device = t["lava"].get("device")
     if restore is None or not device:
         t["restore"] = "fail"
-        t["state_detail"] = "stock restore did not run and no recovery job could be submitted"
+        t["state_detail"] = "lab firmware restore did not run and no recovery job could be submitted"
         return
     job_id = lava.submit(lava_jobs.to_yaml(urestore.render(t["board"], device, restore)))
     t["restore"] = "recovery-job"
@@ -498,7 +498,7 @@ def summary(args):
         n = site.counts(t)
         lava = t.get("lava") or {}
         lines.append("| %s | %s | %s | %s | %s (%s) | %d | %d | %s |" % (
-            t["board"], t["stack"], fw, t.get("fingerprint_gate"), boot.get("verdict"),
+            t["board"], jobs.stack_label(t["stack"]), fw, t.get("fingerprint_gate"), boot.get("verdict"),
             boot.get("stage"), n["pass"], n["fail"],
             "[%s](%s)" % (lava["job_id"], lava["url"]) if lava else t.get("state_detail", "")))
     sys.stdout.write("\n".join(lines) + "\n")
@@ -575,7 +575,7 @@ def main(argv=None):
     a.add_argument("--stack", help="stack.json of ubci.stack: the series applied onto the base")
     a.add_argument("--targets", help="board:stack,... (default: every board and stack)")
     a.add_argument("--stock-release", action="append", metavar="STACK=RELEASE",
-                   help="the stock firmware release a target runs, when it is not the one in config")
+                   help="the downstream firmware release a target runs, when it is not the one in config")
     a.add_argument("--commit", required=True)
     a.add_argument("--fingerprint", required=True)
     a.add_argument("--linux")
