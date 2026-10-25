@@ -1,0 +1,200 @@
+{
+ "host_checks": [],
+ "linux": null,
+ "project": "u-boot",
+ "run": {
+  "base": {
+   "branch": "main",
+   "commit": "8649a54d301a4d0ac526324c7a7ad2574939ff27",
+   "repo": "https://git.u-boot-project.org/u-boot/u-boot.git"
+  },
+  "baseline": null,
+  "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/40146866222",
+  "created": "2026-10-25T00:37:32Z",
+  "id": "ubci-40146866222-1-main",
+  "kind": "adhoc",
+  "series": null,
+  "stack": [
+   {
+    "applied": true,
+    "link": "https://lore.kernel.org/r/20261021-b4-monaco-v4-0-c90f0c01d312@oss.qualcomm.com",
+    "message_id": "20261021-b4-monaco-v4-0-c90f0c01d312@oss.qualcomm.com",
+    "patches": 5,
+    "title": "qcom: qcs8300/monaco-evk: pinctrl and RPMH clock",
+    "unresolved_prerequisites": [],
+    "version": 4
+   },
+   {
+    "applied": true,
+    "link": "https://lore.kernel.org/r/20260928-monaco-ventuno-q-v2-0-0e046c8242be@oss.qualcomm.com",
+    "message_id": "20260928-monaco-ventuno-q-v2-0-0e046c8242be@oss.qualcomm.com",
+    "patches": 4,
+    "title": "qcom: add support for the Arduino VENTUNO Q",
+    "unresolved_prerequisites": [
+     "c016bba5ae2cd43dfcf4d7c221c621ddbd042934",
+     "011832f8e6a00a4be544c1364c57de5627968df3",
+     "54ead588cee6911c64149ddaaea6298697e536c7",
+     "e8b558b8a84bc2fb2c4c4f6c383bcd68179d2195"
+    ],
+    "version": 2
+   }
+  ],
+  "title": "QCS8300 v4 + VENTUNO Q v2",
+  "updated": "2026-10-25T00:37:32Z"
+ },
+ "schema": "fwci-run/1",
+ "state": "building",
+ "targets": [
+  {
+   "board": "ventuno-q",
+   "cases": [],
+   "components": [
+    {
+     "branch": "main",
+     "commit": "8649a54d301a4d0ac526324c7a7ad2574939ff27",
+     "fingerprint": "ubci-40146866222-1-main-stock-ventuno-q",
+     "name": "u-boot",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test"
+    },
+    {
+     "name": "boot firmware",
+     "release": "QCS8300 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40146866222-1-main-stock-ventuno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "restore": "not-run",
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "ventuno-q",
+   "cases": [],
+   "components": [
+    {
+     "branch": "main",
+     "commit": "8649a54d301a4d0ac526324c7a7ad2574939ff27",
+     "fingerprint": "ubci-40146866222-1-main-open-ventuno-q",
+     "name": "u-boot",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test"
+    },
+    {
+     "branch": "ventuno-q-v3",
+     "commit": "4930db330cb03cfe2124f41bf1852cff9e7abd22",
+     "fingerprint": "ubci-40146866222-1-main-open-ventuno-q",
+     "name": "tf-a",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "upstream": {
+      "base": "9599954cafaf7f1a0d8240242349db972b512150",
+      "carried": [
+       {
+        "commit": "54a6355a1a8cd1321d5f6b86f7a78c467af435e1",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54843",
+        "subject": "FROMLIST: fix(delay-timer)!: count timeouts in the configured frequency"
+       },
+       {
+        "commit": "982904694db78b8b786131ae01005f2e148bd6d1",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54926",
+        "subject": "FROMLIST: fix(psci): allow OS-initiated mode while other cores are off"
+       },
+       {
+        "commit": "5459185ce26e0a3ef4155f8e5cab6e141958e642",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55528",
+        "subject": "HACK: feat(qti): let a SoC use another SoC's RPMh data"
+       },
+       {
+        "commit": "20405011f18461e407e96fe19143cf3f65af6d09",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55529",
+        "subject": "PENDING: feat(monza): add Monaco clock back-end"
+       },
+       {
+        "commit": "98ba7638c862197cd41e6c9d655d4de7a7d38e05",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55530",
+        "subject": "PENDING: fix(qti): only advertise SYSTEM_SUSPEND with a system-level state"
+       },
+       {
+        "commit": "074559ee7fb47c7427e5247c8beb824abe16cf39",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54579",
+        "subject": "FROMLIST: feat(qti): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "75ab804c50225fadbb1f5e57265b06bcc625185d",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55765",
+        "subject": "PENDING: feat(monza): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "bffa27c7b96b99be8e9701f48a37f0eb026c3901",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55766",
+        "subject": "HACK: feat(qti): add a PMIC hard reset option for system reset"
+       },
+       {
+        "commit": "d17335f3c0e07e221c40964f3f421aaf110ee91a",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55767",
+        "subject": "HACK: feat(monza): use a PMIC hard reset for system reset"
+       },
+       {
+        "commit": "04a8286855c0ee72fe0125b3bbaf69f69b4e2eca",
+        "review": null,
+        "subject": "PENDING: fix(qti): ring the SAIL doorbell on SMSS_TZ_IPC"
+       },
+       {
+        "commit": "4a7a2e5cf1341158261ca299ce1eca55f160195f",
+        "review": null,
+        "subject": "PENDING: docs(monza): describe booting BL31 from U-Boot SPL"
+       },
+       {
+        "commit": "4930db330cb03cfe2124f41bf1852cff9e7abd22",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55531",
+        "subject": "PENDING: feat(qti): program the Monaco GPU SMMU aperture"
+       }
+      ],
+      "distance": 12,
+      "repo": "https://review.trustedfirmware.org/TF-A/trusted-firmware-a"
+     }
+    },
+    {
+     "branch": "master",
+     "commit": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+     "fingerprint": "ubci-40146866222-1-main-open-ventuno-q",
+     "name": "optee",
+     "repo": "https://github.com/OP-TEE/optee_os",
+     "role": "pinned",
+     "upstream": {
+      "base": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+      "carried": [],
+      "distance": 0,
+      "repo": "https://github.com/OP-TEE/optee_os"
+     }
+    },
+    {
+     "commit": "4930db330cb03cfe2124f41bf1852cff9e7abd22",
+     "fingerprint": "MONZAFP-261008-154802-pr2-fs",
+     "name": "tf-a bl2",
+     "role": "pinned",
+     "sha256": "91f4618318d49d15440ac31101cdf4ab2e4c8693c95f4867ebf2e65ed30e100f",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40146866222-1-main-open-ventuno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "restore": "not-run",
+   "stack": "open",
+   "state": "queued"
+  }
+ ]
+}
