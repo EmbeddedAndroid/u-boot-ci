@@ -76,7 +76,7 @@ def test_every_board_is_complete(board):
         d = config.downstream(b, stack)
         assert d["source"] and set(d["source"]) <= set(d["upstream"]["layers"])
         assert all(len(c) == 40 for c in d["source"].values())
-    assert b["restore"]["env"] and b["restore"]["path"]
+    assert "restore" not in b
     for name in ("tf-a", "optee", "bl2"):
         assert b["pins"][name]
 

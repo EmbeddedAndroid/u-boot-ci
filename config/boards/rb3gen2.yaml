@@ -94,10 +94,3 @@ known_gaps:
     the USB-A ports sit behind a Renesas uPD720201 xHCI that needs
     renesas_usb_fw.mem, which is not redistributable; the Type-C port is a
     USB peripheral in the upstream DT
-restore:
-  # The lab health-check image (full flash of the board's stock image).
-  # URL and header come from the environment (STOCK_RESTORE_URL_RB3GEN2,
-  # STOCK_RESTORE_HEADER), repository variables: lab hosts stay out
-  # of this repository.
-  env: RB3GEN2
-  path: lmp-factory-image-qcm6490-kernelci

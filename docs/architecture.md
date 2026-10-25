@@ -88,9 +88,7 @@ submit that fails without an answer marks the target `error` ("submit
 outcome unknown") and is never resubmitted, so a job is never duplicated.
 
 When `LAVA_TOKEN` is not set the submit job marks every hardware cell
-`skipped` with the reason and publishes the host checks alone. A board
-with no lab restore image configured is skipped the same way, because
-every job must end on the lab's downstream firmware.
+`skipped` with the reason and publishes the host checks alone.
 
 ## Hardware tests
 
@@ -121,17 +119,21 @@ low priority:
    config lists under `known_gaps` (RB3 Gen 2 USB) is reported `skip`
    with the gap as its note, not as a failure.
 6. `reboot`: the gate a third time and a second login (warm reset path).
-7. `poweroff`, then flash the lab's image back and check its UEFI
-   starts.
+7. `poweroff`; the job ends there.
 
 The Linux the boards boot is a pristine linux-next (latest tag, upstream
 arm64 defconfig, no patches, DTB and upstream overlays from the same tree).
 Where linux-next lacks something a board needs, the case fails and the
 dashboard says so; nothing is patched.
 
-A hang or a timeout ends a LAVA job before its own restore. The collector
-then submits a recovery job (`ubci/restore.py`) pinned to the same device
-at medium priority and records its result as the cell's restore.
+No job restores the lab's own image at the end, and the collector files
+no recovery job when a job hangs, times out or ends Incomplete: the job
+simply ends where it stopped. Every job starts by flashing its whole
+package (step 1), so the next job, of this CI or the lab's health check,
+never depends on what the one before left on the board. Lemans is the
+one partial case: its package does not write the SAIL NOR, so the board
+runs whatever SAIL NOR image the lab last flashed
+([boards/lemans-evk.md](boards/lemans-evk.md)).
 
 U-Boot's own test.py on the boards (LAVA board sessions as the hooks) is
 phase 3.

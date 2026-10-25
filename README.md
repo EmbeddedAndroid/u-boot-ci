@@ -53,7 +53,7 @@ nightly of the branch selected above it (`main` or `master`):
   console never came up, an early panic, no login prompt), the last
   console lines and a link to that line in the LAVA log.
 - *cases*: passed, failed and skipped test cases (U-Boot commands, Linux
-  smoke checks, the fingerprint gates, the lab firmware restore), flaky
+  smoke checks, the fingerprint gates), flaky
   ones marked.
 - *board fragment not on this base*: a board fragment the board's series
   adds (`arduino-ventuno-q.config` and the like) is not in the tested

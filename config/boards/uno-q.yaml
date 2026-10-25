@@ -102,13 +102,3 @@ smoke:
   storage: "ls /sys/class/block | grep -q '^mmcblk0$' && dd if=/dev/mmcblk0 of=/dev/null bs=1M count=16"
   usb: "ls /sys/bus/usb/devices | grep -q '^usb[0-9]'"
   network: "ls /sys/class/net | grep -qv '^lo$'"
-restore:
-  # The lab health-check image (flash-emmc, the Arduino ABL firmware) and
-  # its UEFI build, as proven on this device type (LAVA job 511299).
-  env: UNO_Q
-  path: flash_qrb2210-arduino-imola_emmc
-  deploy_minutes: 40
-  qdl_minutes: 20
-  uefi_ver: 5.0.250619.BOOT.XF.4.1.2-00023-KAMORTALAZ-5
-  end: UEFI Total
-  check_minutes: 10

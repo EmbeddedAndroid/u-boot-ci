@@ -12,7 +12,7 @@ downstream: &downstream
   # The boot binaries and CDT meta-qcom pins for iq-9075-evk
   # (firmware-qcom-boot-qcs9100_00142.bb, firmware-qcom-cdt-qcs9100.bb,
   # QCOM_CDT_FILE cdt_rb8_core_kit). The SAIL NOR image of the release is
-  # not flashed: the board keeps the lab's.
+  # not flashed: the board keeps what the lab last wrote.
   release: QCS9100 boot binaries 00142
   bootbinaries:
     - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00142/QCS9100_bootbinaries_00142.zip
@@ -92,14 +92,3 @@ smoke:
   storage: "ls /sys/class/block | grep -q '^sd[a-z]$' && dd if=/dev/sda of=/dev/null bs=1M count=16"
   usb: "ls /sys/bus/usb/devices | grep -q '^usb[0-9]'"
   network: "ls /sys/class/net | grep -qv '^lo$'"
-restore:
-  # The lab health-check image: SAIL NOR first, then UFS, and its UEFI
-  # build, as proven on this device type (LAVA jobs 509671, 511912).
-  env: LEMANS_EVK
-  path: core-image-base-iq-9075-evk
-  pre:
-    - {subdir: sail_nor, storage: spinor, luns: [0]}
-  deploy_minutes: 20
-  uefi_ver: 6.0.260520.BOOT.MXF.1.0.c1-00508-KODIAKLA-1
-  end: UEFI Total
-  check_minutes: 30

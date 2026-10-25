@@ -19,13 +19,12 @@
    - `linux`: the board DTB, upstream overlays per stack, known gaps,
      command line;
    - `uboot_checks` and `smoke` (storage, USB, network commands, CPU
-     count);
-   - `restore`: the environment suffix of its lab restore image
-     (`STOCK_RESTORE_URL_<SUFFIX>`; the secret name keeps the stack id),
-     the directory inside that image and, from a proven restore on the
-     device type, the exact UEFI build it prints (`uefi_ver`), the line
-     the check ends on (`end`), its LUNs and storage when they differ, and
-     images flashed first (`pre`, Lemans: the SAIL NOR).
+     count).
+
+   The package must write every partition the boot chain reads: no job
+   restores the lab's image afterwards, so the next job sees only what
+   its own package flashed (anything the package leaves out, like the
+   Lemans SAIL NOR, is whatever the lab last wrote).
 2. For an open stack, its pins in `config/pins.yaml` (TF-A, OP-TEE, the
    signed tz image), `python3 -m ubci.carry`, and its `PIN_BL2_<BOARD>`
    and `STOCK_RESTORE_URL_<SUFFIX>` secrets in both environments, in
@@ -39,5 +38,4 @@
    where that is the upstream norm), each source, the open stack, known
    gaps.
 5. Run the tests and the dry run, validate the rendered jobs with LAVA,
-   then one job by hand that ends on the lab restore before the board
-   goes into the nightly.
+   then one job by hand before the board goes into the nightly.

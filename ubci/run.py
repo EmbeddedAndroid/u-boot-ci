@@ -6,7 +6,7 @@ python3 -m ubci.run linux <run.json> <linux.json>
 python3 -m ubci.run built <run.json> <targets dir>
 python3 -m ubci.run host <run.json> <check> <pass|fail|skip|running> [--summary S] [--log URL]
 python3 -m ubci.run render <run.json> <board> <stack> <package url> <token name>
-        <package path> --restore-url U --restore-token T [--restore-header H]
+        <package path>
 python3 -m ubci.run submit <run.json> <packages dir>   (holds LAVA_TOKEN)
 python3 -m ubci.run skip <run.json> <reason>
 python3 -m ubci.run close <run.json> <cancelled|failure>
@@ -33,7 +33,6 @@ from fwci.lava_mcp import Lava, Rejected
 
 from . import config, jobs
 from . import package as upackage
-from . import restore as urestore
 
 # The first boot and the boot that starts Linux must both show this build.
 GATE_SUITES = [jobs.GATE_SUITE, jobs.GATE_SUITE + "-reset"]
@@ -166,7 +165,7 @@ def new(args):
             "fingerprint": jobs.target_fingerprint(args.fingerprint, board, stack),
             "components": components(board, stack, args.commit,
                                      jobs.target_fingerprint(args.fingerprint, board, stack), branch),
-            "fingerprint_gate": "not-run", "restore": "not-run",
+            "fingerprint_gate": "not-run",
             "boot_chain": b["boot_chain"][jobs.base_stack(stack)],
             "linux_boot": {"verdict": "not-run", "stage": "not-reached",
                            "gaps": b["linux"]["gaps"].get(jobs.base_stack(stack), [])},
@@ -272,25 +271,13 @@ def target(run, board, stack):
     raise SystemExit("no target %s/%s" % (board, stack))
 
 
-def restore_for(board, args=None):
-    """The image a job restores: the lab image named by the
-    environment (STOCK_RESTORE_URL_<BOARD>, STOCK_RESTORE_TOKEN), or None."""
-    env = config.board(board)["restore"]["env"]
-    url = os.environ.get("STOCK_RESTORE_URL_" + env)
-    if not url:
-        return None
-    return {"url": url, "token": os.environ.get("STOCK_RESTORE_TOKEN", ""),
-            "header": os.environ.get("STOCK_RESTORE_HEADER", "Authorization"),
-            "path": config.board(board)["restore"]["path"]}
-
-
-def render_one(run, board, stack, package, restore, device=None):
+def render_one(run, board, stack, package, device=None):
     t = target(run, board, stack)
     meta = {"run": run["run"]["id"], "u-boot": run["run"]["base"]["commit"]}
     if run["run"].get("ci_url"):
         meta["ci"] = run["run"]["ci_url"]
     return lava_jobs.to_yaml(jobs.render(board, stack, t["fingerprint"], package,
-                                         run["linux"], restore, meta, device))
+                                         run["linux"], meta, device))
 
 
 def choose_device(lava, device_type, denied=()):
@@ -318,10 +305,8 @@ def lab_in_flight(lava, device_type):
 
 def render(args):
     run = load(args.run)
-    restore = {"url": args.restore_url, "token": args.restore_token,
-               "header": args.restore_header, "path": config.board(args.board)["restore"]["path"]}
     sys.stdout.write(render_one(run, args.board, args.stack,
-                                {"url": args.url, "token": args.token, "path": args.path}, restore))
+                                {"url": args.url, "token": args.token, "path": args.path}))
 
 
 def package_dir(path):
@@ -343,18 +328,14 @@ def submit(args):
     """Upload and submit every queued target that has a free slot: at most
     max_in_flight_per_device_type jobs of this run per device type. One
     pass, called again on every collect pass until every target is
-    submitted; each job is recorded as soon as it is submitted. A target
-    whose board has no lab restore image configured is skipped: every
-    job must end on the lab's downstream firmware."""
+    submitted; each job is recorded as soon as it is submitted."""
     submit_pass(args.run, load(args.run), Lava(), args.packages)
 
 
-def no_package(t, restore, pkg):
+def no_package(t, pkg):
     """(state, detail) of a target that cannot be submitted: why from the
     build status the ci job leaves next to the packages (run-all.sh): a
     board the base does not have is skipped, a failed build is an error."""
-    if restore is None:
-        return "skipped", "no lab restore image configured"
     try:
         st = json.load(open(pkg[:-len(".qcomflash.tar.gz")] + ".build.json"))
     except (OSError, ValueError):
@@ -375,10 +356,9 @@ def submit_pass(path, run, lava, packages):
         if t["state"] != "queued" or t.get("lava"):
             continue
         b = config.board(t["board"])
-        restore = restore_for(t["board"])
         pkg = os.path.join(packages, "%s-%s.qcomflash.tar.gz" % (t["board"], t["stack"]))
-        if restore is None or not os.path.exists(pkg):
-            t["state"], t["state_detail"] = no_package(t, restore, pkg)
+        if not os.path.exists(pkg):
+            t["state"], t["state_detail"] = no_package(t, pkg)
             save(path, run)
             continue
         dt = b["lava"]["device_type"]
@@ -403,7 +383,7 @@ def submit_pass(path, run, lava, packages):
         job_id = None
         while device is not None:
             try:
-                job = render_one(run, t["board"], t["stack"], package, restore, device)
+                job = render_one(run, t["board"], t["stack"], package, device)
             except ValueError as e:
                 t["state"] = "error"
                 t["state_detail"] = "job does not render: %s" % e
@@ -438,36 +418,9 @@ def submit_pass(path, run, lava, packages):
         save(path, run)
 
 
-def recover(t, lava):
-    """The job stopped before its own restore (a hang or timeout ends a
-    LAVA job): put the lab image back with a recovery job pinned
-    to the same device."""
-    restore = restore_for(t["board"])
-    device = t["lava"].get("device")
-    if restore is None or not device:
-        t["restore"] = "fail"
-        t["state_detail"] = "lab firmware restore did not run and no recovery job could be submitted"
-        return
-    job_id = lava.submit(lava_jobs.to_yaml(urestore.render(t["board"], device, restore)))
-    t["restore"] = "recovery-job"
-    t["recovery"] = {"job_id": job_id, "url": "%s/scheduler/job/%d" % (
-        config.project()["lava"]["url"], job_id), "health": None}
-
-
-def check_recovery(t, lava):
-    job = lava.job(t["recovery"]["job_id"])
-    if job["state"] != "Finished":
-        return
-    t["recovery"]["health"] = job["health"]
-    ok = any(r["name"] == "uefi_ver" and r["result"] == "pass" for r in lava.results(job["id"]))
-    t["restore"] = "pass" if ok else "fail"
-
-
 def collect_once(run, lava, base):
     queue = None
     for t in run["targets"]:
-        if t.get("recovery") and t["restore"] == "recovery-job":
-            check_recovery(t, lava)
         if not t.get("lava") or t["state"] in ("done", "skipped", "error"):
             continue
         job = lava.job(t["lava"]["job_id"])
@@ -484,8 +437,6 @@ def collect_once(run, lava, base):
             queue = lava.queue() if queue is None else queue
             t["queue_position"] = fcollect.queue_position(
                 queue, job["id"], config.board(t["board"])["lava"]["device_type"])
-        if t["state"] == "done" and t["restore"] != "pass":
-            recover(t, lava)
     fbaseline.compare(run, base)
     fflakes.mark(run, (yaml.safe_load(open(os.path.join(config.CONFIG, "flakes.yaml")))
                        or {}).get("flakes", []), datetime.date.today())
@@ -511,10 +462,8 @@ def summary(args):
 
 
 def finished(args):
-    """Exit 0 when the run is done and no recovery job is still running."""
-    run = load(args.run)
-    sys.exit(0 if run["state"] == "done" and
-             all(t.get("restore") != "recovery-job" for t in run["targets"]) else 1)
+    """Exit 0 when the run is done."""
+    sys.exit(0 if load(args.run)["state"] == "done" else 1)
 
 
 def skip(args):
@@ -564,8 +513,7 @@ def collect(args):
             submit_pass(args.run, run, lava, args.packages)
         collect_once(run, lava, base)
         save(args.run, run)
-        if not args.wait or (run["state"] == "done" and
-                             all(t.get("restore") != "recovery-job" for t in run["targets"])):
+        if not args.wait or run["state"] == "done":
             break
         time.sleep(120)
 
@@ -603,9 +551,6 @@ def main(argv=None):
     a = sub.add_parser("render")
     for n in ("run", "board", "stack", "url", "token", "path"):
         a.add_argument(n)
-    a.add_argument("--restore-url", required=True)
-    a.add_argument("--restore-token", required=True)
-    a.add_argument("--restore-header", default="Authorization")
     a = sub.add_parser("submit")
     a.add_argument("run")
     a.add_argument("packages")

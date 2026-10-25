@@ -9,8 +9,6 @@ from ubci import config, jobs
 
 PKG = {"url": "https://lava.example/a/pkg.tar.gz", "token": "lava-mcp-artifact-x", "path": "ubci-b"}
 LINUX = {"tag": "next-20261023", "release": "7.3.0-next-20261023", "image_sha256": "5" * 64}
-RESTORE = {"url": "https://lab.example/stock.tar.gz", "token": "LAB_TOKEN", "header": "LabAuth",
-           "path": "stock"}
 
 
 def monitors(job):
@@ -19,7 +17,7 @@ def monitors(job):
 
 @pytest.mark.parametrize("board", config.boards())
 def test_open_stack_gate_checks_every_component(board):
-    job = jobs.render(board, "open", "ubci-9", PKG, LINUX, RESTORE)
+    job = jobs.render(board, "open", "ubci-9", PKG, LINUX)
     gate = monitors(job)[jobs.GATE_SUITE]
     pin = config.board(board)["pins"]["bl2"]
     tz = "u_boot_spl" if pin.get("banner") == "U-Boot SPL" else "bl2_v"
@@ -32,30 +30,39 @@ def test_open_stack_gate_checks_every_component(board):
 
 @pytest.mark.parametrize("board", config.boards())
 def test_stock_gate_checks_u_boot_only(board):
-    job = jobs.render(board, "stock", "ubci-9", PKG, LINUX, RESTORE)
+    job = jobs.render(board, "stock", "ubci-9", PKG, LINUX)
     assert monitors(job)[jobs.GATE_SUITE]["expected"] == ["u_boot_20"]
 
 
 def test_linux_version_gate_names_the_tag():
-    m = monitors(jobs.render("rb3gen2", "stock", "ubci-9", PKG, LINUX, RESTORE))[jobs.LINUX_SUITE]
+    m = monitors(jobs.render("rb3gen2", "stock", "ubci-9", PKG, LINUX))[jobs.LINUX_SUITE]
     r = re.search(m["pattern"], "[    0.000000] Linux version 7.3.0-next-20261023 (gcc 14)")
     assert r and m["fixupdict"][r.group("result")] == "pass"
     assert not re.search(m["pattern"], "Linux version 7.3.0-next-20261022 (gcc 14)")
 
 
-def test_job_ends_with_the_stock_restore_and_no_secrets():
-    job = jobs.render("ventuno-q", "open", "ubci-9", PKG, LINUX, RESTORE)
-    tail = job["actions"][-4:]
-    assert tail[0]["deploy"]["qcomflash"] == {"url": RESTORE["url"], "headers": {"LabAuth": "LAB_TOKEN"}}
-    assert tail[1]["boot"]["path"] == "stock" and "stock-restore" in monitors({"actions": tail})
+@pytest.mark.parametrize("stack", config.STACKS + ("stock-candidate",))
+@pytest.mark.parametrize("board", config.boards())
+def test_job_ends_at_poweroff_with_no_restore(board, stack):
+    # Every job flashes its whole package, so none restores the lab image.
+    job = jobs.render(board, stack, "ubci-9", PKG, LINUX)
+    deploys = [a["deploy"] for a in job["actions"] if "deploy" in a]
+    assert deploys == [job["actions"][0]["deploy"]] and deploys[0]["qcomflash"]["url"] == PKG["url"]
+    qdl = [a["boot"]["path"] for a in job["actions"] if "boot" in a and a["boot"]["method"] == "qdl"]
+    assert qdl == [PKG["path"]]
+    last = job["actions"][-1]["test"]["interactive"][0]
+    assert last["name"] == "poweroff" and last["prompts"] == ["reboot: Power down"]
+    names = {m["name"] for m in monitors(job).values()}
+    assert not any("restore" in n for n in names)
     text = lava_jobs.to_yaml(job)
+    assert "uefi_ver" not in text and "restore" not in text.lower()
     assert yaml.safe_load(text) == job
     # header values are token names LAVA resolves, never secrets
-    assert re.findall(r"(?m)^\s+(?:Authorization|LabAuth): (\S+)$", text) == ["lava-mcp-artifact-x", "LAB_TOKEN"]
+    assert re.findall(r"(?m)^\s+Authorization: (\S+)$", text) == ["lava-mcp-artifact-x"]
 
 
 def test_uboot_checks_come_from_the_board():
-    job = jobs.render("rb3gen2", "stock", "ubci-9", PKG, LINUX, RESTORE)
+    job = jobs.render("rb3gen2", "stock", "ubci-9", PKG, LINUX)
     steps = [a for a in job["actions"] if "test" in a and "interactive" in a["test"]][0]
     names = [s["name"] for s in steps["test"]["interactive"][0]["script"]]
     assert names[:4] == ["autoboot", "u-boot-prompt", "u-boot-sync", "uboot-version"] and names[-1] == "uboot-reset"
@@ -64,7 +71,7 @@ def test_uboot_checks_come_from_the_board():
 
 def test_unknown_board_is_refused():
     with pytest.raises(SystemExit):
-        jobs.render("nope", "stock", "f", PKG, LINUX, RESTORE)
+        jobs.render("nope", "stock", "f", PKG, LINUX)
 
 
 def test_known_errors_are_filtered_and_others_still_fail():
@@ -152,56 +159,9 @@ def test_smoke_lines_fit_the_shell_with_every_known_error():
     assert max(len(c) for c in cmds.values()) <= lava_jobs.SHELL_LINE_MAX
 
 
-def restore_tail(board, stack="stock"):
-    job = jobs.render(board, stack, "ubci-9", PKG, LINUX, RESTORE)
-    i = max(n for n, a in enumerate(job["actions"]) if "deploy" in a)
-    return job["actions"][i:]
-
-
-@pytest.mark.parametrize("board", ["uno-q", "qcs615-ride", "lemans-evk"])
-def test_restore_checks_the_exact_lab_uefi_build(board):
-    r = config.board(board)["restore"]
-    m = monitors({"actions": restore_tail(board)})[jobs.RESTORE_SUITE]
-    assert m["end"] == "UEFI Total" and m["expected"] == ["uefi_ver"]
-    line = "UEFI Ver    : " + r["uefi_ver"]
-    hit = re.search(m["pattern"], line)
-    assert hit and m["fixupdict"][hit.group("result")] == "pass"
-    # Any other build, ours or a newer lab image, does not pass.
-    other = re.sub(r"\d(?=[^\d]*$)", lambda d: str((int(d.group()) + 1) % 10), r["uefi_ver"])
-    assert not re.search(m["pattern"], "UEFI Ver    : " + other)
-
-
-def test_restore_flashes_the_lab_images_listed_for_the_board(monkeypatch):
-    import copy
-    b = copy.deepcopy(config.board("rb3gen2"))
-    b["restore"].update(pre=[{"subdir": "sail_nor", "storage": "spinor", "luns": [0]}], luns=[0, 1],
-                        deploy_minutes=20, qdl_minutes=20, uefi_ver="6.0.1.X-1", end="UEFI Total")
-    monkeypatch.setattr(config, "board", lambda name: b)
-    tail = restore_tail("rb3gen2")
-    boots = [a["boot"] for a in tail if "boot" in a and a["boot"]["method"] == "qdl"]
-    assert [(x["path"], x["storage"]) for x in boots] == [("stock/sail_nor", "spinor"), ("stock", "ufs")]
-    assert boots[0]["rawprogram"] == "rawprogram0.xml"
-    assert boots[1]["rawprogram"].split() == ["rawprogram0.xml", "rawprogram1.xml"]
-    assert boots[1]["timeout"] == {"minutes": 20} and tail[0]["deploy"]["timeout"] == {"minutes": 20}
-    m = monitors({"actions": tail})[jobs.RESTORE_SUITE]
-    assert m["end"] == "UEFI Total" and m["fixupdict"] == {"6.0.1.X-1": "pass"}
-    assert re.search(m["pattern"], "UEFI Ver   : 6.0.1.X-1") and not re.search(m["pattern"], "UEFI Ver : 6.0.1.X-2")
-
-
-def test_a_board_without_an_anchor_keeps_the_uefi_6_check():
-    m = monitors({"actions": restore_tail("rb3gen2")})[jobs.RESTORE_SUITE]
-    assert m["end"] == "Boot Device" and m["fixupdict"] == {"6.0": "pass"}
-
-
 def test_job_names_say_downstream_firmware():
-    assert jobs.render("uno-q", "stock", "ubci-9", PKG, LINUX, RESTORE)["job_name"] == \
+    assert jobs.render("uno-q", "stock", "ubci-9", PKG, LINUX)["job_name"] == \
         "u-boot-ci uno-q downstream ubci-9"
-    assert jobs.render("uno-q", "stock-candidate", "f", PKG, LINUX, RESTORE)["job_name"].startswith(
+    assert jobs.render("uno-q", "stock-candidate", "f", PKG, LINUX)["job_name"].startswith(
         "u-boot-ci uno-q downstream-candidate ")
     assert jobs.stack_label("open") == "open"
-
-
-def test_lemans_restore_writes_the_sail_nor_before_ufs():
-    boots = [a["boot"] for a in restore_tail("lemans-evk") if "boot" in a and a["boot"]["method"] == "qdl"]
-    assert [(b["path"], b["storage"]) for b in boots] == [("stock/sail_nor", "spinor"), ("stock", "ufs")]
-    assert boots[1]["rawprogram"].split() == ["rawprogram%d.xml" % n for n in range(6)]

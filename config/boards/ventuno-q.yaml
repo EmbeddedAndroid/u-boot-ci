@@ -94,6 +94,3 @@ smoke:
   storage: "ls /sys/class/block | grep -q '^mmcblk0$' && dd if=/dev/mmcblk0 of=/dev/null bs=1M count=16"
   usb: "ls /sys/bus/usb/devices | grep -q '^usb[0-9]'"
   network: "ls /sys/class/net | grep -qv '^lo$'"
-restore:
-  env: VENTUNO_Q
-  path: flash_monaco-arduino-monza_emmc

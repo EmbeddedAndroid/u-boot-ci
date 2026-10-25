@@ -48,14 +48,21 @@ def test_host_check_and_skip(doc):
     assert r["state"] == "done"
 
 
-def test_submit_skips_boards_without_a_stock_restore(doc, tmp_path, monkeypatch):
+def test_submit_needs_no_lab_restore_image(doc, tmp_path, monkeypatch):
+    # Regression: a board without a STOCK_RESTORE_URL_* was skipped
+    # ("no lab restore image configured") although its package was built.
     for k in list(__import__("os").environ):
         if k.startswith("STOCK_RESTORE_"):
             monkeypatch.delenv(k)
-    monkeypatch.setattr(urun, "Lava", lambda: object())
+    make_pkg(tmp_path, "rb3gen2-stock")
+    lava = SubmitLava()
+    monkeypatch.setattr(urun, "Lava", lambda: lava)
     urun.main(["submit", doc, str(tmp_path)])
     r = json.load(open(doc))
-    assert {t["state_detail"] for t in r["targets"]} == {"no lab restore image configured"}
+    t = r["targets"][0]
+    assert (t["board"], t["stack"], t["state"]) == ("rb3gen2", "stock", "queued") and t["lava"]["job_id"] == 7
+    assert len(lava.submitted) == 1 and "restore" not in t
+    assert "no lab restore image configured" not in json.dumps(r)
 
 
 class Lab:
@@ -86,11 +93,22 @@ def make_pkg(directory, name, deferred=()):
         t.addfile(info, io.BytesIO(blob))
 
 
+class SubmitLava(Lab):
+    def __init__(self):
+        self.submitted = []
+
+    def upload(self, path):
+        return "https://lava.example/a/p.tar.gz", "lava-mcp-artifact-x"
+
+    def submit(self, definition):
+        self.submitted.append(definition)
+        return 7
+
+
 class FakeLava(Lab):
-    def __init__(self, log, restore_ok=True):
+    def __init__(self, log):
         self._log = log
         self.submitted = []
-        self.restore_ok = restore_ok
 
     def submit(self, definition):
         self.submitted.append(definition)
@@ -100,15 +118,10 @@ class FakeLava(Lab):
         return {"id": i, "state": "Finished", "health": "Complete", "actual_device": "d1"}
 
     def results(self, i):
-        if i >= 900:
-            return [{"name": "uefi_ver", "result": "pass" if self.restore_ok else "fail", "suite": 3,
-                     "metadata": "definition: 0_stock-restore\n"}]
         return [{"name": "u_boot_20", "result": "pass", "suite": 1, "start_log_line": 2,
                  "metadata": "definition: 0_firmware-fingerprint\n"},
                 {"name": "u_boot_20", "result": "pass", "suite": 1, "start_log_line": 3,
-                 "metadata": "definition: 2_firmware-fingerprint-reset\n"},
-                {"name": "uefi_ver", "result": "pass", "suite": 2, "start_log_line": 9,
-                 "metadata": "definition: 9_stock-restore\n"}]
+                 "metadata": "definition: 2_firmware-fingerprint-reset\n"}]
 
     def log(self, i):
         return self._log
@@ -130,39 +143,37 @@ def test_collect_once_fills_targets(doc):
     urun.save(doc, r)
     r = json.load(open(doc))
     t = r["targets"][1]
-    assert t["state"] == "done" and t["fingerprint_gate"] == "pass" and t["restore"] == "pass"
+    assert t["state"] == "done" and t["fingerprint_gate"] == "pass"
     assert t["linux_boot"]["stage"] == "early-panic" and t["linux_boot"]["versus_baseline"] == "unknown"
     assert t["linux_boot"]["url"].endswith("#L6") and t["linux_boot"]["gaps"]
     assert r["state"] == "done"
 
 
-def test_job_that_stopped_early_gets_a_recovery_job(doc, monkeypatch):
+@pytest.mark.parametrize("health", ["Incomplete", "Canceled"])
+def test_job_that_stopped_early_gets_no_recovery_job(doc, monkeypatch, health):
+    # The next job flashes its whole package: a hung or Incomplete job
+    # simply ends, nothing is submitted after it.
     monkeypatch.setenv("STOCK_RESTORE_URL_RB3GEN2", "https://lab.example/rb3.tar.gz")
     monkeypatch.setenv("STOCK_RESTORE_TOKEN", "LAB_TOKEN")
     r = json.load(open(doc))
     t = r["targets"][0]
     t["lava"] = {"job_id": 100, "url": "https://lava.example/scheduler/job/100", "device": None, "health": None}
     lava = FakeLava("- " + json.dumps({"lvl": "target", "msg": "hang"}))
+    lava.job = lambda i: {"id": i, "state": "Finished", "health": health, "actual_device": "d1"}
     lava.results = lambda i: [{"name": "u_boot_20", "result": "pass", "suite": 1,
-                               "metadata": "definition: 0_firmware-fingerprint\n"}] if i < 900 else \
-        [{"name": "uefi_ver", "result": "pass", "suite": 3, "metadata": "definition: 0_stock-restore\n"}]
-    urun.collect_once(r, lava, None)
-    assert t["restore"] == "recovery-job" and t["recovery"]["job_id"] == 901
-    assert "device: d1" in lava.submitted[0] and "LAB_TOKEN" in lava.submitted[0]
-    urun.collect_once(r, lava, None)
-    assert t["restore"] == "pass" and t["recovery"]["health"] == "Complete" and len(lava.submitted) == 1
+                               "metadata": "definition: 0_firmware-fingerprint\n"}]
+    for _ in range(2):
+        urun.collect_once(r, lava, None)
+    assert not lava.submitted
+    assert t["state"] == "done" and t["state_detail"] == "LAVA job " + health.lower()
+    assert "recovery" not in t
+    for o in r["targets"][1:]:
+        o["state"] = "skipped"
+        o["state_detail"] = "not in this test"
     urun.save(doc, r)
-
-
-def test_no_recovery_possible_is_a_failed_restore(doc, monkeypatch):
-    monkeypatch.delenv("STOCK_RESTORE_URL_RB3GEN2", raising=False)
-    r = json.load(open(doc))
-    t = r["targets"][0]
-    t["lava"] = {"job_id": 100, "url": "u", "device": None, "health": None}
-    lava = FakeLava("")
-    lava.results = lambda i: []
-    urun.collect_once(r, lava, None)
-    assert t["restore"] == "fail" and "no recovery job" in t["state_detail"] and not lava.submitted
+    with pytest.raises(SystemExit) as e:
+        urun.main(["finished", doc])
+    assert e.value.code == 0
 
 
 def test_pin_candidate_run(tmp_path, capsys):
@@ -185,10 +196,9 @@ def test_pin_candidate_run(tmp_path, capsys):
 def test_candidate_job_is_the_stock_job():
     from ubci import jobs
     pkg = {"url": "u", "token": "t", "path": "p"}
-    restore = {"url": "r", "token": "t", "path": "s"}
     linux = {"tag": "next-20261023", "image_sha256": "0" * 64}
-    a = jobs.render("rb3gen2", "stock", "f", pkg, linux, restore)
-    b = jobs.render("rb3gen2", "stock-candidate", "f", pkg, linux, restore)
+    a = jobs.render("rb3gen2", "stock", "f", pkg, linux)
+    b = jobs.render("rb3gen2", "stock-candidate", "f", pkg, linux)
     assert a["actions"] == b["actions"]
 
 
@@ -203,8 +213,6 @@ def test_package_dir_reads_the_tarball(tmp_path):
 
 
 def test_a_failed_upload_keeps_the_jobs_already_submitted(doc, tmp_path, monkeypatch):
-    monkeypatch.setenv("STOCK_RESTORE_URL_RB3GEN2", "https://lab.example/rb3.tar.gz")
-    monkeypatch.setenv("STOCK_RESTORE_URL_VENTUNO_Q", "https://lab.example/vq.tar.gz")
     pk = tmp_path / "pk"
     pk.mkdir()
     for name in ("rb3gen2-stock", "rb3gen2-open"):
@@ -243,7 +251,6 @@ def test_cap_holds_a_board_until_its_job_is_done(doc, tmp_path, monkeypatch):
     pk.mkdir()
     for name in ("rb3gen2-stock", "rb3gen2-open"):
         make_pkg(pk, name)
-    monkeypatch.setenv("STOCK_RESTORE_URL_RB3GEN2", "https://lab.example/rb3.tar.gz")
 
     class Lava(Lab):
         def upload(self, path):
@@ -266,7 +273,6 @@ def test_a_failed_submit_is_never_retried(doc, tmp_path, monkeypatch):
     pk = tmp_path / "pk"
     pk.mkdir()
     make_pkg(pk, "rb3gen2-stock")
-    monkeypatch.setenv("STOCK_RESTORE_URL_RB3GEN2", "https://lab.example/rb3.tar.gz")
     calls = []
 
     class Lava(Lab):
@@ -293,7 +299,6 @@ def test_a_job_that_does_not_render_is_an_error_not_a_lost_submit(doc, tmp_path,
     pk = tmp_path / "pk"
     pk.mkdir()
     make_pkg(pk, "rb3gen2-stock")
-    monkeypatch.setenv("STOCK_RESTORE_URL_RB3GEN2", "https://lab.example/rb3.tar.gz")
     monkeypatch.setattr(lava_jobs, "SHELL_LINE_MAX", 100)
     calls = []
 
@@ -312,20 +317,25 @@ def test_a_job_that_does_not_render_is_an_error_not_a_lost_submit(doc, tmp_path,
     assert t["state_detail"].startswith("job does not render: shell check linux-next-tag:")
 
 
-def test_finished_waits_for_recovery(doc):
+def test_finished_ignores_a_legacy_recovery_job(doc):
+    # A document from before 2026-10-25 that was waiting on a recovery
+    # job: nothing updates that field any more, so it must not hold the
+    # submit loop open.
     r = json.load(open(doc))
     for t in r["targets"]:
         t["state"] = "done"
     r["targets"][0]["restore"] = "recovery-job"
-    urun.save(doc, r)
-    with pytest.raises(SystemExit) as e:
-        urun.main(["finished", doc])
-    assert e.value.code == 1
-    r["targets"][0]["restore"] = "pass"
+    r["targets"][0]["recovery"] = {"job_id": 901, "url": "https://lava.example/scheduler/job/901", "health": None}
     urun.save(doc, r)
     with pytest.raises(SystemExit) as e:
         urun.main(["finished", doc])
     assert e.value.code == 0
+    r["targets"][1]["state"] = "testing"
+    r["state"] = "testing"
+    urun.save(doc, r)
+    with pytest.raises(SystemExit) as e:
+        urun.main(["finished", doc])
+    assert e.value.code == 1
 
 
 def test_choose_device_skips_production_boards_and_prefers_idle(monkeypatch):
@@ -345,7 +355,6 @@ def test_lab_wide_cap_counts_other_runs(doc, tmp_path, monkeypatch):
     pk = tmp_path / "pk"
     pk.mkdir()
     make_pkg(pk, "rb3gen2-stock")
-    monkeypatch.setenv("STOCK_RESTORE_URL_RB3GEN2", "https://lab.example/rb3.tar.gz")
 
     class L(Lab):
         queued = [{"id": 1, "requested_device_type": "qcs6490-rb3gen2", "description": "u-boot-ci rb3gen2 stock x"}]
@@ -362,7 +371,6 @@ def test_submitted_job_is_pinned_to_the_chosen_device(doc, tmp_path, monkeypatch
     pk = tmp_path / "pk"
     pk.mkdir()
     make_pkg(pk, "rb3gen2-stock")
-    monkeypatch.setenv("STOCK_RESTORE_URL_RB3GEN2", "https://lab.example/rb3.tar.gz")
     sent = []
 
     class L(Lab):
@@ -387,7 +395,6 @@ def test_deferred_bl2_comes_from_its_secret(doc, tmp_path, monkeypatch):
     pk = tmp_path / "pk"
     pk.mkdir()
     make_pkg(pk, "rb3gen2-open", deferred=["tz.mbn"])
-    monkeypatch.setenv("STOCK_RESTORE_URL_RB3GEN2", "https://lab.example/rb3.tar.gz")
     data = b"signed bl2"
     pins = config.pins()
     pins["rb3gen2"]["bl2"]["sha256"] = hashlib.sha256(data).hexdigest()
@@ -541,8 +548,6 @@ def four_packages(tmp_path, monkeypatch):
     pk.mkdir()
     for name in ("rb3gen2-stock", "rb3gen2-open", "ventuno-q-stock"):
         make_pkg(pk, name)
-    monkeypatch.setenv("STOCK_RESTORE_URL_RB3GEN2", "https://lab.example/rb3.tar.gz")
-    monkeypatch.setenv("STOCK_RESTORE_URL_VENTUNO_Q", "https://lab.example/vq.tar.gz")
     project = urun.config.project()
     project["lava"]["max_in_flight_per_device_type"] = 4
     monkeypatch.setattr(urun.config, "project", lambda: project)
@@ -584,7 +589,6 @@ def test_a_rejected_job_is_an_error_with_lavas_message(doc, tmp_path, monkeypatc
     pk = tmp_path / "pk"
     pk.mkdir()
     make_pkg(pk, "rb3gen2-stock")
-    monkeypatch.setenv("STOCK_RESTORE_URL_RB3GEN2", "https://lab.example/rb3.tar.gz")
     calls = []
     msg = "Problem with submitted job data: " + "x" * 300 + " missing key 'timeouts'"
 
@@ -616,7 +620,6 @@ def test_a_target_without_a_package_says_why(doc, tmp_path, monkeypatch, status,
     pk.mkdir()
     if status:
         (pk / "rb3gen2-stock.build.json").write_text(json.dumps(status))
-    monkeypatch.setenv("STOCK_RESTORE_URL_RB3GEN2", "https://lab.example/rb3.tar.gz")
     monkeypatch.setattr(urun, "Lava", Lab)
     urun.main(["submit", doc, str(pk)])
     r = json.load(open(doc))

@@ -17,7 +17,8 @@ tree; U-Boot `main` has `qcom_qcs9100_defconfig` instead, so the CI takes
 the first that exists with `DEVICE_TREE=qcom/lemans-evk` (the board DT
 also carries `qcom,qcs9100`, which gives mkmbn its load address). XBL
 starts it at EL1 under Gunyah. The SAIL NOR image of the release is not
-flashed: the board keeps the lab's (the restore writes it first).
+flashed and no job restores it: the board runs the SAIL NOR image the
+lab last wrote (its health-check image writes it).
 
 ## Open stack: an SPL boot chain
 

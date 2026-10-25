@@ -128,10 +128,8 @@ def main(out):
            "token": "lava-mcp-artifact-x", "path": "ubci-pkg"}
     failed = 0
     for board in config.boards():
-        restore = {"url": "https://lab.example/stock.tar.gz", "token": "STOCK_TOKEN",
-                   "path": config.board(board)["restore"]["path"]}
         for stack in config.STACKS:
-            text = lava_jobs.to_yaml(jobs.render(board, stack, "ubci-dry-run", pkg, LINUX, restore))
+            text = lava_jobs.to_yaml(jobs.render(board, stack, "ubci-dry-run", pkg, LINUX))
             yaml.safe_load(text)
             path = os.path.join(out, "jobs", "%s-%s.yaml" % (board, stack))
             open(path, "w").write(text)

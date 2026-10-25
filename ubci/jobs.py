@@ -4,11 +4,10 @@ Flow (docs/architecture.md): flash the package, power on, fingerprint
 gate up to U-Boot's DRAM line, stop autoboot and run the U-Boot checks,
 reset; on that boot the gate again and U-Boot autoboots the linux-next
 UKI from the ESP; Linux version gate, login, smoke checks, reboot (gate
-and login once more), poweroff; then flash the lab's image back (its
-downstream firmware).
-A job that stops on the way (a hang or a timeout ends a LAVA job) does
-not reach its restore; the collector then submits a recovery job
-(ubci/restore.py) to the same device.
+and login once more), poweroff.
+A job leaves the board as it ends (a hang or a timeout ends a LAVA job
+where it is): every job flashes its whole package first, so no job
+depends on what the one before left on the board.
 """
 import datetime
 import os
@@ -36,11 +35,7 @@ UBOOT_FAILURE = r"Unknown command|Error|ERROR|error:|failed|FAILED"
 UBOOT_END = "@@ uboot end@@"
 UBOOT_END_PROMPT = UBOOT_END + r"\r?\n"
 GATE_SUITE = "firmware-fingerprint"
-# The downstream UEFI of the lab image reports "UEFI Ver    : 6.0.<date>...".
-STOCK_UEFI = {"6.0": "pass"}
 LINUX_SUITE = "linux-version"
-# The suite name stays as in earlier run documents (case history).
-RESTORE_SUITE = "stock-restore"
 
 
 # What a reader sees for a stack id. The ids stay as they are in run
@@ -148,9 +143,8 @@ def uboot_steps(fp, checks):
     return steps
 
 
-def render(board_name, stack, fp, package, linux, restore, metadata=None, device=None):
-    """package: {url, token, path}; linux: {tag, release, image_sha256};
-    restore: {url, header, token, path} of the lab image."""
+def render(board_name, stack, fp, package, linux, metadata=None, device=None):
+    """package: {url, token, path}; linux: {tag, release, image_sha256}."""
     b = config.board(board_name)
     lava = b["lava"]
     xbl = lava["xbl_marker"]
@@ -178,7 +172,7 @@ def render(board_name, stack, fp, package, linux, restore, metadata=None, device
                         [("linux-next-tag", 'grep -q "%s" /proc/version' % linux["tag"])]),
         lj.interactive("poweroff", ["reboot: Power down"],
                        [{"name": "poweroff", "command": "poweroff"}], minutes=3),
-    ] + restore_actions(b, restore)
+    ]
     meta = {"project": "u-boot-ci", "board": board_name, "stack": stack,
             "fingerprint": fp, "linux": linux["tag"], "linux-sha256": linux["image_sha256"]}
     meta.update(metadata or {})
@@ -188,32 +182,3 @@ def render(board_name, stack, fp, package, linux, restore, metadata=None, device
         job["device"] = device
     return job
 
-
-def restore_actions(board, restore):
-    """Flash the lab's image back and check that its UEFI starts. The
-    board's restore section can name the lab image's own LUNs and
-    storage, images flashed first (Lemans: the SAIL NOR), the exact UEFI
-    build the lab image prints (uefi_ver) and the line the check ends
-    on; without uefi_ver any UEFI 6.0 build passes."""
-    lava = board["lava"]
-    r = board["restore"]
-    actions = [lj.deploy_qdl(restore["url"], restore["token"], restore.get("header", "Authorization"),
-                             minutes=r.get("deploy_minutes", 30))]
-    for pre in r.get("pre", []):
-        actions.append(lj.boot_qdl("%s/%s" % (restore["path"], pre["subdir"]), pre["storage"],
-                                   pre["luns"], lava["firehose"]))
-    actions += [
-        lj.boot_qdl(restore["path"], r.get("storage", lava["storage"]),
-                    restore.get("luns", r.get("luns", lava["luns"])), lava["firehose"],
-                    minutes=r.get("qdl_minutes", 15)),
-        lj.power_on(),
-    ]
-    if r.get("uefi_ver"):
-        pattern = r"(?P<test_case_id>UEFI Ver)\s*:\s*(?P<result>%s)" % re.escape(r["uefi_ver"])
-        fixup = {r["uefi_ver"]: "pass"}
-    else:
-        pattern = r"(?P<test_case_id>UEFI Ver)\s*:\s*(?P<result>\d+\.\d+)\."
-        fixup = STOCK_UEFI
-    actions.append(lj.monitor(RESTORE_SUITE, lava["xbl_marker"], r.get("end", "Boot Device"), pattern,
-                              fixupdict=fixup, expected=["uefi_ver"], minutes=r.get("check_minutes", 5)))
-    return actions

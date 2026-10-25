@@ -82,12 +82,3 @@ smoke:
   storage: "ls /sys/class/block | grep -q '^sd[a-z]$' && dd if=/dev/sda of=/dev/null bs=1M count=16"
   usb: "ls /sys/bus/usb/devices | grep -q '^usb[0-9]'"
   network: "ls /sys/class/net | grep -qv '^lo$'"
-restore:
-  # The lab health-check image (LUNs 0-4) and its UEFI build, as proven on
-  # this device type (LAVA job 511301).
-  env: QCS615_RIDE
-  path: core-image-base-qcs615-ride
-  qdl_minutes: 20
-  uefi_ver: 6.0.260521.BOOT.MXF.1.0.c1-00497.7-KODIAKLA-1
-  end: UEFI Total
-  check_minutes: 10
