@@ -16,15 +16,7 @@ work=${UBCI_WORK:-$repo/work}
 mkdir -p "$out"
 out=$(realpath "$out")
 
-# checkout <name> <repo> <commit>: a clean tree of that commit in $work/src
-checkout() {
-	local d=$work/src/$1
-	[ -d "$d/.git" ] || git clone -q "$2" "$d"
-	git -C "$d" cat-file -e "$3^{commit}" 2>/dev/null || git -C "$d" fetch -q origin "$3"
-	git -C "$d" checkout -q --detach "$3"
-	git -C "$d" clean -qfdx
-	echo "$d"
-}
+checkout() { "$repo/scripts/checkout.sh" "$@"; }
 
 optee=$(checkout "optee_os" "$(cfg pins.optee.repo)" "$(cfg pins.optee.commit)")
 make -C "$optee" -s -j"$(nproc)" PLATFORM="$(cfg pins.optee.platform)" \

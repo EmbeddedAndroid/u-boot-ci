@@ -8,8 +8,9 @@ The boot firmware meta-qcom ships for the board: the public boot binaries
 and CDT its recipes pin (URLs and sha256 in `config/boards/<board>.yaml`),
 with the partition layout qcom-ptool generates for the board. U-Boot under
 test replaces UEFI in `uefi_a`/`uefi_b` (as `u-boot.mbn`, signed by
-U-Boot's own `mkmbn`), which is how the upstream U-Boot docs install it on
-these boards. Everything else, including the QTEE `tz.mbn` and the
+U-Boot's own `mkmbn`; a tree without it, `master` at v2026.07, has
+`u-boot.elf` signed by the pinned `qtestsign -v6 aboot` as its board docs
+say), which is how the upstream U-Boot docs install it on these boards. Everything else, including the QTEE `tz.mbn` and the
 hypervisor, is the release as published. The per-board choice and why is
 in [boards/](boards/).
 
@@ -35,7 +36,8 @@ Pins (`config/pins.yaml`), per board:
   LAVA environments, only in the submit job, and checks the sha256 before
   adding them to the package ([setup.md](setup.md)); the dashboard shows
   the sha256 only.
-- `qtestsign`: the tool that wraps the FIP in a signed ELF.
+- `qtestsign`: the tool that wraps the FIP in a signed ELF (and signs
+  `u-boot.elf` for the stock stack on a tree without `mkmbn`).
 
 The FIP is rebuilt for every run with the U-Boot under test
 (`scripts/build-open-stack.sh`).
