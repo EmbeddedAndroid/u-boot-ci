@@ -574,3 +574,23 @@ def test_a_rejected_job_is_an_error_with_lavas_message(doc, tmp_path, monkeypatc
     assert len(calls) == 1
     assert t["state"] == "error" and t["state_detail"] == "LAVA rejected the job: " + msg
 
+
+
+@pytest.mark.parametrize("status, state, detail", [
+    ({"result": "skip", "reason": "board not in this base: no qcom/monaco-arduino-monza device tree"},
+     "skipped", "board not in this base: no qcom/monaco-arduino-monza device tree"),
+    ({"result": "fail", "reason": "build failed: u-boot.mbn lacks the fingerprint x"},
+     "error", "build failed: u-boot.mbn lacks the fingerprint x"),
+    (None, "error", "no package and no build result from the ci job"),
+])
+def test_a_target_without_a_package_says_why(doc, tmp_path, monkeypatch, status, state, detail):
+    pk = tmp_path / "pk"
+    pk.mkdir()
+    if status:
+        (pk / "rb3gen2-stock.build.json").write_text(json.dumps(status))
+    monkeypatch.setenv("STOCK_RESTORE_URL_RB3GEN2", "https://lab.example/rb3.tar.gz")
+    monkeypatch.setattr(urun, "Lava", Lab)
+    urun.main(["submit", doc, str(pk)])
+    r = json.load(open(doc))
+    assert schema.errors(r) == []
+    assert (r["targets"][0]["state"], r["targets"][0]["state_detail"]) == (state, detail)

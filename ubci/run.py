@@ -252,6 +252,19 @@ def submit(args):
     submit_pass(args.run, load(args.run), Lava(), args.packages)
 
 
+def no_package(t, restore, pkg):
+    """(state, detail) of a target that cannot be submitted: why from the
+    build status the ci job leaves next to the packages (run-all.sh): a
+    board the base does not have is skipped, a failed build is an error."""
+    if restore is None:
+        return "skipped", "no stock restore image configured"
+    try:
+        st = json.load(open(pkg[:-len(".qcomflash.tar.gz")] + ".build.json"))
+    except (OSError, ValueError):
+        return "error", "no package and no build result from the ci job"
+    return ("skipped" if st.get("result") == "skip" else "error"), st.get("reason") or "build failed"
+
+
 def refused(t, device_type, devices):
     t["state"] = "error"
     t["state_detail"] = ("no healthy %s device takes jobs from this LAVA user (refused by %s)"
@@ -268,9 +281,7 @@ def submit_pass(path, run, lava, packages):
         restore = restore_for(t["board"])
         pkg = os.path.join(packages, "%s-%s.qcomflash.tar.gz" % (t["board"], t["stack"]))
         if restore is None or not os.path.exists(pkg):
-            t["state"] = "skipped"
-            t["state_detail"] = ("no stock restore image configured" if restore is None
-                                 else "no package (build failed)")
+            t["state"], t["state_detail"] = no_package(t, restore, pkg)
             save(path, run)
             continue
         dt = b["lava"]["device_type"]

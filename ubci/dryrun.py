@@ -56,12 +56,28 @@ def sample_runs():
 CHECKS = ["carry", "buildman", "fragments", "checkpatch", "docs", "sandbox", "qemu_arm64", "size"]
 
 
+def board_tree(src, boards=None):
+    """Stand-in U-Boot tree with the device trees and configs of the boards
+    (ubci.config missing finds every board in it)."""
+    for b in boards or config.boards():
+        for stack in config.STACKS:
+            u = config.board(b)["u-boot"][stack]
+            dts = os.path.join(src, "dts/upstream/src/arm64", u["device_tree"] + ".dts")
+            os.makedirs(os.path.dirname(dts), exist_ok=True)
+            open(dts, "w").write("/dts-v1/;\n")
+            os.makedirs(os.path.join(src, "configs"), exist_ok=True)
+            for c in u["configs"]:
+                if not c.endswith("?"):
+                    open(os.path.join(src, "configs", c.split("|")[0]), "w").write("\n")
+
+
 def ci_job(out, fail=""):
     """scripts/run-all.sh over a run document with every board and stack,
     the checks and builds replaced by tests/stubs/. Returns (exit status,
     the steps that ran in order, the packages left)."""
     shutil.rmtree(out, ignore_errors=True)
     os.makedirs(os.path.join(out, "u-boot"))
+    board_tree(os.path.join(out, "u-boot"))
     for d, f in (("linux", "linux.json"), ("initramfs", "initramfs.json")):
         os.makedirs(os.path.join(out, d))
         json.dump({}, open(os.path.join(out, d, f), "w"))

@@ -40,6 +40,13 @@ runs; the job fails at the end when any did. Each check leaves its
 `<check>.json` (result and summary) and `<check>.log`, each build its
 `build-<board>-<stack>.log`, all in the `<base>-host` artifact; the packages
 are the `<base>-packages` artifact, and a failed build leaves no package.
+A target without a package gets `<board>-<stack>.build.json` in that
+artifact instead: `fail` with the last line of its build log (the submit
+job marks it `error` with that reason), or `skip` when the tree does not
+have the board at all, its device tree or a config missing
+(`python3 -m ubci.config missing`; `master` before a board's DT was
+imported): that target is `skipped` with "board not in this base: ..." and
+does not fail the job.
 When the stack of an ad-hoc run does not apply, only carry and size run.
 `submit` starts when `ci` failed too (`!cancelled()`), so the host checks
 and the boards that did build still reach the dashboard and LAVA; it does

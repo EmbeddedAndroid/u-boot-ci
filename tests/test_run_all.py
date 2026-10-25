@@ -9,6 +9,7 @@ import subprocess
 import pytest
 
 from ubci import run as urun
+from ubci.dryrun import board_tree
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STUBS = os.path.join(REPO, "tests", "stubs")
@@ -20,6 +21,7 @@ TARGETS = ["rb3gen2-stock", "rb3gen2-open", "ventuno-q-stock", "ventuno-q-open"]
 def job(tmp_path):
     src = tmp_path / "u-boot"
     src.mkdir()
+    board_tree(str(src))
     for d, f in (("linux", "linux.json"), ("initramfs", "initramfs.json")):
         (tmp_path / d).mkdir()
         (tmp_path / d / f).write_text("{}")
@@ -117,6 +119,28 @@ def test_a_failed_build_leaves_no_package_and_the_other_targets_build(job):
     assert packages(job.tmp) == sorted(t for t in TARGETS if t != "rb3gen2-open")
     assert not (job.tmp / "out" / "targets" / "rb3gen2-open").exists()
     assert "build rb3gen2/open (exit 1)" in p.stdout
+
+
+def test_a_failed_build_says_why_for_the_submit_job(job):
+    job(fail="rb3gen2-open")
+    st = json.load(open(job.tmp / "out" / "targets" / "rb3gen2-open.build.json"))
+    assert st == {"result": "fail", "reason": "build failed: rb3gen2-open: build failed"}
+    assert not (job.tmp / "out" / "targets" / "rb3gen2-stock.build.json").exists()
+
+
+def test_a_board_the_base_does_not_have_is_skipped_not_failed(job):
+    shutil.rmtree(job.src)
+    job.src.mkdir()
+    board_tree(str(job.src), ["rb3gen2"])
+    p, steps, _ = job()
+    assert p.returncode == 0, p.stdout
+    assert steps == every_step(["rb3gen2-stock", "rb3gen2-open"])
+    assert packages(job.tmp) == ["rb3gen2-open", "rb3gen2-stock"]
+    reason = "board not in this base: no qcom/monaco-arduino-monza device tree"
+    for st in ("stock", "open"):
+        assert json.load(open(job.tmp / "out" / "targets" / ("ventuno-q-%s.build.json" % st))) == {
+            "result": "skip", "reason": reason}
+        assert "build ventuno-q/%s: skipped: %s" % (st, reason) in p.stdout
 
 
 def test_no_linux_payload_fails_every_build_but_the_checks_run(job):

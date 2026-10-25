@@ -3,7 +3,10 @@
 python3 -m ubci.config get <board> <dotted.key>  prints one value (for the
 shell scripts); lists print one item per line.
 python3 -m ubci.config configs <board> <stack> <u-boot source>
-    prints the U-Boot configs to build with, resolved against the tree."""
+    prints the U-Boot configs to build with, resolved against the tree.
+python3 -m ubci.config missing <board> <stack> <u-boot source>
+    prints why the tree cannot build the board (its device tree or a
+    config is not in it), nothing when it can."""
 import glob
 import os
 import sys
@@ -64,6 +67,27 @@ def resolve_configs(entries, src):
     return out
 
 
+def _dt_in_tree(src, dt):
+    name = dt + ".dts"
+    return any(os.path.exists(os.path.join(src, d, n)) for d, n in (
+        ("dts/upstream/src/arm64", name), ("arch/arm/dts", name),
+        ("arch/arm/dts", os.path.basename(name))))
+
+
+def missing(name, stack, src):
+    """Why the tree at src does not have the board for this stack, or
+    None. A base that predates the board (master before the board's DT
+    was imported) skips it instead of failing its build."""
+    u = board(name)["u-boot"][stack]
+    if not _dt_in_tree(src, u["device_tree"]):
+        return "no %s device tree" % u["device_tree"]
+    try:
+        resolve_configs(u["configs"], src)
+    except SystemExit as e:
+        return str(e).replace(" in %s" % src, "")
+    return None
+
+
 if __name__ == "__main__":
     if len(sys.argv) == 4 and sys.argv[1] == "get":
         v = get(board(sys.argv[2]), sys.argv[3])
@@ -71,5 +95,7 @@ if __name__ == "__main__":
     elif len(sys.argv) == 5 and sys.argv[1] == "configs":
         print(" ".join(resolve_configs(get(board(sys.argv[2]), "u-boot.%s.configs" % sys.argv[3]),
                                        sys.argv[4])))
+    elif len(sys.argv) == 5 and sys.argv[1] == "missing":
+        print(missing(sys.argv[2], sys.argv[3], sys.argv[4]) or "")
     else:
         raise SystemExit(__doc__)

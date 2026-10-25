@@ -11,7 +11,10 @@
 #
 # Writes <output dir>/host/<check>.{json,log} as host-check.sh does,
 # <output dir>/host/build-<board>-<stack>.log, and the packages and
-# per-target files in <output dir>/targets/. When the stack does not
+# per-target files in <output dir>/targets/. A target without a package
+# gets <output dir>/targets/<board>-<stack>.build.json saying why: "skip"
+# when the tree does not have the board (ubci.config missing), "fail"
+# when its build failed. When the stack does not
 # apply there is no tree to check or build: only carry and size run (the
 # run document already marks every target skipped).
 # Exits 0 when every step ran and passed, 1 when any did not.
@@ -56,6 +59,15 @@ check() {
 	esac
 }
 
+# status <board> <stack> <skip|fail> <reason>: why a target has no
+# package, for the submit job (<board>-<stack>.build.json next to the
+# packages).
+status() {
+	python3 -c 'import json, sys
+json.dump({"result": sys.argv[2], "reason": sys.argv[3]}, open(sys.argv[1], "w"))' \
+		"$out/targets/$1-$2.build.json" "$3" "$4"
+}
+
 applies=yes
 if [ -n "$stack" ]; then
 	a=$(cd "$repo" && python3 -m ubci.stack apply "$src" "$stack")
@@ -84,6 +96,13 @@ for t in json.load(open(sys.argv[1]))["targets"]:
 		[ -n "$board" ] || continue
 		echo "== build $board/$st"
 		log=$out/host/build-$board-$st.log
+		why=$(cd "$repo" && python3 -m ubci.config missing "$board" "${st%-candidate}" "$src")
+		if [ -n "$why" ]; then
+			echo "$why" >"$log"
+			status "$board" "$st" skip "board not in this base: $why"
+			echo "build $board/$st: skipped: board not in this base: $why"
+			continue
+		fi
 		if [ ! -f "$linux/linux.json" ] || [ ! -f "$initramfs/initramfs.json" ]; then
 			echo "no Linux payload in $linux and $initramfs" >"$log"
 			failed+=("build $board/$st (no Linux payload)")
@@ -95,6 +114,7 @@ for t in json.load(open(sys.argv[1]))["targets"]:
 		fi
 		# Nothing of a failed build may reach LAVA or the size check.
 		rm -rf "$out/targets/$board-$st.qcomflash.tar.gz" "$out/targets/$board-$st"
+		status "$board" "$st" fail "build failed: $(grep -v '^[[:space:]]*$' "$log" | tail -1)"
 		echo "build $board/$st: fail"
 		tail -20 "$log"
 	done <<<"$targets"

@@ -219,6 +219,7 @@ jobs:
           name: ${{ inputs.base }}-packages
           path: |
             work/out/targets/*.qcomflash.tar.gz
+            work/out/targets/*.build.json
             work/out/targets/*-*/*.json
             work/out/targets/*-*/u-boot.elf
             work/out/targets/*-*/u-boot.[mb][bi][n]
@@ -264,7 +265,8 @@ jobs:
               $CI_RUN python3 -m ubci.run host "$run" "$c" skip --summary "did not run"
             fi
           done
-          mkdir -p work/packages && mv work/artifacts/$BASE-packages/*.qcomflash.tar.gz work/packages/ 2>/dev/null || true
+          mkdir -p work/packages
+          mv work/artifacts/$BASE-packages/*.qcomflash.tar.gz work/artifacts/$BASE-packages/*.build.json work/packages/ 2>/dev/null || true
       - name: Submit to LAVA and collect, publishing the dashboard as it goes
         run: |
           run="work/artifacts/$BASE-run/$FINGERPRINT.json"
