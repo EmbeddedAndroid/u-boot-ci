@@ -71,9 +71,14 @@ device type in Good health, idle ones first, leaving out the devices
 boards, `*-production-*`). The in-flight cap (`lava.max_in_flight` per
 device type) counts the whole lab's u-boot-ci jobs, queued and running,
 so the `main` and `master` nightlies and ad-hoc runs together never hold
-more boards than that. A submit that fails without an answer marks the
-target `error` ("submit outcome unknown") and is never resubmitted, so a
-job is never duplicated.
+more boards than that. The device list does not say which devices the
+LAVA user may submit to; LAVA refuses a job pinned to one it may not
+("You do not have permission to submit jobs to device ..."), creating no
+job, and the submit job then picks the next device. A target whose every
+healthy device refused is `error` with the devices named. Any other refusal
+(an HTTP 4xx answer, no job created) is `error` with LAVA's message. A
+submit that fails without an answer marks the target `error` ("submit
+outcome unknown") and is never resubmitted, so a job is never duplicated.
 
 When `LAVA_TOKEN` is not set the submit job marks every hardware cell
 `skipped` with the reason and publishes the host checks alone. A board

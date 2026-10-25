@@ -3,6 +3,7 @@ import json
 import pytest
 
 from fwci import schema
+from fwci.lava_mcp import Rejected
 from ubci import run as urun
 
 LINUX = {"tag": "next-20261023", "commit": "20a33c6b6cbe7e4805dfb6cd68816937443aa148",
@@ -477,3 +478,99 @@ def test_a_cancelled_run_stays_cancelled_when_every_target_was_over(doc):
     r = json.load(open(doc))
     urun.save(doc, r)
     assert json.load(open(doc))["state"] == "cancelled"
+
+
+# The refusal LAVA gave nightly 40152748187 for both RB3 Gen 2 targets.
+REFUSED = ("Problem with submitted job data: You do not have permission to submit "
+           "jobs to device 'rb3g2-02'.")
+
+
+def refusing_lab(sent, refuse):
+    class L(Lab):
+        devs = [{"hostname": "rb3g2-02", "state": "Idle", "health": "Good"},
+                {"hostname": "rb3g2-05", "state": "Idle", "health": "Good"},
+                {"hostname": "ventunoq-01", "state": "Idle", "health": "Good"}]
+
+        def devices(self, device_type):
+            prefix = "rb3g2-" if device_type == "qcs6490-rb3gen2" else "ventunoq-"
+            return [d for d in self.devs if d["hostname"].startswith(prefix)]
+
+        def upload(self, path):
+            return "https://lava.example/a/x", "tok"
+
+        def submit(self, definition):
+            sent.append(definition)
+            for d in refuse:
+                if "device: %s\n" % d in definition:
+                    raise Rejected("submit_job", 400, REFUSED.replace("rb3g2-02", d))
+            return 800 + len(sent)
+    return L
+
+
+def four_packages(tmp_path, monkeypatch):
+    pk = tmp_path / "pk"
+    pk.mkdir()
+    for name in ("rb3gen2-stock", "rb3gen2-open", "ventuno-q-stock"):
+        make_pkg(pk, name)
+    monkeypatch.setenv("STOCK_RESTORE_URL_RB3GEN2", "https://lab.example/rb3.tar.gz")
+    monkeypatch.setenv("STOCK_RESTORE_URL_VENTUNO_Q", "https://lab.example/vq.tar.gz")
+    project = urun.config.project()
+    project["lava"]["max_in_flight_per_device_type"] = 4
+    monkeypatch.setattr(urun.config, "project", lambda: project)
+    return pk
+
+
+def test_a_device_that_refuses_the_user_is_passed_over(doc, tmp_path, monkeypatch):
+    pk = four_packages(tmp_path, monkeypatch)
+    sent = []
+    monkeypatch.setattr(urun, "Lava", refusing_lab(sent, ["rb3g2-02"]))
+    urun.main(["submit", doc, str(pk)])
+    r = json.load(open(doc))
+    assert schema.errors(r) == []
+    rb3 = r["targets"][:2]
+    assert [t["state"] for t in rb3] == ["queued", "queued"]
+    assert all(t["lava"]["job_id"] > 800 for t in rb3)
+    # rb3g2-02 is asked once per pass, not once per target
+    assert sum("device: rb3g2-02\n" in d for d in sent) == 1
+    assert sum("device: rb3g2-05\n" in d for d in sent) == 2
+    assert r["targets"][2]["lava"]["job_id"] > 800
+
+
+def test_no_device_takes_the_job_is_an_error_with_the_reason(doc, tmp_path, monkeypatch):
+    pk = four_packages(tmp_path, monkeypatch)
+    sent = []
+    monkeypatch.setattr(urun, "Lava", refusing_lab(sent, ["rb3g2-02", "rb3g2-05"]))
+    urun.main(["submit", doc, str(pk)])
+    r = json.load(open(doc))
+    assert schema.errors(r) == []
+    for t in r["targets"][:2]:
+        assert t["state"] == "error" and "lava" not in t
+        assert t["state_detail"] == ("no healthy qcs6490-rb3gen2 device takes jobs from this "
+                                     "LAVA user (refused by rb3g2-02, rb3g2-05)")
+    # the refusal did not end the pass: the VENTUNO Q target went in
+    assert r["targets"][2]["lava"]["job_id"] > 800
+
+
+def test_a_rejected_job_is_an_error_with_lavas_message(doc, tmp_path, monkeypatch):
+    pk = tmp_path / "pk"
+    pk.mkdir()
+    make_pkg(pk, "rb3gen2-stock")
+    monkeypatch.setenv("STOCK_RESTORE_URL_RB3GEN2", "https://lab.example/rb3.tar.gz")
+    calls = []
+    msg = "Problem with submitted job data: " + "x" * 300 + " missing key 'timeouts'"
+
+    class L(Lab):
+        def upload(self, path):
+            return "https://lava.example/a/x", "tok"
+
+        def submit(self, definition):
+            calls.append(1)
+            raise Rejected("submit_job", 400, msg)
+
+    monkeypatch.setattr(urun, "Lava", L)
+    urun.main(["submit", doc, str(pk)])
+    urun.main(["submit", doc, str(pk)])
+    t = json.load(open(doc))["targets"][0]
+    assert len(calls) == 1
+    assert t["state"] == "error" and t["state_detail"] == "LAVA rejected the job: " + msg
+

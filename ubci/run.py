@@ -17,6 +17,7 @@ import datetime
 import fnmatch
 import json
 import os
+import re
 import sys
 import tarfile
 import time
@@ -27,7 +28,7 @@ from fwci import baseline as fbaseline
 from fwci import collect as fcollect
 from fwci import flakes as fflakes
 from fwci import lava_jobs, schema, site
-from fwci.lava_mcp import Lava
+from fwci.lava_mcp import Lava, Rejected
 
 from . import config, jobs
 from . import package as upackage
@@ -36,6 +37,8 @@ from . import restore as urestore
 # The first boot and the boot that starts Linux must both show this build.
 GATE_SUITES = [jobs.GATE_SUITE, jobs.GATE_SUITE + "-reset"]
 BOOT_START = r"resetting \.\.\."
+# LAVA's refusal of a job pinned to a device this user may not submit to.
+DENIED = re.compile(r"permission to submit jobs to device '([^']+)'")
 
 
 # A run in one of these states is over; nothing changes it any more.
@@ -193,12 +196,14 @@ def render_one(run, board, stack, package, restore, device=None):
                                          run["linux"], restore, meta, device))
 
 
-def choose_device(lava, device_type):
+def choose_device(lava, device_type, denied=()):
     """A healthy device of the type that is not excluded
-    (project.yaml lava.exclude_devices: production boards of other teams),
-    an idle one first. None when there is none."""
+    (project.yaml lava.exclude_devices: production boards of other teams)
+    and has not refused this LAVA user (denied), an idle one first. None
+    when there is none."""
     exclude = config.project()["lava"].get("exclude_devices", [])
     ok = sorted((d for d in lava.devices(device_type) if d["health"] == "Good" and
+                 d["hostname"] not in denied and
                  not any(fnmatch.fnmatch(d["hostname"], p) for p in exclude)),
                 key=lambda d: (d["state"] != "Idle", d["hostname"]))
     return ok[0]["hostname"] if ok else None
@@ -247,8 +252,15 @@ def submit(args):
     submit_pass(args.run, load(args.run), Lava(), args.packages)
 
 
+def refused(t, device_type, devices):
+    t["state"] = "error"
+    t["state_detail"] = ("no healthy %s device takes jobs from this LAVA user (refused by %s)"
+                         % (device_type, ", ".join(sorted(devices))))
+
+
 def submit_pass(path, run, lava, packages):
     cap = config.project()["lava"]["max_in_flight_per_device_type"]
+    denied = {}
     for t in run["targets"]:
         if t["state"] != "queued" or t.get("lava"):
             continue
@@ -264,8 +276,11 @@ def submit_pass(path, run, lava, packages):
         dt = b["lava"]["device_type"]
         if max(in_flight(run, dt), lab_in_flight(lava, dt)) >= cap:
             continue
-        device = choose_device(lava, dt)
+        device = choose_device(lava, dt, denied.get(dt, ()))
         if device is None:
+            if dt in denied:
+                refused(t, dt, denied[dt])
+                save(path, run)
             continue
         if "tz.mbn" in upackage.sources(pkg).get("deferred", []):
             try:
@@ -277,14 +292,33 @@ def submit_pass(path, run, lava, packages):
                 continue
         url, token = lava.upload(pkg)
         package = {"url": url, "token": token, "path": package_dir(pkg)}
-        try:
-            job_id = lava.submit(render_one(run, t["board"], t["stack"], package, restore, device))
-        except Exception as e:
-            # LAVA may have taken the job: never submit this target again.
-            t["state"] = "error"
-            t["state_detail"] = "submit outcome unknown: %s" % str(e)[:200]
+        job_id = None
+        while device is not None:
+            try:
+                job_id = lava.submit(render_one(run, t["board"], t["stack"], package, restore, device))
+                break
+            except Rejected as e:
+                # Refused: no job exists. The device list does not say
+                # which devices this user may submit to; LAVA does here.
+                m = DENIED.search(e.message)
+                if m and m.group(1) == device:
+                    denied.setdefault(dt, set()).add(device)
+                    device = choose_device(lava, dt, denied[dt])
+                    continue
+                t["state"] = "error"
+                t["state_detail"] = "LAVA rejected the job: %s" % e.message
+                break
+            except Exception as e:
+                # LAVA may have taken the job: never submit this target again.
+                t["state"] = "error"
+                t["state_detail"] = "submit outcome unknown: %s" % str(e)[:1000]
+                save(path, run)
+                raise
+        if job_id is None:
+            if device is None:
+                refused(t, dt, denied[dt])
             save(path, run)
-            raise
+            continue
         t["lava"] = {"job_id": job_id, "url": "%s/scheduler/job/%d" % (
             config.project()["lava"]["url"], job_id), "device": None, "health": None}
         save(path, run)
