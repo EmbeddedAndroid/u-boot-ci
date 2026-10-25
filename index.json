@@ -935,9 +935,9 @@
      },
      {
       "board": "rb3gen2",
-      "boot": "not-run",
-      "boot_stage": "not-reached",
-      "boot_url": "",
+      "boot": "pass",
+      "boot_stage": "login",
+      "boot_url": "https://lava.infra.foundries.io/scheduler/job/512813#L2806",
       "counts": {
        "fail": 0,
        "flaky": 0,
@@ -950,10 +950,10 @@
       "gate": "not-run",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/512813",
       "new_fail": 0,
-      "queue_position": 1,
+      "queue_position": null,
       "run": "ubci-40168371981-1-master",
       "stack": "stock",
-      "state": "queued",
+      "state": "testing",
       "state_detail": "",
       "versus": "unknown"
      }
@@ -1119,9 +1119,9 @@
    "matrix": [
     {
      "board": "rb3gen2",
-     "boot": "not-run",
-     "boot_stage": "not-reached",
-     "boot_url": "",
+     "boot": "pass",
+     "boot_stage": "login",
+     "boot_url": "https://lava.infra.foundries.io/scheduler/job/512813#L2806",
      "counts": {
       "fail": 0,
       "flaky": 0,
@@ -1134,10 +1134,10 @@
      "gate": "not-run",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/512813",
      "new_fail": 0,
-     "queue_position": 1,
+     "queue_position": null,
      "run": "ubci-40168371981-1-master",
      "stack": "stock",
-     "state": "queued",
+     "state": "testing",
      "state_detail": "",
      "versus": "unknown"
     },
@@ -1678,7 +1678,7 @@
    "created": "2026-10-25T06:18:05Z",
    "id": "ubci-40168371981-1-master",
    "kind": "nightly",
-   "state": "building",
+   "state": "testing",
    "title": "master ece349ade297"
   },
   {
@@ -1766,5 +1766,5 @@
    "title": "QCS8300 v4 + VENTUNO Q v2"
   }
  ],
- "updated": "2026-10-25T07:08:16Z"
+ "updated": "2026-10-25T07:10:43Z"
 }
