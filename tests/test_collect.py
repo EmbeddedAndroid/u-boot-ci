@@ -1,4 +1,5 @@
 import json
+import os
 
 from fwci import collect
 
@@ -161,3 +162,56 @@ def test_a_gate_the_job_never_reached_is_not_a_failed_gate():
     t = collect.target({"board": "b", "stack": "open"}, finished("Incomplete"), res, entries, URL,
                        ["firmware-fingerprint", "firmware-fingerprint-reset"], "resetting")
     assert t["fingerprint_gate"] == "fail"
+
+
+def real_log(name):
+    return collect.log_entries(open(os.path.join(os.path.dirname(__file__), "data", "lava", name)).read())
+
+
+def test_failed_shell_check_shows_the_lines_it_printed():
+    """LAVA 509892 #L3130-3193 (excerpt starts at index 0 here): the 50
+    kernel error lines between the echo of the command and the verdict."""
+    entries = real_log("509892-dmesg-errors.log")
+    cl = collect.add_output([{"suite": "smoke", "name": "dmesg-errors", "result": "fail"},
+                             {"suite": "smoke", "name": "storage", "result": "fail"}], entries, URL)
+    c = cl[0]
+    assert len(c["output"]) == 50 and c["url"] == URL + "#L7"
+    assert c["output"][0].startswith("<3>[    0.364596] qcom-smem smem: Found an unknown type of DRAM info")
+    assert c["output"][-1].endswith("spi master firmware load failed ret: -517")
+    assert not any("@@" in line for line in c["output"]) and "note" not in c
+    # storage ran after the excerpt ends: nothing to show, nothing invented
+    assert "output" not in cl[1] and "note" not in cl[1]
+
+
+def test_shell_check_that_never_printed_its_verdict_says_so():
+    """LAVA 512816 #L3013-3034: the line was cut by the shell, the echo
+    stops and LAVA times out; the case has no output and says why."""
+    t = collect.target({"board": "rb3gen2", "stack": "stock"}, finished("Incomplete"),
+                       [result("9_smoke", "dmesg-errors", "fail")], real_log("512816-dmesg-errors.log"),
+                       URL, ["firmware-fingerprint"], "resetting")
+    c = t["cases"][0]
+    assert c["note"] == collect.NO_VERDICT and "output" not in c
+
+
+def test_shell_output_is_capped_and_says_how_much_is_left():
+    lines = [("target", "<3>[ %d.0] err" % n) for n in range(collect.OUTPUT_MAX + 5)]
+    entries = collect.log_entries(log(
+        ("debug", "Waiting for '@@ end@@', '@@ e fail @@', '@@ e pass @@'"),
+        ("target", '# if ( x ); then v=pass; else v=fail; fi; echo "@@ e $v @@"; echo "@@ end""@@"'),
+        *lines, ("target", "@@ e fail @@"),
+        ("results", {"definition": "0_smoke", "case": "e", "result": "fail"})))
+    c = collect.add_output([{"suite": "smoke", "name": "e", "result": "fail"},
+                            {"suite": "smoke", "name": "e", "result": "pass"}], entries, URL)
+    assert len(c[0]["output"]) == collect.OUTPUT_MAX + 1 and c[0]["output"][-1] == "(5 more lines in the LAVA log)"
+    assert "output" not in c[1]
+
+
+def test_a_hung_shell_check_keeps_what_it_printed():
+    entries = collect.log_entries(log(
+        ("debug", "Waiting for '@@ end@@', '@@ storage fail @@', '@@ storage pass @@'"),
+        ("target", '# if ( dd if=/dev/sda ); then v=pass; else v=fail; fi; echo "@@ storage $v @@"; echo "@@ end""@@"'),
+        ("target", "dd: error reading '/dev/sda': Input/output error"),
+        ("results", {"definition": "0_smoke", "case": "storage", "result": "fail"})))
+    c = collect.add_output([{"suite": "smoke", "name": "storage", "result": "fail"}], entries, URL)[0]
+    assert c["note"] == collect.NO_VERDICT and c["url"] == URL + "#L2"
+    assert c["output"] == ["dd: error reading '/dev/sda': Input/output error"]

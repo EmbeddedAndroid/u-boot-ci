@@ -597,6 +597,13 @@
         },
         "note": {
           "type": "string"
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "console lines a failed shell check printed (dmesg-errors: the kernel errors left)"
         }
       }
     },

@@ -46,8 +46,12 @@ built). The same schema serves u-boot-ci, tf-a-ci and optee-ci.
   - `linux_boot`: the boots-Linux verdict (below);
   - `restore`: the end-of-job lab firmware restore (`pass`, `fail`, `not-run`,
     `recovery-job` while a recovery job runs);
-  - `cases[]`: suite, name, result, link to the log line, flake id, and
-    `note` (for example the known gap that made a case `skip`);
+  - `cases[]`: suite, name, result, link to the log line, flake id,
+    `note` (for example the known gap that made a case `skip`, or "no
+    verdict" for a shell check that never finished) and, for a failed
+    shell check, `output`: the console lines it printed (for
+    `smoke/dmesg-errors`, the kernel errors left after the allowlist; at
+    most 200, the link points at the first);
   - `diff`: `new_fail`, `new_pass`, `still_fail` against the baseline
     (only when both fingerprint gates passed).
 

@@ -20,7 +20,8 @@ removing an entry is a pull request reviewed by Tyler.
 ## Allowlisted kernel errors
 
 The `smoke/dmesg-errors` case fails on any kernel line at level 0-3,
-except the lines `config/known-errors.yaml` allowlists. The bar is the
+except the lines `config/known-errors.yaml` allowlists, and the
+dashboard lists every line that made it fail. The bar is the
 same as for a flake: a pattern seen on a base branch without a code change
 at least 3 times in 14 days on at least 2 boards, linked evidence, a named
 cause, confirmed within 30 days (`fwci.flakes.active` checks entries of

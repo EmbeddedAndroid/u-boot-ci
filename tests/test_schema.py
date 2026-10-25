@@ -24,6 +24,7 @@ def test_sample_run_is_valid():
     (lambda r: r["targets"][0].update(state="cancelled", state_detail=""), "targets/0/state_detail"),
     (lambda r: r["targets"][0]["components"][1]["upstream"].update(distance=-1),
      "targets/0/components/1/upstream/distance"),
+    (lambda r: r["targets"][0]["cases"][1].update(output=["<3>[ 1.0] x", 3]), "targets/0/cases/1/output"),
 ])
 def test_invalid_documents_are_rejected(mutate, where):
     r = run()
@@ -37,4 +38,10 @@ def test_invalid_documents_are_rejected(mutate, where):
 def test_linux_may_be_null_before_the_kernel_is_built():
     r = run()
     r["linux"] = None
+    assert schema.errors(r) == []
+
+
+def test_a_failed_case_may_carry_its_output():
+    r = run()
+    r["targets"][0]["cases"][1].update(output=["<3>[ 0.364596] qcom-smem smem: Found an unknown type"])
     assert schema.errors(r) == []

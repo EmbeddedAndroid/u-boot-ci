@@ -6,6 +6,7 @@ import re
 import yaml
 
 from . import boot_verdict
+from .lava_jobs import END_MARK
 
 STATE = {"Submitted": "queued", "Scheduling": "queued", "Scheduled": "flashing",
          "Running": "testing", "Canceling": "testing", "Finished": "done"}
@@ -98,6 +99,63 @@ def cases(results, job_url, started=None):
     return out
 
 
+NO_VERDICT = "no verdict: the check did not finish before LAVA timed out"
+OUTPUT_MAX = 200
+
+
+def shell_output(entries, suite, name):
+    """What a shell check (lava_jobs.shell_checks) printed: (lines,
+    finished), lines being (index, text) between the echo of its command
+    line and its '@@ <name> pass|fail @@' verdict; None when the log has
+    no such check."""
+    res = None
+    for i, lvl, m in entries:
+        if lvl == "results" and m.startswith("{"):
+            d = json.loads(m)
+            if re.sub(r"^\d+_", "", str(d.get("definition"))) == suite and d.get("case") == name:
+                res = i
+                break
+    waiting = "'@@ %s fail @@'" % name
+    start = next((i for i, lvl, m in reversed(entries[:res or 0])
+                  if lvl == "debug" and m.startswith("Waiting for") and waiting in m), None)
+    if start is None:
+        return None
+    echo_end = 'echo "%s""@@"' % END_MARK[:-2]
+    verdict = re.compile(r"^@@ %s (pass|fail) @@$" % re.escape(name))
+    echo, out = "", None
+    for i, text in console(entries[start:res]):
+        if out is None:
+            echo += text
+            if echo_end in echo:
+                out = []
+        elif verdict.match(text.strip()):
+            return out, True
+        else:
+            out.append((i, text))
+    return out or [], False
+
+
+def add_output(case_list, entries, job_url):
+    """A failed shell check carries the lines it printed (dmesg-errors:
+    the kernel errors left), linked to the first; one that never printed
+    its verdict says so, and keeps what it printed before it hung."""
+    for c in case_list:
+        if c["result"] != "fail":
+            continue
+        got = shell_output(entries, c["suite"], c["name"])
+        if got is None:
+            continue
+        lines, finished = got
+        if not finished:
+            c["note"] = NO_VERDICT
+        if lines:
+            c["output"] = [t for _, t in lines[:OUTPUT_MAX]]
+            if len(lines) > OUTPUT_MAX:
+                c["output"].append("(%d more lines in the LAVA log)" % (len(lines) - OUTPUT_MAX))
+            c["url"] = "%s#L%d" % (job_url, lines[0][0])
+    return case_list
+
+
 def suite_verdict(case_list, suite):
     got = [c["result"] for c in case_list if c["suite"] == suite and c.get("note") != NOT_REACHED]
     if not got:
@@ -117,7 +175,7 @@ def target(base, job, results, entries, job_url, gate_suites, boot_start,
     t["lava"] = dict(base.get("lava") or {}, job_id=job["id"], url=job_url,
                      device=job.get("actual_device"), health=job.get("health"))
     cl = cases(results, job_url, started_levels(entries) if entries else None)
-    t["cases"] = cl
+    t["cases"] = add_output(cl, entries or [], job_url)
     # The first gate must pass; a later one counts when it ran (a board
     # that hangs after the first boot never reaches the second).
     gates = [suite_verdict(cl, s) for s in gate_suites]

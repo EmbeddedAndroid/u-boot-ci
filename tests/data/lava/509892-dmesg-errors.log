@@ -1,0 +1,64 @@
+- {"dt": "2026-10-24T02:36:08.779352+00:00", "lvl": "debug", "msg": "Sending line: 'if ( dmesg -r | grep -E \\'^<[0-3]>\\' | head -50; [ -z \"$(dmesg -r | grep -E \\'^<[0-3]>\\')\" ] ); then v=pass; else v=fail; fi; echo \"@@ dmesg-errors $v @@\"; echo \"@@ end\"\"@@\"'"}
+- {"dt": "2026-10-24T02:36:10.486393+00:00", "lvl": "input", "msg": "if ( dmesg -r | grep -E '^<[0-3]>' | head -50; [ -z \"$(dmesg -r | grep -E '^<[0-3]>')\" ] ); then v=pass; else v=fail; fi; echo \"@@ dmesg-errors $v @@\"; echo \"@@ end\"\"@@\""}
+- {"dt": "2026-10-24T02:36:10.496641+00:00", "lvl": "debug", "msg": "Ignoring echo: '\\r\\n'"}
+- {"dt": "2026-10-24T02:36:10.496719+00:00", "lvl": "debug", "msg": "Waiting for '@@ end@@', '@@ dmesg-errors fail @@', '@@ dmesg-errors pass @@'"}
+- {"dt": "2026-10-24T02:36:10.496941+00:00", "lvl": "target", "msg": "# if ( dmesg -r | grep -E '^<[0-3]>' | head -50; [ -z \"$(dmesg -r | grep -E '^<["}
+- {"dt": "2026-10-24T02:36:10.497018+00:00", "lvl": "target", "msg": "0-3]>')\" ] ); then v=pass; else v=fail; fi; echo \"@@ dmesg-errors $v @@\"; echo \""}
+- {"dt": "2026-10-24T02:36:10.507016+00:00", "lvl": "target", "msg": "@@ end\"\"@@\""}
+- {"dt": "2026-10-24T02:36:10.547651+00:00", "lvl": "target", "msg": "<3>[    0.364596] qcom-smem smem: Found an unknown type of DRAM info struct (size = 216)"}
+- {"dt": "2026-10-24T02:36:10.547732+00:00", "lvl": "target", "msg": "<3>[    1.817129] ufshcd-qcom 1d84000.ufshc: ufshcd_is_wb_buf_lifetime_available: WB buf lifetime is exhausted 0x0B"}
+- {"dt": "2026-10-24T02:36:10.547773+00:00", "lvl": "target", "msg": "<3>[    1.879800] qcom_pmic_glink pmic-glink: Failed to create device link (0x180) with supplier 1-001c for /pmic-glink/connector@0"}
+- {"dt": "2026-10-24T02:36:10.551945+00:00", "lvl": "target", "msg": "<3>[    2.223694] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.552028+00:00", "lvl": "target", "msg": "<3>[    2.251227] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.567962+00:00", "lvl": "target", "msg": "<3>[    2.280323] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.568040+00:00", "lvl": "target", "msg": "<3>[    2.320531] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.583983+00:00", "lvl": "target", "msg": "<3>[    2.329768] qcom_pmic_glink pmic-glink: Failed to create device link (0x180) with supplier a600000.usb for /pmic-glink/connector@0"}
+- {"dt": "2026-10-24T02:36:10.587057+00:00", "lvl": "target", "msg": "<3>[    2.331695] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.599983+00:00", "lvl": "target", "msg": "<3>[    2.335188] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.603030+00:00", "lvl": "target", "msg": "<3>[    2.355275] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.615974+00:00", "lvl": "target", "msg": "<3>[    2.358299] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.616052+00:00", "lvl": "target", "msg": "<3>[    2.362411] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.631915+00:00", "lvl": "target", "msg": "<3>[    2.365367] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.631993+00:00", "lvl": "target", "msg": "<3>[    2.379253] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.647968+00:00", "lvl": "target", "msg": "<3>[    2.431244] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.648045+00:00", "lvl": "target", "msg": "<3>[    2.443619] remoteproc remoteproc1: request_firmware failed: -2"}
+- {"dt": "2026-10-24T02:36:10.651064+00:00", "lvl": "target", "msg": "<3>[    2.464176] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.663967+00:00", "lvl": "target", "msg": "<3>[    2.467823] remoteproc remoteproc3: request_firmware failed: -2"}
+- {"dt": "2026-10-24T02:36:10.667047+00:00", "lvl": "target", "msg": "<3>[    2.471387] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.679959+00:00", "lvl": "target", "msg": "<3>[    2.494602] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.680036+00:00", "lvl": "target", "msg": "<3>[    2.507202] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.695991+00:00", "lvl": "target", "msg": "<3>[    2.539879] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.696068+00:00", "lvl": "target", "msg": "<3>[    2.546983] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.712000+00:00", "lvl": "target", "msg": "<3>[    2.555439] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.712077+00:00", "lvl": "target", "msg": "<3>[    2.557631] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.715052+00:00", "lvl": "target", "msg": "<3>[    2.562955] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.727946+00:00", "lvl": "target", "msg": "<3>[    2.572400] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.731044+00:00", "lvl": "target", "msg": "<3>[    2.644108] remoteproc remoteproc2: request_firmware failed: -2"}
+- {"dt": "2026-10-24T02:36:10.743996+00:00", "lvl": "target", "msg": "<3>[    2.644109] ath11k 17a10040.wifi: failed to boot the remote processor Q6"}
+- {"dt": "2026-10-24T02:36:10.744079+00:00", "lvl": "target", "msg": "<3>[    2.644111] ath11k 17a10040.wifi: failed to power up :-2"}
+- {"dt": "2026-10-24T02:36:10.747063+00:00", "lvl": "target", "msg": "<3>[    2.663214] ath11k 17a10040.wifi: failed to create soc core: -2"}
+- {"dt": "2026-10-24T02:36:10.759973+00:00", "lvl": "target", "msg": "<3>[    2.663228] ath11k 17a10040.wifi: failed to init core: -2"}
+- {"dt": "2026-10-24T02:36:10.763051+00:00", "lvl": "target", "msg": "<3>[    2.663634] ath11k 17a10040.wifi: probe with driver ath11k failed with error -2"}
+- {"dt": "2026-10-24T02:36:10.775965+00:00", "lvl": "target", "msg": "<3>[    2.691289] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.779031+00:00", "lvl": "target", "msg": "<3>[    2.720202] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.791937+00:00", "lvl": "target", "msg": "<3>[    2.751636] Bluetooth: hci0: unexpected event for opcode 0xfc48"}
+- {"dt": "2026-10-24T02:36:10.792014+00:00", "lvl": "target", "msg": "<3>[    2.751747] Bluetooth: hci0: QCA Failed to request file: qca/msbtfw11.mbn (-2)"}
+- {"dt": "2026-10-24T02:36:10.807974+00:00", "lvl": "target", "msg": "<3>[    2.751805] Bluetooth: hci0: QCA Failed to request file: qca/msbtfw11.tlv (-2)"}
+- {"dt": "2026-10-24T02:36:10.808052+00:00", "lvl": "target", "msg": "<3>[    2.751809] Bluetooth: hci0: QCA Failed to request file: qca/msbtfw11.tlv (-2)"}
+- {"dt": "2026-10-24T02:36:10.823964+00:00", "lvl": "target", "msg": "<3>[    2.754910] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.827037+00:00", "lvl": "target", "msg": "<3>[    2.755415] qcom_pmic_glink pmic-glink: Failed to create device link (0x180) with supplier 1-001c for /pmic-glink/connector@0"}
+- {"dt": "2026-10-24T02:36:10.839994+00:00", "lvl": "target", "msg": "<3>[    2.770850] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.840071+00:00", "lvl": "target", "msg": "<3>[    2.796403] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.855951+00:00", "lvl": "target", "msg": "<3>[    2.811680] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.856029+00:00", "lvl": "target", "msg": "<3>[    3.105153] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.871962+00:00", "lvl": "target", "msg": "<3>[    3.280407] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.872039+00:00", "lvl": "target", "msg": "<3>[   10.049973] xhci-pci-renesas 0001:04:00.0: failed to load firmware renesas_usb_fw.mem: -2"}
+- {"dt": "2026-10-24T02:36:10.887944+00:00", "lvl": "target", "msg": "<3>[   10.049975] xhci-pci-renesas 0001:04:00.0: probe with driver xhci-pci-renesas failed with error -2"}
+- {"dt": "2026-10-24T02:36:10.888022+00:00", "lvl": "target", "msg": "<3>[   10.089129] geni_spi 98c000.spi: spi master firmware load failed ret: -517"}
+- {"dt": "2026-10-24T02:36:10.891020+00:00", "lvl": "target", "msg": "@@ dmesg-errors fail @@"}
+- {"dt": "2026-10-24T02:36:10.891096+00:00", "lvl": "target", "msg": "@@ end@@"}
+- {"dt": "2026-10-24T02:36:10.891153+00:00", "lvl": "error", "msg": "Matched a failure: '@@ dmesg-errors fail @@'"}
+- {"dt": "2026-10-24T02:36:10.891204+00:00", "lvl": "debug", "msg": "Matched a prompt: '@@ end@@'"}
+- {"dt": "2026-10-24T02:36:10.891236+00:00", "lvl": "results", "msg": {"definition": "0_smoke", "case": "dmesg-errors", "result": "fail", "duration": "2.11"}}
+- {"dt": "2026-10-24T02:36:10.891290+00:00", "lvl": "info", "msg": "Sending 'if ( ls /sys/class/block | grep -q '^sd[a-z]$' && dd if=/dev/sda of=/dev/null bs=1M count=16 ); then v=pass; else v=fail; fi; echo \"@@ storage $v @@\"; echo \"@@ end\"\"@@\"'"}
+- {"dt": "2026-10-24T02:36:10.891326+00:00", "lvl": "debug", "msg": "Sending with 10 millisecond of delay"}

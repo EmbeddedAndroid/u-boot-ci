@@ -231,6 +231,9 @@ async function renderDetail() {
         c.flake ? [" ", badge("warn", "flake " + c.flake)] : null,
         c.note ? [" ", el("span", {class: "muted"}, c.note)] : null),
       r.run.kind === "nightly" ? el("td", {class: "hist"}, [...h].map(ch => el("span", {class: ch === "-" ? "x" : ch}, ch === "p" ? "●" : ch === "f" ? "✕" : "·"))) : null));
+    if ((c.output || []).length)
+      table.append(el("tr", {}, el("td", {colspan: r.run.kind === "nightly" ? 3 : 2},
+        el("pre", {class: "console"}, c.output.join("\n")))));
   }
   parts.push(el("div", {class: "table-wrap"}, table));
   box.replaceChildren(...parts);
