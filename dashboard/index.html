@@ -9,45 +9,49 @@
 <body>
 <header>
   <h1>U-Boot on Qualcomm boards</h1>
-  <p class="sub">Nightly <code>next</code> on real hardware, stock and open firmware, booting a pristine linux-next.
-    <span id="updated"></span></p>
+  <p class="sub">Upstream U-Boot <code>main</code> and <code>master</code> every night on real hardware, on each
+    board's downstream firmware and on an open stack (TF-A, OP-TEE), booting a pristine linux-next; series
+    from the list tested on demand. <span id="updated"></span></p>
+  <nav class="toc"><a href="#nightly">Nightly</a> <a href="#detail-section">Detail</a>
+    <a href="#adhoc-section">Ad-hoc runs</a> <a href="#candidates-section">Pin candidates</a> <a href="#runs-section">All runs</a></nav>
 </header>
 <main>
   <section id="alerts" aria-live="polite"></section>
-  <section>
-    <h2>Latest nightly <span id="branches"></span> <span id="run-title" class="muted"></span></h2>
+  <section id="nightly">
+    <h2>Nightly <span id="branches"></span> <span id="run-title" class="muted"></span></h2>
+    <p class="legend">Plain upstream, as is: nothing is patched in to make a board pass, and failures stay
+      failures.</p>
     <p id="run-meta" class="muted"></p>
     <div class="matrix-wrap"><table id="matrix" class="matrix"></table></div>
     <p class="legend">Each cell: run state, fingerprint gate (the console showed this build), <b>boots Linux</b>
-      (login prompt on pristine linux-next), test cases, and distance to upstream of the pinned open stack.</p>
-  </section>
-  <section>
-    <h2>Host checks</h2>
+      (login prompt on pristine linux-next), test cases, the boot chain (<span class="badge up">upstream</span>
+      <span class="badge down">downstream</span>) and distance to upstream of the pinned open stack.
+      <span class="badge warn">board fragment not on this base</span> means a board fragment the board's
+      series adds is not in the tested tree: the cell tests the base without it.</p>
+    <h3>Host checks</h3>
     <ul id="host" class="checks"></ul>
-  </section>
-  <section>
-    <h2>Detail <span id="detail-title" class="muted"></span></h2>
-    <div id="detail"><p class="muted">Select a cell above.</p></div>
-  </section>
-  <section id="adhoc-section" hidden>
-    <h2>Ad-hoc runs</h2>
-    <p class="legend">Series stacked onto a base branch, in order, compared case by case with the latest
-      nightly of that branch on the same board and stack.</p>
-    <div id="adhoc"></div>
-  </section>
-  <section id="candidates-section" hidden>
-    <h2>Stock pin candidates</h2>
-    <p class="legend">A newer stock firmware release in the board's meta layer, tested on the nightly
-      <code>main</code> against the current pin before its pull request is merged.</p>
-    <div id="candidates"></div>
-  </section>
-  <section>
-    <h2>History of the branch</h2>
+    <h3>History per board</h3>
     <div id="history"></div>
   </section>
-  <section>
-    <h2>Runs</h2>
-    <ul id="runs" class="runs"></ul>
+  <section id="detail-section">
+    <h2>Detail <span id="detail-title" class="muted"></span></h2>
+    <div id="detail"><p class="muted">Select a cell or an ad-hoc result.</p></div>
+  </section>
+  <section id="adhoc-section">
+    <h2>Ad-hoc runs</h2>
+    <p class="legend">Series stacked onto a base branch, in order, compared case by case with the latest
+      nightly of that branch on the same board and stack. Click a row for the exact software it ran.</p>
+    <div id="adhoc"><p class="muted">None yet.</p></div>
+  </section>
+  <section id="candidates-section">
+    <h2>Pin-candidate runs</h2>
+    <p class="legend">A newer downstream firmware release in the board's meta layer, tested on the nightly
+      <code>main</code> against the current pin before its pull request is merged.</p>
+    <div id="candidates"><p class="muted">None yet.</p></div>
+  </section>
+  <section id="runs-section">
+    <h2>All runs</h2>
+    <div id="runs"></div>
   </section>
 </main>
 <footer>Data: <a href="index.json">index.json</a>, one document per run in <a href="runs/">runs/</a>

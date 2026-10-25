@@ -19,6 +19,10 @@ boards:
 | Qualcomm QCS615 Ride | QCS615 (Talos) | `qcs615-ride` | replaces UEFI |
 | Qualcomm IQ-9075 EVK | QCS9075 (Lemans) | `lemans-evk` | replaces UEFI |
 
+The nightly is honest upstream: plain `main` and `master`, reported as
+they are. Nothing is patched in to make a board pass; a failure stays a
+failure until upstream fixes it.
+
 Automatic intake of every series from the list and U-Boot's own test.py
 on the boards follow in later phases.
 
@@ -26,7 +30,10 @@ on the boards follow in later phases.
 
 The page polls `index.json` once a minute, so a run is visible while it
 moves through `queued`, `building`, `flashing`, `testing` and `done`
-(or `cancelled` / `error` when its workflow was cancelled or failed).
+(or `cancelled` / `error` when its workflow was cancelled or failed). It
+has three sections: **Nightly** (per base branch, with the history of
+every board), **Ad-hoc runs** (per stacked series) and **Pin-candidate
+runs** (a newer downstream firmware release against the current pin).
 
 **The matrix** has one cell per board and firmware stack for the latest
 nightly of the branch selected above it (`main` or `master`):
@@ -48,6 +55,13 @@ nightly of the branch selected above it (`main` or `master`):
 - *cases*: passed, failed and skipped test cases (U-Boot commands, Linux
   smoke checks, the fingerprint gates, the lab firmware restore), flaky
   ones marked.
+- *board fragment not on this base*: a board fragment the board's series
+  adds (`arduino-ventuno-q.config` and the like) is not in the tested
+  tree, so the cell tests the base without it and never reads as testing
+  the series.
+- *boot chain*: every stage of the boot, green when it is upstream
+  (TF-A, OP-TEE, U-Boot, Linux), amber when downstream (XBL, QTEE,
+  Gunyah, ABL, a pre-built SPL).
 - *distance to upstream*: for the open stack, how many patches each pinned
   component carries on top of its upstream. The detail view lists each one
   with its review link. Zero everywhere is the goal.
@@ -69,9 +83,14 @@ the day's new commits, the docs build with warnings as errors, test.py on
 sandbox and QEMU, the image sizes, and a check that the pins' carried
 lists are current.
 
-**Detail** (click a cell) shows the components with their commits and
-fingerprints, the boot verdict with the console tail, and every case with
-its history over the recent nightlies (oldest left).
+**Detail** (click a cell or an ad-hoc or pin-candidate row) shows exactly
+what ran, each piece linked: the U-Boot tree and commit with every series
+applied on it (lore links) and the configs used; the downstream package
+(release, every archive with its download link and sha256, the meta layer
+commit); the TF-A and OP-TEE repositories and commits; linux-next's tag
+and commit, config and DTB source. Then the boot chain, the boot verdict
+with the console tail, and every case with its history over the recent
+nightlies (oldest left).
 
 ## Running it locally
 

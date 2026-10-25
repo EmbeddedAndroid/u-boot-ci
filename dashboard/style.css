@@ -54,3 +54,33 @@ table.cases { border-collapse: collapse; width: 100%; font-size: 13px; }
 footer { color: var(--muted); font-size: 13px; padding: 32px 16px; }
 @media (max-width: 600px) { .cell { min-width: 220px; } h1 { font-size: 20px; } }
 button.badge { cursor: pointer; font: inherit; font-size: 12px; margin-left: 4px; }
+:root { --up: #1a7f37; --up-bg: #e6f4ea; --down: #7a4b00; --down-bg: #fdf0d8; }
+@media (prefers-color-scheme: dark) { :root { --up: #5fd37a; --up-bg: #16301f; --down: #ffcc66; --down-bg: #3a2e12; } }
+.up { color: var(--up); background: var(--up-bg); }
+.down { color: var(--down); background: var(--down-bg); }
+h3 { font-size: 15px; margin: 18px 0 6px; }
+h4 { font-size: 14px; margin: 12px 0 4px; }
+.toc { display: flex; gap: 14px; flex-wrap: wrap; font-size: 14px; margin: 6px 0 0; }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin: 6px 0; }
+.chain .stage { border-radius: 6px; padding: 1px 6px; font-size: 12px; white-space: nowrap; }
+.chain .stage.none { text-decoration: line-through; }
+.chain .stage small { font-size: 11px; opacity: 0.85; }
+.chain .arrow { color: var(--muted); font-size: 12px; }
+.chain.compact .stage { font-size: 11px; padding: 0 5px; }
+.comp { margin: 10px 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--card);
+  overflow-wrap: anywhere; }
+.comp-head { margin-bottom: 2px; }
+.comp ul.files, .comp ol, .comp ul { margin: 4px 0; padding-left: 20px; }
+code.sha { font-size: 11px; overflow-wrap: anywhere; }
+code.missing { text-decoration: line-through; color: var(--muted); }
+.warnline { margin: 2px 0; }
+.cell .detail { text-align: right; font-size: 12px; overflow-wrap: anywhere; }
+.table-wrap { overflow-x: auto; }
+tr.click { cursor: pointer; }
+tr.click:hover, tr.sel { background: var(--info-bg); }
+.adhoc { border-top: 1px solid var(--line); padding-top: 6px; }
+@media (max-width: 600px) {
+  .cases td, .cases th { padding: 3px 4px; }
+  .comp { padding: 6px 8px; }
+}
+.cell .row > .badge, .cell .row > span:first-child { flex-shrink: 0; }
