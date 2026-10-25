@@ -876,7 +876,38 @@
   "master": {
    "case_history": {
     "rb3gen2/open": {
-     "cases": {},
+     "cases": {
+      "firmware-fingerprint-reboot/bl2_v": "-f",
+      "firmware-fingerprint-reboot/bl31_v": "-f",
+      "firmware-fingerprint-reboot/op_tee_version": "-f",
+      "firmware-fingerprint-reboot/u_boot_20": "-f",
+      "firmware-fingerprint-reset/bl2_v": "-p",
+      "firmware-fingerprint-reset/bl31_v": "-p",
+      "firmware-fingerprint-reset/op_tee_version": "-p",
+      "firmware-fingerprint-reset/u_boot_20": "-p",
+      "firmware-fingerprint/bl2_v": "-p",
+      "firmware-fingerprint/bl31_v": "-p",
+      "firmware-fingerprint/op_tee_version": "-p",
+      "firmware-fingerprint/u_boot_20": "-p",
+      "linux-version/linux_version": "-p",
+      "smoke/cpus-online": "-p",
+      "smoke/dmesg-errors": "-f",
+      "smoke/linux-next-tag": "-p",
+      "smoke/modules-loaded": "-p",
+      "stock-restore/uefi_ver": "-f",
+      "u-boot/autoboot": "-p",
+      "u-boot/u-boot-prompt": "-p",
+      "u-boot/u-boot-sync": "-p",
+      "u-boot/uboot-bdinfo": "-p",
+      "u-boot/uboot-bootflow": "-p",
+      "u-boot/uboot-clocks": "-p",
+      "u-boot/uboot-dm-tree": "-p",
+      "u-boot/uboot-efi-media": "-p",
+      "u-boot/uboot-reset": "-p",
+      "u-boot/uboot-storage": "-p",
+      "u-boot/uboot-usb": "-p",
+      "u-boot/uboot-version": "-p"
+     },
      "runs": [
       "ubci-40152748187-1-master",
       "ubci-40168371981-1-master"
@@ -961,9 +992,9 @@
       "boot_stage": "login",
       "boot_url": "https://lava.infra.foundries.io/scheduler/job/512850#L2909",
       "counts": {
-       "fail": 0,
+       "fail": 6,
        "flaky": 0,
-       "pass": 0,
+       "pass": 24,
        "skip": 0,
        "unknown": 0
       },
@@ -972,14 +1003,14 @@
        "tf-a": 10
       },
       "fingerprint": "ubci-40168371981-1-master-open-rb3gen2",
-      "gate": "not-run",
+      "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/512850",
       "new_fail": 0,
       "queue_position": null,
       "run": "ubci-40168371981-1-master",
       "stack": "open",
-      "state": "testing",
-      "state_detail": "",
+      "state": "done",
+      "state_detail": "LAVA job incomplete",
       "versus": "unknown"
      }
     ],
@@ -1222,9 +1253,9 @@
      "boot_stage": "login",
      "boot_url": "https://lava.infra.foundries.io/scheduler/job/512850#L2909",
      "counts": {
-      "fail": 0,
+      "fail": 6,
       "flaky": 0,
-      "pass": 0,
+      "pass": 24,
       "skip": 0,
       "unknown": 0
      },
@@ -1233,14 +1264,14 @@
       "tf-a": 10
      },
      "fingerprint": "ubci-40168371981-1-master-open-rb3gen2",
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/512850",
      "new_fail": 0,
      "queue_position": null,
      "run": "ubci-40168371981-1-master",
      "stack": "open",
-     "state": "testing",
-     "state_detail": "",
+     "state": "done",
+     "state_detail": "LAVA job incomplete",
      "versus": "unknown"
     },
     {
@@ -1806,7 +1837,7 @@
    "created": "2026-10-25T06:18:05Z",
    "id": "ubci-40168371981-1-master",
    "kind": "nightly",
-   "state": "testing",
+   "state": "done",
    "title": "master ece349ade297"
   },
   {
@@ -1894,5 +1925,5 @@
    "title": "QCS8300 v4 + VENTUNO Q v2"
   }
  ],
- "updated": "2026-10-25T08:11:46Z"
+ "updated": "2026-10-25T08:21:54Z"
 }
