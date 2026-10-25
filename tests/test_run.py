@@ -432,7 +432,7 @@ def test_close_cancelled_run_left_building(doc, capsys):
     r = json.load(open(doc))
     r["targets"][1]["state"] = "testing"
     r["targets"][1]["lava"] = {"job_id": 511644, "url": "u", "device": "d", "health": None}
-    r["targets"][2]["state"] = "skipped"
+    r["targets"][2].update(state="skipped", state_detail="board not in this base: no x device tree")
     json.dump(r, open(doc, "w"))
     urun.main(["close", doc, "cancelled"])
     r = json.load(open(doc))

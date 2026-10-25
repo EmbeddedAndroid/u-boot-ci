@@ -472,6 +472,27 @@
         "stack",
         "state"
       ],
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "skipped",
+              "error",
+              "cancelled"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "state_detail"
+        ],
+        "properties": {
+          "state_detail": {
+            "minLength": 1
+          }
+        }
+      },
       "additionalProperties": false,
       "properties": {
         "board": {

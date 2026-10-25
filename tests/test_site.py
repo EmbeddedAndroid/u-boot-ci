@@ -91,7 +91,9 @@ def test_branches_and_adhoc_runs(tmp_path):
 
 
 def test_a_closed_run_shows_its_state(tmp_path):
-    r = run("a1", kind="adhoc", targets=[target(state="cancelled")])
+    t = target(state="cancelled")
+    t["state_detail"] = "workflow cancelled before this target finished"
+    r = run("a1", kind="adhoc", targets=[t])
     r["state"] = "cancelled"
     write(tmp_path, r)
     idx = site.write(str(tmp_path))

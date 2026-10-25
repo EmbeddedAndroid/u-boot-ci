@@ -16,6 +16,12 @@ def test_sample_run_is_valid():
     (lambda r: r["targets"][0]["linux_boot"].update(stage="somewhere"), "targets/0/linux_boot/stage"),
     (lambda r: r["targets"][0].update(surprise=1), "targets/0"),
     (lambda r: r["run"].update(id="has space"), "run/id"),
+    # A target that did not run says why (nightly 40152748187 left reasons
+    # that said nothing).
+    (lambda r: (r["targets"][0].update(state="error"), r["targets"][0].pop("state_detail", None)),
+     "targets/0"),
+    (lambda r: r["targets"][0].update(state="skipped", state_detail=""), "targets/0/state_detail"),
+    (lambda r: r["targets"][0].update(state="cancelled", state_detail=""), "targets/0/state_detail"),
     (lambda r: r["targets"][0]["components"][1]["upstream"].update(distance=-1),
      "targets/0/components/1/upstream/distance"),
 ])
