@@ -63,7 +63,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main 8649a54d301a",
-  "updated": "2026-10-25T07:18:35Z"
+  "updated": "2026-10-25T07:23:52Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -90,20 +90,21 @@
    "fingerprint": "ubci-40168371981-1-main-stock-rb3gen2",
    "fingerprint_gate": "not-run",
    "lava": {
-    "device": null,
+    "device": "rb3g2-01",
     "health": "Unknown",
     "job_id": 512816,
     "url": "https://lava.infra.foundries.io/scheduler/job/512816"
    },
    "linux_boot": {
-    "stage": "not-reached",
-    "verdict": "not-run",
+    "stage": "login",
+    "url": "https://lava.infra.foundries.io/scheduler/job/512816#L2957",
+    "verdict": "pass",
     "versus_baseline": "unknown"
    },
-   "queue_position": 1,
+   "queue_position": null,
    "restore": "not-run",
    "stack": "stock",
-   "state": "queued"
+   "state": "testing"
   },
   {
    "board": "rb3gen2",
@@ -362,11 +363,11 @@
    },
    "queue_position": null,
    "recovery": {
-    "health": null,
+    "health": "Complete",
     "job_id": 512817,
     "url": "https://lava.infra.foundries.io/scheduler/job/512817"
    },
-   "restore": "recovery-job",
+   "restore": "pass",
    "stack": "stock",
    "state": "done",
    "state_detail": "LAVA job incomplete"
@@ -483,6 +484,12 @@
    ],
    "fingerprint": "ubci-40168371981-1-main-open-ventuno-q",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "ventunoq-hyd-02",
+    "health": "Unknown",
+    "job_id": 512820,
+    "url": "https://lava.infra.foundries.io/scheduler/job/512820"
+   },
    "linux_boot": {
     "gaps": [
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
@@ -491,9 +498,10 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "restore": "not-run",
    "stack": "open",
-   "state": "queued"
+   "state": "flashing"
   }
  ]
 }
