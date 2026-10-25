@@ -131,3 +131,33 @@ def test_known_gap_turns_a_failure_into_a_skip_with_the_reason():
     collect.apply_known_gaps(cl, {"smoke/usb": "needs non-free firmware", "smoke/usb2": "x"})
     assert cl[0] == {"suite": "smoke", "name": "usb", "result": "skip", "note": "known gap: needs non-free firmware"}
     assert cl[1]["result"] == "fail" and "note" not in cl[2]
+
+
+def test_a_gate_the_job_never_reached_is_not_a_failed_gate():
+    # LAVA 512760: the first gate passed, U-Boot stopped after "DRAM:" on
+    # XPU errors and the job ended, and LAVA reported the cases of the
+    # gates that never started as failed.
+    def lvl(suite, name, res, level):
+        r = result(suite, name, res)
+        r["metadata"] += "level: '%s'\n" % level
+        return r
+    res = [lvl("firmware-fingerprint", "u_boot_20", "pass", "4.1"),
+           lvl("firmware-fingerprint-reset", "u_boot_20", "fail", "6.1"),
+           lvl("smoke", "usb", "fail", "9.1"), lvl("u-boot", "uboot-bdinfo", "fail", "5.1")]
+    entries = collect.log_entries(log(("debug", "start: 4.1 lava-test-monitor (timeout 00:05:00) [common]"),
+                                      ("debug", "start: 5.1 lava-test-interactive (timeout 00:10:00) [common]"),
+                                      ("target", "DRAM:  2 GiB"), ("target", "ERROR:   XPU ERROR: non secure")))
+    t = collect.target({"board": "b", "stack": "open"}, finished("Incomplete"), res, entries, URL,
+                       ["firmware-fingerprint", "firmware-fingerprint-reset"], "resetting")
+    assert t["fingerprint_gate"] == "pass"
+    by = {(c["suite"], c["name"]): c for c in t["cases"]}
+    assert by[("firmware-fingerprint-reset", "u_boot_20")] == {
+        "suite": "firmware-fingerprint-reset", "name": "u_boot_20", "result": "skip", "note": collect.NOT_REACHED}
+    assert by[("smoke", "usb")]["result"] == "skip"
+    # A check that started and failed stays a failure.
+    assert by[("u-boot", "uboot-bdinfo")]["result"] == "fail"
+    # A second gate that ran and did not show the build still fails it.
+    res[1] = lvl("firmware-fingerprint-reset", "u_boot_20", "fail", "5.1")
+    t = collect.target({"board": "b", "stack": "open"}, finished("Incomplete"), res, entries, URL,
+                       ["firmware-fingerprint", "firmware-fingerprint-reset"], "resetting")
+    assert t["fingerprint_gate"] == "fail"

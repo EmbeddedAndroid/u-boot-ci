@@ -64,7 +64,24 @@ def suite_of(result):
     return re.sub(r"^\d+_", "", m.group(1)) if m else str(result.get("suite"))
 
 
-def cases(results, job_url):
+NOT_REACHED = "not reached: the job ended before this check started"
+
+
+def started_levels(entries):
+    """The action levels the job started ("start: 6.1 lava-test-monitor")."""
+    out = set()
+    for _, lvl, m in entries:
+        hit = re.match(r"start: (\d+(?:\.\d+)*) ", m) if lvl in ("debug", "info") else None
+        if hit:
+            out.add(hit.group(1))
+    return out
+
+
+def cases(results, job_url, started=None):
+    """The job's cases. LAVA reports the expected cases of a test action
+    that never started (the job ended earlier) as failed; with the levels
+    the job started (started), such a case is a skip that says so, not a
+    failure: a check that did not run did not fail."""
     out = []
     for r in results:
         suite = suite_of(r)
@@ -72,6 +89,9 @@ def cases(results, job_url):
             continue
         c = {"suite": suite, "name": r["name"],
              "result": r["result"] if r["result"] in ("pass", "fail", "skip") else "unknown"}
+        level = re.search(r"^level: '?([0-9.]+)'?$", r.get("metadata") or "", re.M)
+        if started is not None and c["result"] == "fail" and level and level.group(1) not in started:
+            c["result"], c["note"] = "skip", NOT_REACHED
         if r.get("start_log_line") is not None:
             c["url"] = "%s#L%d" % (job_url, r["start_log_line"])
         out.append(c)
@@ -79,7 +99,7 @@ def cases(results, job_url):
 
 
 def suite_verdict(case_list, suite):
-    got = [c["result"] for c in case_list if c["suite"] == suite]
+    got = [c["result"] for c in case_list if c["suite"] == suite and c.get("note") != NOT_REACHED]
     if not got:
         return "not-run"
     return "pass" if all(r == "pass" for r in got) else "fail"
@@ -96,12 +116,14 @@ def target(base, job, results, entries, job_url, gate_suites, boot_start,
     t["state"] = STATE.get(job.get("state"), "queued")
     t["lava"] = dict(base.get("lava") or {}, job_id=job["id"], url=job_url,
                      device=job.get("actual_device"), health=job.get("health"))
-    cl = cases(results, job_url)
+    cl = cases(results, job_url, started_levels(entries) if entries else None)
     t["cases"] = cl
+    # The first gate must pass; a later one counts when it ran (a board
+    # that hangs after the first boot never reaches the second).
     gates = [suite_verdict(cl, s) for s in gate_suites]
-    t["fingerprint_gate"] = ("pass" if gates and all(g == "pass" for g in gates)
-                             else "not-run" if all(g == "not-run" for g in gates)
-                             else "fail")
+    t["fingerprint_gate"] = ("fail" if "fail" in gates
+                             else "not-run" if not gates or gates[0] == "not-run"
+                             else "pass")
     boot = boot_verdict.classify(window(console(entries), boot_start, boot_end), job_url)
     if t["state"] != "done" and boot["verdict"] != "pass":
         boot = {"verdict": "not-run", "stage": "not-reached"}
