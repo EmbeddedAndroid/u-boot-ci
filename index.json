@@ -10,27 +10,27 @@
    "cells": [
     {
      "board": "ventuno-q",
-     "boot": "not-run",
-     "boot_stage": "not-reached",
-     "boot_url": "",
+     "boot": "fail",
+     "boot_stage": "no-efi-stub",
+     "boot_url": "https://lava.infra.foundries.io/scheduler/job/511932#L1708",
      "counts": {
-      "fail": 0,
+      "fail": 3,
       "flaky": 0,
-      "pass": 0,
+      "pass": 14,
       "skip": 0,
       "unknown": 0
      },
      "diff": {},
      "distance": {},
      "fingerprint": "ubci-40146866222-1-main-stock-ventuno-q",
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/511932",
      "new_fail": 0,
-     "queue_position": 3,
+     "queue_position": null,
      "run": "ubci-40146866222-1-main",
      "stack": "stock",
-     "state": "queued",
-     "state_detail": "",
+     "state": "done",
+     "state_detail": "LAVA job incomplete",
      "versus": "unknown"
     },
     {
@@ -90,7 +90,7 @@
      "version": 2
     }
    ],
-   "state": "building",
+   "state": "testing",
    "title": "QCS8300 v4 + VENTUNO Q v2"
   },
   {
@@ -392,7 +392,7 @@
    "created": "2026-10-25T00:37:32Z",
    "id": "ubci-40146866222-1-main",
    "kind": "adhoc",
-   "state": "building",
+   "state": "testing",
    "title": "QCS8300 v4 + VENTUNO Q v2"
   },
   {
@@ -432,5 +432,5 @@
    "title": "QCS8300 v4 + VENTUNO Q v2"
   }
  ],
- "updated": "2026-10-25T01:21:43Z"
+ "updated": "2026-10-25T01:26:49Z"
 }

@@ -88,14 +88,100 @@
    }
   ],
   "title": "QCS8300 v4 + VENTUNO Q v2",
-  "updated": "2026-10-25T01:21:43Z"
+  "updated": "2026-10-25T01:26:49Z"
  },
  "schema": "fwci-run/1",
- "state": "building",
+ "state": "testing",
  "targets": [
   {
    "board": "ventuno-q",
-   "cases": [],
+   "cases": [
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "fail",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "fail",
+     "suite": "linux-version"
+    },
+    {
+     "name": "uefi_ver",
+     "result": "fail",
+     "suite": "stock-restore"
+    }
+   ],
    "components": [
     {
      "branch": "main",
@@ -113,22 +199,46 @@
     }
    ],
    "fingerprint": "ubci-40146866222-1-main-stock-ventuno-q",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
-    "device": null,
-    "health": "Unknown",
+    "device": "ventunoq-hyd-02",
+    "health": "Incomplete",
     "job_id": 511932,
     "url": "https://lava.infra.foundries.io/scheduler/job/511932"
    },
    "linux_boot": {
-    "stage": "not-reached",
-    "verdict": "not-run",
+    "last_lines": [
+     "rpmh_regulator_probe: rpmh_regulator_drm ldoa8: Failed to get supply regulator vdd-l8-l9 for ldoa8: -2",
+     "Net:   No ethernet found.",
+     "GENI-SE: serial_msm_geni serial@a88000: Failed to read ELF: -22",
+     "serial_msm_geni serial@a88000: Invalid proto 255",
+     "Power domain id (0) not supported",
+     "GENI-SE: i2c_geni i2c@a90000: Failed to read ELF: -22",
+     "i2c_geni i2c@a90000: Invalid proto 255",
+     "i2c_geni i2c@a90000: clk_disable se failed -38",
+     "[?25h",
+     "scanning bus for devices...",
+     "starting USB...",
+     "USB XHCI 1.10",
+     "Bus usb@a400000: 2 USB Device(s) found",
+     "       scanning usb for storage devices... 0 Storage Device(s) found",
+     "[2K\rHit any key to stop autoboot: 1[2K\rHit any key to stop autoboot: 0"
+    ],
+    "stage": "no-efi-stub",
+    "url": "https://lava.infra.foundries.io/scheduler/job/511932#L1708",
+    "verdict": "fail",
     "versus_baseline": "unknown"
    },
-   "queue_position": 3,
-   "restore": "not-run",
+   "queue_position": null,
+   "recovery": {
+    "health": null,
+    "job_id": 511940,
+    "url": "https://lava.infra.foundries.io/scheduler/job/511940"
+   },
+   "restore": "recovery-job",
    "stack": "stock",
-   "state": "queued"
+   "state": "done",
+   "state_detail": "LAVA job incomplete"
   },
   {
    "board": "ventuno-q",
