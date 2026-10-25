@@ -28,5 +28,8 @@ The VENTUNO Q U-Boot series (QCS8300 pinctrl and interconnect, full GCC
 clocks, boot CPU selection, the board config) is on the list, not in
 `main`. Without it U-Boot cannot set the SDCC clocks or pins, the eMMC
 does not probe, so there is no ESP to boot and the board does not reach
-Linux on either stack. The dashboard shows this as the board's state until
-the series lands.
+Linux on either stack: the boot verdict is `nothing-booted` (U-Boot back at
+its prompt after autoboot) and the `uboot-storage` and `uboot-efi-media`
+checks fail. The dashboard shows it as a failure, with this gap
+(`linux.gaps` in `config/boards/ventuno-q.yaml`) next to it, until the
+series lands.

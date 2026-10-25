@@ -32,6 +32,8 @@ def test_new_run_has_every_board_and_stack_with_distance(doc):
     optee = [c for c in open_rb3["components"] if c["name"] == "optee"][0]
     assert optee["upstream"]["distance"] == 0
     assert open_rb3["linux_boot"]["gaps"]
+    for vq in r["targets"][2:]:
+        assert vq["linux_boot"]["gaps"][0].startswith("upstream U-Boot does not support this board")
     assert r["targets"][0]["components"][1]["role"] == "stock"
 
 
@@ -573,7 +575,6 @@ def test_a_rejected_job_is_an_error_with_lavas_message(doc, tmp_path, monkeypatc
     t = json.load(open(doc))["targets"][0]
     assert len(calls) == 1
     assert t["state"] == "error" and t["state_detail"] == "LAVA rejected the job: " + msg
-
 
 
 @pytest.mark.parametrize("status, state, detail", [

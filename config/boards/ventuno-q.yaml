@@ -56,7 +56,14 @@ linux:
   overlays:
     stock: []
     open: [qcom/monaco-el2.dtbo]
-  gaps: {}
+  # Shown with the boot verdict, which stays a fail (docs/boards/ventuno-q.md).
+  gaps:
+    stock: &not-upstream
+      - >-
+        upstream U-Boot does not support this board yet: without the VENTUNO
+        Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC
+        does not probe and U-Boot finds nothing to boot
+    open: *not-upstream
   cmdline: console=ttyMSM0,115200n8
 uboot_checks:
   - [bdinfo, bdinfo, "boot_params"]
