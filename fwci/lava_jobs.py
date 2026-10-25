@@ -105,6 +105,10 @@ def interactive(name, prompts, steps, minutes=10):
 
 
 END_MARK = "@@ end@@"
+# BusyBox ash line editing (CONFIG_FEATURE_EDITING_MAX_LEN=1024) keeps the
+# first 1022 characters of a line and drops the rest; the cut line is run
+# as typed, typically inside an open quote, and never prints END_MARK.
+SHELL_LINE_MAX = 1022
 
 
 def shell_checks(name, checks, minutes=10):
@@ -120,6 +124,10 @@ def shell_checks(name, checks, minutes=10):
               "success": "@@ %s pass @@" % case,
               "failure": "@@ %s fail @@" % case}
              for case, cmd in checks]
+    for s in steps:
+        if len(s["command"]) > SHELL_LINE_MAX:
+            raise ValueError("shell check %s: %d characters, the shell keeps %d"
+                             % (s["name"], len(s["command"]), SHELL_LINE_MAX))
     return interactive(name, [END_MARK], steps, minutes)
 
 

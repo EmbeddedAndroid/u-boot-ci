@@ -3,8 +3,10 @@
 # `pattern` (POSIX extended regex, no single quotes) seen on the base
 # branch without a code change at least 3 times in 14 days on at least 2
 # boards, a link to the evidence, a named cause, confirmed in the last 30
-# days. Only lines caused by a firmware file the minimal initramfs does
-# not carry belong here; every other error still fails the check.
+# days. Each pattern must stand alone (balanced, no back-references):
+# the entries are joined into one alternation. Only lines caused by a
+# firmware file the minimal initramfs does not carry belong here; every
+# other error still fails the check.
 # Changes are PRs reviewed by Tyler.
 errors:
   - id: E1

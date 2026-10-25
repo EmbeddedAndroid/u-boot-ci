@@ -403,7 +403,13 @@ def submit_pass(path, run, lava, packages):
         job_id = None
         while device is not None:
             try:
-                job_id = lava.submit(render_one(run, t["board"], t["stack"], package, restore, device))
+                job = render_one(run, t["board"], t["stack"], package, restore, device)
+            except ValueError as e:
+                t["state"] = "error"
+                t["state_detail"] = "job does not render: %s" % e
+                break
+            try:
+                job_id = lava.submit(job)
                 break
             except Rejected as e:
                 # Refused: no job exists. The device list does not say

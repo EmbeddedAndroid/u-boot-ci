@@ -1,3 +1,4 @@
+import os
 import re
 
 import pytest
@@ -80,6 +81,75 @@ def test_known_errors_are_filtered_and_others_still_fail():
     assert run(known) == 0 and run(known + other) != 0
     with pytest.raises(ValueError):
         jobs.errors_command(["it's"])
+
+
+@pytest.mark.parametrize("bad", [["a(", "b)"], [r"(x)\1"]])
+def test_known_error_patterns_must_stand_alone(bad):
+    """Joined as a|b, "a(" and "b)" would make the valid "a(|b)" and drop
+    every line with an "a"; a back-reference would point into another
+    entry. Both are refused."""
+    with pytest.raises(ValueError, match="known-error pattern"):
+        jobs.errors_command(bad)
+
+
+def run_errors(cmd, dmesg):
+    """Run an errors_command with dmesg -r replaced by the given text."""
+    import subprocess
+    return subprocess.run(["sh", "-c", cmd.replace("dmesg -r", "cat " + str(dmesg))],
+                          capture_output=True, text=True)
+
+
+# What is left of those lines once the known errors are gone: genuine
+# kernel errors, one entry per distinct message with its count.
+REAL_ERRORS = {
+    "stock": [("qcom-smem smem: Found an unknown type of DRAM info struct", 1),
+              ("ufshcd-qcom 1d84000.ufshc: ufshcd_is_wb_buf_lifetime_available", 1),
+              ("qcom_pmic_glink pmic-glink: Failed to create device link", 3),
+              ("Bluetooth: hci0: unexpected event for opcode 0xfc48", 1)],
+    "open": [("qcom_scm firmware:scm: qseecom: scm call failed with error -5", 1),
+             ("qcom-smem smem: Found an unknown type of DRAM info struct", 1),
+             ("qcomtee: QTEE returned with -22.", 1),
+             ("probe with driver qcom-ice failed with error -95", 2),
+             ("qcom_pmic_glink pmic-glink: Failed to create device link", 3),
+             ("lt9611uxc 0-002b: wait for EDID timeout", 4),
+             ("Bluetooth: hci0: command 0xfc00 tx timeout", 1),
+             ("Bluetooth: hci0: Reading QCA version information failed (-110)", 1)],
+}
+
+
+@pytest.mark.parametrize("stack", ["stock", "open"])
+def test_known_errors_on_real_rb3gen2_lines(stack):
+    """The level 0-3 lines of linux-next next-20261023 on the RB3 Gen 2
+    (LAVA 509892 #L3137-3186 stock, 509899 #L2920-2969 open): the known
+    missing-firmware lines go, every other line is printed and fails."""
+    import datetime
+    data = os.path.join(os.path.dirname(__file__), "data", "dmesg", "rb3gen2-next-20261023-%s.txt" % stack)
+    cmd = jobs.errors_command(jobs.known_errors("rb3gen2", datetime.date(2026, 10, 25)))
+    r = run_errors(cmd, data)
+    out = r.stdout.splitlines()
+    assert r.returncode != 0
+    assert len(out) == sum(n for _, n in REAL_ERRORS[stack])
+    for msg, n in REAL_ERRORS[stack]:
+        assert sum(msg in line for line in out) == n, msg
+    assert run_errors(cmd, "/dev/null").returncode == 0
+
+
+def test_a_known_error_grep_cannot_parse_fails_the_check():
+    """Python accepts "[[:digits:]]"; grep exits 2 on it and prints
+    nothing, which must not read as "no errors left"."""
+    data = os.path.join(os.path.dirname(__file__), "data", "dmesg", "rb3gen2-next-20261023-stock.txt")
+    assert run_errors(jobs.errors_command(["[[:digits:]]"]), data).returncode != 0
+
+
+def test_smoke_lines_fit_the_shell_with_every_known_error():
+    """LAVA 512816 #L3016: with the three known-error entries the
+    dmesg-errors line was 1131 characters and BusyBox cut it at 1022."""
+    import datetime
+    b = config.board("rb3gen2")
+    step = lava_jobs.shell_checks("smoke", jobs.smoke_checks(b, "next-20261023", datetime.date(2026, 10, 25)))
+    cmds = {s["name"]: s["command"] for s in step["test"]["interactive"][0]["script"]}
+    assert cmds["dmesg-errors"].count("dmesg -r") == 1
+    assert max(len(c) for c in cmds.values()) <= lava_jobs.SHELL_LINE_MAX
 
 
 def restore_tail(board, stack="stock"):

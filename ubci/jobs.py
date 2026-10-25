@@ -13,6 +13,7 @@ not reach its restore; the collector then submits a recovery job
 import datetime
 import os
 import re
+import warnings
 
 import yaml
 
@@ -85,12 +86,26 @@ def known_errors(board_name, today=None):
 
 
 def errors_command(patterns):
-    """Kernel errors (levels 0-3), less the known ones; fails when any is left."""
+    """Kernel errors (levels 0-3), less the known ones, printed; passes
+    only when grep found none (exit 1), so a grep error (exit 2) fails.
+    The patterns are joined into one alternation, so each must stand
+    alone: balanced and without back-references."""
     for p in patterns:
         if "'" in p:
             raise ValueError("known-error pattern with a single quote: %s" % p)
-    keep = "grep -E '^<[0-3]>'" + "".join(" | grep -v -E '%s'" % p for p in patterns)
-    return "dmesg -r | %s | head -50; [ -z \"$(dmesg -r | %s)\" ]" % (keep, keep)
+        try:
+            # POSIX classes ("[[:digit:]]") are ERE; Python warns about them.
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore", FutureWarning)
+                re.compile(p)
+        except re.error as e:
+            raise ValueError("known-error pattern %s: %s" % (p, e))
+        if re.search(r"\\[1-9]", p):
+            raise ValueError("known-error pattern with a back-reference: %s" % p)
+    keep = "grep -E '^<[0-3]>'"
+    if patterns:
+        keep += " | grep -v -E '%s'" % "|".join(patterns)
+    return "dmesg -r | %s; [ $? = 1 ]" % keep
 
 
 def smoke_checks(board, tag, today=None):

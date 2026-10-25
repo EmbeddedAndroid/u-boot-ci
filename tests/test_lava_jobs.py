@@ -1,5 +1,6 @@
 import re
 
+import pytest
 import yaml
 
 from fwci import lava_jobs as lj
@@ -57,6 +58,17 @@ def test_shell_check_echo_never_matches_its_own_verdict():
     assert not re.search(block["prompts"][0], "pci 0000:00:00.0: PME# supported from D0 # ")
     assert re.search(ok, "@@ usb pass @@") and re.search(bad, "@@ usb fail @@")
     assert not re.search(ok, "@@ usb fail @@")
+
+
+def test_shell_check_refuses_a_line_the_shell_would_cut():
+    """LAVA 512816 #L3016: BusyBox echoed 1022 of the 1131 characters of
+    the dmesg-errors line and waited in an open quote until the job timed
+    out; such a line must fail at render time."""
+    wrap = len(lj.shell_checks("s", [("c", "")])["test"]["interactive"][0]["script"][0]["command"])
+    fits = "x" * (lj.SHELL_LINE_MAX - wrap)
+    assert lj.shell_checks("s", [("c", fits)])
+    with pytest.raises(ValueError, match="shell check c: 1023 characters"):
+        lj.shell_checks("s", [("c", fits + "x")])
 
 
 def test_deploy_uses_token_name_header_and_yaml_round_trip():

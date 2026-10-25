@@ -28,7 +28,11 @@ both lists). Only lines caused by a firmware file the minimal initramfs
 does not carry qualify (a driver reporting a missing file, and the probe
 that fails because of it); anything else stays a failure. The patterns
 are POSIX extended regular expressions matched on the board, without
-single quotes.
+single quotes, each a complete expression on its own (balanced, no
+back-references), since all entries of a board are joined into one
+alternation on one shell line. That line must fit the 1022 characters
+the initramfs shell (BusyBox ash) keeps; rendering a job fails when it
+does not.
 
 ## Known gaps
 

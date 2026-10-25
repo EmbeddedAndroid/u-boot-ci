@@ -285,6 +285,33 @@ def test_a_failed_submit_is_never_retried(doc, tmp_path, monkeypatch):
     assert len(calls) == 1 and t["state"] == "error" and t["state_detail"].startswith("submit outcome unknown")
 
 
+def test_a_job_that_does_not_render_is_an_error_not_a_lost_submit(doc, tmp_path, monkeypatch):
+    """A shell check longer than the board shell keeps (LAVA 512816: the
+    dmesg-errors line) fails at render time: nothing reaches LAVA, the
+    target says why, and the pass goes on."""
+    from fwci import lava_jobs
+    pk = tmp_path / "pk"
+    pk.mkdir()
+    make_pkg(pk, "rb3gen2-stock")
+    monkeypatch.setenv("STOCK_RESTORE_URL_RB3GEN2", "https://lab.example/rb3.tar.gz")
+    monkeypatch.setattr(lava_jobs, "SHELL_LINE_MAX", 100)
+    calls = []
+
+    class Lava(Lab):
+        def upload(self, path):
+            return "https://lava.example/a/x", "tok"
+
+        def submit(self, definition):
+            calls.append(1)
+            return 700
+
+    monkeypatch.setattr(urun, "Lava", Lava)
+    urun.main(["submit", doc, str(pk)])
+    t = json.load(open(doc))["targets"][0]
+    assert calls == [] and t["state"] == "error" and "lava" not in t
+    assert t["state_detail"].startswith("job does not render: shell check linux-next-tag:")
+
+
 def test_finished_waits_for_recovery(doc):
     r = json.load(open(doc))
     for t in r["targets"]:
