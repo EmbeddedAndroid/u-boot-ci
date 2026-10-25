@@ -1,0 +1,318 @@
+{
+ "host_checks": [],
+ "linux": null,
+ "project": "u-boot",
+ "run": {
+  "base": {
+   "branch": "master",
+   "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+   "repo": "https://git.u-boot-project.org/u-boot/u-boot.git"
+  },
+  "baseline": null,
+  "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/40152748187",
+  "created": "2026-10-25T02:02:23Z",
+  "id": "ubci-40152748187-1-master",
+  "kind": "nightly",
+  "series": null,
+  "title": "master ece349ade297",
+  "updated": "2026-10-25T02:02:24Z"
+ },
+ "schema": "fwci-run/1",
+ "state": "building",
+ "targets": [
+  {
+   "board": "rb3gen2",
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "fingerprint": "ubci-40152748187-1-master-stock-rb3gen2",
+     "name": "u-boot",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test"
+    },
+    {
+     "name": "boot firmware",
+     "release": "QCM6490 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40152748187-1-master-stock-rb3gen2",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "restore": "not-run",
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "rb3gen2",
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "fingerprint": "ubci-40152748187-1-master-open-rb3gen2",
+     "name": "u-boot",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test"
+    },
+    {
+     "branch": "kodiak-native-v4",
+     "commit": "23b6bf615281242ddf71c5e652aca534dff123d9",
+     "fingerprint": "ubci-40152748187-1-master-open-rb3gen2",
+     "name": "tf-a",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "upstream": {
+      "base": "fef86fcc70e5eced994e1c799410b610154da427",
+      "carried": [
+       {
+        "commit": "44fe77ef8d5610eedabcf70b671c9b9b9c37fcd7",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55532",
+        "subject": "refactor(qti): parameterize gold domain setup"
+       },
+       {
+        "commit": "d2de1799e30019a5a8baf4142b9c528c43cc9e75",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55533",
+        "subject": "fix(qti): fail CPU_ON when the gold rail does not come up"
+       },
+       {
+        "commit": "62e655947cfb56a927524c6c58309e2c13703455",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55534",
+        "subject": "fix(qti): stop the boot when CPUCP cannot be started"
+       },
+       {
+        "commit": "a3fd09d9ce165859ac7c9dc95fb4ce7f046e9899",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55535",
+        "subject": "feat(qti): add a CPU_OFF holding pen"
+       },
+       {
+        "commit": "5f1cc70ed3ae11b871030b81f520e100632566d2",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55536",
+        "subject": "feat(qti): initialize the Kodiak gold domain"
+       },
+       {
+        "commit": "5f21749bda1f6ba556c137a3bda7dc7b9cb52e32",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55537",
+        "subject": "feat(qti): add Kodiak CPUCP support"
+       },
+       {
+        "commit": "0bfead026434207d5eb6bee8b30f124b1f4b5abf",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55538",
+        "subject": "feat(qti): add Kodiak PDC tables"
+       },
+       {
+        "commit": "7572a3cb5ed03533efe442285b31d3223158c6dd",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55539",
+        "subject": "feat(qti): initialize the Kodiak GPU SMMU"
+       },
+       {
+        "commit": "9b54fba05f4dd3d1f5c9070cb8c5823ea9005c0f",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55540",
+        "subject": "feat(rb3gen2): boot without QTISECLIB"
+       },
+       {
+        "commit": "23b6bf615281242ddf71c5e652aca534dff123d9",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55541",
+        "subject": "docs(rb3gen2): describe the native boot"
+       }
+      ],
+      "distance": 10,
+      "repo": "https://review.trustedfirmware.org/TF-A/trusted-firmware-a"
+     }
+    },
+    {
+     "branch": "master",
+     "commit": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+     "fingerprint": "ubci-40152748187-1-master-open-rb3gen2",
+     "name": "optee",
+     "repo": "https://github.com/OP-TEE/optee_os",
+     "role": "pinned",
+     "upstream": {
+      "base": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+      "carried": [],
+      "distance": 0,
+      "repo": "https://github.com/OP-TEE/optee_os"
+     }
+    },
+    {
+     "commit": "23b6bf615281242ddf71c5e652aca534dff123d9",
+     "fingerprint": "ubci-pin-bl2-rb3gen2-261024-0109",
+     "name": "tf-a bl2",
+     "role": "pinned",
+     "sha256": "b46c27937615bfa1ca3c3963b1cf866ac8c2c6a4e099bd5daecc983ca2a544d4",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40152748187-1-master-open-rb3gen2",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [
+     "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
+    ],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "restore": "not-run",
+   "stack": "open",
+   "state": "queued"
+  },
+  {
+   "board": "ventuno-q",
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "fingerprint": "ubci-40152748187-1-master-stock-ventuno-q",
+     "name": "u-boot",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test"
+    },
+    {
+     "name": "boot firmware",
+     "release": "QCS8300 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40152748187-1-master-stock-ventuno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "restore": "not-run",
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "ventuno-q",
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "fingerprint": "ubci-40152748187-1-master-open-ventuno-q",
+     "name": "u-boot",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test"
+    },
+    {
+     "branch": "ventuno-q-v3",
+     "commit": "4930db330cb03cfe2124f41bf1852cff9e7abd22",
+     "fingerprint": "ubci-40152748187-1-master-open-ventuno-q",
+     "name": "tf-a",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "upstream": {
+      "base": "9599954cafaf7f1a0d8240242349db972b512150",
+      "carried": [
+       {
+        "commit": "54a6355a1a8cd1321d5f6b86f7a78c467af435e1",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54843",
+        "subject": "FROMLIST: fix(delay-timer)!: count timeouts in the configured frequency"
+       },
+       {
+        "commit": "982904694db78b8b786131ae01005f2e148bd6d1",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54926",
+        "subject": "FROMLIST: fix(psci): allow OS-initiated mode while other cores are off"
+       },
+       {
+        "commit": "5459185ce26e0a3ef4155f8e5cab6e141958e642",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55528",
+        "subject": "HACK: feat(qti): let a SoC use another SoC's RPMh data"
+       },
+       {
+        "commit": "20405011f18461e407e96fe19143cf3f65af6d09",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55529",
+        "subject": "PENDING: feat(monza): add Monaco clock back-end"
+       },
+       {
+        "commit": "98ba7638c862197cd41e6c9d655d4de7a7d38e05",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55530",
+        "subject": "PENDING: fix(qti): only advertise SYSTEM_SUSPEND with a system-level state"
+       },
+       {
+        "commit": "074559ee7fb47c7427e5247c8beb824abe16cf39",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54579",
+        "subject": "FROMLIST: feat(qti): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "75ab804c50225fadbb1f5e57265b06bcc625185d",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55765",
+        "subject": "PENDING: feat(monza): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "bffa27c7b96b99be8e9701f48a37f0eb026c3901",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55766",
+        "subject": "HACK: feat(qti): add a PMIC hard reset option for system reset"
+       },
+       {
+        "commit": "d17335f3c0e07e221c40964f3f421aaf110ee91a",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55767",
+        "subject": "HACK: feat(monza): use a PMIC hard reset for system reset"
+       },
+       {
+        "commit": "04a8286855c0ee72fe0125b3bbaf69f69b4e2eca",
+        "review": null,
+        "subject": "PENDING: fix(qti): ring the SAIL doorbell on SMSS_TZ_IPC"
+       },
+       {
+        "commit": "4a7a2e5cf1341158261ca299ce1eca55f160195f",
+        "review": null,
+        "subject": "PENDING: docs(monza): describe booting BL31 from U-Boot SPL"
+       },
+       {
+        "commit": "4930db330cb03cfe2124f41bf1852cff9e7abd22",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55531",
+        "subject": "PENDING: feat(qti): program the Monaco GPU SMMU aperture"
+       }
+      ],
+      "distance": 12,
+      "repo": "https://review.trustedfirmware.org/TF-A/trusted-firmware-a"
+     }
+    },
+    {
+     "branch": "master",
+     "commit": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+     "fingerprint": "ubci-40152748187-1-master-open-ventuno-q",
+     "name": "optee",
+     "repo": "https://github.com/OP-TEE/optee_os",
+     "role": "pinned",
+     "upstream": {
+      "base": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+      "carried": [],
+      "distance": 0,
+      "repo": "https://github.com/OP-TEE/optee_os"
+     }
+    },
+    {
+     "commit": "4930db330cb03cfe2124f41bf1852cff9e7abd22",
+     "fingerprint": "MONZAFP-261008-154802-pr2-fs",
+     "name": "tf-a bl2",
+     "role": "pinned",
+     "sha256": "91f4618318d49d15440ac31101cdf4ab2e4c8693c95f4867ebf2e65ed30e100f",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40152748187-1-master-open-ventuno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "restore": "not-run",
+   "stack": "open",
+   "state": "queued"
+  }
+ ]
+}
