@@ -777,25 +777,29 @@
     "rb3gen2/open": {
      "cases": {},
      "runs": [
-      "ubci-40152748187-1-master"
+      "ubci-40152748187-1-master",
+      "ubci-40168371981-1-master"
      ]
     },
     "rb3gen2/stock": {
      "cases": {},
      "runs": [
-      "ubci-40152748187-1-master"
+      "ubci-40152748187-1-master",
+      "ubci-40168371981-1-master"
      ]
     },
     "ventuno-q/open": {
      "cases": {},
      "runs": [
-      "ubci-40152748187-1-master"
+      "ubci-40152748187-1-master",
+      "ubci-40168371981-1-master"
      ]
     },
     "ventuno-q/stock": {
      "cases": {},
      "runs": [
-      "ubci-40152748187-1-master"
+      "ubci-40152748187-1-master",
+      "ubci-40168371981-1-master"
      ]
     }
    },
@@ -827,6 +831,33 @@
       "state": "error",
       "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to ",
       "versus": "unknown"
+     },
+     {
+      "board": "rb3gen2",
+      "boot": "not-run",
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {
+       "optee": 0,
+       "tf-a": 10
+      },
+      "fingerprint": "ubci-40168371981-1-master-open-rb3gen2",
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "queue_position": null,
+      "run": "ubci-40168371981-1-master",
+      "stack": "open",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
      }
     ],
     "rb3gen2/stock": [
@@ -852,6 +883,30 @@
       "stack": "stock",
       "state": "skipped",
       "state_detail": "no package (build failed)",
+      "versus": "unknown"
+     },
+     {
+      "board": "rb3gen2",
+      "boot": "not-run",
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40168371981-1-master-stock-rb3gen2",
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "queue_position": null,
+      "run": "ubci-40168371981-1-master",
+      "stack": "stock",
+      "state": "queued",
+      "state_detail": "",
       "versus": "unknown"
      }
     ],
@@ -882,6 +937,33 @@
       "state": "skipped",
       "state_detail": "no package (build failed)",
       "versus": "unknown"
+     },
+     {
+      "board": "ventuno-q",
+      "boot": "not-run",
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {
+       "optee": 0,
+       "tf-a": 12
+      },
+      "fingerprint": "ubci-40168371981-1-master-open-ventuno-q",
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "queue_position": null,
+      "run": "ubci-40168371981-1-master",
+      "stack": "open",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
      }
     ],
     "ventuno-q/stock": [
@@ -908,60 +990,36 @@
       "state": "skipped",
       "state_detail": "no package (build failed)",
       "versus": "unknown"
+     },
+     {
+      "board": "ventuno-q",
+      "boot": "not-run",
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40168371981-1-master-stock-ventuno-q",
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "queue_position": null,
+      "run": "ubci-40168371981-1-master",
+      "stack": "stock",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
      }
     ]
    },
-   "host_checks": [
-    {
-     "name": "buildman",
-     "result": "pass",
-     "summary": "every snapdragon board built without warnings"
-    },
-    {
-     "name": "carry",
-     "result": "pass",
-     "summary": "carry.yaml matches the pins"
-    },
-    {
-     "name": "checkpatch",
-     "result": "pass",
-     "summary": "0 new commits: 0 with errors, 0 with warnings only"
-    },
-    {
-     "name": "docs",
-     "result": "pass",
-     "summary": "htmldocs built without warnings"
-    },
-    {
-     "name": "fragments",
-     "result": "pass",
-     "summary": "1 combinations built"
-    },
-    {
-     "name": "qemu_arm64",
-     "result": "pass",
-     "summary": "241 passed, 556 skipped, 2 deselected in 116.35s (0:01:56)"
-    },
-    {
-     "name": "sandbox",
-     "result": "pass",
-     "summary": "1317 passed, 216 skipped, 3 deselected, 1 xfailed in 726.92s (0:12:06)"
-    },
-    {
-     "name": "size",
-     "result": "pass",
-     "summary": "rb3gen2-open 1562088 B"
-    }
-   ],
-   "latest_nightly": "ubci-40152748187-1-master",
-   "linux": {
-    "commit": "20a33c6b6cbe7e4805dfb6cd68816937443aa148",
-    "config": "arch/arm64/configs/defconfig",
-    "image_sha256": "bdfa4856f7c6cde00967c209a94b6835fb5527ee6dd335b51cf371007b91e46d",
-    "modules_sha256": "4fee8a6200e7e339dda1702281f2bffe776b43a69e5515be19fe7052ff26c0a8",
-    "release": "7.3.0-next-20261023",
-    "tag": "next-20261023"
-   },
+   "host_checks": [],
+   "latest_nightly": "ubci-40168371981-1-master",
+   "linux": null,
    "matrix": [
     {
      "board": "rb3gen2",
@@ -976,15 +1034,15 @@
       "unknown": 0
      },
      "distance": {},
-     "fingerprint": "ubci-40152748187-1-master-stock-rb3gen2",
+     "fingerprint": "ubci-40168371981-1-master-stock-rb3gen2",
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
      "queue_position": null,
-     "run": "ubci-40152748187-1-master",
+     "run": "ubci-40168371981-1-master",
      "stack": "stock",
-     "state": "skipped",
-     "state_detail": "no package (build failed)",
+     "state": "queued",
+     "state_detail": "",
      "versus": "unknown"
     },
     {
@@ -1003,15 +1061,15 @@
       "optee": 0,
       "tf-a": 10
      },
-     "fingerprint": "ubci-40152748187-1-master-open-rb3gen2",
+     "fingerprint": "ubci-40168371981-1-master-open-rb3gen2",
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
      "queue_position": null,
-     "run": "ubci-40152748187-1-master",
+     "run": "ubci-40168371981-1-master",
      "stack": "open",
-     "state": "error",
-     "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to ",
+     "state": "queued",
+     "state_detail": "",
      "versus": "unknown"
     },
     {
@@ -1027,15 +1085,15 @@
       "unknown": 0
      },
      "distance": {},
-     "fingerprint": "ubci-40152748187-1-master-stock-ventuno-q",
+     "fingerprint": "ubci-40168371981-1-master-stock-ventuno-q",
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
      "queue_position": null,
-     "run": "ubci-40152748187-1-master",
+     "run": "ubci-40168371981-1-master",
      "stack": "stock",
-     "state": "skipped",
-     "state_detail": "no package (build failed)",
+     "state": "queued",
+     "state_detail": "",
      "versus": "unknown"
     },
     {
@@ -1054,15 +1112,15 @@
       "optee": 0,
       "tf-a": 12
      },
-     "fingerprint": "ubci-40152748187-1-master-open-ventuno-q",
+     "fingerprint": "ubci-40168371981-1-master-open-ventuno-q",
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
      "queue_position": null,
-     "run": "ubci-40152748187-1-master",
+     "run": "ubci-40168371981-1-master",
      "stack": "open",
-     "state": "skipped",
-     "state_detail": "no package (build failed)",
+     "state": "queued",
+     "state_detail": "",
      "versus": "unknown"
     }
    ]
@@ -1469,6 +1527,18 @@
  "runs": [
   {
    "base": {
+    "branch": "master",
+    "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+    "repo": "https://git.u-boot-project.org/u-boot/u-boot.git"
+   },
+   "created": "2026-10-25T06:18:05Z",
+   "id": "ubci-40168371981-1-master",
+   "kind": "nightly",
+   "state": "building",
+   "title": "master ece349ade297"
+  },
+  {
+   "base": {
     "branch": "main",
     "commit": "8649a54d301a4d0ac526324c7a7ad2574939ff27",
     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git"
@@ -1552,5 +1622,5 @@
    "title": "QCS8300 v4 + VENTUNO Q v2"
   }
  ],
- "updated": "2026-10-25T06:17:59Z"
+ "updated": "2026-10-25T06:18:07Z"
 }
