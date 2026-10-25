@@ -595,3 +595,74 @@ def test_a_target_without_a_package_says_why(doc, tmp_path, monkeypatch, status,
     r = json.load(open(doc))
     assert schema.errors(r) == []
     assert (r["targets"][0]["state"], r["targets"][0]["state_detail"]) == (state, detail)
+
+
+def comp(t, name):
+    return next(c for c in t["components"] if c["name"] == name)
+
+
+def target_of(r, board, stack):
+    return next(t for t in r["targets"] if t["board"] == board and t["stack"] == stack)
+
+
+def test_every_target_names_its_exact_software(doc):
+    r = json.load(open(doc))
+    for t in r["targets"]:
+        ub = comp(t, "u-boot")
+        assert ub["url"] == "https://git.u-boot-project.org/u-boot/u-boot/-/commit/" + ub["commit"]
+        ds = comp(t, "downstream firmware")
+        assert ds["origin"] == "downstream" and ds["files"] and all(len(f["sha256"]) == 64 for f in ds["files"])
+        assert all(f["url"].startswith("https://") for f in ds["files"])
+        assert ds["layers"] and all(l["url"].endswith("/commit/" + l["commit"]) for l in ds["layers"])
+        lx = comp(t, "linux")
+        assert lx["url"].endswith("/commit/?id=" + LINUX["commit"]) and lx["branch"] == "next-20261023"
+        assert lx["config"]["url"].endswith("arch/arm64/configs/defconfig?id=" + LINUX["commit"])
+        assert t["boot_chain"][0]["stage"] == "XBL" and t["boot_chain"][-1]["component"] == "linux"
+    dtbs = [d["name"] for d in comp(target_of(r, "ventuno-q", "open"), "linux")["dtbs"]]
+    assert dtbs == ["qcom/monaco-arduino-monza.dtb", "qcom/monaco-el2.dtbo"]
+    assert comp(target_of(r, "ventuno-q", "open"), "linux")["dtbs"][1]["url"].split("?")[0].endswith(
+        "arch/arm64/boot/dts/qcom/monaco-el2.dtso")
+
+
+def test_open_stack_pins_link_their_commits(doc):
+    r = json.load(open(doc))
+    t = target_of(r, "rb3gen2", "open")
+    tfa = comp(t, "tf-a")
+    assert tfa["url"] == "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/" + tfa["commit"]
+    assert "pending" not in tfa and tfa["upstream"]["distance"] == len(tfa["upstream"]["carried"])
+    bl2 = comp(t, "tf-a bl2")
+    assert bl2["origin"] == "upstream" and bl2["commit"] == tfa["commit"]
+
+def test_built_records_the_configs_the_base_had(doc, tmp_path):
+    d = tmp_path / "targets" / "ventuno-q-open"
+    d.mkdir(parents=True)
+    (d / "u-boot.json").write_text(json.dumps({"configs": "qcom_defconfig tfa-optee.config",
+                                               "sha256": "a" * 64}))
+    (d / "esp.json").write_text(json.dumps({"dtb_sha256": "b" * 64}))
+    r = json.load(open(doc))
+    before = comp(target_of(r, "ventuno-q", "open"), "u-boot")["configs"]
+    assert {c["used"] for c in before} == {None}
+    urun.main(["built", doc, str(tmp_path / "targets")])
+    r = json.load(open(doc))
+    assert schema.errors(r) == []
+    t = target_of(r, "ventuno-q", "open")
+    assert comp(t, "u-boot")["configs"] == [
+        {"name": "qcom_defconfig", "used": True, "optional": False},
+        {"name": "tfa-optee.config", "used": True, "optional": False},
+        {"name": "arduino-ventuno-q.config", "used": False, "optional": True}]
+    assert comp(t, "u-boot")["sha256"] == "a" * 64 and comp(t, "linux")["dtb_sha256"] == "b" * 64
+    # A target without a build keeps the configs it declares, not built.
+    assert {c["used"] for c in comp(target_of(r, "rb3gen2", "open"), "u-boot")["configs"]} == {None}
+
+
+def test_linux_recorded_later_reaches_every_target(tmp_path):
+    p = str(tmp_path / "run.json")
+    urun.main(["new", p, "--id", "ubci-2", "--commit", "ed869863c7e2", "--fingerprint", "ubci-2",
+               "--targets", "rb3gen2:stock"])
+    assert not [c for c in json.load(open(p))["targets"][0]["components"] if c["name"] == "linux"]
+    lj = tmp_path / "linux.json"
+    lj.write_text(json.dumps(LINUX))
+    urun.main(["linux", p, str(lj)])
+    r = json.load(open(p))
+    assert comp(r["targets"][0], "linux")["commit"] == LINUX["commit"]
+    assert r["linux"]["tag_url"].endswith("/tag/?h=next-20261023")

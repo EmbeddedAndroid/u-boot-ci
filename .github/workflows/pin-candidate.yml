@@ -64,7 +64,7 @@ jobs:
           git clone -q --filter=blob:none "$UBOOT_REPO" work/u-boot
           git -C work/u-boot checkout -q "${{ steps.refs.outputs.commit }}"
           $CI_RUN scripts/build-target.sh work/u-boot "$b" stock-candidate "$FINGERPRINT" work/out/linux work/out/initramfs work/out/candidate
-          release() { sed -n 's/^  release: //p' "$1"; }
+          release() { sed -n 's/^  release: //p' "$1" | head -1; }
           new=$(release "config/boards/$b.yaml")
           git show "origin/$BASE:config/boards/$b.yaml" > "config/boards/$b.yaml"
           old=$(release "config/boards/$b.yaml")
@@ -76,6 +76,7 @@ jobs:
             --stock-release "stock=$old" --stock-release "stock-candidate=$new" \
             --title "stock pin candidate: $old -> $new" \
             --ci-url "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          $CI_RUN python3 -m ubci.run built "work/$FINGERPRINT.json" work/out/candidate
       - uses: actions/upload-artifact@v4
         with:
           name: candidate

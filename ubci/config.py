@@ -118,6 +118,19 @@ def missing(name, stack, src):
     return pending(b, stack)
 
 
+def fragments(entries, used):
+    """The configs a build used and the optional ones ("x?") the base did
+    not have: [{"name", "used"}] in the board's order, so a report shows
+    a board fragment missing from the base instead of reading as a
+    tested series."""
+    out = []
+    for e in entries:
+        names = e.rstrip("?").split("|")
+        hit = next((n for n in names if n in used), None)
+        out.append({"name": hit or names[0], "used": bool(hit), "optional": e.endswith("?")})
+    return out
+
+
 if __name__ == "__main__":
     if len(sys.argv) == 4 and sys.argv[1] == "get":
         v = get(board(sys.argv[2]), sys.argv[3])

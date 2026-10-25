@@ -4,7 +4,7 @@ run documents on demand."""
 import json
 import os
 
-from . import schema
+from . import links, schema
 
 HISTORY = 30
 RESULT_CHAR = {"pass": "p", "fail": "f", "skip": "s", "unknown": "u"}
@@ -31,6 +31,14 @@ def distance(t):
     return {c["name"]: c["upstream"]["distance"] for c in d}
 
 
+def fragments_missing(t):
+    """Optional configs (board fragments) the base did not have, from the
+    component under test: such a cell tests the base without the board's
+    series, which the dashboard says so it never reads as testing it."""
+    return [c["name"] for comp in t.get("components", []) if comp["role"] == "under-test"
+            for c in comp.get("configs", []) if c["optional"] and c["used"] is False]
+
+
 def cell(run, t):
     boot = t.get("linux_boot", {})
     return {
@@ -47,6 +55,8 @@ def cell(run, t):
         "counts": counts(t),
         "new_fail": len(t.get("diff", {}).get("new_fail", [])),
         "distance": distance(t),
+        "fragments_missing": fragments_missing(t),
+        "boot_chain": t.get("boot_chain", []),
         "job_url": (t.get("lava") or {}).get("url", ""),
     }
 
@@ -83,6 +93,12 @@ def diffed_cell(r, t):
     return c
 
 
+def base_of(r):
+    """The run's base with a link to the exact commit."""
+    b = r["run"]["base"]
+    return dict(b, url=links.commit_url(b["repo"], b["commit"]))
+
+
 def build(runs, default_branch="main"):
     by_branch = {}
     for r in runs:
@@ -102,7 +118,7 @@ def build(runs, default_branch="main"):
                                           if x["role"] == "stock"), "")
                     candidates[t["board"]]["cells"].append(c)
     adhoc = [{"run": r["run"]["id"], "title": r["run"].get("title", ""), "created": r["run"]["created"],
-              "ci_url": r["run"].get("ci_url"), "state": r["state"], "base": r["run"]["base"],
+              "ci_url": r["run"].get("ci_url"), "state": r["state"], "base": base_of(r),
               "baseline": r["run"].get("baseline"), "stack": r["run"].get("stack", []),
               "cells": [diffed_cell(r, t) for t in r["targets"]]}
              for r in runs if r["run"]["kind"] == "adhoc"][:HISTORY]
@@ -115,7 +131,7 @@ def build(runs, default_branch="main"):
         "adhoc": adhoc,
         "runs": [{"id": r["run"]["id"], "kind": r["run"]["kind"],
                   "title": r["run"].get("title", ""), "created": r["run"]["created"],
-                  "state": r["state"], "base": r["run"]["base"]} for r in runs[:100]],
+                  "state": r["state"], "base": base_of(r)} for r in runs[:100]],
     }
     # The default branch's view at the top level too.
     idx.update(branches.get(default) or nightly([]))

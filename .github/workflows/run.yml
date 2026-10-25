@@ -255,6 +255,8 @@ jobs:
           docker build --network host -q --target control -t "$UBCI_IMAGE" docker
           run="work/artifacts/$BASE-run/$FINGERPRINT.json"
           [ -f work/artifacts/$BASE-linux/linux/linux.json ] && $CI_RUN python3 -m ubci.run linux "$run" work/artifacts/$BASE-linux/linux/linux.json
+          # The configs each build used (a board fragment the base lacks shows).
+          [ -d work/artifacts/$BASE-packages ] && $CI_RUN python3 -m ubci.run built "$run" work/artifacts/$BASE-packages
           for c in buildman fragments checkpatch docs sandbox qemu_arm64 carry size; do
             f=work/artifacts/$BASE-host/$c.json
             if [ -f "$f" ]; then

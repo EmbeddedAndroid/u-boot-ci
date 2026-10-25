@@ -49,6 +49,16 @@ Pins (`config/pins.yaml`), per board:
 The FIP is rebuilt for every run with the U-Boot under test
 (`scripts/build-open-stack.sh`).
 
+## The boot chain
+
+`boot_chain` in each board file lists every stage per stack, each marked
+`upstream`, `downstream` or `none` (a stage the chain does not have, such
+as the hypervisor on the open stack), with the component it links to.
+Every target of a run document carries it, and the dashboard shows it per
+cell and in the detail view, so a reader sees at a glance what runs
+downstream (XBL, QTEE, Gunyah) and what upstream
+(TF-A, OP-TEE, U-Boot, Linux) on every board.
+
 ## Distance to upstream
 
 `config/carry.yaml` lists, for every pinned component, the commits it

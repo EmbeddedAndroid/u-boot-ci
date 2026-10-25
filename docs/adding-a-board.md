@@ -9,6 +9,9 @@
      images every package must carry (`required`, default xbl, xbl_config,
      tz, cdt) and the recipes the pin watcher follows (`upstream`);
      `downstream_open` when the open stack needs other boot firmware;
+   - `downstream.source`: the meta layer commit(s) the pin was read at;
+   - `boot_chain`: every boot stage per stack, `upstream`, `downstream`
+     or `none`;
    - `u-boot`: configs, device tree, image and, when it is not
      `uefi.elf`, the package file it is written as (`slot`; `bootimg` for
      an Android boot image ABL chainloads);

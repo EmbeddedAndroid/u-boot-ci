@@ -78,6 +78,16 @@ def test_bump_writes_the_pr_and_keeps_the_rest_of_the_config(tmp_path, monkeypat
     assert new.count("\n") == old.count("\n") and "# Qualcomm RB3 Gen 2" in new
     assert (out / "rb3gen2.title").read_text().startswith("config: rb3gen2: bump stock firmware")
     assert "https://github.com/qualcomm-linux/meta-qcom/commit/" + "c" * 40 in (out / "rb3gen2.body").read_text()
+    # The pin records the layer commit it was read at.
+    assert "source: {meta-qcom: %s}" % ("c" * 40) in new
+
+
+def test_a_cdt_appearing_or_vanishing_is_bumped_by_hand():
+    old = {"release": "a", "bootbinaries": [{"url": "u", "sha256": "1"}], "cdt": None}
+    new = dict(old, release="b", cdt={"url": "c", "sha256": "2"})
+    with pytest.raises(pinwatch.PinError, match="by hand"):
+        stockpin.bump("x\ndownstream:\n  release: a\n", old, new)
+
 
 
 def test_sha_mismatch_opens_no_pr(tmp_path, monkeypatch):

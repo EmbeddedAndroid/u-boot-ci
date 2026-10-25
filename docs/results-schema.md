@@ -17,16 +17,28 @@ built). The same schema serves u-boot-ci, tf-a-ci and optee-ci.
   `cancelled` when the workflow failed or was cancelled before the run
   finished (`ubci.run close`; `note` says which). `done`, `error` and
   `cancelled` are final.
-- `linux`: the linux-next tag, commit, kernel release, config and the
-  sha256 of the Image and modules every board booted.
+- `linux`: the linux-next tag, commit (with `url` and `tag_url`), kernel
+  release, config and the sha256 of the Image and modules every board
+  booted.
 - `host_checks[]`: name, result, summary, log link.
 - `targets[]`, one per board and firmware stack:
   - `state` (`queued`, `building`, `flashing`, `testing`, `done`,
     `skipped`, `error`, `cancelled`), `state_detail`, `queue_position`;
-  - `fingerprint` and `components[]`: name, role (`under-test`, `pinned`,
-    `stock`), repository, branch, commit or release, fingerprint, and for
-    pinned components `upstream`: base, `distance` and the `carried`
-    commits with their review links (distance to upstream);
+  - `fingerprint` and `components[]`, the exact software of the target:
+    name, role (`under-test`, `pinned`, `stock` for the downstream
+    firmware, `payload` for Linux), `origin` (`upstream`, `downstream`),
+    repository, branch, commit with its link (`url`), release,
+    fingerprint, sha256. The U-Boot under test has its `configs` (each
+    `used` true, false for an optional board fragment the base does not
+    have, or null before the build), `device_tree`; the downstream
+    firmware its `files` (download link, sha256) and `layers` (meta layer
+    commit, links); pinned components `soc_branch`, `pending` while their
+    commit is not public, and `upstream`: base, `distance` and the
+    `carried` commits with their review links (distance to upstream);
+    Linux the linux-next tag and commit, `config` and `dtbs` with links
+    at that commit, `dtb_sha256` of the DTB the UKI carries;
+  - `boot_chain[]`: every boot stage with its `origin` (`upstream`,
+    `downstream`, `none`), the component it links to and a detail;
   - `lava`: job id, link, device, health; `recovery` when a recovery job
     had to restore the board;
   - `fingerprint_gate`: `pass` only when the console showed every

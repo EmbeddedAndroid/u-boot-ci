@@ -3,6 +3,7 @@
 python3 -m ubci.run new <run.json> --id ID --kind nightly --commit SHA
         --fingerprint FP [--linux linux.json] [--ci-url URL] [--note TEXT]
 python3 -m ubci.run linux <run.json> <linux.json>
+python3 -m ubci.run built <run.json> <targets dir>
 python3 -m ubci.run host <run.json> <check> <pass|fail|skip|running> [--summary S] [--log URL]
 python3 -m ubci.run render <run.json> <board> <stack> <package url> <token name>
         <package path> --restore-url U --restore-token T [--restore-header H]
@@ -27,7 +28,7 @@ import yaml
 from fwci import baseline as fbaseline
 from fwci import collect as fcollect
 from fwci import flakes as fflakes
-from fwci import lava_jobs, schema, site
+from fwci import lava_jobs, links, schema, site
 from fwci.lava_mcp import Lava, Rejected
 
 from . import config, jobs
@@ -65,29 +66,89 @@ def save(path, run):
     os.replace(tmp, path)
 
 
+LINUX_NEXT = "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git"
+
+
+def downstream_component(b, stack):
+    """The downstream firmware a stack is built on, exactly: its release,
+    every archive with its download link and sha256, and the meta layer
+    commits the pin was read at, with links."""
+    d = config.downstream(b, stack)
+    files = [{"name": os.path.basename(f["url"]), "url": f["url"], "sha256": f["sha256"]}
+             for f in d["bootbinaries"] + ([d["cdt"]] if d.get("cdt") else [])]
+    up = d.get("upstream") or {}
+    layers = []
+    for name, commit in sorted((d.get("source") or {}).items()):
+        repo = up.get("layers", {}).get(name, {}).get("repo")
+        recipe = (up.get("bootbinaries") or {}).get("recipe") if (up.get("bootbinaries") or {}).get(
+            "layer") == name else None
+        layers.append({"name": name, "repo": repo, "commit": commit, "url": links.commit_url(repo, commit),
+                       "recipes": links.file_url(repo, commit, os.path.dirname(recipe)) if recipe else None})
+    return {"name": "downstream firmware", "role": "stock", "origin": "downstream",
+            "release": d["release"], "files": files, "layers": layers, "upstream": None}
+
+
+def uboot_configs(b, stack):
+    """The configs the board builds with, before a build says which the
+    base had (ubci.run built)."""
+    return [dict(c, used=None) for c in config.fragments(b["u-boot"][stack]["configs"], [])]
+
+
 def components(board, stack, commit, fp, branch=None):
     stack = jobs.base_stack(stack)
     p = config.project()["under_test"]
-    out = [{"name": "u-boot", "role": "under-test", "repo": p["repo"], "branch": branch or p["branch"],
-            "commit": commit, "fingerprint": fp}]
     b = config.board(board)
+    u = b["u-boot"][stack]
+    out = [{"name": "u-boot", "role": "under-test", "origin": "upstream", "repo": p["repo"],
+            "branch": branch or p["branch"], "commit": commit, "url": links.commit_url(p["repo"], commit),
+            "fingerprint": fp, "configs": uboot_configs(b, stack), "device_tree": u["device_tree"]}]
+    out.append(downstream_component(b, stack))
     if stack == "stock":
-        out.append({"name": "boot firmware", "role": "stock", "release": config.downstream(b, stack)["release"],
-                    "upstream": None})
         return out
-    carry = yaml.safe_load(open(os.path.join(config.CONFIG, "carry.yaml")))[board]
+    carry = yaml.safe_load(open(os.path.join(config.CONFIG, "carry.yaml"))).get(board, {})
     for name in ("tf-a", "optee"):
         pin = b["pins"][name]
-        c = carry[name]
-        out.append({"name": name, "role": "pinned", "repo": pin["repo"], "branch": pin["branch"],
-                    "commit": pin["commit"], "fingerprint": fp,
-                    "upstream": {"repo": c["repo"], "base": c["base"], "distance": c["distance"],
-                                 "carried": c["carried"]}})
+        c = carry.get(name)
+        comp = {"name": name, "role": "pinned", "origin": "upstream", "repo": pin["repo"],
+                "branch": pin["branch"], "commit": pin["commit"],
+                "url": links.commit_url(pin["repo"], pin["commit"]), "fingerprint": fp,
+                "upstream": {"repo": c["repo"], "base": c["base"], "distance": c["distance"],
+                             "carried": c["carried"]} if c else None}
+        if pin.get("soc_branch"):
+            comp["soc_branch"] = dict(pin["soc_branch"], url=links.commit_url(pin["repo"], pin["soc_branch"]["commit"]))
+        if pin.get("pending"):
+            comp["pending"] = pin["pending"]
+        out.append(comp)
     bl2 = b["pins"]["bl2"]
-    # BL2 is built from the tf-a pin: its carried patches are counted there.
-    out.append({"name": "tf-a bl2", "role": "pinned", "commit": b["pins"]["tf-a"]["commit"],
-                "fingerprint": bl2["fingerprint"], "sha256": bl2["sha256"], "upstream": None})
+    tz = {"name": bl2.get("name", "tf-a bl2"), "role": "pinned", "origin": bl2.get("origin", "upstream"),
+          "fingerprint": bl2["fingerprint"], "sha256": bl2["sha256"], "upstream": None}
+    if tz["origin"] == "upstream":
+        # BL2 is built from the tf-a pin: its carried patches are counted there.
+        tf = b["pins"]["tf-a"]
+        tz.update(repo=tf["repo"], commit=tf["commit"], url=links.commit_url(tf["repo"], tf["commit"]))
+    out.append(tz)
     return out
+
+
+def linux_component(b, stack, linux):
+    """The Linux payload of a target: the linux-next tag and commit, the
+    config and the DTB with its overlays, each linked at that commit."""
+    stack = jobs.base_stack(stack)
+    dts = lambda f: "arch/arm64/boot/dts/" + f.rsplit(".", 1)[0] + (".dtso" if f.endswith(".dtbo") else ".dts")
+    dtbs = [b["linux"]["dtb"]] + list(b["linux"]["overlays"].get(stack, []))
+    return {"name": "linux", "role": "payload", "origin": "upstream", "repo": LINUX_NEXT,
+            "branch": linux["tag"], "commit": linux["commit"], "url": links.commit_url(LINUX_NEXT, linux["commit"]),
+            "release": linux["release"], "sha256": linux["image_sha256"],
+            "config": {"name": linux.get("config", "arch/arm64/configs/defconfig"),
+                       "url": links.file_url(LINUX_NEXT, linux["commit"],
+                                             linux.get("config", "arch/arm64/configs/defconfig"))},
+            "dtbs": [{"name": f, "url": links.file_url(LINUX_NEXT, linux["commit"], dts(f))} for f in dtbs]}
+
+
+def set_target_linux(t, linux):
+    t["components"] = [c for c in t.get("components", []) if c["name"] != "linux"]
+    if linux:
+        t["components"].append(linux_component(config.board(t["board"]), t["stack"], linux))
 
 
 def new(args):
@@ -106,9 +167,11 @@ def new(args):
             "components": components(board, stack, args.commit,
                                      jobs.target_fingerprint(args.fingerprint, board, stack), branch),
             "fingerprint_gate": "not-run", "restore": "not-run",
+            "boot_chain": b["boot_chain"][jobs.base_stack(stack)],
             "linux_boot": {"verdict": "not-run", "stage": "not-reached",
                            "gaps": b["linux"]["gaps"].get(jobs.base_stack(stack), [])},
             "cases": []})
+        set_target_linux(targets[-1], linux)
     for spec in args.stock_release or []:
         stack, release = spec.split("=", 1)
         for t in targets:
@@ -144,7 +207,39 @@ def new(args):
 
 def linux_of(path):
     lj = load(path)
-    return {k: lj[k] for k in ("tag", "commit", "release", "config", "image_sha256", "modules_sha256")}
+    out = {k: lj[k] for k in ("tag", "commit", "release", "config", "image_sha256", "modules_sha256")}
+    out["url"] = links.commit_url(LINUX_NEXT, out["commit"])
+    out["tag_url"] = links.tag_url(LINUX_NEXT, out["tag"])
+    return out
+
+
+def built(args):
+    """Record what each target's build used, from the files the ci job
+    leaves next to its packages (<board>-<stack>/u-boot.json, esp.json):
+    the U-Boot configs the base had (a missing optional board fragment
+    shows as not used), the U-Boot image sha256 and the sha256 of the DTB
+    the UKI carries."""
+    run = load(args.run)
+    for t in run["targets"]:
+        d = os.path.join(args.targets, "%s-%s" % (t["board"], t["stack"]))
+        try:
+            ub = json.load(open(os.path.join(d, "u-boot.json")))
+        except (OSError, ValueError):
+            continue
+        b = config.board(t["board"])
+        st = jobs.base_stack(t["stack"])
+        for c in t.get("components", []):
+            if c["name"] == "u-boot":
+                c["configs"] = config.fragments(b["u-boot"][st]["configs"], ub["configs"].split())
+                c["sha256"] = ub["sha256"]
+        try:
+            esp = json.load(open(os.path.join(d, "esp.json")))
+            for c in t["components"]:
+                if c["name"] == "linux":
+                    c["dtb_sha256"] = esp["dtb_sha256"]
+        except (OSError, ValueError):
+            pass
+    save(args.run, run)
 
 
 def set_linux(args):
@@ -152,6 +247,8 @@ def set_linux(args):
     the run document exists)."""
     run = load(args.run)
     run["linux"] = linux_of(args.linux)
+    for t in run["targets"]:
+        set_target_linux(t, run["linux"])
     save(args.run, run)
 
 
@@ -488,6 +585,9 @@ def main(argv=None):
     a = sub.add_parser("linux")
     a.add_argument("run")
     a.add_argument("linux")
+    a = sub.add_parser("built")
+    a.add_argument("run")
+    a.add_argument("targets", help="the ci job's targets directory")
     a = sub.add_parser("host")
     a.add_argument("run")
     a.add_argument("check")
@@ -525,7 +625,7 @@ def main(argv=None):
         site.write(args.site_dir)
     else:
         {"new": new, "host": host, "render": render, "submit": submit, "skip": skip, "summary": summary, "finished": finished, "linux": set_linux,
-         "collect": collect, "close": close}[args.cmd](args)
+         "collect": collect, "close": close, "built": built}[args.cmd](args)
 
 
 if __name__ == "__main__":

@@ -17,7 +17,8 @@ For each board it:
 1. clones the meta layers named in `downstream.upstream.layers` (meta-qcom for
    the RB3 Gen 2, meta-qcom plus meta-qcom-arduino for the VENTUNO Q);
 2. reads the recipes named there (`bootbinaries.recipe`, the newest
-   version matching the glob, and `cdt.recipe`), expanding `PV`, the
+   version matching the glob, and `cdt.recipe` where the board has one),
+   expanding `PV`, the
    artifactory variables and the includes, into the release name, the
    URLs and the sha256 of every archive (`fwci/bitbake.py`, which handles
    plain assignments, `require`/`include` and `${VAR}` only; anything else
@@ -25,7 +26,8 @@ For each board it:
 3. compares them with the pin; when they differ, downloads every new
    archive and checks its sha256 against the recipe (a mismatch is an
    error and opens no PR);
-4. commits the bumped board config to `pin/stock-<board>` and opens a pull
+4. commits the bumped board config, with the layer commits it was read
+   at in `downstream.source`, to `pin/stock-<board>` and opens a pull
    request for it, or updates the open one: there is never more than one
    per board, and a bump a reviewer closed unmerged is not opened again
    (a bump with a different pin table, release or any sha256, is). Its

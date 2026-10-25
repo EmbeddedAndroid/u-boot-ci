@@ -24,6 +24,7 @@ downstream:
     file: cdt_core_kit.bin
   xbl_config: xbl_config.elf
   partitions: {conf: platforms/qcs6490-rb3gen2/ufs/partitions.conf}
+  source: {meta-qcom: c853febcdeb149021fd043ac7a5eaae88f29f7b7}
   # Where this pin comes from; the pin watcher (python3 -m ubci.stockpin)
   # opens a PR when the layer moves on.
   upstream:
@@ -58,6 +59,21 @@ linux:
   gaps:
     open: ["no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"]
   cmdline: console=ttyMSM0,115200n8
+boot_chain:
+  stock:
+    - {stage: XBL, origin: downstream}
+    - {stage: TZ (QTEE), origin: downstream}
+    - {stage: hypervisor (Gunyah), origin: downstream}
+    - {stage: U-Boot, origin: upstream, component: u-boot, detail: in place of UEFI}
+    - {stage: Linux, origin: upstream, component: linux}
+  open:
+    - {stage: XBL, origin: downstream}
+    - {stage: TF-A BL2, origin: upstream, component: tf-a bl2}
+    - {stage: TF-A BL31, origin: upstream, component: tf-a}
+    - {stage: OP-TEE, origin: upstream, component: optee}
+    - {stage: hypervisor, origin: none}
+    - {stage: U-Boot, origin: upstream, component: u-boot, detail: BL33 in the FIP}
+    - {stage: Linux, origin: upstream, component: linux, detail: EL2}
 uboot_checks:
   - [bdinfo, bdinfo, "boot_params"]
   - [dm-tree, dm tree, "root_driver"]

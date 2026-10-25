@@ -23,6 +23,7 @@ downstream:
     file: cdt_qcs8275-Monza.bin
   xbl_config: xbl_config.elf
   partitions: {board: platforms/boards/qcs8275-monza.yaml, storage: emmc}
+  source: {meta-qcom: c853febcdeb149021fd043ac7a5eaae88f29f7b7, meta-qcom-arduino: 66170f27dea1c40781b871b6482ef886a7663232}
   # Where this pin comes from; the pin watcher (python3 -m ubci.stockpin)
   # opens a PR when a layer moves on.
   upstream:
@@ -65,6 +66,21 @@ linux:
         does not probe and U-Boot finds nothing to boot
     open: *not-upstream
   cmdline: console=ttyMSM0,115200n8
+boot_chain:
+  stock:
+    - {stage: XBL, origin: downstream}
+    - {stage: TZ (QTEE), origin: downstream}
+    - {stage: hypervisor (Gunyah), origin: downstream}
+    - {stage: U-Boot, origin: upstream, component: u-boot, detail: in place of UEFI}
+    - {stage: Linux, origin: upstream, component: linux}
+  open:
+    - {stage: XBL, origin: downstream}
+    - {stage: TF-A BL2, origin: upstream, component: tf-a bl2}
+    - {stage: TF-A BL31, origin: upstream, component: tf-a}
+    - {stage: OP-TEE, origin: upstream, component: optee}
+    - {stage: hypervisor, origin: none}
+    - {stage: U-Boot, origin: upstream, component: u-boot, detail: BL33 in the FIP}
+    - {stage: Linux, origin: upstream, component: linux, detail: EL2}
 uboot_checks:
   - [bdinfo, bdinfo, "boot_params"]
   - [dm-tree, dm tree, "root_driver"]

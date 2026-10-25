@@ -99,3 +99,20 @@ def test_a_closed_run_shows_its_state(tmp_path):
     idx = site.write(str(tmp_path))
     assert idx["runs"][0]["state"] == "cancelled"
     assert idx["adhoc"][0]["state"] == "cancelled" and idx["adhoc"][0]["cells"][0]["state"] == "cancelled"
+
+
+def test_cell_flags_a_board_fragment_the_base_does_not_have(tmp_path):
+    t = target(stack="open")
+    t["components"][0]["configs"] = [{"name": "qcom_defconfig", "optional": False, "used": True},
+                                      {"name": "arduino-ventuno-q.config", "optional": True, "used": False}]
+    t["boot_chain"] = [{"stage": "XBL", "origin": "downstream"}, {"stage": "U-Boot", "origin": "upstream"}]
+    other = target()
+    other["components"][0]["configs"] = [{"name": "x.config", "optional": True, "used": None}]
+    write(tmp_path, run("n1", targets=[t, other]))
+    idx = site.write(str(tmp_path))
+    assert idx["matrix"][0]["fragments_missing"] == ["arduino-ventuno-q.config"]
+    assert idx["matrix"][0]["boot_chain"][0]["origin"] == "downstream"
+    # Not built yet is not "missing".
+    assert idx["matrix"][1]["fragments_missing"] == []
+    assert idx["runs"][0]["base"]["url"] == \
+        "https://git.u-boot-project.org/u-boot/u-boot/-/commit/f97bb5c1ad78e95856917b92c7270c82d4b11e21"

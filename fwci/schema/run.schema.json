@@ -204,6 +204,18 @@
         },
         "modules_sha256": {
           "$ref": "#/$defs/sha256"
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tag_url": {
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     },
@@ -308,7 +320,8 @@
           "enum": [
             "under-test",
             "pinned",
-            "stock"
+            "stock",
+            "payload"
           ]
         },
         "repo": {
@@ -378,6 +391,182 @@
               }
             }
           }
+        },
+        "origin": {
+          "enum": [
+            "upstream",
+            "downstream"
+          ],
+          "description": "where the component comes from, for the boot chain view"
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "link to the exact commit"
+        },
+        "pending": {
+          "type": "string",
+          "description": "why the pinned commit cannot be fetched yet"
+        },
+        "soc_branch": {
+          "type": "object",
+          "required": [
+            "name",
+            "commit"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "commit": {
+              "type": "string"
+            },
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "files": {
+          "type": "array",
+          "description": "downstream archives: download link and sha256",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "sha256"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "url": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "sha256": {
+                "$ref": "#/$defs/sha256"
+              }
+            }
+          }
+        },
+        "layers": {
+          "type": "array",
+          "description": "meta layer commits a downstream pin was read at",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "commit"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "repo": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "commit": {
+                "type": "string"
+              },
+              "url": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "recipes": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "configs": {
+          "type": "array",
+          "description": "U-Boot configs in build order; used false on an optional one is a board fragment the base does not have",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "optional",
+              "used"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "optional": {
+                "type": "boolean"
+              },
+              "used": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "device_tree": {
+          "type": "string"
+        },
+        "config": {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "dtbs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "url": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "dtb_sha256": {
+          "$ref": "#/$defs/sha256"
         }
       }
     },
@@ -623,6 +812,36 @@
                 "string",
                 "null"
               ]
+            }
+          }
+        },
+        "boot_chain": {
+          "type": "array",
+          "description": "every boot stage, upstream or downstream",
+          "items": {
+            "type": "object",
+            "required": [
+              "stage",
+              "origin"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "stage": {
+                "type": "string"
+              },
+              "origin": {
+                "enum": [
+                  "upstream",
+                  "downstream",
+                  "none"
+                ]
+              },
+              "component": {
+                "type": "string"
+              },
+              "detail": {
+                "type": "string"
+              }
             }
           }
         }
