@@ -28,10 +28,37 @@ def result(suite, name, res, line=None):
 
 
 def test_log_entries_keep_lava_line_indexes():
-    e = collect.log_entries(LOG + "\nnot yaml\n- {broken")
+    e = collect.log_entries(LOG + "\nnot an entry")
     assert e[0] == (0, "info", "start: 0 validate")
     assert e[7][0] == 7 and e[7][1] == "results" and json.loads(e[7][2]) == {"case": "x"}
     assert len(e) == 11
+
+
+# Entries as LAVA 511932 logged them: YAML escapes for console bytes and a
+# YAML tag, none of them valid JSON.
+YAML_ONLY = [
+    r'- {"dt": "t", "lvl": "results", "msg": {"case": "http-download", "extra": {"size": ! "44297776"}}}',
+    r'- {"dt": "t", "lvl": "target", "msg": "\0\0S - \b\b\b\bFormat: Log Type"}',
+    r'- {"dt": "t", "lvl": "target", "msg": "\uFFFD\v\uFFFD\x01"}',
+]
+
+
+def test_log_entries_parse_yaml_only_entries_in_place():
+    text = "\n".join([YAML_ONLY[0], YAML_ONLY[1], YAML_ONLY[2], LOG])
+    e = collect.log_entries(text)
+    assert len(e) == 3 + 11
+    assert e[0][1] == "results" and json.loads(e[0][2])["case"] == "http-download"
+    assert e[1] == (1, "target", "\0\0S - \b\b\b\bFormat: Log Type")
+    assert e[2] == (2, "target", "\ufffd\v\ufffd\x01")
+    assert e[3] == (3, "info", "start: 0 validate")
+    assert e[13] == (13, "target", "Booting: scsi 0")
+
+
+def test_log_entries_keep_the_index_of_an_unparsable_entry():
+    e = collect.log_entries("- {broken\n" + LOG)
+    assert e[0] == (0, "", "")
+    assert e[1] == (1, "info", "start: 0 validate")
+    assert len(e) == 12
 
 
 def test_window_is_first_boot_only():

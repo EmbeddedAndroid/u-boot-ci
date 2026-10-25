@@ -3,6 +3,8 @@ schema. Pure functions over data already fetched, so they test offline."""
 import json
 import re
 
+import yaml
+
 from . import boot_verdict
 
 STATE = {"Submitted": "queued", "Scheduling": "queued", "Scheduled": "flashing",
@@ -10,18 +12,30 @@ STATE = {"Submitted": "queued", "Scheduling": "queued", "Scheduled": "flashing",
 
 
 def log_entries(text):
-    """get_job_logs output ('- {json}' lines) as (index, level, message)."""
+    """get_job_logs output ('- {...}' lines) as (index, level, message).
+    The index is the entry's position in the LAVA log, which is what a
+    #L link counts, so an entry that does not parse still takes its place."""
     out = []
     for line in text.splitlines():
         if not line.startswith("- {"):
             continue
-        try:
-            d = json.loads(line[2:])
-        except ValueError:
-            continue
-        msg = d.get("msg")
+        d = _entry(line[2:])
+        msg = d.get("msg", "")
         out.append((len(out), d.get("lvl", ""), msg if isinstance(msg, str) else json.dumps(msg)))
     return out
+
+
+def _entry(text):
+    # Most entries are JSON; LAVA writes the rest with YAML escapes
+    # (console bytes such as \0 or \x01) or tags that JSON rejects.
+    try:
+        return json.loads(text)
+    except ValueError:
+        pass
+    try:
+        return yaml.safe_load(text)
+    except yaml.YAMLError:
+        return {}
 
 
 def console(entries):
