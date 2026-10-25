@@ -50,7 +50,8 @@ not get there, `not-run` when the job never reached the Linux handoff.
 | stage | meaning |
 |---|---|
 | `login` | login prompt reached |
-| `no-efi-stub` | the bootloader ran its boot command, no kernel output followed |
+| `nothing-booted` | the bootloader ran its boot command and came back to its prompt: nothing it could boot (no boot device, no bootable image) |
+| `no-efi-stub` | the bootloader ran its boot command, no kernel output followed and it never came back |
 | `hang-before-console` | the EFI stub printed, the kernel console never came up |
 | `early-panic` | a kernel panic, oops or `Internal error` before login |
 | `no-login` | the kernel ran, no login prompt |

@@ -4,9 +4,12 @@ pristine linux-next payload, and if not, where did it stop?
 Stages, in boot order:
   not-reached          the console never got to the Linux handoff (the
                        firmware under test or the flash failed first)
+  nothing-booted       the bootloader ran its boot command and came back
+                       to its prompt: it found nothing it could boot (no
+                       boot device, no bootable image)
   no-efi-stub          the bootloader ran its boot command but no kernel
-                       output followed (nothing booted, or the EFI stub
-                       died silently)
+                       output followed and it never came back (the EFI
+                       stub or the kernel died silently)
   hang-before-console  the EFI stub ran but the kernel console never came up
   early-panic          the kernel panicked or oopsed before a login prompt
   no-login             the kernel ran but no login prompt came
@@ -23,6 +26,8 @@ MARKERS = {
     "kernel": r"Booting Linux on physical CPU|Linux version \d",
     "panic": r"Kernel panic - not syncing|Internal error: |Unable to handle kernel|Oops",
     "login": r"login:",
+    # The bootloader's prompt: after the handoff, its boot command returned.
+    "prompt": r"^=> ",
 }
 LAST_LINES = 15
 
@@ -49,7 +54,9 @@ def classify(lines, job_url=None, markers=MARKERS):
     elif seen["efi_stub"] is not None:
         stage, at = "hang-before-console", None
     elif seen["handoff"] is not None:
-        stage, at = "no-efi-stub", None
+        back = first([l for l in lines if l[0] > seen["handoff"]], markers["prompt"]) \
+            if markers.get("prompt") else None
+        stage, at = ("nothing-booted", back) if back is not None else ("no-efi-stub", None)
     else:
         stage, at = "not-reached", None
     tail = lines[-LAST_LINES:]
