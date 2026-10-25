@@ -86,7 +86,8 @@ def test_target_done():
            result("5_stock-restore", "uefi_ver", "pass"), result("4_smoke", "usb", "fail")]
     t = collect.target({"board": "b", "stack": "stock"}, finished(), res,
                        collect.log_entries(LOG), URL, ["firmware-fingerprint"], "resetting")
-    assert t["state"] == "done" and t["fingerprint_gate"] == "pass" and t["restore"] == "pass"
+    # A legacy stock-restore case is only a case: no restore verdict.
+    assert t["state"] == "done" and t["fingerprint_gate"] == "pass" and "restore" not in t
     assert t["linux_boot"]["verdict"] == "pass" and t["lava"]["device"] == "rb3g2-01"
     assert "state_detail" not in t
 
@@ -95,7 +96,7 @@ def test_target_gate_failure_and_incomplete_job():
     res = [result("0_firmware-fingerprint", "u_boot_20", "fail")]
     t = collect.target({"board": "b", "stack": "stock"}, finished("Incomplete"), res, [], URL,
                        ["firmware-fingerprint"], "resetting")
-    assert t["fingerprint_gate"] == "fail" and t["restore"] == "not-run"
+    assert t["fingerprint_gate"] == "fail" and "restore" not in t
     assert t["linux_boot"] == {"verdict": "not-run", "stage": "not-reached"} or \
         t["linux_boot"]["stage"] == "not-reached"
     assert t["state_detail"] == "LAVA job incomplete"

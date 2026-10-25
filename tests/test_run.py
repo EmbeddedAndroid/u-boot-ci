@@ -143,7 +143,7 @@ def test_collect_once_fills_targets(doc):
     urun.save(doc, r)
     r = json.load(open(doc))
     t = r["targets"][1]
-    assert t["state"] == "done" and t["fingerprint_gate"] == "pass"
+    assert t["state"] == "done" and t["fingerprint_gate"] == "pass" and "restore" not in t
     assert t["linux_boot"]["stage"] == "early-panic" and t["linux_boot"]["versus_baseline"] == "unknown"
     assert t["linux_boot"]["url"].endswith("#L6") and t["linux_boot"]["gaps"]
     assert r["state"] == "done"
@@ -166,7 +166,7 @@ def test_job_that_stopped_early_gets_no_recovery_job(doc, monkeypatch, health):
         urun.collect_once(r, lava, None)
     assert not lava.submitted
     assert t["state"] == "done" and t["state_detail"] == "LAVA job " + health.lower()
-    assert "recovery" not in t
+    assert "restore" not in t and "recovery" not in t
     for o in r["targets"][1:]:
         o["state"] = "skipped"
         o["state_detail"] = "not in this test"

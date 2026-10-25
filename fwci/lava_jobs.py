@@ -2,9 +2,8 @@
 
 A job is a firmware stack (pinned components plus one component under
 test) flashed with qdl, a fingerprint gate on the console, interactive
-checks at a bootloader prompt and a Linux shell, and a restore of the
-lab's own image at the end. Each function returns plain dicts; job()
-assembles them and to_yaml() renders the definition.
+checks at a bootloader prompt and a Linux shell. Each function returns
+plain dicts; job() assembles them and to_yaml() renders the definition.
 """
 import re
 

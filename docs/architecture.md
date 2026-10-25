@@ -144,7 +144,7 @@ One run document per run, schema `fwci-run/1`
 ([results-schema.md](results-schema.md)). The collector
 (`fwci.collect`) turns each LAVA job (record, results, log) into a target:
 state, cases with links to their log lines, the fingerprint gate, the boot
-verdict (`fwci.boot_verdict`) and the restore. `fwci.baseline` compares the
+verdict (`fwci.boot_verdict`). `fwci.baseline` compares the
 run with its baseline per board and stack (new failures, new passes, still
 failing, the boot verdict against the baseline's) and `fwci.flakes` marks
 known flakes. `fwci.site` builds `index.json` from the run documents, and
@@ -159,7 +159,7 @@ branch.
   the results schema (`schema.py`, `schema/run.schema.json`), LAVA job
   building blocks for "pinned components + one component under test"
   (`lava_jobs.py`: qdl flash, fingerprint gate over any banner prefixes,
-  interactive bootloader and shell checks, login, a restore), the
+  interactive bootloader and shell checks, login), the
   collector, the boot verdict, the baseline diff, the flake list, the
   distance to upstream (`carry.py`), the LAVA MCP client and the
   dashboard data (`site.py`). The dashboard page (`dashboard/`) only reads

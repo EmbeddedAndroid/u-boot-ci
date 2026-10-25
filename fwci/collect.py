@@ -164,12 +164,11 @@ def suite_verdict(case_list, suite):
 
 
 def target(base, job, results, entries, job_url, gate_suites, boot_start,
-           boot_end=r"reboot: Restarting system|reboot: Power down",
-           restore_suite="stock-restore"):
+           boot_end=r"reboot: Restarting system|reboot: Power down"):
     """base: the target as the submitter wrote it (board, stack,
     fingerprint, components, lava). job: the LAVA job record. Returns the
-    target updated with state, cases, the fingerprint gate, the boot
-    verdict and the restore."""
+    target updated with state, cases, the fingerprint gate and the boot
+    verdict."""
     t = dict(base)
     t["state"] = STATE.get(job.get("state"), "queued")
     t["lava"] = dict(base.get("lava") or {}, job_id=job["id"], url=job_url,
@@ -186,7 +185,6 @@ def target(base, job, results, entries, job_url, gate_suites, boot_start,
     if t["state"] != "done" and boot["verdict"] != "pass":
         boot = {"verdict": "not-run", "stage": "not-reached"}
     t["linux_boot"] = boot
-    t["restore"] = suite_verdict(cl, restore_suite)
     if t["state"] == "done" and job.get("health") != "Complete":
         t["state_detail"] = "LAVA job %s" % (job.get("health") or "unknown").lower()
     return t
