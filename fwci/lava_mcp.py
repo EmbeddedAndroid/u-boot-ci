@@ -3,8 +3,38 @@ The token comes from LAVA_TOKEN and is only ever sent as a header; job
 records can carry per-job tokens, so callers keep to the fields they need."""
 import json
 import os
+import re
 import subprocess
 import urllib.request
+
+# How the LAVA MCP server reports a failed REST call in a tool error.
+HTTP_ERROR = re.compile(r"-> HTTP (\d{3}): (.*)\Z", re.S)
+
+
+class Rejected(RuntimeError):
+    """LAVA answered the call with a client error (4xx other than a timeout
+    or rate limit): the request was refused and changed nothing, so a
+    refused submit_job created no job. message is LAVA's own text."""
+
+    def __init__(self, tool, status, message):
+        super().__init__("%s: HTTP %d: %s" % (tool, status, message))
+        self.status = status
+        self.message = message
+
+
+def _rejection(tool, text):
+    m = HTTP_ERROR.search(text)
+    if not m:
+        return None
+    status = int(m.group(1))
+    if not 400 <= status < 500 or status in (408, 429):
+        return None
+    body = m.group(2).strip()
+    try:
+        body = json.loads(body).get("message") or body
+    except (ValueError, AttributeError):
+        pass
+    return Rejected(tool, status, str(body)[:1000])
 
 
 class Lava:
@@ -39,7 +69,7 @@ class Lava:
             raise RuntimeError("%s: %s" % (tool, json.dumps(r["error"])[:300]))
         text = "".join(c.get("text", "") for c in r["result"].get("content", []))
         if r["result"].get("isError"):
-            raise RuntimeError("%s: %s" % (tool, text[:300]))
+            raise _rejection(tool, text) or RuntimeError("%s: %s" % (tool, text[:1000]))
         try:
             return json.loads(text)
         except ValueError:
