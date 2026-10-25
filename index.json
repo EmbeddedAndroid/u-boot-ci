@@ -653,9 +653,9 @@
       "distance": {},
       "fingerprint": "ubci-40168371981-1-main-stock-ventuno-q",
       "gate": "not-run",
-      "job_url": "",
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/512815",
       "new_fail": 0,
-      "queue_position": null,
+      "queue_position": 3,
       "run": "ubci-40168371981-1-main",
       "stack": "stock",
       "state": "queued",
@@ -664,9 +664,57 @@
      }
     ]
    },
-   "host_checks": [],
+   "host_checks": [
+    {
+     "name": "buildman",
+     "result": "pass",
+     "summary": "every snapdragon board built without warnings"
+    },
+    {
+     "name": "carry",
+     "result": "pass",
+     "summary": "carry.yaml matches the pins"
+    },
+    {
+     "name": "checkpatch",
+     "result": "pass",
+     "summary": "0 new commits: 0 with errors, 0 with warnings only"
+    },
+    {
+     "name": "docs",
+     "result": "pass",
+     "summary": "htmldocs built without warnings"
+    },
+    {
+     "name": "fragments",
+     "result": "pass",
+     "summary": "1 combinations built"
+    },
+    {
+     "name": "qemu_arm64",
+     "result": "pass",
+     "summary": "250 passed, 600 skipped, 2 deselected in 123.16s (0:02:03)"
+    },
+    {
+     "name": "sandbox",
+     "result": "pass",
+     "summary": "1418 passed, 229 skipped, 3 deselected, 1 xfailed in 824.99s (0:13:44)"
+    },
+    {
+     "name": "size",
+     "result": "pass",
+     "summary": "rb3gen2-open 1662080 B, rb3gen2-stock 1672672 B, ventuno-q-open 1647688 B, ventuno-q-stock 1651504 B"
+    }
+   ],
    "latest_nightly": "ubci-40168371981-1-main",
-   "linux": null,
+   "linux": {
+    "commit": "20a33c6b6cbe7e4805dfb6cd68816937443aa148",
+    "config": "arch/arm64/configs/defconfig",
+    "image_sha256": "bdfa4856f7c6cde00967c209a94b6835fb5527ee6dd335b51cf371007b91e46d",
+    "modules_sha256": "4fee8a6200e7e339dda1702281f2bffe776b43a69e5515be19fe7052ff26c0a8",
+    "release": "7.3.0-next-20261023",
+    "tag": "next-20261023"
+   },
    "matrix": [
     {
      "board": "rb3gen2",
@@ -734,9 +782,9 @@
      "distance": {},
      "fingerprint": "ubci-40168371981-1-main-stock-ventuno-q",
      "gate": "not-run",
-     "job_url": "",
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/512815",
      "new_fail": 0,
-     "queue_position": null,
+     "queue_position": 3,
      "run": "ubci-40168371981-1-main",
      "stack": "stock",
      "state": "queued",
@@ -1453,9 +1501,9 @@
     "distance": {},
     "fingerprint": "ubci-40168371981-1-main-stock-ventuno-q",
     "gate": "not-run",
-    "job_url": "",
+    "job_url": "https://lava.infra.foundries.io/scheduler/job/512815",
     "new_fail": 0,
-    "queue_position": null,
+    "queue_position": 3,
     "run": "ubci-40168371981-1-main",
     "stack": "stock",
     "state": "queued",
@@ -1464,9 +1512,57 @@
    }
   ]
  },
- "host_checks": [],
+ "host_checks": [
+  {
+   "name": "buildman",
+   "result": "pass",
+   "summary": "every snapdragon board built without warnings"
+  },
+  {
+   "name": "carry",
+   "result": "pass",
+   "summary": "carry.yaml matches the pins"
+  },
+  {
+   "name": "checkpatch",
+   "result": "pass",
+   "summary": "0 new commits: 0 with errors, 0 with warnings only"
+  },
+  {
+   "name": "docs",
+   "result": "pass",
+   "summary": "htmldocs built without warnings"
+  },
+  {
+   "name": "fragments",
+   "result": "pass",
+   "summary": "1 combinations built"
+  },
+  {
+   "name": "qemu_arm64",
+   "result": "pass",
+   "summary": "250 passed, 600 skipped, 2 deselected in 123.16s (0:02:03)"
+  },
+  {
+   "name": "sandbox",
+   "result": "pass",
+   "summary": "1418 passed, 229 skipped, 3 deselected, 1 xfailed in 824.99s (0:13:44)"
+  },
+  {
+   "name": "size",
+   "result": "pass",
+   "summary": "rb3gen2-open 1662080 B, rb3gen2-stock 1672672 B, ventuno-q-open 1647688 B, ventuno-q-stock 1651504 B"
+  }
+ ],
  "latest_nightly": "ubci-40168371981-1-main",
- "linux": null,
+ "linux": {
+  "commit": "20a33c6b6cbe7e4805dfb6cd68816937443aa148",
+  "config": "arch/arm64/configs/defconfig",
+  "image_sha256": "bdfa4856f7c6cde00967c209a94b6835fb5527ee6dd335b51cf371007b91e46d",
+  "modules_sha256": "4fee8a6200e7e339dda1702281f2bffe776b43a69e5515be19fe7052ff26c0a8",
+  "release": "7.3.0-next-20261023",
+  "tag": "next-20261023"
+ },
  "matrix": [
   {
    "board": "rb3gen2",
@@ -1534,9 +1630,9 @@
    "distance": {},
    "fingerprint": "ubci-40168371981-1-main-stock-ventuno-q",
    "gate": "not-run",
-   "job_url": "",
+   "job_url": "https://lava.infra.foundries.io/scheduler/job/512815",
    "new_fail": 0,
-   "queue_position": null,
+   "queue_position": 3,
    "run": "ubci-40168371981-1-main",
    "stack": "stock",
    "state": "queued",
@@ -1670,5 +1766,5 @@
    "title": "QCS8300 v4 + VENTUNO Q v2"
   }
  ],
- "updated": "2026-10-25T07:05:36Z"
+ "updated": "2026-10-25T07:08:16Z"
 }
