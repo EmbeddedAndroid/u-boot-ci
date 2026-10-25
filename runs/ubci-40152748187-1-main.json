@@ -63,7 +63,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main 8649a54d301a",
-  "updated": "2026-10-25T03:06:57Z"
+  "updated": "2026-10-25T03:12:14Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -353,11 +353,11 @@
    },
    "queue_position": null,
    "recovery": {
-    "health": null,
+    "health": "Complete",
     "job_id": 512230,
     "url": "https://lava.infra.foundries.io/scheduler/job/512230"
    },
-   "restore": "recovery-job",
+   "restore": "pass",
    "stack": "stock",
    "state": "done",
    "state_detail": "LAVA job incomplete"
@@ -474,12 +474,18 @@
    ],
    "fingerprint": "ubci-40152748187-1-main-open-ventuno-q",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 512231,
+    "url": "https://lava.infra.foundries.io/scheduler/job/512231"
+   },
    "linux_boot": {
-    "gaps": [],
     "stage": "not-reached",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": 3,
    "restore": "not-run",
    "stack": "open",
    "state": "queued"
