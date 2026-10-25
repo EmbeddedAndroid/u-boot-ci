@@ -14,7 +14,7 @@
 #            scripts/run-all.sh). No environment, no secret, a read-only
 #            token that is not left in the checkout.
 #   submit   arm64, in the lava-hw environment (deployments from main
-#            only): holds LAVA_TOKEN, the restore URLs and the BL2 pins;
+#            only): holds LAVA_TOKEN and the BL2 pins;
 #            runs no U-Boot code: adds the BL2 to the packages, uploads
 #            them, submits, reads results back and publishes.
 #   finalize arm64, only when the run ended before submit did (a cancel
@@ -242,13 +242,6 @@ jobs:
       contents: write
     env:
       LAVA_TOKEN: ${{ secrets.LAVA_TOKEN }}
-      STOCK_RESTORE_URL_RB3GEN2: ${{ secrets.STOCK_RESTORE_URL_RB3GEN2 }}
-      STOCK_RESTORE_URL_VENTUNO_Q: ${{ secrets.STOCK_RESTORE_URL_VENTUNO_Q }}
-      STOCK_RESTORE_URL_UNO_Q: ${{ secrets.STOCK_RESTORE_URL_UNO_Q }}
-      STOCK_RESTORE_URL_QCS615_RIDE: ${{ secrets.STOCK_RESTORE_URL_QCS615_RIDE }}
-      STOCK_RESTORE_URL_LEMANS_EVK: ${{ secrets.STOCK_RESTORE_URL_LEMANS_EVK }}
-      STOCK_RESTORE_TOKEN: ${{ vars.STOCK_RESTORE_TOKEN }}
-      STOCK_RESTORE_HEADER: ${{ vars.STOCK_RESTORE_HEADER }}
       PIN_BL2_RB3GEN2: ${{ secrets.PIN_BL2_RB3GEN2 }}
       PIN_BL2_VENTUNO_Q: ${{ secrets.PIN_BL2_VENTUNO_Q }}
       PIN_BL2_UNO_Q: ${{ secrets.PIN_BL2_UNO_Q }}

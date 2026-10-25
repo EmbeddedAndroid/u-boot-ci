@@ -27,7 +27,7 @@
    Lemans SAIL NOR, is whatever the lab last wrote).
 2. For an open stack, its pins in `config/pins.yaml` (TF-A, OP-TEE, the
    signed tz image), `python3 -m ubci.carry`, and its `PIN_BL2_<BOARD>`
-   and `STOCK_RESTORE_URL_<SUFFIX>` secrets in both environments, in
+   secret in both environments, in
    `scripts/in-container.sh` and in the `submit` jobs of `run.yml` and
    `pin-candidate.yml` ([setup.md](setup.md)).
 3. Add it to `boards` in `config/project.yaml` (the `ci` job builds every

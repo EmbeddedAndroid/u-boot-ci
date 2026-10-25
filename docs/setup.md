@@ -19,19 +19,17 @@ Both environments hold the same secrets:
 | secret | content |
 |---|---|
 | `LAVA_TOKEN` | the LAVA token of the CI user `robotyler` |
-| `STOCK_RESTORE_URL_RB3GEN2` | the lab image (its downstream firmware) an RB3 Gen 2 job restores at the end |
-| `STOCK_RESTORE_URL_VENTUNO_Q`, `_UNO_Q`, `_QCS615_RIDE`, `_LEMANS_EVK` | the same for VENTUNO Q, UNO Q, QCS615 Ride and Lemans EVK |
 | `PIN_BL2_RB3GEN2` | the open-stack tz image (`tz.mbn`) of RB3 Gen 2: `gzip -9 < tz-rb3gen2.mbn \| base64 -w0` |
 | `PIN_BL2_VENTUNO_Q`, `_UNO_Q`, `_QCS615_RIDE`, `_LEMANS_EVK` | the same for the other boards (Lemans: its U-Boot SPL) |
 
-The names keep `STOCK_` from before the downstream rename: they are
-secret names in both environments, and renaming them means setting them
-again.
+Without `LAVA_TOKEN` a run does its host checks and marks hardware
+`skipped`.
 
-The restore URLs are secrets, so they never appear in a log, the run
-documents or the dashboard; the jobs read them from the environment and
-put them only in the LAVA job definition. Without `LAVA_TOKEN` a run
-does its host checks and marks hardware `skipped`.
+The jobs no longer restore the lab's image at the end (every job flashes
+its whole package, [architecture.md](architecture.md)), so the
+`STOCK_RESTORE_URL_*` secrets and the `STOCK_RESTORE_TOKEN` and
+`STOCK_RESTORE_HEADER` variables are not read by anything and can be
+deleted.
 
 The BL2 images are not redistributable and are not published anywhere:
 the build jobs leave `tz.mbn` out of the open-stack packages, and the
@@ -40,13 +38,6 @@ pinned in `config/pins.yaml`. A missing or mismatching secret skips that
 target with "BL2 pin not available". The dashboard shows the sha256 only.
 (A LAVA artifact would have served too, but the LAVA artifact store keeps
 uploads for at most 6 hours.)
-
-## Variables (repository level)
-
-| variable | value |
-|---|---|
-| `STOCK_RESTORE_TOKEN` | `Q_QLI_S3_TOKEN`: the name of the LAVA remote artifact token that authorizes the restore images (a name, not the secret) |
-| `STOCK_RESTORE_HEADER` | `QLIAuthorization`: the header it goes in |
 
 ## Actions permissions
 
@@ -78,8 +69,7 @@ uploads for at most 6 hours.)
 `robotyler` needs submit rights on `qcs6490-rb3gen2`,
 `monaco-arduino-monza`, `qrb2210-arduino-imola`, `qcs615-ride` and
 `lemans-evk`, the artifact store of the LAVA MCP endpoint (the
-packages are uploaded there for the length of a run) and the remote
-artifact token named by `STOCK_RESTORE_TOKEN`. The runs never use the
+packages are uploaded there for the length of a run). The runs never use the
 production boards: `config/project.yaml` `lava.exclude_devices` keeps
 them out of the device choice, and every job is pinned to the device it
 was chosen for.

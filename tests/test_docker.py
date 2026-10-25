@@ -1,6 +1,7 @@
 """The two images of docker/Dockerfile: the control image (prepare and
 submit, on small arm64 runners) carries the same pins as the CI image and
 what those jobs run."""
+import glob
 import os
 import re
 
@@ -84,3 +85,12 @@ def test_every_bl2_pin_secret_reaches_the_container():
     pins_yaml = yaml.safe_load(open(os.path.join(REPO, "config", "pins.yaml")))
     names = set(re.findall(r"secret: (PIN_BL2_[A-Z_0-9]+)", yaml.safe_dump(pins_yaml)))
     assert names and names <= forwarded(), names
+
+
+def test_no_job_holds_or_forwards_a_restore_secret():
+    # The jobs no longer restore the lab image: nothing reads these.
+    held = [h for h in secret_env() if h[2].startswith("STOCK_RESTORE_")]
+    assert not held, held
+    assert not {v for v in forwarded() if v.startswith("STOCK_RESTORE_")}
+    for wf in glob.glob(os.path.join(REPO, ".github", "workflows", "*.yml")):
+        assert "STOCK_RESTORE" not in open(wf).read(), wf
