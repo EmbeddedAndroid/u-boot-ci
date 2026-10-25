@@ -1,6 +1,7 @@
 {
  "host_checks": [],
  "linux": null,
+ "note": "workflow cancelled",
  "project": "u-boot",
  "run": {
   "base": {
@@ -40,10 +41,10 @@
    }
   ],
   "title": "QCS8300 v4 + VENTUNO Q v2",
-  "updated": "2026-10-24T18:45:10Z"
+  "updated": "2026-10-25T00:28:43Z"
  },
  "schema": "fwci-run/1",
- "state": "building",
+ "state": "cancelled",
  "targets": [
   {
    "board": "ventuno-q",
@@ -73,7 +74,8 @@
    },
    "restore": "not-run",
    "stack": "stock",
-   "state": "queued"
+   "state": "cancelled",
+   "state_detail": "workflow cancelled before this target finished"
   },
   {
    "board": "ventuno-q",
@@ -194,7 +196,8 @@
    },
    "restore": "not-run",
    "stack": "open",
-   "state": "queued"
+   "state": "cancelled",
+   "state_detail": "workflow cancelled before this target finished"
   }
  ]
 }
