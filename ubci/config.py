@@ -6,7 +6,10 @@ python3 -m ubci.config configs <board> <stack> <u-boot source>
     prints the U-Boot configs to build with, resolved against the tree.
 python3 -m ubci.config missing <board> <stack> <u-boot source>
     prints why the tree cannot build the board (its device tree or a
-    config is not in it), nothing when it can."""
+    config is not in it), nothing when it can.
+python3 -m ubci.config bootimg <board> <stack>
+    prints the ubci.bootimg options of a stack that boots U-Boot as an
+    Android boot image."""
 import glob
 import os
 import sys
@@ -16,6 +19,16 @@ import yaml
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG = os.path.join(ROOT, "config")
 STACKS = ("stock", "open")
+
+
+def downstream(b, stack):
+    """The downstream (vendor) firmware package a stack is built on: the
+    board's downstream section, or downstream_open for the open stack of
+    a board whose open stack needs other boot firmware (UNO Q: the
+    edk2-based release whose XBL loads TF-A BL2 and the FIP)."""
+    if stack == "open" and b.get("downstream_open"):
+        return b["downstream_open"]
+    return b["downstream"]
 
 
 def board(name):
@@ -95,6 +108,9 @@ if __name__ == "__main__":
     elif len(sys.argv) == 5 and sys.argv[1] == "configs":
         print(" ".join(resolve_configs(get(board(sys.argv[2]), "u-boot.%s.configs" % sys.argv[3]),
                                        sys.argv[4])))
+    elif len(sys.argv) == 4 and sys.argv[1] == "bootimg":
+        bi = get(board(sys.argv[2]), "u-boot.%s" % sys.argv[3]).get("bootimg", {})
+        print(" ".join("--%s %s" % (k, bi[k]) for k in ("base", "pagesize") if k in bi))
     elif len(sys.argv) == 5 and sys.argv[1] == "missing":
         print(missing(sys.argv[2], sys.argv[3], sys.argv[4]) or "")
     else:

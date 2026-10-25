@@ -1,7 +1,8 @@
 # How pins are updated
 
 Everything the hardware runs besides the U-Boot under test is pinned:
-the stock firmware per board (`config/boards/<board>.yaml`, `stock`), the
+the stock firmware per board (`config/boards/<board>.yaml`,
+`downstream`), the
 open stack per board (`config/pins.yaml`), the Linux payload by policy
 (newest linux-next tag, rebuilt when the tag moves) and the tools (in
 `docker/`). A pin only changes through a pull request that Tyler reviews
@@ -13,7 +14,7 @@ and merges.
 runner with only the workflow token (contents and pull-requests write).
 For each board it:
 
-1. clones the meta layers named in `stock.upstream.layers` (meta-qcom for
+1. clones the meta layers named in `downstream.upstream.layers` (meta-qcom for
    the RB3 Gen 2, meta-qcom plus meta-qcom-arduino for the VENTUNO Q);
 2. reads the recipes named there (`bootbinaries.recipe`, the newest
    version matching the glob, and `cdt.recipe`), expanding `PV`, the

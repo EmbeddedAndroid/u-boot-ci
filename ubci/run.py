@@ -72,7 +72,7 @@ def components(board, stack, commit, fp, branch=None):
             "commit": commit, "fingerprint": fp}]
     b = config.board(board)
     if stack == "stock":
-        out.append({"name": "boot firmware", "role": "stock", "release": b["stock"]["release"],
+        out.append({"name": "boot firmware", "role": "stock", "release": config.downstream(b, stack)["release"],
                     "upstream": None})
         return out
     carry = yaml.safe_load(open(os.path.join(config.CONFIG, "carry.yaml")))[board]

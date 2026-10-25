@@ -4,8 +4,10 @@
 # Builds the U-Boot under test for one board and firmware stack with the
 # configs and device tree of config/boards/<board>.yaml, with the run's
 # fingerprint as LOCALVERSION so the banner on the console names this
-# build. Outputs the image the stack flashes (u-boot.mbn for stock,
-# u-boot.bin for the FIP of the open stack), u-boot.elf and the .config.
+# build. Outputs the image the stack flashes (u-boot.<stack>.image:
+# u-boot.mbn for the uefi slot, boot.img when ABL chainloads U-Boot as an
+# Android boot image, u-boot.bin for the open stack's FIP), u-boot.elf,
+# the control DTB and the .config.
 # UBCI_QTESTSIGN replaces the pinned qtestsign.py (tests).
 set -euo pipefail
 [ $# -eq 5 ] || { sed -n '2p' "$0" >&2; exit 1; }
@@ -35,8 +37,15 @@ if [ "$image" = u-boot.mbn ] && ! grep -qs '^u-boot\.mbn:' "$src/board/qualcomm/
 	fi
 	python3 "$qts" -v6 aboot -o "$build/u-boot.mbn" "$build/u-boot.elf"
 fi
-grep -aq -- "-$fp" "$build/$image" || { echo "$image lacks the fingerprint $fp" >&2; exit 1; }
+if [ "$image" = boot.img ]; then
+	grep -aq -- "-$fp" "$build/u-boot-nodtb.bin" || { echo "u-boot-nodtb.bin lacks the fingerprint $fp" >&2; exit 1; }
+	(cd "$repo" && python3 -m ubci.bootimg "$build/u-boot-nodtb.bin" "$build/u-boot.dtb" "$build/boot.img" \
+		$(python3 -m ubci.config bootimg "$board" "$stack"))
+else
+	grep -aq -- "-$fp" "$build/$image" || { echo "$image lacks the fingerprint $fp" >&2; exit 1; }
+fi
 cp "$build/$image" "$out/"
+cp "$build/u-boot.dtb" "$out/u-boot.dtb"
 cp "$build/u-boot" "$out/u-boot.elf"
 cp "$build/.config" "$out/u-boot.config"
 printf '{"board": "%s", "stack": "%s", "fingerprint": "%s", "commit": "%s", "configs": "%s", "device_tree": "%s", "image": "%s", "sha256": "%s"}\n' \

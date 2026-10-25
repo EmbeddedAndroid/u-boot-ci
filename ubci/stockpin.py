@@ -95,7 +95,7 @@ def body(board, old, new, links):
 
 def check(board_name, out, verify=True):
     b = config.board(board_name)
-    up = b["stock"].get("upstream")
+    up = b["downstream"].get("upstream")
     if not up:
         return {"board": board_name, "result": "no upstream configured"}
     roots, links = {}, []
@@ -103,7 +103,7 @@ def check(board_name, out, verify=True):
         roots[name], sha = checkout(name, layer)
         links.append("%s/commit/%s" % (layer["repo"], sha))
     new = upstream(up, roots)
-    old = current(b["stock"])
+    old = current(b["downstream"])
     if not pinwatch.diff(old, {k: new[k] for k in old}):
         return {"board": board_name, "result": "up to date", "release": old["release"]}
     if verify:

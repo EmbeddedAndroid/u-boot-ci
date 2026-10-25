@@ -16,8 +16,8 @@ ROOTS = {"meta-qcom": os.path.join(DATA, "meta-qcom"),
 @pytest.mark.parametrize("board", ["rb3gen2", "ventuno-q"])
 def test_real_recipes_give_the_current_pin(board):
     b = config.board(board)
-    up = stockpin.upstream(b["stock"]["upstream"], ROOTS)
-    assert {k: up[k] for k in ("release", "bootbinaries", "cdt")} == stockpin.current(b["stock"])
+    up = stockpin.upstream(b["downstream"]["upstream"], ROOTS)
+    assert {k: up[k] for k in ("release", "bootbinaries", "cdt")} == stockpin.current(b["downstream"])
 
 
 def test_cdt_include_resolves_against_another_layer():

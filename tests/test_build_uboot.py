@@ -16,7 +16,8 @@ while [ $# -gt 0 ]; do
 	shift
 done
 if [ -z "$lv" ]; then echo "CONFIG_ARM=y" >"$o/.config"; exit 0; fi
-for f in u-boot u-boot.elf u-boot.bin; do echo "U-Boot 2026.07$lv" >"$o/$f"; done
+for f in u-boot u-boot.elf u-boot.bin u-boot-nodtb.bin; do echo "U-Boot 2026.07$lv" >"$o/$f"; done
+echo "control dtb" >"$o/u-boot.dtb"
 if grep -qs '^u-boot\.mbn:' "$src/board/qualcomm/config.mk"; then
 	{ echo "in-tree mbn"; cat "$o/u-boot.elf"; } >"$o/u-boot.mbn"
 fi
@@ -81,3 +82,4 @@ def test_the_open_stack_never_signs_u_boot(build):
     p, out, calls = build(rule=False, stack="open")
     assert p.returncode == 0, p.stderr
     assert calls == [] and (out / "u-boot.bin").exists()
+

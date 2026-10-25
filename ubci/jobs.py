@@ -11,6 +11,7 @@ not reach its restore; the collector then submits a recovery job
 """
 import datetime
 import os
+import re
 
 import yaml
 
@@ -36,6 +37,8 @@ GATE_SUITE = "firmware-fingerprint"
 # The stock UEFI of the lab image reports "UEFI Ver    : 6.0.<date>...".
 STOCK_UEFI = {"6.0": "pass"}
 LINUX_SUITE = "linux-version"
+# The suite name stays as in earlier run documents (case history).
+RESTORE_SUITE = "stock-restore"
 
 
 def target_fingerprint(fp, board, stack):
@@ -53,7 +56,8 @@ def gate_expect(board, stack, fp):
     """Banner prefix -> fingerprint the console must show for this stack."""
     expect = {}
     if base_stack(stack) == "open":
-        expect["BL2: v"] = board["pins"]["bl2"]["fingerprint"]
+        bl2 = board["pins"]["bl2"]
+        expect[bl2.get("banner", "BL2: v")] = bl2["fingerprint"]
         expect["BL31: v"] = fp
         expect["OP-TEE version"] = fp
     expect["U-Boot 20"] = fp
@@ -120,8 +124,7 @@ def uboot_steps(fp, checks):
 
 def render(board_name, stack, fp, package, linux, restore, metadata=None, device=None):
     """package: {url, token, path}; linux: {tag, release, image_sha256};
-    restore: {url, header, token, path} of the lab stock image, or the
-    stock firmware package of this board."""
+    restore: {url, header, token, path} of the lab stock image."""
     b = config.board(board_name)
     lava = b["lava"]
     xbl = lava["xbl_marker"]
@@ -161,13 +164,30 @@ def render(board_name, stack, fp, package, linux, restore, metadata=None, device
 
 
 def restore_actions(board, restore):
-    """Flash the lab's stock image back and check that its UEFI starts."""
+    """Flash the lab's image back and check that its UEFI starts. The
+    board's restore section can name the lab image's own LUNs and
+    storage, images flashed first (Lemans: the SAIL NOR), the exact UEFI
+    build the lab image prints (uefi_ver) and the line the check ends
+    on; without uefi_ver any UEFI 6.0 build passes."""
     lava = board["lava"]
-    return [
-        lj.deploy_qdl(restore["url"], restore["token"], restore.get("header", "Authorization")),
-        lj.boot_qdl(restore["path"], lava["storage"], restore.get("luns", lava["luns"]), lava["firehose"]),
+    r = board["restore"]
+    actions = [lj.deploy_qdl(restore["url"], restore["token"], restore.get("header", "Authorization"),
+                             minutes=r.get("deploy_minutes", 30))]
+    for pre in r.get("pre", []):
+        actions.append(lj.boot_qdl("%s/%s" % (restore["path"], pre["subdir"]), pre["storage"],
+                                   pre["luns"], lava["firehose"]))
+    actions += [
+        lj.boot_qdl(restore["path"], r.get("storage", lava["storage"]),
+                    restore.get("luns", r.get("luns", lava["luns"])), lava["firehose"],
+                    minutes=r.get("qdl_minutes", 15)),
         lj.power_on(),
-        lj.monitor("stock-restore", lava["xbl_marker"], "Boot Device",
-                   r"(?P<test_case_id>UEFI Ver)\s*:\s*(?P<result>\d+\.\d+)\.",
-                   fixupdict=STOCK_UEFI, expected=["uefi_ver"]),
     ]
+    if r.get("uefi_ver"):
+        pattern = r"(?P<test_case_id>UEFI Ver)\s*:\s*(?P<result>%s)" % re.escape(r["uefi_ver"])
+        fixup = {r["uefi_ver"]: "pass"}
+    else:
+        pattern = r"(?P<test_case_id>UEFI Ver)\s*:\s*(?P<result>\d+\.\d+)\."
+        fixup = STOCK_UEFI
+    actions.append(lj.monitor(RESTORE_SUITE, lava["xbl_marker"], r.get("end", "Boot Device"), pattern,
+                              fixupdict=fixup, expected=["uefi_ver"], minutes=r.get("check_minutes", 5)))
+    return actions

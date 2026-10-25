@@ -20,8 +20,10 @@ def monitors(job):
 def test_open_stack_gate_checks_every_component(board):
     job = jobs.render(board, "open", "ubci-9", PKG, LINUX, RESTORE)
     gate = monitors(job)[jobs.GATE_SUITE]
-    assert gate["expected"] == ["bl2_v", "bl31_v", "op_tee_version", "u_boot_20"]
-    bl2 = config.board(board)["pins"]["bl2"]["fingerprint"]
+    pin = config.board(board)["pins"]["bl2"]
+    tz = "u_boot_spl" if pin.get("banner") == "U-Boot SPL" else "bl2_v"
+    assert gate["expected"] == [tz, "bl31_v", "op_tee_version", "u_boot_20"]
+    bl2 = pin["fingerprint"]
     assert bl2 in gate["fixupdict"] and "ubci-9" in gate["fixupdict"]
     assert job["device_type"] == config.board(board)["lava"]["device_type"]
     assert job["priority"] == "low" and job["visibility"] == "public"
@@ -78,3 +80,31 @@ def test_known_errors_are_filtered_and_others_still_fail():
     assert run(known) == 0 and run(known + other) != 0
     with pytest.raises(ValueError):
         jobs.errors_command(["it's"])
+
+
+def restore_tail(board, stack="stock"):
+    job = jobs.render(board, stack, "ubci-9", PKG, LINUX, RESTORE)
+    i = max(n for n, a in enumerate(job["actions"]) if "deploy" in a)
+    return job["actions"][i:]
+
+
+def test_restore_flashes_the_lab_images_listed_for_the_board(monkeypatch):
+    import copy
+    b = copy.deepcopy(config.board("rb3gen2"))
+    b["restore"].update(pre=[{"subdir": "sail_nor", "storage": "spinor", "luns": [0]}], luns=[0, 1],
+                        deploy_minutes=20, qdl_minutes=20, uefi_ver="6.0.1.X-1", end="UEFI Total")
+    monkeypatch.setattr(config, "board", lambda name: b)
+    tail = restore_tail("rb3gen2")
+    boots = [a["boot"] for a in tail if "boot" in a and a["boot"]["method"] == "qdl"]
+    assert [(x["path"], x["storage"]) for x in boots] == [("stock/sail_nor", "spinor"), ("stock", "ufs")]
+    assert boots[0]["rawprogram"] == "rawprogram0.xml"
+    assert boots[1]["rawprogram"].split() == ["rawprogram0.xml", "rawprogram1.xml"]
+    assert boots[1]["timeout"] == {"minutes": 20} and tail[0]["deploy"]["timeout"] == {"minutes": 20}
+    m = monitors({"actions": tail})[jobs.RESTORE_SUITE]
+    assert m["end"] == "UEFI Total" and m["fixupdict"] == {"6.0.1.X-1": "pass"}
+    assert re.search(m["pattern"], "UEFI Ver   : 6.0.1.X-1") and not re.search(m["pattern"], "UEFI Ver : 6.0.1.X-2")
+
+
+def test_a_board_without_an_anchor_keeps_the_uefi_6_check():
+    m = monitors({"actions": restore_tail("rb3gen2")})[jobs.RESTORE_SUITE]
+    assert m["end"] == "Boot Device" and m["fixupdict"] == {"6.0": "pass"}

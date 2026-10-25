@@ -20,7 +20,7 @@ if [ "$base" = open ]; then
 	"$here/build-open-stack.sh" "$board" "$t/u-boot.bin" "$fp" "$t"
 	uefi=$t/fip.elf
 else
-	uefi=$t/u-boot.mbn
+	uefi=$t/$(cd "$here/.." && python3 -m ubci.config get "$board" "u-boot.$base.image")
 fi
 "$here/mk-esp.sh" "$board" "$base" "$linux" "$initramfs" "$t"
 (cd "$here/.." && python3 -m ubci.package "$board" "$base" "$uefi" "$t/efi.bin" \
