@@ -624,8 +624,8 @@
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
       "stack": "open",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
       "versus": "unknown"
      }
     ],
@@ -671,12 +671,12 @@
       "fingerprint": "ubci-40199892508-1-main-stock-lemans-evk",
       "fragments_missing": [],
       "gate": "not-run",
-      "job_url": "",
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/513221",
       "new_fail": 0,
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
       "stack": "stock",
-      "state": "queued",
+      "state": "flashing",
       "state_detail": "",
       "versus": "unknown"
      }
@@ -740,8 +740,8 @@
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
       "stack": "open",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
       "versus": "unknown"
      }
     ],
@@ -787,9 +787,9 @@
       "fingerprint": "ubci-40199892508-1-main-stock-qcs615-ride",
       "fragments_missing": [],
       "gate": "not-run",
-      "job_url": "",
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/513220",
       "new_fail": 0,
-      "queue_position": null,
+      "queue_position": 4,
       "run": "ubci-40199892508-1-main",
       "stack": "stock",
       "state": "queued",
@@ -1016,9 +1016,9 @@
       "fingerprint": "ubci-40199892508-1-main-stock-rb3gen2",
       "fragments_missing": [],
       "gate": "not-run",
-      "job_url": "",
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/513217",
       "new_fail": 0,
-      "queue_position": null,
+      "queue_position": 1,
       "run": "ubci-40199892508-1-main",
       "stack": "stock",
       "state": "queued",
@@ -1085,8 +1085,8 @@
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
       "stack": "open",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
       "versus": "unknown"
      }
     ],
@@ -1136,12 +1136,12 @@
       "fingerprint": "ubci-40199892508-1-main-stock-uno-q",
       "fragments_missing": [],
       "gate": "not-run",
-      "job_url": "",
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/513219",
       "new_fail": 0,
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
       "stack": "stock",
-      "state": "queued",
+      "state": "flashing",
       "state_detail": "",
       "versus": "unknown"
      }
@@ -1259,7 +1259,9 @@
        "tf-a": 12
       },
       "fingerprint": "ubci-40199892508-1-main-open-ventuno-q",
-      "fragments_missing": [],
+      "fragments_missing": [
+       "arduino-ventuno-q.config"
+      ],
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
@@ -1365,20 +1367,70 @@
       "fingerprint": "ubci-40199892508-1-main-stock-ventuno-q",
       "fragments_missing": [],
       "gate": "not-run",
-      "job_url": "",
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/513218",
       "new_fail": 0,
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
       "stack": "stock",
-      "state": "queued",
+      "state": "flashing",
       "state_detail": "",
       "versus": "unknown"
      }
     ]
    },
-   "host_checks": [],
+   "host_checks": [
+    {
+     "name": "buildman",
+     "result": "pass",
+     "summary": "every snapdragon board built without warnings"
+    },
+    {
+     "name": "carry",
+     "result": "pass",
+     "summary": "carry.yaml matches the pins"
+    },
+    {
+     "name": "checkpatch",
+     "result": "pass",
+     "summary": "0 new commits: 0 with errors, 0 with warnings only"
+    },
+    {
+     "name": "docs",
+     "result": "pass",
+     "summary": "htmldocs built without warnings"
+    },
+    {
+     "name": "fragments",
+     "result": "pass",
+     "summary": "1 combinations built"
+    },
+    {
+     "name": "qemu_arm64",
+     "result": "pass",
+     "summary": "250 passed, 600 skipped, 2 deselected in 117.13s (0:01:57)"
+    },
+    {
+     "name": "sandbox",
+     "result": "pass",
+     "summary": "1418 passed, 229 skipped, 3 deselected, 1 xfailed in 818.81s (0:13:38)"
+    },
+    {
+     "name": "size",
+     "result": "pass",
+     "summary": "lemans-evk-stock 1670536 B, qcs615-ride-stock 1609736 B, rb3gen2-open 1662080 B, rb3gen2-stock 1672672 B, uno-q-stock 0 B, ventuno-q-open 1647688 B, ventuno-q-stock 1651504 B"
+    }
+   ],
    "latest_nightly": "ubci-40199892508-1-main",
-   "linux": null,
+   "linux": {
+    "commit": "20a33c6b6cbe7e4805dfb6cd68816937443aa148",
+    "config": "arch/arm64/configs/defconfig",
+    "image_sha256": "bdfa4856f7c6cde00967c209a94b6835fb5527ee6dd335b51cf371007b91e46d",
+    "modules_sha256": "4fee8a6200e7e339dda1702281f2bffe776b43a69e5515be19fe7052ff26c0a8",
+    "release": "7.3.0-next-20261023",
+    "tag": "next-20261023",
+    "tag_url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tag/?h=next-20261023",
+    "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=20a33c6b6cbe7e4805dfb6cd68816937443aa148"
+   },
    "matrix": [
     {
      "board": "rb3gen2",
@@ -1421,9 +1473,9 @@
      "fingerprint": "ubci-40199892508-1-main-stock-rb3gen2",
      "fragments_missing": [],
      "gate": "not-run",
-     "job_url": "",
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/513217",
      "new_fail": 0,
-     "queue_position": null,
+     "queue_position": 1,
      "run": "ubci-40199892508-1-main",
      "stack": "stock",
      "state": "queued",
@@ -1536,12 +1588,12 @@
      "fingerprint": "ubci-40199892508-1-main-stock-ventuno-q",
      "fragments_missing": [],
      "gate": "not-run",
-     "job_url": "",
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/513218",
      "new_fail": 0,
      "queue_position": null,
      "run": "ubci-40199892508-1-main",
      "stack": "stock",
-     "state": "queued",
+     "state": "flashing",
      "state_detail": "",
      "versus": "unknown"
     },
@@ -1599,7 +1651,9 @@
       "tf-a": 12
      },
      "fingerprint": "ubci-40199892508-1-main-open-ventuno-q",
-     "fragments_missing": [],
+     "fragments_missing": [
+      "arduino-ventuno-q.config"
+     ],
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
@@ -1655,12 +1709,12 @@
      "fingerprint": "ubci-40199892508-1-main-stock-uno-q",
      "fragments_missing": [],
      "gate": "not-run",
-     "job_url": "",
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/513219",
      "new_fail": 0,
      "queue_position": null,
      "run": "ubci-40199892508-1-main",
      "stack": "stock",
-     "state": "queued",
+     "state": "flashing",
      "state_detail": "",
      "versus": "unknown"
     },
@@ -1722,8 +1776,8 @@
      "queue_position": null,
      "run": "ubci-40199892508-1-main",
      "stack": "open",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
      "versus": "unknown"
     },
     {
@@ -1767,9 +1821,9 @@
      "fingerprint": "ubci-40199892508-1-main-stock-qcs615-ride",
      "fragments_missing": [],
      "gate": "not-run",
-     "job_url": "",
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/513220",
      "new_fail": 0,
-     "queue_position": null,
+     "queue_position": 4,
      "run": "ubci-40199892508-1-main",
      "stack": "stock",
      "state": "queued",
@@ -1834,8 +1888,8 @@
      "queue_position": null,
      "run": "ubci-40199892508-1-main",
      "stack": "open",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
      "versus": "unknown"
     },
     {
@@ -1879,12 +1933,12 @@
      "fingerprint": "ubci-40199892508-1-main-stock-lemans-evk",
      "fragments_missing": [],
      "gate": "not-run",
-     "job_url": "",
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/513221",
      "new_fail": 0,
      "queue_position": null,
      "run": "ubci-40199892508-1-main",
      "stack": "stock",
-     "state": "queued",
+     "state": "flashing",
      "state_detail": "",
      "versus": "unknown"
     },
@@ -1947,8 +2001,8 @@
      "queue_position": null,
      "run": "ubci-40199892508-1-main",
      "stack": "open",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
      "versus": "unknown"
     }
    ]
@@ -3821,8 +3875,8 @@
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
     "stack": "open",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
     "versus": "unknown"
    }
   ],
@@ -3868,12 +3922,12 @@
     "fingerprint": "ubci-40199892508-1-main-stock-lemans-evk",
     "fragments_missing": [],
     "gate": "not-run",
-    "job_url": "",
+    "job_url": "https://lava.infra.foundries.io/scheduler/job/513221",
     "new_fail": 0,
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
     "stack": "stock",
-    "state": "queued",
+    "state": "flashing",
     "state_detail": "",
     "versus": "unknown"
    }
@@ -3937,8 +3991,8 @@
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
     "stack": "open",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
     "versus": "unknown"
    }
   ],
@@ -3984,9 +4038,9 @@
     "fingerprint": "ubci-40199892508-1-main-stock-qcs615-ride",
     "fragments_missing": [],
     "gate": "not-run",
-    "job_url": "",
+    "job_url": "https://lava.infra.foundries.io/scheduler/job/513220",
     "new_fail": 0,
-    "queue_position": null,
+    "queue_position": 4,
     "run": "ubci-40199892508-1-main",
     "stack": "stock",
     "state": "queued",
@@ -4213,9 +4267,9 @@
     "fingerprint": "ubci-40199892508-1-main-stock-rb3gen2",
     "fragments_missing": [],
     "gate": "not-run",
-    "job_url": "",
+    "job_url": "https://lava.infra.foundries.io/scheduler/job/513217",
     "new_fail": 0,
-    "queue_position": null,
+    "queue_position": 1,
     "run": "ubci-40199892508-1-main",
     "stack": "stock",
     "state": "queued",
@@ -4282,8 +4336,8 @@
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
     "stack": "open",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
     "versus": "unknown"
    }
   ],
@@ -4333,12 +4387,12 @@
     "fingerprint": "ubci-40199892508-1-main-stock-uno-q",
     "fragments_missing": [],
     "gate": "not-run",
-    "job_url": "",
+    "job_url": "https://lava.infra.foundries.io/scheduler/job/513219",
     "new_fail": 0,
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
     "stack": "stock",
-    "state": "queued",
+    "state": "flashing",
     "state_detail": "",
     "versus": "unknown"
    }
@@ -4456,7 +4510,9 @@
      "tf-a": 12
     },
     "fingerprint": "ubci-40199892508-1-main-open-ventuno-q",
-    "fragments_missing": [],
+    "fragments_missing": [
+     "arduino-ventuno-q.config"
+    ],
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
@@ -4562,20 +4618,70 @@
     "fingerprint": "ubci-40199892508-1-main-stock-ventuno-q",
     "fragments_missing": [],
     "gate": "not-run",
-    "job_url": "",
+    "job_url": "https://lava.infra.foundries.io/scheduler/job/513218",
     "new_fail": 0,
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
     "stack": "stock",
-    "state": "queued",
+    "state": "flashing",
     "state_detail": "",
     "versus": "unknown"
    }
   ]
  },
- "host_checks": [],
+ "host_checks": [
+  {
+   "name": "buildman",
+   "result": "pass",
+   "summary": "every snapdragon board built without warnings"
+  },
+  {
+   "name": "carry",
+   "result": "pass",
+   "summary": "carry.yaml matches the pins"
+  },
+  {
+   "name": "checkpatch",
+   "result": "pass",
+   "summary": "0 new commits: 0 with errors, 0 with warnings only"
+  },
+  {
+   "name": "docs",
+   "result": "pass",
+   "summary": "htmldocs built without warnings"
+  },
+  {
+   "name": "fragments",
+   "result": "pass",
+   "summary": "1 combinations built"
+  },
+  {
+   "name": "qemu_arm64",
+   "result": "pass",
+   "summary": "250 passed, 600 skipped, 2 deselected in 117.13s (0:01:57)"
+  },
+  {
+   "name": "sandbox",
+   "result": "pass",
+   "summary": "1418 passed, 229 skipped, 3 deselected, 1 xfailed in 818.81s (0:13:38)"
+  },
+  {
+   "name": "size",
+   "result": "pass",
+   "summary": "lemans-evk-stock 1670536 B, qcs615-ride-stock 1609736 B, rb3gen2-open 1662080 B, rb3gen2-stock 1672672 B, uno-q-stock 0 B, ventuno-q-open 1647688 B, ventuno-q-stock 1651504 B"
+  }
+ ],
  "latest_nightly": "ubci-40199892508-1-main",
- "linux": null,
+ "linux": {
+  "commit": "20a33c6b6cbe7e4805dfb6cd68816937443aa148",
+  "config": "arch/arm64/configs/defconfig",
+  "image_sha256": "bdfa4856f7c6cde00967c209a94b6835fb5527ee6dd335b51cf371007b91e46d",
+  "modules_sha256": "4fee8a6200e7e339dda1702281f2bffe776b43a69e5515be19fe7052ff26c0a8",
+  "release": "7.3.0-next-20261023",
+  "tag": "next-20261023",
+  "tag_url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tag/?h=next-20261023",
+  "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=20a33c6b6cbe7e4805dfb6cd68816937443aa148"
+ },
  "matrix": [
   {
    "board": "rb3gen2",
@@ -4618,9 +4724,9 @@
    "fingerprint": "ubci-40199892508-1-main-stock-rb3gen2",
    "fragments_missing": [],
    "gate": "not-run",
-   "job_url": "",
+   "job_url": "https://lava.infra.foundries.io/scheduler/job/513217",
    "new_fail": 0,
-   "queue_position": null,
+   "queue_position": 1,
    "run": "ubci-40199892508-1-main",
    "stack": "stock",
    "state": "queued",
@@ -4733,12 +4839,12 @@
    "fingerprint": "ubci-40199892508-1-main-stock-ventuno-q",
    "fragments_missing": [],
    "gate": "not-run",
-   "job_url": "",
+   "job_url": "https://lava.infra.foundries.io/scheduler/job/513218",
    "new_fail": 0,
    "queue_position": null,
    "run": "ubci-40199892508-1-main",
    "stack": "stock",
-   "state": "queued",
+   "state": "flashing",
    "state_detail": "",
    "versus": "unknown"
   },
@@ -4796,7 +4902,9 @@
     "tf-a": 12
    },
    "fingerprint": "ubci-40199892508-1-main-open-ventuno-q",
-   "fragments_missing": [],
+   "fragments_missing": [
+    "arduino-ventuno-q.config"
+   ],
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
@@ -4852,12 +4960,12 @@
    "fingerprint": "ubci-40199892508-1-main-stock-uno-q",
    "fragments_missing": [],
    "gate": "not-run",
-   "job_url": "",
+   "job_url": "https://lava.infra.foundries.io/scheduler/job/513219",
    "new_fail": 0,
    "queue_position": null,
    "run": "ubci-40199892508-1-main",
    "stack": "stock",
-   "state": "queued",
+   "state": "flashing",
    "state_detail": "",
    "versus": "unknown"
   },
@@ -4919,8 +5027,8 @@
    "queue_position": null,
    "run": "ubci-40199892508-1-main",
    "stack": "open",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
    "versus": "unknown"
   },
   {
@@ -4964,9 +5072,9 @@
    "fingerprint": "ubci-40199892508-1-main-stock-qcs615-ride",
    "fragments_missing": [],
    "gate": "not-run",
-   "job_url": "",
+   "job_url": "https://lava.infra.foundries.io/scheduler/job/513220",
    "new_fail": 0,
-   "queue_position": null,
+   "queue_position": 4,
    "run": "ubci-40199892508-1-main",
    "stack": "stock",
    "state": "queued",
@@ -5031,8 +5139,8 @@
    "queue_position": null,
    "run": "ubci-40199892508-1-main",
    "stack": "open",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
    "versus": "unknown"
   },
   {
@@ -5076,12 +5184,12 @@
    "fingerprint": "ubci-40199892508-1-main-stock-lemans-evk",
    "fragments_missing": [],
    "gate": "not-run",
-   "job_url": "",
+   "job_url": "https://lava.infra.foundries.io/scheduler/job/513221",
    "new_fail": 0,
    "queue_position": null,
    "run": "ubci-40199892508-1-main",
    "stack": "stock",
-   "state": "queued",
+   "state": "flashing",
    "state_detail": "",
    "versus": "unknown"
   },
@@ -5144,8 +5252,8 @@
    "queue_position": null,
    "run": "ubci-40199892508-1-main",
    "stack": "open",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
    "versus": "unknown"
   }
  ],
@@ -5174,7 +5282,7 @@
    "created": "2026-10-25T14:00:23Z",
    "id": "ubci-40199892508-1-main",
    "kind": "nightly",
-   "state": "building",
+   "state": "testing",
    "title": "main 8649a54d301a"
   },
   {
@@ -5282,5 +5390,5 @@
    "title": "QCS8300 v4 + VENTUNO Q v2"
   }
  ],
- "updated": "2026-10-25T14:59:02Z"
+ "updated": "2026-10-25T15:08:32Z"
 }
