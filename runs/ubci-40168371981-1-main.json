@@ -63,10 +63,10 @@
   "kind": "nightly",
   "series": null,
   "title": "main 8649a54d301a",
-  "updated": "2026-10-25T07:44:28Z"
+  "updated": "2026-10-25T07:54:37Z"
  },
  "schema": "fwci-run/1",
- "state": "testing",
+ "state": "done",
  "targets": [
   {
    "board": "rb3gen2",
@@ -220,7 +220,158 @@
   },
   {
    "board": "rb3gen2",
-   "cases": [],
+   "cases": [
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "cpus-online",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "modules-loaded",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "dmesg-errors",
+     "result": "fail",
+     "suite": "smoke"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "bl2_v",
+     "result": "fail",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "bl31_v",
+     "result": "fail",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "fail",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "fail",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "pass",
+     "suite": "linux-version"
+    },
+    {
+     "name": "uefi_ver",
+     "result": "fail",
+     "suite": "stock-restore"
+    }
+   ],
    "components": [
     {
      "branch": "main",
@@ -319,10 +470,10 @@
     }
    ],
    "fingerprint": "ubci-40168371981-1-main-open-rb3gen2",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
     "device": "rb3g2-01",
-    "health": "Unknown",
+    "health": "Incomplete",
     "job_id": 512827,
     "url": "https://lava.infra.foundries.io/scheduler/job/512827"
    },
@@ -336,9 +487,15 @@
     "versus_baseline": "unknown"
    },
    "queue_position": null,
-   "restore": "not-run",
+   "recovery": {
+    "health": null,
+    "job_id": 512839,
+    "url": "https://lava.infra.foundries.io/scheduler/job/512839"
+   },
+   "restore": "recovery-job",
    "stack": "open",
-   "state": "testing"
+   "state": "done",
+   "state_detail": "LAVA job incomplete"
   },
   {
    "board": "ventuno-q",
