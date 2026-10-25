@@ -379,70 +379,74 @@
     "rb3gen2/open": {
      "cases": {},
      "runs": [
-      "ubci-40152748187-1-main"
+      "ubci-40152748187-1-main",
+      "ubci-40168371981-1-main"
      ]
     },
     "rb3gen2/stock": {
      "cases": {},
      "runs": [
-      "ubci-40152748187-1-main"
+      "ubci-40152748187-1-main",
+      "ubci-40168371981-1-main"
      ]
     },
     "ventuno-q/open": {
      "cases": {
-      "firmware-fingerprint-reboot/bl2_v": "f",
-      "firmware-fingerprint-reboot/bl31_v": "f",
-      "firmware-fingerprint-reboot/op_tee_version": "f",
-      "firmware-fingerprint-reboot/u_boot_20": "f",
-      "firmware-fingerprint-reset/bl2_v": "p",
-      "firmware-fingerprint-reset/bl31_v": "p",
-      "firmware-fingerprint-reset/op_tee_version": "p",
-      "firmware-fingerprint-reset/u_boot_20": "p",
-      "firmware-fingerprint/bl2_v": "p",
-      "firmware-fingerprint/bl31_v": "p",
-      "firmware-fingerprint/op_tee_version": "p",
-      "firmware-fingerprint/u_boot_20": "p",
-      "linux-version/linux_version": "f",
-      "stock-restore/uefi_ver": "f",
-      "u-boot/autoboot": "p",
-      "u-boot/u-boot-prompt": "p",
-      "u-boot/u-boot-sync": "p",
-      "u-boot/uboot-bdinfo": "p",
-      "u-boot/uboot-bootflow": "p",
-      "u-boot/uboot-clocks": "p",
-      "u-boot/uboot-dm-tree": "p",
-      "u-boot/uboot-efi-media": "f",
-      "u-boot/uboot-reset": "p",
-      "u-boot/uboot-storage": "f",
-      "u-boot/uboot-usb": "p",
-      "u-boot/uboot-version": "p"
+      "firmware-fingerprint-reboot/bl2_v": "f-",
+      "firmware-fingerprint-reboot/bl31_v": "f-",
+      "firmware-fingerprint-reboot/op_tee_version": "f-",
+      "firmware-fingerprint-reboot/u_boot_20": "f-",
+      "firmware-fingerprint-reset/bl2_v": "p-",
+      "firmware-fingerprint-reset/bl31_v": "p-",
+      "firmware-fingerprint-reset/op_tee_version": "p-",
+      "firmware-fingerprint-reset/u_boot_20": "p-",
+      "firmware-fingerprint/bl2_v": "p-",
+      "firmware-fingerprint/bl31_v": "p-",
+      "firmware-fingerprint/op_tee_version": "p-",
+      "firmware-fingerprint/u_boot_20": "p-",
+      "linux-version/linux_version": "f-",
+      "stock-restore/uefi_ver": "f-",
+      "u-boot/autoboot": "p-",
+      "u-boot/u-boot-prompt": "p-",
+      "u-boot/u-boot-sync": "p-",
+      "u-boot/uboot-bdinfo": "p-",
+      "u-boot/uboot-bootflow": "p-",
+      "u-boot/uboot-clocks": "p-",
+      "u-boot/uboot-dm-tree": "p-",
+      "u-boot/uboot-efi-media": "f-",
+      "u-boot/uboot-reset": "p-",
+      "u-boot/uboot-storage": "f-",
+      "u-boot/uboot-usb": "p-",
+      "u-boot/uboot-version": "p-"
      },
      "runs": [
-      "ubci-40152748187-1-main"
+      "ubci-40152748187-1-main",
+      "ubci-40168371981-1-main"
      ]
     },
     "ventuno-q/stock": {
      "cases": {
-      "firmware-fingerprint-reboot/u_boot_20": "f",
-      "firmware-fingerprint-reset/u_boot_20": "p",
-      "firmware-fingerprint/u_boot_20": "p",
-      "linux-version/linux_version": "f",
-      "stock-restore/uefi_ver": "f",
-      "u-boot/autoboot": "p",
-      "u-boot/u-boot-prompt": "p",
-      "u-boot/u-boot-sync": "p",
-      "u-boot/uboot-bdinfo": "p",
-      "u-boot/uboot-bootflow": "p",
-      "u-boot/uboot-clocks": "p",
-      "u-boot/uboot-dm-tree": "p",
-      "u-boot/uboot-efi-media": "f",
-      "u-boot/uboot-reset": "p",
-      "u-boot/uboot-storage": "f",
-      "u-boot/uboot-usb": "p",
-      "u-boot/uboot-version": "p"
+      "firmware-fingerprint-reboot/u_boot_20": "f-",
+      "firmware-fingerprint-reset/u_boot_20": "p-",
+      "firmware-fingerprint/u_boot_20": "p-",
+      "linux-version/linux_version": "f-",
+      "stock-restore/uefi_ver": "f-",
+      "u-boot/autoboot": "p-",
+      "u-boot/u-boot-prompt": "p-",
+      "u-boot/u-boot-sync": "p-",
+      "u-boot/uboot-bdinfo": "p-",
+      "u-boot/uboot-bootflow": "p-",
+      "u-boot/uboot-clocks": "p-",
+      "u-boot/uboot-dm-tree": "p-",
+      "u-boot/uboot-efi-media": "f-",
+      "u-boot/uboot-reset": "p-",
+      "u-boot/uboot-storage": "f-",
+      "u-boot/uboot-usb": "p-",
+      "u-boot/uboot-version": "p-"
      },
      "runs": [
-      "ubci-40152748187-1-main"
+      "ubci-40152748187-1-main",
+      "ubci-40168371981-1-main"
      ]
     }
    },
@@ -474,6 +478,33 @@
       "state": "error",
       "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to ",
       "versus": "unknown"
+     },
+     {
+      "board": "rb3gen2",
+      "boot": "not-run",
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {
+       "optee": 0,
+       "tf-a": 10
+      },
+      "fingerprint": "ubci-40168371981-1-main-open-rb3gen2",
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "queue_position": null,
+      "run": "ubci-40168371981-1-main",
+      "stack": "open",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
      }
     ],
     "rb3gen2/stock": [
@@ -499,6 +530,30 @@
       "stack": "stock",
       "state": "error",
       "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to ",
+      "versus": "unknown"
+     },
+     {
+      "board": "rb3gen2",
+      "boot": "not-run",
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40168371981-1-main-stock-rb3gen2",
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "queue_position": null,
+      "run": "ubci-40168371981-1-main",
+      "stack": "stock",
+      "state": "queued",
+      "state_detail": "",
       "versus": "unknown"
      }
     ],
@@ -529,6 +584,33 @@
       "state": "done",
       "state_detail": "LAVA job incomplete",
       "versus": "unknown"
+     },
+     {
+      "board": "ventuno-q",
+      "boot": "not-run",
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {
+       "optee": 0,
+       "tf-a": 12
+      },
+      "fingerprint": "ubci-40168371981-1-main-open-ventuno-q",
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "queue_position": null,
+      "run": "ubci-40168371981-1-main",
+      "stack": "open",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
      }
     ],
     "ventuno-q/stock": [
@@ -555,60 +637,36 @@
       "state": "done",
       "state_detail": "LAVA job incomplete",
       "versus": "unknown"
+     },
+     {
+      "board": "ventuno-q",
+      "boot": "not-run",
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40168371981-1-main-stock-ventuno-q",
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "queue_position": null,
+      "run": "ubci-40168371981-1-main",
+      "stack": "stock",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
      }
     ]
    },
-   "host_checks": [
-    {
-     "name": "buildman",
-     "result": "pass",
-     "summary": "every snapdragon board built without warnings"
-    },
-    {
-     "name": "carry",
-     "result": "pass",
-     "summary": "carry.yaml matches the pins"
-    },
-    {
-     "name": "checkpatch",
-     "result": "pass",
-     "summary": "1 new commits: 0 with errors, 0 with warnings only"
-    },
-    {
-     "name": "docs",
-     "result": "pass",
-     "summary": "htmldocs built without warnings"
-    },
-    {
-     "name": "fragments",
-     "result": "pass",
-     "summary": "1 combinations built"
-    },
-    {
-     "name": "qemu_arm64",
-     "result": "pass",
-     "summary": "250 passed, 600 skipped, 2 deselected in 117.91s (0:01:57)"
-    },
-    {
-     "name": "sandbox",
-     "result": "pass",
-     "summary": "1418 passed, 229 skipped, 3 deselected, 1 xfailed in 800.76s (0:13:20)"
-    },
-    {
-     "name": "size",
-     "result": "pass",
-     "summary": "rb3gen2-open 1662080 B, rb3gen2-stock 1672672 B, ventuno-q-open 1647688 B, ventuno-q-stock 1651504 B"
-    }
-   ],
-   "latest_nightly": "ubci-40152748187-1-main",
-   "linux": {
-    "commit": "20a33c6b6cbe7e4805dfb6cd68816937443aa148",
-    "config": "arch/arm64/configs/defconfig",
-    "image_sha256": "bdfa4856f7c6cde00967c209a94b6835fb5527ee6dd335b51cf371007b91e46d",
-    "modules_sha256": "4fee8a6200e7e339dda1702281f2bffe776b43a69e5515be19fe7052ff26c0a8",
-    "release": "7.3.0-next-20261023",
-    "tag": "next-20261023"
-   },
+   "host_checks": [],
+   "latest_nightly": "ubci-40168371981-1-main",
+   "linux": null,
    "matrix": [
     {
      "board": "rb3gen2",
@@ -623,15 +681,15 @@
       "unknown": 0
      },
      "distance": {},
-     "fingerprint": "ubci-40152748187-1-main-stock-rb3gen2",
+     "fingerprint": "ubci-40168371981-1-main-stock-rb3gen2",
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
      "queue_position": null,
-     "run": "ubci-40152748187-1-main",
+     "run": "ubci-40168371981-1-main",
      "stack": "stock",
-     "state": "error",
-     "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to ",
+     "state": "queued",
+     "state_detail": "",
      "versus": "unknown"
     },
     {
@@ -650,50 +708,50 @@
       "optee": 0,
       "tf-a": 10
      },
-     "fingerprint": "ubci-40152748187-1-main-open-rb3gen2",
+     "fingerprint": "ubci-40168371981-1-main-open-rb3gen2",
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
      "queue_position": null,
-     "run": "ubci-40152748187-1-main",
+     "run": "ubci-40168371981-1-main",
      "stack": "open",
-     "state": "error",
-     "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to ",
+     "state": "queued",
+     "state_detail": "",
      "versus": "unknown"
     },
     {
      "board": "ventuno-q",
-     "boot": "fail",
-     "boot_stage": "no-efi-stub",
-     "boot_url": "https://lava.infra.foundries.io/scheduler/job/512197#L1104",
+     "boot": "not-run",
+     "boot_stage": "not-reached",
+     "boot_url": "",
      "counts": {
-      "fail": 5,
+      "fail": 0,
       "flaky": 0,
-      "pass": 12,
+      "pass": 0,
       "skip": 0,
       "unknown": 0
      },
      "distance": {},
-     "fingerprint": "ubci-40152748187-1-main-stock-ventuno-q",
-     "gate": "pass",
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/512197",
+     "fingerprint": "ubci-40168371981-1-main-stock-ventuno-q",
+     "gate": "not-run",
+     "job_url": "",
      "new_fail": 0,
      "queue_position": null,
-     "run": "ubci-40152748187-1-main",
+     "run": "ubci-40168371981-1-main",
      "stack": "stock",
-     "state": "done",
-     "state_detail": "LAVA job incomplete",
+     "state": "queued",
+     "state_detail": "",
      "versus": "unknown"
     },
     {
      "board": "ventuno-q",
-     "boot": "fail",
-     "boot_stage": "no-efi-stub",
-     "boot_url": "https://lava.infra.foundries.io/scheduler/job/512231#L1133",
+     "boot": "not-run",
+     "boot_stage": "not-reached",
+     "boot_url": "",
      "counts": {
-      "fail": 8,
+      "fail": 0,
       "flaky": 0,
-      "pass": 18,
+      "pass": 0,
       "skip": 0,
       "unknown": 0
      },
@@ -701,15 +759,15 @@
       "optee": 0,
       "tf-a": 12
      },
-     "fingerprint": "ubci-40152748187-1-main-open-ventuno-q",
-     "gate": "pass",
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/512231",
+     "fingerprint": "ubci-40168371981-1-main-open-ventuno-q",
+     "gate": "not-run",
+     "job_url": "",
      "new_fail": 0,
      "queue_position": null,
-     "run": "ubci-40152748187-1-main",
+     "run": "ubci-40168371981-1-main",
      "stack": "open",
-     "state": "done",
-     "state_detail": "LAVA job incomplete",
+     "state": "queued",
+     "state_detail": "",
      "versus": "unknown"
     }
    ]
@@ -1014,70 +1072,74 @@
   "rb3gen2/open": {
    "cases": {},
    "runs": [
-    "ubci-40152748187-1-main"
+    "ubci-40152748187-1-main",
+    "ubci-40168371981-1-main"
    ]
   },
   "rb3gen2/stock": {
    "cases": {},
    "runs": [
-    "ubci-40152748187-1-main"
+    "ubci-40152748187-1-main",
+    "ubci-40168371981-1-main"
    ]
   },
   "ventuno-q/open": {
    "cases": {
-    "firmware-fingerprint-reboot/bl2_v": "f",
-    "firmware-fingerprint-reboot/bl31_v": "f",
-    "firmware-fingerprint-reboot/op_tee_version": "f",
-    "firmware-fingerprint-reboot/u_boot_20": "f",
-    "firmware-fingerprint-reset/bl2_v": "p",
-    "firmware-fingerprint-reset/bl31_v": "p",
-    "firmware-fingerprint-reset/op_tee_version": "p",
-    "firmware-fingerprint-reset/u_boot_20": "p",
-    "firmware-fingerprint/bl2_v": "p",
-    "firmware-fingerprint/bl31_v": "p",
-    "firmware-fingerprint/op_tee_version": "p",
-    "firmware-fingerprint/u_boot_20": "p",
-    "linux-version/linux_version": "f",
-    "stock-restore/uefi_ver": "f",
-    "u-boot/autoboot": "p",
-    "u-boot/u-boot-prompt": "p",
-    "u-boot/u-boot-sync": "p",
-    "u-boot/uboot-bdinfo": "p",
-    "u-boot/uboot-bootflow": "p",
-    "u-boot/uboot-clocks": "p",
-    "u-boot/uboot-dm-tree": "p",
-    "u-boot/uboot-efi-media": "f",
-    "u-boot/uboot-reset": "p",
-    "u-boot/uboot-storage": "f",
-    "u-boot/uboot-usb": "p",
-    "u-boot/uboot-version": "p"
+    "firmware-fingerprint-reboot/bl2_v": "f-",
+    "firmware-fingerprint-reboot/bl31_v": "f-",
+    "firmware-fingerprint-reboot/op_tee_version": "f-",
+    "firmware-fingerprint-reboot/u_boot_20": "f-",
+    "firmware-fingerprint-reset/bl2_v": "p-",
+    "firmware-fingerprint-reset/bl31_v": "p-",
+    "firmware-fingerprint-reset/op_tee_version": "p-",
+    "firmware-fingerprint-reset/u_boot_20": "p-",
+    "firmware-fingerprint/bl2_v": "p-",
+    "firmware-fingerprint/bl31_v": "p-",
+    "firmware-fingerprint/op_tee_version": "p-",
+    "firmware-fingerprint/u_boot_20": "p-",
+    "linux-version/linux_version": "f-",
+    "stock-restore/uefi_ver": "f-",
+    "u-boot/autoboot": "p-",
+    "u-boot/u-boot-prompt": "p-",
+    "u-boot/u-boot-sync": "p-",
+    "u-boot/uboot-bdinfo": "p-",
+    "u-boot/uboot-bootflow": "p-",
+    "u-boot/uboot-clocks": "p-",
+    "u-boot/uboot-dm-tree": "p-",
+    "u-boot/uboot-efi-media": "f-",
+    "u-boot/uboot-reset": "p-",
+    "u-boot/uboot-storage": "f-",
+    "u-boot/uboot-usb": "p-",
+    "u-boot/uboot-version": "p-"
    },
    "runs": [
-    "ubci-40152748187-1-main"
+    "ubci-40152748187-1-main",
+    "ubci-40168371981-1-main"
    ]
   },
   "ventuno-q/stock": {
    "cases": {
-    "firmware-fingerprint-reboot/u_boot_20": "f",
-    "firmware-fingerprint-reset/u_boot_20": "p",
-    "firmware-fingerprint/u_boot_20": "p",
-    "linux-version/linux_version": "f",
-    "stock-restore/uefi_ver": "f",
-    "u-boot/autoboot": "p",
-    "u-boot/u-boot-prompt": "p",
-    "u-boot/u-boot-sync": "p",
-    "u-boot/uboot-bdinfo": "p",
-    "u-boot/uboot-bootflow": "p",
-    "u-boot/uboot-clocks": "p",
-    "u-boot/uboot-dm-tree": "p",
-    "u-boot/uboot-efi-media": "f",
-    "u-boot/uboot-reset": "p",
-    "u-boot/uboot-storage": "f",
-    "u-boot/uboot-usb": "p",
-    "u-boot/uboot-version": "p"
+    "firmware-fingerprint-reboot/u_boot_20": "f-",
+    "firmware-fingerprint-reset/u_boot_20": "p-",
+    "firmware-fingerprint/u_boot_20": "p-",
+    "linux-version/linux_version": "f-",
+    "stock-restore/uefi_ver": "f-",
+    "u-boot/autoboot": "p-",
+    "u-boot/u-boot-prompt": "p-",
+    "u-boot/u-boot-sync": "p-",
+    "u-boot/uboot-bdinfo": "p-",
+    "u-boot/uboot-bootflow": "p-",
+    "u-boot/uboot-clocks": "p-",
+    "u-boot/uboot-dm-tree": "p-",
+    "u-boot/uboot-efi-media": "f-",
+    "u-boot/uboot-reset": "p-",
+    "u-boot/uboot-storage": "f-",
+    "u-boot/uboot-usb": "p-",
+    "u-boot/uboot-version": "p-"
    },
    "runs": [
-    "ubci-40152748187-1-main"
+    "ubci-40152748187-1-main",
+    "ubci-40168371981-1-main"
    ]
   }
  },
@@ -1110,6 +1172,33 @@
     "state": "error",
     "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to ",
     "versus": "unknown"
+   },
+   {
+    "board": "rb3gen2",
+    "boot": "not-run",
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {
+     "optee": 0,
+     "tf-a": 10
+    },
+    "fingerprint": "ubci-40168371981-1-main-open-rb3gen2",
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "queue_position": null,
+    "run": "ubci-40168371981-1-main",
+    "stack": "open",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
    }
   ],
   "rb3gen2/stock": [
@@ -1135,6 +1224,30 @@
     "stack": "stock",
     "state": "error",
     "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to ",
+    "versus": "unknown"
+   },
+   {
+    "board": "rb3gen2",
+    "boot": "not-run",
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40168371981-1-main-stock-rb3gen2",
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "queue_position": null,
+    "run": "ubci-40168371981-1-main",
+    "stack": "stock",
+    "state": "queued",
+    "state_detail": "",
     "versus": "unknown"
    }
   ],
@@ -1165,6 +1278,33 @@
     "state": "done",
     "state_detail": "LAVA job incomplete",
     "versus": "unknown"
+   },
+   {
+    "board": "ventuno-q",
+    "boot": "not-run",
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {
+     "optee": 0,
+     "tf-a": 12
+    },
+    "fingerprint": "ubci-40168371981-1-main-open-ventuno-q",
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "queue_position": null,
+    "run": "ubci-40168371981-1-main",
+    "stack": "open",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
    }
   ],
   "ventuno-q/stock": [
@@ -1191,60 +1331,36 @@
     "state": "done",
     "state_detail": "LAVA job incomplete",
     "versus": "unknown"
+   },
+   {
+    "board": "ventuno-q",
+    "boot": "not-run",
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40168371981-1-main-stock-ventuno-q",
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "queue_position": null,
+    "run": "ubci-40168371981-1-main",
+    "stack": "stock",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
    }
   ]
  },
- "host_checks": [
-  {
-   "name": "buildman",
-   "result": "pass",
-   "summary": "every snapdragon board built without warnings"
-  },
-  {
-   "name": "carry",
-   "result": "pass",
-   "summary": "carry.yaml matches the pins"
-  },
-  {
-   "name": "checkpatch",
-   "result": "pass",
-   "summary": "1 new commits: 0 with errors, 0 with warnings only"
-  },
-  {
-   "name": "docs",
-   "result": "pass",
-   "summary": "htmldocs built without warnings"
-  },
-  {
-   "name": "fragments",
-   "result": "pass",
-   "summary": "1 combinations built"
-  },
-  {
-   "name": "qemu_arm64",
-   "result": "pass",
-   "summary": "250 passed, 600 skipped, 2 deselected in 117.91s (0:01:57)"
-  },
-  {
-   "name": "sandbox",
-   "result": "pass",
-   "summary": "1418 passed, 229 skipped, 3 deselected, 1 xfailed in 800.76s (0:13:20)"
-  },
-  {
-   "name": "size",
-   "result": "pass",
-   "summary": "rb3gen2-open 1662080 B, rb3gen2-stock 1672672 B, ventuno-q-open 1647688 B, ventuno-q-stock 1651504 B"
-  }
- ],
- "latest_nightly": "ubci-40152748187-1-main",
- "linux": {
-  "commit": "20a33c6b6cbe7e4805dfb6cd68816937443aa148",
-  "config": "arch/arm64/configs/defconfig",
-  "image_sha256": "bdfa4856f7c6cde00967c209a94b6835fb5527ee6dd335b51cf371007b91e46d",
-  "modules_sha256": "4fee8a6200e7e339dda1702281f2bffe776b43a69e5515be19fe7052ff26c0a8",
-  "release": "7.3.0-next-20261023",
-  "tag": "next-20261023"
- },
+ "host_checks": [],
+ "latest_nightly": "ubci-40168371981-1-main",
+ "linux": null,
  "matrix": [
   {
    "board": "rb3gen2",
@@ -1259,15 +1375,15 @@
     "unknown": 0
    },
    "distance": {},
-   "fingerprint": "ubci-40152748187-1-main-stock-rb3gen2",
+   "fingerprint": "ubci-40168371981-1-main-stock-rb3gen2",
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
    "queue_position": null,
-   "run": "ubci-40152748187-1-main",
+   "run": "ubci-40168371981-1-main",
    "stack": "stock",
-   "state": "error",
-   "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to ",
+   "state": "queued",
+   "state_detail": "",
    "versus": "unknown"
   },
   {
@@ -1286,50 +1402,50 @@
     "optee": 0,
     "tf-a": 10
    },
-   "fingerprint": "ubci-40152748187-1-main-open-rb3gen2",
+   "fingerprint": "ubci-40168371981-1-main-open-rb3gen2",
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
    "queue_position": null,
-   "run": "ubci-40152748187-1-main",
+   "run": "ubci-40168371981-1-main",
    "stack": "open",
-   "state": "error",
-   "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to ",
+   "state": "queued",
+   "state_detail": "",
    "versus": "unknown"
   },
   {
    "board": "ventuno-q",
-   "boot": "fail",
-   "boot_stage": "no-efi-stub",
-   "boot_url": "https://lava.infra.foundries.io/scheduler/job/512197#L1104",
+   "boot": "not-run",
+   "boot_stage": "not-reached",
+   "boot_url": "",
    "counts": {
-    "fail": 5,
+    "fail": 0,
     "flaky": 0,
-    "pass": 12,
+    "pass": 0,
     "skip": 0,
     "unknown": 0
    },
    "distance": {},
-   "fingerprint": "ubci-40152748187-1-main-stock-ventuno-q",
-   "gate": "pass",
-   "job_url": "https://lava.infra.foundries.io/scheduler/job/512197",
+   "fingerprint": "ubci-40168371981-1-main-stock-ventuno-q",
+   "gate": "not-run",
+   "job_url": "",
    "new_fail": 0,
    "queue_position": null,
-   "run": "ubci-40152748187-1-main",
+   "run": "ubci-40168371981-1-main",
    "stack": "stock",
-   "state": "done",
-   "state_detail": "LAVA job incomplete",
+   "state": "queued",
+   "state_detail": "",
    "versus": "unknown"
   },
   {
    "board": "ventuno-q",
-   "boot": "fail",
-   "boot_stage": "no-efi-stub",
-   "boot_url": "https://lava.infra.foundries.io/scheduler/job/512231#L1133",
+   "boot": "not-run",
+   "boot_stage": "not-reached",
+   "boot_url": "",
    "counts": {
-    "fail": 8,
+    "fail": 0,
     "flaky": 0,
-    "pass": 18,
+    "pass": 0,
     "skip": 0,
     "unknown": 0
    },
@@ -1337,20 +1453,32 @@
     "optee": 0,
     "tf-a": 12
    },
-   "fingerprint": "ubci-40152748187-1-main-open-ventuno-q",
-   "gate": "pass",
-   "job_url": "https://lava.infra.foundries.io/scheduler/job/512231",
+   "fingerprint": "ubci-40168371981-1-main-open-ventuno-q",
+   "gate": "not-run",
+   "job_url": "",
    "new_fail": 0,
    "queue_position": null,
-   "run": "ubci-40152748187-1-main",
+   "run": "ubci-40168371981-1-main",
    "stack": "open",
-   "state": "done",
-   "state_detail": "LAVA job incomplete",
+   "state": "queued",
+   "state_detail": "",
    "versus": "unknown"
   }
  ],
  "pin_candidates": {},
  "runs": [
+  {
+   "base": {
+    "branch": "main",
+    "commit": "8649a54d301a4d0ac526324c7a7ad2574939ff27",
+    "repo": "https://git.u-boot-project.org/u-boot/u-boot.git"
+   },
+   "created": "2026-10-25T06:17:58Z",
+   "id": "ubci-40168371981-1-main",
+   "kind": "nightly",
+   "state": "building",
+   "title": "main 8649a54d301a"
+  },
   {
    "base": {
     "branch": "master",
@@ -1424,5 +1552,5 @@
    "title": "QCS8300 v4 + VENTUNO Q v2"
   }
  ],
- "updated": "2026-10-25T03:22:24Z"
+ "updated": "2026-10-25T06:17:59Z"
 }

@@ -6,6 +6,7 @@
 const POLL_MS = 60000;
 const STAGE = {
   "login": "login prompt reached",
+  "nothing-booted": "bootloader found nothing to boot, back at its prompt",
   "no-efi-stub": "bootloader handed off, no kernel output",
   "hang-before-console": "EFI stub ran, kernel console never came up",
   "early-panic": "kernel panic or oops before login",
