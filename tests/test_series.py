@@ -138,6 +138,24 @@ def test_prerequisite_message_id_is_fetched_first(tree, tmp_path):
     assert got[0]["added_as_prerequisite_of"] == "board@example.com"
 
 
+def test_a_resend_under_another_message_id_is_not_applied_twice(tree, tmp_path):
+    repo, mail, base = tree
+    shutil.copy(mail / "s01.mbx", mail / "s01r.mbx")
+    shutil.copy(mail / "s01.cover", mail / "s01r.cover")
+    with open(mail / "s02.cover", "a") as f:
+        f.write("prerequisite-message-id: <clk@example.com>\n")
+
+    def am(outdir, name, msgid):
+        src = {"clk@example.com": "s01", "clk-resend@example.com": "s01r", "board@example.com": "s02"}[msgid]
+        for ext in ("mbx", "cover"):
+            shutil.copy(mail / ("%s.%s" % (src, ext)), os.path.join(outdir, "%s.%s" % (name, ext)))
+        return os.path.join(outdir, name + ".mbx"), os.path.join(outdir, name + ".cover")
+    got = stack.fetch(str(tmp_path / "stack"), ["clk-resend@example.com", "board@example.com"], am=am)
+    assert [s["message_id"] for s in got] == ["clk-resend@example.com", "board@example.com"]
+    assert got[0]["also_posted_as"] == ["clk@example.com"]
+    assert stack.apply(str(repo), str(tmp_path / "stack"))
+
+
 def test_a_failed_series_is_aborted_without_a_git_identity(tree, tmp_path, monkeypatch):
     # The CI container has no git identity; git am --abort needs one.
     repo, mail, base = tree

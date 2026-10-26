@@ -3,7 +3,10 @@
 python3 -m ubci.stack fetch <dir> <Message-ID or lore link>...
     b4-fetches each series, in order, into <dir> (s01.mbx, s01.cover, ...),
     adds a series a cover letter names as prerequisite-message-id in front
-    of it when the stack lacks it, and writes <dir>/stack.json.
+    of it when the stack lacks it (by Message-ID, or by its patches: a
+    RESEND under another Message-ID is the same series and is recorded as
+    "also_posted_as" instead of being applied twice), and writes
+    <dir>/stack.json.
 python3 -m ubci.stack apply <u-boot source> <dir>
     applies the stack onto the checkout with git am and writes the result
     (which series applied, the patch that did not) back to stack.json.
@@ -23,9 +26,16 @@ def b4_am(outdir, name, msgid):
     return os.path.join(outdir, name + ".mbx"), os.path.join(outdir, name + ".cover")
 
 
+def patch_ids(mbx):
+    """The stable patch ids of the patches of an mbox."""
+    out = subprocess.run(["git", "patch-id", "--stable"], stdin=open(mbx, "rb"), check=True,
+                         capture_output=True).stdout.decode()
+    return frozenset(line.split()[0] for line in out.splitlines())
+
+
 def fetch(outdir, wanted, am=b4_am):
     os.makedirs(outdir, exist_ok=True)
-    stack, seen = [], set()
+    stack, seen, ids = [], set(), {}
 
     def add(msgid, added_for=None):
         if msgid in seen:
@@ -33,6 +43,13 @@ def fetch(outdir, wanted, am=b4_am):
         seen.add(msgid)
         name = "s%02d" % (len(seen))
         mbx, cover = am(outdir, name, msgid)
+        pids = patch_ids(mbx)
+        same = next((s for s in stack if ids[s["message_id"]] == pids), None)
+        if same:
+            same.setdefault("also_posted_as", []).append(msgid)
+            os.remove(mbx)
+            return
+        ids[msgid] = pids
         s = dict(series.describe(mbx, cover), message_id=msgid, mbx=mbx,
                  link="https://lore.kernel.org/r/" + msgid)
         if added_for:
