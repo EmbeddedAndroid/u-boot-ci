@@ -37,8 +37,7 @@ built from a public commit, shown as downstream in the boot chain. The FIT
 every run: BL31 at 0x1c200000, OP-TEE at 0x1c300000 (with the
 `trusted_keys` and `qcom_pas` early TAs), U-Boot under test at 0xaf000000
 with its control DTB. TF-A `PLAT=lemans_evk` and OP-TEE `qcom-lemans` pin
-the hardware-gated `qcom/integration` snapshot of 2026-10-24/25 (platform
-branches `qcom/lemans`), not public yet: the open stack is skipped with
-that reason until the branch is pushed. U-Boot: `qcom_defconfig` +
+the pushed `qcom/integration` of the EmbeddedAndroid forks (platform
+branches `qcom/lemans` recorded as `soc_branch`). U-Boot: `qcom_defconfig` +
 `tfa-optee.config`, `DEVICE_TREE=qcom/lemans-evk`. Linux runs at EL2 with
 the upstream `lemans-el2.dtbo`.

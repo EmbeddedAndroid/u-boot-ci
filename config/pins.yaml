@@ -63,12 +63,12 @@ boards:
       upstream:
         repo: https://github.com/OP-TEE/optee_os
         branch: master
-  # The three boards below pin the hardware-gated qcom/integration
+  # UNO Q and QCS615 Ride pin the hardware-gated qcom/integration
   # snapshot of 2026-10-24/25. Those commits are not on the public forks
-  # yet ("pending"): the open stack of these boards is skipped with that
-  # reason until qcom/integration is pushed, and the pins then move to
-  # its head in one PR. soc_branch records the per-platform branch head
-  # the snapshot integrated.
+  # ("pending"): the open stack of these boards is skipped with that
+  # reason until their pins move to the pushed qcom/integration head, as
+  # Lemans EVK's has. soc_branch records the per-platform branch head the
+  # pinned integration commit carries.
   uno-q:
     tf-a:
       repo: https://github.com/EmbeddedAndroid/arm-trusted-firmware
@@ -133,9 +133,8 @@ boards:
     tf-a:
       repo: https://github.com/EmbeddedAndroid/arm-trusted-firmware
       branch: qcom/integration
-      commit: f2b3d43e002c0866ec3cbea21285f790603a4865
-      soc_branch: {name: qcom/lemans, commit: 4c50b71bf488f50c8d07f50f6de17efa6d164fc5}
-      pending: gated qcom/integration snapshot, not pushed yet
+      commit: 17d3a8df67ac9a5670d8a8627e24d6c158ef5fe3
+      soc_branch: {name: qcom/lemans, commit: 657d882414160b1693dd7cb5dae36a21567cb5c4}
       flags: PLAT=lemans_evk SPD=opteed
       # U-Boot SPL loads a FIT, not a FIP: BL31, OP-TEE, U-Boot.
       image: uefi.itb
@@ -155,9 +154,8 @@ boards:
     optee:
       repo: https://github.com/EmbeddedAndroid/optee_os
       branch: qcom/integration
-      commit: bd6f523e58b41486ebb280de43898b3bff92f0c2
-      soc_branch: {name: qcom/lemans, commit: 2b08ee870554d435a77266525b31bd00a537d986}
-      pending: gated qcom/integration snapshot, not pushed yet
+      commit: 48e45590f07fa19f3f8be80f9d8b2d03858f130a
+      soc_branch: {name: qcom/lemans, commit: 67b4531d230bf10a9bbeed925a554ed90eda3de7}
       platform: qcom-lemans
       make_args:
         - CFG_USER_TA_TARGETS=ta_arm64

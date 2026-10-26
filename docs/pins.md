@@ -59,9 +59,9 @@ TF-A and OP-TEE pins move by hand for now: bump `config/pins.yaml`, sign
 a new BL2 when TF-A changes (and replace its `PIN_BL2_<BOARD>` secret in
 both environments, [setup.md](setup.md); the sha256 in `pins.yaml` is what
 the submit job checks it against), run `python3 -m ubci.carry` to refresh the
-carried patches, open the PR. A pin marked `pending` (UNO Q, QCS615 Ride
-and Lemans EVK pin the hardware-gated `qcom/integration` snapshot of
-2026-10-24/25, not pushed yet) moves, with the `pending` line dropped, to
+carried patches, open the PR. A pin marked `pending` (UNO Q and QCS615 Ride
+pin the hardware-gated `qcom/integration` snapshot of 2026-10-24/25, not
+pushed) moves, with the `pending` line dropped, to
 the pushed `qcom/integration` head of the EmbeddedAndroid forks, the
 platform branch recorded in `soc_branch`; RB3 Gen 2 and VENTUNO Q move to
 the same branch in the same kind of PR. The watcher is generic (`fwci/pinwatch.py`:
