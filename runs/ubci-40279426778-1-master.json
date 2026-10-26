@@ -1,0 +1,1368 @@
+{
+ "host_checks": [],
+ "linux": null,
+ "project": "u-boot",
+ "run": {
+  "base": {
+   "branch": "master",
+   "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+   "repo": "https://git.u-boot-project.org/u-boot/u-boot.git"
+  },
+  "baseline": null,
+  "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/40279426778",
+  "created": "2026-10-26T06:26:29Z",
+  "id": "ubci-40279426778-1-master",
+  "kind": "nightly",
+  "series": null,
+  "title": "master ece349ade297",
+  "updated": "2026-10-26T06:26:29Z"
+ },
+ "schema": "fwci-run/1",
+ "state": "building",
+ "targets": [
+  {
+   "board": "rb3gen2",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (Gunyah)"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in place of UEFI",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcm6490_defconfig",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/qcs6490-rb3gen2",
+     "fingerprint": "ubci-40279426778-1-master-stock-rb3gen2",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCM6490_bootbinaries_00142.zip",
+       "sha256": "22e45047b3349a1611d27167616dd04f08e8351120ac121f6921b47b9f709216",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCM6490_bootbinaries.1.0/qcm6490_bootbinaries.1.0-test-device-public/00142/QCM6490_bootbinaries_00142.zip"
+      },
+      {
+       "name": "QCM6490_bootbinaries_immutable_00142.zip",
+       "sha256": "a5f48c1646eb640377b66fa13064f2efe6f667e60f714b0e06c34dc66b7c94fb",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCM6490_bootbinaries.1.0/qcm6490_bootbinaries.1.0-test-device-public/00142/QCM6490_bootbinaries_immutable_00142.zip"
+      },
+      {
+       "name": "rb3gen2-core-kit.zip",
+       "sha256": "0fe1c0b4050cf54203203812b2c1f0d9698823d8defc8b6516414a4e5e0c557e",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS6490/cdt/rb3gen2-core-kit.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCM6490 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40279426778-1-master-stock-rb3gen2",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "rb3gen2",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "component": "tf-a bl2",
+     "origin": "upstream",
+     "stage": "TF-A BL2"
+    },
+    {
+     "component": "tf-a",
+     "origin": "upstream",
+     "stage": "TF-A BL31"
+    },
+    {
+     "component": "optee",
+     "origin": "upstream",
+     "stage": "OP-TEE"
+    },
+    {
+     "origin": "none",
+     "stage": "hypervisor"
+    },
+    {
+     "component": "u-boot",
+     "detail": "BL33 in the FIP",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "detail": "EL2",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_defconfig",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "tfa-optee.config",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/qcs6490-rb3gen2",
+     "fingerprint": "ubci-40279426778-1-master-open-rb3gen2",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCM6490_bootbinaries_00142.zip",
+       "sha256": "22e45047b3349a1611d27167616dd04f08e8351120ac121f6921b47b9f709216",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCM6490_bootbinaries.1.0/qcm6490_bootbinaries.1.0-test-device-public/00142/QCM6490_bootbinaries_00142.zip"
+      },
+      {
+       "name": "QCM6490_bootbinaries_immutable_00142.zip",
+       "sha256": "a5f48c1646eb640377b66fa13064f2efe6f667e60f714b0e06c34dc66b7c94fb",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCM6490_bootbinaries.1.0/qcm6490_bootbinaries.1.0-test-device-public/00142/QCM6490_bootbinaries_immutable_00142.zip"
+      },
+      {
+       "name": "rb3gen2-core-kit.zip",
+       "sha256": "0fe1c0b4050cf54203203812b2c1f0d9698823d8defc8b6516414a4e5e0c557e",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS6490/cdt/rb3gen2-core-kit.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCM6490 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    },
+    {
+     "branch": "kodiak-native-v4",
+     "commit": "23b6bf615281242ddf71c5e652aca534dff123d9",
+     "fingerprint": "ubci-40279426778-1-master-open-rb3gen2",
+     "name": "tf-a",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "upstream": {
+      "base": "fef86fcc70e5eced994e1c799410b610154da427",
+      "carried": [
+       {
+        "commit": "44fe77ef8d5610eedabcf70b671c9b9b9c37fcd7",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55532",
+        "subject": "refactor(qti): parameterize gold domain setup"
+       },
+       {
+        "commit": "d2de1799e30019a5a8baf4142b9c528c43cc9e75",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55533",
+        "subject": "fix(qti): fail CPU_ON when the gold rail does not come up"
+       },
+       {
+        "commit": "62e655947cfb56a927524c6c58309e2c13703455",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55534",
+        "subject": "fix(qti): stop the boot when CPUCP cannot be started"
+       },
+       {
+        "commit": "a3fd09d9ce165859ac7c9dc95fb4ce7f046e9899",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55535",
+        "subject": "feat(qti): add a CPU_OFF holding pen"
+       },
+       {
+        "commit": "5f1cc70ed3ae11b871030b81f520e100632566d2",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55536",
+        "subject": "feat(qti): initialize the Kodiak gold domain"
+       },
+       {
+        "commit": "5f21749bda1f6ba556c137a3bda7dc7b9cb52e32",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55537",
+        "subject": "feat(qti): add Kodiak CPUCP support"
+       },
+       {
+        "commit": "0bfead026434207d5eb6bee8b30f124b1f4b5abf",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55538",
+        "subject": "feat(qti): add Kodiak PDC tables"
+       },
+       {
+        "commit": "7572a3cb5ed03533efe442285b31d3223158c6dd",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55539",
+        "subject": "feat(qti): initialize the Kodiak GPU SMMU"
+       },
+       {
+        "commit": "9b54fba05f4dd3d1f5c9070cb8c5823ea9005c0f",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55540",
+        "subject": "feat(rb3gen2): boot without QTISECLIB"
+       },
+       {
+        "commit": "23b6bf615281242ddf71c5e652aca534dff123d9",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55541",
+        "subject": "docs(rb3gen2): describe the native boot"
+       }
+      ],
+      "distance": 10,
+      "repo": "https://review.trustedfirmware.org/TF-A/trusted-firmware-a"
+     },
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/23b6bf615281242ddf71c5e652aca534dff123d9"
+    },
+    {
+     "branch": "master",
+     "commit": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+     "fingerprint": "ubci-40279426778-1-master-open-rb3gen2",
+     "name": "optee",
+     "origin": "upstream",
+     "repo": "https://github.com/OP-TEE/optee_os",
+     "role": "pinned",
+     "upstream": {
+      "base": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+      "carried": [],
+      "distance": 0,
+      "repo": "https://github.com/OP-TEE/optee_os"
+     },
+     "url": "https://github.com/OP-TEE/optee_os/commit/2cabb6d063513e1718f7627e16b0a5ce1bfd5516"
+    },
+    {
+     "commit": "23b6bf615281242ddf71c5e652aca534dff123d9",
+     "fingerprint": "ubci-pin-bl2-rb3gen2-261024-0109",
+     "name": "tf-a bl2",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "sha256": "b46c27937615bfa1ca3c3963b1cf866ac8c2c6a4e099bd5daecc983ca2a544d4",
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/23b6bf615281242ddf71c5e652aca534dff123d9"
+    }
+   ],
+   "fingerprint": "ubci-40279426778-1-master-open-rb3gen2",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [
+     "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
+    ],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "open",
+   "state": "queued"
+  },
+  {
+   "board": "ventuno-q",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (Gunyah)"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in place of UEFI",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_monaco_defconfig",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/monaco-arduino-monza",
+     "fingerprint": "ubci-40279426778-1-master-stock-ventuno-q",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS8300_bootbinaries_00142.zip",
+       "sha256": "22182317cfe5b09f8cc9bc428d755391561cb9d25c9e77aeca4e62195d4b97e8",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS8300_bootbinaries.1.0/qcs8300_bootbinaries.1.0-test-device-public/00142/QCS8300_bootbinaries_00142.zip"
+      },
+      {
+       "name": "QCS8300_bootbinaries_immutable_00142.zip",
+       "sha256": "ffc05bf1323d828f8c944421d8cadaf1c45697032b26b9f34ecce042ddae291d",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS8300_bootbinaries.1.0/qcs8300_bootbinaries.1.0-test-device-public/00142/QCS8300_bootbinaries_immutable_00142.zip"
+      },
+      {
+       "name": "qcs8275-Monza_v1.zip",
+       "sha256": "8484beb2ac1ff74a129c586f6d5331536765975dbabfb0600509f11010ec1c41",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS8300/cdt/qcs8275-Monza_v1.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      },
+      {
+       "commit": "66170f27dea1c40781b871b6482ef886a7663232",
+       "name": "meta-qcom-arduino",
+       "recipes": null,
+       "repo": "https://github.com/qualcomm-linux/meta-qcom-arduino",
+       "url": "https://github.com/qualcomm-linux/meta-qcom-arduino/commit/66170f27dea1c40781b871b6482ef886a7663232"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS8300 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40279426778-1-master-stock-ventuno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [
+     "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
+    ],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "ventuno-q",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "component": "tf-a bl2",
+     "origin": "upstream",
+     "stage": "TF-A BL2"
+    },
+    {
+     "component": "tf-a",
+     "origin": "upstream",
+     "stage": "TF-A BL31"
+    },
+    {
+     "component": "optee",
+     "origin": "upstream",
+     "stage": "OP-TEE"
+    },
+    {
+     "origin": "none",
+     "stage": "hypervisor"
+    },
+    {
+     "component": "u-boot",
+     "detail": "BL33 in the FIP",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "detail": "EL2",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_defconfig",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "tfa-optee.config",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "arduino-ventuno-q.config",
+       "optional": true,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/monaco-arduino-monza",
+     "fingerprint": "ubci-40279426778-1-master-open-ventuno-q",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS8300_bootbinaries_00142.zip",
+       "sha256": "22182317cfe5b09f8cc9bc428d755391561cb9d25c9e77aeca4e62195d4b97e8",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS8300_bootbinaries.1.0/qcs8300_bootbinaries.1.0-test-device-public/00142/QCS8300_bootbinaries_00142.zip"
+      },
+      {
+       "name": "QCS8300_bootbinaries_immutable_00142.zip",
+       "sha256": "ffc05bf1323d828f8c944421d8cadaf1c45697032b26b9f34ecce042ddae291d",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS8300_bootbinaries.1.0/qcs8300_bootbinaries.1.0-test-device-public/00142/QCS8300_bootbinaries_immutable_00142.zip"
+      },
+      {
+       "name": "qcs8275-Monza_v1.zip",
+       "sha256": "8484beb2ac1ff74a129c586f6d5331536765975dbabfb0600509f11010ec1c41",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS8300/cdt/qcs8275-Monza_v1.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      },
+      {
+       "commit": "66170f27dea1c40781b871b6482ef886a7663232",
+       "name": "meta-qcom-arduino",
+       "recipes": null,
+       "repo": "https://github.com/qualcomm-linux/meta-qcom-arduino",
+       "url": "https://github.com/qualcomm-linux/meta-qcom-arduino/commit/66170f27dea1c40781b871b6482ef886a7663232"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS8300 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    },
+    {
+     "branch": "ventuno-q-v3",
+     "commit": "4930db330cb03cfe2124f41bf1852cff9e7abd22",
+     "fingerprint": "ubci-40279426778-1-master-open-ventuno-q",
+     "name": "tf-a",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "upstream": {
+      "base": "9599954cafaf7f1a0d8240242349db972b512150",
+      "carried": [
+       {
+        "commit": "54a6355a1a8cd1321d5f6b86f7a78c467af435e1",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54843",
+        "subject": "FROMLIST: fix(delay-timer)!: count timeouts in the configured frequency"
+       },
+       {
+        "commit": "982904694db78b8b786131ae01005f2e148bd6d1",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54926",
+        "subject": "FROMLIST: fix(psci): allow OS-initiated mode while other cores are off"
+       },
+       {
+        "commit": "5459185ce26e0a3ef4155f8e5cab6e141958e642",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55528",
+        "subject": "HACK: feat(qti): let a SoC use another SoC's RPMh data"
+       },
+       {
+        "commit": "20405011f18461e407e96fe19143cf3f65af6d09",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55529",
+        "subject": "PENDING: feat(monza): add Monaco clock back-end"
+       },
+       {
+        "commit": "98ba7638c862197cd41e6c9d655d4de7a7d38e05",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55530",
+        "subject": "PENDING: fix(qti): only advertise SYSTEM_SUSPEND with a system-level state"
+       },
+       {
+        "commit": "074559ee7fb47c7427e5247c8beb824abe16cf39",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54579",
+        "subject": "FROMLIST: feat(qti): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "75ab804c50225fadbb1f5e57265b06bcc625185d",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55765",
+        "subject": "PENDING: feat(monza): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "bffa27c7b96b99be8e9701f48a37f0eb026c3901",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55766",
+        "subject": "HACK: feat(qti): add a PMIC hard reset option for system reset"
+       },
+       {
+        "commit": "d17335f3c0e07e221c40964f3f421aaf110ee91a",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55767",
+        "subject": "HACK: feat(monza): use a PMIC hard reset for system reset"
+       },
+       {
+        "commit": "04a8286855c0ee72fe0125b3bbaf69f69b4e2eca",
+        "review": null,
+        "subject": "PENDING: fix(qti): ring the SAIL doorbell on SMSS_TZ_IPC"
+       },
+       {
+        "commit": "4a7a2e5cf1341158261ca299ce1eca55f160195f",
+        "review": null,
+        "subject": "PENDING: docs(monza): describe booting BL31 from U-Boot SPL"
+       },
+       {
+        "commit": "4930db330cb03cfe2124f41bf1852cff9e7abd22",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55531",
+        "subject": "PENDING: feat(qti): program the Monaco GPU SMMU aperture"
+       }
+      ],
+      "distance": 12,
+      "repo": "https://review.trustedfirmware.org/TF-A/trusted-firmware-a"
+     },
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/4930db330cb03cfe2124f41bf1852cff9e7abd22"
+    },
+    {
+     "branch": "master",
+     "commit": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+     "fingerprint": "ubci-40279426778-1-master-open-ventuno-q",
+     "name": "optee",
+     "origin": "upstream",
+     "repo": "https://github.com/OP-TEE/optee_os",
+     "role": "pinned",
+     "upstream": {
+      "base": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+      "carried": [],
+      "distance": 0,
+      "repo": "https://github.com/OP-TEE/optee_os"
+     },
+     "url": "https://github.com/OP-TEE/optee_os/commit/2cabb6d063513e1718f7627e16b0a5ce1bfd5516"
+    },
+    {
+     "commit": "4930db330cb03cfe2124f41bf1852cff9e7abd22",
+     "fingerprint": "MONZAFP-261008-154802-pr2-fs",
+     "name": "tf-a bl2",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "sha256": "91f4618318d49d15440ac31101cdf4ab2e4c8693c95f4867ebf2e65ed30e100f",
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/4930db330cb03cfe2124f41bf1852cff9e7abd22"
+    }
+   ],
+   "fingerprint": "ubci-40279426778-1-master-open-ventuno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [
+     "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
+    ],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "open",
+   "state": "queued"
+  },
+  {
+   "board": "uno-q",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (QTI hyp)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "ABL"
+    },
+    {
+     "component": "u-boot",
+     "detail": "Android boot image chainloaded by ABL",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_defconfig",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/qrb2210-arduino-imola",
+     "fingerprint": "ubci-40279426778-1-master-stock-uno-q",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "unoq-bootloader-emmc-linux-251020.zip",
+       "sha256": "c606e95d0107f8c58d0dd9494e00624d1db7c4361cca20513bc78ef02ca28dd1",
+       "url": "https://downloads.arduino.cc/debian-im/unoq-bootloader-emmc-linux-251020.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": null,
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      },
+      {
+       "commit": "66170f27dea1c40781b871b6482ef886a7663232",
+       "name": "meta-qcom-arduino",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom-arduino/tree/66170f27dea1c40781b871b6482ef886a7663232/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom-arduino",
+       "url": "https://github.com/qualcomm-linux/meta-qcom-arduino/commit/66170f27dea1c40781b871b6482ef886a7663232"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "Arduino UNO Q boot firmware 251020",
+     "role": "stock",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40279426778-1-master-stock-uno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "uno-q",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "component": "tf-a bl2",
+     "origin": "upstream",
+     "stage": "TF-A BL2"
+    },
+    {
+     "component": "tf-a",
+     "origin": "upstream",
+     "stage": "TF-A BL31"
+    },
+    {
+     "component": "optee",
+     "origin": "upstream",
+     "stage": "OP-TEE"
+    },
+    {
+     "origin": "none",
+     "stage": "hypervisor"
+    },
+    {
+     "component": "u-boot",
+     "detail": "BL33 in the FIP",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "detail": "EL2",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_defconfig",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "tfa-optee.config",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "arduino-uno-q.config",
+       "optional": true,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/qrb2210-arduino-imola",
+     "fingerprint": "ubci-40279426778-1-master-open-uno-q",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "Agatti_bootbinaries_00021.zip",
+       "sha256": "26a8681834363cb8bc9e8149db27388406daf22af15d3b43c9649e180afb47f2",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QRB2210_bootbinaries.1.0/qrb2210_bootbinaries.1.0-test-device-public/00021/Agatti_bootbinaries_00021.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QRB2210 boot binaries 00021",
+     "role": "stock",
+     "upstream": null
+    },
+    {
+     "branch": "qcom/integration",
+     "commit": "f2b3d43e002c0866ec3cbea21285f790603a4865",
+     "fingerprint": "ubci-40279426778-1-master-open-uno-q",
+     "name": "tf-a",
+     "origin": "upstream",
+     "pending": "gated qcom/integration snapshot, not pushed yet",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "soc_branch": {
+      "commit": "7f4a15b09c264fce5b9aeb67c08ae1b9d0c9e94e",
+      "name": "qcom/agatti",
+      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/7f4a15b09c264fce5b9aeb67c08ae1b9d0c9e94e"
+     },
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/f2b3d43e002c0866ec3cbea21285f790603a4865"
+    },
+    {
+     "branch": "qcom/integration",
+     "commit": "bd6f523e58b41486ebb280de43898b3bff92f0c2",
+     "fingerprint": "ubci-40279426778-1-master-open-uno-q",
+     "name": "optee",
+     "origin": "upstream",
+     "pending": "gated qcom/integration snapshot, not pushed yet",
+     "repo": "https://github.com/EmbeddedAndroid/optee_os",
+     "role": "pinned",
+     "soc_branch": {
+      "commit": "2518bc06b2f0a658e9f3d2752d692881869eae50",
+      "name": "qcom/agatti",
+      "url": "https://github.com/EmbeddedAndroid/optee_os/commit/2518bc06b2f0a658e9f3d2752d692881869eae50"
+     },
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/optee_os/commit/bd6f523e58b41486ebb280de43898b3bff92f0c2"
+    },
+    {
+     "commit": "f2b3d43e002c0866ec3cbea21285f790603a4865",
+     "fingerprint": "QCDFP-261024-68",
+     "name": "tf-a bl2",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "sha256": "09d1770fcdbd12fd18fd1cca84cfeaf3f1a915a851cff673ab24d4e48b10ecff",
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/f2b3d43e002c0866ec3cbea21285f790603a4865"
+    }
+   ],
+   "fingerprint": "ubci-40279426778-1-master-open-uno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [
+     "no Agatti EL2 overlay in linux-next"
+    ],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "open",
+   "state": "queued"
+  },
+  {
+   "board": "qcs615-ride",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (Gunyah)"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in place of UEFI",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_qcs615_defconfig",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/qcs615-ride",
+     "fingerprint": "ubci-40279426778-1-master-stock-qcs615-ride",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS615_bootbinaries_00142.zip",
+       "sha256": "4704b117672ef778c4680522b753af00641e91fc2f7fb351d942559e09458352",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS615_bootbinaries.1.0/qcs615_bootbinaries.1.0-test-device-public/00142/QCS615_bootbinaries_00142.zip"
+      },
+      {
+       "name": "ADP_AIR_SA6155P_V2.zip",
+       "sha256": "37d99eb113e286400bce0d70aa12a74d05f93d01f045bf67e7a46b3c606c8fd0",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS615/cdt/ADP_AIR_SA6155P_V2.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS615 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40279426778-1-master-stock-qcs615-ride",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "qcs615-ride",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "component": "tf-a bl2",
+     "origin": "upstream",
+     "stage": "TF-A BL2"
+    },
+    {
+     "component": "tf-a",
+     "origin": "upstream",
+     "stage": "TF-A BL31"
+    },
+    {
+     "component": "optee",
+     "origin": "upstream",
+     "stage": "OP-TEE"
+    },
+    {
+     "origin": "none",
+     "stage": "hypervisor"
+    },
+    {
+     "component": "u-boot",
+     "detail": "BL33 in the FIP",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "detail": "EL2",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_defconfig",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "tfa-optee.config",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "qcs615-ride.config",
+       "optional": true,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/qcs615-ride",
+     "fingerprint": "ubci-40279426778-1-master-open-qcs615-ride",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS615_bootbinaries_00142.zip",
+       "sha256": "4704b117672ef778c4680522b753af00641e91fc2f7fb351d942559e09458352",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS615_bootbinaries.1.0/qcs615_bootbinaries.1.0-test-device-public/00142/QCS615_bootbinaries_00142.zip"
+      },
+      {
+       "name": "ADP_AIR_SA6155P_V2.zip",
+       "sha256": "37d99eb113e286400bce0d70aa12a74d05f93d01f045bf67e7a46b3c606c8fd0",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS615/cdt/ADP_AIR_SA6155P_V2.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS615 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    },
+    {
+     "branch": "qcom/integration",
+     "commit": "f2b3d43e002c0866ec3cbea21285f790603a4865",
+     "fingerprint": "ubci-40279426778-1-master-open-qcs615-ride",
+     "name": "tf-a",
+     "origin": "upstream",
+     "pending": "gated qcom/integration snapshot, not pushed yet",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "soc_branch": {
+      "commit": "b3fbecd10dddb51ff7b5a9cdceb37a6e43a50ac9",
+      "name": "qcom/talos",
+      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/b3fbecd10dddb51ff7b5a9cdceb37a6e43a50ac9"
+     },
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/f2b3d43e002c0866ec3cbea21285f790603a4865"
+    },
+    {
+     "branch": "qcom/integration",
+     "commit": "bd6f523e58b41486ebb280de43898b3bff92f0c2",
+     "fingerprint": "ubci-40279426778-1-master-open-qcs615-ride",
+     "name": "optee",
+     "origin": "upstream",
+     "pending": "gated qcom/integration snapshot, not pushed yet",
+     "repo": "https://github.com/EmbeddedAndroid/optee_os",
+     "role": "pinned",
+     "soc_branch": {
+      "commit": "120a891f1f421c916fc9141a6bf380770ab8ba9c",
+      "name": "qcom/talos",
+      "url": "https://github.com/EmbeddedAndroid/optee_os/commit/120a891f1f421c916fc9141a6bf380770ab8ba9c"
+     },
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/optee_os/commit/bd6f523e58b41486ebb280de43898b3bff92f0c2"
+    },
+    {
+     "commit": "f2b3d43e002c0866ec3cbea21285f790603a4865",
+     "fingerprint": "QCDFP-261024-62",
+     "name": "tf-a bl2",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "sha256": "4616ba74a1285ab764399f7c6d29fccc4267702bce6d0b22cb0f24f9b566332a",
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/f2b3d43e002c0866ec3cbea21285f790603a4865"
+    }
+   ],
+   "fingerprint": "ubci-40279426778-1-master-open-qcs615-ride",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "open",
+   "state": "queued"
+  },
+  {
+   "board": "lemans-evk",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (Gunyah)"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in place of UEFI",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_lemans_defconfig",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/lemans-evk",
+     "fingerprint": "ubci-40279426778-1-master-stock-lemans-evk",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS9100_bootbinaries_00142.zip",
+       "sha256": "17d2c5bae5c17b665bafd9bba8962f41aec7be2f874cde90b0976730f0098bf6",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00142/QCS9100_bootbinaries_00142.zip"
+      },
+      {
+       "name": "QCS9100_bootbinaries_immutable_00142.zip",
+       "sha256": "1aa0b67671ef026a40ca133f32128d07fffd614a47cf51eaa5cd5c7d4941d034",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00142/QCS9100_bootbinaries_immutable_00142.zip"
+      },
+      {
+       "name": "rb8_core_kit.zip",
+       "sha256": "a252244f800d7c9e15883e12935af4113f9f2ecba6490e46cd9b943169f15bfa",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS9100/cdt/rb8_core_kit.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS9100 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40279426778-1-master-stock-lemans-evk",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "lemans-evk",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "component": "u-boot spl",
+     "detail": "pre-built, not from a public commit",
+     "origin": "downstream",
+     "stage": "U-Boot SPL"
+    },
+    {
+     "component": "tf-a",
+     "origin": "upstream",
+     "stage": "TF-A BL31"
+    },
+    {
+     "component": "optee",
+     "origin": "upstream",
+     "stage": "OP-TEE"
+    },
+    {
+     "origin": "none",
+     "stage": "hypervisor"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in the SPL FIT",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "detail": "EL2",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_defconfig",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "tfa-optee.config",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/lemans-evk",
+     "fingerprint": "ubci-40279426778-1-master-open-lemans-evk",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS9100_bootbinaries_00142.zip",
+       "sha256": "17d2c5bae5c17b665bafd9bba8962f41aec7be2f874cde90b0976730f0098bf6",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00142/QCS9100_bootbinaries_00142.zip"
+      },
+      {
+       "name": "QCS9100_bootbinaries_immutable_00142.zip",
+       "sha256": "1aa0b67671ef026a40ca133f32128d07fffd614a47cf51eaa5cd5c7d4941d034",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00142/QCS9100_bootbinaries_immutable_00142.zip"
+      },
+      {
+       "name": "rb8_core_kit.zip",
+       "sha256": "a252244f800d7c9e15883e12935af4113f9f2ecba6490e46cd9b943169f15bfa",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS9100/cdt/rb8_core_kit.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS9100 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    },
+    {
+     "branch": "qcom/integration",
+     "commit": "f2b3d43e002c0866ec3cbea21285f790603a4865",
+     "fingerprint": "ubci-40279426778-1-master-open-lemans-evk",
+     "name": "tf-a",
+     "origin": "upstream",
+     "pending": "gated qcom/integration snapshot, not pushed yet",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "soc_branch": {
+      "commit": "4c50b71bf488f50c8d07f50f6de17efa6d164fc5",
+      "name": "qcom/lemans",
+      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/4c50b71bf488f50c8d07f50f6de17efa6d164fc5"
+     },
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/f2b3d43e002c0866ec3cbea21285f790603a4865"
+    },
+    {
+     "branch": "qcom/integration",
+     "commit": "bd6f523e58b41486ebb280de43898b3bff92f0c2",
+     "fingerprint": "ubci-40279426778-1-master-open-lemans-evk",
+     "name": "optee",
+     "origin": "upstream",
+     "pending": "gated qcom/integration snapshot, not pushed yet",
+     "repo": "https://github.com/EmbeddedAndroid/optee_os",
+     "role": "pinned",
+     "soc_branch": {
+      "commit": "2b08ee870554d435a77266525b31bd00a537d986",
+      "name": "qcom/lemans",
+      "url": "https://github.com/EmbeddedAndroid/optee_os/commit/2b08ee870554d435a77266525b31bd00a537d986"
+     },
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/optee_os/commit/bd6f523e58b41486ebb280de43898b3bff92f0c2"
+    },
+    {
+     "fingerprint": "LEMANSFP-261009-030954-lpb4",
+     "name": "u-boot spl",
+     "origin": "downstream",
+     "role": "pinned",
+     "sha256": "c6cb506e3e51172446b8ec456dd647d9556ad55d5c6b94bc5ca3e39edc9a3893",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40279426778-1-master-open-lemans-evk",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "open",
+   "state": "queued"
+  }
+ ]
+}
