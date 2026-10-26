@@ -39,6 +39,23 @@ def fragments_missing(t):
             for c in comp.get("configs", []) if c["optional"] and c["used"] is False]
 
 
+def no_spl(t):
+    """Why an SPL-stack cell ran nothing, for the dashboard: "board" (no
+    SPL config to look for), "upstream" (the nightly base lacks the
+    board's SPL config), "tree" (an ad-hoc tree lacks it) or None; the
+    reason text is the target's state_detail."""
+    detail = t.get("state_detail", "")
+    if t["state"] != "skipped" or "spl" not in t:
+        return None
+    if detail.startswith("no SPL stack for this board"):
+        return "board"
+    if detail.startswith("no upstream SPL"):
+        return "upstream"
+    if detail.startswith("no SPL in the tested tree"):
+        return "tree"
+    return None
+
+
 def cell(run, t):
     boot = t.get("linux_boot", {})
     return {
@@ -58,6 +75,8 @@ def cell(run, t):
         "fragments_missing": fragments_missing(t),
         "boot_chain": t.get("boot_chain", []),
         "job_url": (t.get("lava") or {}).get("url", ""),
+        "no_spl": no_spl(t),
+        "spl_in_flight": (t.get("spl") or {}).get("in_flight", []),
     }
 
 

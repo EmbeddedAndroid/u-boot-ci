@@ -20,7 +20,12 @@ const VERSUS = {
 };
 // Run documents keep the stack ids they were written with ("stock" for
 // the downstream firmware stack); this is what a reader sees.
-const STACK = {"stock": "downstream firmware", "open": "open stack", "stock-candidate": "downstream candidate"};
+const STACK = {"stock": "downstream firmware", "open": "open stack", "spl": "U-Boot SPL",
+               "stock-candidate": "downstream candidate"};
+// An SPL-stack cell that ran nothing: no SPL config for the board, or its
+// SPL config not in the base (nightly) or the tested tree (ad-hoc). None
+// is a pass.
+const NO_SPL = {board: "no SPL stack for this board", upstream: "no upstream SPL", tree: "no SPL in the tested tree"};
 const KIND = {"nightly": "nightly", "adhoc": "ad-hoc", "series": "series", "pin-candidate": "pin candidate"};
 const FRAGMENT = "board fragment not on this base";
 let index = null, selected = null, branch = null, runCache = {};
@@ -45,6 +50,7 @@ function verdictClass(v) { return v === "pass" ? "pass" : v === "fail" ? "fail" 
 const CLOSED = {done: "none", cancelled: "warn", error: "fail"};
 function runBadge(state) { return badge(CLOSED[state] || "info", state); }
 function stateBadge(c) {
+  if (c.no_spl) return badge("warn", NO_SPL[c.no_spl]);
   if (c.state in CLOSED) return runBadge(c.state);
   if (c.state === "skipped") return badge("warn", "skipped");
   const q = c.queue_position !== null && c.queue_position !== undefined ? " #" + c.queue_position : "";
@@ -59,6 +65,13 @@ function chain(stages, compact) {
     el("span", {class: "stage " + originClass(s.origin),
                 title: s.stage + ": " + (s.origin === "none" ? "not in this chain" : s.origin) + (s.detail ? " (" + s.detail + ")" : "")},
        s.stage, compact ? null : el("small", {}, s.origin === "none" ? " none" : " " + s.origin))]));
+}
+
+// The series that would add SPL support for a board, or that none does.
+function splFlight(series) {
+  if (!(series || []).length) return el("div", {class: "muted"}, "no SPL in flight for this board");
+  return el("div", {class: "muted"}, "in flight: ", series.map((s, i) => [i ? ", " : null,
+    link(s.link, s.title + (s.version ? " v" + s.version : ""))]));
 }
 
 function renderAlerts() {
@@ -100,7 +113,8 @@ function renderMatrix() {
       const dist = Object.entries(c.distance || {}).map(([k, v]) => k + " +" + v).join(", ");
       const cell = el("td", {class: "cell" + (isSelected(c.run, b, s) ? " sel" : ""), tabindex: "0",
                             onclick: () => select(c.run, b, s)},
-        el("div", {class: "row"}, stateBadge(c), c.state_detail ? el("span", {class: "muted detail"}, c.state_detail) : null),
+        el("div", {class: "row"}, stateBadge(c), c.state_detail && !c.no_spl ? el("span", {class: "muted detail"}, c.state_detail) : null),
+        c.no_spl ? splFlight(c.spl_in_flight) : null,
         (c.fragments_missing || []).length ? el("div", {class: "row"},
           badge("warn", FRAGMENT), el("span", {class: "muted"}, c.fragments_missing.join(", "))) : null,
         el("div", {class: "row"}, el("span", {}, "fingerprint"), badge(verdictClass(c.gate), c.gate)),
@@ -199,6 +213,13 @@ async function renderDetail() {
     t.lava && t.lava.device ? " on " + t.lava.device : "",
     " · ", link("runs/" + encodeURIComponent(r.run.id) + ".json", "run document")));
   if (t.state_detail) parts.push(el("p", {class: "muted"}, t.state + ": " + t.state_detail));
+  if (t.spl) {
+    parts.push(el("h3", {}, "SPL support for this board"));
+    if (t.spl.gaps.length) parts.push(el("p", {}, "Not posted anywhere: " + t.spl.gaps.join("; ")));
+    parts.push(t.spl.in_flight.length
+      ? el("ul", {}, t.spl.in_flight.map(s => el("li", {}, link(s.link, s.title + (s.version ? " v" + s.version : "")))))
+      : el("p", {class: "muted"}, "no SPL in flight for this board"));
+  }
   // Run documents from before the boot chain was recorded have none.
   if ((t.boot_chain || []).length) parts.push(el("h3", {}, "Boot chain"), chain(t.boot_chain, false));
   parts.push(el("h3", {}, "Boots Linux: ", badge(verdictClass(lb.verdict), lb.verdict || "not-run"), " ",

@@ -118,7 +118,8 @@ not in the tree the target is skipped, never failed and never hidden: "no
 upstream SPL" on a nightly base, "no SPL in the tested tree" on an
 ad-hoc stack. A board without `u-boot.spl` has no SPL config to look
 for: "no SPL stack for this board". Each reason goes on with the gaps and
-the series in flight, or "no SPL in flight for this board".
+the series in flight, or "no SPL in flight for this board". The dashboard
+shows that state in the SPL column with the series linked.
 
 The gates start at XBL's end marker (`lava.xbl_marker`), as on the other
 stacks: on Lemans XBL still runs before the SPL. A board whose SPL is the

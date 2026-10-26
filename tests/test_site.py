@@ -124,3 +124,36 @@ def test_legacy_run_documents_with_a_restore_still_build(tmp_path):
     idx = site.write(str(tmp_path))
     assert [r["id"] for r in idx["runs"]] == ["n2", "n1"]
     assert idx["case_history"]["rb3gen2/stock"]["cases"]["stock-restore/uefi_ver"] == "p-"
+
+
+def spl_target(board, detail, in_flight):
+    t = target(board=board, stack="spl")
+    t.update(state="skipped", state_detail=detail, cases=[],
+             spl={"in_flight": in_flight, "gaps": []})
+    return t
+
+
+LEMANS_SPL = [{"title": "Enable U-Boot SPL support for Lemans EVK", "version": 4,
+               "message_id": "a@b", "link": "https://lore.kernel.org/r/a@b"}]
+
+
+def test_spl_cells_say_why_nothing_ran_and_what_is_in_flight(tmp_path):
+    write(tmp_path, run("n1", targets=[
+        spl_target("lemans-evk", "no upstream SPL: qcom_lemans_spl_defconfig not in the tree; in flight: x",
+                   LEMANS_SPL),
+        spl_target("rb3gen2", "no SPL in the tested tree: x_spl_defconfig not in the tree; no SPL in flight "
+                   "for this board", []),
+        spl_target("uno-q", "no SPL stack for this board: no SPL in flight for this board", []),
+        target(stack="open")]))
+    m = {(c["board"], c["stack"]): c for c in site.write(str(tmp_path))["matrix"]}
+    assert m["lemans-evk", "spl"]["no_spl"] == "upstream"
+    assert m["lemans-evk", "spl"]["spl_in_flight"] == LEMANS_SPL
+    assert m["rb3gen2", "spl"]["no_spl"] == "tree" and m["rb3gen2", "spl"]["spl_in_flight"] == []
+    assert m["uno-q", "spl"]["no_spl"] == "board"
+    assert m["rb3gen2", "open"]["no_spl"] is None
+
+
+def test_an_spl_cell_skipped_for_another_reason_is_not_no_spl(tmp_path):
+    t = spl_target("lemans-evk", "open-stack pin not public yet: tf-a f2b3d43e002c (x)", LEMANS_SPL)
+    write(tmp_path, run("n1", targets=[t]))
+    assert site.write(str(tmp_path))["matrix"][0]["no_spl"] is None
