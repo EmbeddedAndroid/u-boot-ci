@@ -136,3 +136,46 @@ def test_prerequisite_message_id_is_fetched_first(tree, tmp_path):
     got = stack.fetch(str(tmp_path / "stack"), ["board@example.com"], am=am_from(mail))
     assert [s["message_id"] for s in got] == ["clk@example.com", "board@example.com"]
     assert got[0]["added_as_prerequisite_of"] == "board@example.com"
+
+
+def test_a_failed_series_is_aborted_without_a_git_identity(tree, tmp_path, monkeypatch):
+    # The CI container has no git identity; git am --abort needs one.
+    repo, mail, base = tree
+    write(repo, "clk.c", "base\nsomething else\n")
+    sh(repo, "commit", "-q", "-am", "clk: conflicting change")
+    sh(repo, "config", "--unset", "user.email")
+    sh(repo, "config", "--unset", "user.name")
+    monkeypatch.setenv("GIT_CONFIG_GLOBAL", "/dev/null")
+    monkeypatch.setenv("HOME", str(tmp_path))
+    # An empty GIT_COMMITTER_EMAIL is an identity to git: unset, not empty.
+    for v in ("EMAIL", "GIT_COMMITTER_NAME", "GIT_COMMITTER_EMAIL", "GIT_AUTHOR_NAME", "GIT_AUTHOR_EMAIL"):
+        monkeypatch.delenv(v, raising=False)
+    d = tmp_path / "stack"
+    stack.fetch(str(d), ["clk@example.com"], am=am_from(mail))
+    assert not stack.apply(str(repo), str(d))
+    fp = json.load(open(d / "stack.json"))[0]["failed_patch"]
+    assert fp["number"] == 1 and fp["error"].startswith("Patch failed at 0001 clk: add the SDCC clocks")
+    assert fp["subject"].endswith("clk: add the SDCC clocks")
+    assert not os.path.exists(repo / ".git" / "rebase-apply")
+
+
+def test_a_failed_series_in_a_worktree_names_its_patch(tree, tmp_path):
+    repo, mail, base = tree
+    write(repo, "clk.c", "base\nsomething else\n")
+    sh(repo, "commit", "-q", "-am", "clk: conflicting change")
+    wt = tmp_path / "wt"
+    sh(repo, "worktree", "add", "-q", "--detach", str(wt), "HEAD")
+    d = tmp_path / "stack"
+    stack.fetch(str(d), ["clk@example.com"], am=am_from(mail))
+    assert not stack.apply(str(wt), str(d))
+    assert json.load(open(d / "stack.json"))[0]["failed_patch"]["number"] == 1
+    assert sh(wt, "status", "--porcelain") == ""
+
+
+def test_a_series_git_cannot_read_is_recorded_not_raised(tree, tmp_path):
+    repo, mail, base = tree
+    d = tmp_path / "stack"
+    stack.fetch(str(d), ["clk@example.com"], am=am_from(mail))
+    (d / "s01.mbx").write_text("not a patch\n")
+    assert not stack.apply(str(repo), str(d))
+    assert json.load(open(d / "stack.json"))[0]["applied"] is False

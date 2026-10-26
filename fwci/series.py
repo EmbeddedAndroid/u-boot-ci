@@ -88,15 +88,19 @@ def apply(src, stack, ident=("u-boot-ci", "u-boot-ci@users.noreply.github.com"))
             continue
         failed = True
         s["applied"] = False
-        nxt = os.path.join(src, ".git", "rebase-apply", "next")
-        cur = git(src, "am", "--show-current-patch=raw", check=False).stdout
+        nxt = os.path.join(src, git(src, "rev-parse", "--git-path", "rebase-apply/next").stdout.strip())
+        cur = git(src, *env, "am", "--show-current-patch=raw", check=False).stdout
         sub = re.search(r"^Subject: (.*(?:\n[ \t]+.*)*)", cur, re.M)
+        # The "Patch failed at" line, else git's last word before its hints.
+        lines = [l for l in (r.stdout + r.stderr).splitlines() if l.strip() and not l.startswith("hint:")]
+        lines = [l for l in lines if l.startswith("Patch failed at")] or lines
         s["failed_patch"] = {
             "number": int(open(nxt).read()) if os.path.exists(nxt) else None,
             "subject": " ".join(sub.group(1).split()) if sub else "",
-            "error": (r.stdout + r.stderr).strip().splitlines()[-1][:200] if (r.stdout + r.stderr).strip() else "",
+            "error": lines[-1][:200] if lines else "",
         }
-        git(src, "am", "--abort", check=False)
+        # Without an identity git 2.43 refuses --show-current-patch and --abort.
+        git(src, *env, "am", "--abort", check=False)
     have = patch_ids(src, base) if not failed else set()
     for s in stack:
         s["unresolved_prerequisites"] = [p for p in s["prerequisites"]["patch_ids"] if p not in have] \
