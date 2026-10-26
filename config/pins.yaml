@@ -165,3 +165,8 @@ boards:
 qtestsign:
   repo: https://github.com/msm8916-mainline/qtestsign
   commit: 0eef3b552b1ada848f22bad38ab2e40407307c5b
+# The SWIV annotation an SPL needs before XBL takes it as the TZ image
+# (meta-qcom swiv-build-utility_git.bb pins the same commit).
+swiv:
+  repo: https://github.com/qualcomm-linux/boot-firmware-ci
+  commit: a0f007327c1ffc0b568def06c4b035b8d3fb05ac

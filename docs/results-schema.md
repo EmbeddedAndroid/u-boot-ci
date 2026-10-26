@@ -37,6 +37,12 @@ built). The same schema serves u-boot-ci, tf-a-ci and optee-ci.
     `carried` commits with their review links (distance to upstream);
     Linux the linux-next tag and commit, `config` and `dtbs` with links
     at that commit, `dtb_sha256` of the DTB the UKI carries;
+  - `spl` (SPL-stack targets): `in_flight[]` (`title`, `version`,
+    `message_id`, `link`): the series that would add SPL support for the
+    board; `gaps[]`: what no posted series provides. Shown whatever the
+    result: a skipped SPL target says "no SPL stack for this board", "no
+    upstream SPL" (nightly) or "no SPL in the tested tree" (ad-hoc) in
+    its `state_detail`;
   - `boot_chain[]`: every boot stage with its `origin` (`upstream`,
     `downstream`, `none`), the component it links to and a detail;
   - `lava`: job id, link, device, health;

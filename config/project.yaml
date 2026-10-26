@@ -5,7 +5,7 @@ under_test:
   repo: https://git.u-boot-project.org/u-boot/u-boot.git
   branch: main
 boards: [rb3gen2, ventuno-q, uno-q, qcs615-ride, lemans-evk]
-stacks: [stock, open]
+stacks: [stock, open, spl]
 lava:
   url: https://lava.infra.foundries.io
   # Jobs of this project in flight per device type; the submitter waits

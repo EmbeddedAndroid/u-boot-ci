@@ -25,7 +25,7 @@ def test_issue_form_body():
     r = request.from_issue(BODY)
     assert r["series"] == ("20261021-b4-monaco-v4-0-c90f0c01d312@oss.qualcomm.com "
                            "20260928-monaco-ventuno-q-v2-0-0e046c8242be@oss.qualcomm.com")
-    assert r["base"] == "master" and r["targets"] == "ventuno-q:stock,ventuno-q:open"
+    assert r["base"] == "master" and r["targets"] == "ventuno-q:stock,ventuno-q:open,ventuno-q:spl?"
 
 
 @pytest.mark.parametrize("series,base,boards,stacks,why", [
@@ -41,6 +41,13 @@ def test_bad_requests_are_refused(series, base, boards, stacks, why):
 
 
 def test_defaults_to_every_board_and_stack():
+    # spl? : the SPL stack only if the stack touches SPL (ubci.run new).
     assert request.check("x@y", "main", "", "")["targets"] == \
         ",".join("%s:%s" % (b, s) for b in ("lemans-evk", "qcs615-ride", "rb3gen2", "uno-q", "ventuno-q")
-                 for s in ("stock", "open"))
+                 for s in ("stock", "open", "spl?"))
+
+
+def test_spl_can_be_asked_for_but_not_the_conditional_form():
+    assert request.check("x@y", "main", "lemans-evk", "spl")["targets"] == "lemans-evk:spl"
+    with pytest.raises(ValueError, match="unknown stack"):
+        request.check("x@y", "main", "lemans-evk", "spl?")

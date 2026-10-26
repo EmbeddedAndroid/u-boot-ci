@@ -6,14 +6,18 @@ python3 -m ubci.stack fetch <dir> <Message-ID or lore link>...
     of it when the stack lacks it (by Message-ID, or by its patches: a
     RESEND under another Message-ID is the same series and is recorded as
     "also_posted_as" instead of being applied twice), and writes
-    <dir>/stack.json.
+    <dir>/stack.json, where
+    "touches_spl" says whether a series changes SPL code (an ad-hoc run
+    that named no stacks then runs the SPL stack too).
 python3 -m ubci.stack apply <u-boot source> <dir>
     applies the stack onto the checkout with git am and writes the result
     (which series applied, the patch that did not) back to stack.json.
     Exits 0 either way; "applies" in stack.json says which.
 """
 import json
+import mailbox
 import os
+import re
 import subprocess
 import sys
 
@@ -24,6 +28,22 @@ def b4_am(outdir, name, msgid):
     subprocess.run(["b4", "--no-stdin", "am", "-o", outdir, "-n", name, msgid], check=True,
                    capture_output=True, text=True)
     return os.path.join(outdir, name + ".mbx"), os.path.join(outdir, name + ".cover")
+
+
+# A patch about SPL: "SPL" in its subject, a file of the SPL build
+# (common/spl/, board_spl.c, *_spl_defconfig, spl-<board>.c, include/spl.h,
+# ...) or a new SPL_ Kconfig symbol.
+SPL_SUBJECT = re.compile(r"\bSPL\b")
+SPL_PATH = re.compile(r"^\+\+\+ b/(?:\S*/)?\S*(?<![a-z])spl(?![a-z])", re.M | re.I)
+SPL_SYMBOL = re.compile(r"^\+\s*(?:menu)?config\s+SPL_", re.M)
+
+
+def touches_spl(mbx):
+    for m in mailbox.mbox(mbx):
+        text = m.as_bytes().decode("utf-8", "replace")
+        if SPL_SUBJECT.search(series.subject(m)) or SPL_PATH.search(text) or SPL_SYMBOL.search(text):
+            return True
+    return False
 
 
 def patch_ids(mbx):
@@ -51,7 +71,7 @@ def fetch(outdir, wanted, am=b4_am):
             return
         ids[msgid] = pids
         s = dict(series.describe(mbx, cover), message_id=msgid, mbx=mbx,
-                 link="https://lore.kernel.org/r/" + msgid)
+                 link="https://lore.kernel.org/r/" + msgid, touches_spl=touches_spl(mbx))
         if added_for:
             s["added_as_prerequisite_of"] = added_for
         for p in s["prerequisites"]["message_ids"]:

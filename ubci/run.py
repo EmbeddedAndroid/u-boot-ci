@@ -97,10 +97,14 @@ def components(board, stack, commit, fp, branch=None):
     stack = jobs.base_stack(stack)
     p = config.project()["under_test"]
     b = config.board(board)
-    u = b["u-boot"][stack]
+    u = b["u-boot"].get(stack)
     out = [{"name": "u-boot", "role": "under-test", "origin": "upstream", "repo": p["repo"],
             "branch": branch or p["branch"], "commit": commit, "url": links.commit_url(p["repo"], commit),
-            "fingerprint": fp, "configs": uboot_configs(b, stack), "device_tree": u["device_tree"]}]
+            "fingerprint": fp}]
+    if u is None:
+        # A stack the board does not have: nothing is built.
+        return out
+    out[0].update(configs=uboot_configs(b, stack), device_tree=u["device_tree"])
     out.append(downstream_component(b, stack))
     if stack == "stock":
         return out
@@ -118,6 +122,12 @@ def components(board, stack, commit, fp, branch=None):
         if pin.get("pending"):
             comp["pending"] = pin["pending"]
         out.append(comp)
+    if stack == "spl":
+        # The SPL is built from the tree under test with U-Boot proper.
+        out.append({"name": "u-boot spl", "role": "under-test", "origin": "upstream",
+                    "repo": p["repo"], "branch": branch or p["branch"], "commit": commit,
+                    "url": links.commit_url(p["repo"], commit), "fingerprint": fp})
+        return out
     bl2 = b["pins"]["bl2"]
     tz = {"name": bl2.get("name", "tf-a bl2"), "role": "pinned", "origin": bl2.get("origin", "upstream"),
           "fingerprint": bl2["fingerprint"], "sha256": bl2["sha256"], "upstream": None}
@@ -150,14 +160,28 @@ def set_target_linux(t, linux):
         t["components"].append(linux_component(config.board(t["board"]), t["stack"], linux))
 
 
+def spl_info(b):
+    """What an SPL-stack target shows whatever its result: the series in
+    flight that add SPL support for the board, and the known gaps."""
+    spl = b.get("spl") or {}
+    return {"in_flight": [dict(s, link="https://lore.kernel.org/r/" + s["message_id"])
+                          for s in spl.get("in_flight", [])],
+            "gaps": list(spl.get("gaps", []))}
+
+
 def new(args):
     p = config.project()
     linux = linux_of(args.linux) if args.linux else None
     now = schema.now()
     branch = args.branch or p["under_test"]["branch"]
+    stack_doc = json.load(open(args.stack)) if args.stack else None
     targets = []
     pairs = ([tuple(x.split(":")) for x in args.targets.split(",")] if args.targets
              else [(b, s) for b in p["boards"] for s in p["stacks"]])
+    # "<board>:spl?" (an ad-hoc request that named no stacks): the SPL
+    # stack only when a series of the stack touches SPL code.
+    touches = any(s.get("touches_spl") for s in stack_doc or [])
+    pairs = [(b, s.rstrip("?")) for b, s in pairs if not s.endswith("?") or touches]
     for board, stack in pairs:
         b = config.board(board)
         targets.append({
@@ -166,10 +190,12 @@ def new(args):
             "components": components(board, stack, args.commit,
                                      jobs.target_fingerprint(args.fingerprint, board, stack), branch),
             "fingerprint_gate": "not-run",
-            "boot_chain": b["boot_chain"][jobs.base_stack(stack)],
+            "boot_chain": b["boot_chain"].get(jobs.base_stack(stack), []),
             "linux_boot": {"verdict": "not-run", "stage": "not-reached",
                            "gaps": b["linux"]["gaps"].get(jobs.base_stack(stack), [])},
             "cases": []})
+        if jobs.base_stack(stack) == "spl":
+            targets[-1]["spl"] = spl_info(b)
         set_target_linux(targets[-1], linux)
     for spec in args.stock_release or []:
         stack, release = spec.split("=", 1)
@@ -181,7 +207,7 @@ def new(args):
     if args.stack:
         keep = ("message_id", "link", "title", "version", "patches", "applied",
                 "added_as_prerequisite_of", "failed_patch", "unresolved_prerequisites")
-        stack = [{k: s[k] for k in keep if k in s} for s in json.load(open(args.stack))]
+        stack = [{k: s[k] for k in keep if k in s} for s in stack_doc]
         bad = next((s for s in stack if s["applied"] is False), None)
         if bad:
             fp = bad.get("failed_patch") or {}

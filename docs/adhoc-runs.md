@@ -14,7 +14,7 @@ From the Actions tab: workflow **adhoc**, "Run workflow" on `main`, with
 | series | Message-IDs or lore links of the cover letters (or of the first patch when there is no cover), space separated, in the order to apply them |
 | base | `main` (default) or `master` |
 | boards | space separated (`rb3gen2`, `ventuno-q`); empty for both |
-| stacks | `stock` (downstream firmware) and/or `open`; empty for both |
+| stacks | `stock` (downstream firmware), `open` and/or `spl`; empty for `stock` and `open`, plus `spl` when a series of the stack touches SPL |
 | title | shown on the dashboard (optional) |
 
 or with the GitHub CLI:
@@ -99,3 +99,16 @@ prerequisite, a prerequisite-message-id fetched first, the Message-ID
 forms), `tests/test_request.py` (inputs and issue form, invalid ids,
 bases, boards and stacks) and `tests/test_run.py` (the stack recorded in
 the run, every cell skipped when the stack does not apply).
+
+## SPL series
+
+A series "touches SPL" when a patch has SPL in its subject, changes a
+file of the SPL build (`common/spl/`, `board_spl.c`, `spl-<board>.c`,
+`*_spl_defconfig`, `include/spl.h`, ...) or adds an `SPL_` Kconfig
+symbol (`ubci.stack.touches_spl`, recorded per series in `stack.json`).
+A request that names no stacks then runs the U-Boot SPL stack too, on
+the boards it asked for ([firmware-stacks.md](firmware-stacks.md)). A
+board whose SPL defconfig the stacked tree lacks is skipped with "no SPL
+in the tested tree", one without an SPL config in u-boot-ci with "no SPL
+stack for this board", each with the series in flight for it, so a run
+of an SPL series on the wrong board says so instead of passing.

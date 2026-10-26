@@ -4,6 +4,7 @@ import pytest
 
 from fwci import schema
 from fwci.lava_mcp import Rejected
+from ubci import config
 from ubci import run as urun
 
 LINUX = {"tag": "next-20261023", "commit": "20a33c6b6cbe7e4805dfb6cd68816937443aa148",
@@ -25,14 +26,15 @@ def test_new_run_has_every_board_and_stack_with_distance(doc):
     r = json.load(open(doc))
     assert schema.errors(r) == []
     assert [(t["board"], t["stack"]) for t in r["targets"]] == [
-        (b, s) for b in ("rb3gen2", "ventuno-q", "uno-q", "qcs615-ride", "lemans-evk") for s in ("stock", "open")]
-    open_rb3 = r["targets"][1]
+        (b, s) for b in ("rb3gen2", "ventuno-q", "uno-q", "qcs615-ride", "lemans-evk")
+        for s in ("stock", "open", "spl")]
+    open_rb3 = target_of(r, "rb3gen2", "open")
     tfa = [c for c in open_rb3["components"] if c["name"] == "tf-a"][0]
     assert tfa["role"] == "pinned" and tfa["upstream"]["distance"] == len(tfa["upstream"]["carried"])
     optee = [c for c in open_rb3["components"] if c["name"] == "optee"][0]
     assert optee["upstream"]["distance"] == 0
     assert open_rb3["linux_boot"]["gaps"]
-    for vq in r["targets"][2:4]:
+    for vq in (target_of(r, "ventuno-q", "stock"), target_of(r, "ventuno-q", "open")):
         assert vq["linux_boot"]["gaps"][0].startswith("upstream U-Boot does not support this board")
     assert r["targets"][0]["components"][1]["role"] == "stock"
 
@@ -474,7 +476,7 @@ def test_close_cancelled_run_left_building(doc, capsys):
     r = json.load(open(doc))
     assert schema.errors(r) == []
     assert r["state"] == "cancelled" and r["note"] == "workflow cancelled"
-    assert [t["state"] for t in r["targets"]] == ["cancelled", "cancelled", "skipped"] + ["cancelled"] * 7
+    assert [t["state"] for t in r["targets"]] == ["cancelled", "cancelled", "skipped"] + ["cancelled"] * 12
     assert r["targets"][0]["state_detail"] == "workflow cancelled before this target finished"
     assert r["targets"][1]["state_detail"].endswith("; LAVA job 511644 was not collected")
     assert r["host_checks"] == [{"name": "docs", "result": "skip",
@@ -567,7 +569,7 @@ def test_a_device_that_refuses_the_user_is_passed_over(doc, tmp_path, monkeypatc
     # rb3g2-02 is asked once per pass, not once per target
     assert sum("device: rb3g2-02\n" in d for d in sent) == 1
     assert sum("device: rb3g2-05\n" in d for d in sent) == 2
-    assert r["targets"][2]["lava"]["job_id"] > 800
+    assert target_of(r, "ventuno-q", "stock")["lava"]["job_id"] > 800
 
 
 def test_no_device_takes_the_job_is_an_error_with_the_reason(doc, tmp_path, monkeypatch):
@@ -582,7 +584,7 @@ def test_no_device_takes_the_job_is_an_error_with_the_reason(doc, tmp_path, monk
         assert t["state_detail"] == ("no healthy qcs6490-rb3gen2 device takes jobs from this "
                                      "LAVA user (refused by rb3g2-02, rb3g2-05)")
     # the refusal did not end the pass: the VENTUNO Q target went in
-    assert r["targets"][2]["lava"]["job_id"] > 800
+    assert target_of(r, "ventuno-q", "stock")["lava"]["job_id"] > 800
 
 
 def test_a_rejected_job_is_an_error_with_lavas_message(doc, tmp_path, monkeypatch):
@@ -640,6 +642,12 @@ def test_every_target_names_its_exact_software(doc):
     for t in r["targets"]:
         ub = comp(t, "u-boot")
         assert ub["url"] == "https://git.u-boot-project.org/u-boot/u-boot/-/commit/" + ub["commit"]
+        if t["stack"] not in config.board(t["board"])["u-boot"]:
+            # Nothing to build: no firmware is named, only why.
+            assert [c["name"] for c in t["components"]] == ["u-boot", "linux"] and t["boot_chain"] == []
+            if t["stack"] == "spl":
+                assert t["spl"] == urun.spl_info(config.board(t["board"]))
+            continue
         ds = comp(t, "downstream firmware")
         assert ds["origin"] == "downstream" and ds["files"] and all(len(f["sha256"]) == 64 for f in ds["files"])
         assert all(f["url"].startswith("https://") for f in ds["files"])
@@ -702,3 +710,45 @@ def test_linux_recorded_later_reaches_every_target(tmp_path):
     r = json.load(open(p))
     assert comp(r["targets"][0], "linux")["commit"] == LINUX["commit"]
     assert r["linux"]["tag_url"].endswith("/tag/?h=next-20261023")
+
+
+def test_spl_target_names_the_spl_built_here_and_the_series_in_flight(doc):
+    r = json.load(open(doc))
+    t = target_of(r, "lemans-evk", "spl")
+    spl = comp(t, "u-boot spl")
+    assert spl["origin"] == "upstream" and spl["commit"] == comp(t, "u-boot")["commit"]
+    assert spl["fingerprint"] == t["fingerprint"] == "ubci-1-spl-lemans-evk"
+    assert [c["name"] for c in t["components"]][:5] == ["u-boot", "downstream firmware", "tf-a", "optee",
+                                                        "u-boot spl"]
+    assert not any(c["name"] in ("tf-a bl2", "u-boot spl") and c["origin"] == "downstream"
+                   for c in t["components"])
+    assert [c["name"] for c in comp(t, "u-boot")["configs"]] == ["qcom_lemans_spl_defconfig", "tfa-optee.config"]
+    assert t["boot_chain"][1] == {"stage": "U-Boot SPL", "origin": "upstream", "component": "u-boot spl",
+                                  "detail": "from the tree under test, in place of tz"}
+    flight = t["spl"]["in_flight"]
+    assert flight[0]["link"] == "https://lore.kernel.org/r/20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com"
+    assert "spl" not in target_of(r, "lemans-evk", "open")
+
+
+def stack_doc(tmp_path, touches):
+    p = tmp_path / "stack.json"
+    p.write_text(json.dumps([{"message_id": "a@b", "link": "https://lore.kernel.org/r/a@b", "title": "t",
+                              "version": 1, "patches": 1, "applied": True, "touches_spl": touches}]))
+    return str(p)
+
+
+@pytest.mark.parametrize("touches, want", [(True, ["stock", "spl"]), (False, ["stock"])])
+def test_spl_runs_on_an_adhoc_stack_only_when_it_touches_spl(tmp_path, touches, want):
+    p = str(tmp_path / "run.json")
+    urun.main(["new", p, "--id", "ubci-a", "--commit", "0" * 40, "--fingerprint", "ubci-a", "--kind", "adhoc",
+               "--stack", stack_doc(tmp_path, touches), "--targets", "lemans-evk:stock,lemans-evk:spl?"])
+    r = json.load(open(p))
+    assert [t["stack"] for t in r["targets"]] == want
+    assert "touches_spl" not in r["run"]["stack"][0]
+
+
+def test_an_spl_target_asked_for_runs_whatever_the_stack(tmp_path):
+    p = str(tmp_path / "run.json")
+    urun.main(["new", p, "--id", "ubci-a", "--commit", "0" * 40, "--fingerprint", "ubci-a", "--kind", "adhoc",
+               "--stack", stack_doc(tmp_path, False), "--targets", "lemans-evk:spl"])
+    assert [t["stack"] for t in json.load(open(p))["targets"]] == ["spl"]

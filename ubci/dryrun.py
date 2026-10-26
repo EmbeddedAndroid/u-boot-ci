@@ -61,7 +61,9 @@ def board_tree(src, boards=None):
     (ubci.config missing finds every board in it)."""
     for b in boards or config.boards():
         for stack in config.STACKS:
-            u = config.board(b)["u-boot"][stack]
+            u = config.board(b)["u-boot"].get(stack)
+            if u is None:
+                continue
             dts = os.path.join(src, "dts/upstream/src/arm64", u["device_tree"] + ".dts")
             os.makedirs(os.path.dirname(dts), exist_ok=True)
             open(dts, "w").write("/dts-v1/;\n")
@@ -101,9 +103,10 @@ def ci_job(out, fail=""):
 def ci_jobs(out):
     """Both passes of the combined job; prints what ran, returns failures."""
     p = config.project()
-    # An open stack whose pin is not public yet is skipped, not built.
+    # An open stack whose pin is not public yet is skipped, not built, and
+    # so is the SPL stack of a board without SPL support.
     targets = ["%s-%s" % (b, s) for b in p["boards"] for s in p["stacks"]
-               if not config.pending(config.board(b), s)]
+               if s in config.board(b)["u-boot"] and not config.pending(config.board(b), s)]
     want = ["check " + c for c in CHECKS[:-1]] + ["build " + t for t in targets] + ["check size"]
     failed = 0
     for name, fail, rc_want in (("all pass", "", 0), ("forced failure", "sandbox " + targets[0], 1)):
@@ -129,6 +132,8 @@ def main(out):
     failed = 0
     for board in config.boards():
         for stack in config.STACKS:
+            if stack not in config.board(board)["u-boot"]:
+                continue
             text = lava_jobs.to_yaml(jobs.render(board, stack, "ubci-dry-run", pkg, LINUX))
             yaml.safe_load(text)
             path = os.path.join(out, "jobs", "%s-%s.yaml" % (board, stack))

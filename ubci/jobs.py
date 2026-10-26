@@ -41,7 +41,7 @@ LINUX_SUITE = "linux-version"
 # What a reader sees for a stack id. The ids stay as they are in run
 # documents, fingerprints and the case history ("stock" is the stack on
 # the board's downstream firmware).
-STACK_LABEL = {"stock": "downstream", "open": "open", "stock-candidate": "downstream-candidate"}
+STACK_LABEL = {"stock": "downstream", "open": "open", "spl": "spl", "stock-candidate": "downstream-candidate"}
 
 
 def stack_label(stack):
@@ -60,8 +60,14 @@ def base_stack(stack):
 
 
 def gate_expect(board, stack, fp):
-    """Banner prefix -> fingerprint the console must show for this stack."""
+    """Banner prefix -> fingerprint the console must show for this stack.
+    On the spl stack the SPL is built with U-Boot and carries its
+    fingerprint."""
     expect = {}
+    if base_stack(stack) == "spl":
+        expect["U-Boot SPL"] = fp
+        expect["BL31: v"] = fp
+        expect["OP-TEE version"] = fp
     if base_stack(stack) == "open":
         bl2 = board["pins"]["bl2"]
         expect[bl2.get("banner", "BL2: v")] = bl2["fingerprint"]
@@ -146,6 +152,8 @@ def uboot_steps(fp, checks):
 def render(board_name, stack, fp, package, linux, metadata=None, device=None):
     """package: {url, token, path}; linux: {tag, release, image_sha256}."""
     b = config.board(board_name)
+    if base_stack(stack) not in b["u-boot"]:
+        raise SystemExit("%s has no %s stack" % (board_name, base_stack(stack)))
     lava = b["lava"]
     xbl = lava["xbl_marker"]
     expect = gate_expect(b, stack, fp)

@@ -34,6 +34,27 @@ def test_stock_gate_checks_u_boot_only(board):
     assert monitors(job)[jobs.GATE_SUITE]["expected"] == ["u_boot_20"]
 
 
+def test_spl_gate_starts_at_the_first_stage_and_checks_the_spl_built_here():
+    job = jobs.render("lemans-evk", "spl", "ubci-9", PKG, LINUX)
+    for name in (jobs.GATE_SUITE, jobs.GATE_SUITE + "-reset", jobs.GATE_SUITE + "-reboot"):
+        gate = monitors(job)[name]
+        assert gate["start"] == "SBL1, End"
+        assert gate["expected"] == ["u_boot_spl", "bl31_v", "op_tee_version", "u_boot_20"]
+        # One fingerprint for every stage: the pinned SPL's never passes.
+        assert gate["fixupdict"] == {"ubci-9": "pass"}
+    line = "U-Boot SPL 2026.10-ubci-9 (Oct 26 2026 - 00:20:28 +0000)"
+    m = re.search(gate["pattern"], line)
+    assert m and m.group("test_case_id") == "U-Boot SPL" and m.group("result") == "ubci-9"
+    assert not re.search(gate["pattern"], line.replace("ubci-9", "LEMANSFP-261009-030954-lpb4"))
+    # "U-Boot 20" is U-Boot proper, never the SPL banner.
+    assert all(m.group("test_case_id") == "U-Boot SPL" for m in re.finditer(gate["pattern"], line))
+
+
+def test_a_board_without_spl_has_no_spl_job():
+    with pytest.raises(SystemExit, match="rb3gen2 has no spl stack"):
+        jobs.render("rb3gen2", "spl", "ubci-9", PKG, LINUX)
+
+
 def test_linux_version_gate_names_the_tag():
     m = monitors(jobs.render("rb3gen2", "stock", "ubci-9", PKG, LINUX))[jobs.LINUX_SUITE]
     r = re.search(m["pattern"], "[    0.000000] Linux version 7.3.0-next-20261023 (gcc 14)")
@@ -45,6 +66,8 @@ def test_linux_version_gate_names_the_tag():
 @pytest.mark.parametrize("board", config.boards())
 def test_job_ends_at_poweroff_with_no_restore(board, stack):
     # Every job flashes its whole package, so none restores the lab image.
+    if stack not in config.board(board)["u-boot"]:
+        return
     job = jobs.render(board, stack, "ubci-9", PKG, LINUX)
     deploys = [a["deploy"] for a in job["actions"] if "deploy" in a]
     assert deploys == [job["actions"][0]["deploy"]] and deploys[0]["qcomflash"]["url"] == PKG["url"]

@@ -1,5 +1,5 @@
 #!/bin/bash
-# mk-esp.sh <board> <stock|open> <linux dir> <initramfs dir> <output dir>
+# mk-esp.sh <board> <stock|open|spl> <linux dir> <initramfs dir> <output dir>
 #
 # The EFI payload the board boots: a UKI (systemd-boot stub) holding the
 # pristine linux-next Image, the board DTB from the same build with the

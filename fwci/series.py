@@ -22,13 +22,13 @@ def message_id(text):
     return t
 
 
-def _subject(msg):
+def subject(msg):
     return " ".join(str(email.header.make_header(email.header.decode_header(msg["Subject"] or ""))).split())
 
 
 def describe(mbx, cover=None):
     """Version, patch count, title and declared prerequisites of a series."""
-    patches = [_subject(m) for m in mailbox.mbox(mbx)]
+    patches = [subject(m) for m in mailbox.mbox(mbx)]
     if not patches:
         raise ValueError("%s holds no patch" % mbx)
     m = SUBJECT.match(patches[0])

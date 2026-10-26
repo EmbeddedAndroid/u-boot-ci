@@ -18,7 +18,7 @@ on:
         description: Space separated boards (empty for all)
         default: ""
       stacks:
-        description: Space separated stacks, stock (downstream firmware) and/or open (empty for both)
+        description: Space separated stacks, stock (downstream firmware), open and/or spl (empty for stock and open, plus spl when the series touch SPL)
         default: ""
       title:
         description: Shown on the dashboard

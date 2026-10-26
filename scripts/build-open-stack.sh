@@ -8,8 +8,12 @@
 #   fip.elf    the FIP with U-Boot as BL33, wrapped in an ELF with a
 #              qtestsign test signature (TF-A BL2 loads it);
 #   uefi.itb   a FIT of BL31, OP-TEE, U-Boot and its control DTB at the
-#              pin's load addresses (U-Boot SPL loads it; Lemans).
-# The pinned, pre-signed tz image (BL2 or SPL) is added by ubci.package.
+#              pin's load addresses (U-Boot SPL loads it; Lemans), with
+#              the board's pre-ddr blobs when its SPL brings up DRAM
+#              (ubci.fit).
+# The spl stack builds the same FIT around its own SPL
+# (scripts/build-uboot.sh); the pinned, pre-signed tz image of the open
+# stack (BL2 or SPL) is added by ubci.package.
 # open-stack.json names the image.
 set -euo pipefail
 [ $# -eq 4 ] || { sed -n '2p' "$0" >&2; exit 1; }
@@ -56,7 +60,12 @@ uefi.itb)
 	grep -aq "$fp" "$bl31" || { echo "BL31 lacks $fp" >&2; exit 1; }
 	dir=$(dirname "$bl33")
 	[ -x "$dir/mkimage" ] && [ -f "$dir/u-boot.dtb" ] || { echo "no mkimage or u-boot.dtb next to $bl33" >&2; exit 1; }
-	(cd "$repo" && python3 -m ubci.fit "$board" "$bl31" "$bl32" "$bl33" "$dir/u-boot.dtb") >"$out/uefi.its"
+	blobs=
+	if [ -n "$(opt spl.pre_ddr)" ]; then
+		blobs=$out/pre-ddr
+		(cd "$repo" && python3 -m ubci.package blobs "$board" spl "$blobs")
+	fi
+	(cd "$repo" && python3 -m ubci.fit "$board" "$bl31" "$bl32" "$bl33" "$dir/u-boot.dtb" $blobs) >"$out/uefi.its"
 	"$dir/mkimage" -q -f "$out/uefi.its" "$out/uefi.itb"
 	[ "$(grep -ac "$fp" "$out/uefi.itb")" -ge 3 ] || { echo "FIT lacks $fp in BL31, OP-TEE or U-Boot" >&2; exit 1; }
 	;;

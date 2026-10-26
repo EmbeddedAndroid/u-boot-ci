@@ -1,9 +1,10 @@
 #!/bin/bash
-# build-target.sh <u-boot source> <board> <stock|open> <fingerprint> <linux dir> <initramfs dir> <output dir>
+# build-target.sh <u-boot source> <board> <stock|open|spl> <fingerprint> <linux dir> <initramfs dir> <output dir>
 #
 # Everything one board and firmware stack of a run flashes, end to end:
-# U-Boot, for the open stack the FIP around it, the ESP with the
-# linux-next UKI, and the qcomflash package
+# U-Boot (and for the spl stack U-Boot SPL), for the open and spl stacks
+# the FIP or FIT around it, the ESP with the linux-next UKI, and the
+# qcomflash package
 # <output dir>/<board>-<stack>.qcomflash.tar.gz. Each target gets its own
 # fingerprint, <run fingerprint>-<stack>-<board> (ubci.jobs.target_fingerprint),
 # so a console can only pass the gate of the package built for it. A
@@ -16,7 +17,7 @@ here=$(cd "$(dirname "$0")" && pwd)
 t=$out/$board-$stack
 base=${stack%-candidate}
 "$here/build-uboot.sh" "$src" "$board" "$base" "$fp" "$t"
-if [ "$base" = open ]; then
+if [ "$base" != stock ]; then
 	"$here/build-open-stack.sh" "$board" "$t/u-boot.bin" "$fp" "$t"
 	uefi=$t/$(python3 -c 'import json, sys; print(json.load(open(sys.argv[1]))["image"])' "$t/open-stack.json")
 else

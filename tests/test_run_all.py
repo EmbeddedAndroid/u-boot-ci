@@ -16,11 +16,15 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STUBS = os.path.join(REPO, "tests", "stubs")
 CHECKS = ["carry", "buildman", "fragments", "checkpatch", "docs", "sandbox", "qemu_arm64"]
 # Every board and stack of the nightly but the open stacks whose pins are
-# not public yet: those are skipped (test_a_pending_pin_skips_its_target).
-TARGETS = ["%s-%s" % (b, s) for b in config.project()["boards"] for s in config.project()["stacks"]
-           if not config.pending(config.board(b), s)]
-PENDING = ["%s-%s" % (b, s) for b in config.project()["boards"] for s in config.project()["stacks"]
-           if config.pending(config.board(b), s)]
+# not public yet and the SPL stacks of boards without SPL support: those
+# are skipped (test_a_pending_pin_skips_its_target,
+# test_a_board_without_spl_is_skipped_with_why).
+PAIRS = [(b, s) for b in config.project()["boards"] for s in config.project()["stacks"]]
+NO_SPL = ["%s-%s" % (b, s) for b, s in PAIRS if s not in config.board(b)["u-boot"]]
+TARGETS = ["%s-%s" % (b, s) for b, s in PAIRS
+           if s in config.board(b)["u-boot"] and not config.pending(config.board(b), s)]
+PENDING = ["%s-%s" % (b, s) for b, s in PAIRS
+           if s in config.board(b)["u-boot"] and config.pending(config.board(b), s)]
 
 
 @pytest.fixture
@@ -235,3 +239,40 @@ def test_a_pending_pin_skips_its_target(job):
         assert "build " + t not in steps
         st = json.load(open(job.tmp / "out" / "targets" / (t + ".build.json")))
         assert st["result"] == "skip" and st["reason"].startswith("open-stack pin not public yet: tf-a ")
+
+
+def test_a_board_without_spl_is_skipped_with_why(job):
+    assert NO_SPL, "no board without SPL to test"
+    p, steps, _ = job()
+    assert p.returncode == 0, p.stdout + p.stderr
+    for t in NO_SPL:
+        assert "build " + t not in steps
+        st = json.load(open(job.tmp / "out" / "targets" / (t + ".build.json")))
+        assert st == {"result": "skip", "reason": "no SPL stack for this board: no SPL in flight for this board"}
+
+
+def test_spl_config_missing_from_the_tree_is_no_upstream_spl_not_a_failure(job):
+    os.remove(job.src / "configs" / "qcom_lemans_spl_defconfig")
+    p, steps, _ = job()
+    assert p.returncode == 0, p.stdout + p.stderr
+    st = json.load(open(job.tmp / "out" / "targets" / "lemans-evk-spl.build.json"))
+    assert st["result"] == "skip"
+    assert st["reason"].startswith("no upstream SPL: qcom_lemans_spl_defconfig not in the tree; in flight: "
+                                   "Enable U-Boot SPL support for Lemans EVK v4 <")
+
+
+def test_an_adhoc_tree_without_the_board_spl_says_so(job):
+    os.remove(job.src / "configs" / "qcom_lemans_spl_defconfig")
+    git(job.src, "init", "-q")
+    git(job.src, "add", "-A")
+    git(job.src, "-c", "user.name=t", "-c", "user.email=t@example.com", "commit", "-q", "-m", "base")
+    stack = job.tmp / "stack"
+    stack.mkdir()
+    json.dump([], open(stack / "stack.json", "w"))
+    p, _, _ = job(stack=str(stack))
+    assert p.returncode == 0, p.stdout + p.stderr
+    st = json.load(open(job.tmp / "out" / "targets" / "lemans-evk-spl.build.json"))
+    assert st["reason"].startswith("no SPL in the tested tree: qcom_lemans_spl_defconfig not in the tree; "
+                                   "in flight: Enable U-Boot SPL support for Lemans EVK v4 <")
+    st = json.load(open(job.tmp / "out" / "targets" / "rb3gen2-spl.build.json"))
+    assert st["reason"] == "no SPL stack for this board: no SPL in flight for this board"

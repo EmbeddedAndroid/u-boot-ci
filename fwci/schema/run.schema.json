@@ -852,6 +852,49 @@
               }
             }
           }
+        },
+        "spl": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "SPL-stack targets: the series in flight that add SPL support for the board and the known gaps, shown whatever the result",
+          "required": [
+            "in_flight",
+            "gaps"
+          ],
+          "properties": {
+            "in_flight": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "title",
+                  "message_id",
+                  "link"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "integer"
+                  },
+                  "message_id": {
+                    "type": "string"
+                  },
+                  "link": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "gaps": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
         }
       }
     }

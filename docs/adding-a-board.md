@@ -14,6 +14,11 @@
      a board fragment a series adds), device tree, image and, when it is
      not `uefi.elf`, the package file it is written as (`slot`;
      `bootimg` for an Android boot image ABL chainloads);
+   - `u-boot.spl` and `spl` once a posted series gives the board an SPL
+     config: the slot the SPL replaces, how it is signed, its pre-ddr
+     blobs; `spl.in_flight` (and `gaps`) whether or not
+     it has one, so its SPL cell names the series that would add it
+     ([firmware-stacks.md](firmware-stacks.md));
    - `boot_chain`: every boot stage per stack, `upstream`, `downstream`
      or `none`;
    - `linux`: the board DTB, upstream overlays per stack, known gaps,

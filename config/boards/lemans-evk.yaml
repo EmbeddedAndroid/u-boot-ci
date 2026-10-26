@@ -57,11 +57,40 @@ u-boot:
     configs: [qcom_defconfig, tfa-optee.config]
     device_tree: qcom/lemans-evk
     image: u-boot.bin
+  # spl: U-Boot SPL and U-Boot proper both from the tree under test, as
+  # meta-qcom builds iq-9075-evk-open-fw-spl (UBOOT_CONFIG iq-9075-evk-spl).
+  spl:
+    configs: [qcom_lemans_spl_defconfig, tfa-optee.config]
+    device_tree: qcom/lemans-evk
+    image: u-boot.bin
+spl:
+  # XBL stays the first stage: it trains DDR and loads U-Boot SPL from
+  # tz_a/tz_b as the TZ image (Lemans SPL v4 cover letter: PBL -> XBL ->
+  # U-Boot SPL; meta-qcom qcom-uboot-spl-fit.inc), so the SPL replaces
+  # tz.mbn, SWIV-annotated and test-signed as TZ, and loads the FIT from
+  # uefi_a.
+  slot: tz.mbn
+  sign: tz
+  swiv: lemans
+  in_flight:
+    - {title: Enable U-Boot SPL support for Lemans EVK, version: 4,
+       message_id: 20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com}
+    - {title: Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL), version: 10,
+       message_id: 20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com}
+    - {title: "spl: ufs: add UFS boot support for Qualcomm Snapdragon in SPL", version: 4,
+       message_id: 20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com}
+    - {title: "spl: qcom: make Qualcomm drivers buildable in SPL", version: 1,
+       message_id: 20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com}
+    - {title: "qcom: Add NVMEM bitfield support and reboot-mode", version: 5,
+       message_id: 20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com}
+    - {title: "mach-snapdragon: fix OP-TEE SPL link failure", version: 1,
+       message_id: 20261005060628.595146-1-aswin.murugan@oss.qualcomm.com}
 linux:
   dtb: qcom/lemans-evk.dtb
   overlays:
     stock: []
     open: [qcom/lemans-el2.dtbo]
+    spl: [qcom/lemans-el2.dtbo]
   gaps: {}
   cmdline: console=ttyMSM0,115200n8
 boot_chain:
@@ -74,6 +103,14 @@ boot_chain:
   open:
     - {stage: XBL, origin: downstream}
     - {stage: U-Boot SPL, origin: downstream, component: u-boot spl, detail: "pre-built, not from a public commit"}
+    - {stage: TF-A BL31, origin: upstream, component: tf-a}
+    - {stage: OP-TEE, origin: upstream, component: optee}
+    - {stage: hypervisor, origin: none}
+    - {stage: U-Boot, origin: upstream, component: u-boot, detail: in the SPL FIT}
+    - {stage: Linux, origin: upstream, component: linux, detail: EL2}
+  spl:
+    - {stage: XBL, origin: downstream}
+    - {stage: U-Boot SPL, origin: upstream, component: u-boot spl, detail: "from the tree under test, in place of tz"}
     - {stage: TF-A BL31, origin: upstream, component: tf-a}
     - {stage: OP-TEE, origin: upstream, component: optee}
     - {stage: hypervisor, origin: none}

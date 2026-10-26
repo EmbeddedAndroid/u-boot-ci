@@ -1,3 +1,4 @@
+import hashlib
 import os
 import shutil
 import zipfile
@@ -34,7 +35,8 @@ def test_skip_missing_blanks_only_absent_images(tmp_path):
 
 
 @pytest.mark.skipif(not shutil.which("qcom-ptool"), reason="needs the CI container")
-@pytest.mark.parametrize("board,stack", [(b, s) for b in config.boards() for s in config.STACKS])
+@pytest.mark.parametrize("board,stack", [(b, s) for b in config.boards() for s in config.STACKS
+                                         if s in config.board(b)["u-boot"]])
 def test_partition_layout_has_the_partitions_the_jobs_flash(board, stack, tmp_path):
     b = config.board(board)
     d = config.downstream(b, stack)
@@ -44,6 +46,8 @@ def test_partition_layout_has_the_partitions_the_jobs_flash(board, stack, tmp_pa
         assert "rawprogram%d.xml" % lun in names and "patch%d.xml" % lun in names
     written = package.written_images(str(tmp_path))
     want = set(d.get("required", package.REQUIRED)) | {package.slot(b, stack), "efi.bin", "tz.mbn"}
+    if stack == "spl":
+        want.add(b["spl"]["slot"])
     assert want <= written, want - written
     if d.get("cdt"):
         assert "cdt.bin" in written
@@ -89,6 +93,7 @@ def fake_build(tmp_path, monkeypatch):
         monkeypatch.setattr(package, "partitions",
                             lambda lay, d: open(os.path.join(d, "rawprogram0.xml"), "w").write(layout))
         (tmp_path / "uboot.img").write_text("U-Boot under test")
+        (tmp_path / "spl.mbn").write_text("U-Boot SPL under test")
         (tmp_path / "efi.bin").write_text("esp")
         out = str(tmp_path / "pkg.tar.gz")
         name, skipped = package.build("rb3gen2", stack, str(tmp_path / "uboot.img"), str(tmp_path / "efi.bin"), out)
@@ -123,3 +128,81 @@ def test_a_package_without_a_required_image_is_refused(fake_build):
     b["downstream"]["required"] = ["xbl.elf", "hyp.mbn"]
     with pytest.raises(SystemExit, match="package lacks hyp.mbn"):
         fake_build(b)
+
+
+def spl_board(slot="tz.mbn"):
+    b = fake_board(slot="uefi.elf")
+    b["u-boot"]["spl"] = dict(b["u-boot"]["stock"])
+    b["spl"] = {"slot": slot, "sign": "tz"}
+    b["pins"]["bl2"]["pending"] = "never used by the spl stack"
+    return b
+
+
+SPL_LAYOUT = LAYOUT.replace("boot.img", "uefi.elf")
+
+
+@pytest.mark.parametrize("slot", ["tz.mbn", "xbl.elf"])
+def test_spl_stack_puts_the_spl_built_here_in_its_slot(fake_build, slot):
+    import tarfile
+    name, _, src, out = fake_build(spl_board(slot), layout=SPL_LAYOUT, stack="spl")
+    with tarfile.open(out) as t:
+        assert t.extractfile(name + "/" + slot).read() == b"U-Boot SPL under test"
+        assert t.extractfile(name + "/uefi.elf").read() == b"U-Boot under test"
+        other = "xbl.elf" if slot == "tz.mbn" else "tz.mbn"
+        assert t.extractfile(name + "/" + other).read() == b"downstream " + other.encode()
+    # Nothing is deferred: the SPL is not a secret pin.
+    assert src["deferred"] == [] and src["components"]["spl"] == slot
+    assert "bl2" not in src["components"]
+
+
+def test_spl_stack_needs_a_layout_that_writes_its_slot(fake_build):
+    with pytest.raises(SystemExit, match="writes no xbl.elf"):
+        fake_build(spl_board("xbl.elf"), layout=SPL_LAYOUT.replace('"xbl.elf"', '"other.elf"'), stack="spl")
+
+
+BLOBS = {"QcLib.elf": b"qclib", "shrm.elf": b"shrm"}
+
+
+def blob_board(files=BLOBS):
+    b = spl_board("xbl.elf")
+    b["spl"]["pre_ddr"] = [{"name": n.split(".")[0].lower(), "file": n, "load": "0xc00000",
+                            "entry": "0xc00000", "description": n,
+                            "sha256": hashlib.sha256(d).hexdigest()} for n, d in files.items()]
+    return b
+
+
+@pytest.fixture
+def blob_zip(tmp_path, monkeypatch):
+    def go(files):
+        z = tmp_path / "bb.zip"
+        with zipfile.ZipFile(z, "w") as f:
+            for n, d in files.items():
+                f.writestr("fw/" + n, d)
+        monkeypatch.setattr(package, "WORK", str(tmp_path))
+        monkeypatch.setattr(package, "fetch", lambda url, sha, name=None: str(z))
+        return str(tmp_path / "blobs")
+    return go
+
+
+def test_pre_ddr_blobs_come_from_the_downstream_archive_checked(blob_zip, monkeypatch):
+    b = blob_board()
+    monkeypatch.setattr(config, "board", lambda name: b)
+    dest = blob_zip(dict(BLOBS, **{"xbl.elf": b"x"}))
+    assert package.blobs("shikra", "spl", dest) == ["QcLib.elf", "shrm.elf"]
+    assert sorted(os.listdir(dest)) == ["QcLib.elf", "shrm.elf"]
+
+
+def test_a_missing_pre_ddr_blob_is_refused(blob_zip, monkeypatch):
+    b = blob_board()
+    monkeypatch.setattr(config, "board", lambda name: b)
+    dest = blob_zip({"QcLib.elf": b"qclib"})
+    with pytest.raises(SystemExit, match="lack the pre-ddr blob shrm.elf"):
+        package.blobs("shikra", "spl", dest)
+
+
+def test_a_pre_ddr_blob_with_another_sha256_is_refused(blob_zip, monkeypatch):
+    b = blob_board()
+    monkeypatch.setattr(config, "board", lambda name: b)
+    dest = blob_zip({"QcLib.elf": b"qclib", "shrm.elf": b"other shrm"})
+    with pytest.raises(SystemExit, match="pre-ddr blob shrm.elf: sha256"):
+        package.blobs("shikra", "spl", dest)

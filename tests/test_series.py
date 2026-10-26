@@ -138,6 +138,46 @@ def test_prerequisite_message_id_is_fetched_first(tree, tmp_path):
     assert got[0]["added_as_prerequisite_of"] == "board@example.com"
 
 
+def one_patch(tmp_path, subject, path, body="x\n"):
+    repo = tmp_path / ("p%d" % len(list(tmp_path.iterdir())))
+    repo.mkdir()
+    sh(repo, "init", "-q")
+    sh(repo, "config", "user.email", "t@example.com")
+    sh(repo, "config", "user.name", "T")
+    write(repo, "README", "base\n")
+    sh(repo, "add", ".")
+    sh(repo, "commit", "-q", "-m", "base")
+    (repo / path).parent.mkdir(parents=True, exist_ok=True)
+    (repo / path).write_text(body)
+    sh(repo, "add", ".")
+    sh(repo, "commit", "-q", "-m", subject)
+    mbx = tmp_path / ("%s.mbx" % repo.name)
+    mbx.write_text(sh(repo, "format-patch", "--stdout", "-1"))
+    return str(mbx)
+
+
+@pytest.mark.parametrize("subject, path, body, want", [
+    ("spl: ufs: add partition-based loading", "common/spl/spl_ufs.c", "x\n", True),
+    ("board: qualcomm: lemans: add support", "board/qualcomm/lemans/spl-lemans.c", "x\n", True),
+    ("configs: qcom: add a defconfig", "configs/qcom_lemans_spl_defconfig", "x\n", True),
+    ("mach-snapdragon: Kconfig: add DDR training", "arch/arm/mach-snapdragon/Kconfig",
+     "config SPL_QCOM_DDR_TRAINING\n\tbool\n", True),
+    ("mach-snapdragon: fix OP-TEE SPL link failure", "arch/arm/mach-snapdragon/of_fixup.c", "x\n", True),
+    ("mmc: msm_sdhci: add HS200/HS400 support", "drivers/mmc/msm_sdhci.c", "x\n", False),
+    ("clk: qcom: add the splitter clock", "drivers/clk/qcom/clock-splitter.c", "x\n", False),
+    ("misc: add the display driver", "drivers/misc/display.c", "x\n", False),
+])
+def test_touches_spl(tmp_path, subject, path, body, want):
+    assert stack.touches_spl(one_patch(tmp_path, subject, path, body)) is want
+
+
+def test_fetch_records_whether_a_series_touches_spl(tree, tmp_path):
+    repo, mail, base = tree
+    got = stack.fetch(str(tmp_path / "stack"), ["clk@example.com"], am=am_from(mail))
+    assert got[0]["touches_spl"] is False
+    assert json.load(open(tmp_path / "stack" / "stack.json"))[0]["touches_spl"] is False
+
+
 def test_a_resend_under_another_message_id_is_not_applied_twice(tree, tmp_path):
     repo, mail, base = tree
     shutil.copy(mail / "s01.mbx", mail / "s01r.mbx")

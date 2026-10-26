@@ -73,4 +73,6 @@ upstream tips is a new reader plus the same calls.
 The nightly always takes the newest linux-next tag, so there is nothing to
 bump; the tag and the kernel's sha256 are recorded in every run. The
 toolchain and test tools change with `docker/` (pinned versions and
-commits), also by PR.
+commits), also by PR, and so do the signing tools of `config/pins.yaml`:
+`qtestsign` and `swiv` (the SWIV annotation of an SPL signed as TZ, at the
+commit meta-qcom's `swiv-build-utility` recipe pins).

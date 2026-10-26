@@ -41,3 +41,25 @@ the pushed `qcom/integration` of the EmbeddedAndroid forks (platform
 branches `qcom/lemans` recorded as `soc_branch`). U-Boot: `qcom_defconfig` +
 `tfa-optee.config`, `DEVICE_TREE=qcom/lemans-evk`. Linux runs at EL2 with
 the upstream `lemans-el2.dtbo`.
+
+## U-Boot SPL stack
+
+The Lemans SPL boot flow keeps XBL first: PBL loads XBL, XBL trains DDR
+and loads U-Boot SPL from `tz_a`/`tz_b` as its TZ image, and the SPL
+loads the FIT from `uefi_a` (the Lemans SPL v4 cover letter: "PBL -> XBL
+-> U-Boot SPL"; meta-qcom `qcom-uboot-spl-fit.inc` and
+`iq-9075-evk-open-fw-spl`). So the SPL replaces `tz.mbn`, SWIV-annotated
+for `lemans` and test-signed as `tz` (`qtestsign -v6 tz`), on the same
+release with `xbl_config_spl.elf` as the open stack, and the gates start
+at XBL's "SBL1, End". U-Boot: `qcom_lemans_spl_defconfig` +
+`tfa-optee.config`, `DEVICE_TREE=qcom/lemans-evk`, SPL and U-Boot proper
+from the one build.
+
+U-Boot `main` has no Lemans SPL: the nightly cell is "no upstream SPL"
+with the series that would add it. The Lemans SPL v4 series
+(<20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com>) needs the
+mach-snapdragon SPL of the IPQ5210 bringup v10, the SPL UFS loader
+(spl_ufs v4), the SPL builds of the GENI, serial, pinctrl and SMEM
+drivers (spl_qcom_phase v1, which builds on the SDAM v5 series), and,
+with `tfa-optee.config`, the OP-TEE SPL link fix v1; its cover letter
+declares only the IPQ5210 series.

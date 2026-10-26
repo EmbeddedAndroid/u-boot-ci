@@ -1,9 +1,9 @@
 # Firmware stacks
 
-Each board is tested on two stacks; only U-Boot changes between runs. The
-stack ids in run documents, fingerprints and the case history are `stock`
-and `open`; the dashboard and the job names say "downstream firmware" for
-`stock`.
+Each board is tested on three stacks; only U-Boot changes between runs.
+The stack ids in run documents, fingerprints and the case history are
+`stock`, `open` and `spl`; the dashboard and the job names say
+"downstream firmware" for `stock` and "U-Boot SPL" for `spl`.
 
 ## Downstream firmware (`stock`)
 
@@ -67,6 +67,63 @@ Pins (`config/pins.yaml`), per board:
 
 The FIP or FIT is rebuilt for every run with the U-Boot under test
 (`scripts/build-open-stack.sh`).
+
+## U-Boot SPL (`spl`)
+
+The open stack with its first U-Boot stage built from the tree under test
+too: U-Boot SPL and U-Boot proper come from the same tree and config
+(`u-boot.spl` in the board file), carry the same fingerprint, and the SPL
+replaces the image the board's SPL boot flow puts it in. On the other
+stacks the image before BL31 is pinned (TF-A BL2, or the pre-built Lemans
+SPL), so an SPL regression or an SPL series in review is invisible there.
+
+Per board (`spl` in `config/boards/<board>.yaml`):
+
+- `slot`: the package file the SPL replaces: `tz.mbn` when XBL stays the
+  first stage and loads the SPL as its TZ image (Lemans), `xbl.elf` when
+  the SPL is the first stage the boot ROM loads and brings up DRAM
+  itself.
+- `sign`: the `qtestsign -v6` image type, `tz` or `sbl1`, and `swiv`: the
+  platform of the SWIV annotation XBL wants on a TZ image
+  (`swiv_build_utility.py`, pinned as `swiv` in `config/pins.yaml`, the
+  commit meta-qcom pins). `scripts/build-uboot.sh` annotates and signs
+  `spl/u-boot-spl.elf` (`CONFIG_SPL_REMAKE_ELF`) into `spl.mbn` and checks
+  the fingerprint is in it.
+- `pre_ddr`: for an SPL that brings up DRAM, the boot firmware blobs it
+  loads first (PMIC and DDR configuration, SHRM, QcLib, ECC), each with
+  the file name in the downstream boot binaries, its sha256 and its load
+  and entry address. `ubci.package blobs` takes them from the pinned
+  archives and refuses a missing blob or another sha256; nothing is
+  committed.
+- `in_flight`: the series on the list that would add SPL support for
+  the board (title, version, Message-ID), and `gaps`: what no posted
+  series provides.
+
+The FIT the SPL loads from `uefi_a` (`ubci/fit.py`) holds BL31, OP-TEE,
+U-Boot and its control DTB at the TF-A pin's `fit` addresses, in a
+configuration described `post-ddr`: the name the mach-snapdragon SPL
+(`board_fit_config_name_match()`) selects once DRAM is up; an SPL without
+that hook takes the default, which is the same configuration. A board
+with `pre_ddr` blobs gets a `pre-ddr` configuration of them too. U-Boot
+has no posted FIT template for this, so the recipe is the CI's own,
+following the layout meta-qcom builds (`qcom-uboot-spl-fit.inc`).
+
+TF-A and OP-TEE are the board's open-stack pins; the `bl2` pin is not
+used. The job's fingerprint gate checks the SPL banner (`U-Boot SPL`),
+BL31, OP-TEE and U-Boot proper, all with the target's one fingerprint, so
+a pinned SPL can never pass it.
+
+When the board's SPL defconfig (the first of `u-boot.spl.configs`) is
+not in the tree the target is skipped, never failed and never hidden: "no
+upstream SPL" on a nightly base, "no SPL in the tested tree" on an
+ad-hoc stack. A board without `u-boot.spl` has no SPL config to look
+for: "no SPL stack for this board". Each reason goes on with the gaps and
+the series in flight, or "no SPL in flight for this board".
+
+The gates start at XBL's end marker (`lava.xbl_marker`), as on the other
+stacks: on Lemans XBL still runs before the SPL. A board whose SPL is the
+first stage (Shikra) needs another start marker once it gets an SPL
+config.
 
 ## The boot chain
 

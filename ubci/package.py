@@ -1,9 +1,13 @@
 """Assemble the qcomflash tarball LAVA flashes for one board and stack.
 
-python3 -m ubci.package <board> <stock|open> <uefi image> <efi.bin> <out.tar.gz>
+python3 -m ubci.package <board> <stock|open|spl> <uefi image> <efi.bin> <out.tar.gz>
 python3 -m ubci.package insert-bl2 <package.tar.gz> <board>
     adds the board's BL2 from the environment variable named by its pin
     (secret, gzip + base64), checked against the pinned sha256
+python3 -m ubci.package blobs <board> <stack> <dir>
+    extracts the pre-ddr blobs the board's SPL FIT carries (spl.pre_ddr)
+    from the stack's downstream boot binaries into <dir>, each checked
+    against its pinned sha256
 
 The base is what the board's meta layer flashes: the public downstream
 boot binaries and CDT it pins (downstream, or downstream_open for the
@@ -21,7 +25,11 @@ layout. Then:
          secrets), the package goes without tz.mbn ("deferred" in
          SOURCES.json) and the submit job adds it from its secret
          (insert-bl2 below);
-  both   efi <- the ESP with the linux-next UKI.
+  spl    the image the board's SPL replaces (spl.slot: tz.mbn when XBL
+         loads it, xbl.elf when the boot ROM does) <- the U-Boot SPL built
+         and signed with U-Boot (spl.mbn next to the uefi image),
+         uefi_a/uefi_b <- the SPL FIT;
+  all    efi <- the ESP with the linux-next UKI.
 Partitions whose image the package does not carry (dtb, rootfs, persist,
 ...) are left unwritten. SOURCES.json lists every file and its sha256.
 """
@@ -97,6 +105,29 @@ def skip_missing(d, keep=()):
     return skipped
 
 
+def blobs(board_name, stack, dest):
+    """The board's pre-ddr blobs, from the downstream boot binaries of
+    the stack, into dest; each must be there with its pinned sha256."""
+    b = config.board(board_name)
+    want = (b.get("spl") or {}).get("pre_ddr", [])
+    os.makedirs(dest, exist_ok=True)
+    stage = tempfile.mkdtemp(dir=WORK)
+    try:
+        for bb in config.downstream(b, stack)["bootbinaries"]:
+            unzip_top(fetch(bb["url"], bb["sha256"]), stage)
+        for blob in want:
+            path = os.path.join(stage, blob["file"])
+            if not os.path.exists(path):
+                raise SystemExit("the downstream boot binaries lack the pre-ddr blob %s" % blob["file"])
+            if sha256(path) != blob["sha256"]:
+                raise SystemExit("pre-ddr blob %s: sha256 %s, pinned %s" % (
+                    blob["file"], sha256(path), blob["sha256"]))
+            shutil.copy(path, os.path.join(dest, blob["file"]))
+    finally:
+        shutil.rmtree(stage)
+    return [blob["file"] for blob in want]
+
+
 def slot(board, stack):
     """The package file the stack's U-Boot image (or FIP) is written as."""
     return board["u-boot"][stack].get("slot", "uefi.elf")
@@ -134,6 +165,11 @@ def build(board_name, stack, uefi_image, efi, out):
                 os.remove(os.path.join(d, "tz.mbn"))  # never the downstream QTEE in place of BL2
                 deferred.append("tz.mbn")
             components["bl2"] = bl2["fingerprint"]
+        first = None
+        if stack == "spl":
+            first = b["spl"]["slot"]
+            shutil.copy(os.path.join(os.path.dirname(uefi_image), "spl.mbn"), os.path.join(d, first))
+            components["spl"] = first
         image = slot(b, stack)
         shutil.copy(uefi_image, os.path.join(d, image))
         shutil.copy(efi, os.path.join(d, "efi.bin"))
@@ -142,7 +178,7 @@ def build(board_name, stack, uefi_image, efi, out):
                 raise SystemExit("package lacks %s" % f)
         skipped = skip_missing(d, keep=deferred)
         written = written_images(d)
-        for f in (image, "efi.bin", "tz.mbn"):
+        for f in (image, "efi.bin", "tz.mbn", first or "tz.mbn"):
             if f not in written:
                 raise SystemExit("the %s layout writes no %s" % (board_name, f))
         files = sorted(f for f in os.listdir(d))
@@ -205,6 +241,9 @@ def insert_bl2(package, board_name, env=os.environ):
 if __name__ == "__main__":
     if len(sys.argv) == 4 and sys.argv[1] == "insert-bl2":
         insert_bl2(sys.argv[2], sys.argv[3])
+        sys.exit(0)
+    if len(sys.argv) == 5 and sys.argv[1] == "blobs":
+        print("\n".join(blobs(*sys.argv[2:5])))
         sys.exit(0)
     if len(sys.argv) != 6:
         raise SystemExit(__doc__)

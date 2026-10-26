@@ -14,7 +14,10 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from fwci.series import message_id  # noqa: E402
 
 BASES = ("main", "master")
-STACKS = ("stock", "open")
+STACKS = ("stock", "open", "spl")
+# No stacks named: stock and open, and spl when the stack touches SPL
+# code ("spl?", resolved by ubci.run new once the series are fetched).
+DEFAULT_STACKS = ("stock", "open", "spl?")
 
 
 def boards():
@@ -29,13 +32,14 @@ def check(series, base, board_list, stack_list):
     if base not in BASES:
         raise ValueError("base must be one of %s" % ", ".join(BASES))
     bl = [b for b in re.split(r"[\s,]+", board_list.strip()) if b] or boards()
-    sl = [s for s in re.split(r"[\s,]+", stack_list.strip()) if s] or list(STACKS)
+    sl = [s for s in re.split(r"[\s,]+", stack_list.strip()) if s]
     for b in bl:
         if b not in boards():
             raise ValueError("unknown board %r" % b)
     for s in sl:
         if s not in STACKS:
             raise ValueError("unknown stack %r" % s)
+    sl = sl or list(DEFAULT_STACKS)
     return {"series": " ".join(ids), "base": base,
             "targets": ",".join("%s:%s" % (b, s) for b in bl for s in sl)}
 
