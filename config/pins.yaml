@@ -162,6 +162,25 @@ boards:
         - DEBUG=0
         - CFG_IN_TREE_EARLY_TAS=trusted_keys/f04a0fe7-1f5d-4b9b-abf7-619b85b4ce8c qcom_pas/cff7d191-7ca0-4784-af13-48223b9a4fbe
       upstream: *optee-upstream
+  shikra-iqs-evk:
+    # For the U-Boot SPL stack once a Shikra SPL config is posted; the
+    # board has no FIP open stack (no bl2).
+    tf-a:
+      repo: https://github.com/EmbeddedAndroid/arm-trusted-firmware
+      branch: qcom/integration
+      commit: 17d3a8df67ac9a5670d8a8627e24d6c158ef5fe3
+      soc_branch: {name: qcom/shikra, commit: dc6def90397f3d165359fdd751560c648be8d2e5}
+      flags: PLAT=shikra_evk SPD=opteed
+      image: uefi.itb
+      fit: {atf: "0xA1300000", optee: "0xA1400000", uboot: "0x87980000"}
+      upstream: *tfa-upstream
+    optee:
+      repo: https://github.com/EmbeddedAndroid/optee_os
+      branch: qcom/integration
+      commit: 48e45590f07fa19f3f8be80f9d8b2d03858f130a
+      soc_branch: {name: qcom/shikra, commit: 62a6594de998900064a19d724c1dd9fc32cd6f9e}
+      platform: qcom-shikra
+      upstream: *optee-upstream
 qtestsign:
   repo: https://github.com/msm8916-mainline/qtestsign
   commit: 0eef3b552b1ada848f22bad38ab2e40407307c5b

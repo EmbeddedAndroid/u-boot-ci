@@ -71,7 +71,9 @@ def test_every_board_is_complete(board):
     b = config.board(board)
     for stack in config.STACKS:
         if stack not in b["u-boot"]:
-            assert stack == "spl" and stack not in b["boot_chain"]
+            # Said why: no SPL (spl), or not available (not_available).
+            assert stack == "spl" or b["not_available"][stack]
+            assert stack not in b["boot_chain"]
             continue
         assert [s["origin"] for s in b["boot_chain"][stack]][-2:] == ["upstream", "upstream"]
         assert b["boot_chain"][stack][0] == {"stage": "XBL", "origin": "downstream"}
@@ -80,7 +82,7 @@ def test_every_board_is_complete(board):
         assert d["source"] and set(d["source"]) <= set(d["upstream"]["layers"])
         assert all(len(c) == 40 for c in d["source"].values())
     assert "restore" not in b
-    for name in ("tf-a", "optee", "bl2"):
+    for name in ("tf-a", "optee", "bl2") if "open" in b["u-boot"] else ("tf-a", "optee"):
         assert b["pins"][name]
 
 
@@ -182,3 +184,17 @@ def test_missing_refuses_unknown_flags(tmp_path):
     with pytest.raises(subprocess.CalledProcessError):
         cli("missing", "rb3gen2", "spl", str(tmp_path), "--nightly")
 
+
+def test_a_stack_the_board_does_not_have_says_why(tmp_path):
+    board_tree(str(tmp_path), ["shikra-iqs-evk"])
+    assert config.missing("shikra-iqs-evk", "open", str(tmp_path)).startswith(
+        "no open stack for this board: the Shikra open stack boots through U-Boot SPL")
+    assert config.missing("shikra-iqs-evk", "stock", str(tmp_path)) is None
+
+
+def test_shikra_has_no_spl_stack_and_says_what_is_missing(tmp_path):
+    board_tree(str(tmp_path), ["shikra-iqs-evk"])
+    why = config.missing("shikra-iqs-evk", "spl", str(tmp_path))
+    assert why.startswith("no SPL stack for this board: no posted Shikra SPL enablement (defconfig, config fragment or "
+                          "Kconfig select); no posted FIT template")
+    assert "qcom: shikra: add eMMC SPL boot support v2 <20261013053244.2954876-1-abhilash.v@" in why

@@ -1,0 +1,117 @@
+# Qualcomm Shikra IQS EVK (IQ2). See docs/boards/shikra-iqs-evk.md.
+name: shikra-iqs-evk
+title: Shikra IQS EVK
+soc: Shikra
+lava:
+  device_type: shikra-iqs-evk
+  storage: emmc
+  # The user area only: the CDT in the second boot partition is left as
+  # the lab wrote it.
+  luns: [0]
+  firehose: prog_firehose_ddr.elf
+  xbl_marker: "SBL1, End"
+downstream:
+  # The boot binaries meta-qcom pins for shikra-evk
+  # (firmware-qcom-boot-shikra_00093.bb) with qcom-ptool's shikra-evk
+  # eMMC layout.
+  release: SHIKRA boot binaries 00093
+  bootbinaries:
+    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/SHIKRA_bootbinaries.1.0/shikra_bootbinaries.1.0-test-device-public/00093/SHIKRA_bootbinaries_00093.zip
+      sha256: 9239eb9a78096bbd0d484a51a4c0ae8914fd9d41c93c57f121725529a6ce2b5c
+  xbl_config: xbl_config.elf
+  partitions: {conf: platforms/shikra-evk/emmc/partitions.conf}
+  required: [xbl.elf, xbl_config.elf, tz.mbn]
+  source: {meta-qcom: c853febcdeb149021fd043ac7a5eaae88f29f7b7}
+  upstream:
+    layers:
+      meta-qcom: {repo: https://github.com/qualcomm-linux/meta-qcom, branch: master}
+    bootbinaries:
+      layer: meta-qcom
+      recipe: recipes-bsp/firmware-boot/firmware-qcom-boot-shikra_*.bb
+      release: SHIKRA boot binaries {pv}
+u-boot:
+  # stock: U-Boot replaces UEFI in uefi_a/uefi_b. The defconfig comes with
+  # the Shikra series (v4); main has the device tree only.
+  stock:
+    configs: [qcom_shikra_iqs_defconfig]
+    device_tree: qcom/shikra-iqs-evk
+    image: u-boot.mbn
+not_available:
+  open: >-
+    the Shikra open stack boots through U-Boot SPL (the spl stack): TF-A
+    shikra_evk builds BL31 only, there is no BL2 for a FIP flow
+spl:
+  # U-Boot SPL replaces XBL: it is linked in BOOT_IMEM, trains DDR through
+  # QcLib and is signed as SBL1, the image the boot ROM loads from the
+  # partition with the SBL1 type GUID (xbl_a/xbl_b in the layout); it
+  # loads the FIT from uefi_a (eMMC SPL v2, spl-shikra.c).
+  slot: xbl.elf
+  sign: sbl1
+  # The pre-ddr configuration of the FIT, at the addresses meta-qcom PR
+  # 3420 (shikra-evk-open-fw) loads them; every blob is in the boot
+  # binaries above.
+  pre_ddr:
+    - {name: pmic_cocos, description: PMIC Cocos Config, file: Pmic_Cocos.bin, load: "0x0C294800", entry: "0x0C294800",
+       sha256: 9ea22ff3b3d58b56539ea2117e5f7827f37809440dfee62d001d5f7a41eb17d2}
+    - {name: pmic_wailua, description: PMIC Wailua Config, file: Pmic_Wailua.bin, load: "0x0C2A0400", entry: "0x0C2A0400",
+       sha256: ef050627edd995e313b90ea21c3e6a6ef6eadedbf286f521ff7230ba6a200879}
+    - {name: dcb_lp4, description: DDR Config Block (LP4), file: 900B_7_0100_0_dcb.bin, load: "0x0C2A6400",
+       entry: "0x0C2A6400", sha256: ab452e85c745be88352f3681498ae07248693824eb1abea8f494f7f82cab2dfa}
+    - {name: dcb_lp5, description: DDR Config Block (LP5), file: 900B_7_0100_1_dcb.bin, load: "0x0C2AAC00",
+       entry: "0x0C2AAC00", sha256: f193d18cd33685e602fd9c42a76482cbfbc334b8c3fdfa1864587a06381f055c}
+    - {name: shrm, description: SHRM, file: shrm.elf, load: "0xC00000", entry: "0xC00000",
+       sha256: 9c3a8716f105e18c1b9efc609d0513785beb8e8bc5c24e46c3099f48cfaff1fe}
+    - {name: qclib, description: QcLib, file: QcLib.elf, load: "0x0C2C3800", entry: "0x0C2C5270",
+       sha256: 438e93dbf1e003f12f5f3937a2d3ce8d3976c806b005dfe93441e93f1c8ecfeb}
+    - {name: ecc, description: ECC Config, file: Shikra_LCP.bin, load: "0x0C2AF400", entry: "0x0C2AF400",
+       sha256: 4b22ee6807a2e4ddfd1bf16851609a7a009f4c6bd5aeb78162f121cb89492f02}
+  gaps:
+    - no posted Shikra SPL enablement (defconfig, config fragment or Kconfig select)
+    - no posted FIT template (the CI carries its own, ubci/fit.py)
+  in_flight:
+    - {title: Initial Shikra SoC support, version: 4,
+       message_id: 20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com}
+    - {title: Enable HS200/HS400 eMMC modes on Qualcomm, version: 2,
+       message_id: 20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com}
+    - {title: "tools: qcom: mkmbn: ipq5210 and multi-elf", version: 3,
+       message_id: 20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com}
+    - {title: Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL), version: 10,
+       message_id: 20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com}
+    - {title: "spl: qcom: make Qualcomm drivers buildable in SPL", version: 1,
+       message_id: 20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com}
+    - {title: "qcom: shikra: add eMMC SPL boot support", version: 2,
+       message_id: 20261013053244.2954876-1-abhilash.v@oss.qualcomm.com}
+    - {title: "qcom: shikra: SPL SD card boot", version: 2,
+       message_id: 20261013053517.2955571-1-abhilash.v@oss.qualcomm.com}
+    - {title: "qcom: spl: enable CDT for shikra", version: 2,
+       message_id: 20261023084019.3722376-1-abhilash.v@oss.qualcomm.com}
+    - {title: DDR training for Shikra SPL, version: 1,
+       message_id: 20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com}
+    - {title: "mach-snapdragon: fix OP-TEE SPL link failure", version: 1,
+       message_id: 20261005060628.595146-1-aswin.murugan@oss.qualcomm.com}
+linux:
+  dtb: qcom/shikra-iqs-evk.dtb
+  overlays:
+    stock: []
+  gaps: {}
+  cmdline: console=ttyMSM0,115200n8
+boot_chain:
+  stock:
+    - {stage: XBL, origin: downstream}
+    - {stage: TZ (QTEE), origin: downstream}
+    - {stage: hypervisor (Gunyah), origin: downstream}
+    - {stage: U-Boot, origin: upstream, component: u-boot, detail: in place of UEFI}
+    - {stage: Linux, origin: upstream, component: linux}
+uboot_checks:
+  - [bdinfo, bdinfo, "boot_params"]
+  - [dm-tree, dm tree, "root_driver"]
+  - [clocks, clk dump, "Usecnt"]
+  - [storage, mmc info, "Capacity:"]
+  - [usb, usb tree, "USB device tree"]
+  - [efi-media, efidebug dh, "Block IO"]
+  - [bootflow, bootflow scan -l, "efi"]
+smoke:
+  cpus: 4
+  storage: "ls /sys/class/block | grep -q '^mmcblk0$' && dd if=/dev/mmcblk0 of=/dev/null bs=1M count=16"
+  usb: "ls /sys/bus/usb/devices | grep -q '^usb[0-9]'"
+  network: "ls /sys/class/net | grep -qv '^lo$'"

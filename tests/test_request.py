@@ -43,7 +43,8 @@ def test_bad_requests_are_refused(series, base, boards, stacks, why):
 def test_defaults_to_every_board_and_stack():
     # spl? : the SPL stack only if the stack touches SPL (ubci.run new).
     assert request.check("x@y", "main", "", "")["targets"] == \
-        ",".join("%s:%s" % (b, s) for b in ("lemans-evk", "qcs615-ride", "rb3gen2", "uno-q", "ventuno-q")
+        ",".join("%s:%s" % (b, s) for b in ("lemans-evk", "qcs615-ride", "rb3gen2", "shikra-iqs-evk", "uno-q",
+                                                  "ventuno-q")
                  for s in ("stock", "open", "spl?"))
 
 

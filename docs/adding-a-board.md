@@ -14,6 +14,8 @@
      a board fragment a series adds), device tree, image and, when it is
      not `uefi.elf`, the package file it is written as (`slot`;
      `bootimg` for an Android boot image ABL chainloads);
+   - `not_available`: for a board without one of the `stock`/`open`
+     stacks, why (Shikra has no FIP open stack); its cells say so;
    - `u-boot.spl` and `spl` once a posted series gives the board an SPL
      config: the slot the SPL replaces, how it is signed, its pre-ddr
      blobs; `spl.in_flight` (and `gaps`) whether or not

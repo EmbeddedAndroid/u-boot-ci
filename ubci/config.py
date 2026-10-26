@@ -134,8 +134,10 @@ def missing(name, stack, src, adhoc=False):
     (ubci.config.no_spl) or an open-stack pin is not public yet. Each
     skips the target instead of failing its build."""
     b = board(name)
-    if stack == "spl" and "spl" not in b["u-boot"]:
-        return no_spl(b, adhoc)
+    if stack not in b["u-boot"]:
+        if stack == "spl":
+            return no_spl(b, adhoc)
+        return "no %s stack for this board: %s" % (stack, b["not_available"][stack])
     u = b["u-boot"][stack]
     if not _dt_in_tree(src, u["device_tree"]):
         return "board not in this base: no %s device tree" % u["device_tree"]

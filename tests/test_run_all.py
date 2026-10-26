@@ -20,7 +20,8 @@ CHECKS = ["carry", "buildman", "fragments", "checkpatch", "docs", "sandbox", "qe
 # are skipped (test_a_pending_pin_skips_its_target,
 # test_a_board_without_spl_is_skipped_with_why).
 PAIRS = [(b, s) for b in config.project()["boards"] for s in config.project()["stacks"]]
-NO_SPL = ["%s-%s" % (b, s) for b, s in PAIRS if s not in config.board(b)["u-boot"]]
+NO_SPL = ["%s-%s" % (b, s) for b, s in PAIRS if s == "spl" and s not in config.board(b)["u-boot"]
+          and not config.board(b).get("spl")]
 TARGETS = ["%s-%s" % (b, s) for b, s in PAIRS
            if s in config.board(b)["u-boot"] and not config.pending(config.board(b), s)]
 PENDING = ["%s-%s" % (b, s) for b, s in PAIRS

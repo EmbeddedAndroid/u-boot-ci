@@ -15,7 +15,7 @@ def monitors(job):
     return {m["name"]: m for a in job["actions"] if "test" in a for m in a["test"].get("monitors", [])}
 
 
-@pytest.mark.parametrize("board", config.boards())
+@pytest.mark.parametrize("board", [b for b in config.boards() if "open" in config.board(b)["u-boot"]])
 def test_open_stack_gate_checks_every_component(board):
     job = jobs.render(board, "open", "ubci-9", PKG, LINUX)
     gate = monitors(job)[jobs.GATE_SUITE]
