@@ -65,7 +65,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main dfcfc4c9f78d",
-  "updated": "2026-10-27T07:57:32Z"
+  "updated": "2026-10-27T08:02:43Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -2132,12 +2132,18 @@
    ],
    "fingerprint": "ubci-40460771614-1-main-stock-qcs615-ride",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 516192,
+    "url": "https://lava.infra.foundries.io/scheduler/job/516192"
+   },
    "linux_boot": {
-    "gaps": [],
     "stage": "not-reached",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": 1,
    "stack": "stock",
    "state": "queued"
   },
@@ -3639,7 +3645,8 @@
     "versus_baseline": "unknown"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "BL2 pin not available: PIN_BL2_LEMANS_EVK is not set"
   },
   {
    "board": "lemans-evk",
