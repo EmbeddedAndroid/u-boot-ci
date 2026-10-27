@@ -65,7 +65,7 @@
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-10-27T07:39:22Z"
+  "updated": "2026-10-27T07:44:42Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -557,6 +557,12 @@
    ],
    "fingerprint": "ubci-40460771614-1-master-open-rb3gen2",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 516177,
+    "url": "https://lava.infra.foundries.io/scheduler/job/516177"
+   },
    "linux_boot": {
     "gaps": [
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
@@ -565,6 +571,7 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": 1,
    "stack": "open",
    "state": "queued"
   },
@@ -1667,7 +1674,7 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
-   "queue_position": 4,
+   "queue_position": 2,
    "stack": "stock",
    "state": "queued"
   },
@@ -3098,7 +3105,8 @@
     "versus_baseline": "unknown"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "BL2 pin not available: PIN_BL2_LEMANS_EVK is not set"
   },
   {
    "board": "lemans-evk",
