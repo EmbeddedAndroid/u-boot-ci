@@ -29,8 +29,10 @@
      "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/511932",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40146866222-1-main",
+     "spl_in_flight": [],
      "stack": "stock",
      "state": "done",
      "state_detail": "LAVA job incomplete",
@@ -59,8 +61,10 @@
      "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/511978",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40146866222-1-main",
+     "spl_in_flight": [],
      "stack": "open",
      "state": "done",
      "state_detail": "",
@@ -127,8 +131,10 @@
      "gate": "fail",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/511644",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40132771629-1-main",
+     "spl_in_flight": [],
      "stack": "stock",
      "state": "done",
      "state_detail": "LAVA job incomplete",
@@ -157,8 +163,10 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40132771629-1-main",
+     "spl_in_flight": [],
      "stack": "open",
      "state": "skipped",
      "state_detail": "BL2 pin not available: PIN_BL2_VENTUNO_Q is not set",
@@ -225,8 +233,10 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40121088154-1-main",
+     "spl_in_flight": [],
      "stack": "stock",
      "state": "cancelled",
      "state_detail": "workflow cancelled before this target finished",
@@ -255,8 +265,10 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40121088154-1-main",
+     "spl_in_flight": [],
      "stack": "open",
      "state": "cancelled",
      "state_detail": "workflow cancelled before this target finished",
@@ -323,8 +335,10 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40101351343-1-main",
+     "spl_in_flight": [],
      "stack": "stock",
      "state": "skipped",
      "state_detail": "does not apply: qcom: qcs8300/monaco-evk: pinctrl and RPMH clock v4, patch None/5: ",
@@ -353,8 +367,10 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40101351343-1-main",
+     "spl_in_flight": [],
      "stack": "open",
      "state": "skipped",
      "state_detail": "does not apply: qcom: qcs8300/monaco-evk: pinctrl and RPMH clock v4, patch None/5: ",
@@ -400,257 +416,315 @@
      "cases": {},
      "runs": [
       "ubci-40199892508-1-main",
-      "ubci-40279426778-1-main"
+      "ubci-40279426778-1-main",
+      "ubci-40460771614-1-main"
+     ]
+    },
+    "lemans-evk/spl": {
+     "cases": {},
+     "runs": [
+      "ubci-40460771614-1-main"
      ]
     },
     "lemans-evk/stock": {
      "cases": {
-      "firmware-fingerprint-reboot/u_boot_20": "ss",
-      "firmware-fingerprint-reset/u_boot_20": "pp",
-      "firmware-fingerprint/u_boot_20": "pp",
-      "linux-version/linux_version": "pp",
-      "reboot/reboot": "ff",
-      "smoke/cpus-online": "pp",
-      "smoke/dmesg-errors": "ff",
-      "smoke/linux-next-tag": "pp",
-      "smoke/modules-loaded": "pp",
-      "smoke/network": "pp",
-      "smoke/storage": "pp",
-      "smoke/usb": "pp",
-      "u-boot/autoboot": "pp",
-      "u-boot/u-boot-prompt": "pp",
-      "u-boot/u-boot-sync": "pp",
-      "u-boot/uboot-bdinfo": "pp",
-      "u-boot/uboot-bootflow": "pp",
-      "u-boot/uboot-clocks": "pp",
-      "u-boot/uboot-dm-tree": "pp",
-      "u-boot/uboot-efi-media": "pp",
-      "u-boot/uboot-reset": "pp",
-      "u-boot/uboot-storage": "pp",
-      "u-boot/uboot-usb": "pp",
-      "u-boot/uboot-version": "pp"
+      "firmware-fingerprint-reboot/u_boot_20": "ss-",
+      "firmware-fingerprint-reset/u_boot_20": "pp-",
+      "firmware-fingerprint/u_boot_20": "pp-",
+      "linux-version/linux_version": "pp-",
+      "reboot/reboot": "ff-",
+      "smoke/cpus-online": "pp-",
+      "smoke/dmesg-errors": "ff-",
+      "smoke/linux-next-tag": "pp-",
+      "smoke/modules-loaded": "pp-",
+      "smoke/network": "pp-",
+      "smoke/storage": "pp-",
+      "smoke/usb": "pp-",
+      "u-boot/autoboot": "pp-",
+      "u-boot/u-boot-prompt": "pp-",
+      "u-boot/u-boot-sync": "pp-",
+      "u-boot/uboot-bdinfo": "pp-",
+      "u-boot/uboot-bootflow": "pp-",
+      "u-boot/uboot-clocks": "pp-",
+      "u-boot/uboot-dm-tree": "pp-",
+      "u-boot/uboot-efi-media": "pp-",
+      "u-boot/uboot-reset": "pp-",
+      "u-boot/uboot-storage": "pp-",
+      "u-boot/uboot-usb": "pp-",
+      "u-boot/uboot-version": "pp-"
      },
      "runs": [
       "ubci-40199892508-1-main",
-      "ubci-40279426778-1-main"
+      "ubci-40279426778-1-main",
+      "ubci-40460771614-1-main"
      ]
     },
     "qcs615-ride/open": {
      "cases": {},
      "runs": [
       "ubci-40199892508-1-main",
-      "ubci-40279426778-1-main"
+      "ubci-40279426778-1-main",
+      "ubci-40460771614-1-main"
+     ]
+    },
+    "qcs615-ride/spl": {
+     "cases": {},
+     "runs": [
+      "ubci-40460771614-1-main"
      ]
     },
     "qcs615-ride/stock": {
      "cases": {
-      "firmware-fingerprint-reboot/u_boot_20": "ss",
-      "firmware-fingerprint-reset/u_boot_20": "pp",
-      "firmware-fingerprint/u_boot_20": "pp",
-      "linux-version/linux_version": "ff",
-      "u-boot/autoboot": "pp",
-      "u-boot/u-boot-prompt": "pp",
-      "u-boot/u-boot-sync": "pp",
-      "u-boot/uboot-bdinfo": "pp",
-      "u-boot/uboot-bootflow": "pp",
-      "u-boot/uboot-clocks": "pp",
-      "u-boot/uboot-dm-tree": "pp",
-      "u-boot/uboot-efi-media": "pp",
-      "u-boot/uboot-reset": "pp",
-      "u-boot/uboot-storage": "ff",
-      "u-boot/uboot-usb": "pp",
-      "u-boot/uboot-version": "pp"
+      "firmware-fingerprint-reboot/u_boot_20": "ss-",
+      "firmware-fingerprint-reset/u_boot_20": "pp-",
+      "firmware-fingerprint/u_boot_20": "pp-",
+      "linux-version/linux_version": "ff-",
+      "u-boot/autoboot": "pp-",
+      "u-boot/u-boot-prompt": "pp-",
+      "u-boot/u-boot-sync": "pp-",
+      "u-boot/uboot-bdinfo": "pp-",
+      "u-boot/uboot-bootflow": "pp-",
+      "u-boot/uboot-clocks": "pp-",
+      "u-boot/uboot-dm-tree": "pp-",
+      "u-boot/uboot-efi-media": "pp-",
+      "u-boot/uboot-reset": "pp-",
+      "u-boot/uboot-storage": "ff-",
+      "u-boot/uboot-usb": "pp-",
+      "u-boot/uboot-version": "pp-"
      },
      "runs": [
       "ubci-40199892508-1-main",
-      "ubci-40279426778-1-main"
+      "ubci-40279426778-1-main",
+      "ubci-40460771614-1-main"
      ]
     },
     "rb3gen2/open": {
      "cases": {
-      "firmware-fingerprint-reboot/bl2_v": "-fpp",
-      "firmware-fingerprint-reboot/bl31_v": "-fpp",
-      "firmware-fingerprint-reboot/op_tee_version": "-fpp",
-      "firmware-fingerprint-reboot/u_boot_20": "-fpp",
-      "firmware-fingerprint-reset/bl2_v": "-ppp",
-      "firmware-fingerprint-reset/bl31_v": "-ppp",
-      "firmware-fingerprint-reset/op_tee_version": "-ppp",
-      "firmware-fingerprint-reset/u_boot_20": "-ppp",
-      "firmware-fingerprint/bl2_v": "-ppp",
-      "firmware-fingerprint/bl31_v": "-ppp",
-      "firmware-fingerprint/op_tee_version": "-ppp",
-      "firmware-fingerprint/u_boot_20": "-ppp",
-      "linux-version/linux_version": "-ppp",
-      "poweroff/poweroff": "--pp",
-      "reboot/reboot": "--pp",
-      "smoke-after-reboot/linux-next-tag": "--pp",
-      "smoke/cpus-online": "-ppp",
-      "smoke/dmesg-errors": "-fff",
-      "smoke/linux-next-tag": "-ppp",
-      "smoke/modules-loaded": "-ppp",
-      "smoke/network": "--ff",
-      "smoke/storage": "--pp",
-      "smoke/usb": "--ss",
-      "stock-restore/uefi_ver": "-f--",
-      "u-boot/autoboot": "-ppp",
-      "u-boot/u-boot-prompt": "-ppp",
-      "u-boot/u-boot-sync": "-ppp",
-      "u-boot/uboot-bdinfo": "-ppp",
-      "u-boot/uboot-bootflow": "-ppp",
-      "u-boot/uboot-clocks": "-ppp",
-      "u-boot/uboot-dm-tree": "-ppp",
-      "u-boot/uboot-efi-media": "-ppp",
-      "u-boot/uboot-reset": "-ppp",
-      "u-boot/uboot-storage": "-ppp",
-      "u-boot/uboot-usb": "-ppp",
-      "u-boot/uboot-version": "-ppp"
+      "firmware-fingerprint-reboot/bl2_v": "-fpp-",
+      "firmware-fingerprint-reboot/bl31_v": "-fpp-",
+      "firmware-fingerprint-reboot/op_tee_version": "-fpp-",
+      "firmware-fingerprint-reboot/u_boot_20": "-fpp-",
+      "firmware-fingerprint-reset/bl2_v": "-ppp-",
+      "firmware-fingerprint-reset/bl31_v": "-ppp-",
+      "firmware-fingerprint-reset/op_tee_version": "-ppp-",
+      "firmware-fingerprint-reset/u_boot_20": "-ppp-",
+      "firmware-fingerprint/bl2_v": "-ppp-",
+      "firmware-fingerprint/bl31_v": "-ppp-",
+      "firmware-fingerprint/op_tee_version": "-ppp-",
+      "firmware-fingerprint/u_boot_20": "-ppp-",
+      "linux-version/linux_version": "-ppp-",
+      "poweroff/poweroff": "--pp-",
+      "reboot/reboot": "--pp-",
+      "smoke-after-reboot/linux-next-tag": "--pp-",
+      "smoke/cpus-online": "-ppp-",
+      "smoke/dmesg-errors": "-fff-",
+      "smoke/linux-next-tag": "-ppp-",
+      "smoke/modules-loaded": "-ppp-",
+      "smoke/network": "--ff-",
+      "smoke/storage": "--pp-",
+      "smoke/usb": "--ss-",
+      "stock-restore/uefi_ver": "-f---",
+      "u-boot/autoboot": "-ppp-",
+      "u-boot/u-boot-prompt": "-ppp-",
+      "u-boot/u-boot-sync": "-ppp-",
+      "u-boot/uboot-bdinfo": "-ppp-",
+      "u-boot/uboot-bootflow": "-ppp-",
+      "u-boot/uboot-clocks": "-ppp-",
+      "u-boot/uboot-dm-tree": "-ppp-",
+      "u-boot/uboot-efi-media": "-ppp-",
+      "u-boot/uboot-reset": "-ppp-",
+      "u-boot/uboot-storage": "-ppp-",
+      "u-boot/uboot-usb": "-ppp-",
+      "u-boot/uboot-version": "-ppp-"
      },
      "runs": [
       "ubci-40152748187-1-main",
       "ubci-40168371981-1-main",
       "ubci-40199892508-1-main",
-      "ubci-40279426778-1-main"
+      "ubci-40279426778-1-main",
+      "ubci-40460771614-1-main"
+     ]
+    },
+    "rb3gen2/spl": {
+     "cases": {},
+     "runs": [
+      "ubci-40460771614-1-main"
      ]
     },
     "rb3gen2/stock": {
      "cases": {
-      "firmware-fingerprint-reboot/u_boot_20": "-fpp",
-      "firmware-fingerprint-reset/u_boot_20": "-ppp",
-      "firmware-fingerprint/u_boot_20": "-ppp",
-      "linux-version/linux_version": "-ppp",
-      "poweroff/poweroff": "--pp",
-      "reboot/reboot": "--pp",
-      "smoke-after-reboot/linux-next-tag": "--pp",
-      "smoke/cpus-online": "-ppp",
-      "smoke/dmesg-errors": "-fff",
-      "smoke/linux-next-tag": "-ppp",
-      "smoke/modules-loaded": "-ppp",
-      "smoke/network": "--ff",
-      "smoke/storage": "--pp",
-      "smoke/usb": "--ss",
-      "stock-restore/uefi_ver": "-f--",
-      "u-boot/autoboot": "-ppp",
-      "u-boot/u-boot-prompt": "-ppp",
-      "u-boot/u-boot-sync": "-ppp",
-      "u-boot/uboot-bdinfo": "-ppp",
-      "u-boot/uboot-bootflow": "-ppp",
-      "u-boot/uboot-clocks": "-ppp",
-      "u-boot/uboot-dm-tree": "-ppp",
-      "u-boot/uboot-efi-media": "-ppp",
-      "u-boot/uboot-reset": "-ppp",
-      "u-boot/uboot-storage": "-ppp",
-      "u-boot/uboot-usb": "-ppp",
-      "u-boot/uboot-version": "-ppp"
+      "firmware-fingerprint-reboot/u_boot_20": "-fpp-",
+      "firmware-fingerprint-reset/u_boot_20": "-ppp-",
+      "firmware-fingerprint/u_boot_20": "-ppp-",
+      "linux-version/linux_version": "-ppp-",
+      "poweroff/poweroff": "--pp-",
+      "reboot/reboot": "--pp-",
+      "smoke-after-reboot/linux-next-tag": "--pp-",
+      "smoke/cpus-online": "-ppp-",
+      "smoke/dmesg-errors": "-fff-",
+      "smoke/linux-next-tag": "-ppp-",
+      "smoke/modules-loaded": "-ppp-",
+      "smoke/network": "--ff-",
+      "smoke/storage": "--pp-",
+      "smoke/usb": "--ss-",
+      "stock-restore/uefi_ver": "-f---",
+      "u-boot/autoboot": "-ppp-",
+      "u-boot/u-boot-prompt": "-ppp-",
+      "u-boot/u-boot-sync": "-ppp-",
+      "u-boot/uboot-bdinfo": "-ppp-",
+      "u-boot/uboot-bootflow": "-ppp-",
+      "u-boot/uboot-clocks": "-ppp-",
+      "u-boot/uboot-dm-tree": "-ppp-",
+      "u-boot/uboot-efi-media": "-ppp-",
+      "u-boot/uboot-reset": "-ppp-",
+      "u-boot/uboot-storage": "-ppp-",
+      "u-boot/uboot-usb": "-ppp-",
+      "u-boot/uboot-version": "-ppp-"
      },
      "runs": [
       "ubci-40152748187-1-main",
       "ubci-40168371981-1-main",
       "ubci-40199892508-1-main",
-      "ubci-40279426778-1-main"
+      "ubci-40279426778-1-main",
+      "ubci-40460771614-1-main"
+     ]
+    },
+    "shikra-iqs-evk/open": {
+     "cases": {},
+     "runs": [
+      "ubci-40460771614-1-main"
+     ]
+    },
+    "shikra-iqs-evk/spl": {
+     "cases": {},
+     "runs": [
+      "ubci-40460771614-1-main"
+     ]
+    },
+    "shikra-iqs-evk/stock": {
+     "cases": {},
+     "runs": [
+      "ubci-40460771614-1-main"
      ]
     },
     "uno-q/open": {
      "cases": {},
      "runs": [
       "ubci-40199892508-1-main",
-      "ubci-40279426778-1-main"
+      "ubci-40279426778-1-main",
+      "ubci-40460771614-1-main"
+     ]
+    },
+    "uno-q/spl": {
+     "cases": {},
+     "runs": [
+      "ubci-40460771614-1-main"
      ]
     },
     "uno-q/stock": {
      "cases": {
-      "firmware-fingerprint-reboot/u_boot_20": "pp",
-      "firmware-fingerprint-reset/u_boot_20": "pp",
-      "firmware-fingerprint/u_boot_20": "pp",
-      "linux-version/linux_version": "pp",
-      "poweroff/poweroff": "pp",
-      "reboot/reboot": "pp",
-      "smoke-after-reboot/linux-next-tag": "pp",
-      "smoke/cpus-online": "pp",
-      "smoke/dmesg-errors": "ff",
-      "smoke/linux-next-tag": "pp",
-      "smoke/modules-loaded": "pp",
-      "smoke/network": "ff",
-      "smoke/storage": "pp",
-      "smoke/usb": "ff",
-      "u-boot/autoboot": "pp",
-      "u-boot/u-boot-prompt": "pp",
-      "u-boot/u-boot-sync": "pp",
-      "u-boot/uboot-bdinfo": "pp",
-      "u-boot/uboot-bootflow": "pp",
-      "u-boot/uboot-clocks": "pp",
-      "u-boot/uboot-dm-tree": "pp",
-      "u-boot/uboot-efi-media": "pp",
-      "u-boot/uboot-reset": "pp",
-      "u-boot/uboot-storage": "pp",
-      "u-boot/uboot-usb": "pp",
-      "u-boot/uboot-version": "pp"
+      "firmware-fingerprint-reboot/u_boot_20": "pp-",
+      "firmware-fingerprint-reset/u_boot_20": "pp-",
+      "firmware-fingerprint/u_boot_20": "pp-",
+      "linux-version/linux_version": "pp-",
+      "poweroff/poweroff": "pp-",
+      "reboot/reboot": "pp-",
+      "smoke-after-reboot/linux-next-tag": "pp-",
+      "smoke/cpus-online": "pp-",
+      "smoke/dmesg-errors": "ff-",
+      "smoke/linux-next-tag": "pp-",
+      "smoke/modules-loaded": "pp-",
+      "smoke/network": "ff-",
+      "smoke/storage": "pp-",
+      "smoke/usb": "ff-",
+      "u-boot/autoboot": "pp-",
+      "u-boot/u-boot-prompt": "pp-",
+      "u-boot/u-boot-sync": "pp-",
+      "u-boot/uboot-bdinfo": "pp-",
+      "u-boot/uboot-bootflow": "pp-",
+      "u-boot/uboot-clocks": "pp-",
+      "u-boot/uboot-dm-tree": "pp-",
+      "u-boot/uboot-efi-media": "pp-",
+      "u-boot/uboot-reset": "pp-",
+      "u-boot/uboot-storage": "pp-",
+      "u-boot/uboot-usb": "pp-",
+      "u-boot/uboot-version": "pp-"
      },
      "runs": [
       "ubci-40199892508-1-main",
-      "ubci-40279426778-1-main"
+      "ubci-40279426778-1-main",
+      "ubci-40460771614-1-main"
      ]
     },
     "ventuno-q/open": {
      "cases": {
-      "firmware-fingerprint-reboot/bl2_v": "ffss",
-      "firmware-fingerprint-reboot/bl31_v": "ffss",
-      "firmware-fingerprint-reboot/op_tee_version": "ffss",
-      "firmware-fingerprint-reboot/u_boot_20": "ffss",
-      "firmware-fingerprint-reset/bl2_v": "pppp",
-      "firmware-fingerprint-reset/bl31_v": "pppp",
-      "firmware-fingerprint-reset/op_tee_version": "pppp",
-      "firmware-fingerprint-reset/u_boot_20": "pppp",
-      "firmware-fingerprint/bl2_v": "pppp",
-      "firmware-fingerprint/bl31_v": "pppp",
-      "firmware-fingerprint/op_tee_version": "pppp",
-      "firmware-fingerprint/u_boot_20": "pppp",
-      "linux-version/linux_version": "ffff",
-      "stock-restore/uefi_ver": "ff--",
-      "u-boot/autoboot": "pppp",
-      "u-boot/u-boot-prompt": "pppp",
-      "u-boot/u-boot-sync": "pppp",
-      "u-boot/uboot-bdinfo": "pppp",
-      "u-boot/uboot-bootflow": "pppp",
-      "u-boot/uboot-clocks": "pppp",
-      "u-boot/uboot-dm-tree": "pppp",
-      "u-boot/uboot-efi-media": "ffff",
-      "u-boot/uboot-reset": "pppp",
-      "u-boot/uboot-storage": "ffff",
-      "u-boot/uboot-usb": "pppp",
-      "u-boot/uboot-version": "pppp"
+      "firmware-fingerprint-reboot/bl2_v": "ffss-",
+      "firmware-fingerprint-reboot/bl31_v": "ffss-",
+      "firmware-fingerprint-reboot/op_tee_version": "ffss-",
+      "firmware-fingerprint-reboot/u_boot_20": "ffss-",
+      "firmware-fingerprint-reset/bl2_v": "pppp-",
+      "firmware-fingerprint-reset/bl31_v": "pppp-",
+      "firmware-fingerprint-reset/op_tee_version": "pppp-",
+      "firmware-fingerprint-reset/u_boot_20": "pppp-",
+      "firmware-fingerprint/bl2_v": "pppp-",
+      "firmware-fingerprint/bl31_v": "pppp-",
+      "firmware-fingerprint/op_tee_version": "pppp-",
+      "firmware-fingerprint/u_boot_20": "pppp-",
+      "linux-version/linux_version": "ffff-",
+      "stock-restore/uefi_ver": "ff---",
+      "u-boot/autoboot": "pppp-",
+      "u-boot/u-boot-prompt": "pppp-",
+      "u-boot/u-boot-sync": "pppp-",
+      "u-boot/uboot-bdinfo": "pppp-",
+      "u-boot/uboot-bootflow": "pppp-",
+      "u-boot/uboot-clocks": "pppp-",
+      "u-boot/uboot-dm-tree": "pppp-",
+      "u-boot/uboot-efi-media": "ffff-",
+      "u-boot/uboot-reset": "pppp-",
+      "u-boot/uboot-storage": "ffff-",
+      "u-boot/uboot-usb": "pppp-",
+      "u-boot/uboot-version": "pppp-"
      },
      "runs": [
       "ubci-40152748187-1-main",
       "ubci-40168371981-1-main",
       "ubci-40199892508-1-main",
-      "ubci-40279426778-1-main"
+      "ubci-40279426778-1-main",
+      "ubci-40460771614-1-main"
+     ]
+    },
+    "ventuno-q/spl": {
+     "cases": {},
+     "runs": [
+      "ubci-40460771614-1-main"
      ]
     },
     "ventuno-q/stock": {
      "cases": {
-      "firmware-fingerprint-reboot/u_boot_20": "ffss",
-      "firmware-fingerprint-reset/u_boot_20": "pppp",
-      "firmware-fingerprint/u_boot_20": "pppp",
-      "linux-version/linux_version": "ffff",
-      "stock-restore/uefi_ver": "ff--",
-      "u-boot/autoboot": "pppp",
-      "u-boot/u-boot-prompt": "pppp",
-      "u-boot/u-boot-sync": "pppp",
-      "u-boot/uboot-bdinfo": "pppp",
-      "u-boot/uboot-bootflow": "pppp",
-      "u-boot/uboot-clocks": "pppp",
-      "u-boot/uboot-dm-tree": "pppp",
-      "u-boot/uboot-efi-media": "ffff",
-      "u-boot/uboot-reset": "pppp",
-      "u-boot/uboot-storage": "ffff",
-      "u-boot/uboot-usb": "pppp",
-      "u-boot/uboot-version": "pppp"
+      "firmware-fingerprint-reboot/u_boot_20": "ffss-",
+      "firmware-fingerprint-reset/u_boot_20": "pppp-",
+      "firmware-fingerprint/u_boot_20": "pppp-",
+      "linux-version/linux_version": "ffff-",
+      "stock-restore/uefi_ver": "ff---",
+      "u-boot/autoboot": "pppp-",
+      "u-boot/u-boot-prompt": "pppp-",
+      "u-boot/u-boot-sync": "pppp-",
+      "u-boot/uboot-bdinfo": "pppp-",
+      "u-boot/uboot-bootflow": "pppp-",
+      "u-boot/uboot-clocks": "pppp-",
+      "u-boot/uboot-dm-tree": "pppp-",
+      "u-boot/uboot-efi-media": "ffff-",
+      "u-boot/uboot-reset": "pppp-",
+      "u-boot/uboot-storage": "ffff-",
+      "u-boot/uboot-usb": "pppp-",
+      "u-boot/uboot-version": "pppp-"
      },
      "runs": [
       "ubci-40152748187-1-main",
       "ubci-40168371981-1-main",
       "ubci-40199892508-1-main",
-      "ubci-40279426778-1-main"
+      "ubci-40279426778-1-main",
+      "ubci-40460771614-1-main"
      ]
     }
    },
@@ -712,8 +786,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
@@ -775,11 +851,188 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-main",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
+      "versus": "unknown"
+     },
+     {
+      "board": "lemans-evk",
+      "boot": "not-run",
+      "boot_chain": [
+       {
+        "origin": "downstream",
+        "stage": "XBL"
+       },
+       {
+        "component": "u-boot spl",
+        "detail": "pre-built, not from a public commit",
+        "origin": "downstream",
+        "stage": "U-Boot SPL"
+       },
+       {
+        "component": "tf-a",
+        "origin": "upstream",
+        "stage": "TF-A BL31"
+       },
+       {
+        "component": "optee",
+        "origin": "upstream",
+        "stage": "OP-TEE"
+       },
+       {
+        "origin": "none",
+        "stage": "hypervisor"
+       },
+       {
+        "component": "u-boot",
+        "detail": "in the SPL FIT",
+        "origin": "upstream",
+        "stage": "U-Boot"
+       },
+       {
+        "component": "linux",
+        "detail": "EL2",
+        "origin": "upstream",
+        "stage": "Linux"
+       }
+      ],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {
+       "optee": 76,
+       "tf-a": 81
+      },
+      "fingerprint": "ubci-40460771614-1-main-open-lemans-evk",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "open",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
+     }
+    ],
+    "lemans-evk/spl": [
+     {
+      "board": "lemans-evk",
+      "boot": "not-run",
+      "boot_chain": [
+       {
+        "origin": "downstream",
+        "stage": "XBL"
+       },
+       {
+        "component": "u-boot spl",
+        "detail": "from the tree under test, in place of tz",
+        "origin": "upstream",
+        "stage": "U-Boot SPL"
+       },
+       {
+        "component": "tf-a",
+        "origin": "upstream",
+        "stage": "TF-A BL31"
+       },
+       {
+        "component": "optee",
+        "origin": "upstream",
+        "stage": "OP-TEE"
+       },
+       {
+        "origin": "none",
+        "stage": "hypervisor"
+       },
+       {
+        "component": "u-boot",
+        "detail": "in the SPL FIT",
+        "origin": "upstream",
+        "stage": "U-Boot"
+       },
+       {
+        "component": "linux",
+        "detail": "EL2",
+        "origin": "upstream",
+        "stage": "Linux"
+       }
+      ],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {
+       "optee": 76,
+       "tf-a": 81
+      },
+      "fingerprint": "ubci-40460771614-1-main-spl-lemans-evk",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [
+       {
+        "link": "https://lore.kernel.org/r/20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com",
+        "message_id": "20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com",
+        "title": "Enable U-Boot SPL support for Lemans EVK",
+        "version": 4
+       },
+       {
+        "link": "https://lore.kernel.org/r/20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+        "message_id": "20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+        "title": "Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL)",
+        "version": 10
+       },
+       {
+        "link": "https://lore.kernel.org/r/20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com",
+        "message_id": "20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com",
+        "title": "spl: ufs: add UFS boot support for Qualcomm Snapdragon in SPL",
+        "version": 4
+       },
+       {
+        "link": "https://lore.kernel.org/r/20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+        "message_id": "20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+        "title": "spl: qcom: make Qualcomm drivers buildable in SPL",
+        "version": 1
+       },
+       {
+        "link": "https://lore.kernel.org/r/20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com",
+        "message_id": "20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com",
+        "title": "qcom: Add NVMEM bitfield support and reboot-mode",
+        "version": 5
+       },
+       {
+        "link": "https://lore.kernel.org/r/20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+        "message_id": "20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+        "title": "mach-snapdragon: fix OP-TEE SPL link failure",
+        "version": 1
+       }
+      ],
+      "stack": "spl",
+      "state": "queued",
+      "state_detail": "",
       "versus": "unknown"
      }
     ],
@@ -827,8 +1080,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/513221",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -877,12 +1132,66 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/514062",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-main",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "LAVA job incomplete",
       "versus": "same"
+     },
+     {
+      "board": "lemans-evk",
+      "boot": "not-run",
+      "boot_chain": [
+       {
+        "origin": "downstream",
+        "stage": "XBL"
+       },
+       {
+        "origin": "downstream",
+        "stage": "TZ (QTEE)"
+       },
+       {
+        "origin": "downstream",
+        "stage": "hypervisor (Gunyah)"
+       },
+       {
+        "component": "u-boot",
+        "detail": "in place of UEFI",
+        "origin": "upstream",
+        "stage": "U-Boot"
+       },
+       {
+        "component": "linux",
+        "origin": "upstream",
+        "stage": "Linux"
+       }
+      ],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40460771614-1-main-stock-lemans-evk",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "stock",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
      }
     ],
     "qcs615-ride/open": [
@@ -941,8 +1250,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
@@ -1003,11 +1314,107 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-main",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
+      "versus": "unknown"
+     },
+     {
+      "board": "qcs615-ride",
+      "boot": "not-run",
+      "boot_chain": [
+       {
+        "origin": "downstream",
+        "stage": "XBL"
+       },
+       {
+        "component": "tf-a bl2",
+        "origin": "upstream",
+        "stage": "TF-A BL2"
+       },
+       {
+        "component": "tf-a",
+        "origin": "upstream",
+        "stage": "TF-A BL31"
+       },
+       {
+        "component": "optee",
+        "origin": "upstream",
+        "stage": "OP-TEE"
+       },
+       {
+        "origin": "none",
+        "stage": "hypervisor"
+       },
+       {
+        "component": "u-boot",
+        "detail": "BL33 in the FIP",
+        "origin": "upstream",
+        "stage": "U-Boot"
+       },
+       {
+        "component": "linux",
+        "detail": "EL2",
+        "origin": "upstream",
+        "stage": "Linux"
+       }
+      ],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40460771614-1-main-open-qcs615-ride",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "open",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
+     }
+    ],
+    "qcs615-ride/spl": [
+     {
+      "board": "qcs615-ride",
+      "boot": "not-run",
+      "boot_chain": [],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40460771614-1-main-spl-qcs615-ride",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "spl",
+      "state": "queued",
+      "state_detail": "",
       "versus": "unknown"
      }
     ],
@@ -1055,8 +1462,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/513220",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -1105,12 +1514,66 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/514061",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-main",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "LAVA job incomplete",
       "versus": "upstream-gap"
+     },
+     {
+      "board": "qcs615-ride",
+      "boot": "not-run",
+      "boot_chain": [
+       {
+        "origin": "downstream",
+        "stage": "XBL"
+       },
+       {
+        "origin": "downstream",
+        "stage": "TZ (QTEE)"
+       },
+       {
+        "origin": "downstream",
+        "stage": "hypervisor (Gunyah)"
+       },
+       {
+        "component": "u-boot",
+        "detail": "in place of UEFI",
+        "origin": "upstream",
+        "stage": "U-Boot"
+       },
+       {
+        "component": "linux",
+        "origin": "upstream",
+        "stage": "Linux"
+       }
+      ],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40460771614-1-main-stock-qcs615-ride",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "stock",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
      }
     ],
     "rb3gen2/open": [
@@ -1136,8 +1599,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40152748187-1-main",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "error",
       "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to ",
@@ -1165,8 +1630,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/512827",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40168371981-1-main",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -1230,8 +1697,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/513364",
       "new_fail": 1,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "done",
       "state_detail": "",
@@ -1295,12 +1764,111 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/514065",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-main",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "done",
       "state_detail": "",
       "versus": "same"
+     },
+     {
+      "board": "rb3gen2",
+      "boot": "not-run",
+      "boot_chain": [
+       {
+        "origin": "downstream",
+        "stage": "XBL"
+       },
+       {
+        "component": "tf-a bl2",
+        "origin": "upstream",
+        "stage": "TF-A BL2"
+       },
+       {
+        "component": "tf-a",
+        "origin": "upstream",
+        "stage": "TF-A BL31"
+       },
+       {
+        "component": "optee",
+        "origin": "upstream",
+        "stage": "OP-TEE"
+       },
+       {
+        "origin": "none",
+        "stage": "hypervisor"
+       },
+       {
+        "component": "u-boot",
+        "detail": "BL33 in the FIP",
+        "origin": "upstream",
+        "stage": "U-Boot"
+       },
+       {
+        "component": "linux",
+        "detail": "EL2",
+        "origin": "upstream",
+        "stage": "Linux"
+       }
+      ],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {
+       "optee": 0,
+       "tf-a": 10
+      },
+      "fingerprint": "ubci-40460771614-1-main-open-rb3gen2",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "open",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
+     }
+    ],
+    "rb3gen2/spl": [
+     {
+      "board": "rb3gen2",
+      "boot": "not-run",
+      "boot_chain": [],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40460771614-1-main-spl-rb3gen2",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "spl",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
      }
     ],
     "rb3gen2/stock": [
@@ -1323,8 +1891,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40152748187-1-main",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "error",
       "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to ",
@@ -1349,8 +1919,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/512816",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40168371981-1-main",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -1399,8 +1971,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/513217",
       "new_fail": 1,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "",
@@ -1449,12 +2023,241 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/514059",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-main",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "",
       "versus": "same"
+     },
+     {
+      "board": "rb3gen2",
+      "boot": "not-run",
+      "boot_chain": [
+       {
+        "origin": "downstream",
+        "stage": "XBL"
+       },
+       {
+        "origin": "downstream",
+        "stage": "TZ (QTEE)"
+       },
+       {
+        "origin": "downstream",
+        "stage": "hypervisor (Gunyah)"
+       },
+       {
+        "component": "u-boot",
+        "detail": "in place of UEFI",
+        "origin": "upstream",
+        "stage": "U-Boot"
+       },
+       {
+        "component": "linux",
+        "origin": "upstream",
+        "stage": "Linux"
+       }
+      ],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40460771614-1-main-stock-rb3gen2",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "stock",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
+     }
+    ],
+    "shikra-iqs-evk/open": [
+     {
+      "board": "shikra-iqs-evk",
+      "boot": "not-run",
+      "boot_chain": [],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40460771614-1-main-open-shikra-iqs-evk",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "open",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
+     }
+    ],
+    "shikra-iqs-evk/spl": [
+     {
+      "board": "shikra-iqs-evk",
+      "boot": "not-run",
+      "boot_chain": [],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40460771614-1-main-spl-shikra-iqs-evk",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [
+       {
+        "link": "https://lore.kernel.org/r/20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com",
+        "message_id": "20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com",
+        "title": "Initial Shikra SoC support",
+        "version": 4
+       },
+       {
+        "link": "https://lore.kernel.org/r/20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com",
+        "message_id": "20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com",
+        "title": "Enable HS200/HS400 eMMC modes on Qualcomm",
+        "version": 2
+       },
+       {
+        "link": "https://lore.kernel.org/r/20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com",
+        "message_id": "20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com",
+        "title": "tools: qcom: mkmbn: ipq5210 and multi-elf",
+        "version": 3
+       },
+       {
+        "link": "https://lore.kernel.org/r/20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+        "message_id": "20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+        "title": "Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL)",
+        "version": 10
+       },
+       {
+        "link": "https://lore.kernel.org/r/20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+        "message_id": "20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+        "title": "spl: qcom: make Qualcomm drivers buildable in SPL",
+        "version": 1
+       },
+       {
+        "link": "https://lore.kernel.org/r/20261013053244.2954876-1-abhilash.v@oss.qualcomm.com",
+        "message_id": "20261013053244.2954876-1-abhilash.v@oss.qualcomm.com",
+        "title": "qcom: shikra: add eMMC SPL boot support",
+        "version": 2
+       },
+       {
+        "link": "https://lore.kernel.org/r/20261013053517.2955571-1-abhilash.v@oss.qualcomm.com",
+        "message_id": "20261013053517.2955571-1-abhilash.v@oss.qualcomm.com",
+        "title": "qcom: shikra: SPL SD card boot",
+        "version": 2
+       },
+       {
+        "link": "https://lore.kernel.org/r/20261023084019.3722376-1-abhilash.v@oss.qualcomm.com",
+        "message_id": "20261023084019.3722376-1-abhilash.v@oss.qualcomm.com",
+        "title": "qcom: spl: enable CDT for shikra",
+        "version": 2
+       },
+       {
+        "link": "https://lore.kernel.org/r/20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com",
+        "message_id": "20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com",
+        "title": "DDR training for Shikra SPL",
+        "version": 1
+       },
+       {
+        "link": "https://lore.kernel.org/r/20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+        "message_id": "20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+        "title": "mach-snapdragon: fix OP-TEE SPL link failure",
+        "version": 1
+       }
+      ],
+      "stack": "spl",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
+     }
+    ],
+    "shikra-iqs-evk/stock": [
+     {
+      "board": "shikra-iqs-evk",
+      "boot": "not-run",
+      "boot_chain": [
+       {
+        "origin": "downstream",
+        "stage": "XBL"
+       },
+       {
+        "origin": "downstream",
+        "stage": "TZ (QTEE)"
+       },
+       {
+        "origin": "downstream",
+        "stage": "hypervisor (Gunyah)"
+       },
+       {
+        "component": "u-boot",
+        "detail": "in place of UEFI",
+        "origin": "upstream",
+        "stage": "U-Boot"
+       },
+       {
+        "component": "linux",
+        "origin": "upstream",
+        "stage": "Linux"
+       }
+      ],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40460771614-1-main-stock-shikra-iqs-evk",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "stock",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
      }
     ],
     "uno-q/open": [
@@ -1513,8 +2316,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
@@ -1575,11 +2380,107 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-main",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
+      "versus": "unknown"
+     },
+     {
+      "board": "uno-q",
+      "boot": "not-run",
+      "boot_chain": [
+       {
+        "origin": "downstream",
+        "stage": "XBL"
+       },
+       {
+        "component": "tf-a bl2",
+        "origin": "upstream",
+        "stage": "TF-A BL2"
+       },
+       {
+        "component": "tf-a",
+        "origin": "upstream",
+        "stage": "TF-A BL31"
+       },
+       {
+        "component": "optee",
+        "origin": "upstream",
+        "stage": "OP-TEE"
+       },
+       {
+        "origin": "none",
+        "stage": "hypervisor"
+       },
+       {
+        "component": "u-boot",
+        "detail": "BL33 in the FIP",
+        "origin": "upstream",
+        "stage": "U-Boot"
+       },
+       {
+        "component": "linux",
+        "detail": "EL2",
+        "origin": "upstream",
+        "stage": "Linux"
+       }
+      ],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40460771614-1-main-open-uno-q",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "open",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
+     }
+    ],
+    "uno-q/spl": [
+     {
+      "board": "uno-q",
+      "boot": "not-run",
+      "boot_chain": [],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40460771614-1-main-spl-uno-q",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "spl",
+      "state": "queued",
+      "state_detail": "",
       "versus": "unknown"
      }
     ],
@@ -1631,8 +2532,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/513219",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "",
@@ -1685,12 +2588,70 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/514060",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-main",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "",
       "versus": "same"
+     },
+     {
+      "board": "uno-q",
+      "boot": "not-run",
+      "boot_chain": [
+       {
+        "origin": "downstream",
+        "stage": "XBL"
+       },
+       {
+        "origin": "downstream",
+        "stage": "TZ (QTEE)"
+       },
+       {
+        "origin": "downstream",
+        "stage": "hypervisor (QTI hyp)"
+       },
+       {
+        "origin": "downstream",
+        "stage": "ABL"
+       },
+       {
+        "component": "u-boot",
+        "detail": "Android boot image chainloaded by ABL",
+        "origin": "upstream",
+        "stage": "U-Boot"
+       },
+       {
+        "component": "linux",
+        "origin": "upstream",
+        "stage": "Linux"
+       }
+      ],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40460771614-1-main-stock-uno-q",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "stock",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
      }
     ],
     "ventuno-q/open": [
@@ -1716,8 +2677,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/512231",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40152748187-1-main",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -1745,8 +2708,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/512820",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40168371981-1-main",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -1812,8 +2777,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/513311",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -1879,12 +2846,111 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/514064",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-main",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "done",
       "state_detail": "LAVA job incomplete",
       "versus": "upstream-gap"
+     },
+     {
+      "board": "ventuno-q",
+      "boot": "not-run",
+      "boot_chain": [
+       {
+        "origin": "downstream",
+        "stage": "XBL"
+       },
+       {
+        "component": "tf-a bl2",
+        "origin": "upstream",
+        "stage": "TF-A BL2"
+       },
+       {
+        "component": "tf-a",
+        "origin": "upstream",
+        "stage": "TF-A BL31"
+       },
+       {
+        "component": "optee",
+        "origin": "upstream",
+        "stage": "OP-TEE"
+       },
+       {
+        "origin": "none",
+        "stage": "hypervisor"
+       },
+       {
+        "component": "u-boot",
+        "detail": "BL33 in the FIP",
+        "origin": "upstream",
+        "stage": "U-Boot"
+       },
+       {
+        "component": "linux",
+        "detail": "EL2",
+        "origin": "upstream",
+        "stage": "Linux"
+       }
+      ],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {
+       "optee": 0,
+       "tf-a": 12
+      },
+      "fingerprint": "ubci-40460771614-1-main-open-ventuno-q",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "open",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
+     }
+    ],
+    "ventuno-q/spl": [
+     {
+      "board": "ventuno-q",
+      "boot": "not-run",
+      "boot_chain": [],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40460771614-1-main-spl-ventuno-q",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "spl",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
      }
     ],
     "ventuno-q/stock": [
@@ -1907,8 +2973,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/512197",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40152748187-1-main",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -1933,8 +3001,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/512815",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40168371981-1-main",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -1983,8 +3053,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/513218",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-main",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -2033,72 +3105,76 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/514057",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-main",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "LAVA job incomplete",
       "versus": "upstream-gap"
+     },
+     {
+      "board": "ventuno-q",
+      "boot": "not-run",
+      "boot_chain": [
+       {
+        "origin": "downstream",
+        "stage": "XBL"
+       },
+       {
+        "origin": "downstream",
+        "stage": "TZ (QTEE)"
+       },
+       {
+        "origin": "downstream",
+        "stage": "hypervisor (Gunyah)"
+       },
+       {
+        "component": "u-boot",
+        "detail": "in place of UEFI",
+        "origin": "upstream",
+        "stage": "U-Boot"
+       },
+       {
+        "component": "linux",
+        "origin": "upstream",
+        "stage": "Linux"
+       }
+      ],
+      "boot_stage": "not-reached",
+      "boot_url": "",
+      "counts": {
+       "fail": 0,
+       "flaky": 0,
+       "pass": 0,
+       "skip": 0,
+       "unknown": 0
+      },
+      "distance": {},
+      "fingerprint": "ubci-40460771614-1-main-stock-ventuno-q",
+      "fragments_missing": [],
+      "gate": "not-run",
+      "job_url": "",
+      "new_fail": 0,
+      "no_spl": null,
+      "queue_position": null,
+      "run": "ubci-40460771614-1-main",
+      "spl_in_flight": [],
+      "stack": "stock",
+      "state": "queued",
+      "state_detail": "",
+      "versus": "unknown"
      }
     ]
    },
-   "host_checks": [
-    {
-     "name": "buildman",
-     "result": "pass",
-     "summary": "every snapdragon board built without warnings"
-    },
-    {
-     "name": "carry",
-     "result": "pass",
-     "summary": "carry.yaml matches the pins"
-    },
-    {
-     "name": "checkpatch",
-     "result": "pass",
-     "summary": "0 new commits: 0 with errors, 0 with warnings only"
-    },
-    {
-     "name": "docs",
-     "result": "pass",
-     "summary": "htmldocs built without warnings"
-    },
-    {
-     "name": "fragments",
-     "result": "pass",
-     "summary": "1 combinations built"
-    },
-    {
-     "name": "qemu_arm64",
-     "result": "pass",
-     "summary": "250 passed, 600 skipped, 2 deselected in 122.08s (0:02:02)"
-    },
-    {
-     "name": "sandbox",
-     "result": "pass",
-     "summary": "1418 passed, 229 skipped, 3 deselected, 1 xfailed in 803.94s (0:13:23)"
-    },
-    {
-     "name": "size",
-     "result": "pass",
-     "summary": "lemans-evk-stock 1670536 B, qcs615-ride-stock 1609736 B, rb3gen2-open 1662080 B, rb3gen2-stock 1672672 B, uno-q-stock 0 B, ventuno-q-open 1647688 B, ventuno-q-stock 1651504 B"
-    }
-   ],
-   "latest_nightly": "ubci-40279426778-1-main",
-   "linux": {
-    "commit": "20a33c6b6cbe7e4805dfb6cd68816937443aa148",
-    "config": "arch/arm64/configs/defconfig",
-    "image_sha256": "bdfa4856f7c6cde00967c209a94b6835fb5527ee6dd335b51cf371007b91e46d",
-    "modules_sha256": "4fee8a6200e7e339dda1702281f2bffe776b43a69e5515be19fe7052ff26c0a8",
-    "release": "7.3.0-next-20261023",
-    "tag": "next-20261023",
-    "tag_url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tag/?h=next-20261023",
-    "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=20a33c6b6cbe7e4805dfb6cd68816937443aa148"
-   },
+   "host_checks": [],
+   "latest_nightly": "ubci-40460771614-1-main",
+   "linux": null,
    "matrix": [
     {
      "board": "rb3gen2",
-     "boot": "pass",
+     "boot": "not-run",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -2124,31 +3200,33 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "login",
-     "boot_url": "https://lava.infra.foundries.io/scheduler/job/514059#L2948",
+     "boot_stage": "not-reached",
+     "boot_url": "",
      "counts": {
-      "fail": 2,
+      "fail": 0,
       "flaky": 0,
-      "pass": 23,
-      "skip": 1,
+      "pass": 0,
+      "skip": 0,
       "unknown": 0
      },
      "distance": {},
-     "fingerprint": "ubci-40279426778-1-main-stock-rb3gen2",
+     "fingerprint": "ubci-40460771614-1-main-stock-rb3gen2",
      "fragments_missing": [],
-     "gate": "pass",
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/514059",
+     "gate": "not-run",
+     "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
-     "run": "ubci-40279426778-1-main",
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
      "stack": "stock",
-     "state": "done",
+     "state": "queued",
      "state_detail": "",
-     "versus": "same"
+     "versus": "unknown"
     },
     {
      "board": "rb3gen2",
-     "boot": "pass",
+     "boot": "not-run",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -2186,34 +3264,64 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "login",
-     "boot_url": "https://lava.infra.foundries.io/scheduler/job/514065#L3025",
+     "boot_stage": "not-reached",
+     "boot_url": "",
      "counts": {
-      "fail": 2,
+      "fail": 0,
       "flaky": 0,
-      "pass": 32,
-      "skip": 1,
+      "pass": 0,
+      "skip": 0,
       "unknown": 0
      },
      "distance": {
       "optee": 0,
       "tf-a": 10
      },
-     "fingerprint": "ubci-40279426778-1-main-open-rb3gen2",
+     "fingerprint": "ubci-40460771614-1-main-open-rb3gen2",
      "fragments_missing": [],
-     "gate": "pass",
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/514065",
+     "gate": "not-run",
+     "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
-     "run": "ubci-40279426778-1-main",
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
      "stack": "open",
-     "state": "done",
+     "state": "queued",
      "state_detail": "",
-     "versus": "same"
+     "versus": "unknown"
+    },
+    {
+     "board": "rb3gen2",
+     "boot": "not-run",
+     "boot_chain": [],
+     "boot_stage": "not-reached",
+     "boot_url": "",
+     "counts": {
+      "fail": 0,
+      "flaky": 0,
+      "pass": 0,
+      "skip": 0,
+      "unknown": 0
+     },
+     "distance": {},
+     "fingerprint": "ubci-40460771614-1-main-spl-rb3gen2",
+     "fragments_missing": [],
+     "gate": "not-run",
+     "job_url": "",
+     "new_fail": 0,
+     "no_spl": null,
+     "queue_position": null,
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
+     "stack": "spl",
+     "state": "queued",
+     "state_detail": "",
+     "versus": "unknown"
     },
     {
      "board": "ventuno-q",
-     "boot": "fail",
+     "boot": "not-run",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -2239,31 +3347,33 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "nothing-booted",
-     "boot_url": "https://lava.infra.foundries.io/scheduler/job/514057#L1126",
+     "boot_stage": "not-reached",
+     "boot_url": "",
      "counts": {
-      "fail": 3,
+      "fail": 0,
       "flaky": 0,
-      "pass": 12,
-      "skip": 1,
+      "pass": 0,
+      "skip": 0,
       "unknown": 0
      },
      "distance": {},
-     "fingerprint": "ubci-40279426778-1-main-stock-ventuno-q",
+     "fingerprint": "ubci-40460771614-1-main-stock-ventuno-q",
      "fragments_missing": [],
-     "gate": "pass",
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/514057",
+     "gate": "not-run",
+     "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
-     "run": "ubci-40279426778-1-main",
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
      "stack": "stock",
-     "state": "done",
-     "state_detail": "LAVA job incomplete",
-     "versus": "upstream-gap"
+     "state": "queued",
+     "state_detail": "",
+     "versus": "unknown"
     },
     {
      "board": "ventuno-q",
-     "boot": "fail",
+     "boot": "not-run",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -2301,36 +3411,64 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "nothing-booted",
-     "boot_url": "https://lava.infra.foundries.io/scheduler/job/514064#L1164",
+     "boot_stage": "not-reached",
+     "boot_url": "",
      "counts": {
-      "fail": 3,
+      "fail": 0,
       "flaky": 0,
-      "pass": 18,
-      "skip": 4,
+      "pass": 0,
+      "skip": 0,
       "unknown": 0
      },
      "distance": {
       "optee": 0,
       "tf-a": 12
      },
-     "fingerprint": "ubci-40279426778-1-main-open-ventuno-q",
-     "fragments_missing": [
-      "arduino-ventuno-q.config"
-     ],
-     "gate": "pass",
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/514064",
+     "fingerprint": "ubci-40460771614-1-main-open-ventuno-q",
+     "fragments_missing": [],
+     "gate": "not-run",
+     "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
-     "run": "ubci-40279426778-1-main",
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
      "stack": "open",
-     "state": "done",
-     "state_detail": "LAVA job incomplete",
-     "versus": "upstream-gap"
+     "state": "queued",
+     "state_detail": "",
+     "versus": "unknown"
+    },
+    {
+     "board": "ventuno-q",
+     "boot": "not-run",
+     "boot_chain": [],
+     "boot_stage": "not-reached",
+     "boot_url": "",
+     "counts": {
+      "fail": 0,
+      "flaky": 0,
+      "pass": 0,
+      "skip": 0,
+      "unknown": 0
+     },
+     "distance": {},
+     "fingerprint": "ubci-40460771614-1-main-spl-ventuno-q",
+     "fragments_missing": [],
+     "gate": "not-run",
+     "job_url": "",
+     "new_fail": 0,
+     "no_spl": null,
+     "queue_position": null,
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
+     "stack": "spl",
+     "state": "queued",
+     "state_detail": "",
+     "versus": "unknown"
     },
     {
      "board": "uno-q",
-     "boot": "pass",
+     "boot": "not-run",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -2360,27 +3498,29 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "login",
-     "boot_url": "https://lava.infra.foundries.io/scheduler/job/514060#L1994",
+     "boot_stage": "not-reached",
+     "boot_url": "",
      "counts": {
-      "fail": 3,
+      "fail": 0,
       "flaky": 0,
-      "pass": 23,
+      "pass": 0,
       "skip": 0,
       "unknown": 0
      },
      "distance": {},
-     "fingerprint": "ubci-40279426778-1-main-stock-uno-q",
+     "fingerprint": "ubci-40460771614-1-main-stock-uno-q",
      "fragments_missing": [],
-     "gate": "pass",
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/514060",
+     "gate": "not-run",
+     "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
-     "run": "ubci-40279426778-1-main",
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
      "stack": "stock",
-     "state": "done",
+     "state": "queued",
      "state_detail": "",
-     "versus": "same"
+     "versus": "unknown"
     },
     {
      "board": "uno-q",
@@ -2432,21 +3572,51 @@
       "unknown": 0
      },
      "distance": {},
-     "fingerprint": "ubci-40279426778-1-main-open-uno-q",
+     "fingerprint": "ubci-40460771614-1-main-open-uno-q",
      "fragments_missing": [],
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
-     "run": "ubci-40279426778-1-main",
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
      "stack": "open",
-     "state": "skipped",
-     "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
+     "state": "queued",
+     "state_detail": "",
+     "versus": "unknown"
+    },
+    {
+     "board": "uno-q",
+     "boot": "not-run",
+     "boot_chain": [],
+     "boot_stage": "not-reached",
+     "boot_url": "",
+     "counts": {
+      "fail": 0,
+      "flaky": 0,
+      "pass": 0,
+      "skip": 0,
+      "unknown": 0
+     },
+     "distance": {},
+     "fingerprint": "ubci-40460771614-1-main-spl-uno-q",
+     "fragments_missing": [],
+     "gate": "not-run",
+     "job_url": "",
+     "new_fail": 0,
+     "no_spl": null,
+     "queue_position": null,
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
+     "stack": "spl",
+     "state": "queued",
+     "state_detail": "",
      "versus": "unknown"
     },
     {
      "board": "qcs615-ride",
-     "boot": "fail",
+     "boot": "not-run",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -2472,27 +3642,29 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "nothing-booted",
-     "boot_url": "https://lava.infra.foundries.io/scheduler/job/514061#L2003",
+     "boot_stage": "not-reached",
+     "boot_url": "",
      "counts": {
-      "fail": 2,
+      "fail": 0,
       "flaky": 0,
-      "pass": 13,
-      "skip": 1,
+      "pass": 0,
+      "skip": 0,
       "unknown": 0
      },
      "distance": {},
-     "fingerprint": "ubci-40279426778-1-main-stock-qcs615-ride",
+     "fingerprint": "ubci-40460771614-1-main-stock-qcs615-ride",
      "fragments_missing": [],
-     "gate": "pass",
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/514061",
+     "gate": "not-run",
+     "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
-     "run": "ubci-40279426778-1-main",
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
      "stack": "stock",
-     "state": "done",
-     "state_detail": "LAVA job incomplete",
-     "versus": "upstream-gap"
+     "state": "queued",
+     "state_detail": "",
+     "versus": "unknown"
     },
     {
      "board": "qcs615-ride",
@@ -2544,21 +3716,51 @@
       "unknown": 0
      },
      "distance": {},
-     "fingerprint": "ubci-40279426778-1-main-open-qcs615-ride",
+     "fingerprint": "ubci-40460771614-1-main-open-qcs615-ride",
      "fragments_missing": [],
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
-     "run": "ubci-40279426778-1-main",
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
      "stack": "open",
-     "state": "skipped",
-     "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
+     "state": "queued",
+     "state_detail": "",
+     "versus": "unknown"
+    },
+    {
+     "board": "qcs615-ride",
+     "boot": "not-run",
+     "boot_chain": [],
+     "boot_stage": "not-reached",
+     "boot_url": "",
+     "counts": {
+      "fail": 0,
+      "flaky": 0,
+      "pass": 0,
+      "skip": 0,
+      "unknown": 0
+     },
+     "distance": {},
+     "fingerprint": "ubci-40460771614-1-main-spl-qcs615-ride",
+     "fragments_missing": [],
+     "gate": "not-run",
+     "job_url": "",
+     "new_fail": 0,
+     "no_spl": null,
+     "queue_position": null,
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
+     "stack": "spl",
+     "state": "queued",
+     "state_detail": "",
      "versus": "unknown"
     },
     {
      "board": "lemans-evk",
-     "boot": "pass",
+     "boot": "not-run",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -2584,27 +3786,29 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "login",
-     "boot_url": "https://lava.infra.foundries.io/scheduler/job/514062#L2776",
+     "boot_stage": "not-reached",
+     "boot_url": "",
      "counts": {
-      "fail": 2,
+      "fail": 0,
       "flaky": 0,
-      "pass": 21,
-      "skip": 1,
+      "pass": 0,
+      "skip": 0,
       "unknown": 0
      },
      "distance": {},
-     "fingerprint": "ubci-40279426778-1-main-stock-lemans-evk",
+     "fingerprint": "ubci-40460771614-1-main-stock-lemans-evk",
      "fragments_missing": [],
-     "gate": "pass",
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/514062",
+     "gate": "not-run",
+     "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
-     "run": "ubci-40279426778-1-main",
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
      "stack": "stock",
-     "state": "done",
-     "state_detail": "LAVA job incomplete",
-     "versus": "same"
+     "state": "queued",
+     "state_detail": "",
+     "versus": "unknown"
     },
     {
      "board": "lemans-evk",
@@ -2656,17 +3860,296 @@
       "skip": 0,
       "unknown": 0
      },
-     "distance": {},
-     "fingerprint": "ubci-40279426778-1-main-open-lemans-evk",
+     "distance": {
+      "optee": 76,
+      "tf-a": 81
+     },
+     "fingerprint": "ubci-40460771614-1-main-open-lemans-evk",
      "fragments_missing": [],
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
-     "run": "ubci-40279426778-1-main",
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
      "stack": "open",
-     "state": "skipped",
-     "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
+     "state": "queued",
+     "state_detail": "",
+     "versus": "unknown"
+    },
+    {
+     "board": "lemans-evk",
+     "boot": "not-run",
+     "boot_chain": [
+      {
+       "origin": "downstream",
+       "stage": "XBL"
+      },
+      {
+       "component": "u-boot spl",
+       "detail": "from the tree under test, in place of tz",
+       "origin": "upstream",
+       "stage": "U-Boot SPL"
+      },
+      {
+       "component": "tf-a",
+       "origin": "upstream",
+       "stage": "TF-A BL31"
+      },
+      {
+       "component": "optee",
+       "origin": "upstream",
+       "stage": "OP-TEE"
+      },
+      {
+       "origin": "none",
+       "stage": "hypervisor"
+      },
+      {
+       "component": "u-boot",
+       "detail": "in the SPL FIT",
+       "origin": "upstream",
+       "stage": "U-Boot"
+      },
+      {
+       "component": "linux",
+       "detail": "EL2",
+       "origin": "upstream",
+       "stage": "Linux"
+      }
+     ],
+     "boot_stage": "not-reached",
+     "boot_url": "",
+     "counts": {
+      "fail": 0,
+      "flaky": 0,
+      "pass": 0,
+      "skip": 0,
+      "unknown": 0
+     },
+     "distance": {
+      "optee": 76,
+      "tf-a": 81
+     },
+     "fingerprint": "ubci-40460771614-1-main-spl-lemans-evk",
+     "fragments_missing": [],
+     "gate": "not-run",
+     "job_url": "",
+     "new_fail": 0,
+     "no_spl": null,
+     "queue_position": null,
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [
+      {
+       "link": "https://lore.kernel.org/r/20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com",
+       "message_id": "20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com",
+       "title": "Enable U-Boot SPL support for Lemans EVK",
+       "version": 4
+      },
+      {
+       "link": "https://lore.kernel.org/r/20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+       "message_id": "20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+       "title": "Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL)",
+       "version": 10
+      },
+      {
+       "link": "https://lore.kernel.org/r/20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com",
+       "message_id": "20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com",
+       "title": "spl: ufs: add UFS boot support for Qualcomm Snapdragon in SPL",
+       "version": 4
+      },
+      {
+       "link": "https://lore.kernel.org/r/20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+       "message_id": "20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+       "title": "spl: qcom: make Qualcomm drivers buildable in SPL",
+       "version": 1
+      },
+      {
+       "link": "https://lore.kernel.org/r/20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com",
+       "message_id": "20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com",
+       "title": "qcom: Add NVMEM bitfield support and reboot-mode",
+       "version": 5
+      },
+      {
+       "link": "https://lore.kernel.org/r/20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+       "message_id": "20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+       "title": "mach-snapdragon: fix OP-TEE SPL link failure",
+       "version": 1
+      }
+     ],
+     "stack": "spl",
+     "state": "queued",
+     "state_detail": "",
+     "versus": "unknown"
+    },
+    {
+     "board": "shikra-iqs-evk",
+     "boot": "not-run",
+     "boot_chain": [
+      {
+       "origin": "downstream",
+       "stage": "XBL"
+      },
+      {
+       "origin": "downstream",
+       "stage": "TZ (QTEE)"
+      },
+      {
+       "origin": "downstream",
+       "stage": "hypervisor (Gunyah)"
+      },
+      {
+       "component": "u-boot",
+       "detail": "in place of UEFI",
+       "origin": "upstream",
+       "stage": "U-Boot"
+      },
+      {
+       "component": "linux",
+       "origin": "upstream",
+       "stage": "Linux"
+      }
+     ],
+     "boot_stage": "not-reached",
+     "boot_url": "",
+     "counts": {
+      "fail": 0,
+      "flaky": 0,
+      "pass": 0,
+      "skip": 0,
+      "unknown": 0
+     },
+     "distance": {},
+     "fingerprint": "ubci-40460771614-1-main-stock-shikra-iqs-evk",
+     "fragments_missing": [],
+     "gate": "not-run",
+     "job_url": "",
+     "new_fail": 0,
+     "no_spl": null,
+     "queue_position": null,
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
+     "stack": "stock",
+     "state": "queued",
+     "state_detail": "",
+     "versus": "unknown"
+    },
+    {
+     "board": "shikra-iqs-evk",
+     "boot": "not-run",
+     "boot_chain": [],
+     "boot_stage": "not-reached",
+     "boot_url": "",
+     "counts": {
+      "fail": 0,
+      "flaky": 0,
+      "pass": 0,
+      "skip": 0,
+      "unknown": 0
+     },
+     "distance": {},
+     "fingerprint": "ubci-40460771614-1-main-open-shikra-iqs-evk",
+     "fragments_missing": [],
+     "gate": "not-run",
+     "job_url": "",
+     "new_fail": 0,
+     "no_spl": null,
+     "queue_position": null,
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [],
+     "stack": "open",
+     "state": "queued",
+     "state_detail": "",
+     "versus": "unknown"
+    },
+    {
+     "board": "shikra-iqs-evk",
+     "boot": "not-run",
+     "boot_chain": [],
+     "boot_stage": "not-reached",
+     "boot_url": "",
+     "counts": {
+      "fail": 0,
+      "flaky": 0,
+      "pass": 0,
+      "skip": 0,
+      "unknown": 0
+     },
+     "distance": {},
+     "fingerprint": "ubci-40460771614-1-main-spl-shikra-iqs-evk",
+     "fragments_missing": [],
+     "gate": "not-run",
+     "job_url": "",
+     "new_fail": 0,
+     "no_spl": null,
+     "queue_position": null,
+     "run": "ubci-40460771614-1-main",
+     "spl_in_flight": [
+      {
+       "link": "https://lore.kernel.org/r/20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com",
+       "message_id": "20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com",
+       "title": "Initial Shikra SoC support",
+       "version": 4
+      },
+      {
+       "link": "https://lore.kernel.org/r/20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com",
+       "message_id": "20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com",
+       "title": "Enable HS200/HS400 eMMC modes on Qualcomm",
+       "version": 2
+      },
+      {
+       "link": "https://lore.kernel.org/r/20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com",
+       "message_id": "20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com",
+       "title": "tools: qcom: mkmbn: ipq5210 and multi-elf",
+       "version": 3
+      },
+      {
+       "link": "https://lore.kernel.org/r/20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+       "message_id": "20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+       "title": "Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL)",
+       "version": 10
+      },
+      {
+       "link": "https://lore.kernel.org/r/20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+       "message_id": "20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+       "title": "spl: qcom: make Qualcomm drivers buildable in SPL",
+       "version": 1
+      },
+      {
+       "link": "https://lore.kernel.org/r/20261013053244.2954876-1-abhilash.v@oss.qualcomm.com",
+       "message_id": "20261013053244.2954876-1-abhilash.v@oss.qualcomm.com",
+       "title": "qcom: shikra: add eMMC SPL boot support",
+       "version": 2
+      },
+      {
+       "link": "https://lore.kernel.org/r/20261013053517.2955571-1-abhilash.v@oss.qualcomm.com",
+       "message_id": "20261013053517.2955571-1-abhilash.v@oss.qualcomm.com",
+       "title": "qcom: shikra: SPL SD card boot",
+       "version": 2
+      },
+      {
+       "link": "https://lore.kernel.org/r/20261023084019.3722376-1-abhilash.v@oss.qualcomm.com",
+       "message_id": "20261023084019.3722376-1-abhilash.v@oss.qualcomm.com",
+       "title": "qcom: spl: enable CDT for shikra",
+       "version": 2
+      },
+      {
+       "link": "https://lore.kernel.org/r/20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com",
+       "message_id": "20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com",
+       "title": "DDR training for Shikra SPL",
+       "version": 1
+      },
+      {
+       "link": "https://lore.kernel.org/r/20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+       "message_id": "20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+       "title": "mach-snapdragon: fix OP-TEE SPL link failure",
+       "version": 1
+      }
+     ],
+     "stack": "spl",
+     "state": "queued",
+     "state_detail": "",
      "versus": "unknown"
     }
    ]
@@ -2936,8 +4419,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-master",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
@@ -2999,8 +4484,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-master",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
@@ -3051,8 +4538,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/513148",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-master",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -3101,8 +4590,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/514056",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-master",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -3165,8 +4656,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-master",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
@@ -3227,8 +4720,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-master",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
@@ -3279,8 +4774,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/513147",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-master",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -3329,8 +4826,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/514055",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-master",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -3360,8 +4859,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40152748187-1-master",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "error",
       "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to ",
@@ -3389,8 +4890,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/512850",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40168371981-1-master",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -3454,8 +4957,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/513151",
       "new_fail": 1,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-master",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "done",
       "state_detail": "",
@@ -3519,8 +5024,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/514063",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-master",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "done",
       "state_detail": "",
@@ -3547,8 +5054,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40152748187-1-master",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "skipped",
       "state_detail": "no package (build failed)",
@@ -3573,8 +5082,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/512813",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40168371981-1-master",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "LAVA job incomplete",
@@ -3623,8 +5134,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/513145",
       "new_fail": 1,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-master",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "",
@@ -3673,8 +5186,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/514053",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-master",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "",
@@ -3737,8 +5252,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-master",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
@@ -3799,8 +5316,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-master",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
@@ -3855,8 +5374,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/513146",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-master",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "",
@@ -3909,8 +5430,10 @@
       "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/514054",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-master",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "done",
       "state_detail": "",
@@ -3940,8 +5463,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40152748187-1-master",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "no package (build failed)",
@@ -3969,8 +5494,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40168371981-1-master",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree",
@@ -4034,8 +5561,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-master",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree",
@@ -4099,8 +5628,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-master",
+      "spl_in_flight": [],
       "stack": "open",
       "state": "skipped",
       "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree",
@@ -4127,8 +5658,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40152748187-1-master",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "skipped",
       "state_detail": "no package (build failed)",
@@ -4153,8 +5686,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40168371981-1-master",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "skipped",
       "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree",
@@ -4203,8 +5738,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40199892508-1-master",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "skipped",
       "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree",
@@ -4253,8 +5790,10 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
+      "no_spl": null,
       "queue_position": null,
       "run": "ubci-40279426778-1-master",
+      "spl_in_flight": [],
       "stack": "stock",
       "state": "skipped",
       "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree",
@@ -4359,8 +5898,10 @@
      "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/514053",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40279426778-1-master",
+     "spl_in_flight": [],
      "stack": "stock",
      "state": "done",
      "state_detail": "",
@@ -4424,8 +5965,10 @@
      "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/514063",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40279426778-1-master",
+     "spl_in_flight": [],
      "stack": "open",
      "state": "done",
      "state_detail": "",
@@ -4474,8 +6017,10 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40279426778-1-master",
+     "spl_in_flight": [],
      "stack": "stock",
      "state": "skipped",
      "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree",
@@ -4539,8 +6084,10 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40279426778-1-master",
+     "spl_in_flight": [],
      "stack": "open",
      "state": "skipped",
      "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree",
@@ -4593,8 +6140,10 @@
      "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/514054",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40279426778-1-master",
+     "spl_in_flight": [],
      "stack": "stock",
      "state": "done",
      "state_detail": "",
@@ -4655,8 +6204,10 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40279426778-1-master",
+     "spl_in_flight": [],
      "stack": "open",
      "state": "skipped",
      "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
@@ -4705,8 +6256,10 @@
      "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/514055",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40279426778-1-master",
+     "spl_in_flight": [],
      "stack": "stock",
      "state": "done",
      "state_detail": "LAVA job incomplete",
@@ -4767,8 +6320,10 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40279426778-1-master",
+     "spl_in_flight": [],
      "stack": "open",
      "state": "skipped",
      "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
@@ -4817,8 +6372,10 @@
      "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/514056",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40279426778-1-master",
+     "spl_in_flight": [],
      "stack": "stock",
      "state": "done",
      "state_detail": "LAVA job incomplete",
@@ -4880,8 +6437,10 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
+     "no_spl": null,
      "queue_position": null,
      "run": "ubci-40279426778-1-master",
+     "spl_in_flight": [],
      "stack": "open",
      "state": "skipped",
      "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
@@ -4895,257 +6454,315 @@
    "cases": {},
    "runs": [
     "ubci-40199892508-1-main",
-    "ubci-40279426778-1-main"
+    "ubci-40279426778-1-main",
+    "ubci-40460771614-1-main"
+   ]
+  },
+  "lemans-evk/spl": {
+   "cases": {},
+   "runs": [
+    "ubci-40460771614-1-main"
    ]
   },
   "lemans-evk/stock": {
    "cases": {
-    "firmware-fingerprint-reboot/u_boot_20": "ss",
-    "firmware-fingerprint-reset/u_boot_20": "pp",
-    "firmware-fingerprint/u_boot_20": "pp",
-    "linux-version/linux_version": "pp",
-    "reboot/reboot": "ff",
-    "smoke/cpus-online": "pp",
-    "smoke/dmesg-errors": "ff",
-    "smoke/linux-next-tag": "pp",
-    "smoke/modules-loaded": "pp",
-    "smoke/network": "pp",
-    "smoke/storage": "pp",
-    "smoke/usb": "pp",
-    "u-boot/autoboot": "pp",
-    "u-boot/u-boot-prompt": "pp",
-    "u-boot/u-boot-sync": "pp",
-    "u-boot/uboot-bdinfo": "pp",
-    "u-boot/uboot-bootflow": "pp",
-    "u-boot/uboot-clocks": "pp",
-    "u-boot/uboot-dm-tree": "pp",
-    "u-boot/uboot-efi-media": "pp",
-    "u-boot/uboot-reset": "pp",
-    "u-boot/uboot-storage": "pp",
-    "u-boot/uboot-usb": "pp",
-    "u-boot/uboot-version": "pp"
+    "firmware-fingerprint-reboot/u_boot_20": "ss-",
+    "firmware-fingerprint-reset/u_boot_20": "pp-",
+    "firmware-fingerprint/u_boot_20": "pp-",
+    "linux-version/linux_version": "pp-",
+    "reboot/reboot": "ff-",
+    "smoke/cpus-online": "pp-",
+    "smoke/dmesg-errors": "ff-",
+    "smoke/linux-next-tag": "pp-",
+    "smoke/modules-loaded": "pp-",
+    "smoke/network": "pp-",
+    "smoke/storage": "pp-",
+    "smoke/usb": "pp-",
+    "u-boot/autoboot": "pp-",
+    "u-boot/u-boot-prompt": "pp-",
+    "u-boot/u-boot-sync": "pp-",
+    "u-boot/uboot-bdinfo": "pp-",
+    "u-boot/uboot-bootflow": "pp-",
+    "u-boot/uboot-clocks": "pp-",
+    "u-boot/uboot-dm-tree": "pp-",
+    "u-boot/uboot-efi-media": "pp-",
+    "u-boot/uboot-reset": "pp-",
+    "u-boot/uboot-storage": "pp-",
+    "u-boot/uboot-usb": "pp-",
+    "u-boot/uboot-version": "pp-"
    },
    "runs": [
     "ubci-40199892508-1-main",
-    "ubci-40279426778-1-main"
+    "ubci-40279426778-1-main",
+    "ubci-40460771614-1-main"
    ]
   },
   "qcs615-ride/open": {
    "cases": {},
    "runs": [
     "ubci-40199892508-1-main",
-    "ubci-40279426778-1-main"
+    "ubci-40279426778-1-main",
+    "ubci-40460771614-1-main"
+   ]
+  },
+  "qcs615-ride/spl": {
+   "cases": {},
+   "runs": [
+    "ubci-40460771614-1-main"
    ]
   },
   "qcs615-ride/stock": {
    "cases": {
-    "firmware-fingerprint-reboot/u_boot_20": "ss",
-    "firmware-fingerprint-reset/u_boot_20": "pp",
-    "firmware-fingerprint/u_boot_20": "pp",
-    "linux-version/linux_version": "ff",
-    "u-boot/autoboot": "pp",
-    "u-boot/u-boot-prompt": "pp",
-    "u-boot/u-boot-sync": "pp",
-    "u-boot/uboot-bdinfo": "pp",
-    "u-boot/uboot-bootflow": "pp",
-    "u-boot/uboot-clocks": "pp",
-    "u-boot/uboot-dm-tree": "pp",
-    "u-boot/uboot-efi-media": "pp",
-    "u-boot/uboot-reset": "pp",
-    "u-boot/uboot-storage": "ff",
-    "u-boot/uboot-usb": "pp",
-    "u-boot/uboot-version": "pp"
+    "firmware-fingerprint-reboot/u_boot_20": "ss-",
+    "firmware-fingerprint-reset/u_boot_20": "pp-",
+    "firmware-fingerprint/u_boot_20": "pp-",
+    "linux-version/linux_version": "ff-",
+    "u-boot/autoboot": "pp-",
+    "u-boot/u-boot-prompt": "pp-",
+    "u-boot/u-boot-sync": "pp-",
+    "u-boot/uboot-bdinfo": "pp-",
+    "u-boot/uboot-bootflow": "pp-",
+    "u-boot/uboot-clocks": "pp-",
+    "u-boot/uboot-dm-tree": "pp-",
+    "u-boot/uboot-efi-media": "pp-",
+    "u-boot/uboot-reset": "pp-",
+    "u-boot/uboot-storage": "ff-",
+    "u-boot/uboot-usb": "pp-",
+    "u-boot/uboot-version": "pp-"
    },
    "runs": [
     "ubci-40199892508-1-main",
-    "ubci-40279426778-1-main"
+    "ubci-40279426778-1-main",
+    "ubci-40460771614-1-main"
    ]
   },
   "rb3gen2/open": {
    "cases": {
-    "firmware-fingerprint-reboot/bl2_v": "-fpp",
-    "firmware-fingerprint-reboot/bl31_v": "-fpp",
-    "firmware-fingerprint-reboot/op_tee_version": "-fpp",
-    "firmware-fingerprint-reboot/u_boot_20": "-fpp",
-    "firmware-fingerprint-reset/bl2_v": "-ppp",
-    "firmware-fingerprint-reset/bl31_v": "-ppp",
-    "firmware-fingerprint-reset/op_tee_version": "-ppp",
-    "firmware-fingerprint-reset/u_boot_20": "-ppp",
-    "firmware-fingerprint/bl2_v": "-ppp",
-    "firmware-fingerprint/bl31_v": "-ppp",
-    "firmware-fingerprint/op_tee_version": "-ppp",
-    "firmware-fingerprint/u_boot_20": "-ppp",
-    "linux-version/linux_version": "-ppp",
-    "poweroff/poweroff": "--pp",
-    "reboot/reboot": "--pp",
-    "smoke-after-reboot/linux-next-tag": "--pp",
-    "smoke/cpus-online": "-ppp",
-    "smoke/dmesg-errors": "-fff",
-    "smoke/linux-next-tag": "-ppp",
-    "smoke/modules-loaded": "-ppp",
-    "smoke/network": "--ff",
-    "smoke/storage": "--pp",
-    "smoke/usb": "--ss",
-    "stock-restore/uefi_ver": "-f--",
-    "u-boot/autoboot": "-ppp",
-    "u-boot/u-boot-prompt": "-ppp",
-    "u-boot/u-boot-sync": "-ppp",
-    "u-boot/uboot-bdinfo": "-ppp",
-    "u-boot/uboot-bootflow": "-ppp",
-    "u-boot/uboot-clocks": "-ppp",
-    "u-boot/uboot-dm-tree": "-ppp",
-    "u-boot/uboot-efi-media": "-ppp",
-    "u-boot/uboot-reset": "-ppp",
-    "u-boot/uboot-storage": "-ppp",
-    "u-boot/uboot-usb": "-ppp",
-    "u-boot/uboot-version": "-ppp"
+    "firmware-fingerprint-reboot/bl2_v": "-fpp-",
+    "firmware-fingerprint-reboot/bl31_v": "-fpp-",
+    "firmware-fingerprint-reboot/op_tee_version": "-fpp-",
+    "firmware-fingerprint-reboot/u_boot_20": "-fpp-",
+    "firmware-fingerprint-reset/bl2_v": "-ppp-",
+    "firmware-fingerprint-reset/bl31_v": "-ppp-",
+    "firmware-fingerprint-reset/op_tee_version": "-ppp-",
+    "firmware-fingerprint-reset/u_boot_20": "-ppp-",
+    "firmware-fingerprint/bl2_v": "-ppp-",
+    "firmware-fingerprint/bl31_v": "-ppp-",
+    "firmware-fingerprint/op_tee_version": "-ppp-",
+    "firmware-fingerprint/u_boot_20": "-ppp-",
+    "linux-version/linux_version": "-ppp-",
+    "poweroff/poweroff": "--pp-",
+    "reboot/reboot": "--pp-",
+    "smoke-after-reboot/linux-next-tag": "--pp-",
+    "smoke/cpus-online": "-ppp-",
+    "smoke/dmesg-errors": "-fff-",
+    "smoke/linux-next-tag": "-ppp-",
+    "smoke/modules-loaded": "-ppp-",
+    "smoke/network": "--ff-",
+    "smoke/storage": "--pp-",
+    "smoke/usb": "--ss-",
+    "stock-restore/uefi_ver": "-f---",
+    "u-boot/autoboot": "-ppp-",
+    "u-boot/u-boot-prompt": "-ppp-",
+    "u-boot/u-boot-sync": "-ppp-",
+    "u-boot/uboot-bdinfo": "-ppp-",
+    "u-boot/uboot-bootflow": "-ppp-",
+    "u-boot/uboot-clocks": "-ppp-",
+    "u-boot/uboot-dm-tree": "-ppp-",
+    "u-boot/uboot-efi-media": "-ppp-",
+    "u-boot/uboot-reset": "-ppp-",
+    "u-boot/uboot-storage": "-ppp-",
+    "u-boot/uboot-usb": "-ppp-",
+    "u-boot/uboot-version": "-ppp-"
    },
    "runs": [
     "ubci-40152748187-1-main",
     "ubci-40168371981-1-main",
     "ubci-40199892508-1-main",
-    "ubci-40279426778-1-main"
+    "ubci-40279426778-1-main",
+    "ubci-40460771614-1-main"
+   ]
+  },
+  "rb3gen2/spl": {
+   "cases": {},
+   "runs": [
+    "ubci-40460771614-1-main"
    ]
   },
   "rb3gen2/stock": {
    "cases": {
-    "firmware-fingerprint-reboot/u_boot_20": "-fpp",
-    "firmware-fingerprint-reset/u_boot_20": "-ppp",
-    "firmware-fingerprint/u_boot_20": "-ppp",
-    "linux-version/linux_version": "-ppp",
-    "poweroff/poweroff": "--pp",
-    "reboot/reboot": "--pp",
-    "smoke-after-reboot/linux-next-tag": "--pp",
-    "smoke/cpus-online": "-ppp",
-    "smoke/dmesg-errors": "-fff",
-    "smoke/linux-next-tag": "-ppp",
-    "smoke/modules-loaded": "-ppp",
-    "smoke/network": "--ff",
-    "smoke/storage": "--pp",
-    "smoke/usb": "--ss",
-    "stock-restore/uefi_ver": "-f--",
-    "u-boot/autoboot": "-ppp",
-    "u-boot/u-boot-prompt": "-ppp",
-    "u-boot/u-boot-sync": "-ppp",
-    "u-boot/uboot-bdinfo": "-ppp",
-    "u-boot/uboot-bootflow": "-ppp",
-    "u-boot/uboot-clocks": "-ppp",
-    "u-boot/uboot-dm-tree": "-ppp",
-    "u-boot/uboot-efi-media": "-ppp",
-    "u-boot/uboot-reset": "-ppp",
-    "u-boot/uboot-storage": "-ppp",
-    "u-boot/uboot-usb": "-ppp",
-    "u-boot/uboot-version": "-ppp"
+    "firmware-fingerprint-reboot/u_boot_20": "-fpp-",
+    "firmware-fingerprint-reset/u_boot_20": "-ppp-",
+    "firmware-fingerprint/u_boot_20": "-ppp-",
+    "linux-version/linux_version": "-ppp-",
+    "poweroff/poweroff": "--pp-",
+    "reboot/reboot": "--pp-",
+    "smoke-after-reboot/linux-next-tag": "--pp-",
+    "smoke/cpus-online": "-ppp-",
+    "smoke/dmesg-errors": "-fff-",
+    "smoke/linux-next-tag": "-ppp-",
+    "smoke/modules-loaded": "-ppp-",
+    "smoke/network": "--ff-",
+    "smoke/storage": "--pp-",
+    "smoke/usb": "--ss-",
+    "stock-restore/uefi_ver": "-f---",
+    "u-boot/autoboot": "-ppp-",
+    "u-boot/u-boot-prompt": "-ppp-",
+    "u-boot/u-boot-sync": "-ppp-",
+    "u-boot/uboot-bdinfo": "-ppp-",
+    "u-boot/uboot-bootflow": "-ppp-",
+    "u-boot/uboot-clocks": "-ppp-",
+    "u-boot/uboot-dm-tree": "-ppp-",
+    "u-boot/uboot-efi-media": "-ppp-",
+    "u-boot/uboot-reset": "-ppp-",
+    "u-boot/uboot-storage": "-ppp-",
+    "u-boot/uboot-usb": "-ppp-",
+    "u-boot/uboot-version": "-ppp-"
    },
    "runs": [
     "ubci-40152748187-1-main",
     "ubci-40168371981-1-main",
     "ubci-40199892508-1-main",
-    "ubci-40279426778-1-main"
+    "ubci-40279426778-1-main",
+    "ubci-40460771614-1-main"
+   ]
+  },
+  "shikra-iqs-evk/open": {
+   "cases": {},
+   "runs": [
+    "ubci-40460771614-1-main"
+   ]
+  },
+  "shikra-iqs-evk/spl": {
+   "cases": {},
+   "runs": [
+    "ubci-40460771614-1-main"
+   ]
+  },
+  "shikra-iqs-evk/stock": {
+   "cases": {},
+   "runs": [
+    "ubci-40460771614-1-main"
    ]
   },
   "uno-q/open": {
    "cases": {},
    "runs": [
     "ubci-40199892508-1-main",
-    "ubci-40279426778-1-main"
+    "ubci-40279426778-1-main",
+    "ubci-40460771614-1-main"
+   ]
+  },
+  "uno-q/spl": {
+   "cases": {},
+   "runs": [
+    "ubci-40460771614-1-main"
    ]
   },
   "uno-q/stock": {
    "cases": {
-    "firmware-fingerprint-reboot/u_boot_20": "pp",
-    "firmware-fingerprint-reset/u_boot_20": "pp",
-    "firmware-fingerprint/u_boot_20": "pp",
-    "linux-version/linux_version": "pp",
-    "poweroff/poweroff": "pp",
-    "reboot/reboot": "pp",
-    "smoke-after-reboot/linux-next-tag": "pp",
-    "smoke/cpus-online": "pp",
-    "smoke/dmesg-errors": "ff",
-    "smoke/linux-next-tag": "pp",
-    "smoke/modules-loaded": "pp",
-    "smoke/network": "ff",
-    "smoke/storage": "pp",
-    "smoke/usb": "ff",
-    "u-boot/autoboot": "pp",
-    "u-boot/u-boot-prompt": "pp",
-    "u-boot/u-boot-sync": "pp",
-    "u-boot/uboot-bdinfo": "pp",
-    "u-boot/uboot-bootflow": "pp",
-    "u-boot/uboot-clocks": "pp",
-    "u-boot/uboot-dm-tree": "pp",
-    "u-boot/uboot-efi-media": "pp",
-    "u-boot/uboot-reset": "pp",
-    "u-boot/uboot-storage": "pp",
-    "u-boot/uboot-usb": "pp",
-    "u-boot/uboot-version": "pp"
+    "firmware-fingerprint-reboot/u_boot_20": "pp-",
+    "firmware-fingerprint-reset/u_boot_20": "pp-",
+    "firmware-fingerprint/u_boot_20": "pp-",
+    "linux-version/linux_version": "pp-",
+    "poweroff/poweroff": "pp-",
+    "reboot/reboot": "pp-",
+    "smoke-after-reboot/linux-next-tag": "pp-",
+    "smoke/cpus-online": "pp-",
+    "smoke/dmesg-errors": "ff-",
+    "smoke/linux-next-tag": "pp-",
+    "smoke/modules-loaded": "pp-",
+    "smoke/network": "ff-",
+    "smoke/storage": "pp-",
+    "smoke/usb": "ff-",
+    "u-boot/autoboot": "pp-",
+    "u-boot/u-boot-prompt": "pp-",
+    "u-boot/u-boot-sync": "pp-",
+    "u-boot/uboot-bdinfo": "pp-",
+    "u-boot/uboot-bootflow": "pp-",
+    "u-boot/uboot-clocks": "pp-",
+    "u-boot/uboot-dm-tree": "pp-",
+    "u-boot/uboot-efi-media": "pp-",
+    "u-boot/uboot-reset": "pp-",
+    "u-boot/uboot-storage": "pp-",
+    "u-boot/uboot-usb": "pp-",
+    "u-boot/uboot-version": "pp-"
    },
    "runs": [
     "ubci-40199892508-1-main",
-    "ubci-40279426778-1-main"
+    "ubci-40279426778-1-main",
+    "ubci-40460771614-1-main"
    ]
   },
   "ventuno-q/open": {
    "cases": {
-    "firmware-fingerprint-reboot/bl2_v": "ffss",
-    "firmware-fingerprint-reboot/bl31_v": "ffss",
-    "firmware-fingerprint-reboot/op_tee_version": "ffss",
-    "firmware-fingerprint-reboot/u_boot_20": "ffss",
-    "firmware-fingerprint-reset/bl2_v": "pppp",
-    "firmware-fingerprint-reset/bl31_v": "pppp",
-    "firmware-fingerprint-reset/op_tee_version": "pppp",
-    "firmware-fingerprint-reset/u_boot_20": "pppp",
-    "firmware-fingerprint/bl2_v": "pppp",
-    "firmware-fingerprint/bl31_v": "pppp",
-    "firmware-fingerprint/op_tee_version": "pppp",
-    "firmware-fingerprint/u_boot_20": "pppp",
-    "linux-version/linux_version": "ffff",
-    "stock-restore/uefi_ver": "ff--",
-    "u-boot/autoboot": "pppp",
-    "u-boot/u-boot-prompt": "pppp",
-    "u-boot/u-boot-sync": "pppp",
-    "u-boot/uboot-bdinfo": "pppp",
-    "u-boot/uboot-bootflow": "pppp",
-    "u-boot/uboot-clocks": "pppp",
-    "u-boot/uboot-dm-tree": "pppp",
-    "u-boot/uboot-efi-media": "ffff",
-    "u-boot/uboot-reset": "pppp",
-    "u-boot/uboot-storage": "ffff",
-    "u-boot/uboot-usb": "pppp",
-    "u-boot/uboot-version": "pppp"
+    "firmware-fingerprint-reboot/bl2_v": "ffss-",
+    "firmware-fingerprint-reboot/bl31_v": "ffss-",
+    "firmware-fingerprint-reboot/op_tee_version": "ffss-",
+    "firmware-fingerprint-reboot/u_boot_20": "ffss-",
+    "firmware-fingerprint-reset/bl2_v": "pppp-",
+    "firmware-fingerprint-reset/bl31_v": "pppp-",
+    "firmware-fingerprint-reset/op_tee_version": "pppp-",
+    "firmware-fingerprint-reset/u_boot_20": "pppp-",
+    "firmware-fingerprint/bl2_v": "pppp-",
+    "firmware-fingerprint/bl31_v": "pppp-",
+    "firmware-fingerprint/op_tee_version": "pppp-",
+    "firmware-fingerprint/u_boot_20": "pppp-",
+    "linux-version/linux_version": "ffff-",
+    "stock-restore/uefi_ver": "ff---",
+    "u-boot/autoboot": "pppp-",
+    "u-boot/u-boot-prompt": "pppp-",
+    "u-boot/u-boot-sync": "pppp-",
+    "u-boot/uboot-bdinfo": "pppp-",
+    "u-boot/uboot-bootflow": "pppp-",
+    "u-boot/uboot-clocks": "pppp-",
+    "u-boot/uboot-dm-tree": "pppp-",
+    "u-boot/uboot-efi-media": "ffff-",
+    "u-boot/uboot-reset": "pppp-",
+    "u-boot/uboot-storage": "ffff-",
+    "u-boot/uboot-usb": "pppp-",
+    "u-boot/uboot-version": "pppp-"
    },
    "runs": [
     "ubci-40152748187-1-main",
     "ubci-40168371981-1-main",
     "ubci-40199892508-1-main",
-    "ubci-40279426778-1-main"
+    "ubci-40279426778-1-main",
+    "ubci-40460771614-1-main"
+   ]
+  },
+  "ventuno-q/spl": {
+   "cases": {},
+   "runs": [
+    "ubci-40460771614-1-main"
    ]
   },
   "ventuno-q/stock": {
    "cases": {
-    "firmware-fingerprint-reboot/u_boot_20": "ffss",
-    "firmware-fingerprint-reset/u_boot_20": "pppp",
-    "firmware-fingerprint/u_boot_20": "pppp",
-    "linux-version/linux_version": "ffff",
-    "stock-restore/uefi_ver": "ff--",
-    "u-boot/autoboot": "pppp",
-    "u-boot/u-boot-prompt": "pppp",
-    "u-boot/u-boot-sync": "pppp",
-    "u-boot/uboot-bdinfo": "pppp",
-    "u-boot/uboot-bootflow": "pppp",
-    "u-boot/uboot-clocks": "pppp",
-    "u-boot/uboot-dm-tree": "pppp",
-    "u-boot/uboot-efi-media": "ffff",
-    "u-boot/uboot-reset": "pppp",
-    "u-boot/uboot-storage": "ffff",
-    "u-boot/uboot-usb": "pppp",
-    "u-boot/uboot-version": "pppp"
+    "firmware-fingerprint-reboot/u_boot_20": "ffss-",
+    "firmware-fingerprint-reset/u_boot_20": "pppp-",
+    "firmware-fingerprint/u_boot_20": "pppp-",
+    "linux-version/linux_version": "ffff-",
+    "stock-restore/uefi_ver": "ff---",
+    "u-boot/autoboot": "pppp-",
+    "u-boot/u-boot-prompt": "pppp-",
+    "u-boot/u-boot-sync": "pppp-",
+    "u-boot/uboot-bdinfo": "pppp-",
+    "u-boot/uboot-bootflow": "pppp-",
+    "u-boot/uboot-clocks": "pppp-",
+    "u-boot/uboot-dm-tree": "pppp-",
+    "u-boot/uboot-efi-media": "ffff-",
+    "u-boot/uboot-reset": "pppp-",
+    "u-boot/uboot-storage": "ffff-",
+    "u-boot/uboot-usb": "pppp-",
+    "u-boot/uboot-version": "pppp-"
    },
    "runs": [
     "ubci-40152748187-1-main",
     "ubci-40168371981-1-main",
     "ubci-40199892508-1-main",
-    "ubci-40279426778-1-main"
+    "ubci-40279426778-1-main",
+    "ubci-40460771614-1-main"
    ]
   }
  },
@@ -5208,8 +6825,10 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
+    "spl_in_flight": [],
     "stack": "open",
     "state": "skipped",
     "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
@@ -5271,11 +6890,188 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40279426778-1-main",
+    "spl_in_flight": [],
     "stack": "open",
     "state": "skipped",
     "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
+    "versus": "unknown"
+   },
+   {
+    "board": "lemans-evk",
+    "boot": "not-run",
+    "boot_chain": [
+     {
+      "origin": "downstream",
+      "stage": "XBL"
+     },
+     {
+      "component": "u-boot spl",
+      "detail": "pre-built, not from a public commit",
+      "origin": "downstream",
+      "stage": "U-Boot SPL"
+     },
+     {
+      "component": "tf-a",
+      "origin": "upstream",
+      "stage": "TF-A BL31"
+     },
+     {
+      "component": "optee",
+      "origin": "upstream",
+      "stage": "OP-TEE"
+     },
+     {
+      "origin": "none",
+      "stage": "hypervisor"
+     },
+     {
+      "component": "u-boot",
+      "detail": "in the SPL FIT",
+      "origin": "upstream",
+      "stage": "U-Boot"
+     },
+     {
+      "component": "linux",
+      "detail": "EL2",
+      "origin": "upstream",
+      "stage": "Linux"
+     }
+    ],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {
+     "optee": 76,
+     "tf-a": 81
+    },
+    "fingerprint": "ubci-40460771614-1-main-open-lemans-evk",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "open",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
+   }
+  ],
+  "lemans-evk/spl": [
+   {
+    "board": "lemans-evk",
+    "boot": "not-run",
+    "boot_chain": [
+     {
+      "origin": "downstream",
+      "stage": "XBL"
+     },
+     {
+      "component": "u-boot spl",
+      "detail": "from the tree under test, in place of tz",
+      "origin": "upstream",
+      "stage": "U-Boot SPL"
+     },
+     {
+      "component": "tf-a",
+      "origin": "upstream",
+      "stage": "TF-A BL31"
+     },
+     {
+      "component": "optee",
+      "origin": "upstream",
+      "stage": "OP-TEE"
+     },
+     {
+      "origin": "none",
+      "stage": "hypervisor"
+     },
+     {
+      "component": "u-boot",
+      "detail": "in the SPL FIT",
+      "origin": "upstream",
+      "stage": "U-Boot"
+     },
+     {
+      "component": "linux",
+      "detail": "EL2",
+      "origin": "upstream",
+      "stage": "Linux"
+     }
+    ],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {
+     "optee": 76,
+     "tf-a": 81
+    },
+    "fingerprint": "ubci-40460771614-1-main-spl-lemans-evk",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [
+     {
+      "link": "https://lore.kernel.org/r/20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com",
+      "message_id": "20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com",
+      "title": "Enable U-Boot SPL support for Lemans EVK",
+      "version": 4
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+      "message_id": "20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+      "title": "Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL)",
+      "version": 10
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com",
+      "message_id": "20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com",
+      "title": "spl: ufs: add UFS boot support for Qualcomm Snapdragon in SPL",
+      "version": 4
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+      "message_id": "20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+      "title": "spl: qcom: make Qualcomm drivers buildable in SPL",
+      "version": 1
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com",
+      "message_id": "20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com",
+      "title": "qcom: Add NVMEM bitfield support and reboot-mode",
+      "version": 5
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+      "message_id": "20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+      "title": "mach-snapdragon: fix OP-TEE SPL link failure",
+      "version": 1
+     }
+    ],
+    "stack": "spl",
+    "state": "queued",
+    "state_detail": "",
     "versus": "unknown"
    }
   ],
@@ -5323,8 +7119,10 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/513221",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
+    "spl_in_flight": [],
     "stack": "stock",
     "state": "done",
     "state_detail": "LAVA job incomplete",
@@ -5373,12 +7171,66 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/514062",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40279426778-1-main",
+    "spl_in_flight": [],
     "stack": "stock",
     "state": "done",
     "state_detail": "LAVA job incomplete",
     "versus": "same"
+   },
+   {
+    "board": "lemans-evk",
+    "boot": "not-run",
+    "boot_chain": [
+     {
+      "origin": "downstream",
+      "stage": "XBL"
+     },
+     {
+      "origin": "downstream",
+      "stage": "TZ (QTEE)"
+     },
+     {
+      "origin": "downstream",
+      "stage": "hypervisor (Gunyah)"
+     },
+     {
+      "component": "u-boot",
+      "detail": "in place of UEFI",
+      "origin": "upstream",
+      "stage": "U-Boot"
+     },
+     {
+      "component": "linux",
+      "origin": "upstream",
+      "stage": "Linux"
+     }
+    ],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40460771614-1-main-stock-lemans-evk",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "stock",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
    }
   ],
   "qcs615-ride/open": [
@@ -5437,8 +7289,10 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
+    "spl_in_flight": [],
     "stack": "open",
     "state": "skipped",
     "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
@@ -5499,11 +7353,107 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40279426778-1-main",
+    "spl_in_flight": [],
     "stack": "open",
     "state": "skipped",
     "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
+    "versus": "unknown"
+   },
+   {
+    "board": "qcs615-ride",
+    "boot": "not-run",
+    "boot_chain": [
+     {
+      "origin": "downstream",
+      "stage": "XBL"
+     },
+     {
+      "component": "tf-a bl2",
+      "origin": "upstream",
+      "stage": "TF-A BL2"
+     },
+     {
+      "component": "tf-a",
+      "origin": "upstream",
+      "stage": "TF-A BL31"
+     },
+     {
+      "component": "optee",
+      "origin": "upstream",
+      "stage": "OP-TEE"
+     },
+     {
+      "origin": "none",
+      "stage": "hypervisor"
+     },
+     {
+      "component": "u-boot",
+      "detail": "BL33 in the FIP",
+      "origin": "upstream",
+      "stage": "U-Boot"
+     },
+     {
+      "component": "linux",
+      "detail": "EL2",
+      "origin": "upstream",
+      "stage": "Linux"
+     }
+    ],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40460771614-1-main-open-qcs615-ride",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "open",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
+   }
+  ],
+  "qcs615-ride/spl": [
+   {
+    "board": "qcs615-ride",
+    "boot": "not-run",
+    "boot_chain": [],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40460771614-1-main-spl-qcs615-ride",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "spl",
+    "state": "queued",
+    "state_detail": "",
     "versus": "unknown"
    }
   ],
@@ -5551,8 +7501,10 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/513220",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
+    "spl_in_flight": [],
     "stack": "stock",
     "state": "done",
     "state_detail": "LAVA job incomplete",
@@ -5601,12 +7553,66 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/514061",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40279426778-1-main",
+    "spl_in_flight": [],
     "stack": "stock",
     "state": "done",
     "state_detail": "LAVA job incomplete",
     "versus": "upstream-gap"
+   },
+   {
+    "board": "qcs615-ride",
+    "boot": "not-run",
+    "boot_chain": [
+     {
+      "origin": "downstream",
+      "stage": "XBL"
+     },
+     {
+      "origin": "downstream",
+      "stage": "TZ (QTEE)"
+     },
+     {
+      "origin": "downstream",
+      "stage": "hypervisor (Gunyah)"
+     },
+     {
+      "component": "u-boot",
+      "detail": "in place of UEFI",
+      "origin": "upstream",
+      "stage": "U-Boot"
+     },
+     {
+      "component": "linux",
+      "origin": "upstream",
+      "stage": "Linux"
+     }
+    ],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40460771614-1-main-stock-qcs615-ride",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "stock",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
    }
   ],
   "rb3gen2/open": [
@@ -5632,8 +7638,10 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40152748187-1-main",
+    "spl_in_flight": [],
     "stack": "open",
     "state": "error",
     "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to ",
@@ -5661,8 +7669,10 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/512827",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40168371981-1-main",
+    "spl_in_flight": [],
     "stack": "open",
     "state": "done",
     "state_detail": "LAVA job incomplete",
@@ -5726,8 +7736,10 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/513364",
     "new_fail": 1,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
+    "spl_in_flight": [],
     "stack": "open",
     "state": "done",
     "state_detail": "",
@@ -5791,12 +7803,111 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/514065",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40279426778-1-main",
+    "spl_in_flight": [],
     "stack": "open",
     "state": "done",
     "state_detail": "",
     "versus": "same"
+   },
+   {
+    "board": "rb3gen2",
+    "boot": "not-run",
+    "boot_chain": [
+     {
+      "origin": "downstream",
+      "stage": "XBL"
+     },
+     {
+      "component": "tf-a bl2",
+      "origin": "upstream",
+      "stage": "TF-A BL2"
+     },
+     {
+      "component": "tf-a",
+      "origin": "upstream",
+      "stage": "TF-A BL31"
+     },
+     {
+      "component": "optee",
+      "origin": "upstream",
+      "stage": "OP-TEE"
+     },
+     {
+      "origin": "none",
+      "stage": "hypervisor"
+     },
+     {
+      "component": "u-boot",
+      "detail": "BL33 in the FIP",
+      "origin": "upstream",
+      "stage": "U-Boot"
+     },
+     {
+      "component": "linux",
+      "detail": "EL2",
+      "origin": "upstream",
+      "stage": "Linux"
+     }
+    ],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {
+     "optee": 0,
+     "tf-a": 10
+    },
+    "fingerprint": "ubci-40460771614-1-main-open-rb3gen2",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "open",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
+   }
+  ],
+  "rb3gen2/spl": [
+   {
+    "board": "rb3gen2",
+    "boot": "not-run",
+    "boot_chain": [],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40460771614-1-main-spl-rb3gen2",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "spl",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
    }
   ],
   "rb3gen2/stock": [
@@ -5819,8 +7930,10 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40152748187-1-main",
+    "spl_in_flight": [],
     "stack": "stock",
     "state": "error",
     "state_detail": "submit outcome unknown: submit_job: Error executing tool submit_job: POST https://lava.infra.foundries.io/api/v0.3/jobs/ -> HTTP 400: {\"message\":\"Problem with submitted job data: You do not have permission to submit jobs to ",
@@ -5845,8 +7958,10 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/512816",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40168371981-1-main",
+    "spl_in_flight": [],
     "stack": "stock",
     "state": "done",
     "state_detail": "LAVA job incomplete",
@@ -5895,8 +8010,10 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/513217",
     "new_fail": 1,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
+    "spl_in_flight": [],
     "stack": "stock",
     "state": "done",
     "state_detail": "",
@@ -5945,12 +8062,241 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/514059",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40279426778-1-main",
+    "spl_in_flight": [],
     "stack": "stock",
     "state": "done",
     "state_detail": "",
     "versus": "same"
+   },
+   {
+    "board": "rb3gen2",
+    "boot": "not-run",
+    "boot_chain": [
+     {
+      "origin": "downstream",
+      "stage": "XBL"
+     },
+     {
+      "origin": "downstream",
+      "stage": "TZ (QTEE)"
+     },
+     {
+      "origin": "downstream",
+      "stage": "hypervisor (Gunyah)"
+     },
+     {
+      "component": "u-boot",
+      "detail": "in place of UEFI",
+      "origin": "upstream",
+      "stage": "U-Boot"
+     },
+     {
+      "component": "linux",
+      "origin": "upstream",
+      "stage": "Linux"
+     }
+    ],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40460771614-1-main-stock-rb3gen2",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "stock",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
+   }
+  ],
+  "shikra-iqs-evk/open": [
+   {
+    "board": "shikra-iqs-evk",
+    "boot": "not-run",
+    "boot_chain": [],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40460771614-1-main-open-shikra-iqs-evk",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "open",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
+   }
+  ],
+  "shikra-iqs-evk/spl": [
+   {
+    "board": "shikra-iqs-evk",
+    "boot": "not-run",
+    "boot_chain": [],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40460771614-1-main-spl-shikra-iqs-evk",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [
+     {
+      "link": "https://lore.kernel.org/r/20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com",
+      "message_id": "20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com",
+      "title": "Initial Shikra SoC support",
+      "version": 4
+     },
+     {
+      "link": "https://lore.kernel.org/r/20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com",
+      "message_id": "20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com",
+      "title": "Enable HS200/HS400 eMMC modes on Qualcomm",
+      "version": 2
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com",
+      "message_id": "20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com",
+      "title": "tools: qcom: mkmbn: ipq5210 and multi-elf",
+      "version": 3
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+      "message_id": "20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+      "title": "Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL)",
+      "version": 10
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+      "message_id": "20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+      "title": "spl: qcom: make Qualcomm drivers buildable in SPL",
+      "version": 1
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261013053244.2954876-1-abhilash.v@oss.qualcomm.com",
+      "message_id": "20261013053244.2954876-1-abhilash.v@oss.qualcomm.com",
+      "title": "qcom: shikra: add eMMC SPL boot support",
+      "version": 2
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261013053517.2955571-1-abhilash.v@oss.qualcomm.com",
+      "message_id": "20261013053517.2955571-1-abhilash.v@oss.qualcomm.com",
+      "title": "qcom: shikra: SPL SD card boot",
+      "version": 2
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261023084019.3722376-1-abhilash.v@oss.qualcomm.com",
+      "message_id": "20261023084019.3722376-1-abhilash.v@oss.qualcomm.com",
+      "title": "qcom: spl: enable CDT for shikra",
+      "version": 2
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com",
+      "message_id": "20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com",
+      "title": "DDR training for Shikra SPL",
+      "version": 1
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+      "message_id": "20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+      "title": "mach-snapdragon: fix OP-TEE SPL link failure",
+      "version": 1
+     }
+    ],
+    "stack": "spl",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
+   }
+  ],
+  "shikra-iqs-evk/stock": [
+   {
+    "board": "shikra-iqs-evk",
+    "boot": "not-run",
+    "boot_chain": [
+     {
+      "origin": "downstream",
+      "stage": "XBL"
+     },
+     {
+      "origin": "downstream",
+      "stage": "TZ (QTEE)"
+     },
+     {
+      "origin": "downstream",
+      "stage": "hypervisor (Gunyah)"
+     },
+     {
+      "component": "u-boot",
+      "detail": "in place of UEFI",
+      "origin": "upstream",
+      "stage": "U-Boot"
+     },
+     {
+      "component": "linux",
+      "origin": "upstream",
+      "stage": "Linux"
+     }
+    ],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40460771614-1-main-stock-shikra-iqs-evk",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "stock",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
    }
   ],
   "uno-q/open": [
@@ -6009,8 +8355,10 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
+    "spl_in_flight": [],
     "stack": "open",
     "state": "skipped",
     "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
@@ -6071,11 +8419,107 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40279426778-1-main",
+    "spl_in_flight": [],
     "stack": "open",
     "state": "skipped",
     "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
+    "versus": "unknown"
+   },
+   {
+    "board": "uno-q",
+    "boot": "not-run",
+    "boot_chain": [
+     {
+      "origin": "downstream",
+      "stage": "XBL"
+     },
+     {
+      "component": "tf-a bl2",
+      "origin": "upstream",
+      "stage": "TF-A BL2"
+     },
+     {
+      "component": "tf-a",
+      "origin": "upstream",
+      "stage": "TF-A BL31"
+     },
+     {
+      "component": "optee",
+      "origin": "upstream",
+      "stage": "OP-TEE"
+     },
+     {
+      "origin": "none",
+      "stage": "hypervisor"
+     },
+     {
+      "component": "u-boot",
+      "detail": "BL33 in the FIP",
+      "origin": "upstream",
+      "stage": "U-Boot"
+     },
+     {
+      "component": "linux",
+      "detail": "EL2",
+      "origin": "upstream",
+      "stage": "Linux"
+     }
+    ],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40460771614-1-main-open-uno-q",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "open",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
+   }
+  ],
+  "uno-q/spl": [
+   {
+    "board": "uno-q",
+    "boot": "not-run",
+    "boot_chain": [],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40460771614-1-main-spl-uno-q",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "spl",
+    "state": "queued",
+    "state_detail": "",
     "versus": "unknown"
    }
   ],
@@ -6127,8 +8571,10 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/513219",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
+    "spl_in_flight": [],
     "stack": "stock",
     "state": "done",
     "state_detail": "",
@@ -6181,12 +8627,70 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/514060",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40279426778-1-main",
+    "spl_in_flight": [],
     "stack": "stock",
     "state": "done",
     "state_detail": "",
     "versus": "same"
+   },
+   {
+    "board": "uno-q",
+    "boot": "not-run",
+    "boot_chain": [
+     {
+      "origin": "downstream",
+      "stage": "XBL"
+     },
+     {
+      "origin": "downstream",
+      "stage": "TZ (QTEE)"
+     },
+     {
+      "origin": "downstream",
+      "stage": "hypervisor (QTI hyp)"
+     },
+     {
+      "origin": "downstream",
+      "stage": "ABL"
+     },
+     {
+      "component": "u-boot",
+      "detail": "Android boot image chainloaded by ABL",
+      "origin": "upstream",
+      "stage": "U-Boot"
+     },
+     {
+      "component": "linux",
+      "origin": "upstream",
+      "stage": "Linux"
+     }
+    ],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40460771614-1-main-stock-uno-q",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "stock",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
    }
   ],
   "ventuno-q/open": [
@@ -6212,8 +8716,10 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/512231",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40152748187-1-main",
+    "spl_in_flight": [],
     "stack": "open",
     "state": "done",
     "state_detail": "LAVA job incomplete",
@@ -6241,8 +8747,10 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/512820",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40168371981-1-main",
+    "spl_in_flight": [],
     "stack": "open",
     "state": "done",
     "state_detail": "LAVA job incomplete",
@@ -6308,8 +8816,10 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/513311",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
+    "spl_in_flight": [],
     "stack": "open",
     "state": "done",
     "state_detail": "LAVA job incomplete",
@@ -6375,12 +8885,111 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/514064",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40279426778-1-main",
+    "spl_in_flight": [],
     "stack": "open",
     "state": "done",
     "state_detail": "LAVA job incomplete",
     "versus": "upstream-gap"
+   },
+   {
+    "board": "ventuno-q",
+    "boot": "not-run",
+    "boot_chain": [
+     {
+      "origin": "downstream",
+      "stage": "XBL"
+     },
+     {
+      "component": "tf-a bl2",
+      "origin": "upstream",
+      "stage": "TF-A BL2"
+     },
+     {
+      "component": "tf-a",
+      "origin": "upstream",
+      "stage": "TF-A BL31"
+     },
+     {
+      "component": "optee",
+      "origin": "upstream",
+      "stage": "OP-TEE"
+     },
+     {
+      "origin": "none",
+      "stage": "hypervisor"
+     },
+     {
+      "component": "u-boot",
+      "detail": "BL33 in the FIP",
+      "origin": "upstream",
+      "stage": "U-Boot"
+     },
+     {
+      "component": "linux",
+      "detail": "EL2",
+      "origin": "upstream",
+      "stage": "Linux"
+     }
+    ],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {
+     "optee": 0,
+     "tf-a": 12
+    },
+    "fingerprint": "ubci-40460771614-1-main-open-ventuno-q",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "open",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
+   }
+  ],
+  "ventuno-q/spl": [
+   {
+    "board": "ventuno-q",
+    "boot": "not-run",
+    "boot_chain": [],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40460771614-1-main-spl-ventuno-q",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "spl",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
    }
   ],
   "ventuno-q/stock": [
@@ -6403,8 +9012,10 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/512197",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40152748187-1-main",
+    "spl_in_flight": [],
     "stack": "stock",
     "state": "done",
     "state_detail": "LAVA job incomplete",
@@ -6429,8 +9040,10 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/512815",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40168371981-1-main",
+    "spl_in_flight": [],
     "stack": "stock",
     "state": "done",
     "state_detail": "LAVA job incomplete",
@@ -6479,8 +9092,10 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/513218",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40199892508-1-main",
+    "spl_in_flight": [],
     "stack": "stock",
     "state": "done",
     "state_detail": "LAVA job incomplete",
@@ -6529,72 +9144,76 @@
     "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/514057",
     "new_fail": 0,
+    "no_spl": null,
     "queue_position": null,
     "run": "ubci-40279426778-1-main",
+    "spl_in_flight": [],
     "stack": "stock",
     "state": "done",
     "state_detail": "LAVA job incomplete",
     "versus": "upstream-gap"
+   },
+   {
+    "board": "ventuno-q",
+    "boot": "not-run",
+    "boot_chain": [
+     {
+      "origin": "downstream",
+      "stage": "XBL"
+     },
+     {
+      "origin": "downstream",
+      "stage": "TZ (QTEE)"
+     },
+     {
+      "origin": "downstream",
+      "stage": "hypervisor (Gunyah)"
+     },
+     {
+      "component": "u-boot",
+      "detail": "in place of UEFI",
+      "origin": "upstream",
+      "stage": "U-Boot"
+     },
+     {
+      "component": "linux",
+      "origin": "upstream",
+      "stage": "Linux"
+     }
+    ],
+    "boot_stage": "not-reached",
+    "boot_url": "",
+    "counts": {
+     "fail": 0,
+     "flaky": 0,
+     "pass": 0,
+     "skip": 0,
+     "unknown": 0
+    },
+    "distance": {},
+    "fingerprint": "ubci-40460771614-1-main-stock-ventuno-q",
+    "fragments_missing": [],
+    "gate": "not-run",
+    "job_url": "",
+    "new_fail": 0,
+    "no_spl": null,
+    "queue_position": null,
+    "run": "ubci-40460771614-1-main",
+    "spl_in_flight": [],
+    "stack": "stock",
+    "state": "queued",
+    "state_detail": "",
+    "versus": "unknown"
    }
   ]
  },
- "host_checks": [
-  {
-   "name": "buildman",
-   "result": "pass",
-   "summary": "every snapdragon board built without warnings"
-  },
-  {
-   "name": "carry",
-   "result": "pass",
-   "summary": "carry.yaml matches the pins"
-  },
-  {
-   "name": "checkpatch",
-   "result": "pass",
-   "summary": "0 new commits: 0 with errors, 0 with warnings only"
-  },
-  {
-   "name": "docs",
-   "result": "pass",
-   "summary": "htmldocs built without warnings"
-  },
-  {
-   "name": "fragments",
-   "result": "pass",
-   "summary": "1 combinations built"
-  },
-  {
-   "name": "qemu_arm64",
-   "result": "pass",
-   "summary": "250 passed, 600 skipped, 2 deselected in 122.08s (0:02:02)"
-  },
-  {
-   "name": "sandbox",
-   "result": "pass",
-   "summary": "1418 passed, 229 skipped, 3 deselected, 1 xfailed in 803.94s (0:13:23)"
-  },
-  {
-   "name": "size",
-   "result": "pass",
-   "summary": "lemans-evk-stock 1670536 B, qcs615-ride-stock 1609736 B, rb3gen2-open 1662080 B, rb3gen2-stock 1672672 B, uno-q-stock 0 B, ventuno-q-open 1647688 B, ventuno-q-stock 1651504 B"
-  }
- ],
- "latest_nightly": "ubci-40279426778-1-main",
- "linux": {
-  "commit": "20a33c6b6cbe7e4805dfb6cd68816937443aa148",
-  "config": "arch/arm64/configs/defconfig",
-  "image_sha256": "bdfa4856f7c6cde00967c209a94b6835fb5527ee6dd335b51cf371007b91e46d",
-  "modules_sha256": "4fee8a6200e7e339dda1702281f2bffe776b43a69e5515be19fe7052ff26c0a8",
-  "release": "7.3.0-next-20261023",
-  "tag": "next-20261023",
-  "tag_url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tag/?h=next-20261023",
-  "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=20a33c6b6cbe7e4805dfb6cd68816937443aa148"
- },
+ "host_checks": [],
+ "latest_nightly": "ubci-40460771614-1-main",
+ "linux": null,
  "matrix": [
   {
    "board": "rb3gen2",
-   "boot": "pass",
+   "boot": "not-run",
    "boot_chain": [
     {
      "origin": "downstream",
@@ -6620,31 +9239,33 @@
      "stage": "Linux"
     }
    ],
-   "boot_stage": "login",
-   "boot_url": "https://lava.infra.foundries.io/scheduler/job/514059#L2948",
+   "boot_stage": "not-reached",
+   "boot_url": "",
    "counts": {
-    "fail": 2,
+    "fail": 0,
     "flaky": 0,
-    "pass": 23,
-    "skip": 1,
+    "pass": 0,
+    "skip": 0,
     "unknown": 0
    },
    "distance": {},
-   "fingerprint": "ubci-40279426778-1-main-stock-rb3gen2",
+   "fingerprint": "ubci-40460771614-1-main-stock-rb3gen2",
    "fragments_missing": [],
-   "gate": "pass",
-   "job_url": "https://lava.infra.foundries.io/scheduler/job/514059",
+   "gate": "not-run",
+   "job_url": "",
    "new_fail": 0,
+   "no_spl": null,
    "queue_position": null,
-   "run": "ubci-40279426778-1-main",
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
    "stack": "stock",
-   "state": "done",
+   "state": "queued",
    "state_detail": "",
-   "versus": "same"
+   "versus": "unknown"
   },
   {
    "board": "rb3gen2",
-   "boot": "pass",
+   "boot": "not-run",
    "boot_chain": [
     {
      "origin": "downstream",
@@ -6682,34 +9303,64 @@
      "stage": "Linux"
     }
    ],
-   "boot_stage": "login",
-   "boot_url": "https://lava.infra.foundries.io/scheduler/job/514065#L3025",
+   "boot_stage": "not-reached",
+   "boot_url": "",
    "counts": {
-    "fail": 2,
+    "fail": 0,
     "flaky": 0,
-    "pass": 32,
-    "skip": 1,
+    "pass": 0,
+    "skip": 0,
     "unknown": 0
    },
    "distance": {
     "optee": 0,
     "tf-a": 10
    },
-   "fingerprint": "ubci-40279426778-1-main-open-rb3gen2",
+   "fingerprint": "ubci-40460771614-1-main-open-rb3gen2",
    "fragments_missing": [],
-   "gate": "pass",
-   "job_url": "https://lava.infra.foundries.io/scheduler/job/514065",
+   "gate": "not-run",
+   "job_url": "",
    "new_fail": 0,
+   "no_spl": null,
    "queue_position": null,
-   "run": "ubci-40279426778-1-main",
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
    "stack": "open",
-   "state": "done",
+   "state": "queued",
    "state_detail": "",
-   "versus": "same"
+   "versus": "unknown"
+  },
+  {
+   "board": "rb3gen2",
+   "boot": "not-run",
+   "boot_chain": [],
+   "boot_stage": "not-reached",
+   "boot_url": "",
+   "counts": {
+    "fail": 0,
+    "flaky": 0,
+    "pass": 0,
+    "skip": 0,
+    "unknown": 0
+   },
+   "distance": {},
+   "fingerprint": "ubci-40460771614-1-main-spl-rb3gen2",
+   "fragments_missing": [],
+   "gate": "not-run",
+   "job_url": "",
+   "new_fail": 0,
+   "no_spl": null,
+   "queue_position": null,
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
+   "stack": "spl",
+   "state": "queued",
+   "state_detail": "",
+   "versus": "unknown"
   },
   {
    "board": "ventuno-q",
-   "boot": "fail",
+   "boot": "not-run",
    "boot_chain": [
     {
      "origin": "downstream",
@@ -6735,31 +9386,33 @@
      "stage": "Linux"
     }
    ],
-   "boot_stage": "nothing-booted",
-   "boot_url": "https://lava.infra.foundries.io/scheduler/job/514057#L1126",
+   "boot_stage": "not-reached",
+   "boot_url": "",
    "counts": {
-    "fail": 3,
+    "fail": 0,
     "flaky": 0,
-    "pass": 12,
-    "skip": 1,
+    "pass": 0,
+    "skip": 0,
     "unknown": 0
    },
    "distance": {},
-   "fingerprint": "ubci-40279426778-1-main-stock-ventuno-q",
+   "fingerprint": "ubci-40460771614-1-main-stock-ventuno-q",
    "fragments_missing": [],
-   "gate": "pass",
-   "job_url": "https://lava.infra.foundries.io/scheduler/job/514057",
+   "gate": "not-run",
+   "job_url": "",
    "new_fail": 0,
+   "no_spl": null,
    "queue_position": null,
-   "run": "ubci-40279426778-1-main",
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
    "stack": "stock",
-   "state": "done",
-   "state_detail": "LAVA job incomplete",
-   "versus": "upstream-gap"
+   "state": "queued",
+   "state_detail": "",
+   "versus": "unknown"
   },
   {
    "board": "ventuno-q",
-   "boot": "fail",
+   "boot": "not-run",
    "boot_chain": [
     {
      "origin": "downstream",
@@ -6797,36 +9450,64 @@
      "stage": "Linux"
     }
    ],
-   "boot_stage": "nothing-booted",
-   "boot_url": "https://lava.infra.foundries.io/scheduler/job/514064#L1164",
+   "boot_stage": "not-reached",
+   "boot_url": "",
    "counts": {
-    "fail": 3,
+    "fail": 0,
     "flaky": 0,
-    "pass": 18,
-    "skip": 4,
+    "pass": 0,
+    "skip": 0,
     "unknown": 0
    },
    "distance": {
     "optee": 0,
     "tf-a": 12
    },
-   "fingerprint": "ubci-40279426778-1-main-open-ventuno-q",
-   "fragments_missing": [
-    "arduino-ventuno-q.config"
-   ],
-   "gate": "pass",
-   "job_url": "https://lava.infra.foundries.io/scheduler/job/514064",
+   "fingerprint": "ubci-40460771614-1-main-open-ventuno-q",
+   "fragments_missing": [],
+   "gate": "not-run",
+   "job_url": "",
    "new_fail": 0,
+   "no_spl": null,
    "queue_position": null,
-   "run": "ubci-40279426778-1-main",
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
    "stack": "open",
-   "state": "done",
-   "state_detail": "LAVA job incomplete",
-   "versus": "upstream-gap"
+   "state": "queued",
+   "state_detail": "",
+   "versus": "unknown"
+  },
+  {
+   "board": "ventuno-q",
+   "boot": "not-run",
+   "boot_chain": [],
+   "boot_stage": "not-reached",
+   "boot_url": "",
+   "counts": {
+    "fail": 0,
+    "flaky": 0,
+    "pass": 0,
+    "skip": 0,
+    "unknown": 0
+   },
+   "distance": {},
+   "fingerprint": "ubci-40460771614-1-main-spl-ventuno-q",
+   "fragments_missing": [],
+   "gate": "not-run",
+   "job_url": "",
+   "new_fail": 0,
+   "no_spl": null,
+   "queue_position": null,
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
+   "stack": "spl",
+   "state": "queued",
+   "state_detail": "",
+   "versus": "unknown"
   },
   {
    "board": "uno-q",
-   "boot": "pass",
+   "boot": "not-run",
    "boot_chain": [
     {
      "origin": "downstream",
@@ -6856,27 +9537,29 @@
      "stage": "Linux"
     }
    ],
-   "boot_stage": "login",
-   "boot_url": "https://lava.infra.foundries.io/scheduler/job/514060#L1994",
+   "boot_stage": "not-reached",
+   "boot_url": "",
    "counts": {
-    "fail": 3,
+    "fail": 0,
     "flaky": 0,
-    "pass": 23,
+    "pass": 0,
     "skip": 0,
     "unknown": 0
    },
    "distance": {},
-   "fingerprint": "ubci-40279426778-1-main-stock-uno-q",
+   "fingerprint": "ubci-40460771614-1-main-stock-uno-q",
    "fragments_missing": [],
-   "gate": "pass",
-   "job_url": "https://lava.infra.foundries.io/scheduler/job/514060",
+   "gate": "not-run",
+   "job_url": "",
    "new_fail": 0,
+   "no_spl": null,
    "queue_position": null,
-   "run": "ubci-40279426778-1-main",
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
    "stack": "stock",
-   "state": "done",
+   "state": "queued",
    "state_detail": "",
-   "versus": "same"
+   "versus": "unknown"
   },
   {
    "board": "uno-q",
@@ -6928,21 +9611,51 @@
     "unknown": 0
    },
    "distance": {},
-   "fingerprint": "ubci-40279426778-1-main-open-uno-q",
+   "fingerprint": "ubci-40460771614-1-main-open-uno-q",
    "fragments_missing": [],
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
+   "no_spl": null,
    "queue_position": null,
-   "run": "ubci-40279426778-1-main",
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
    "stack": "open",
-   "state": "skipped",
-   "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
+   "state": "queued",
+   "state_detail": "",
+   "versus": "unknown"
+  },
+  {
+   "board": "uno-q",
+   "boot": "not-run",
+   "boot_chain": [],
+   "boot_stage": "not-reached",
+   "boot_url": "",
+   "counts": {
+    "fail": 0,
+    "flaky": 0,
+    "pass": 0,
+    "skip": 0,
+    "unknown": 0
+   },
+   "distance": {},
+   "fingerprint": "ubci-40460771614-1-main-spl-uno-q",
+   "fragments_missing": [],
+   "gate": "not-run",
+   "job_url": "",
+   "new_fail": 0,
+   "no_spl": null,
+   "queue_position": null,
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
+   "stack": "spl",
+   "state": "queued",
+   "state_detail": "",
    "versus": "unknown"
   },
   {
    "board": "qcs615-ride",
-   "boot": "fail",
+   "boot": "not-run",
    "boot_chain": [
     {
      "origin": "downstream",
@@ -6968,27 +9681,29 @@
      "stage": "Linux"
     }
    ],
-   "boot_stage": "nothing-booted",
-   "boot_url": "https://lava.infra.foundries.io/scheduler/job/514061#L2003",
+   "boot_stage": "not-reached",
+   "boot_url": "",
    "counts": {
-    "fail": 2,
+    "fail": 0,
     "flaky": 0,
-    "pass": 13,
-    "skip": 1,
+    "pass": 0,
+    "skip": 0,
     "unknown": 0
    },
    "distance": {},
-   "fingerprint": "ubci-40279426778-1-main-stock-qcs615-ride",
+   "fingerprint": "ubci-40460771614-1-main-stock-qcs615-ride",
    "fragments_missing": [],
-   "gate": "pass",
-   "job_url": "https://lava.infra.foundries.io/scheduler/job/514061",
+   "gate": "not-run",
+   "job_url": "",
    "new_fail": 0,
+   "no_spl": null,
    "queue_position": null,
-   "run": "ubci-40279426778-1-main",
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
    "stack": "stock",
-   "state": "done",
-   "state_detail": "LAVA job incomplete",
-   "versus": "upstream-gap"
+   "state": "queued",
+   "state_detail": "",
+   "versus": "unknown"
   },
   {
    "board": "qcs615-ride",
@@ -7040,21 +9755,51 @@
     "unknown": 0
    },
    "distance": {},
-   "fingerprint": "ubci-40279426778-1-main-open-qcs615-ride",
+   "fingerprint": "ubci-40460771614-1-main-open-qcs615-ride",
    "fragments_missing": [],
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
+   "no_spl": null,
    "queue_position": null,
-   "run": "ubci-40279426778-1-main",
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
    "stack": "open",
-   "state": "skipped",
-   "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
+   "state": "queued",
+   "state_detail": "",
+   "versus": "unknown"
+  },
+  {
+   "board": "qcs615-ride",
+   "boot": "not-run",
+   "boot_chain": [],
+   "boot_stage": "not-reached",
+   "boot_url": "",
+   "counts": {
+    "fail": 0,
+    "flaky": 0,
+    "pass": 0,
+    "skip": 0,
+    "unknown": 0
+   },
+   "distance": {},
+   "fingerprint": "ubci-40460771614-1-main-spl-qcs615-ride",
+   "fragments_missing": [],
+   "gate": "not-run",
+   "job_url": "",
+   "new_fail": 0,
+   "no_spl": null,
+   "queue_position": null,
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
+   "stack": "spl",
+   "state": "queued",
+   "state_detail": "",
    "versus": "unknown"
   },
   {
    "board": "lemans-evk",
-   "boot": "pass",
+   "boot": "not-run",
    "boot_chain": [
     {
      "origin": "downstream",
@@ -7080,27 +9825,29 @@
      "stage": "Linux"
     }
    ],
-   "boot_stage": "login",
-   "boot_url": "https://lava.infra.foundries.io/scheduler/job/514062#L2776",
+   "boot_stage": "not-reached",
+   "boot_url": "",
    "counts": {
-    "fail": 2,
+    "fail": 0,
     "flaky": 0,
-    "pass": 21,
-    "skip": 1,
+    "pass": 0,
+    "skip": 0,
     "unknown": 0
    },
    "distance": {},
-   "fingerprint": "ubci-40279426778-1-main-stock-lemans-evk",
+   "fingerprint": "ubci-40460771614-1-main-stock-lemans-evk",
    "fragments_missing": [],
-   "gate": "pass",
-   "job_url": "https://lava.infra.foundries.io/scheduler/job/514062",
+   "gate": "not-run",
+   "job_url": "",
    "new_fail": 0,
+   "no_spl": null,
    "queue_position": null,
-   "run": "ubci-40279426778-1-main",
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
    "stack": "stock",
-   "state": "done",
-   "state_detail": "LAVA job incomplete",
-   "versus": "same"
+   "state": "queued",
+   "state_detail": "",
+   "versus": "unknown"
   },
   {
    "board": "lemans-evk",
@@ -7152,22 +9899,314 @@
     "skip": 0,
     "unknown": 0
    },
-   "distance": {},
-   "fingerprint": "ubci-40279426778-1-main-open-lemans-evk",
+   "distance": {
+    "optee": 76,
+    "tf-a": 81
+   },
+   "fingerprint": "ubci-40460771614-1-main-open-lemans-evk",
    "fragments_missing": [],
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
+   "no_spl": null,
    "queue_position": null,
-   "run": "ubci-40279426778-1-main",
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
    "stack": "open",
-   "state": "skipped",
-   "state_detail": "open-stack pin not public yet: tf-a f2b3d43e002c (gated qcom/integration snapshot, not pushed yet)",
+   "state": "queued",
+   "state_detail": "",
+   "versus": "unknown"
+  },
+  {
+   "board": "lemans-evk",
+   "boot": "not-run",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "component": "u-boot spl",
+     "detail": "from the tree under test, in place of tz",
+     "origin": "upstream",
+     "stage": "U-Boot SPL"
+    },
+    {
+     "component": "tf-a",
+     "origin": "upstream",
+     "stage": "TF-A BL31"
+    },
+    {
+     "component": "optee",
+     "origin": "upstream",
+     "stage": "OP-TEE"
+    },
+    {
+     "origin": "none",
+     "stage": "hypervisor"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in the SPL FIT",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "detail": "EL2",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "boot_stage": "not-reached",
+   "boot_url": "",
+   "counts": {
+    "fail": 0,
+    "flaky": 0,
+    "pass": 0,
+    "skip": 0,
+    "unknown": 0
+   },
+   "distance": {
+    "optee": 76,
+    "tf-a": 81
+   },
+   "fingerprint": "ubci-40460771614-1-main-spl-lemans-evk",
+   "fragments_missing": [],
+   "gate": "not-run",
+   "job_url": "",
+   "new_fail": 0,
+   "no_spl": null,
+   "queue_position": null,
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [
+    {
+     "link": "https://lore.kernel.org/r/20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com",
+     "message_id": "20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com",
+     "title": "Enable U-Boot SPL support for Lemans EVK",
+     "version": 4
+    },
+    {
+     "link": "https://lore.kernel.org/r/20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+     "message_id": "20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+     "title": "Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL)",
+     "version": 10
+    },
+    {
+     "link": "https://lore.kernel.org/r/20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com",
+     "message_id": "20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com",
+     "title": "spl: ufs: add UFS boot support for Qualcomm Snapdragon in SPL",
+     "version": 4
+    },
+    {
+     "link": "https://lore.kernel.org/r/20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+     "message_id": "20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+     "title": "spl: qcom: make Qualcomm drivers buildable in SPL",
+     "version": 1
+    },
+    {
+     "link": "https://lore.kernel.org/r/20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com",
+     "message_id": "20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com",
+     "title": "qcom: Add NVMEM bitfield support and reboot-mode",
+     "version": 5
+    },
+    {
+     "link": "https://lore.kernel.org/r/20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+     "message_id": "20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+     "title": "mach-snapdragon: fix OP-TEE SPL link failure",
+     "version": 1
+    }
+   ],
+   "stack": "spl",
+   "state": "queued",
+   "state_detail": "",
+   "versus": "unknown"
+  },
+  {
+   "board": "shikra-iqs-evk",
+   "boot": "not-run",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (Gunyah)"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in place of UEFI",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "boot_stage": "not-reached",
+   "boot_url": "",
+   "counts": {
+    "fail": 0,
+    "flaky": 0,
+    "pass": 0,
+    "skip": 0,
+    "unknown": 0
+   },
+   "distance": {},
+   "fingerprint": "ubci-40460771614-1-main-stock-shikra-iqs-evk",
+   "fragments_missing": [],
+   "gate": "not-run",
+   "job_url": "",
+   "new_fail": 0,
+   "no_spl": null,
+   "queue_position": null,
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
+   "stack": "stock",
+   "state": "queued",
+   "state_detail": "",
+   "versus": "unknown"
+  },
+  {
+   "board": "shikra-iqs-evk",
+   "boot": "not-run",
+   "boot_chain": [],
+   "boot_stage": "not-reached",
+   "boot_url": "",
+   "counts": {
+    "fail": 0,
+    "flaky": 0,
+    "pass": 0,
+    "skip": 0,
+    "unknown": 0
+   },
+   "distance": {},
+   "fingerprint": "ubci-40460771614-1-main-open-shikra-iqs-evk",
+   "fragments_missing": [],
+   "gate": "not-run",
+   "job_url": "",
+   "new_fail": 0,
+   "no_spl": null,
+   "queue_position": null,
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [],
+   "stack": "open",
+   "state": "queued",
+   "state_detail": "",
+   "versus": "unknown"
+  },
+  {
+   "board": "shikra-iqs-evk",
+   "boot": "not-run",
+   "boot_chain": [],
+   "boot_stage": "not-reached",
+   "boot_url": "",
+   "counts": {
+    "fail": 0,
+    "flaky": 0,
+    "pass": 0,
+    "skip": 0,
+    "unknown": 0
+   },
+   "distance": {},
+   "fingerprint": "ubci-40460771614-1-main-spl-shikra-iqs-evk",
+   "fragments_missing": [],
+   "gate": "not-run",
+   "job_url": "",
+   "new_fail": 0,
+   "no_spl": null,
+   "queue_position": null,
+   "run": "ubci-40460771614-1-main",
+   "spl_in_flight": [
+    {
+     "link": "https://lore.kernel.org/r/20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com",
+     "message_id": "20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com",
+     "title": "Initial Shikra SoC support",
+     "version": 4
+    },
+    {
+     "link": "https://lore.kernel.org/r/20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com",
+     "message_id": "20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com",
+     "title": "Enable HS200/HS400 eMMC modes on Qualcomm",
+     "version": 2
+    },
+    {
+     "link": "https://lore.kernel.org/r/20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com",
+     "message_id": "20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com",
+     "title": "tools: qcom: mkmbn: ipq5210 and multi-elf",
+     "version": 3
+    },
+    {
+     "link": "https://lore.kernel.org/r/20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+     "message_id": "20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+     "title": "Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL)",
+     "version": 10
+    },
+    {
+     "link": "https://lore.kernel.org/r/20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+     "message_id": "20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+     "title": "spl: qcom: make Qualcomm drivers buildable in SPL",
+     "version": 1
+    },
+    {
+     "link": "https://lore.kernel.org/r/20261013053244.2954876-1-abhilash.v@oss.qualcomm.com",
+     "message_id": "20261013053244.2954876-1-abhilash.v@oss.qualcomm.com",
+     "title": "qcom: shikra: add eMMC SPL boot support",
+     "version": 2
+    },
+    {
+     "link": "https://lore.kernel.org/r/20261013053517.2955571-1-abhilash.v@oss.qualcomm.com",
+     "message_id": "20261013053517.2955571-1-abhilash.v@oss.qualcomm.com",
+     "title": "qcom: shikra: SPL SD card boot",
+     "version": 2
+    },
+    {
+     "link": "https://lore.kernel.org/r/20261023084019.3722376-1-abhilash.v@oss.qualcomm.com",
+     "message_id": "20261023084019.3722376-1-abhilash.v@oss.qualcomm.com",
+     "title": "qcom: spl: enable CDT for shikra",
+     "version": 2
+    },
+    {
+     "link": "https://lore.kernel.org/r/20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com",
+     "message_id": "20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com",
+     "title": "DDR training for Shikra SPL",
+     "version": 1
+    },
+    {
+     "link": "https://lore.kernel.org/r/20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+     "message_id": "20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+     "title": "mach-snapdragon: fix OP-TEE SPL link failure",
+     "version": 1
+    }
+   ],
+   "stack": "spl",
+   "state": "queued",
+   "state_detail": "",
    "versus": "unknown"
   }
  ],
  "pin_candidates": {},
  "runs": [
+  {
+   "base": {
+    "branch": "main",
+    "commit": "dfcfc4c9f78d1743f490a497082a4ec8e058aae8",
+    "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+    "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/dfcfc4c9f78d1743f490a497082a4ec8e058aae8"
+   },
+   "created": "2026-10-27T06:26:59Z",
+   "id": "ubci-40460771614-1-main",
+   "kind": "nightly",
+   "state": "building",
+   "title": "main dfcfc4c9f78d"
+  },
   {
    "base": {
     "branch": "master",
@@ -7325,5 +10364,5 @@
    "title": "QCS8300 v4 + VENTUNO Q v2"
   }
  ],
- "updated": "2026-10-26T07:38:57Z"
+ "updated": "2026-10-27T06:27:02Z"
 }
