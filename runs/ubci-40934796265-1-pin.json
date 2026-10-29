@@ -24,7 +24,7 @@
   "kind": "pin-candidate",
   "series": null,
   "title": "downstream pin candidate: QCS615 boot binaries 00142 -> QCS615 boot binaries 00150",
-  "updated": "2026-10-29T20:38:12Z"
+  "updated": "2026-10-29T20:48:58Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -56,7 +56,89 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "fail",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "main",
@@ -129,21 +211,31 @@
     }
    ],
    "fingerprint": "ubci-40934796265-1-pin-stock-qcs615-ride",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
     "device": "qcs615-adp-air-01",
-    "health": "Unknown",
+    "health": "Incomplete",
     "job_id": 524157,
     "url": "https://lava.infra.foundries.io/scheduler/job/524157"
    },
    "linux_boot": {
-    "stage": "not-reached",
-    "verdict": "not-run",
+    "last_lines": [
+     "** Bad device specification scsi 0 **",
+     "Couldn't find partition scsi 0:1",
+     "** Bad device specification scsi 0 **",
+     "Couldn't find partition scsi 0:1",
+     "Loading Boot0000 'mmc 0' failed",
+     "=> \ufffd"
+    ],
+    "stage": "nothing-booted",
+    "url": "https://lava.infra.foundries.io/scheduler/job/524157#L1999",
+    "verdict": "fail",
     "versus_baseline": "unknown"
    },
    "queue_position": null,
    "stack": "stock",
-   "state": "testing"
+   "state": "done",
+   "state_detail": "LAVA job incomplete"
   },
   {
    "board": "qcs615-ride",
