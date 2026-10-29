@@ -1,0 +1,3473 @@
+{
+ "host_checks": [],
+ "linux": null,
+ "project": "u-boot",
+ "run": {
+  "base": {
+   "branch": "master",
+   "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+   "repo": "https://git.u-boot-project.org/u-boot/u-boot.git"
+  },
+  "baseline": null,
+  "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/40833925485",
+  "created": "2026-10-29T10:47:38Z",
+  "id": "ubci-40833925485-1-master",
+  "kind": "nightly",
+  "series": null,
+  "title": "master ece349ade297",
+  "updated": "2026-10-29T10:47:40Z"
+ },
+ "schema": "fwci-run/1",
+ "state": "building",
+ "targets": [
+  {
+   "board": "rb3gen2",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (Gunyah)"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in place of UEFI",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcm6490_defconfig",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/qcs6490-rb3gen2",
+     "fingerprint": "ubci-40833925485-1-master-stock-rb3gen2",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCM6490_bootbinaries_00142.zip",
+       "sha256": "22e45047b3349a1611d27167616dd04f08e8351120ac121f6921b47b9f709216",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCM6490_bootbinaries.1.0/qcm6490_bootbinaries.1.0-test-device-public/00142/QCM6490_bootbinaries_00142.zip"
+      },
+      {
+       "name": "QCM6490_bootbinaries_immutable_00142.zip",
+       "sha256": "a5f48c1646eb640377b66fa13064f2efe6f667e60f714b0e06c34dc66b7c94fb",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCM6490_bootbinaries.1.0/qcm6490_bootbinaries.1.0-test-device-public/00142/QCM6490_bootbinaries_immutable_00142.zip"
+      },
+      {
+       "name": "rb3gen2-core-kit.zip",
+       "sha256": "0fe1c0b4050cf54203203812b2c1f0d9698823d8defc8b6516414a4e5e0c557e",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS6490/cdt/rb3gen2-core-kit.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCM6490 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-stock-rb3gen2",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "rb3gen2",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "component": "tf-a bl2",
+     "origin": "upstream",
+     "stage": "TF-A BL2"
+    },
+    {
+     "component": "tf-a",
+     "origin": "upstream",
+     "stage": "TF-A BL31"
+    },
+    {
+     "component": "optee",
+     "origin": "upstream",
+     "stage": "OP-TEE"
+    },
+    {
+     "origin": "none",
+     "stage": "hypervisor"
+    },
+    {
+     "component": "u-boot",
+     "detail": "BL33 in the FIP",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "detail": "EL2",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_defconfig",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "tfa-optee.config",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/qcs6490-rb3gen2",
+     "fingerprint": "ubci-40833925485-1-master-open-rb3gen2",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCM6490_bootbinaries_00142.zip",
+       "sha256": "22e45047b3349a1611d27167616dd04f08e8351120ac121f6921b47b9f709216",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCM6490_bootbinaries.1.0/qcm6490_bootbinaries.1.0-test-device-public/00142/QCM6490_bootbinaries_00142.zip"
+      },
+      {
+       "name": "QCM6490_bootbinaries_immutable_00142.zip",
+       "sha256": "a5f48c1646eb640377b66fa13064f2efe6f667e60f714b0e06c34dc66b7c94fb",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCM6490_bootbinaries.1.0/qcm6490_bootbinaries.1.0-test-device-public/00142/QCM6490_bootbinaries_immutable_00142.zip"
+      },
+      {
+       "name": "rb3gen2-core-kit.zip",
+       "sha256": "0fe1c0b4050cf54203203812b2c1f0d9698823d8defc8b6516414a4e5e0c557e",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS6490/cdt/rb3gen2-core-kit.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCM6490 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    },
+    {
+     "branch": "kodiak-native-v4",
+     "commit": "23b6bf615281242ddf71c5e652aca534dff123d9",
+     "fingerprint": "ubci-40833925485-1-master-open-rb3gen2",
+     "name": "tf-a",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "upstream": {
+      "base": "fef86fcc70e5eced994e1c799410b610154da427",
+      "carried": [
+       {
+        "commit": "44fe77ef8d5610eedabcf70b671c9b9b9c37fcd7",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55532",
+        "subject": "refactor(qti): parameterize gold domain setup"
+       },
+       {
+        "commit": "d2de1799e30019a5a8baf4142b9c528c43cc9e75",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55533",
+        "subject": "fix(qti): fail CPU_ON when the gold rail does not come up"
+       },
+       {
+        "commit": "62e655947cfb56a927524c6c58309e2c13703455",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55534",
+        "subject": "fix(qti): stop the boot when CPUCP cannot be started"
+       },
+       {
+        "commit": "a3fd09d9ce165859ac7c9dc95fb4ce7f046e9899",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55535",
+        "subject": "feat(qti): add a CPU_OFF holding pen"
+       },
+       {
+        "commit": "5f1cc70ed3ae11b871030b81f520e100632566d2",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55536",
+        "subject": "feat(qti): initialize the Kodiak gold domain"
+       },
+       {
+        "commit": "5f21749bda1f6ba556c137a3bda7dc7b9cb52e32",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55537",
+        "subject": "feat(qti): add Kodiak CPUCP support"
+       },
+       {
+        "commit": "0bfead026434207d5eb6bee8b30f124b1f4b5abf",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55538",
+        "subject": "feat(qti): add Kodiak PDC tables"
+       },
+       {
+        "commit": "7572a3cb5ed03533efe442285b31d3223158c6dd",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55539",
+        "subject": "feat(qti): initialize the Kodiak GPU SMMU"
+       },
+       {
+        "commit": "9b54fba05f4dd3d1f5c9070cb8c5823ea9005c0f",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55540",
+        "subject": "feat(rb3gen2): boot without QTISECLIB"
+       },
+       {
+        "commit": "23b6bf615281242ddf71c5e652aca534dff123d9",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55541",
+        "subject": "docs(rb3gen2): describe the native boot"
+       }
+      ],
+      "distance": 10,
+      "repo": "https://review.trustedfirmware.org/TF-A/trusted-firmware-a"
+     },
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/23b6bf615281242ddf71c5e652aca534dff123d9"
+    },
+    {
+     "branch": "master",
+     "commit": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+     "fingerprint": "ubci-40833925485-1-master-open-rb3gen2",
+     "name": "optee",
+     "origin": "upstream",
+     "repo": "https://github.com/OP-TEE/optee_os",
+     "role": "pinned",
+     "upstream": {
+      "base": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+      "carried": [],
+      "distance": 0,
+      "repo": "https://github.com/OP-TEE/optee_os"
+     },
+     "url": "https://github.com/OP-TEE/optee_os/commit/2cabb6d063513e1718f7627e16b0a5ce1bfd5516"
+    },
+    {
+     "commit": "23b6bf615281242ddf71c5e652aca534dff123d9",
+     "fingerprint": "ubci-pin-bl2-rb3gen2-261024-0109",
+     "name": "tf-a bl2",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "sha256": "b46c27937615bfa1ca3c3963b1cf866ac8c2c6a4e099bd5daecc983ca2a544d4",
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/23b6bf615281242ddf71c5e652aca534dff123d9"
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-open-rb3gen2",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [
+     "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
+    ],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "open",
+   "state": "queued"
+  },
+  {
+   "board": "rb3gen2",
+   "boot_chain": [],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "fingerprint": "ubci-40833925485-1-master-spl-rb3gen2",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-spl-rb3gen2",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "spl": {
+    "gaps": [],
+    "in_flight": []
+   },
+   "stack": "spl",
+   "state": "queued"
+  },
+  {
+   "board": "ventuno-q",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (Gunyah)"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in place of UEFI",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_monaco_defconfig",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/monaco-arduino-monza",
+     "fingerprint": "ubci-40833925485-1-master-stock-ventuno-q",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS8300_bootbinaries_00142.zip",
+       "sha256": "22182317cfe5b09f8cc9bc428d755391561cb9d25c9e77aeca4e62195d4b97e8",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS8300_bootbinaries.1.0/qcs8300_bootbinaries.1.0-test-device-public/00142/QCS8300_bootbinaries_00142.zip"
+      },
+      {
+       "name": "QCS8300_bootbinaries_immutable_00142.zip",
+       "sha256": "ffc05bf1323d828f8c944421d8cadaf1c45697032b26b9f34ecce042ddae291d",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS8300_bootbinaries.1.0/qcs8300_bootbinaries.1.0-test-device-public/00142/QCS8300_bootbinaries_immutable_00142.zip"
+      },
+      {
+       "name": "qcs8275-Monza_v1.zip",
+       "sha256": "8484beb2ac1ff74a129c586f6d5331536765975dbabfb0600509f11010ec1c41",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS8300/cdt/qcs8275-Monza_v1.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      },
+      {
+       "commit": "66170f27dea1c40781b871b6482ef886a7663232",
+       "name": "meta-qcom-arduino",
+       "recipes": null,
+       "repo": "https://github.com/qualcomm-linux/meta-qcom-arduino",
+       "url": "https://github.com/qualcomm-linux/meta-qcom-arduino/commit/66170f27dea1c40781b871b6482ef886a7663232"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS8300 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-stock-ventuno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [
+     "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
+    ],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "ventuno-q",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "component": "tf-a bl2",
+     "origin": "upstream",
+     "stage": "TF-A BL2"
+    },
+    {
+     "component": "tf-a",
+     "origin": "upstream",
+     "stage": "TF-A BL31"
+    },
+    {
+     "component": "optee",
+     "origin": "upstream",
+     "stage": "OP-TEE"
+    },
+    {
+     "origin": "none",
+     "stage": "hypervisor"
+    },
+    {
+     "component": "u-boot",
+     "detail": "BL33 in the FIP",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "detail": "EL2",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_defconfig",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "tfa-optee.config",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "arduino-ventuno-q.config",
+       "optional": true,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/monaco-arduino-monza",
+     "fingerprint": "ubci-40833925485-1-master-open-ventuno-q",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS8300_bootbinaries_00142.zip",
+       "sha256": "22182317cfe5b09f8cc9bc428d755391561cb9d25c9e77aeca4e62195d4b97e8",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS8300_bootbinaries.1.0/qcs8300_bootbinaries.1.0-test-device-public/00142/QCS8300_bootbinaries_00142.zip"
+      },
+      {
+       "name": "QCS8300_bootbinaries_immutable_00142.zip",
+       "sha256": "ffc05bf1323d828f8c944421d8cadaf1c45697032b26b9f34ecce042ddae291d",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS8300_bootbinaries.1.0/qcs8300_bootbinaries.1.0-test-device-public/00142/QCS8300_bootbinaries_immutable_00142.zip"
+      },
+      {
+       "name": "qcs8275-Monza_v1.zip",
+       "sha256": "8484beb2ac1ff74a129c586f6d5331536765975dbabfb0600509f11010ec1c41",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS8300/cdt/qcs8275-Monza_v1.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      },
+      {
+       "commit": "66170f27dea1c40781b871b6482ef886a7663232",
+       "name": "meta-qcom-arduino",
+       "recipes": null,
+       "repo": "https://github.com/qualcomm-linux/meta-qcom-arduino",
+       "url": "https://github.com/qualcomm-linux/meta-qcom-arduino/commit/66170f27dea1c40781b871b6482ef886a7663232"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS8300 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    },
+    {
+     "branch": "ventuno-q-v3",
+     "commit": "4930db330cb03cfe2124f41bf1852cff9e7abd22",
+     "fingerprint": "ubci-40833925485-1-master-open-ventuno-q",
+     "name": "tf-a",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "upstream": {
+      "base": "9599954cafaf7f1a0d8240242349db972b512150",
+      "carried": [
+       {
+        "commit": "54a6355a1a8cd1321d5f6b86f7a78c467af435e1",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54843",
+        "subject": "FROMLIST: fix(delay-timer)!: count timeouts in the configured frequency"
+       },
+       {
+        "commit": "982904694db78b8b786131ae01005f2e148bd6d1",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54926",
+        "subject": "FROMLIST: fix(psci): allow OS-initiated mode while other cores are off"
+       },
+       {
+        "commit": "5459185ce26e0a3ef4155f8e5cab6e141958e642",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55528",
+        "subject": "HACK: feat(qti): let a SoC use another SoC's RPMh data"
+       },
+       {
+        "commit": "20405011f18461e407e96fe19143cf3f65af6d09",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55529",
+        "subject": "PENDING: feat(monza): add Monaco clock back-end"
+       },
+       {
+        "commit": "98ba7638c862197cd41e6c9d655d4de7a7d38e05",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55530",
+        "subject": "PENDING: fix(qti): only advertise SYSTEM_SUSPEND with a system-level state"
+       },
+       {
+        "commit": "074559ee7fb47c7427e5247c8beb824abe16cf39",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54579",
+        "subject": "FROMLIST: feat(qti): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "75ab804c50225fadbb1f5e57265b06bcc625185d",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55765",
+        "subject": "PENDING: feat(monza): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "bffa27c7b96b99be8e9701f48a37f0eb026c3901",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55766",
+        "subject": "HACK: feat(qti): add a PMIC hard reset option for system reset"
+       },
+       {
+        "commit": "d17335f3c0e07e221c40964f3f421aaf110ee91a",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55767",
+        "subject": "HACK: feat(monza): use a PMIC hard reset for system reset"
+       },
+       {
+        "commit": "04a8286855c0ee72fe0125b3bbaf69f69b4e2eca",
+        "review": null,
+        "subject": "PENDING: fix(qti): ring the SAIL doorbell on SMSS_TZ_IPC"
+       },
+       {
+        "commit": "4a7a2e5cf1341158261ca299ce1eca55f160195f",
+        "review": null,
+        "subject": "PENDING: docs(monza): describe booting BL31 from U-Boot SPL"
+       },
+       {
+        "commit": "4930db330cb03cfe2124f41bf1852cff9e7abd22",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55531",
+        "subject": "PENDING: feat(qti): program the Monaco GPU SMMU aperture"
+       }
+      ],
+      "distance": 12,
+      "repo": "https://review.trustedfirmware.org/TF-A/trusted-firmware-a"
+     },
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/4930db330cb03cfe2124f41bf1852cff9e7abd22"
+    },
+    {
+     "branch": "master",
+     "commit": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+     "fingerprint": "ubci-40833925485-1-master-open-ventuno-q",
+     "name": "optee",
+     "origin": "upstream",
+     "repo": "https://github.com/OP-TEE/optee_os",
+     "role": "pinned",
+     "upstream": {
+      "base": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+      "carried": [],
+      "distance": 0,
+      "repo": "https://github.com/OP-TEE/optee_os"
+     },
+     "url": "https://github.com/OP-TEE/optee_os/commit/2cabb6d063513e1718f7627e16b0a5ce1bfd5516"
+    },
+    {
+     "commit": "4930db330cb03cfe2124f41bf1852cff9e7abd22",
+     "fingerprint": "MONZAFP-261008-154802-pr2-fs",
+     "name": "tf-a bl2",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "sha256": "91f4618318d49d15440ac31101cdf4ab2e4c8693c95f4867ebf2e65ed30e100f",
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/4930db330cb03cfe2124f41bf1852cff9e7abd22"
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-open-ventuno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [
+     "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
+    ],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "open",
+   "state": "queued"
+  },
+  {
+   "board": "ventuno-q",
+   "boot_chain": [],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "fingerprint": "ubci-40833925485-1-master-spl-ventuno-q",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-spl-ventuno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "spl": {
+    "gaps": [],
+    "in_flight": []
+   },
+   "stack": "spl",
+   "state": "queued"
+  },
+  {
+   "board": "uno-q",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (QTI hyp)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "ABL"
+    },
+    {
+     "component": "u-boot",
+     "detail": "Android boot image chainloaded by ABL",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_defconfig",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/qrb2210-arduino-imola",
+     "fingerprint": "ubci-40833925485-1-master-stock-uno-q",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "unoq-bootloader-emmc-linux-251020.zip",
+       "sha256": "c606e95d0107f8c58d0dd9494e00624d1db7c4361cca20513bc78ef02ca28dd1",
+       "url": "https://downloads.arduino.cc/debian-im/unoq-bootloader-emmc-linux-251020.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": null,
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      },
+      {
+       "commit": "66170f27dea1c40781b871b6482ef886a7663232",
+       "name": "meta-qcom-arduino",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom-arduino/tree/66170f27dea1c40781b871b6482ef886a7663232/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom-arduino",
+       "url": "https://github.com/qualcomm-linux/meta-qcom-arduino/commit/66170f27dea1c40781b871b6482ef886a7663232"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "Arduino UNO Q boot firmware 251020",
+     "role": "stock",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-stock-uno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "uno-q",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "component": "tf-a bl2",
+     "origin": "upstream",
+     "stage": "TF-A BL2"
+    },
+    {
+     "component": "tf-a",
+     "origin": "upstream",
+     "stage": "TF-A BL31"
+    },
+    {
+     "component": "optee",
+     "origin": "upstream",
+     "stage": "OP-TEE"
+    },
+    {
+     "origin": "none",
+     "stage": "hypervisor"
+    },
+    {
+     "component": "u-boot",
+     "detail": "BL33 in the FIP",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "detail": "EL2",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_defconfig",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "tfa-optee.config",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "arduino-uno-q.config",
+       "optional": true,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/qrb2210-arduino-imola",
+     "fingerprint": "ubci-40833925485-1-master-open-uno-q",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "Agatti_bootbinaries_00021.zip",
+       "sha256": "26a8681834363cb8bc9e8149db27388406daf22af15d3b43c9649e180afb47f2",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QRB2210_bootbinaries.1.0/qrb2210_bootbinaries.1.0-test-device-public/00021/Agatti_bootbinaries_00021.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QRB2210 boot binaries 00021",
+     "role": "stock",
+     "upstream": null
+    },
+    {
+     "branch": "qcom/integration",
+     "commit": "f2b3d43e002c0866ec3cbea21285f790603a4865",
+     "fingerprint": "ubci-40833925485-1-master-open-uno-q",
+     "name": "tf-a",
+     "origin": "upstream",
+     "pending": "gated qcom/integration snapshot, not pushed yet",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "soc_branch": {
+      "commit": "7f4a15b09c264fce5b9aeb67c08ae1b9d0c9e94e",
+      "name": "qcom/agatti",
+      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/7f4a15b09c264fce5b9aeb67c08ae1b9d0c9e94e"
+     },
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/f2b3d43e002c0866ec3cbea21285f790603a4865"
+    },
+    {
+     "branch": "qcom/integration",
+     "commit": "bd6f523e58b41486ebb280de43898b3bff92f0c2",
+     "fingerprint": "ubci-40833925485-1-master-open-uno-q",
+     "name": "optee",
+     "origin": "upstream",
+     "pending": "gated qcom/integration snapshot, not pushed yet",
+     "repo": "https://github.com/EmbeddedAndroid/optee_os",
+     "role": "pinned",
+     "soc_branch": {
+      "commit": "2518bc06b2f0a658e9f3d2752d692881869eae50",
+      "name": "qcom/agatti",
+      "url": "https://github.com/EmbeddedAndroid/optee_os/commit/2518bc06b2f0a658e9f3d2752d692881869eae50"
+     },
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/optee_os/commit/bd6f523e58b41486ebb280de43898b3bff92f0c2"
+    },
+    {
+     "commit": "f2b3d43e002c0866ec3cbea21285f790603a4865",
+     "fingerprint": "QCDFP-261024-68",
+     "name": "tf-a bl2",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "sha256": "09d1770fcdbd12fd18fd1cca84cfeaf3f1a915a851cff673ab24d4e48b10ecff",
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/f2b3d43e002c0866ec3cbea21285f790603a4865"
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-open-uno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [
+     "no Agatti EL2 overlay in linux-next"
+    ],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "open",
+   "state": "queued"
+  },
+  {
+   "board": "uno-q",
+   "boot_chain": [],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "fingerprint": "ubci-40833925485-1-master-spl-uno-q",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-spl-uno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "spl": {
+    "gaps": [],
+    "in_flight": []
+   },
+   "stack": "spl",
+   "state": "queued"
+  },
+  {
+   "board": "qcs615-ride",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (Gunyah)"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in place of UEFI",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_qcs615_defconfig",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/qcs615-ride",
+     "fingerprint": "ubci-40833925485-1-master-stock-qcs615-ride",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS615_bootbinaries_00142.zip",
+       "sha256": "4704b117672ef778c4680522b753af00641e91fc2f7fb351d942559e09458352",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS615_bootbinaries.1.0/qcs615_bootbinaries.1.0-test-device-public/00142/QCS615_bootbinaries_00142.zip"
+      },
+      {
+       "name": "ADP_AIR_SA6155P_V2.zip",
+       "sha256": "37d99eb113e286400bce0d70aa12a74d05f93d01f045bf67e7a46b3c606c8fd0",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS615/cdt/ADP_AIR_SA6155P_V2.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS615 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-stock-qcs615-ride",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "qcs615-ride",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "component": "tf-a bl2",
+     "origin": "upstream",
+     "stage": "TF-A BL2"
+    },
+    {
+     "component": "tf-a",
+     "origin": "upstream",
+     "stage": "TF-A BL31"
+    },
+    {
+     "component": "optee",
+     "origin": "upstream",
+     "stage": "OP-TEE"
+    },
+    {
+     "origin": "none",
+     "stage": "hypervisor"
+    },
+    {
+     "component": "u-boot",
+     "detail": "BL33 in the FIP",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "detail": "EL2",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_defconfig",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "tfa-optee.config",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "qcs615-ride.config",
+       "optional": true,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/qcs615-ride",
+     "fingerprint": "ubci-40833925485-1-master-open-qcs615-ride",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS615_bootbinaries_00142.zip",
+       "sha256": "4704b117672ef778c4680522b753af00641e91fc2f7fb351d942559e09458352",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS615_bootbinaries.1.0/qcs615_bootbinaries.1.0-test-device-public/00142/QCS615_bootbinaries_00142.zip"
+      },
+      {
+       "name": "ADP_AIR_SA6155P_V2.zip",
+       "sha256": "37d99eb113e286400bce0d70aa12a74d05f93d01f045bf67e7a46b3c606c8fd0",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS615/cdt/ADP_AIR_SA6155P_V2.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS615 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    },
+    {
+     "branch": "qcom/integration",
+     "commit": "f2b3d43e002c0866ec3cbea21285f790603a4865",
+     "fingerprint": "ubci-40833925485-1-master-open-qcs615-ride",
+     "name": "tf-a",
+     "origin": "upstream",
+     "pending": "gated qcom/integration snapshot, not pushed yet",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "soc_branch": {
+      "commit": "b3fbecd10dddb51ff7b5a9cdceb37a6e43a50ac9",
+      "name": "qcom/talos",
+      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/b3fbecd10dddb51ff7b5a9cdceb37a6e43a50ac9"
+     },
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/f2b3d43e002c0866ec3cbea21285f790603a4865"
+    },
+    {
+     "branch": "qcom/integration",
+     "commit": "bd6f523e58b41486ebb280de43898b3bff92f0c2",
+     "fingerprint": "ubci-40833925485-1-master-open-qcs615-ride",
+     "name": "optee",
+     "origin": "upstream",
+     "pending": "gated qcom/integration snapshot, not pushed yet",
+     "repo": "https://github.com/EmbeddedAndroid/optee_os",
+     "role": "pinned",
+     "soc_branch": {
+      "commit": "120a891f1f421c916fc9141a6bf380770ab8ba9c",
+      "name": "qcom/talos",
+      "url": "https://github.com/EmbeddedAndroid/optee_os/commit/120a891f1f421c916fc9141a6bf380770ab8ba9c"
+     },
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/optee_os/commit/bd6f523e58b41486ebb280de43898b3bff92f0c2"
+    },
+    {
+     "commit": "f2b3d43e002c0866ec3cbea21285f790603a4865",
+     "fingerprint": "QCDFP-261024-62",
+     "name": "tf-a bl2",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "sha256": "4616ba74a1285ab764399f7c6d29fccc4267702bce6d0b22cb0f24f9b566332a",
+     "upstream": null,
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/f2b3d43e002c0866ec3cbea21285f790603a4865"
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-open-qcs615-ride",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "open",
+   "state": "queued"
+  },
+  {
+   "board": "qcs615-ride",
+   "boot_chain": [],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "fingerprint": "ubci-40833925485-1-master-spl-qcs615-ride",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-spl-qcs615-ride",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "spl": {
+    "gaps": [],
+    "in_flight": []
+   },
+   "stack": "spl",
+   "state": "queued"
+  },
+  {
+   "board": "lemans-evk",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (Gunyah)"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in place of UEFI",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_lemans_defconfig",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/lemans-evk",
+     "fingerprint": "ubci-40833925485-1-master-stock-lemans-evk",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS9100_bootbinaries_00142.zip",
+       "sha256": "17d2c5bae5c17b665bafd9bba8962f41aec7be2f874cde90b0976730f0098bf6",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00142/QCS9100_bootbinaries_00142.zip"
+      },
+      {
+       "name": "QCS9100_bootbinaries_immutable_00142.zip",
+       "sha256": "1aa0b67671ef026a40ca133f32128d07fffd614a47cf51eaa5cd5c7d4941d034",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00142/QCS9100_bootbinaries_immutable_00142.zip"
+      },
+      {
+       "name": "rb8_core_kit.zip",
+       "sha256": "a252244f800d7c9e15883e12935af4113f9f2ecba6490e46cd9b943169f15bfa",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS9100/cdt/rb8_core_kit.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS9100 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-stock-lemans-evk",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "lemans-evk",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "component": "u-boot spl",
+     "detail": "pre-built, not from a public commit",
+     "origin": "downstream",
+     "stage": "U-Boot SPL"
+    },
+    {
+     "component": "tf-a",
+     "origin": "upstream",
+     "stage": "TF-A BL31"
+    },
+    {
+     "component": "optee",
+     "origin": "upstream",
+     "stage": "OP-TEE"
+    },
+    {
+     "origin": "none",
+     "stage": "hypervisor"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in the SPL FIT",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "detail": "EL2",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_defconfig",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "tfa-optee.config",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/lemans-evk",
+     "fingerprint": "ubci-40833925485-1-master-open-lemans-evk",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS9100_bootbinaries_00142.zip",
+       "sha256": "17d2c5bae5c17b665bafd9bba8962f41aec7be2f874cde90b0976730f0098bf6",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00142/QCS9100_bootbinaries_00142.zip"
+      },
+      {
+       "name": "QCS9100_bootbinaries_immutable_00142.zip",
+       "sha256": "1aa0b67671ef026a40ca133f32128d07fffd614a47cf51eaa5cd5c7d4941d034",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00142/QCS9100_bootbinaries_immutable_00142.zip"
+      },
+      {
+       "name": "rb8_core_kit.zip",
+       "sha256": "a252244f800d7c9e15883e12935af4113f9f2ecba6490e46cd9b943169f15bfa",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS9100/cdt/rb8_core_kit.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS9100 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    },
+    {
+     "branch": "qcom/integration",
+     "commit": "17d3a8df67ac9a5670d8a8627e24d6c158ef5fe3",
+     "fingerprint": "ubci-40833925485-1-master-open-lemans-evk",
+     "name": "tf-a",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "soc_branch": {
+      "commit": "657d882414160b1693dd7cb5dae36a21567cb5c4",
+      "name": "qcom/lemans",
+      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/657d882414160b1693dd7cb5dae36a21567cb5c4"
+     },
+     "upstream": {
+      "base": "eb60949df191608e1a5a707fc175fa74c39c245c",
+      "carried": [
+       {
+        "commit": "fb4cf39525955115a1780b06a346edac4a2a833e",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54909",
+        "subject": "fix(corstone-1000): align BL config mapping"
+       },
+       {
+        "commit": "399837fafef58ad9af943acaab4ce0a9a79edacd",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54910",
+        "subject": "fix(corstone-1000): delay early GPT access"
+       },
+       {
+        "commit": "9bebaf3952a1fcb43b7ddfaec90a2c8180f0373a",
+        "review": null,
+        "subject": "fix(qti): read the xPU syndrome registers at their offsets"
+       },
+       {
+        "commit": "850d5c9b0b16566c2b299e0eae1a16e73537fda3",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55670",
+        "subject": "fix(qti): drop the gold cluster settle delay"
+       },
+       {
+        "commit": "34983b2b015aab08dabda88da66a5930329c1994",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55532",
+        "subject": "refactor(qti): parameterize gold domain setup"
+       },
+       {
+        "commit": "dd97d999d0da186f39190b1bacb7dc640bcda9cb",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55533",
+        "subject": "fix(qti): fail CPU_ON when the gold domain does not come up"
+       },
+       {
+        "commit": "d41924a9775730dfea0d6a814b6eb9a9d5400d0e",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55534",
+        "subject": "fix(qti): stop the boot when CPUCP cannot be started"
+       },
+       {
+        "commit": "ece32f35aba69f2fef240524522daf843ca969e8",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55535",
+        "subject": "feat(qti): add a CPU_OFF holding pen"
+       },
+       {
+        "commit": "4b2746084bfae8b87f17c8f744dcfbda7d2901d3",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55536",
+        "subject": "feat(qti): initialize the Kodiak gold domain"
+       },
+       {
+        "commit": "2ae8c0b1c17339fa3a04790a3fce1c21dec07730",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55537",
+        "subject": "feat(qti): add Kodiak CPUCP support"
+       },
+       {
+        "commit": "45083855e5b52c82b74e3272f15915b44a9371c1",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55538",
+        "subject": "feat(qti): add the Kodiak PDC sequences"
+       },
+       {
+        "commit": "dbe3ba1b517ff88dafa4c9b27735f8373906d465",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55671",
+        "subject": "feat(qti): add the SiP GPU SMMU aperture call"
+       },
+       {
+        "commit": "1dba886c73543355610084909138c5260ef03d11",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55539",
+        "subject": "feat(qti): initialize the Kodiak GPU SMMU"
+       },
+       {
+        "commit": "2cf6459203355307beea990876f40fc8ac965bc3",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55540",
+        "subject": "feat(rb3gen2): boot without QTISECLIB"
+       },
+       {
+        "commit": "638a8448d3a68c24a6ca1b78802197b5e2eb8545",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55541",
+        "subject": "docs(rb3gen2): describe the native boot"
+       },
+       {
+        "commit": "1151bd08cf8106c2d76f9c178fdb0e3251fdaeae",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55528",
+        "subject": "refactor(qti): share the RPMh data between Lemans and Monaco"
+       },
+       {
+        "commit": "42c9212cb1fbb58cda68bca5a19e0fe24b95750f",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55529",
+        "subject": "feat(monza): add Monaco clock back-end"
+       },
+       {
+        "commit": "0fee066759d514d9d66af32286bdaf6bb8014799",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55530",
+        "subject": "fix(qti): only advertise SYSTEM_SUSPEND with a system-level state"
+       },
+       {
+        "commit": "266b60a31287ccdd881d97f1edd6663c45e36d35",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55531",
+        "subject": "fix(qti): program the Monaco GPU SMMU aperture"
+       },
+       {
+        "commit": "b21f5efe1a4aa04a58757c000a94f3fedeed926a",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54579",
+        "subject": "feat(qti): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "ee2467075c859cab6dc6d96760b2ab95580b7d4f",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55765",
+        "subject": "feat(monza): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "15713c960e52c2df4c27c23d6f162e74b093e46a",
+        "review": null,
+        "subject": "fix(qti): spmi_arb: take the arbiter layout from the platform"
+       },
+       {
+        "commit": "4de9db4ae03a3de6a342622412d9b47e332aa60a",
+        "review": null,
+        "subject": "fix(qti): spmi_arb: use the APID owned by the secure world"
+       },
+       {
+        "commit": "becaa28e83b44bf82f5de2e88df7c8bc53eb9322",
+        "review": null,
+        "subject": "fix(qti): let the platform choose the PS_HOLD reset type"
+       },
+       {
+        "commit": "4668cfb77043f2c972acfdc34a0613139c180fb9",
+        "review": null,
+        "subject": "refactor(qti): take the hoya GIC base from the chipset"
+       },
+       {
+        "commit": "14b120f0023a9b9291ade41b50d7d39986bd603e",
+        "review": null,
+        "subject": "feat(qti): add the SM8650 (Lanai) QRD platform"
+       },
+       {
+        "commit": "212ca12b538b31d2f261bcd674246a2e32c23b06",
+        "review": null,
+        "subject": "feat(qti): pdc: support PDCs whose sequences the AOP loads"
+       },
+       {
+        "commit": "ed6fcae6c8d3a74b1708f42c5371b0edddc51099",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55728",
+        "subject": "feat(cpus): let a derived core override the Cortex-A53 MIDR"
+       },
+       {
+        "commit": "60919e323be3e03bef87eece51a1094a6ca60337",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55729",
+        "subject": "feat(qti): add Kryo 2xx Silver CPU driver"
+       },
+       {
+        "commit": "46994a91f6650a9cd3dc0640488d39e2b211e4ae",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55730",
+        "subject": "refactor(qti): make the core power-down request a PM backend hook"
+       },
+       {
+        "commit": "0842110e28792f3dd2660322e92c78ee99a175aa",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55731",
+        "subject": "refactor(qti): make the secure error interrupts optional in the GIC table"
+       },
+       {
+        "commit": "429abca97ab14ab244422ee903c54e925b4d0577",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55732",
+        "subject": "refactor(qti): take the SPMI arbiter base from the SoC definitions"
+       },
+       {
+        "commit": "5ec0e0782d5c23c1fed77a2cb45da75a319547eb",
+        "review": "https://www.qualcomm.com/internet-of-things/products/q2-series/qrb2210",
+        "subject": "feat(qti): add Agatti SoC support"
+       },
+       {
+        "commit": "53369b78648ad76506f68cb5862f971f1a025cc3",
+        "review": "https://www.arduino.cc/product-uno-q/",
+        "subject": "feat(uno_q): add support for Arduino UNO Q"
+       },
+       {
+        "commit": "d9240af106d40ef5ca4ca255109e3c8fdeeb0ed5",
+        "review": "https://www.qualcomm.com/internet-of-things/products/q2-series/qrb2210",
+        "subject": "docs(qti): add Arduino UNO Q documentation"
+       },
+       {
+        "commit": "1489149e6b2c6a1c4d6f6a068c04a96ede725a2b",
+        "review": null,
+        "subject": "fix(qti): read the xPU syndrome registers at their offsets"
+       },
+       {
+        "commit": "39283cd5eab52e486775502f0dae044a6d126935",
+        "review": null,
+        "subject": "fix(qti): write the upper partition address only on wide MPUs"
+       },
+       {
+        "commit": "207f44517e3252eafe6badfe4712a28631bdebdb",
+        "review": null,
+        "subject": "feat(qti): add Agatti access control configuration"
+       },
+       {
+        "commit": "69e8d5c6309573c1bee7a5b82255925e518b4901",
+        "review": null,
+        "subject": "feat(uno_q): protect BL31 and BL32 from the normal world"
+       },
+       {
+        "commit": "6e06ee51ca3cd264e8a7d1dc619ccfd0e5da0127",
+        "review": null,
+        "subject": "feat(qti): let BL2 lock memory before it reads the FIP"
+       },
+       {
+        "commit": "cef8af1114b1626c6fb7107aed93758a70084696",
+        "review": null,
+        "subject": "fix(uno_q): lock the FIP staging window before BL2 reads it"
+       },
+       {
+        "commit": "8477b428d961ce9a8831a13a9f729f513cc09418",
+        "review": null,
+        "subject": "feat(qti): let BL2 authenticate the images it loads"
+       },
+       {
+        "commit": "7a9de0fc1913872caa36659e329d4c1c871cf540",
+        "review": null,
+        "subject": "feat(uno_q): support trusted board boot"
+       },
+       {
+        "commit": "bc7beb1ef7b8dd6246699ac1c4c9409e43ccfbe3",
+        "review": null,
+        "subject": "feat(qti): program the Adreno SMMU aperture on Agatti"
+       },
+       {
+        "commit": "e839f0e6f294a8e045f083b5eb02f20ded442780",
+        "review": null,
+        "subject": "feat(qti): support a separate BL2 NOLOAD region"
+       },
+       {
+        "commit": "2b23c5ebce7a9a2030a668de1c6d873a15a143e2",
+        "review": null,
+        "subject": "fix(uno_q): keep the TBB BL2 in IMEM"
+       },
+       {
+        "commit": "7f4a15b09c264fce5b9aeb67c08ae1b9d0c9e94e",
+        "review": null,
+        "subject": "fix(psci): offer CPU_SUSPEND to platforms with only CPU standby"
+       },
+       {
+        "commit": "47e0cde04c9c78f0b687a8dad84c5742043d4899",
+        "review": null,
+        "subject": "feat(qti): add Talos SoC definitions"
+       },
+       {
+        "commit": "7274cb3b6f403ec01b8fe8feb3098962f2fe861c",
+        "review": null,
+        "subject": "refactor(qti): move qcs615 under the talos directory"
+       },
+       {
+        "commit": "88ca30aaf08dfa0dd62a55344436482e87b44c90",
+        "review": null,
+        "subject": "feat(qti): add Talos apps PDC tables"
+       },
+       {
+        "commit": "c816f651c433efdd1e96c8fe08bc8c007ead3f4a",
+        "review": null,
+        "subject": "fix(qti): reject MEM_ASSIGN without an access control backend"
+       },
+       {
+        "commit": "e0e269ff0408d2510d59a6c3ac874111c47eba84",
+        "review": null,
+        "subject": "feat(qcs615_ride): add XBL boot support"
+       },
+       {
+        "commit": "3b6a0af29dea6cf0bfffec59d1043b55861d2039",
+        "review": null,
+        "subject": "docs(qti): describe the Talos boot flow"
+       },
+       {
+        "commit": "be19b62556c6c9d0c9bd4a6b5171d25af7656699",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54926",
+        "subject": "fix(psci): allow OS-initiated mode while other cores are off"
+       },
+       {
+        "commit": "a257b6104ffee86e4586b431c9facfb78ac40275",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55530",
+        "subject": "fix(qti): only advertise SYSTEM_SUSPEND with a system-level state"
+       },
+       {
+        "commit": "b3fbecd10dddb51ff7b5a9cdceb37a6e43a50ac9",
+        "review": null,
+        "subject": "fix(qti): route the Talos PON interrupts to the apps"
+       },
+       {
+        "commit": "0792c3ed398d9bafebc13f3f5caf73f3df84e4a5",
+        "review": null,
+        "subject": "feat(qti): lanai: enable the apps PDC"
+       },
+       {
+        "commit": "3a47fdda98a152204b244218bdbb3fec118b53ea",
+        "review": null,
+        "subject": "feat(qti): lanai: power on the secondary cores"
+       },
+       {
+        "commit": "ce6dd686f51513942c71e4a77dacb98b5b0227aa",
+        "review": null,
+        "subject": "feat(qti): watchdog: support a write-only control register"
+       },
+       {
+        "commit": "6f5cdaf175873c7c3957fe242e4ab83144b10894",
+        "review": null,
+        "subject": "feat(qti): lanai: service the secure watchdog"
+       },
+       {
+        "commit": "5f11b9381a3c6fed806082d01ad86a3a120905aa",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55766",
+        "subject": "refactor(qti): take the SYSTEM_RESET reset type from the platform"
+       },
+       {
+        "commit": "6eea0cb7086df045b4946dbb7e28604f1241e7c2",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55767",
+        "subject": "fix(monza): use a PMIC hard reset for SYSTEM_RESET"
+       },
+       {
+        "commit": "466fd4a19b5fbc5eb61823cf8328cb3e108d3ab7",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55253",
+        "subject": "refactor(platforms): leave CNTFRQ_EL0 to PSCI"
+       },
+       {
+        "commit": "dc6def90397f3d165359fdd751560c648be8d2e5",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/53770",
+        "subject": "feat(qti): add IPCC driver with Nord and Shikra support"
+       },
+       {
+        "commit": "2b34e368e771f53dc70fbd72a274048dc2b37f67",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55528",
+        "subject": "refactor(qti): share the RPMh data between Lemans and Monaco"
+       },
+       {
+        "commit": "b4f1e0d0e21588562a788fccd9ed27ac30c96b61",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55529",
+        "subject": "feat(monza): add Monaco clock back-end"
+       },
+       {
+        "commit": "274dbf1277acc01ca07bd90766e3fcb6e4ff101b",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55530",
+        "subject": "fix(qti): only advertise SYSTEM_SUSPEND with a system-level state"
+       },
+       {
+        "commit": "5a0845d106cd68b7087ab768870c44d4333b639e",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55531",
+        "subject": "fix(qti): program the Monaco GPU SMMU aperture"
+       },
+       {
+        "commit": "33e62b9f3180af36c00b87165d42bfa42e8b770b",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54579",
+        "subject": "feat(qti): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "5a90d00ccfe7074ae4bde86f155261507067b897",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55765",
+        "subject": "feat(monza): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "2f5df2d8fee82ab4b6026c7d46b8b0327274ca15",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55766",
+        "subject": "refactor(qti): take the SYSTEM_RESET reset type from the platform"
+       },
+       {
+        "commit": "d1989862d452eb28a5686c718933c970f3200ab7",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55767",
+        "subject": "fix(monza): use a PMIC hard reset for SYSTEM_RESET"
+       },
+       {
+        "commit": "11fcaf2613ee827cb2ec189fdae788600a789623",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55253",
+        "subject": "refactor(platforms): leave CNTFRQ_EL0 to PSCI"
+       },
+       {
+        "commit": "1e8af1cab53163e353ad89c63eb391d5b164c5a0",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55088",
+        "subject": "fix(psci): run the arch setup before pwr_domain_on_finish()"
+       },
+       {
+        "commit": "84a2d6be9183edc1184b1636024a58ba3ec1c7cd",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/53616",
+        "subject": "feat(qti): add PDC chipset hooks for LeMans"
+       },
+       {
+        "commit": "f52bac0b21bbacc64b2bd30556fdbaeb7d121945",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54830",
+        "subject": "feat(qti): add PSCI SYSTEM_RESET2 support"
+       },
+       {
+        "commit": "d29fde3c41d1d32d3aa5a529028b769c6a3e2f91",
+        "review": null,
+        "subject": "fix(qti): program the Lemans GPU SMMU aperture"
+       },
+       {
+        "commit": "e7e26831cdeef8656b6c11a0c284cc4ec2c759b1",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55088",
+        "subject": "fix(psci): run the arch setup before pwr_domain_on_finish()"
+       },
+       {
+        "commit": "02a8e694affceb7a9247544cdce2a33afdfde7c1",
+        "review": null,
+        "subject": "fix(qti): program the PMIC reset type that SYSTEM_RESET2 asks for"
+       },
+       {
+        "commit": "657d882414160b1693dd7cb5dae36a21567cb5c4",
+        "review": null,
+        "subject": "fix(qti): offer SYSTEM_RESET2 only with the reset cookie store"
+       },
+       {
+        "commit": "17d3a8df67ac9a5670d8a8627e24d6c158ef5fe3",
+        "review": null,
+        "subject": "docs(qti): add TOPICS.md for the integration branch"
+       }
+      ],
+      "distance": 81,
+      "repo": "https://review.trustedfirmware.org/TF-A/trusted-firmware-a"
+     },
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/17d3a8df67ac9a5670d8a8627e24d6c158ef5fe3"
+    },
+    {
+     "branch": "qcom/integration",
+     "commit": "48e45590f07fa19f3f8be80f9d8b2d03858f130a",
+     "fingerprint": "ubci-40833925485-1-master-open-lemans-evk",
+     "name": "optee",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/optee_os",
+     "role": "pinned",
+     "soc_branch": {
+      "commit": "67b4531d230bf10a9bbeed925a554ed90eda3de7",
+      "name": "qcom/lemans",
+      "url": "https://github.com/EmbeddedAndroid/optee_os/commit/67b4531d230bf10a9bbeed925a554ed90eda3de7"
+     },
+     "upstream": {
+      "base": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+      "carried": [
+       {
+        "commit": "3b0e16c127646d4a063885756be02f0bebfb257d",
+        "review": null,
+        "subject": "plat-qcom: hoya: move the pIMEM TEE layout to the targets"
+       },
+       {
+        "commit": "4cbdf679a00790736cfd5531fb75b07865e30006",
+        "review": null,
+        "subject": "plat-qcom: hoya: move the RNG base to the targets"
+       },
+       {
+        "commit": "ea8d8510ec8844a7b1d05f380351558b5e85bcbd",
+        "review": null,
+        "subject": "plat-qcom: hoya: add talos support"
+       },
+       {
+        "commit": "2bb9d29ace7d79552b394878632fb852d57f0fd9",
+        "review": null,
+        "subject": "ci: add qcom-talos build"
+       },
+       {
+        "commit": "ef551e4e447d22259052fe3b448a65177e0778d6",
+        "review": null,
+        "subject": "clk: qcom: talos: add PAS clock support"
+       },
+       {
+        "commit": "c8cf31840b6b513c65489163ee3f32ae76c6192a",
+        "review": null,
+        "subject": "pta: qcom: pas: talos: add ADSP and CDSP bring-up and shutdown"
+       },
+       {
+        "commit": "0b1f7848d9637675e9338ba0b29336774d34ef0e",
+        "review": null,
+        "subject": "plat-qcom: hoya: talos: enable the PAS pseudo-TA"
+       },
+       {
+        "commit": "9643647198626d08b9c773a528dd5acbf75a3e3a",
+        "review": null,
+        "subject": "plat-qcom: wildcat: add Lanai (SM8650)"
+       },
+       {
+        "commit": "a330e5c3e67538b9781fee6c7e7240668ee330f3",
+        "review": null,
+        "subject": "pta: qcom: pas: talos: set the controller map type"
+       },
+       {
+        "commit": "c5970650bbd72ebffed86030a88cea7f7436ec00",
+        "review": null,
+        "subject": "clk: qcom: talos: restart Turing whatever its power-on flag says"
+       },
+       {
+        "commit": "a2d7bc346b1ccb3f34f68ed37b9e4361530f504e",
+        "review": null,
+        "subject": "clk: qcom: Get Lucid-EVO PLL offsets from platform"
+       },
+       {
+        "commit": "e5328180e783355ac82d811f32cee6e3890bb722",
+        "review": null,
+        "subject": "clk: qcom: lemans: return TEE_ERROR_TIMEOUT from LPASS collapse polls"
+       },
+       {
+        "commit": "26d2df5f8e95424851c985d3d199e970889e4343",
+        "review": null,
+        "subject": "clk: qcom: lemans: reset a GP-DSP while its PDC holds it in low power"
+       },
+       {
+        "commit": "841cb20ec6f688bfc8ff6fa9978208fbc9cdaa0b",
+        "review": null,
+        "subject": "clk: qcom: hoya: share the Lemans Q6 PAS sequences"
+       },
+       {
+        "commit": "ec624733966f8538510c2de3a0d61027a600243c",
+        "review": null,
+        "subject": "clk: qcom: lemans: return the NSP clock enable error as is"
+       },
+       {
+        "commit": "7146d510a17d8b1bfac21fbc631d84cf7cfb5f4b",
+        "review": null,
+        "subject": "pta: qcom: pas: reset the subsystem when a start fails"
+       },
+       {
+        "commit": "566e9371dd9d5cc7708e65610d268dc126b31777",
+        "review": null,
+        "subject": "clk: qcom: hoya: enable the QDSP6 boot branches with the NSP clocks"
+       },
+       {
+        "commit": "4d80359d92f4223f0491adc87b7e7f91f63d6149",
+        "review": null,
+        "subject": "clk: qcom: monaco: add PAS clock support"
+       },
+       {
+        "commit": "b343917cd3a74cae47d87d8284d245c4d364d9e3",
+        "review": null,
+        "subject": "pta: qcom: pas: monaco: add ADSP, CDSP and GP-DSP0 bring-up"
+       },
+       {
+        "commit": "78057e5c9fed21abd4a6d50473df011eb8502e34",
+        "review": null,
+        "subject": "plat-qcom: hoya: monaco: enable the PAS pseudo-TA"
+       },
+       {
+        "commit": "120a891f1f421c916fc9141a6bf380770ab8ba9c",
+        "review": null,
+        "subject": "pta: qcom: pas: reset the subsystem when a start fails"
+       },
+       {
+        "commit": "5fa3fa072c4bb58392c0060e46f3a005c05a2654",
+        "review": null,
+        "subject": "core: pta: qcom: pas: Move elf related helpers to pas_elf.c"
+       },
+       {
+        "commit": "50e42d0b43d94a0ea2ed59012c8da1889d45ead8",
+        "review": null,
+        "subject": "core: pta: qcom: pas: Set fw_base for non-relocatable images"
+       },
+       {
+        "commit": "ec088f71bc8cae60ca3bfbc7de12b2ea792b1f3a",
+        "review": null,
+        "subject": "pta: qcom: pas: bound the program header table in pas_elf_parse()"
+       },
+       {
+        "commit": "83f98cc0168ba085a2cd1fab01d8774a942fdefe",
+        "review": null,
+        "subject": "pta: qcom: pas: pass image metadata to the subsystem"
+       },
+       {
+        "commit": "471cd2597fe272ecdcc22f35905cf5b0b2f18ba5",
+        "review": null,
+        "subject": "ta: qcom_pas: keep one image generation across INIT_IMAGE"
+       },
+       {
+        "commit": "744141f35405778dc84a6ac06e50379512619aa7",
+        "review": null,
+        "subject": "pta: qcom: pas: add video firmware seed helpers"
+       },
+       {
+        "commit": "9c09dc296a8fc8ad3f7c847fbbc5183ded4ead70",
+        "review": null,
+        "subject": "pta: qcom: pas: define iris registers from IRIS_BASE"
+       },
+       {
+        "commit": "2aa24b32551066b7721f3d17fe18f4791a6d1b77",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: program iris CP layout and seed"
+       },
+       {
+        "commit": "9696466e016d48e4faf45e098c68ba21c5da53d3",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: program iris secure session settings"
+       },
+       {
+        "commit": "8c3f3fbbe85ff07e745ceaa0df13c8c9f0e2131e",
+        "review": null,
+        "subject": "pta: qcom: pas: lemans: program iris CP layout and seed"
+       },
+       {
+        "commit": "ac4bd89e8d5b58ffd5088e3b6853fcb8facc3d65",
+        "review": null,
+        "subject": "pta: qcom: pas: lemans: program iris secure session settings"
+       },
+       {
+        "commit": "36a2a8feba61322a71d481ad00cfcdc372d25123",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: add the ADSP shutdown"
+       },
+       {
+        "commit": "b255a52ce496d90220b3d76cc26e6ff77f4d352a",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: add the CDSP shutdown"
+       },
+       {
+        "commit": "8d5134bbd43cab348b3a5b66257b28b093a1b8b6",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: map the USB pages the ADSP reads"
+       },
+       {
+        "commit": "1dae84adceae1c1ddb315e53123d91c25255365d",
+        "review": null,
+        "subject": "pta: qcom: pas: reset the subsystem when a start fails"
+       },
+       {
+        "commit": "8ea7d9e0837f7c9532444efd14fac44d3a6a66a0",
+        "review": null,
+        "subject": "core: pta: qcom: pas: Move elf related helpers to pas_elf.c"
+       },
+       {
+        "commit": "ae40b9e1ddedb6da6031427b8757fee2cff13a97",
+        "review": null,
+        "subject": "core: pta: qcom: pas: Set fw_base for non-relocatable images"
+       },
+       {
+        "commit": "cc80a5100e3b2ebf550e39382b17a9997af78e62",
+        "review": null,
+        "subject": "pta: qcom: pas: bound the program header table in pas_elf_parse()"
+       },
+       {
+        "commit": "115fde748c9402d8e057b719c99ac94d621f4f9e",
+        "review": null,
+        "subject": "pta: qcom: pas: pass image metadata to the subsystem"
+       },
+       {
+        "commit": "6330e076805ecf0bed35c9a9b927b6b15f0a11a9",
+        "review": null,
+        "subject": "ta: qcom_pas: keep one image generation across INIT_IMAGE"
+       },
+       {
+        "commit": "8cf35a2d3adb688a8f8d3f94f2618eb7f4f4a690",
+        "review": null,
+        "subject": "pta: qcom: pas: add video firmware seed helpers"
+       },
+       {
+        "commit": "d47639a97e15bf697c3736ae967e7614bf1284ec",
+        "review": null,
+        "subject": "pta: qcom: pas: define iris registers from IRIS_BASE"
+       },
+       {
+        "commit": "065b11dec6c6290ae9f2920fe984a9db2e6c7dd0",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: program iris CP layout and seed"
+       },
+       {
+        "commit": "df57c227278689a86c0afcb6ea033c666bac6268",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: program iris secure session settings"
+       },
+       {
+        "commit": "5beb2b5cb2fb93ff9cf303b6f2d65de7014f91d0",
+        "review": null,
+        "subject": "pta: qcom: pas: lemans: program iris CP layout and seed"
+       },
+       {
+        "commit": "ac2381866f31f11da1cb8bf07bd0c04f60001443",
+        "review": null,
+        "subject": "pta: qcom: pas: lemans: program iris secure session settings"
+       },
+       {
+        "commit": "824811d5f10ce5668332e9f416fe44274f8b5426",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: add the ADSP shutdown"
+       },
+       {
+        "commit": "9a0398cbffd453246b2e6d7ae5e085ecb287fa35",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: add the CDSP shutdown"
+       },
+       {
+        "commit": "979d1a895f55fd577e3d8448e898b3da6357633e",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: map the USB pages the ADSP reads"
+       },
+       {
+        "commit": "f7e957eb0e8dbf66f9f0f4ba8ded73b2b750f1b4",
+        "review": null,
+        "subject": "drivers: qcom: add GENI SPI driver"
+       },
+       {
+        "commit": "005cb957e74c66647d8a888720b2a1a24e1c7d36",
+        "review": null,
+        "subject": "drivers: qcom: spi: add lemans SPI config"
+       },
+       {
+        "commit": "4f958e24ed1468416d1772b16a9d26983ab5cd7c",
+        "review": null,
+        "subject": "drivers: qcom: spi: add loopback SPI test"
+       },
+       {
+        "commit": "9dbfbec118beb556c597d76287a3136058021df8",
+        "review": null,
+        "subject": "MAINTAINERS: add Qualcomm GENI SPI driver"
+       },
+       {
+        "commit": "61e0f31162ef52fea97dd9bfaaffc6b94e032229",
+        "review": null,
+        "subject": "plat-qcom: add optional embedded DTB support"
+       },
+       {
+        "commit": "947657f8d58a42d7eeeb4bdf5e936a42c106685d",
+        "review": null,
+        "subject": "drivers: qcom_geni_uart: add DT console driver"
+       },
+       {
+        "commit": "ec96e639edda1f9edbdd98466409b08740d8c6c1",
+        "review": null,
+        "subject": "clk: qcom: agatti: add PAS clock support"
+       },
+       {
+        "commit": "f6b11715a6205d3f54383d01c2773dbc906adff0",
+        "review": null,
+        "subject": "pta: qcom: pas: agatti: add ADSP bring-up"
+       },
+       {
+        "commit": "eac15ccbca0ee32750e0c02d936d498a94a7e1d6",
+        "review": null,
+        "subject": "plat-qcom: bruin: agatti: enable the PAS pseudo-TA"
+       },
+       {
+        "commit": "3c593694ac8af4061327660c2c76f0dfd7e7c9bf",
+        "review": null,
+        "subject": "pta: qcom: pas: agatti: add GPU zap shader support"
+       },
+       {
+        "commit": "78f2a47cebf6e88c3ab7f8123569eccec431853d",
+        "review": null,
+        "subject": "core: pta: qcom: pas: Move elf related helpers to pas_elf.c"
+       },
+       {
+        "commit": "52ab21abdc7c5342d2dc399bcf05abd8a030458e",
+        "review": null,
+        "subject": "core: pta: qcom: pas: Set fw_base for non-relocatable images"
+       },
+       {
+        "commit": "d80ba1cab66c8fabdd9aec8e38670fe2c45e7601",
+        "review": null,
+        "subject": "pta: qcom: pas: bound the program header table in pas_elf_parse()"
+       },
+       {
+        "commit": "798f97199a8112eaeb75a07a734cf1df46e0ea39",
+        "review": null,
+        "subject": "pta: qcom: pas: pass image metadata to the subsystem"
+       },
+       {
+        "commit": "2160daf2359e7cf13cd61608edd4efb00b2fbce2",
+        "review": null,
+        "subject": "pta: qcom: pas: agatti: add venus bring-up"
+       },
+       {
+        "commit": "edaeed5f11bbf60ba13ca916e4568864a44c17c9",
+        "review": null,
+        "subject": "pta: qcom: pas: agatti: clean the venus seed to memory"
+       },
+       {
+        "commit": "9e49556cea23a12bc9c8aa4d7629af74494644a5",
+        "review": null,
+        "subject": "drivers: qcom: qfprom: isolate RPMH power control"
+       },
+       {
+        "commit": "fe4f2432d6e46e909e992ce96833f13cd28d9ef1",
+        "review": null,
+        "subject": "drivers: qcom: qfprom: add Shikra platform support"
+       },
+       {
+        "commit": "cb93a72ec8901bb679e8ae3b900ce5a52cd43049",
+        "review": "https://github.com/qualcomm-linux/optee_os/pull/59",
+        "subject": "drivers: qcom: add RPM client for Shikra"
+       },
+       {
+        "commit": "ebbbd4a79f2e98232bbaec190593a38880c8b0b9",
+        "review": null,
+        "subject": "plat-qcom: shikra: add QUP clock support"
+       },
+       {
+        "commit": "62a6594de998900064a19d724c1dd9fc32cd6f9e",
+        "review": null,
+        "subject": "drivers: qcom: tlmm: enable driver for Shikra"
+       },
+       {
+        "commit": "0a7009681f4352bd1acfacd14b9e6528dd7b4617",
+        "review": null,
+        "subject": "plat-qcom: dts: add embedded DTBs for Lemans, IPQ52xx and IPQ96xx"
+       },
+       {
+        "commit": "0beba847fb390392beb542c6e585b131d0025625",
+        "review": null,
+        "subject": "plat-qcom: take GIC bases from DT when available"
+       },
+       {
+        "commit": "ef9007b31b2984e622438030b6d771d0edf0ef54",
+        "review": null,
+        "subject": "drivers: qcom: csrng: take register base from DT when available"
+       },
+       {
+        "commit": "67b4531d230bf10a9bbeed925a554ed90eda3de7",
+        "review": null,
+        "subject": "drivers: qcom: ramblur: take pIMEM registers and vault from DT when available"
+       },
+       {
+        "commit": "48e45590f07fa19f3f8be80f9d8b2d03858f130a",
+        "review": null,
+        "subject": "plat-qcom: add TOPICS.md for the integration branch"
+       }
+      ],
+      "distance": 76,
+      "repo": "https://github.com/OP-TEE/optee_os"
+     },
+     "url": "https://github.com/EmbeddedAndroid/optee_os/commit/48e45590f07fa19f3f8be80f9d8b2d03858f130a"
+    },
+    {
+     "fingerprint": "LEMANSFP-261009-030954-lpb4",
+     "name": "u-boot spl",
+     "origin": "downstream",
+     "role": "pinned",
+     "sha256": "c6cb506e3e51172446b8ec456dd647d9556ad55d5c6b94bc5ca3e39edc9a3893",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-open-lemans-evk",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "open",
+   "state": "queued"
+  },
+  {
+   "board": "lemans-evk",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "component": "u-boot spl",
+     "detail": "from the tree under test, in place of tz",
+     "origin": "upstream",
+     "stage": "U-Boot SPL"
+    },
+    {
+     "component": "tf-a",
+     "origin": "upstream",
+     "stage": "TF-A BL31"
+    },
+    {
+     "component": "optee",
+     "origin": "upstream",
+     "stage": "OP-TEE"
+    },
+    {
+     "origin": "none",
+     "stage": "hypervisor"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in the SPL FIT",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "detail": "EL2",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_lemans_spl_defconfig",
+       "optional": false,
+       "used": null
+      },
+      {
+       "name": "tfa-optee.config",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/lemans-evk",
+     "fingerprint": "ubci-40833925485-1-master-spl-lemans-evk",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS9100_bootbinaries_00142.zip",
+       "sha256": "17d2c5bae5c17b665bafd9bba8962f41aec7be2f874cde90b0976730f0098bf6",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00142/QCS9100_bootbinaries_00142.zip"
+      },
+      {
+       "name": "QCS9100_bootbinaries_immutable_00142.zip",
+       "sha256": "1aa0b67671ef026a40ca133f32128d07fffd614a47cf51eaa5cd5c7d4941d034",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00142/QCS9100_bootbinaries_immutable_00142.zip"
+      },
+      {
+       "name": "rb8_core_kit.zip",
+       "sha256": "a252244f800d7c9e15883e12935af4113f9f2ecba6490e46cd9b943169f15bfa",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS9100/cdt/rb8_core_kit.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS9100 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    },
+    {
+     "branch": "qcom/integration",
+     "commit": "17d3a8df67ac9a5670d8a8627e24d6c158ef5fe3",
+     "fingerprint": "ubci-40833925485-1-master-spl-lemans-evk",
+     "name": "tf-a",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/arm-trusted-firmware",
+     "role": "pinned",
+     "soc_branch": {
+      "commit": "657d882414160b1693dd7cb5dae36a21567cb5c4",
+      "name": "qcom/lemans",
+      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/657d882414160b1693dd7cb5dae36a21567cb5c4"
+     },
+     "upstream": {
+      "base": "eb60949df191608e1a5a707fc175fa74c39c245c",
+      "carried": [
+       {
+        "commit": "fb4cf39525955115a1780b06a346edac4a2a833e",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54909",
+        "subject": "fix(corstone-1000): align BL config mapping"
+       },
+       {
+        "commit": "399837fafef58ad9af943acaab4ce0a9a79edacd",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54910",
+        "subject": "fix(corstone-1000): delay early GPT access"
+       },
+       {
+        "commit": "9bebaf3952a1fcb43b7ddfaec90a2c8180f0373a",
+        "review": null,
+        "subject": "fix(qti): read the xPU syndrome registers at their offsets"
+       },
+       {
+        "commit": "850d5c9b0b16566c2b299e0eae1a16e73537fda3",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55670",
+        "subject": "fix(qti): drop the gold cluster settle delay"
+       },
+       {
+        "commit": "34983b2b015aab08dabda88da66a5930329c1994",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55532",
+        "subject": "refactor(qti): parameterize gold domain setup"
+       },
+       {
+        "commit": "dd97d999d0da186f39190b1bacb7dc640bcda9cb",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55533",
+        "subject": "fix(qti): fail CPU_ON when the gold domain does not come up"
+       },
+       {
+        "commit": "d41924a9775730dfea0d6a814b6eb9a9d5400d0e",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55534",
+        "subject": "fix(qti): stop the boot when CPUCP cannot be started"
+       },
+       {
+        "commit": "ece32f35aba69f2fef240524522daf843ca969e8",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55535",
+        "subject": "feat(qti): add a CPU_OFF holding pen"
+       },
+       {
+        "commit": "4b2746084bfae8b87f17c8f744dcfbda7d2901d3",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55536",
+        "subject": "feat(qti): initialize the Kodiak gold domain"
+       },
+       {
+        "commit": "2ae8c0b1c17339fa3a04790a3fce1c21dec07730",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55537",
+        "subject": "feat(qti): add Kodiak CPUCP support"
+       },
+       {
+        "commit": "45083855e5b52c82b74e3272f15915b44a9371c1",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55538",
+        "subject": "feat(qti): add the Kodiak PDC sequences"
+       },
+       {
+        "commit": "dbe3ba1b517ff88dafa4c9b27735f8373906d465",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55671",
+        "subject": "feat(qti): add the SiP GPU SMMU aperture call"
+       },
+       {
+        "commit": "1dba886c73543355610084909138c5260ef03d11",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55539",
+        "subject": "feat(qti): initialize the Kodiak GPU SMMU"
+       },
+       {
+        "commit": "2cf6459203355307beea990876f40fc8ac965bc3",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55540",
+        "subject": "feat(rb3gen2): boot without QTISECLIB"
+       },
+       {
+        "commit": "638a8448d3a68c24a6ca1b78802197b5e2eb8545",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55541",
+        "subject": "docs(rb3gen2): describe the native boot"
+       },
+       {
+        "commit": "1151bd08cf8106c2d76f9c178fdb0e3251fdaeae",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55528",
+        "subject": "refactor(qti): share the RPMh data between Lemans and Monaco"
+       },
+       {
+        "commit": "42c9212cb1fbb58cda68bca5a19e0fe24b95750f",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55529",
+        "subject": "feat(monza): add Monaco clock back-end"
+       },
+       {
+        "commit": "0fee066759d514d9d66af32286bdaf6bb8014799",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55530",
+        "subject": "fix(qti): only advertise SYSTEM_SUSPEND with a system-level state"
+       },
+       {
+        "commit": "266b60a31287ccdd881d97f1edd6663c45e36d35",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55531",
+        "subject": "fix(qti): program the Monaco GPU SMMU aperture"
+       },
+       {
+        "commit": "b21f5efe1a4aa04a58757c000a94f3fedeed926a",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54579",
+        "subject": "feat(qti): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "ee2467075c859cab6dc6d96760b2ab95580b7d4f",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55765",
+        "subject": "feat(monza): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "15713c960e52c2df4c27c23d6f162e74b093e46a",
+        "review": null,
+        "subject": "fix(qti): spmi_arb: take the arbiter layout from the platform"
+       },
+       {
+        "commit": "4de9db4ae03a3de6a342622412d9b47e332aa60a",
+        "review": null,
+        "subject": "fix(qti): spmi_arb: use the APID owned by the secure world"
+       },
+       {
+        "commit": "becaa28e83b44bf82f5de2e88df7c8bc53eb9322",
+        "review": null,
+        "subject": "fix(qti): let the platform choose the PS_HOLD reset type"
+       },
+       {
+        "commit": "4668cfb77043f2c972acfdc34a0613139c180fb9",
+        "review": null,
+        "subject": "refactor(qti): take the hoya GIC base from the chipset"
+       },
+       {
+        "commit": "14b120f0023a9b9291ade41b50d7d39986bd603e",
+        "review": null,
+        "subject": "feat(qti): add the SM8650 (Lanai) QRD platform"
+       },
+       {
+        "commit": "212ca12b538b31d2f261bcd674246a2e32c23b06",
+        "review": null,
+        "subject": "feat(qti): pdc: support PDCs whose sequences the AOP loads"
+       },
+       {
+        "commit": "ed6fcae6c8d3a74b1708f42c5371b0edddc51099",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55728",
+        "subject": "feat(cpus): let a derived core override the Cortex-A53 MIDR"
+       },
+       {
+        "commit": "60919e323be3e03bef87eece51a1094a6ca60337",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55729",
+        "subject": "feat(qti): add Kryo 2xx Silver CPU driver"
+       },
+       {
+        "commit": "46994a91f6650a9cd3dc0640488d39e2b211e4ae",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55730",
+        "subject": "refactor(qti): make the core power-down request a PM backend hook"
+       },
+       {
+        "commit": "0842110e28792f3dd2660322e92c78ee99a175aa",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55731",
+        "subject": "refactor(qti): make the secure error interrupts optional in the GIC table"
+       },
+       {
+        "commit": "429abca97ab14ab244422ee903c54e925b4d0577",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55732",
+        "subject": "refactor(qti): take the SPMI arbiter base from the SoC definitions"
+       },
+       {
+        "commit": "5ec0e0782d5c23c1fed77a2cb45da75a319547eb",
+        "review": "https://www.qualcomm.com/internet-of-things/products/q2-series/qrb2210",
+        "subject": "feat(qti): add Agatti SoC support"
+       },
+       {
+        "commit": "53369b78648ad76506f68cb5862f971f1a025cc3",
+        "review": "https://www.arduino.cc/product-uno-q/",
+        "subject": "feat(uno_q): add support for Arduino UNO Q"
+       },
+       {
+        "commit": "d9240af106d40ef5ca4ca255109e3c8fdeeb0ed5",
+        "review": "https://www.qualcomm.com/internet-of-things/products/q2-series/qrb2210",
+        "subject": "docs(qti): add Arduino UNO Q documentation"
+       },
+       {
+        "commit": "1489149e6b2c6a1c4d6f6a068c04a96ede725a2b",
+        "review": null,
+        "subject": "fix(qti): read the xPU syndrome registers at their offsets"
+       },
+       {
+        "commit": "39283cd5eab52e486775502f0dae044a6d126935",
+        "review": null,
+        "subject": "fix(qti): write the upper partition address only on wide MPUs"
+       },
+       {
+        "commit": "207f44517e3252eafe6badfe4712a28631bdebdb",
+        "review": null,
+        "subject": "feat(qti): add Agatti access control configuration"
+       },
+       {
+        "commit": "69e8d5c6309573c1bee7a5b82255925e518b4901",
+        "review": null,
+        "subject": "feat(uno_q): protect BL31 and BL32 from the normal world"
+       },
+       {
+        "commit": "6e06ee51ca3cd264e8a7d1dc619ccfd0e5da0127",
+        "review": null,
+        "subject": "feat(qti): let BL2 lock memory before it reads the FIP"
+       },
+       {
+        "commit": "cef8af1114b1626c6fb7107aed93758a70084696",
+        "review": null,
+        "subject": "fix(uno_q): lock the FIP staging window before BL2 reads it"
+       },
+       {
+        "commit": "8477b428d961ce9a8831a13a9f729f513cc09418",
+        "review": null,
+        "subject": "feat(qti): let BL2 authenticate the images it loads"
+       },
+       {
+        "commit": "7a9de0fc1913872caa36659e329d4c1c871cf540",
+        "review": null,
+        "subject": "feat(uno_q): support trusted board boot"
+       },
+       {
+        "commit": "bc7beb1ef7b8dd6246699ac1c4c9409e43ccfbe3",
+        "review": null,
+        "subject": "feat(qti): program the Adreno SMMU aperture on Agatti"
+       },
+       {
+        "commit": "e839f0e6f294a8e045f083b5eb02f20ded442780",
+        "review": null,
+        "subject": "feat(qti): support a separate BL2 NOLOAD region"
+       },
+       {
+        "commit": "2b23c5ebce7a9a2030a668de1c6d873a15a143e2",
+        "review": null,
+        "subject": "fix(uno_q): keep the TBB BL2 in IMEM"
+       },
+       {
+        "commit": "7f4a15b09c264fce5b9aeb67c08ae1b9d0c9e94e",
+        "review": null,
+        "subject": "fix(psci): offer CPU_SUSPEND to platforms with only CPU standby"
+       },
+       {
+        "commit": "47e0cde04c9c78f0b687a8dad84c5742043d4899",
+        "review": null,
+        "subject": "feat(qti): add Talos SoC definitions"
+       },
+       {
+        "commit": "7274cb3b6f403ec01b8fe8feb3098962f2fe861c",
+        "review": null,
+        "subject": "refactor(qti): move qcs615 under the talos directory"
+       },
+       {
+        "commit": "88ca30aaf08dfa0dd62a55344436482e87b44c90",
+        "review": null,
+        "subject": "feat(qti): add Talos apps PDC tables"
+       },
+       {
+        "commit": "c816f651c433efdd1e96c8fe08bc8c007ead3f4a",
+        "review": null,
+        "subject": "fix(qti): reject MEM_ASSIGN without an access control backend"
+       },
+       {
+        "commit": "e0e269ff0408d2510d59a6c3ac874111c47eba84",
+        "review": null,
+        "subject": "feat(qcs615_ride): add XBL boot support"
+       },
+       {
+        "commit": "3b6a0af29dea6cf0bfffec59d1043b55861d2039",
+        "review": null,
+        "subject": "docs(qti): describe the Talos boot flow"
+       },
+       {
+        "commit": "be19b62556c6c9d0c9bd4a6b5171d25af7656699",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54926",
+        "subject": "fix(psci): allow OS-initiated mode while other cores are off"
+       },
+       {
+        "commit": "a257b6104ffee86e4586b431c9facfb78ac40275",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55530",
+        "subject": "fix(qti): only advertise SYSTEM_SUSPEND with a system-level state"
+       },
+       {
+        "commit": "b3fbecd10dddb51ff7b5a9cdceb37a6e43a50ac9",
+        "review": null,
+        "subject": "fix(qti): route the Talos PON interrupts to the apps"
+       },
+       {
+        "commit": "0792c3ed398d9bafebc13f3f5caf73f3df84e4a5",
+        "review": null,
+        "subject": "feat(qti): lanai: enable the apps PDC"
+       },
+       {
+        "commit": "3a47fdda98a152204b244218bdbb3fec118b53ea",
+        "review": null,
+        "subject": "feat(qti): lanai: power on the secondary cores"
+       },
+       {
+        "commit": "ce6dd686f51513942c71e4a77dacb98b5b0227aa",
+        "review": null,
+        "subject": "feat(qti): watchdog: support a write-only control register"
+       },
+       {
+        "commit": "6f5cdaf175873c7c3957fe242e4ab83144b10894",
+        "review": null,
+        "subject": "feat(qti): lanai: service the secure watchdog"
+       },
+       {
+        "commit": "5f11b9381a3c6fed806082d01ad86a3a120905aa",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55766",
+        "subject": "refactor(qti): take the SYSTEM_RESET reset type from the platform"
+       },
+       {
+        "commit": "6eea0cb7086df045b4946dbb7e28604f1241e7c2",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55767",
+        "subject": "fix(monza): use a PMIC hard reset for SYSTEM_RESET"
+       },
+       {
+        "commit": "466fd4a19b5fbc5eb61823cf8328cb3e108d3ab7",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55253",
+        "subject": "refactor(platforms): leave CNTFRQ_EL0 to PSCI"
+       },
+       {
+        "commit": "dc6def90397f3d165359fdd751560c648be8d2e5",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/53770",
+        "subject": "feat(qti): add IPCC driver with Nord and Shikra support"
+       },
+       {
+        "commit": "2b34e368e771f53dc70fbd72a274048dc2b37f67",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55528",
+        "subject": "refactor(qti): share the RPMh data between Lemans and Monaco"
+       },
+       {
+        "commit": "b4f1e0d0e21588562a788fccd9ed27ac30c96b61",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55529",
+        "subject": "feat(monza): add Monaco clock back-end"
+       },
+       {
+        "commit": "274dbf1277acc01ca07bd90766e3fcb6e4ff101b",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55530",
+        "subject": "fix(qti): only advertise SYSTEM_SUSPEND with a system-level state"
+       },
+       {
+        "commit": "5a0845d106cd68b7087ab768870c44d4333b639e",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55531",
+        "subject": "fix(qti): program the Monaco GPU SMMU aperture"
+       },
+       {
+        "commit": "33e62b9f3180af36c00b87165d42bfa42e8b770b",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54579",
+        "subject": "feat(qti): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "5a90d00ccfe7074ae4bde86f155261507067b897",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55765",
+        "subject": "feat(monza): notify SAIL on reset and shutdown"
+       },
+       {
+        "commit": "2f5df2d8fee82ab4b6026c7d46b8b0327274ca15",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55766",
+        "subject": "refactor(qti): take the SYSTEM_RESET reset type from the platform"
+       },
+       {
+        "commit": "d1989862d452eb28a5686c718933c970f3200ab7",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55767",
+        "subject": "fix(monza): use a PMIC hard reset for SYSTEM_RESET"
+       },
+       {
+        "commit": "11fcaf2613ee827cb2ec189fdae788600a789623",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55253",
+        "subject": "refactor(platforms): leave CNTFRQ_EL0 to PSCI"
+       },
+       {
+        "commit": "1e8af1cab53163e353ad89c63eb391d5b164c5a0",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55088",
+        "subject": "fix(psci): run the arch setup before pwr_domain_on_finish()"
+       },
+       {
+        "commit": "84a2d6be9183edc1184b1636024a58ba3ec1c7cd",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/53616",
+        "subject": "feat(qti): add PDC chipset hooks for LeMans"
+       },
+       {
+        "commit": "f52bac0b21bbacc64b2bd30556fdbaeb7d121945",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54830",
+        "subject": "feat(qti): add PSCI SYSTEM_RESET2 support"
+       },
+       {
+        "commit": "d29fde3c41d1d32d3aa5a529028b769c6a3e2f91",
+        "review": null,
+        "subject": "fix(qti): program the Lemans GPU SMMU aperture"
+       },
+       {
+        "commit": "e7e26831cdeef8656b6c11a0c284cc4ec2c759b1",
+        "review": "https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55088",
+        "subject": "fix(psci): run the arch setup before pwr_domain_on_finish()"
+       },
+       {
+        "commit": "02a8e694affceb7a9247544cdce2a33afdfde7c1",
+        "review": null,
+        "subject": "fix(qti): program the PMIC reset type that SYSTEM_RESET2 asks for"
+       },
+       {
+        "commit": "657d882414160b1693dd7cb5dae36a21567cb5c4",
+        "review": null,
+        "subject": "fix(qti): offer SYSTEM_RESET2 only with the reset cookie store"
+       },
+       {
+        "commit": "17d3a8df67ac9a5670d8a8627e24d6c158ef5fe3",
+        "review": null,
+        "subject": "docs(qti): add TOPICS.md for the integration branch"
+       }
+      ],
+      "distance": 81,
+      "repo": "https://review.trustedfirmware.org/TF-A/trusted-firmware-a"
+     },
+     "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/17d3a8df67ac9a5670d8a8627e24d6c158ef5fe3"
+    },
+    {
+     "branch": "qcom/integration",
+     "commit": "48e45590f07fa19f3f8be80f9d8b2d03858f130a",
+     "fingerprint": "ubci-40833925485-1-master-spl-lemans-evk",
+     "name": "optee",
+     "origin": "upstream",
+     "repo": "https://github.com/EmbeddedAndroid/optee_os",
+     "role": "pinned",
+     "soc_branch": {
+      "commit": "67b4531d230bf10a9bbeed925a554ed90eda3de7",
+      "name": "qcom/lemans",
+      "url": "https://github.com/EmbeddedAndroid/optee_os/commit/67b4531d230bf10a9bbeed925a554ed90eda3de7"
+     },
+     "upstream": {
+      "base": "2cabb6d063513e1718f7627e16b0a5ce1bfd5516",
+      "carried": [
+       {
+        "commit": "3b0e16c127646d4a063885756be02f0bebfb257d",
+        "review": null,
+        "subject": "plat-qcom: hoya: move the pIMEM TEE layout to the targets"
+       },
+       {
+        "commit": "4cbdf679a00790736cfd5531fb75b07865e30006",
+        "review": null,
+        "subject": "plat-qcom: hoya: move the RNG base to the targets"
+       },
+       {
+        "commit": "ea8d8510ec8844a7b1d05f380351558b5e85bcbd",
+        "review": null,
+        "subject": "plat-qcom: hoya: add talos support"
+       },
+       {
+        "commit": "2bb9d29ace7d79552b394878632fb852d57f0fd9",
+        "review": null,
+        "subject": "ci: add qcom-talos build"
+       },
+       {
+        "commit": "ef551e4e447d22259052fe3b448a65177e0778d6",
+        "review": null,
+        "subject": "clk: qcom: talos: add PAS clock support"
+       },
+       {
+        "commit": "c8cf31840b6b513c65489163ee3f32ae76c6192a",
+        "review": null,
+        "subject": "pta: qcom: pas: talos: add ADSP and CDSP bring-up and shutdown"
+       },
+       {
+        "commit": "0b1f7848d9637675e9338ba0b29336774d34ef0e",
+        "review": null,
+        "subject": "plat-qcom: hoya: talos: enable the PAS pseudo-TA"
+       },
+       {
+        "commit": "9643647198626d08b9c773a528dd5acbf75a3e3a",
+        "review": null,
+        "subject": "plat-qcom: wildcat: add Lanai (SM8650)"
+       },
+       {
+        "commit": "a330e5c3e67538b9781fee6c7e7240668ee330f3",
+        "review": null,
+        "subject": "pta: qcom: pas: talos: set the controller map type"
+       },
+       {
+        "commit": "c5970650bbd72ebffed86030a88cea7f7436ec00",
+        "review": null,
+        "subject": "clk: qcom: talos: restart Turing whatever its power-on flag says"
+       },
+       {
+        "commit": "a2d7bc346b1ccb3f34f68ed37b9e4361530f504e",
+        "review": null,
+        "subject": "clk: qcom: Get Lucid-EVO PLL offsets from platform"
+       },
+       {
+        "commit": "e5328180e783355ac82d811f32cee6e3890bb722",
+        "review": null,
+        "subject": "clk: qcom: lemans: return TEE_ERROR_TIMEOUT from LPASS collapse polls"
+       },
+       {
+        "commit": "26d2df5f8e95424851c985d3d199e970889e4343",
+        "review": null,
+        "subject": "clk: qcom: lemans: reset a GP-DSP while its PDC holds it in low power"
+       },
+       {
+        "commit": "841cb20ec6f688bfc8ff6fa9978208fbc9cdaa0b",
+        "review": null,
+        "subject": "clk: qcom: hoya: share the Lemans Q6 PAS sequences"
+       },
+       {
+        "commit": "ec624733966f8538510c2de3a0d61027a600243c",
+        "review": null,
+        "subject": "clk: qcom: lemans: return the NSP clock enable error as is"
+       },
+       {
+        "commit": "7146d510a17d8b1bfac21fbc631d84cf7cfb5f4b",
+        "review": null,
+        "subject": "pta: qcom: pas: reset the subsystem when a start fails"
+       },
+       {
+        "commit": "566e9371dd9d5cc7708e65610d268dc126b31777",
+        "review": null,
+        "subject": "clk: qcom: hoya: enable the QDSP6 boot branches with the NSP clocks"
+       },
+       {
+        "commit": "4d80359d92f4223f0491adc87b7e7f91f63d6149",
+        "review": null,
+        "subject": "clk: qcom: monaco: add PAS clock support"
+       },
+       {
+        "commit": "b343917cd3a74cae47d87d8284d245c4d364d9e3",
+        "review": null,
+        "subject": "pta: qcom: pas: monaco: add ADSP, CDSP and GP-DSP0 bring-up"
+       },
+       {
+        "commit": "78057e5c9fed21abd4a6d50473df011eb8502e34",
+        "review": null,
+        "subject": "plat-qcom: hoya: monaco: enable the PAS pseudo-TA"
+       },
+       {
+        "commit": "120a891f1f421c916fc9141a6bf380770ab8ba9c",
+        "review": null,
+        "subject": "pta: qcom: pas: reset the subsystem when a start fails"
+       },
+       {
+        "commit": "5fa3fa072c4bb58392c0060e46f3a005c05a2654",
+        "review": null,
+        "subject": "core: pta: qcom: pas: Move elf related helpers to pas_elf.c"
+       },
+       {
+        "commit": "50e42d0b43d94a0ea2ed59012c8da1889d45ead8",
+        "review": null,
+        "subject": "core: pta: qcom: pas: Set fw_base for non-relocatable images"
+       },
+       {
+        "commit": "ec088f71bc8cae60ca3bfbc7de12b2ea792b1f3a",
+        "review": null,
+        "subject": "pta: qcom: pas: bound the program header table in pas_elf_parse()"
+       },
+       {
+        "commit": "83f98cc0168ba085a2cd1fab01d8774a942fdefe",
+        "review": null,
+        "subject": "pta: qcom: pas: pass image metadata to the subsystem"
+       },
+       {
+        "commit": "471cd2597fe272ecdcc22f35905cf5b0b2f18ba5",
+        "review": null,
+        "subject": "ta: qcom_pas: keep one image generation across INIT_IMAGE"
+       },
+       {
+        "commit": "744141f35405778dc84a6ac06e50379512619aa7",
+        "review": null,
+        "subject": "pta: qcom: pas: add video firmware seed helpers"
+       },
+       {
+        "commit": "9c09dc296a8fc8ad3f7c847fbbc5183ded4ead70",
+        "review": null,
+        "subject": "pta: qcom: pas: define iris registers from IRIS_BASE"
+       },
+       {
+        "commit": "2aa24b32551066b7721f3d17fe18f4791a6d1b77",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: program iris CP layout and seed"
+       },
+       {
+        "commit": "9696466e016d48e4faf45e098c68ba21c5da53d3",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: program iris secure session settings"
+       },
+       {
+        "commit": "8c3f3fbbe85ff07e745ceaa0df13c8c9f0e2131e",
+        "review": null,
+        "subject": "pta: qcom: pas: lemans: program iris CP layout and seed"
+       },
+       {
+        "commit": "ac4bd89e8d5b58ffd5088e3b6853fcb8facc3d65",
+        "review": null,
+        "subject": "pta: qcom: pas: lemans: program iris secure session settings"
+       },
+       {
+        "commit": "36a2a8feba61322a71d481ad00cfcdc372d25123",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: add the ADSP shutdown"
+       },
+       {
+        "commit": "b255a52ce496d90220b3d76cc26e6ff77f4d352a",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: add the CDSP shutdown"
+       },
+       {
+        "commit": "8d5134bbd43cab348b3a5b66257b28b093a1b8b6",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: map the USB pages the ADSP reads"
+       },
+       {
+        "commit": "1dae84adceae1c1ddb315e53123d91c25255365d",
+        "review": null,
+        "subject": "pta: qcom: pas: reset the subsystem when a start fails"
+       },
+       {
+        "commit": "8ea7d9e0837f7c9532444efd14fac44d3a6a66a0",
+        "review": null,
+        "subject": "core: pta: qcom: pas: Move elf related helpers to pas_elf.c"
+       },
+       {
+        "commit": "ae40b9e1ddedb6da6031427b8757fee2cff13a97",
+        "review": null,
+        "subject": "core: pta: qcom: pas: Set fw_base for non-relocatable images"
+       },
+       {
+        "commit": "cc80a5100e3b2ebf550e39382b17a9997af78e62",
+        "review": null,
+        "subject": "pta: qcom: pas: bound the program header table in pas_elf_parse()"
+       },
+       {
+        "commit": "115fde748c9402d8e057b719c99ac94d621f4f9e",
+        "review": null,
+        "subject": "pta: qcom: pas: pass image metadata to the subsystem"
+       },
+       {
+        "commit": "6330e076805ecf0bed35c9a9b927b6b15f0a11a9",
+        "review": null,
+        "subject": "ta: qcom_pas: keep one image generation across INIT_IMAGE"
+       },
+       {
+        "commit": "8cf35a2d3adb688a8f8d3f94f2618eb7f4f4a690",
+        "review": null,
+        "subject": "pta: qcom: pas: add video firmware seed helpers"
+       },
+       {
+        "commit": "d47639a97e15bf697c3736ae967e7614bf1284ec",
+        "review": null,
+        "subject": "pta: qcom: pas: define iris registers from IRIS_BASE"
+       },
+       {
+        "commit": "065b11dec6c6290ae9f2920fe984a9db2e6c7dd0",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: program iris CP layout and seed"
+       },
+       {
+        "commit": "df57c227278689a86c0afcb6ea033c666bac6268",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: program iris secure session settings"
+       },
+       {
+        "commit": "5beb2b5cb2fb93ff9cf303b6f2d65de7014f91d0",
+        "review": null,
+        "subject": "pta: qcom: pas: lemans: program iris CP layout and seed"
+       },
+       {
+        "commit": "ac2381866f31f11da1cb8bf07bd0c04f60001443",
+        "review": null,
+        "subject": "pta: qcom: pas: lemans: program iris secure session settings"
+       },
+       {
+        "commit": "824811d5f10ce5668332e9f416fe44274f8b5426",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: add the ADSP shutdown"
+       },
+       {
+        "commit": "9a0398cbffd453246b2e6d7ae5e085ecb287fa35",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: add the CDSP shutdown"
+       },
+       {
+        "commit": "979d1a895f55fd577e3d8448e898b3da6357633e",
+        "review": null,
+        "subject": "pta: qcom: pas: kodiak: map the USB pages the ADSP reads"
+       },
+       {
+        "commit": "f7e957eb0e8dbf66f9f0f4ba8ded73b2b750f1b4",
+        "review": null,
+        "subject": "drivers: qcom: add GENI SPI driver"
+       },
+       {
+        "commit": "005cb957e74c66647d8a888720b2a1a24e1c7d36",
+        "review": null,
+        "subject": "drivers: qcom: spi: add lemans SPI config"
+       },
+       {
+        "commit": "4f958e24ed1468416d1772b16a9d26983ab5cd7c",
+        "review": null,
+        "subject": "drivers: qcom: spi: add loopback SPI test"
+       },
+       {
+        "commit": "9dbfbec118beb556c597d76287a3136058021df8",
+        "review": null,
+        "subject": "MAINTAINERS: add Qualcomm GENI SPI driver"
+       },
+       {
+        "commit": "61e0f31162ef52fea97dd9bfaaffc6b94e032229",
+        "review": null,
+        "subject": "plat-qcom: add optional embedded DTB support"
+       },
+       {
+        "commit": "947657f8d58a42d7eeeb4bdf5e936a42c106685d",
+        "review": null,
+        "subject": "drivers: qcom_geni_uart: add DT console driver"
+       },
+       {
+        "commit": "ec96e639edda1f9edbdd98466409b08740d8c6c1",
+        "review": null,
+        "subject": "clk: qcom: agatti: add PAS clock support"
+       },
+       {
+        "commit": "f6b11715a6205d3f54383d01c2773dbc906adff0",
+        "review": null,
+        "subject": "pta: qcom: pas: agatti: add ADSP bring-up"
+       },
+       {
+        "commit": "eac15ccbca0ee32750e0c02d936d498a94a7e1d6",
+        "review": null,
+        "subject": "plat-qcom: bruin: agatti: enable the PAS pseudo-TA"
+       },
+       {
+        "commit": "3c593694ac8af4061327660c2c76f0dfd7e7c9bf",
+        "review": null,
+        "subject": "pta: qcom: pas: agatti: add GPU zap shader support"
+       },
+       {
+        "commit": "78f2a47cebf6e88c3ab7f8123569eccec431853d",
+        "review": null,
+        "subject": "core: pta: qcom: pas: Move elf related helpers to pas_elf.c"
+       },
+       {
+        "commit": "52ab21abdc7c5342d2dc399bcf05abd8a030458e",
+        "review": null,
+        "subject": "core: pta: qcom: pas: Set fw_base for non-relocatable images"
+       },
+       {
+        "commit": "d80ba1cab66c8fabdd9aec8e38670fe2c45e7601",
+        "review": null,
+        "subject": "pta: qcom: pas: bound the program header table in pas_elf_parse()"
+       },
+       {
+        "commit": "798f97199a8112eaeb75a07a734cf1df46e0ea39",
+        "review": null,
+        "subject": "pta: qcom: pas: pass image metadata to the subsystem"
+       },
+       {
+        "commit": "2160daf2359e7cf13cd61608edd4efb00b2fbce2",
+        "review": null,
+        "subject": "pta: qcom: pas: agatti: add venus bring-up"
+       },
+       {
+        "commit": "edaeed5f11bbf60ba13ca916e4568864a44c17c9",
+        "review": null,
+        "subject": "pta: qcom: pas: agatti: clean the venus seed to memory"
+       },
+       {
+        "commit": "9e49556cea23a12bc9c8aa4d7629af74494644a5",
+        "review": null,
+        "subject": "drivers: qcom: qfprom: isolate RPMH power control"
+       },
+       {
+        "commit": "fe4f2432d6e46e909e992ce96833f13cd28d9ef1",
+        "review": null,
+        "subject": "drivers: qcom: qfprom: add Shikra platform support"
+       },
+       {
+        "commit": "cb93a72ec8901bb679e8ae3b900ce5a52cd43049",
+        "review": "https://github.com/qualcomm-linux/optee_os/pull/59",
+        "subject": "drivers: qcom: add RPM client for Shikra"
+       },
+       {
+        "commit": "ebbbd4a79f2e98232bbaec190593a38880c8b0b9",
+        "review": null,
+        "subject": "plat-qcom: shikra: add QUP clock support"
+       },
+       {
+        "commit": "62a6594de998900064a19d724c1dd9fc32cd6f9e",
+        "review": null,
+        "subject": "drivers: qcom: tlmm: enable driver for Shikra"
+       },
+       {
+        "commit": "0a7009681f4352bd1acfacd14b9e6528dd7b4617",
+        "review": null,
+        "subject": "plat-qcom: dts: add embedded DTBs for Lemans, IPQ52xx and IPQ96xx"
+       },
+       {
+        "commit": "0beba847fb390392beb542c6e585b131d0025625",
+        "review": null,
+        "subject": "plat-qcom: take GIC bases from DT when available"
+       },
+       {
+        "commit": "ef9007b31b2984e622438030b6d771d0edf0ef54",
+        "review": null,
+        "subject": "drivers: qcom: csrng: take register base from DT when available"
+       },
+       {
+        "commit": "67b4531d230bf10a9bbeed925a554ed90eda3de7",
+        "review": null,
+        "subject": "drivers: qcom: ramblur: take pIMEM registers and vault from DT when available"
+       },
+       {
+        "commit": "48e45590f07fa19f3f8be80f9d8b2d03858f130a",
+        "review": null,
+        "subject": "plat-qcom: add TOPICS.md for the integration branch"
+       }
+      ],
+      "distance": 76,
+      "repo": "https://github.com/OP-TEE/optee_os"
+     },
+     "url": "https://github.com/EmbeddedAndroid/optee_os/commit/48e45590f07fa19f3f8be80f9d8b2d03858f130a"
+    },
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "fingerprint": "ubci-40833925485-1-master-spl-lemans-evk",
+     "name": "u-boot spl",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-spl-lemans-evk",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "spl": {
+    "gaps": [],
+    "in_flight": [
+     {
+      "link": "https://lore.kernel.org/r/20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com",
+      "message_id": "20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com",
+      "title": "Enable U-Boot SPL support for Lemans EVK",
+      "version": 4
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+      "message_id": "20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+      "title": "Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL)",
+      "version": 10
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com",
+      "message_id": "20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com",
+      "title": "spl: ufs: add UFS boot support for Qualcomm Snapdragon in SPL",
+      "version": 4
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+      "message_id": "20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+      "title": "spl: qcom: make Qualcomm drivers buildable in SPL",
+      "version": 1
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com",
+      "message_id": "20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com",
+      "title": "qcom: Add NVMEM bitfield support and reboot-mode",
+      "version": 5
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+      "message_id": "20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+      "title": "mach-snapdragon: fix OP-TEE SPL link failure",
+      "version": 1
+     }
+    ]
+   },
+   "stack": "spl",
+   "state": "queued"
+  },
+  {
+   "board": "shikra-iqs-evk",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (Gunyah)"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in place of UEFI",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "configs": [
+      {
+       "name": "qcom_shikra_iqs_defconfig",
+       "optional": false,
+       "used": null
+      }
+     ],
+     "device_tree": "qcom/shikra-iqs-evk",
+     "fingerprint": "ubci-40833925485-1-master-stock-shikra-iqs-evk",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "files": [
+      {
+       "name": "SHIKRA_bootbinaries_00093.zip",
+       "sha256": "9239eb9a78096bbd0d484a51a4c0ae8914fd9d41c93c57f121725529a6ce2b5c",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/SHIKRA_bootbinaries.1.0/shikra_bootbinaries.1.0-test-device-public/00093/SHIKRA_bootbinaries_00093.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "c853febcdeb149021fd043ac7a5eaae88f29f7b7",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/c853febcdeb149021fd043ac7a5eaae88f29f7b7/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/c853febcdeb149021fd043ac7a5eaae88f29f7b7"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "SHIKRA boot binaries 00093",
+     "role": "stock",
+     "upstream": null
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-stock-shikra-iqs-evk",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "shikra-iqs-evk",
+   "boot_chain": [],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "fingerprint": "ubci-40833925485-1-master-open-shikra-iqs-evk",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-open-shikra-iqs-evk",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "stack": "open",
+   "state": "queued"
+  },
+  {
+   "board": "shikra-iqs-evk",
+   "boot_chain": [],
+   "cases": [],
+   "components": [
+    {
+     "branch": "master",
+     "commit": "ece349ade2973e220f524ce59e59711cc919263f",
+     "fingerprint": "ubci-40833925485-1-master-spl-shikra-iqs-evk",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    }
+   ],
+   "fingerprint": "ubci-40833925485-1-master-spl-shikra-iqs-evk",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run"
+   },
+   "spl": {
+    "gaps": [
+     "no posted Shikra SPL enablement (defconfig, config fragment or Kconfig select)",
+     "no posted FIT template (the CI carries its own, ubci/fit.py)"
+    ],
+    "in_flight": [
+     {
+      "link": "https://lore.kernel.org/r/20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com",
+      "message_id": "20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com",
+      "title": "Initial Shikra SoC support",
+      "version": 4
+     },
+     {
+      "link": "https://lore.kernel.org/r/20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com",
+      "message_id": "20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com",
+      "title": "Enable HS200/HS400 eMMC modes on Qualcomm",
+      "version": 2
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com",
+      "message_id": "20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com",
+      "title": "tools: qcom: mkmbn: ipq5210 and multi-elf",
+      "version": 3
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+      "message_id": "20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com",
+      "title": "Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL)",
+      "version": 10
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+      "message_id": "20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com",
+      "title": "spl: qcom: make Qualcomm drivers buildable in SPL",
+      "version": 1
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261013053244.2954876-1-abhilash.v@oss.qualcomm.com",
+      "message_id": "20261013053244.2954876-1-abhilash.v@oss.qualcomm.com",
+      "title": "qcom: shikra: add eMMC SPL boot support",
+      "version": 2
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261013053517.2955571-1-abhilash.v@oss.qualcomm.com",
+      "message_id": "20261013053517.2955571-1-abhilash.v@oss.qualcomm.com",
+      "title": "qcom: shikra: SPL SD card boot",
+      "version": 2
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261023084019.3722376-1-abhilash.v@oss.qualcomm.com",
+      "message_id": "20261023084019.3722376-1-abhilash.v@oss.qualcomm.com",
+      "title": "qcom: spl: enable CDT for shikra",
+      "version": 2
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com",
+      "message_id": "20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com",
+      "title": "DDR training for Shikra SPL",
+      "version": 1
+     },
+     {
+      "link": "https://lore.kernel.org/r/20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+      "message_id": "20261005060628.595146-1-aswin.murugan@oss.qualcomm.com",
+      "title": "mach-snapdragon: fix OP-TEE SPL link failure",
+      "version": 1
+     }
+    ]
+   },
+   "stack": "spl",
+   "state": "queued"
+  }
+ ]
+}
