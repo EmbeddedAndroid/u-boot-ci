@@ -24,10 +24,10 @@
   "kind": "pin-candidate",
   "series": null,
   "title": "downstream pin candidate: QCS8300 boot binaries 00142 -> QCS8300 boot binaries 00150",
-  "updated": "2026-10-29T20:36:36Z"
+  "updated": "2026-10-29T20:42:00Z"
  },
  "schema": "fwci-run/1",
- "state": "testing",
+ "state": "done",
  "targets": [
   {
    "board": "ventuno-q",
@@ -279,7 +279,89 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "uboot-storage",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "fail",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "main",
@@ -364,10 +446,10 @@
     }
    ],
    "fingerprint": "ubci-40934858641-1-pin-stock-candidate-ventuno-q",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
-    "device": null,
-    "health": "Unknown",
+    "device": "ventunoq-hyd-02",
+    "health": "Incomplete",
     "job_id": 524160,
     "url": "https://lava.infra.foundries.io/scheduler/job/524160"
    },
@@ -375,13 +457,23 @@
     "gaps": [
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
     ],
-    "stage": "not-reached",
-    "verdict": "not-run",
+    "last_lines": [
+     "gcc@0x100000: unknown clock ID 141!",
+     "gcc@0x100000: unknown clock ID 142!",
+     "Couldn't set MMC core clock rate: 0",
+     "Cannot persist EFI variables without system partition",
+     "fw_name is not defined. Not generating capsule GUIDs",
+     "=> \u0000"
+    ],
+    "stage": "nothing-booted",
+    "url": "https://lava.infra.foundries.io/scheduler/job/524160#L1123",
+    "verdict": "fail",
     "versus_baseline": "unknown"
    },
-   "queue_position": 3,
+   "queue_position": null,
    "stack": "stock-candidate",
-   "state": "queued"
+   "state": "done",
+   "state_detail": "LAVA job incomplete"
   }
  ]
 }
