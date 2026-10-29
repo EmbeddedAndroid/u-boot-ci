@@ -1,0 +1,281 @@
+{
+ "host_checks": [],
+ "linux": {
+  "commit": "a39c950806213f6861d00f90729acaaa21f2d95a",
+  "config": "arch/arm64/configs/defconfig",
+  "image_sha256": "246ae8f1a7d2a46b0e0caa49e72b9feef27612fedbd4849e0ef3c714f47034c0",
+  "modules_sha256": "e09ca82ff365f2fae674cf8bf70518961f21251405204745ed6834c00b0315fc",
+  "release": "7.3.0-next-20261029",
+  "tag": "next-20261029",
+  "tag_url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tag/?h=next-20261029",
+  "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=a39c950806213f6861d00f90729acaaa21f2d95a"
+ },
+ "project": "u-boot",
+ "run": {
+  "base": {
+   "branch": "main",
+   "commit": "03e45557e1f38a39a0c80fe30483130ff376cf92",
+   "repo": "https://git.u-boot-project.org/u-boot/u-boot.git"
+  },
+  "baseline": null,
+  "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/40934858641",
+  "created": "2026-10-29T19:42:59Z",
+  "id": "ubci-40934858641-1-pin",
+  "kind": "pin-candidate",
+  "series": null,
+  "title": "downstream pin candidate: QCS8300 boot binaries 00142 -> QCS8300 boot binaries 00150",
+  "updated": "2026-10-29T20:19:04Z"
+ },
+ "schema": "fwci-run/1",
+ "state": "building",
+ "targets": [
+  {
+   "board": "ventuno-q",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (Gunyah)"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in place of UEFI",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "main",
+     "commit": "03e45557e1f38a39a0c80fe30483130ff376cf92",
+     "configs": [
+      {
+       "name": "qcom_qcs8300_defconfig",
+       "optional": false,
+       "used": true
+      }
+     ],
+     "device_tree": "qcom/monaco-arduino-monza",
+     "fingerprint": "ubci-40934858641-1-pin-stock-ventuno-q",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "sha256": "cf93a50fb8b54392a99e745479673b1f1a6893588e2a09c54d225a208cabaac9",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/03e45557e1f38a39a0c80fe30483130ff376cf92"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS8300_bootbinaries_00150.zip",
+       "sha256": "d1f71348523bdf8c8eeebfa464f39cdb3a27772d2f41f70ddfb69e4f700fb4e7",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS8300_bootbinaries.1.0/qcs8300_bootbinaries.1.0-test-device-public/00150/QCS8300_bootbinaries_00150.zip"
+      },
+      {
+       "name": "QCS8300_bootbinaries_immutable_00150.zip",
+       "sha256": "950978f97debf8a8d7386604235c0161ba2a80ca030095d4ef512ea165383f33",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS8300_bootbinaries.1.0/qcs8300_bootbinaries.1.0-test-device-public/00150/QCS8300_bootbinaries_immutable_00150.zip"
+      },
+      {
+       "name": "qcs8275-Monza_v1.zip",
+       "sha256": "8484beb2ac1ff74a129c586f6d5331536765975dbabfb0600509f11010ec1c41",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS8300/cdt/qcs8275-Monza_v1.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "f281f83673cdb5a9f85c9cf93969136c7cda86e1",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/f281f83673cdb5a9f85c9cf93969136c7cda86e1/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/f281f83673cdb5a9f85c9cf93969136c7cda86e1"
+      },
+      {
+       "commit": "a451c5a29b5782d425dac69085ccd31c8b2ca3f2",
+       "name": "meta-qcom-arduino",
+       "recipes": null,
+       "repo": "https://github.com/qualcomm-linux/meta-qcom-arduino",
+       "url": "https://github.com/qualcomm-linux/meta-qcom-arduino/commit/a451c5a29b5782d425dac69085ccd31c8b2ca3f2"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS8300 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    },
+    {
+     "branch": "next-20261029",
+     "commit": "a39c950806213f6861d00f90729acaaa21f2d95a",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=a39c950806213f6861d00f90729acaaa21f2d95a"
+     },
+     "dtb_sha256": "a2a390759079baa40e332615113b3562c02913a53de4299db983c30b48e5d629",
+     "dtbs": [
+      {
+       "name": "qcom/monaco-arduino-monza.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts?id=a39c950806213f6861d00f90729acaaa21f2d95a"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261029",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "246ae8f1a7d2a46b0e0caa49e72b9feef27612fedbd4849e0ef3c714f47034c0",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=a39c950806213f6861d00f90729acaaa21f2d95a"
+    }
+   ],
+   "fingerprint": "ubci-40934858641-1-pin-stock-ventuno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [
+     "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
+    ],
+    "stage": "not-reached",
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
+   },
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "ventuno-q",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (Gunyah)"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in place of UEFI",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "main",
+     "commit": "03e45557e1f38a39a0c80fe30483130ff376cf92",
+     "configs": [
+      {
+       "name": "qcom_qcs8300_defconfig",
+       "optional": false,
+       "used": true
+      }
+     ],
+     "device_tree": "qcom/monaco-arduino-monza",
+     "fingerprint": "ubci-40934858641-1-pin-stock-candidate-ventuno-q",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "sha256": "e7340266edc7764c8123acc3b3f6af4420805d5dea278a482f08153ea757d58e",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/03e45557e1f38a39a0c80fe30483130ff376cf92"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS8300_bootbinaries_00150.zip",
+       "sha256": "d1f71348523bdf8c8eeebfa464f39cdb3a27772d2f41f70ddfb69e4f700fb4e7",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS8300_bootbinaries.1.0/qcs8300_bootbinaries.1.0-test-device-public/00150/QCS8300_bootbinaries_00150.zip"
+      },
+      {
+       "name": "QCS8300_bootbinaries_immutable_00150.zip",
+       "sha256": "950978f97debf8a8d7386604235c0161ba2a80ca030095d4ef512ea165383f33",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS8300_bootbinaries.1.0/qcs8300_bootbinaries.1.0-test-device-public/00150/QCS8300_bootbinaries_immutable_00150.zip"
+      },
+      {
+       "name": "qcs8275-Monza_v1.zip",
+       "sha256": "8484beb2ac1ff74a129c586f6d5331536765975dbabfb0600509f11010ec1c41",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS8300/cdt/qcs8275-Monza_v1.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "f281f83673cdb5a9f85c9cf93969136c7cda86e1",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/f281f83673cdb5a9f85c9cf93969136c7cda86e1/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/f281f83673cdb5a9f85c9cf93969136c7cda86e1"
+      },
+      {
+       "commit": "a451c5a29b5782d425dac69085ccd31c8b2ca3f2",
+       "name": "meta-qcom-arduino",
+       "recipes": null,
+       "repo": "https://github.com/qualcomm-linux/meta-qcom-arduino",
+       "url": "https://github.com/qualcomm-linux/meta-qcom-arduino/commit/a451c5a29b5782d425dac69085ccd31c8b2ca3f2"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS8300 boot binaries 00150",
+     "role": "stock",
+     "upstream": null
+    },
+    {
+     "branch": "next-20261029",
+     "commit": "a39c950806213f6861d00f90729acaaa21f2d95a",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=a39c950806213f6861d00f90729acaaa21f2d95a"
+     },
+     "dtb_sha256": "a2a390759079baa40e332615113b3562c02913a53de4299db983c30b48e5d629",
+     "dtbs": [
+      {
+       "name": "qcom/monaco-arduino-monza.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts?id=a39c950806213f6861d00f90729acaaa21f2d95a"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261029",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "246ae8f1a7d2a46b0e0caa49e72b9feef27612fedbd4849e0ef3c714f47034c0",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=a39c950806213f6861d00f90729acaaa21f2d95a"
+    }
+   ],
+   "fingerprint": "ubci-40934858641-1-pin-stock-candidate-ventuno-q",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [
+     "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
+    ],
+    "stage": "not-reached",
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
+   },
+   "stack": "stock-candidate",
+   "state": "queued"
+  }
+ ]
+}
