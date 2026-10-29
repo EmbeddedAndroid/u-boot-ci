@@ -7226,22 +7226,22 @@
     },
     "qcs615-ride/stock": {
      "cases": {
-      "firmware-fingerprint-reboot/u_boot_20": "sss-s-",
-      "firmware-fingerprint-reset/u_boot_20": "ppp-p-",
-      "firmware-fingerprint/u_boot_20": "ppp-p-",
-      "linux-version/linux_version": "fff-f-",
-      "u-boot/autoboot": "ppp-p-",
-      "u-boot/u-boot-prompt": "ppp-p-",
-      "u-boot/u-boot-sync": "ppp-p-",
-      "u-boot/uboot-bdinfo": "ppp-p-",
-      "u-boot/uboot-bootflow": "ppp-p-",
-      "u-boot/uboot-clocks": "ppp-p-",
-      "u-boot/uboot-dm-tree": "ppp-p-",
-      "u-boot/uboot-efi-media": "fff-f-",
-      "u-boot/uboot-reset": "ppp-p-",
-      "u-boot/uboot-storage": "fff-f-",
-      "u-boot/uboot-usb": "ppp-p-",
-      "u-boot/uboot-version": "ppp-p-"
+      "firmware-fingerprint-reboot/u_boot_20": "sss-ss",
+      "firmware-fingerprint-reset/u_boot_20": "ppp-pp",
+      "firmware-fingerprint/u_boot_20": "ppp-pp",
+      "linux-version/linux_version": "fff-ff",
+      "u-boot/autoboot": "ppp-pp",
+      "u-boot/u-boot-prompt": "ppp-pp",
+      "u-boot/u-boot-sync": "ppp-pp",
+      "u-boot/uboot-bdinfo": "ppp-pp",
+      "u-boot/uboot-bootflow": "ppp-pp",
+      "u-boot/uboot-clocks": "ppp-pp",
+      "u-boot/uboot-dm-tree": "ppp-pp",
+      "u-boot/uboot-efi-media": "fff-ff",
+      "u-boot/uboot-reset": "ppp-pp",
+      "u-boot/uboot-storage": "fff-ff",
+      "u-boot/uboot-usb": "ppp-pp",
+      "u-boot/uboot-version": "ppp-pp"
      },
      "runs": [
       "ubci-40199892508-1-master",
@@ -9377,7 +9377,7 @@
      },
      {
       "board": "qcs615-ride",
-      "boot": "not-run",
+      "boot": "fail",
       "boot_chain": [
        {
         "origin": "downstream",
@@ -9403,29 +9403,29 @@
         "stage": "Linux"
        }
       ],
-      "boot_stage": "not-reached",
-      "boot_url": "",
+      "boot_stage": "nothing-booted",
+      "boot_url": "https://lava.infra.foundries.io/scheduler/job/524128#L1154",
       "counts": {
-       "fail": 0,
+       "fail": 3,
        "flaky": 0,
-       "pass": 0,
-       "skip": 0,
+       "pass": 12,
+       "skip": 1,
        "unknown": 0
       },
       "distance": {},
       "fingerprint": "ubci-40931615858-1-master-stock-qcs615-ride",
       "fragments_missing": [],
-      "gate": "not-run",
+      "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/524128",
       "new_fail": 0,
       "no_spl": null,
-      "queue_position": 1,
+      "queue_position": null,
       "run": "ubci-40931615858-1-master",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "queued",
-      "state_detail": "",
-      "versus": "unknown"
+      "state": "done",
+      "state_detail": "LAVA job incomplete",
+      "versus": "upstream-gap"
      }
     ],
     "rb3gen2/open": [
@@ -13347,7 +13347,7 @@
     },
     {
      "board": "qcs615-ride",
-     "boot": "not-run",
+     "boot": "fail",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -13373,29 +13373,29 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "not-reached",
-     "boot_url": "",
+     "boot_stage": "nothing-booted",
+     "boot_url": "https://lava.infra.foundries.io/scheduler/job/524128#L1154",
      "counts": {
-      "fail": 0,
+      "fail": 3,
       "flaky": 0,
-      "pass": 0,
-      "skip": 0,
+      "pass": 12,
+      "skip": 1,
       "unknown": 0
      },
      "distance": {},
      "fingerprint": "ubci-40931615858-1-master-stock-qcs615-ride",
      "fragments_missing": [],
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/524128",
      "new_fail": 0,
      "no_spl": null,
-     "queue_position": 1,
+     "queue_position": null,
      "run": "ubci-40931615858-1-master",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
-     "state_detail": "",
-     "versus": "unknown"
+     "state": "done",
+     "state_detail": "LAVA job incomplete",
+     "versus": "upstream-gap"
     },
     {
      "board": "qcs615-ride",
@@ -20654,7 +20654,7 @@
    "created": "2026-10-29T18:36:03Z",
    "id": "ubci-40931615858-1-master",
    "kind": "nightly",
-   "state": "testing",
+   "state": "done",
    "title": "master ece349ade297"
   },
   {
@@ -20892,5 +20892,5 @@
    "title": "QCS8300 v4 + VENTUNO Q v2"
   }
  ],
- "updated": "2026-10-29T20:00:15Z"
+ "updated": "2026-10-29T20:05:20Z"
 }
