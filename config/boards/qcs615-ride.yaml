@@ -12,17 +12,17 @@ downstream:
   # The boot binaries and CDT meta-qcom pins for qcs615-ride
   # (firmware-qcom-boot-qcs615_00142.bb, firmware-qcom-cdt-qcs615.bb,
   # QCOM_CDT_FILE cdt_adp_air_sa6155p).
-  release: QCS615 boot binaries 00142
+  release: QCS615 boot binaries 00150
   bootbinaries:
-    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS615_bootbinaries.1.0/qcs615_bootbinaries.1.0-test-device-public/00142/QCS615_bootbinaries_00142.zip
-      sha256: 4704b117672ef778c4680522b753af00641e91fc2f7fb351d942559e09458352
+    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS615_bootbinaries.1.0/qcs615_bootbinaries.1.0-test-device-public/00150/QCS615_bootbinaries_00150.zip
+      sha256: 0bdafedc2b04c7a91ec977a05dca035832f70597712e69f9d4d392c0001b1b18
   cdt:
     url: https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS615/cdt/ADP_AIR_SA6155P_V2.zip
     sha256: 37d99eb113e286400bce0d70aa12a74d05f93d01f045bf67e7a46b3c606c8fd0
     file: cdt_adp_air_sa6155p.bin
   xbl_config: xbl_config.elf
   partitions: {conf: platforms/qcs615-ride/ufs/partitions.conf}
-  source: {meta-qcom: c853febcdeb149021fd043ac7a5eaae88f29f7b7}
+  source: {meta-qcom: f281f83673cdb5a9f85c9cf93969136c7cda86e1}
   upstream:
     layers:
       meta-qcom: {repo: https://github.com/qualcomm-linux/meta-qcom, branch: master}
