@@ -202,12 +202,6 @@ lemans-evk:
     - commit: edaeed5f11bbf60ba13ca916e4568864a44c17c9
       review: null
       subject: 'pta: qcom: pas: agatti: clean the venus seed to memory'
-    - commit: 9e49556cea23a12bc9c8aa4d7629af74494644a5
-      review: null
-      subject: 'drivers: qcom: qfprom: isolate RPMH power control'
-    - commit: fe4f2432d6e46e909e992ce96833f13cd28d9ef1
-      review: null
-      subject: 'drivers: qcom: qfprom: add Shikra platform support'
     - commit: cb93a72ec8901bb679e8ae3b900ce5a52cd43049
       review: https://github.com/qualcomm-linux/optee_os/pull/59
       subject: 'drivers: qcom: add RPM client for Shikra'
@@ -232,18 +226,12 @@ lemans-evk:
     - commit: 48e45590f07fa19f3f8be80f9d8b2d03858f130a
       review: null
       subject: 'plat-qcom: add TOPICS.md for the integration branch'
-    distance: 76
+    distance: 74
     pin: 48e45590f07fa19f3f8be80f9d8b2d03858f130a
     repo: https://github.com/OP-TEE/optee_os
   tf-a:
-    base: eb60949df191608e1a5a707fc175fa74c39c245c
+    base: 0752f3bf2808518ff76dce41cdca7e8f9800c270
     carried:
-    - commit: fb4cf39525955115a1780b06a346edac4a2a833e
-      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54909
-      subject: 'fix(corstone-1000): align BL config mapping'
-    - commit: 399837fafef58ad9af943acaab4ce0a9a79edacd
-      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54910
-      subject: 'fix(corstone-1000): delay early GPT access'
     - commit: 9bebaf3952a1fcb43b7ddfaec90a2c8180f0373a
       review: null
       subject: 'fix(qti): read the xPU syndrome registers at their offsets'
@@ -397,9 +385,6 @@ lemans-evk:
     - commit: 3b6a0af29dea6cf0bfffec59d1043b55861d2039
       review: null
       subject: 'docs(qti): describe the Talos boot flow'
-    - commit: be19b62556c6c9d0c9bd4a6b5171d25af7656699
-      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54926
-      subject: 'fix(psci): allow OS-initiated mode while other cores are off'
     - commit: a257b6104ffee86e4586b431c9facfb78ac40275
       review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55530
       subject: 'fix(qti): only advertise SYSTEM_SUSPEND with a system-level state'
@@ -481,7 +466,7 @@ lemans-evk:
     - commit: 17d3a8df67ac9a5670d8a8627e24d6c158ef5fe3
       review: null
       subject: 'docs(qti): add TOPICS.md for the integration branch'
-    distance: 81
+    distance: 78
     pin: 17d3a8df67ac9a5670d8a8627e24d6c158ef5fe3
     repo: https://review.trustedfirmware.org/TF-A/trusted-firmware-a
 qcs615-ride: {}
@@ -730,12 +715,6 @@ shikra-iqs-evk:
     - commit: edaeed5f11bbf60ba13ca916e4568864a44c17c9
       review: null
       subject: 'pta: qcom: pas: agatti: clean the venus seed to memory'
-    - commit: 9e49556cea23a12bc9c8aa4d7629af74494644a5
-      review: null
-      subject: 'drivers: qcom: qfprom: isolate RPMH power control'
-    - commit: fe4f2432d6e46e909e992ce96833f13cd28d9ef1
-      review: null
-      subject: 'drivers: qcom: qfprom: add Shikra platform support'
     - commit: cb93a72ec8901bb679e8ae3b900ce5a52cd43049
       review: https://github.com/qualcomm-linux/optee_os/pull/59
       subject: 'drivers: qcom: add RPM client for Shikra'
@@ -760,18 +739,12 @@ shikra-iqs-evk:
     - commit: 48e45590f07fa19f3f8be80f9d8b2d03858f130a
       review: null
       subject: 'plat-qcom: add TOPICS.md for the integration branch'
-    distance: 76
+    distance: 74
     pin: 48e45590f07fa19f3f8be80f9d8b2d03858f130a
     repo: https://github.com/OP-TEE/optee_os
   tf-a:
-    base: eb60949df191608e1a5a707fc175fa74c39c245c
+    base: 0752f3bf2808518ff76dce41cdca7e8f9800c270
     carried:
-    - commit: fb4cf39525955115a1780b06a346edac4a2a833e
-      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54909
-      subject: 'fix(corstone-1000): align BL config mapping'
-    - commit: 399837fafef58ad9af943acaab4ce0a9a79edacd
-      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54910
-      subject: 'fix(corstone-1000): delay early GPT access'
     - commit: 9bebaf3952a1fcb43b7ddfaec90a2c8180f0373a
       review: null
       subject: 'fix(qti): read the xPU syndrome registers at their offsets'
@@ -925,9 +898,6 @@ shikra-iqs-evk:
     - commit: 3b6a0af29dea6cf0bfffec59d1043b55861d2039
       review: null
       subject: 'docs(qti): describe the Talos boot flow'
-    - commit: be19b62556c6c9d0c9bd4a6b5171d25af7656699
-      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/54926
-      subject: 'fix(psci): allow OS-initiated mode while other cores are off'
     - commit: a257b6104ffee86e4586b431c9facfb78ac40275
       review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55530
       subject: 'fix(qti): only advertise SYSTEM_SUSPEND with a system-level state'
@@ -1009,7 +979,7 @@ shikra-iqs-evk:
     - commit: 17d3a8df67ac9a5670d8a8627e24d6c158ef5fe3
       review: null
       subject: 'docs(qti): add TOPICS.md for the integration branch'
-    distance: 81
+    distance: 78
     pin: 17d3a8df67ac9a5670d8a8627e24d6c158ef5fe3
     repo: https://review.trustedfirmware.org/TF-A/trusted-firmware-a
 uno-q: {}
