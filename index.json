@@ -20909,7 +20909,7 @@
     },
     {
      "board": "qcs615-ride",
-     "boot": "not-run",
+     "boot": "fail",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -20935,20 +20935,20 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "not-reached",
-     "boot_url": "",
+     "boot_stage": "nothing-booted",
+     "boot_url": "https://lava.infra.foundries.io/scheduler/job/524165#L2003",
      "counts": {
-      "fail": 0,
+      "fail": 2,
       "flaky": 0,
-      "pass": 0,
-      "skip": 0,
+      "pass": 13,
+      "skip": 1,
       "unknown": 0
      },
      "distance": {},
      "fingerprint": "ubci-40934796265-1-pin-stock-candidate-qcs615-ride",
      "firmware": "QCS615 boot binaries 00150",
      "fragments_missing": [],
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/524165",
      "new_fail": 0,
      "no_spl": null,
@@ -20956,14 +20956,14 @@
      "run": "ubci-40934796265-1-pin",
      "spl_in_flight": [],
      "stack": "stock-candidate",
-     "state": "testing",
-     "state_detail": "",
+     "state": "done",
+     "state_detail": "LAVA job incomplete",
      "versus": "unknown"
     }
    ],
    "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/40934796265",
    "run": "ubci-40934796265-1-pin",
-   "state": "testing",
+   "state": "done",
    "title": "downstream pin candidate: QCS615 boot binaries 00142 -> QCS615 boot binaries 00150"
   },
   "rb3gen2": {
@@ -21219,7 +21219,7 @@
    "created": "2026-10-29T19:42:21Z",
    "id": "ubci-40934796265-1-pin",
    "kind": "pin-candidate",
-   "state": "testing",
+   "state": "done",
    "title": "downstream pin candidate: QCS615 boot binaries 00142 -> QCS615 boot binaries 00150"
   },
   {
@@ -21509,5 +21509,5 @@
    "title": "QCS8300 v4 + VENTUNO Q v2"
   }
  ],
- "updated": "2026-10-29T20:59:42Z"
+ "updated": "2026-10-29T21:10:25Z"
 }
