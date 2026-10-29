@@ -24,7 +24,7 @@
   "kind": "pin-candidate",
   "series": null,
   "title": "downstream pin candidate: QCS8300 boot binaries 00142 -> QCS8300 boot binaries 00150",
-  "updated": "2026-10-29T20:19:04Z"
+  "updated": "2026-10-29T20:25:01Z"
  },
  "schema": "fwci-run/1",
  "state": "building",
@@ -142,6 +142,12 @@
    ],
    "fingerprint": "ubci-40934858641-1-pin-stock-ventuno-q",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 524151,
+    "url": "https://lava.infra.foundries.io/scheduler/job/524151"
+   },
    "linux_boot": {
     "gaps": [
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
@@ -150,6 +156,7 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": 3,
    "stack": "stock",
    "state": "queued"
   },
