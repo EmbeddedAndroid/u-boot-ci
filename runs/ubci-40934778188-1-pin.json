@@ -24,10 +24,10 @@
   "kind": "pin-candidate",
   "series": null,
   "title": "downstream pin candidate: QCS9100 boot binaries 00142 -> QCS9100 boot binaries 00150",
-  "updated": "2026-10-29T20:51:30Z"
+  "updated": "2026-10-29T20:56:52Z"
  },
  "schema": "fwci-run/1",
- "state": "testing",
+ "state": "done",
  "targets": [
   {
    "board": "lemans-evk",
@@ -278,7 +278,89 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "fail",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "main",
@@ -356,21 +438,40 @@
     }
    ],
    "fingerprint": "ubci-40934778188-1-pin-stock-candidate-lemans-evk",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
     "device": "rb8-02",
-    "health": "Unknown",
+    "health": "Incomplete",
     "job_id": 524163,
     "url": "https://lava.infra.foundries.io/scheduler/job/524163"
    },
    "linux_boot": {
+    "last_lines": [
+     "WDT:   Started watchdog@17c10000 with servicing every 1000ms (30s timeout)",
+     "MMC:   Power domain id (0) not supported",
+     "Power domain id (0) not supported",
+     "mmc@87c4000: 1",
+     "Loading Environment from SCSI...\rrpmh_regulator_probe: rpmh_regulator_drm ldoa8: Failed to get supply regulator vdd-l8-l9 for ldoa8: -2",
+     "rpmh_regulator_probe: rpmh_regulator_drm ldoc4: Failed to get supply regulator vdd-s9 for ldoc4: -2",
+     "qcom-ufshcd ufshc@1d84000: invalid ref_clk setting = 0",
+     "qcom-ufshcd ufshc@1d84000: [RX, TX]: gear=[3, 3], lane[2, 2], pwr[FAST MODE, FAST MODE], rate = 2",
+     "*** Warning - 71cb9cd0-acf1-b6cb-ad91-be9572fe11a9 partition not found, using default environment",
+     "",
+     "In:    serial,button-kbd",
+     "Out:   serial,vidconsole",
+     "Err:   serial,vidconsole",
+     "Model: Qualcomm Technologies, Inc. Lemans EVK",
+     "\u0000"
+    ],
     "stage": "not-reached",
+    "url": "https://lava.infra.foundries.io/scheduler/job/524163#L1887",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
    "queue_position": null,
    "stack": "stock-candidate",
-   "state": "testing"
+   "state": "done",
+   "state_detail": "LAVA job incomplete"
   }
  ]
 }
