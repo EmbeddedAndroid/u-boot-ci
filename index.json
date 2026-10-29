@@ -6230,22 +6230,22 @@
     },
     "lemans-evk/stock": {
      "cases": {
-      "firmware-fingerprint-reboot/u_boot_20": "ssss-",
-      "firmware-fingerprint-reset/u_boot_20": "pppp-",
-      "firmware-fingerprint/u_boot_20": "pppp-",
-      "linux-version/linux_version": "ffff-",
-      "u-boot/autoboot": "pppp-",
-      "u-boot/u-boot-prompt": "pppp-",
-      "u-boot/u-boot-sync": "pppp-",
-      "u-boot/uboot-bdinfo": "pppp-",
-      "u-boot/uboot-bootflow": "pppp-",
-      "u-boot/uboot-clocks": "pppp-",
-      "u-boot/uboot-dm-tree": "pppp-",
-      "u-boot/uboot-efi-media": "ffff-",
-      "u-boot/uboot-reset": "pppp-",
-      "u-boot/uboot-storage": "ffff-",
-      "u-boot/uboot-usb": "pppp-",
-      "u-boot/uboot-version": "pppp-"
+      "firmware-fingerprint-reboot/u_boot_20": "sssss",
+      "firmware-fingerprint-reset/u_boot_20": "ppppp",
+      "firmware-fingerprint/u_boot_20": "ppppp",
+      "linux-version/linux_version": "fffff",
+      "u-boot/autoboot": "ppppp",
+      "u-boot/u-boot-prompt": "ppppp",
+      "u-boot/u-boot-sync": "ppppp",
+      "u-boot/uboot-bdinfo": "ppppp",
+      "u-boot/uboot-bootflow": "ppppp",
+      "u-boot/uboot-clocks": "ppppp",
+      "u-boot/uboot-dm-tree": "ppppp",
+      "u-boot/uboot-efi-media": "fffff",
+      "u-boot/uboot-reset": "ppppp",
+      "u-boot/uboot-storage": "fffff",
+      "u-boot/uboot-usb": "ppppp",
+      "u-boot/uboot-version": "ppppp"
      },
      "runs": [
       "ubci-40199892508-1-master",
@@ -6441,32 +6441,32 @@
     },
     "uno-q/stock": {
      "cases": {
-      "firmware-fingerprint-reboot/u_boot_20": "pppp-",
-      "firmware-fingerprint-reset/u_boot_20": "pppp-",
-      "firmware-fingerprint/u_boot_20": "pppp-",
-      "linux-version/linux_version": "pppp-",
-      "poweroff/poweroff": "pppp-",
-      "reboot/reboot": "pppp-",
-      "smoke-after-reboot/linux-next-tag": "pppp-",
-      "smoke/cpus-online": "pppp-",
-      "smoke/dmesg-errors": "ffff-",
-      "smoke/linux-next-tag": "pppp-",
-      "smoke/modules-loaded": "pppp-",
-      "smoke/network": "ffff-",
-      "smoke/storage": "pppp-",
-      "smoke/usb": "ffff-",
-      "u-boot/autoboot": "pppp-",
-      "u-boot/u-boot-prompt": "pppp-",
-      "u-boot/u-boot-sync": "pppp-",
-      "u-boot/uboot-bdinfo": "pppp-",
-      "u-boot/uboot-bootflow": "pppp-",
-      "u-boot/uboot-clocks": "pppp-",
-      "u-boot/uboot-dm-tree": "pppp-",
-      "u-boot/uboot-efi-media": "pppp-",
-      "u-boot/uboot-reset": "pppp-",
-      "u-boot/uboot-storage": "pppp-",
-      "u-boot/uboot-usb": "pppp-",
-      "u-boot/uboot-version": "pppp-"
+      "firmware-fingerprint-reboot/u_boot_20": "ppppp",
+      "firmware-fingerprint-reset/u_boot_20": "ppppp",
+      "firmware-fingerprint/u_boot_20": "ppppp",
+      "linux-version/linux_version": "ppppp",
+      "poweroff/poweroff": "ppppp",
+      "reboot/reboot": "ppppp",
+      "smoke-after-reboot/linux-next-tag": "ppppp",
+      "smoke/cpus-online": "ppppp",
+      "smoke/dmesg-errors": "fffff",
+      "smoke/linux-next-tag": "ppppp",
+      "smoke/modules-loaded": "ppppp",
+      "smoke/network": "fffff",
+      "smoke/storage": "ppppp",
+      "smoke/usb": "fffff",
+      "u-boot/autoboot": "ppppp",
+      "u-boot/u-boot-prompt": "ppppp",
+      "u-boot/u-boot-sync": "ppppp",
+      "u-boot/uboot-bdinfo": "ppppp",
+      "u-boot/uboot-bootflow": "ppppp",
+      "u-boot/uboot-clocks": "ppppp",
+      "u-boot/uboot-dm-tree": "ppppp",
+      "u-boot/uboot-efi-media": "ppppp",
+      "u-boot/uboot-reset": "ppppp",
+      "u-boot/uboot-storage": "ppppp",
+      "u-boot/uboot-usb": "ppppp",
+      "u-boot/uboot-version": "ppppp"
      },
      "runs": [
       "ubci-40199892508-1-master",
@@ -7374,7 +7374,7 @@
      },
      {
       "board": "lemans-evk",
-      "boot": "not-run",
+      "boot": "fail",
       "boot_chain": [
        {
         "origin": "downstream",
@@ -7400,29 +7400,29 @@
         "stage": "Linux"
        }
       ],
-      "boot_stage": "not-reached",
-      "boot_url": "",
+      "boot_stage": "nothing-booted",
+      "boot_url": "https://lava.infra.foundries.io/scheduler/job/522989#L1363",
       "counts": {
-       "fail": 0,
+       "fail": 3,
        "flaky": 0,
-       "pass": 0,
-       "skip": 0,
+       "pass": 12,
+       "skip": 1,
        "unknown": 0
       },
       "distance": {},
       "fingerprint": "ubci-40833925485-1-master-stock-lemans-evk",
       "fragments_missing": [],
-      "gate": "not-run",
+      "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/522989",
       "new_fail": 0,
       "no_spl": null,
-      "queue_position": 1,
+      "queue_position": null,
       "run": "ubci-40833925485-1-master",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "queued",
-      "state_detail": "",
-      "versus": "unknown"
+      "state": "done",
+      "state_detail": "LAVA job incomplete",
+      "versus": "upstream-gap"
      }
     ],
     "qcs615-ride/open": [
@@ -8086,7 +8086,7 @@
       "job_url": "https://lava.infra.foundries.io/scheduler/job/522988",
       "new_fail": 0,
       "no_spl": null,
-      "queue_position": 16,
+      "queue_position": 17,
       "run": "ubci-40833925485-1-master",
       "spl_in_flight": [],
       "stack": "stock",
@@ -10046,7 +10046,7 @@
      },
      {
       "board": "uno-q",
-      "boot": "not-run",
+      "boot": "pass",
       "boot_chain": [
        {
         "origin": "downstream",
@@ -10076,19 +10076,19 @@
         "stage": "Linux"
        }
       ],
-      "boot_stage": "not-reached",
-      "boot_url": "",
+      "boot_stage": "login",
+      "boot_url": "https://lava.infra.foundries.io/scheduler/job/522987#L1985",
       "counts": {
-       "fail": 0,
+       "fail": 3,
        "flaky": 0,
-       "pass": 0,
+       "pass": 23,
        "skip": 0,
        "unknown": 0
       },
       "distance": {},
       "fingerprint": "ubci-40833925485-1-master-stock-uno-q",
       "fragments_missing": [],
-      "gate": "not-run",
+      "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/522987",
       "new_fail": 0,
       "no_spl": null,
@@ -10096,9 +10096,9 @@
       "run": "ubci-40833925485-1-master",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "flashing",
+      "state": "done",
       "state_detail": "",
-      "versus": "unknown"
+      "versus": "same"
      }
     ],
     "ventuno-q/open": [
@@ -11255,7 +11255,7 @@
     },
     {
      "board": "uno-q",
-     "boot": "not-run",
+     "boot": "pass",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -11285,19 +11285,19 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "not-reached",
-     "boot_url": "",
+     "boot_stage": "login",
+     "boot_url": "https://lava.infra.foundries.io/scheduler/job/522987#L1985",
      "counts": {
-      "fail": 0,
+      "fail": 3,
       "flaky": 0,
-      "pass": 0,
+      "pass": 23,
       "skip": 0,
       "unknown": 0
      },
      "distance": {},
      "fingerprint": "ubci-40833925485-1-master-stock-uno-q",
      "fragments_missing": [],
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/522987",
      "new_fail": 0,
      "no_spl": null,
@@ -11305,9 +11305,9 @@
      "run": "ubci-40833925485-1-master",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "flashing",
+     "state": "done",
      "state_detail": "",
-     "versus": "unknown"
+     "versus": "same"
     },
     {
      "board": "uno-q",
@@ -11445,7 +11445,7 @@
      "job_url": "https://lava.infra.foundries.io/scheduler/job/522988",
      "new_fail": 0,
      "no_spl": null,
-     "queue_position": 16,
+     "queue_position": 17,
      "run": "ubci-40833925485-1-master",
      "spl_in_flight": [],
      "stack": "stock",
@@ -11547,7 +11547,7 @@
     },
     {
      "board": "lemans-evk",
-     "boot": "not-run",
+     "boot": "fail",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -11573,29 +11573,29 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "not-reached",
-     "boot_url": "",
+     "boot_stage": "nothing-booted",
+     "boot_url": "https://lava.infra.foundries.io/scheduler/job/522989#L1363",
      "counts": {
-      "fail": 0,
+      "fail": 3,
       "flaky": 0,
-      "pass": 0,
-      "skip": 0,
+      "pass": 12,
+      "skip": 1,
       "unknown": 0
      },
      "distance": {},
      "fingerprint": "ubci-40833925485-1-master-stock-lemans-evk",
      "fragments_missing": [],
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/522989",
      "new_fail": 0,
      "no_spl": null,
-     "queue_position": 1,
+     "queue_position": null,
      "run": "ubci-40833925485-1-master",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
-     "state_detail": "",
-     "versus": "unknown"
+     "state": "done",
+     "state_detail": "LAVA job incomplete",
+     "versus": "upstream-gap"
     },
     {
      "board": "lemans-evk",
@@ -17976,5 +17976,5 @@
    "title": "QCS8300 v4 + VENTUNO Q v2"
   }
  ],
- "updated": "2026-10-29T11:56:25Z"
+ "updated": "2026-10-29T11:59:39Z"
 }
