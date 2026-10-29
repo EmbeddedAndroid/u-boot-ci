@@ -20970,7 +20970,7 @@
    "cells": [
     {
      "board": "rb3gen2",
-     "boot": "not-run",
+     "boot": "pass",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -20996,28 +20996,28 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "not-reached",
-     "boot_url": "",
+     "boot_stage": "login",
+     "boot_url": "https://lava.infra.foundries.io/scheduler/job/524152#L2882",
      "counts": {
-      "fail": 0,
+      "fail": 2,
       "flaky": 0,
-      "pass": 0,
-      "skip": 0,
+      "pass": 23,
+      "skip": 1,
       "unknown": 0
      },
      "distance": {},
      "fingerprint": "ubci-40934825114-1-pin-stock-rb3gen2",
      "firmware": "QCM6490 boot binaries 00142",
      "fragments_missing": [],
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/524152",
      "new_fail": 0,
      "no_spl": null,
-     "queue_position": 1,
+     "queue_position": null,
      "run": "ubci-40934825114-1-pin",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
+     "state": "done",
      "state_detail": "",
      "versus": "unknown"
     },
@@ -21077,7 +21077,7 @@
    ],
    "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/40934825114",
    "run": "ubci-40934825114-1-pin",
-   "state": "building",
+   "state": "testing",
    "title": "downstream pin candidate: QCM6490 boot binaries 00142 -> QCM6490 boot binaries 00150"
   },
   "ventuno-q": {
@@ -21232,7 +21232,7 @@
    "created": "2026-10-29T19:40:14Z",
    "id": "ubci-40934825114-1-pin",
    "kind": "pin-candidate",
-   "state": "building",
+   "state": "testing",
    "title": "downstream pin candidate: QCM6490 boot binaries 00142 -> QCM6490 boot binaries 00150"
   },
   {
@@ -21509,5 +21509,5 @@
    "title": "QCS8300 v4 + VENTUNO Q v2"
   }
  ],
- "updated": "2026-10-29T20:29:57Z"
+ "updated": "2026-10-29T20:30:48Z"
 }
