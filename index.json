@@ -20738,6 +20738,120 @@
   }
  ],
  "pin_candidates": {
+  "lemans-evk": {
+   "cells": [
+    {
+     "board": "lemans-evk",
+     "boot": "not-run",
+     "boot_chain": [
+      {
+       "origin": "downstream",
+       "stage": "XBL"
+      },
+      {
+       "origin": "downstream",
+       "stage": "TZ (QTEE)"
+      },
+      {
+       "origin": "downstream",
+       "stage": "hypervisor (Gunyah)"
+      },
+      {
+       "component": "u-boot",
+       "detail": "in place of UEFI",
+       "origin": "upstream",
+       "stage": "U-Boot"
+      },
+      {
+       "component": "linux",
+       "origin": "upstream",
+       "stage": "Linux"
+      }
+     ],
+     "boot_stage": "not-reached",
+     "boot_url": "",
+     "counts": {
+      "fail": 0,
+      "flaky": 0,
+      "pass": 0,
+      "skip": 0,
+      "unknown": 0
+     },
+     "distance": {},
+     "fingerprint": "ubci-40934778188-1-pin-stock-lemans-evk",
+     "firmware": "QCS9100 boot binaries 00142",
+     "fragments_missing": [],
+     "gate": "not-run",
+     "job_url": "",
+     "new_fail": 0,
+     "no_spl": null,
+     "queue_position": null,
+     "run": "ubci-40934778188-1-pin",
+     "spl_in_flight": [],
+     "stack": "stock",
+     "state": "queued",
+     "state_detail": "",
+     "versus": "unknown"
+    },
+    {
+     "board": "lemans-evk",
+     "boot": "not-run",
+     "boot_chain": [
+      {
+       "origin": "downstream",
+       "stage": "XBL"
+      },
+      {
+       "origin": "downstream",
+       "stage": "TZ (QTEE)"
+      },
+      {
+       "origin": "downstream",
+       "stage": "hypervisor (Gunyah)"
+      },
+      {
+       "component": "u-boot",
+       "detail": "in place of UEFI",
+       "origin": "upstream",
+       "stage": "U-Boot"
+      },
+      {
+       "component": "linux",
+       "origin": "upstream",
+       "stage": "Linux"
+      }
+     ],
+     "boot_stage": "not-reached",
+     "boot_url": "",
+     "counts": {
+      "fail": 0,
+      "flaky": 0,
+      "pass": 0,
+      "skip": 0,
+      "unknown": 0
+     },
+     "distance": {},
+     "fingerprint": "ubci-40934778188-1-pin-stock-candidate-lemans-evk",
+     "firmware": "QCS9100 boot binaries 00150",
+     "fragments_missing": [],
+     "gate": "not-run",
+     "job_url": "",
+     "new_fail": 0,
+     "no_spl": null,
+     "queue_position": null,
+     "run": "ubci-40934778188-1-pin",
+     "spl_in_flight": [],
+     "stack": "stock-candidate",
+     "state": "queued",
+     "state_detail": "",
+     "versus": "unknown"
+    }
+   ],
+   "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/40934778188",
+   "run": "ubci-40934778188-1-pin",
+   "state": "building",
+   "title": "downstream pin candidate: QCS9100 boot binaries 00142 -> QCS9100 boot binaries 00150"
+  },
   "ventuno-q": {
    "cells": [
     {
@@ -20866,6 +20980,19 @@
    "kind": "pin-candidate",
    "state": "building",
    "title": "downstream pin candidate: QCS8300 boot binaries 00142 -> QCS8300 boot binaries 00150"
+  },
+  {
+   "base": {
+    "branch": "main",
+    "commit": "03e45557e1f38a39a0c80fe30483130ff376cf92",
+    "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+    "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/03e45557e1f38a39a0c80fe30483130ff376cf92"
+   },
+   "created": "2026-10-29T19:39:59Z",
+   "id": "ubci-40934778188-1-pin",
+   "kind": "pin-candidate",
+   "state": "building",
+   "title": "downstream pin candidate: QCS9100 boot binaries 00142 -> QCS9100 boot binaries 00150"
   },
   {
    "base": {
@@ -21128,5 +21255,5 @@
    "title": "QCS8300 v4 + VENTUNO Q v2"
   }
  ],
- "updated": "2026-10-29T20:20:25Z"
+ "updated": "2026-10-29T20:24:08Z"
 }
