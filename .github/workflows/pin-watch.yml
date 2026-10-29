@@ -28,6 +28,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - run: scripts/ensure-gh.sh
       - run: docker build --network host -q -t u-boot-ci:1 docker
       - name: Compare every board's downstream pin with its meta layer
         run: scripts/in-container.sh python3 -m ubci.stockpin work/pins || echo "failed=1" >> "$GITHUB_ENV"
