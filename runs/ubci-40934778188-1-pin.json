@@ -24,10 +24,10 @@
   "kind": "pin-candidate",
   "series": null,
   "title": "downstream pin candidate: QCS9100 boot binaries 00142 -> QCS9100 boot binaries 00150",
-  "updated": "2026-10-29T20:29:51Z"
+  "updated": "2026-10-29T20:35:18Z"
  },
  "schema": "fwci-run/1",
- "state": "building",
+ "state": "testing",
  "targets": [
   {
    "board": "lemans-evk",
@@ -136,7 +136,7 @@
    "fingerprint": "ubci-40934778188-1-pin-stock-lemans-evk",
    "fingerprint_gate": "not-run",
    "lava": {
-    "device": null,
+    "device": "rb8-02",
     "health": "Unknown",
     "job_id": 524155,
     "url": "https://lava.infra.foundries.io/scheduler/job/524155"
@@ -146,9 +146,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
-   "queue_position": 1,
+   "queue_position": null,
    "stack": "stock",
-   "state": "queued"
+   "state": "testing"
   },
   {
    "board": "lemans-evk",
