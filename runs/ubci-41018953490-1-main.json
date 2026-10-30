@@ -65,7 +65,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main 3973f3c4d24d",
-  "updated": "2026-10-30T09:02:29Z"
+  "updated": "2026-10-30T09:07:38Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -968,7 +968,232 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "poweroff",
+     "result": "pass",
+     "suite": "poweroff"
+    },
+    {
+     "name": "reboot",
+     "result": "pass",
+     "suite": "reboot"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "cpus-online",
+     "result": "fail",
+     "suite": "smoke"
+    },
+    {
+     "name": "modules-loaded",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "dmesg-errors",
+     "output": [
+      "<2>[    0.042922] CPU features: CPU4: Detected conflict for capability 5 ((null)), System: 1, CPU: 0",
+      "<2>[    0.042932] CPU4: will not boot",
+      "<2>[    5.089815] CPU4: failed to come online",
+      "<2>[    5.089825] CPU4: died during early boot",
+      "<2>[    5.099272] CPU features: CPU5: Detected conflict for capability 5 ((null)), System: 1, CPU: 0",
+      "<2>[    5.099289] CPU5: will not boot",
+      "<2>[   10.211609] CPU5: failed to come online",
+      "<2>[   10.211617] CPU5: died during early boot",
+      "<2>[   10.221088] CPU features: CPU6: Detected conflict for capability 5 ((null)), System: 1, CPU: 0",
+      "<2>[   10.221104] CPU6: will not boot",
+      "<2>[   15.333436] CPU6: failed to come online",
+      "<2>[   15.333445] CPU6: died during early boot",
+      "<2>[   15.342904] CPU features: CPU7: Detected conflict for capability 5 ((null)), System: 1, CPU: 0",
+      "<2>[   15.342920] CPU7: will not boot",
+      "<2>[   20.455242] CPU7: failed to come online",
+      "<2>[   20.455249] CPU7: died during early boot",
+      "<3>[   20.497438] qcom_scm firmware:scm: failed to set download mode: -22",
+      "<3>[   20.497443] qcom_scm firmware:scm: qseecom: scm call failed with error -5",
+      "<3>[   20.602007] qcom-smem 90900000.smem: Found an unknown type of DRAM info struct (size = 216)",
+      "<3>[   21.326131] qcomtee: QTEE returned with -22.",
+      "<3>[   21.994227] qcom-ice 1d88000.crypto: probe with driver qcom-ice failed with error -95",
+      "<3>[   21.994312] qcom-ice 87c8000.crypto: probe with driver qcom-ice failed with error -95",
+      "<3>[   22.417791] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   22.417793] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00000001/00000000",
+      "<3>[   22.417795] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   22.557221] pcieport 0000:02:02.0: Unable to change power state from D0 to D3hot, device inaccessible",
+      "<3>[   22.557256] pcieport 0000:02:01.0: Unable to change power state from D0 to D3hot, device inaccessible",
+      "<3>[   22.557326] pcieport 0000:01:00.0: Unable to change power state from D0 to D3hot, device inaccessible",
+      "<3>[   22.561981] pcieport 0000:01:00.0: Unable to change power state from D3cold to D0, device inaccessible",
+      "<3>[   22.562069] pcieport 0000:02:01.0: Unable to change power state from D3cold to D0, device inaccessible",
+      "<3>[   22.562080] pcieport 0000:02:02.0: Unable to change power state from D3cold to D0, device inaccessible",
+      "<3>[   22.562242] pcieport 0000:00:00.0: PCIe Bus Error: severity=Uncorrectable (Non-Fatal)",
+      "<3>[   22.562243] pcieport 0000:00:00.0:   device [17cb:0115] error status/mask=00004000/04400000",
+      "<3>[   22.562245] pcieport 0000:00:00.0:   [14] CmpltTO           | Requester   | Transaction Layer (First)",
+      "<3>[   23.733455] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[   26.315646] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[   26.315662] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[   26.315904] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[   28.907650] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[   28.907673] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[   28.907922] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[   31.499656] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[   31.499670] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[   31.499877] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[   34.091647] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[   34.091666] Bluetooth: hci0: Reading QCA version information failed (-110)"
+     ],
+     "result": "fail",
+     "suite": "smoke",
+     "url": "https://lava.infra.foundries.io/scheduler/job/526005#L2605"
+    },
+    {
+     "name": "storage",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "usb",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "network",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke-after-reboot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "pass",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "main",
@@ -1170,11 +1395,24 @@
      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=a39c950806213f6861d00f90729acaaa21f2d95a"
     }
    ],
+   "diff": {
+    "new_fail": [
+     "smoke/cpus-online",
+     "smoke/dmesg-errors",
+     "u-boot/uboot-usb"
+    ],
+    "new_pass": [
+     "linux-version/linux_version",
+     "u-boot/uboot-efi-media",
+     "u-boot/uboot-storage"
+    ],
+    "still_fail": []
+   },
    "fingerprint": "ubci-41018953490-1-main-open-ventuno-q",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
     "device": "ventunoq-hyd-07",
-    "health": "Unknown",
+    "health": "Complete",
     "job_id": 526005,
     "url": "https://lava.infra.foundries.io/scheduler/job/526005"
    },
@@ -1185,11 +1423,11 @@
     "stage": "login",
     "url": "https://lava.infra.foundries.io/scheduler/job/526005#L2218",
     "verdict": "pass",
-    "versus_baseline": "unknown"
+    "versus_baseline": "fixed"
    },
    "queue_position": null,
    "stack": "open",
-   "state": "testing"
+   "state": "done"
   },
   {
    "board": "ventuno-q",
