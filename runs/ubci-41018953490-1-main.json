@@ -65,7 +65,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main 3973f3c4d24d",
-  "updated": "2026-10-30T08:46:41Z"
+  "updated": "2026-10-30T08:52:03Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -558,6 +558,12 @@
    ],
    "fingerprint": "ubci-41018953490-1-main-open-rb3gen2",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 525971,
+    "url": "https://lava.infra.foundries.io/scheduler/job/525971"
+   },
    "linux_boot": {
     "gaps": [
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
@@ -566,6 +572,7 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": 2,
    "stack": "open",
    "state": "queued"
   },
@@ -649,7 +656,163 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "poweroff",
+     "result": "pass",
+     "suite": "poweroff"
+    },
+    {
+     "name": "reboot",
+     "result": "pass",
+     "suite": "reboot"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "cpus-online",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "modules-loaded",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "dmesg-errors",
+     "output": [
+      "<3>[    0.187686] qcom-smem 90900000.smem: Found an unknown type of DRAM info struct (size = 216)",
+      "<3>[    2.999229] remoteproc remoteproc0: request_firmware failed: -2",
+      "<3>[    3.002878] remoteproc remoteproc1: request_firmware failed: -2",
+      "<3>[    3.005065] remoteproc remoteproc2: request_firmware failed: -2",
+      "<3>[    3.040022] qcom-iris aa00000.video-codec: firmware download failed -2",
+      "<3>[    3.040224] qcom-iris aa00000.video-codec: video hw is power on",
+      "<3>[    3.040828] qcom-iris aa00000.video-codec: core init failed",
+      "<3>[    3.042084] qcom-iris aa00000.video-codec: firmware download failed -2",
+      "<3>[    3.042272] qcom-iris aa00000.video-codec: video hw is power on",
+      "<3>[    3.043397] qcom-iris aa00000.video-codec: core init failed",
+      "<3>[    3.068104] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[    5.668057] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[    5.668988] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[    5.669299] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[    8.260570] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[    8.260793] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[    8.263182] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[   10.852481] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[   10.852780] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[   10.853667] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[   13.442609] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[   13.442856] Bluetooth: hci0: Reading QCA version information failed (-110)"
+     ],
+     "result": "fail",
+     "suite": "smoke",
+     "url": "https://lava.infra.foundries.io/scheduler/job/525965#L2589"
+    },
+    {
+     "name": "storage",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "usb",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "network",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke-after-reboot"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "pass",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "main",
@@ -733,11 +896,23 @@
      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=a39c950806213f6861d00f90729acaaa21f2d95a"
     }
    ],
+   "diff": {
+    "new_fail": [
+     "smoke/dmesg-errors",
+     "u-boot/uboot-usb"
+    ],
+    "new_pass": [
+     "linux-version/linux_version",
+     "u-boot/uboot-efi-media",
+     "u-boot/uboot-storage"
+    ],
+    "still_fail": []
+   },
    "fingerprint": "ubci-41018953490-1-main-stock-ventuno-q",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
     "device": "ventunoq-hyd-08",
-    "health": "Unknown",
+    "health": "Complete",
     "job_id": 525965,
     "url": "https://lava.infra.foundries.io/scheduler/job/525965"
    },
@@ -748,11 +923,11 @@
     "stage": "login",
     "url": "https://lava.infra.foundries.io/scheduler/job/525965#L2149",
     "verdict": "pass",
-    "versus_baseline": "unknown"
+    "versus_baseline": "fixed"
    },
    "queue_position": null,
    "stack": "stock",
-   "state": "testing"
+   "state": "done"
   },
   {
    "board": "ventuno-q",
