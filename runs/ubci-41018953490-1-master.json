@@ -58,17 +58,17 @@
    "commit": "ece349ade2973e220f524ce59e59711cc919263f",
    "repo": "https://git.u-boot-project.org/u-boot/u-boot.git"
   },
-  "baseline": null,
+  "baseline": "ubci-40931615858-1-master",
   "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/41018953490",
   "created": "2026-10-30T07:22:28Z",
   "id": "ubci-41018953490-1-master",
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-10-30T08:22:06Z"
+  "updated": "2026-10-30T08:27:30Z"
  },
  "schema": "fwci-run/1",
- "state": "building",
+ "state": "testing",
  "targets": [
   {
    "board": "rb3gen2",
@@ -97,7 +97,150 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "poweroff",
+     "result": "pass",
+     "suite": "poweroff"
+    },
+    {
+     "name": "reboot",
+     "result": "pass",
+     "suite": "reboot"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "cpus-online",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "modules-loaded",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "dmesg-errors",
+     "output": [
+      "<3>[    0.357130] qcom-smem smem: Found an unknown type of DRAM info struct (size = 216)",
+      "<3>[    2.311367] qcom_pmic_glink pmic-glink: Failed to create device link (0x180) with supplier 1-001c for /pmic-glink/connector@0",
+      "<3>[    2.373698] qcom_pmic_glink pmic-glink: Failed to create device link (0x180) with supplier a600000.usb for /pmic-glink/connector@0",
+      "<3>[    2.855804] Bluetooth: hci0: unexpected event for opcode 0xfc48",
+      "<3>[    2.861276] qcom_pmic_glink pmic-glink: Failed to create device link (0x180) with supplier 1-001c for /pmic-glink/connector@0",
+      "<3>[   41.055066] xhci-pci-renesas 0001:04:00.0: can't setup: -110",
+      "<3>[   41.055099] xhci-pci-renesas 0001:04:00.0: init 0001:04:00.0 fail, -110",
+      "<3>[   41.055105] xhci-pci-renesas 0001:04:00.0: probe with driver xhci-pci-renesas failed with error -110"
+     ],
+     "result": "fail",
+     "suite": "smoke",
+     "url": "https://lava.infra.foundries.io/scheduler/job/525954#L2930"
+    },
+    {
+     "name": "storage",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "usb",
+     "note": "known gap: the USB-A ports sit behind a Renesas uPD720201 xHCI that needs renesas_usb_fw.mem, which is not redistributable; the Type-C port is a USB peripheral in the upstream DT",
+     "result": "skip",
+     "suite": "smoke"
+    },
+    {
+     "name": "network",
+     "result": "fail",
+     "suite": "smoke"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke-after-reboot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "pass",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "master",
@@ -174,21 +317,31 @@
      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=a39c950806213f6861d00f90729acaaa21f2d95a"
     }
    ],
+   "diff": {
+    "new_fail": [],
+    "new_pass": [],
+    "still_fail": [
+     "smoke/dmesg-errors",
+     "smoke/network"
+    ]
+   },
    "fingerprint": "ubci-41018953490-1-master-stock-rb3gen2",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
-    "device": null,
-    "health": null,
+    "device": "rb3g2-01",
+    "health": "Complete",
     "job_id": 525954,
     "url": "https://lava.infra.foundries.io/scheduler/job/525954"
    },
    "linux_boot": {
-    "gaps": [],
-    "stage": "not-reached",
-    "verdict": "not-run"
+    "stage": "login",
+    "url": "https://lava.infra.foundries.io/scheduler/job/525954#L2860",
+    "verdict": "pass",
+    "versus_baseline": "same"
    },
+   "queue_position": null,
    "stack": "stock",
-   "state": "queued"
+   "state": "done"
   },
   {
    "board": "rb3gen2",
@@ -412,7 +565,8 @@
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
     ],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "open",
    "state": "queued"
@@ -459,7 +613,8 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "spl": {
     "gaps": [],
@@ -585,7 +740,8 @@
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
     ],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "stock",
    "state": "skipped",
@@ -837,7 +993,8 @@
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
     ],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "open",
    "state": "skipped",
@@ -885,7 +1042,8 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "spl": {
     "gaps": [],
@@ -926,7 +1084,154 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "poweroff",
+     "result": "pass",
+     "suite": "poweroff"
+    },
+    {
+     "name": "reboot",
+     "result": "pass",
+     "suite": "reboot"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "cpus-online",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "modules-loaded",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "dmesg-errors",
+     "output": [
+      "<3>[    0.036061] CPUidle PSCI: failed to create CPU PM domains ret=-517",
+      "<3>[    0.077373] CPUidle PSCI: CPU 0 failed to PSCI idle",
+      "<3>[    3.111260] remoteproc remoteproc1: request_firmware failed: -2",
+      "<3>[    3.347716] qcom-iris 5a00000.video-codec: firmware download failed -2",
+      "<3>[    3.349269] Bluetooth: hci0: Frame reassembly failed (-84)",
+      "<3>[    3.352947] qcom-iris 5a00000.video-codec: core init failed",
+      "<3>[    3.365942] qcom-iris 5a00000.video-codec: firmware download failed -2",
+      "<3>[    3.375531] qcom-iris 5a00000.video-codec: core init failed",
+      "<3>[    3.485492] Bluetooth: hci0: QCA Failed to request file: qca/apbtfw11.tlv (-2)",
+      "<3>[    3.485496] Bluetooth: hci0: QCA Failed to request file: qca/apbtfw11.tlv (-2)",
+      "<3>[    3.485721] Bluetooth: hci0: unexpected event for opcode 0x0000",
+      "<3>[    3.619844] msm_dpu 5e01000.display-controller: [drm:adreno_request_fw [msm]] *ERROR* failed to load a702_sqe.fw",
+      "<3>[    5.544345] Bluetooth: hci0: QCA preshutdown_cmd failed (-56)"
+     ],
+     "result": "fail",
+     "suite": "smoke",
+     "url": "https://lava.infra.foundries.io/scheduler/job/525955#L2044"
+    },
+    {
+     "name": "storage",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "usb",
+     "result": "fail",
+     "suite": "smoke"
+    },
+    {
+     "name": "network",
+     "result": "fail",
+     "suite": "smoke"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke-after-reboot"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "pass",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "master",
@@ -1000,21 +1305,32 @@
      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=a39c950806213f6861d00f90729acaaa21f2d95a"
     }
    ],
+   "diff": {
+    "new_fail": [],
+    "new_pass": [],
+    "still_fail": [
+     "smoke/dmesg-errors",
+     "smoke/network",
+     "smoke/usb"
+    ]
+   },
    "fingerprint": "ubci-41018953490-1-master-stock-uno-q",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
-    "device": null,
-    "health": null,
+    "device": "unoq-01",
+    "health": "Complete",
     "job_id": 525955,
     "url": "https://lava.infra.foundries.io/scheduler/job/525955"
    },
    "linux_boot": {
-    "gaps": [],
-    "stage": "not-reached",
-    "verdict": "not-run"
+    "stage": "login",
+    "url": "https://lava.infra.foundries.io/scheduler/job/525955#L1982",
+    "verdict": "pass",
+    "versus_baseline": "same"
    },
+   "queue_position": null,
    "stack": "stock",
-   "state": "queued"
+   "state": "done"
   },
   {
    "board": "uno-q",
@@ -1182,7 +1498,8 @@
      "no Agatti EL2 overlay in linux-next"
     ],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "open",
    "state": "skipped",
@@ -1230,7 +1547,8 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "spl": {
     "gaps": [],
@@ -1343,15 +1661,16 @@
    "fingerprint_gate": "not-run",
    "lava": {
     "device": null,
-    "health": null,
+    "health": "Unknown",
     "job_id": 525956,
     "url": "https://lava.infra.foundries.io/scheduler/job/525956"
    },
    "linux_boot": {
-    "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
+   "queue_position": 13,
    "stack": "stock",
    "state": "queued"
   },
@@ -1528,7 +1847,8 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "open",
    "state": "skipped",
@@ -1576,7 +1896,8 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "spl": {
     "gaps": [],
@@ -1613,7 +1934,89 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "fail",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "master",
@@ -1690,21 +2093,41 @@
      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=a39c950806213f6861d00f90729acaaa21f2d95a"
     }
    ],
+   "diff": {
+    "new_fail": [],
+    "new_pass": [],
+    "still_fail": [
+     "linux-version/linux_version",
+     "u-boot/uboot-efi-media",
+     "u-boot/uboot-storage"
+    ]
+   },
    "fingerprint": "ubci-41018953490-1-master-stock-lemans-evk",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
-    "device": null,
-    "health": null,
+    "device": "rb8-03",
+    "health": "Incomplete",
     "job_id": 525957,
     "url": "https://lava.infra.foundries.io/scheduler/job/525957"
    },
    "linux_boot": {
-    "gaps": [],
-    "stage": "not-reached",
-    "verdict": "not-run"
+    "last_lines": [
+     "7[r[999;999H[6n8Power domain id (0) not supported",
+     "gcc@0x100000: unknown clock ID 171!",
+     "Couldn't enable mmc clocks: -2",
+     "Cannot persist EFI variables without system partition",
+     "fw_name is not defined. Not generating capsule GUIDs",
+     "=> \u0000"
+    ],
+    "stage": "nothing-booted",
+    "url": "https://lava.infra.foundries.io/scheduler/job/525957#L1367",
+    "verdict": "fail",
+    "versus_baseline": "upstream-gap"
    },
+   "queue_position": null,
    "stack": "stock",
-   "state": "queued"
+   "state": "done",
+   "state_detail": "LAVA job incomplete"
   },
   {
    "board": "lemans-evk",
@@ -2649,7 +3072,8 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "open",
    "state": "queued"
@@ -3597,7 +4021,8 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "spl": {
     "gaps": [],
@@ -3741,7 +4166,8 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "stock",
    "state": "skipped",
@@ -3789,7 +4215,8 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "open",
    "state": "skipped",
@@ -3837,7 +4264,8 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "spl": {
     "gaps": [
