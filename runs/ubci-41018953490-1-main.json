@@ -65,7 +65,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main 3973f3c4d24d",
-  "updated": "2026-10-30T08:57:22Z"
+  "updated": "2026-10-30T09:02:29Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -1173,7 +1173,7 @@
    "fingerprint": "ubci-41018953490-1-main-open-ventuno-q",
    "fingerprint_gate": "not-run",
    "lava": {
-    "device": null,
+    "device": "ventunoq-hyd-07",
     "health": "Unknown",
     "job_id": 526005,
     "url": "https://lava.infra.foundries.io/scheduler/job/526005"
@@ -1182,13 +1182,14 @@
     "gaps": [
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
     ],
-    "stage": "not-reached",
-    "verdict": "not-run",
+    "stage": "login",
+    "url": "https://lava.infra.foundries.io/scheduler/job/526005#L2218",
+    "verdict": "pass",
     "versus_baseline": "unknown"
    },
-   "queue_position": 3,
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "testing"
   },
   {
    "board": "ventuno-q",
