@@ -65,7 +65,7 @@
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-10-31T11:46:08Z"
+  "updated": "2026-10-31T11:51:22Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -187,7 +187,7 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
-   "queue_position": 6,
+   "queue_position": 3,
    "stack": "stock",
    "state": "queued"
   },
@@ -932,7 +932,154 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "poweroff",
+     "result": "pass",
+     "suite": "poweroff"
+    },
+    {
+     "name": "reboot",
+     "result": "pass",
+     "suite": "reboot"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "cpus-online",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "modules-loaded",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "dmesg-errors",
+     "output": [
+      "<3>[    0.036227] CPUidle PSCI: failed to create CPU PM domains ret=-517",
+      "<3>[    0.077605] CPUidle PSCI: CPU 0 failed to PSCI idle",
+      "<3>[    3.305943] qcom-iris 5a00000.video-codec: firmware download failed -2",
+      "<3>[    3.309169] qcom-iris 5a00000.video-codec: core init failed",
+      "<3>[    3.323225] remoteproc remoteproc1: request_firmware failed: -2",
+      "<3>[    3.326042] qcom-iris 5a00000.video-codec: firmware download failed -2",
+      "<3>[    3.329205] qcom-iris 5a00000.video-codec: core init failed",
+      "<3>[    3.497406] Bluetooth: hci0: Frame reassembly failed (-84)",
+      "<3>[    3.625302] msm_dpu 5e01000.display-controller: [drm:adreno_request_fw [msm]] *ERROR* failed to load a702_sqe.fw",
+      "<3>[    3.641775] Bluetooth: hci0: QCA Failed to request file: qca/apbtfw11.tlv (-2)",
+      "<3>[    3.641779] Bluetooth: hci0: QCA Failed to request file: qca/apbtfw11.tlv (-2)",
+      "<3>[    3.641844] Bluetooth: hci0: unexpected event for opcode 0x0000",
+      "<3>[    5.672657] Bluetooth: hci0: QCA preshutdown_cmd failed (-56)"
+     ],
+     "result": "fail",
+     "suite": "smoke",
+     "url": "https://lava.infra.foundries.io/scheduler/job/528113#L2050"
+    },
+    {
+     "name": "storage",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "usb",
+     "result": "fail",
+     "suite": "smoke"
+    },
+    {
+     "name": "network",
+     "result": "fail",
+     "suite": "smoke"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke-after-reboot"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "pass",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "master",
@@ -1006,22 +1153,32 @@
      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
+   "diff": {
+    "new_fail": [],
+    "new_pass": [],
+    "still_fail": [
+     "smoke/dmesg-errors",
+     "smoke/network",
+     "smoke/usb"
+    ]
+   },
    "fingerprint": "ubci-41179101584-1-master-stock-uno-q",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
     "device": "unoq-01",
-    "health": "Unknown",
+    "health": "Complete",
     "job_id": 528113,
     "url": "https://lava.infra.foundries.io/scheduler/job/528113"
    },
    "linux_boot": {
-    "stage": "not-reached",
-    "verdict": "not-run",
-    "versus_baseline": "unknown"
+    "stage": "login",
+    "url": "https://lava.infra.foundries.io/scheduler/job/528113#L1988",
+    "verdict": "pass",
+    "versus_baseline": "same"
    },
    "queue_position": null,
    "stack": "stock",
-   "state": "flashing"
+   "state": "done"
   },
   {
    "board": "uno-q",
@@ -1361,7 +1518,7 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
-   "queue_position": 5,
+   "queue_position": 3,
    "stack": "stock",
    "state": "queued"
   },
@@ -1625,7 +1782,89 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "uboot-usb",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "fail",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "master",
@@ -1702,22 +1941,41 @@
      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
+   "diff": {
+    "new_fail": [],
+    "new_pass": [],
+    "still_fail": [
+     "linux-version/linux_version",
+     "u-boot/uboot-efi-media",
+     "u-boot/uboot-storage"
+    ]
+   },
    "fingerprint": "ubci-41179101584-1-master-stock-lemans-evk",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
-    "device": null,
-    "health": "Unknown",
+    "device": "rb8-hyd-06",
+    "health": "Incomplete",
     "job_id": 528115,
     "url": "https://lava.infra.foundries.io/scheduler/job/528115"
    },
    "linux_boot": {
-    "stage": "not-reached",
-    "verdict": "not-run",
-    "versus_baseline": "unknown"
+    "last_lines": [
+     "7[r[999;999H[6n8Power domain id (0) not supported",
+     "gcc@0x100000: unknown clock ID 171!",
+     "Couldn't enable mmc clocks: -2",
+     "Cannot persist EFI variables without system partition",
+     "fw_name is not defined. Not generating capsule GUIDs",
+     "=> "
+    ],
+    "stage": "nothing-booted",
+    "url": "https://lava.infra.foundries.io/scheduler/job/528115#L1377",
+    "verdict": "fail",
+    "versus_baseline": "upstream-gap"
    },
-   "queue_position": 2,
+   "queue_position": null,
    "stack": "stock",
-   "state": "queued"
+   "state": "done",
+   "state_detail": "LAVA job incomplete"
   },
   {
    "board": "lemans-evk",
