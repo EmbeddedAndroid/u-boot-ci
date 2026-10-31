@@ -65,7 +65,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main 3401e006432a",
-  "updated": "2026-10-31T12:12:57Z"
+  "updated": "2026-10-31T12:18:17Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -558,6 +558,12 @@
    ],
    "fingerprint": "ubci-41179101584-1-main-open-rb3gen2",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 528125,
+    "url": "https://lava.infra.foundries.io/scheduler/job/528125"
+   },
    "linux_boot": {
     "gaps": [
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
@@ -566,6 +572,7 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": 1,
    "stack": "open",
    "state": "queued"
   },
@@ -1341,7 +1348,7 @@
    "fingerprint": "ubci-41179101584-1-main-open-ventuno-q",
    "fingerprint_gate": "not-run",
    "lava": {
-    "device": null,
+    "device": "ventunoq-hyd-02",
     "health": "Unknown",
     "job_id": 528122,
     "url": "https://lava.infra.foundries.io/scheduler/job/528122"
@@ -1350,13 +1357,14 @@
     "gaps": [
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
     ],
-    "stage": "not-reached",
-    "verdict": "not-run",
+    "stage": "login",
+    "url": "https://lava.infra.foundries.io/scheduler/job/528122#L2130",
+    "verdict": "pass",
     "versus_baseline": "unknown"
    },
-   "queue_position": 3,
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "testing"
   },
   {
    "board": "ventuno-q",
