@@ -65,7 +65,7 @@
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-10-31T12:12:05Z"
+  "updated": "2026-10-31T12:17:14Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -379,7 +379,202 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "poweroff",
+     "result": "pass",
+     "suite": "poweroff"
+    },
+    {
+     "name": "reboot",
+     "result": "pass",
+     "suite": "reboot"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "cpus-online",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "modules-loaded",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "dmesg-errors",
+     "output": [
+      "<3>[    0.199404] qcom_scm firmware:scm: qseecom: scm call failed with error -5",
+      "<3>[    0.418403] qcom-smem smem: Found an unknown type of DRAM info struct (size = 216)",
+      "<3>[    1.615119] qcomtee: QTEE returned with -22.",
+      "<3>[    1.666630] qcom-ice 7c8000.crypto: probe with driver qcom-ice failed with error -95",
+      "<3>[    1.666761] qcom-ice 1d88000.crypto: probe with driver qcom-ice failed with error -95",
+      "<3>[    1.904185] qcom_pmic_glink pmic-glink: Failed to create device link (0x180) with supplier 1-001c for /pmic-glink/connector@0",
+      "<3>[    2.218067] qcom_pmic_glink pmic-glink: Failed to create device link (0x180) with supplier a600000.usb for /pmic-glink/connector@0",
+      "<3>[    2.551119] qcom_pmic_glink pmic-glink: Failed to create device link (0x180) with supplier 1-001c for /pmic-glink/connector@0",
+      "<3>[    4.583140] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[    4.583190] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[   37.895111] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[   37.895146] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[   40.406722] xhci-pci-renesas 0001:04:00.0: can't setup: -110",
+      "<3>[   40.406751] xhci-pci-renesas 0001:04:00.0: init 0001:04:00.0 fail, -110",
+      "<3>[   40.406758] xhci-pci-renesas 0001:04:00.0: probe with driver xhci-pci-renesas failed with error -110"
+     ],
+     "result": "fail",
+     "suite": "smoke",
+     "url": "https://lava.infra.foundries.io/scheduler/job/528121#L2931"
+    },
+    {
+     "name": "storage",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "usb",
+     "note": "known gap: the USB-A ports sit behind a Renesas uPD720201 xHCI that needs renesas_usb_fw.mem, which is not redistributable; the Type-C port is a USB peripheral in the upstream DT",
+     "result": "skip",
+     "suite": "smoke"
+    },
+    {
+     "name": "network",
+     "result": "fail",
+     "suite": "smoke"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke-after-reboot"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "pass",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "master",
@@ -555,11 +750,19 @@
      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
+   "diff": {
+    "new_fail": [],
+    "new_pass": [],
+    "still_fail": [
+     "smoke/dmesg-errors",
+     "smoke/network"
+    ]
+   },
    "fingerprint": "ubci-41179101584-1-master-open-rb3gen2",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
-    "device": null,
-    "health": "Unknown",
+    "device": "rb3g2-01",
+    "health": "Complete",
     "job_id": 528121,
     "url": "https://lava.infra.foundries.io/scheduler/job/528121"
    },
@@ -567,13 +770,14 @@
     "gaps": [
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
     ],
-    "stage": "not-reached",
-    "verdict": "not-run",
-    "versus_baseline": "unknown"
+    "stage": "login",
+    "url": "https://lava.infra.foundries.io/scheduler/job/528121#L2861",
+    "verdict": "pass",
+    "versus_baseline": "same"
    },
-   "queue_position": 1,
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "done"
   },
   {
    "board": "rb3gen2",
@@ -1664,7 +1868,7 @@
    "fingerprint": "ubci-41179101584-1-master-stock-qcs615-ride",
    "fingerprint_gate": "not-run",
    "lava": {
-    "device": null,
+    "device": "qcs615-adp-air-01",
     "health": "Unknown",
     "job_id": 528114,
     "url": "https://lava.infra.foundries.io/scheduler/job/528114"
@@ -1674,9 +1878,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
-   "queue_position": 1,
+   "queue_position": null,
    "stack": "stock",
-   "state": "queued"
+   "state": "testing"
   },
   {
    "board": "qcs615-ride",
