@@ -6,9 +6,7 @@
 # TF-A and OP-TEE pin the hardware-gated qcom/integration of the
 # EmbeddedAndroid forks at tag qcom/integration-20261031 (the commit, so a
 # later force-push of the branch cannot move a pin). soc_branch records
-# the per-platform branch head that commit merges. VENTUNO Q keeps its
-# ventuno-q-v3 TF-A and OP-TEE master: with the integration's Monaco
-# SYSTEM_RESET this board never restarts after the SAIL notification.
+# the per-platform branch head that commit merges.
 boards:
   rb3gen2:
     tf-a:
@@ -54,31 +52,28 @@ boards:
   ventuno-q:
     tf-a:
       repo: https://github.com/EmbeddedAndroid/arm-trusted-firmware
-      branch: ventuno-q-v3
-      commit: 4930db330cb03cfe2124f41bf1852cff9e7abd22
+      branch: qcom/integration
+      commit: 5fe94c0a7356536c938d3b8232a41e29ec09e3a2
+      soc_branch: {name: qcom/monaco, commit: e7e26831cdeef8656b6c11a0c284cc4ec2c759b1}
       flags: PLAT=monza SPD=opteed
       fip_load_addr: "0xaf000000"
-      upstream:
-        repo: https://review.trustedfirmware.org/TF-A/trusted-firmware-a
-        branch: master
-        gerrit: https://review.trustedfirmware.org
-        project: TF-A/trusted-firmware-a
+      upstream: *tfa-upstream
     bl2:
-      # TF-A BL2 of the tf-a pin with a QTI signature (this XBL accepts no
-      # test signature on tz); pre-signed, so it keeps its own fingerprint.
+      # TF-A BL2 with a QTI signature (this XBL accepts no test signature
+      # on tz); pre-signed, so it keeps its own fingerprint.
       file: tz-ventuno-q.mbn
       source: {repo: https://github.com/EmbeddedAndroid/arm-trusted-firmware, branch: ventuno-q-v3, commit: 4930db330cb03cfe2124f41bf1852cff9e7abd22}
       secret: PIN_BL2_VENTUNO_Q
       sha256: 91f4618318d49d15440ac31101cdf4ab2e4c8693c95f4867ebf2e65ed30e100f
       fingerprint: MONZAFP-261008-154802-pr2-fs
     optee:
-      repo: https://github.com/OP-TEE/optee_os
-      branch: master
-      commit: 2cabb6d063513e1718f7627e16b0a5ce1bfd5516
+      repo: https://github.com/EmbeddedAndroid/optee_os
+      branch: qcom/integration
+      commit: 55c31ca6386e29e22c8633bbbd483e765d0595f2
+      soc_branch: {name: qcom/monaco, commit: 78057e5c9fed21abd4a6d50473df011eb8502e34}
       platform: qcom-monaco
-      upstream:
-        repo: https://github.com/OP-TEE/optee_os
-        branch: master
+      make_args: *optee-pas-args
+      upstream: *optee-upstream
   uno-q:
     tf-a:
       repo: https://github.com/EmbeddedAndroid/arm-trusted-firmware

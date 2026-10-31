@@ -16,9 +16,15 @@ load address). XBL starts it at EL1 under Gunyah.
 
 ## Open stack
 
-TF-A `PLAT=monza` from EmbeddedAndroid/arm-trusted-firmware `ventuno-q-v3`
-(topic qti-monaco follow-ups), BL2 QTI-signed and pre-signed
-(fingerprint MONZAFP-261008-154802-pr2-fs), upstream OP-TEE `qcom-monaco`.
+TF-A `PLAT=monza` and OP-TEE `qcom-monaco` (with the `trusted_keys` and
+`qcom_pas` early TAs) from the hardware-gated `qcom/integration` of the
+EmbeddedAndroid forks (platform branches `qcom/monaco`). BL2 is
+QTI-signed and pre-signed (fingerprint MONZAFP-261008-154802-pr2-fs),
+built from `ventuno-q-v3` (`source`). With this TF-A, SYSTEM_RESET
+does not restart the board: BL31 reports "SAIL did not acknowledge
+status 0xcd070000" and the board stays silent, so U-Boot's `reset` and
+Linux `reboot` fail the fingerprint gate until qcom/monaco rings the
+SAIL doorbell this board answers.
 U-Boot: `qcom_defconfig` + `board/qualcomm/tfa-optee.config` with the
 board DT. Linux runs at EL2 with the upstream `monaco-el2.dtbo`.
 

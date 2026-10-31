@@ -59,7 +59,7 @@ TF-A and OP-TEE pins move by hand for now: bump `config/pins.yaml`, sign
 a new BL2 when TF-A changes (and replace its `PIN_BL2_<BOARD>` secret in
 both environments, [setup.md](setup.md); the sha256 in `pins.yaml` is what
 the submit job checks it against), run `python3 -m ubci.carry` to refresh the
-carried patches, open the PR. The boards pin the hardware-gated
+carried patches, open the PR. Every board pins the hardware-gated
 `qcom/integration` of the EmbeddedAndroid forks, by commit at a dated tag
 (`qcom/integration-<yyyymmdd>`), with the platform branch it merges in
 `soc_branch`; a bump moves all boards to the next gated tag. A pre-signed
