@@ -752,3 +752,17 @@ def test_an_spl_target_asked_for_runs_whatever_the_stack(tmp_path):
     urun.main(["new", p, "--id", "ubci-a", "--commit", "0" * 40, "--fingerprint", "ubci-a", "--kind", "adhoc",
                "--stack", stack_doc(tmp_path, False), "--targets", "lemans-evk:spl"])
     assert [t["stack"] for t in json.load(open(p))["targets"]] == ["spl"]
+
+
+def test_a_bl2_links_the_commit_it_was_built_from(tmp_path, monkeypatch):
+    from ubci import config
+    pins = config.pins()
+    src = pins["rb3gen2"]["bl2"].pop("source")
+    pins["rb3gen2"]["tf-a"]["commit"] = "1" * 40
+    monkeypatch.setattr(config, "pins", lambda: pins)
+    bl2 = comp({"components": urun.components("rb3gen2", "open", "c" * 40, "fp")}, "tf-a bl2")
+    assert (bl2["branch"], bl2["commit"]) == (pins["rb3gen2"]["tf-a"]["branch"], "1" * 40)
+    pins["rb3gen2"]["bl2"]["source"] = src
+    bl2 = comp({"components": urun.components("rb3gen2", "open", "c" * 40, "fp")}, "tf-a bl2")
+    assert (bl2["branch"], bl2["commit"]) == (src["branch"], src["commit"])
+    assert bl2["url"] == "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/" + src["commit"]

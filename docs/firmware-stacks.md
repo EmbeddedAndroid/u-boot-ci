@@ -48,9 +48,11 @@ Pins (`config/pins.yaml`), per board:
   version and the pin's extra `make_args` (early TAs).
 - `bl2`: the image XBL loads from `tz`, signed in advance (XBL only starts
   a signed tz image) and pinned by file name, sha256 and its own
-  fingerprint: TF-A BL2 of the tf-a pin (RB3 Gen 2 with an OEM TEST
-  signature from Qualcomm's public sectools, `scripts/sign-bl2-oem.sh`;
-  the other boards with a QTI signature, pre-signed), or on Lemans a
+  fingerprint: TF-A BL2 (RB3 Gen 2 with an OEM TEST signature from
+  Qualcomm's public sectools, `scripts/sign-bl2-oem.sh`; the other
+  boards with a QTI signature, pre-signed), linked to the commit it was
+  built from (`source`: repository, branch, commit), which stays put when
+  the tf-a pin moves; without `source` it is the tf-a pin's. Or on Lemans a
   pre-built U-Boot SPL (`banner: U-Boot SPL`, `origin: downstream`: there
   is no Lemans SPL in U-Boot `main`). The binaries are not redistributable:
   CI gets them from the `PIN_BL2_<BOARD>` secrets of the LAVA

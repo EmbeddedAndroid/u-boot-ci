@@ -132,9 +132,11 @@ def components(board, stack, commit, fp, branch=None):
     tz = {"name": bl2.get("name", "tf-a bl2"), "role": "pinned", "origin": bl2.get("origin", "upstream"),
           "fingerprint": bl2["fingerprint"], "sha256": bl2["sha256"], "upstream": None}
     if tz["origin"] == "upstream":
-        # BL2 is built from the tf-a pin: its carried patches are counted there.
-        tf = b["pins"]["tf-a"]
-        tz.update(repo=tf["repo"], commit=tf["commit"], url=links.commit_url(tf["repo"], tf["commit"]))
+        # A pre-signed BL2 outlives tf-a pin bumps: it names the commit it
+        # was built from, or it is the tf-a pin's.
+        src = bl2.get("source") or b["pins"]["tf-a"]
+        tz.update(repo=src["repo"], branch=src["branch"], commit=src["commit"],
+                  url=links.commit_url(src["repo"], src["commit"]))
     out.append(tz)
     return out
 

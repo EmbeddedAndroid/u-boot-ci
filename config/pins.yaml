@@ -20,6 +20,7 @@ boards:
       # Qualcomm's public sectools (scripts/sign-bl2-oem.sh); XBL loads it
       # from tz_a/tz_b.
       file: tz-rb3gen2.mbn
+      source: {repo: https://github.com/EmbeddedAndroid/arm-trusted-firmware, branch: kodiak-native-v4, commit: 23b6bf615281242ddf71c5e652aca534dff123d9}
       # Not public: CI reads it (gzip + base64) from this secret of the
       # LAVA environments; locally it is staged in $UBCI_WORK/pins.
       secret: PIN_BL2_RB3GEN2
@@ -52,6 +53,7 @@ boards:
       # TF-A BL2 of the tf-a pin with a QTI signature (this XBL accepts no
       # test signature on tz); pre-signed, so it keeps its own fingerprint.
       file: tz-ventuno-q.mbn
+      source: {repo: https://github.com/EmbeddedAndroid/arm-trusted-firmware, branch: ventuno-q-v3, commit: 4930db330cb03cfe2124f41bf1852cff9e7abd22}
       secret: PIN_BL2_VENTUNO_Q
       sha256: 91f4618318d49d15440ac31101cdf4ab2e4c8693c95f4867ebf2e65ed30e100f
       fingerprint: MONZAFP-261008-154802-pr2-fs
@@ -87,6 +89,7 @@ boards:
       # TF-A BL2 of the tf-a pin with a QTI signature (this XBL accepts no
       # test signature on tz); pre-signed, so it keeps its own fingerprint.
       file: tz-uno-q.mbn
+      source: {repo: https://github.com/EmbeddedAndroid/arm-trusted-firmware, branch: qcom/integration, commit: f2b3d43e002c0866ec3cbea21285f790603a4865}
       secret: PIN_BL2_UNO_Q
       sha256: 09d1770fcdbd12fd18fd1cca84cfeaf3f1a915a851cff673ab24d4e48b10ecff
       fingerprint: QCDFP-261024-68
@@ -112,6 +115,7 @@ boards:
       upstream: *tfa-upstream
     bl2:
       file: tz-qcs615-ride.mbn
+      source: {repo: https://github.com/EmbeddedAndroid/arm-trusted-firmware, branch: qcom/integration, commit: f2b3d43e002c0866ec3cbea21285f790603a4865}
       secret: PIN_BL2_QCS615_RIDE
       sha256: 4616ba74a1285ab764399f7c6d29fccc4267702bce6d0b22cb0f24f9b566332a
       fingerprint: QCDFP-261024-62
