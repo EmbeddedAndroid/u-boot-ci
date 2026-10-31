@@ -65,7 +65,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main 3401e006432a",
-  "updated": "2026-10-31T12:02:20Z"
+  "updated": "2026-10-31T12:07:36Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -176,12 +176,18 @@
    ],
    "fingerprint": "ubci-41179101584-1-main-stock-rb3gen2",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 528120,
+    "url": "https://lava.infra.foundries.io/scheduler/job/528120"
+   },
    "linux_boot": {
-    "gaps": [],
     "stage": "not-reached",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": 1,
    "stack": "stock",
    "state": "queued"
   },
@@ -493,7 +499,342 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "poweroff",
+     "result": "pass",
+     "suite": "poweroff"
+    },
+    {
+     "name": "reboot",
+     "result": "pass",
+     "suite": "reboot"
+    },
+    {
+     "name": "cpus-online",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "modules-loaded",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "dmesg-errors",
+     "output": [
+      "<3>[   44.330547] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.330550] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.330553] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.355737] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.355739] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.355742] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.355746] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.380909] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.380912] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.380915] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.380918] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.405857] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.405860] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.405862] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.405864] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.431281] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.431284] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.431287] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.431290] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.456000] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.456001] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.456003] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.456006] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.481623] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.481625] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.481629] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.481632] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.506595] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.506597] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.506599] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.506601] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.531779] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.531781] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.531783] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.531785] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.557198] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.557201] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.557204] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.557207] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.582146] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.582148] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.582151] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.582153] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.607562] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.607564] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.607568] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.607571] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.632735] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.632738] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.632741] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.632744] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.657699] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.657700] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.657703] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.657705] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.683129] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.683132] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.683136] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.683139] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.708065] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.708067] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.708069] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.708071] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.733481] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.733484] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.733487] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.733491] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.758438] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.758440] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.758442] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.758444] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.783623] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.783625] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.783627] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.783629] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.809028] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.809031] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.809034] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.809037] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.834217] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.834219] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.834223] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.834226] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.859419] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.859421] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.859425] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.859428] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.884561] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.884564] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.884567] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.884571] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.909542] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.909544] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.909546] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.909548] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.934979] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.934982] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.934985] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.934989] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.959911] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.959913] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.959915] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.959918] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   44.985327] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   44.985329] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   44.985332] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   44.985335] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.010274] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.010276] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.010278] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.010280] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.035696] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.035699] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.035702] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.035705] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.060642] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.060644] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.060646] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.060648] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.086067] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.086070] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.086073] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.086077] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.111257] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.111259] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.111262] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.111266] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.136197] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.136199] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.136201] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.136204] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.161624] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.161627] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.161630] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.161633] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.186559] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.186561] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.186563] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.186566] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.211752] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.211754] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.211756] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.211758] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.237165] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.237167] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.237171] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.237174] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.262111] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.262113] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.262116] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.262118] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.287301] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.287304] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.287307] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.287311] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.312722] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.312724] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.312727] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.312730] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.337903] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.337905] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.337908] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.337912] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.362542] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.362543] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.362545] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.362546] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.388253] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.388255] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.388258] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.388260] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.413221] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.413223] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.413225] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.413227] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.438403] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.438405] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.438407] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.438409] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.463805] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.463807] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.463809] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.463811] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.488773] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.488775] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.488777] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.488779] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.514182] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.514185] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.514188] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.514191] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.539378] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.539381] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.539385] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.539388] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.564326] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "<3>[   45.564328] pcieport 0000:02:02.0:   device [12d8:b304] error status/mask=00002001/00000000",
+      "<3>[   45.564331] pcieport 0000:02:02.0:   [ 0] Undefined         | Receiver    | Transaction Layer (First)",
+      "<3>[   45.564333] pcieport 0000:02:02.0:   [13] FCP               | Receiver    | Transaction Layer",
+      "<3>[   45.589705] pcieport 0000:02:02.0: PCIe Bus Error: severity=Uncorrectable (Fatal)",
+      "(573 more lines in the LAVA log)"
+     ],
+     "result": "fail",
+     "suite": "smoke",
+     "url": "https://lava.infra.foundries.io/scheduler/job/528116#L10753"
+    },
+    {
+     "name": "storage",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "usb",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "network",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke-after-reboot"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "pass",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "main",
@@ -577,11 +918,19 @@
      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
+   "diff": {
+    "new_fail": [],
+    "new_pass": [],
+    "still_fail": [
+     "smoke/dmesg-errors",
+     "u-boot/uboot-usb"
+    ]
+   },
    "fingerprint": "ubci-41179101584-1-main-stock-ventuno-q",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
     "device": "ventunoq-hyd-02",
-    "health": "Unknown",
+    "health": "Complete",
     "job_id": 528116,
     "url": "https://lava.infra.foundries.io/scheduler/job/528116"
    },
@@ -592,11 +941,11 @@
     "stage": "login",
     "url": "https://lava.infra.foundries.io/scheduler/job/528116#L2118",
     "verdict": "pass",
-    "versus_baseline": "unknown"
+    "versus_baseline": "same"
    },
    "queue_position": null,
    "stack": "stock",
-   "state": "testing"
+   "state": "done"
   },
   {
    "board": "ventuno-q",
@@ -2985,7 +3334,8 @@
     "versus_baseline": "unknown"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "BL2 pin not available: PIN_BL2_LEMANS_EVK is not set"
   },
   {
    "board": "lemans-evk",
