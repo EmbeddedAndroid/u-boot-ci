@@ -19,9 +19,11 @@ not used.
 
 ## Open stack
 
-TF-A `PLAT=rb3gen2` from EmbeddedAndroid/arm-trusted-firmware
-`kodiak-native-v4` (BL31 without QTISECLIB, Gerrit topic
-qti-kodiak-native), BL2 OEM-TEST signed, upstream OP-TEE `qcom-kodiak`.
+TF-A `PLAT=rb3gen2` and OP-TEE `qcom-kodiak` (with the `trusted_keys`
+and `qcom_pas` early TAs) from the hardware-gated `qcom/integration` of
+the EmbeddedAndroid forks (platform branches `qcom/kodiak`; BL31 without
+QTISECLIB). BL2 is OEM-TEST signed, built from `kodiak-native-v4`
+(`source`).
 U-Boot: `qcom_defconfig` + `board/qualcomm/tfa-optee.config`, same DT.
 Linux runs at EL2.
 

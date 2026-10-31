@@ -59,12 +59,13 @@ TF-A and OP-TEE pins move by hand for now: bump `config/pins.yaml`, sign
 a new BL2 when TF-A changes (and replace its `PIN_BL2_<BOARD>` secret in
 both environments, [setup.md](setup.md); the sha256 in `pins.yaml` is what
 the submit job checks it against), run `python3 -m ubci.carry` to refresh the
-carried patches, open the PR. A pin marked `pending` (UNO Q and QCS615 Ride
-pin the hardware-gated `qcom/integration` snapshot of 2026-10-24/25, not
-pushed) moves, with the `pending` line dropped, to
-the pushed `qcom/integration` head of the EmbeddedAndroid forks, the
-platform branch recorded in `soc_branch`; RB3 Gen 2 and VENTUNO Q move to
-the same branch in the same kind of PR. The watcher is generic (`fwci/pinwatch.py`:
+carried patches, open the PR. The boards pin the hardware-gated
+`qcom/integration` of the EmbeddedAndroid forks, by commit at a dated tag
+(`qcom/integration-<yyyymmdd>`), with the platform branch it merges in
+`soc_branch`; a bump moves all boards to the next gated tag. A pre-signed
+BL2 stays pinned across such a bump until it is re-signed: its `source`
+names the commit it was built from. A pin marked `pending` (a commit not
+public yet) skips the board's open stack with that reason. The watcher is generic (`fwci/pinwatch.py`:
 compare, verify, one PR per pin branch), so an open-stack watcher of the
 upstream tips is a new reader plus the same calls.
 

@@ -59,9 +59,8 @@ Pins (`config/pins.yaml`), per board:
   environments, only in the submit job, and checks the sha256 before
   adding them to the package ([setup.md](setup.md)); the dashboard shows
   the sha256 only.
-- `pending`: set while the pinned commit is not public yet (the new
-  boards pin the hardware-gated `qcom/integration` snapshot until that
-  branch is pushed). The open stack of that board is then skipped with
+- `pending`: set while the pinned commit is not public yet. The open
+  stack of that board is then skipped with
   "open-stack pin not public yet" instead of failing its build, and
   carries no distance to upstream.
 - `qtestsign`: the tool that wraps the FIP in a signed ELF (and signs

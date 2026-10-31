@@ -17,15 +17,13 @@ STUBS = os.path.join(REPO, "tests", "stubs")
 CHECKS = ["carry", "buildman", "fragments", "checkpatch", "docs", "sandbox", "qemu_arm64"]
 # Every board and stack of the nightly but the open stacks whose pins are
 # not public yet and the SPL stacks of boards without SPL support: those
-# are skipped (test_a_pending_pin_skips_its_target,
+# are skipped (ubci.config missing: test_config.py,
 # test_a_board_without_spl_is_skipped_with_why).
 PAIRS = [(b, s) for b in config.project()["boards"] for s in config.project()["stacks"]]
 NO_SPL = ["%s-%s" % (b, s) for b, s in PAIRS if s == "spl" and s not in config.board(b)["u-boot"]
           and not config.board(b).get("spl")]
 TARGETS = ["%s-%s" % (b, s) for b, s in PAIRS
            if s in config.board(b)["u-boot"] and not config.pending(config.board(b), s)]
-PENDING = ["%s-%s" % (b, s) for b, s in PAIRS
-           if s in config.board(b)["u-boot"] and config.pending(config.board(b), s)]
 
 
 @pytest.fixture
@@ -230,16 +228,6 @@ def test_host_check_knows_every_check_the_job_runs():
     text = open(os.path.join(REPO, "scripts", "host-check.sh")).read()
     for c in CHECKS + ["size"]:
         assert "\n%s)" % c in text or "\n%s|" % c in text or "|%s)" % c in text, c
-
-
-def test_a_pending_pin_skips_its_target(job):
-    assert PENDING, "no board with a pending pin to test"
-    p, steps, _ = job()
-    assert p.returncode == 0, p.stdout + p.stderr
-    for t in PENDING:
-        assert "build " + t not in steps
-        st = json.load(open(job.tmp / "out" / "targets" / (t + ".build.json")))
-        assert st["result"] == "skip" and st["reason"].startswith("open-stack pin not public yet: tf-a ")
 
 
 def test_a_board_without_spl_is_skipped_with_why(job):

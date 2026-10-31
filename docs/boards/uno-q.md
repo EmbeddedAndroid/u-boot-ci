@@ -39,11 +39,10 @@ the `qrb2210-unoq-arduino` layout: `downstream_open` in
 `config/boards/uno-q.yaml`, pinned by hand.
 
 TF-A `PLAT=uno_q`, the FIP wrapped at 0x5f800000; BL2 is QTI-signed and
-pre-signed (fingerprint `QCDFP-261024-68`); OP-TEE `qcom-agatti`. Both pin
-the hardware-gated `qcom/integration` snapshot of 2026-10-24/25 on the
-EmbeddedAndroid forks (platform branches `qcom/agatti`). Those commits
-are not public yet, so the open stack is skipped with that reason until
-the branch is pushed; the pins then move to its head. U-Boot:
+pre-signed (fingerprint `QCDFP-261024-68`, built from the 2026-10-24
+integration, `source`); OP-TEE `qcom-agatti`. Both pin the
+hardware-gated `qcom/integration` of the EmbeddedAndroid forks (platform
+branches `qcom/agatti`). U-Boot:
 `qcom_defconfig` + `tfa-optee.config` + the board fragment
 `arduino-uno-q.config` when the base has it (the UNO Q series adds it;
 the dashboard flags it when it is missing).

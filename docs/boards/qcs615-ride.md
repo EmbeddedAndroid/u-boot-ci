@@ -20,8 +20,8 @@ starts it at EL1 under Gunyah.
 TF-A `PLAT=qcs615_ride` (FIP at 0x9fc00000), BL2 QTI-signed and
 pre-signed (fingerprint `QCDFP-261024-62`); OP-TEE `qcom-talos` with the
 `trusted_keys` and `qcom_pas` early TAs. Both pin the hardware-gated
-`qcom/integration` snapshot of 2026-10-24/25 (platform branches
-`qcom/talos`), not public yet: the open stack is skipped with that
-reason until the branch is pushed. U-Boot: `qcom_defconfig` +
+`qcom/integration` of the EmbeddedAndroid forks (platform branches
+`qcom/talos`); BL2 was built from the 2026-10-24 integration
+(`source`). U-Boot: `qcom_defconfig` +
 `tfa-optee.config` + `qcs615-ride.config` when the base has it. Linux runs
 at EL2 with the upstream `talos-el2.dtbo`.

@@ -32,7 +32,7 @@ def test_new_run_has_every_board_and_stack_with_distance(doc):
     tfa = [c for c in open_rb3["components"] if c["name"] == "tf-a"][0]
     assert tfa["role"] == "pinned" and tfa["upstream"]["distance"] == len(tfa["upstream"]["carried"])
     optee = [c for c in open_rb3["components"] if c["name"] == "optee"][0]
-    assert optee["upstream"]["distance"] == 0
+    assert optee["upstream"]["distance"] == len(optee["upstream"]["carried"]) > 0
     assert open_rb3["linux_boot"]["gaps"]
     for vq in (target_of(r, "ventuno-q", "stock"), target_of(r, "ventuno-q", "open")):
         assert vq["linux_boot"]["gaps"][0].startswith("upstream U-Boot does not support this board")
@@ -665,16 +665,24 @@ def test_every_target_names_its_exact_software(doc):
         "arch/arm64/boot/dts/qcom/lemans-el2.dtso")
 
 
-def test_open_stack_pins_link_their_commits_and_say_when_not_public(doc):
-    r = json.load(open(doc))
+def test_open_stack_pins_link_their_commits_and_say_when_not_public(tmp_path, monkeypatch):
+    from ubci import config
+    pins = config.pins()
+    pins["qcs615-ride"]["tf-a"]["pending"] = "not pushed yet"
+    monkeypatch.setattr(config, "pins", lambda: pins)
+    (tmp_path / "linux.json").write_text(json.dumps(LINUX))
+    p = str(tmp_path / "run.json")
+    urun.main(["new", p, "--id", "ubci-1", "--commit", "0" * 40, "--fingerprint", "ubci-1",
+               "--linux", str(tmp_path / "linux.json")])
+    r = json.load(open(p))
     tfa = comp(target_of(r, "qcs615-ride", "open"), "tf-a")
     assert tfa["url"] == "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/" + tfa["commit"]
-    assert tfa["pending"] and tfa["soc_branch"]["name"] == "qcom/talos" and tfa["upstream"] is None
+    assert tfa["pending"] == "not pushed yet" and tfa["soc_branch"]["name"] == "qcom/talos"
     assert "pending" not in comp(target_of(r, "rb3gen2", "open"), "tf-a")
     spl = comp(target_of(r, "lemans-evk", "open"), "u-boot spl")
     assert spl["origin"] == "downstream" and "commit" not in spl and spl["fingerprint"].startswith("LEMANSFP-")
     bl2 = comp(target_of(r, "uno-q", "open"), "tf-a bl2")
-    assert bl2["origin"] == "upstream" and bl2["commit"] == comp(target_of(r, "uno-q", "open"), "tf-a")["commit"]
+    assert bl2["origin"] == "upstream" and bl2["commit"] == pins["uno-q"]["bl2"]["source"]["commit"]
 
 
 def test_built_records_the_configs_the_base_had(doc, tmp_path):
