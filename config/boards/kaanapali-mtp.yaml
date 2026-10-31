@@ -1,0 +1,74 @@
+# Qualcomm Kaanapali MTP (SM8850, Wildcat). See docs/boards/kaanapali-mtp.md.
+name: kaanapali-mtp
+title: Kaanapali MTP
+soc: SM8850 (Kaanapali)
+lava:
+  device_type: kaanapali-mtp
+  storage: ufs
+  # LUN 3 (CDT, DDR training) and LUN 5 (persist) stay as the lab wrote
+  # them: the CDT is not rewritten.
+  luns: [0, 1, 2, 4]
+  firehose: qsahara_device_programmer.xml
+  xbl_marker: "SBL1, End"
+downstream:
+  # The boot binaries meta-qcom pins for kaanapali-mtp
+  # (firmware-qcom-boot-kaanapali_00036.bb) with qcom-ptool's kaanapali-mtp UFS
+  # layout.
+  release: Kaanapali boot binaries 00036
+  bootbinaries:
+    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/Kaanapali_bootbinaries.1.0/kaanapali_bootbinaries.1.0-test-device-public/00036/kaanapali_bootbinaries_00036.zip
+      sha256: 3efc9cbe88726a20f2bfedd7f59b508546f0ba66fddd397b50007ddbeef4af92
+  xbl_config: xbl_config.elf
+  partitions: {conf: platforms/kaanapali-mtp/ufs/partitions.conf}
+  required: [xbl_sc.elf, xbl_config.elf, tz.mbn]
+  source: {meta-qcom: af39508715abfa06e0abd6e3d8e1228acf374f7d}
+  # Not watched: a bump's validation runs the stock stack, which this
+  # board does not have (ubci/stockpin.py).
+  upstream:
+    layers:
+      meta-qcom: {repo: https://github.com/qualcomm-linux/meta-qcom, branch: master}
+    bootbinaries:
+      layer: meta-qcom
+      recipe: recipes-bsp/firmware-boot/firmware-qcom-boot-kaanapali_*.bb
+      release: Kaanapali boot binaries {pv}
+not_available:
+  stock: >-
+    only the open stack is tested on this Wildcat board: its TF-A and
+    OP-TEE come from private, pinned images (docs/private-firmware.md)
+u-boot:
+  open:
+    configs: [qcom_defconfig, tfa-optee.config, "kaanapali-mtp.config?"]
+    device_tree: qcom/kaanapali-mtp
+    image: u-boot.bin
+linux:
+  dtb: qcom/kaanapali-mtp.dtb
+  overlays:
+    open: []
+  gaps:
+    open:
+      - >-
+        upstream U-Boot has no SM8850 clock or pinctrl driver yet (they are
+        on qcom/kaanapali of the EmbeddedAndroid U-Boot fork, not posted)
+  cmdline: console=ttyMSM0,115200n8
+boot_chain:
+  open:
+    - {stage: XBL, origin: downstream}
+    - {stage: TF-A BL2, origin: downstream, component: tf-a bl2, detail: "internal integration build, pinned image"}
+    - {stage: TF-A BL31, origin: downstream, component: tf-a, detail: "internal integration build, pinned image"}
+    - {stage: OP-TEE, origin: downstream, component: optee, detail: "internal integration build, pinned image"}
+    - {stage: hypervisor, origin: none}
+    - {stage: U-Boot, origin: upstream, component: u-boot, detail: BL33 in the FIP}
+    - {stage: Linux, origin: upstream, component: linux, detail: EL2}
+uboot_checks:
+  - [bdinfo, bdinfo, "boot_params"]
+  - [dm-tree, dm tree, "root_driver"]
+  - [clocks, clk dump, "Usecnt"]
+  - [storage, scsi info, "Vendor:"]
+  - [usb, usb tree, "USB device tree"]
+  - [efi-media, efidebug dh, "Block IO"]
+  - [bootflow, bootflow scan -l, "efi"]
+smoke:
+  cpus: 8
+  storage: "ls /sys/class/block | grep -q '^sd[a-z]$' && dd if=/dev/sda of=/dev/null bs=1M count=16"
+  usb: "ls /sys/bus/usb/devices | grep -q '^usb[0-9]'"
+  network: "ls /sys/class/net | grep -qv '^lo$'"

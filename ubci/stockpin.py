@@ -124,6 +124,9 @@ def check(board_name, out, verify=True):
     up = b["downstream"].get("upstream")
     if not up:
         return {"board": board_name, "result": "no upstream configured"}
+    if "stock" not in b["u-boot"]:
+        # pin-candidate validates a bump on the stock stack.
+        return {"board": board_name, "result": "no stock stack to validate a bump on"}
     roots, links, source = {}, [], {}
     for name, layer in up["layers"].items():
         roots[name], sha = checkout(name, layer)

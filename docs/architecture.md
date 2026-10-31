@@ -78,7 +78,8 @@ series can fake its own run's results, never another run's.
 Each job is pinned to a device: the submit job picks a board of the
 device type in Good health, idle ones first, leaving out the devices
 `config/project.yaml` `lava.exclude_devices` names (the production
-boards, `*-production-*`). The in-flight cap (`lava.max_in_flight` per
+boards, `*-production-*`, and boards with a known fault, each with the
+jobs that show it). The in-flight cap (`lava.max_in_flight` per
 device type) counts the whole lab's u-boot-ci jobs, queued and running,
 so the `main` and `master` nightlies and ad-hoc runs together never hold
 more boards than that. The device list does not say which devices the

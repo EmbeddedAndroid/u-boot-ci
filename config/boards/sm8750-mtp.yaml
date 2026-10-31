@@ -1,0 +1,74 @@
+# Qualcomm SM8750 MTP (Pakala, Wildcat). See docs/boards/sm8750-mtp.md.
+name: sm8750-mtp
+title: SM8750 MTP
+soc: SM8750 (Pakala)
+lava:
+  device_type: sm8750-mtp
+  storage: ufs
+  # LUN 3 (CDT, DDR training) and LUN 5 (persist) stay as the lab wrote
+  # them: there is no public SM8750 CDT.
+  luns: [0, 1, 2, 4]
+  firehose: xbl_s_devprg_ns.melf
+  xbl_marker: "SBL1, End"
+downstream:
+  # The boot binaries meta-qcom pins for sm8750-mtp
+  # (firmware-qcom-boot-sm8750_00045.bb) with qcom-ptool's sm8750-mtp UFS
+  # layout.
+  release: SM8750 boot binaries 00045
+  bootbinaries:
+    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/SM8750_bootbinaries.1.0/sm8750_bootbinaries.1.0-test-device-public/00045/pakala_bootbinaries_00045.zip
+      sha256: 376818f0c41e2356cbd2225ba467671ddb81a75e9c87ce040721a29b30b308cc
+  xbl_config: xbl_config.elf
+  partitions: {conf: platforms/sm8750-mtp/ufs/partitions.conf}
+  required: [xbl_s.melf, xbl_config.elf, tz.mbn]
+  source: {meta-qcom: af39508715abfa06e0abd6e3d8e1228acf374f7d}
+  # Not watched: a bump's validation runs the stock stack, which this
+  # board does not have (ubci/stockpin.py).
+  upstream:
+    layers:
+      meta-qcom: {repo: https://github.com/qualcomm-linux/meta-qcom, branch: master}
+    bootbinaries:
+      layer: meta-qcom
+      recipe: recipes-bsp/firmware-boot/firmware-qcom-boot-sm8750_*.bb
+      release: SM8750 boot binaries {pv}
+not_available:
+  stock: >-
+    only the open stack is tested on this Wildcat board: its TF-A and
+    OP-TEE come from private, pinned images (docs/private-firmware.md)
+u-boot:
+  open:
+    configs: [qcom_defconfig, tfa-optee.config, "sm8750-mtp.config?"]
+    device_tree: qcom/sm8750-mtp
+    image: u-boot.bin
+linux:
+  dtb: qcom/sm8750-mtp.dtb
+  overlays:
+    open: []
+  gaps:
+    open:
+      - >-
+        upstream U-Boot has no SM8750 clock or pinctrl driver yet (they are
+        on qcom/pakala of the EmbeddedAndroid U-Boot fork, not posted)
+  cmdline: console=ttyMSM0,115200n8
+boot_chain:
+  open:
+    - {stage: XBL, origin: downstream}
+    - {stage: TF-A BL2, origin: downstream, component: tf-a bl2, detail: "internal integration build, pinned image"}
+    - {stage: TF-A BL31, origin: downstream, component: tf-a, detail: "internal integration build, pinned image"}
+    - {stage: OP-TEE, origin: downstream, component: optee, detail: "internal integration build, pinned image"}
+    - {stage: hypervisor, origin: none}
+    - {stage: U-Boot, origin: upstream, component: u-boot, detail: BL33 in the FIP}
+    - {stage: Linux, origin: upstream, component: linux, detail: EL2}
+uboot_checks:
+  - [bdinfo, bdinfo, "boot_params"]
+  - [dm-tree, dm tree, "root_driver"]
+  - [clocks, clk dump, "Usecnt"]
+  - [storage, scsi info, "Vendor:"]
+  - [usb, usb tree, "USB device tree"]
+  - [efi-media, efidebug dh, "Block IO"]
+  - [bootflow, bootflow scan -l, "efi"]
+smoke:
+  cpus: 8
+  storage: "ls /sys/class/block | grep -q '^sd[a-z]$' && dd if=/dev/sda of=/dev/null bs=1M count=16"
+  usb: "ls /sys/bus/usb/devices | grep -q '^usb[0-9]'"
+  network: "ls /sys/class/net | grep -qv '^lo$'"

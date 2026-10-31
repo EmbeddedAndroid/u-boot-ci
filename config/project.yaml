@@ -4,15 +4,21 @@ under_test:
   name: u-boot
   repo: https://git.u-boot-project.org/u-boot/u-boot.git
   branch: main
-boards: [rb3gen2, ventuno-q, uno-q, qcs615-ride, lemans-evk, shikra-iqs-evk]
+boards: [rb3gen2, ventuno-q, uno-q, qcs615-ride, lemans-evk, shikra-iqs-evk, sm8750-mtp, kaanapali-mtp]
 stacks: [stock, open, spl]
 lava:
   url: https://lava.infra.foundries.io
   # Jobs of this project in flight per device type; the submitter waits
   # for a slot so the nightly never crowds out port work.
   max_in_flight_per_device_type: 1
-  # Devices jobs are never pinned to (other teams' production boards).
-  exclude_devices: ["*-production-*"]
+  # Devices jobs are never pinned to: other teams' production boards, and
+  # kaanapali-mtp-02 until the lab repairs it. Its UFS vccq rail (LDO4)
+  # trips over-current on any firmware, so every job there ends Incomplete:
+  # https://lava.infra.foundries.io/scheduler/job/512793
+  # https://lava.infra.foundries.io/scheduler/job/528270
+  # https://lava.infra.foundries.io/scheduler/job/528272
+  # https://lava.infra.foundries.io/scheduler/job/528274
+  exclude_devices: ["*-production-*", kaanapali-mtp-02]
 host_checks:
   # defconfig + fragment combinations (buildman builds defconfigs only;
   # scripts/host-check.sh buildman covers every snapdragon defconfig).

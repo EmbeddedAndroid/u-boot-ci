@@ -219,3 +219,12 @@ def test_bump_of_a_board_whose_downstream_section_is_an_anchor(tmp_path, monkeyp
     monkeypatch.setattr(config, "boards", lambda: ["lemans-evk", "rb3gen2"])
     assert stockpin.main([str(tmp_path / "all"), "--no-verify"]) == 0
     assert [r["result"] for r in json.load(open(tmp_path / "all" / "summary.json"))] == ["bump", "up to date"]
+
+
+def test_a_board_without_a_stock_stack_is_not_watched(tmp_path, monkeypatch):
+    def no_checkout(name, layer):
+        raise AssertionError("no layer is read for it")
+    monkeypatch.setattr(stockpin, "checkout", no_checkout)
+    assert stockpin.check("sm8750-mtp", str(tmp_path), verify=False) == {
+        "board": "sm8750-mtp", "result": "no stock stack to validate a bump on"}
+    assert os.listdir(tmp_path) == []

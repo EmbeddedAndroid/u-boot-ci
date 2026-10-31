@@ -108,9 +108,10 @@ uploads for at most 6 hours.)
 ## The LAVA user
 
 `robotyler` needs submit rights on `qcs6490-rb3gen2`,
-`monaco-arduino-monza`, `qrb2210-arduino-imola`, `qcs615-ride` and
-`lemans-evk`, the artifact store of the LAVA MCP endpoint (the
-packages are uploaded there for the length of a run). The runs never use the
-production boards: `config/project.yaml` `lava.exclude_devices` keeps
-them out of the device choice, and every job is pinned to the device it
-was chosen for.
+`monaco-arduino-monza`, `qrb2210-arduino-imola`, `qcs615-ride`,
+`lemans-evk`, `sm8750-mtp` and `kaanapali-mtp`, the artifact store of
+the LAVA MCP endpoint (the packages are uploaded there for the length of
+a run). The runs never use the production boards or a board with a
+known fault: `config/project.yaml` `lava.exclude_devices` keeps them out
+of the device choice, and every job is pinned to the device it was
+chosen for.

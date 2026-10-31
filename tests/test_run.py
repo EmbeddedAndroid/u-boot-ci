@@ -26,7 +26,8 @@ def test_new_run_has_every_board_and_stack_with_distance(doc):
     r = json.load(open(doc))
     assert schema.errors(r) == []
     assert [(t["board"], t["stack"]) for t in r["targets"]] == [
-        (b, s) for b in ("rb3gen2", "ventuno-q", "uno-q", "qcs615-ride", "lemans-evk", "shikra-iqs-evk")
+        (b, s) for b in ("rb3gen2", "ventuno-q", "uno-q", "qcs615-ride", "lemans-evk", "shikra-iqs-evk",
+                         "sm8750-mtp", "kaanapali-mtp")
         for s in ("stock", "open", "spl")]
     open_rb3 = target_of(r, "rb3gen2", "open")
     tfa = [c for c in open_rb3["components"] if c["name"] == "tf-a"][0]
@@ -353,6 +354,15 @@ def test_choose_device_skips_production_boards_and_prefers_idle(monkeypatch):
     assert urun.choose_device(L(), "qcs6490-rb3gen2") is None
 
 
+
+def test_choose_device_never_picks_the_faulty_kaanapali_mtp_02():
+    class L(Lab):
+        devs = [{"hostname": "kaanapali-mtp-02", "state": "Idle", "health": "Good"},
+                {"hostname": "kaanapali-mtp-03", "state": "Idle", "health": "Good"}]
+    assert urun.choose_device(L(), "kaanapali-mtp") == "kaanapali-mtp-03"
+    L.devs = L.devs[:1]
+    assert urun.choose_device(L(), "kaanapali-mtp") is None
+
 def test_lab_wide_cap_counts_other_runs(doc, tmp_path, monkeypatch):
     pk = tmp_path / "pk"
     pk.mkdir()
@@ -476,7 +486,7 @@ def test_close_cancelled_run_left_building(doc, capsys):
     r = json.load(open(doc))
     assert schema.errors(r) == []
     assert r["state"] == "cancelled" and r["note"] == "workflow cancelled"
-    assert [t["state"] for t in r["targets"]] == ["cancelled", "cancelled", "skipped"] + ["cancelled"] * 15
+    assert [t["state"] for t in r["targets"]] == ["cancelled", "cancelled", "skipped"] + ["cancelled"] * 21
     assert r["targets"][0]["state_detail"] == "workflow cancelled before this target finished"
     assert r["targets"][1]["state_detail"].endswith("; LAVA job 511644 was not collected")
     assert r["host_checks"] == [{"name": "docs", "result": "skip",

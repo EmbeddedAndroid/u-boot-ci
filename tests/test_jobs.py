@@ -28,7 +28,7 @@ def test_open_stack_gate_checks_every_component(board):
     assert job["priority"] == "low" and job["visibility"] == "public"
 
 
-@pytest.mark.parametrize("board", config.boards())
+@pytest.mark.parametrize("board", [b for b in config.boards() if "stock" in config.board(b)["u-boot"]])
 def test_stock_gate_checks_u_boot_only(board):
     job = jobs.render(board, "stock", "ubci-9", PKG, LINUX)
     assert monitors(job)[jobs.GATE_SUITE]["expected"] == ["u_boot_20"]

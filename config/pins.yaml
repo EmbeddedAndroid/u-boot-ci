@@ -170,6 +170,64 @@ boards:
       soc_branch: {name: qcom/shikra, commit: 62a6594de998900064a19d724c1dd9fc32cd6f9e}
       platform: qcom-shikra
       upstream: *optee-upstream
+  sm8750-mtp:
+    # Wildcat: TF-A and OP-TEE are built from the internal qcom/integration
+    # (tag qcom/integration-20261031), which this repository may not see.
+    # The CI holds their images only, pinned by sha256 and fingerprint; the
+    # submit job fetches them from the private store and builds the FIP
+    # around the U-Boot under test (docs/private-firmware.md).
+    tf-a:
+      private: internal qcom/integration-20261031 (PLAT=sm8750_mtp)
+      release: qcom-integration-20261031
+      file: bl31-sm8750-mtp.bin
+      sha256: b77b30c0aefc4099944d6c63670d275775f94598b0890ea46bdfde1bd8a53335
+      fingerprint: QCDFP-261031-412
+      fip_load_addr: "0xa7000000"
+      # qtestsign arguments for the fip.elf XBL loads from uefi_a/uefi_b.
+      sign: [-v7, uefi]
+    bl2:
+      # TF-A BL2 of the same build, QTI-signed.
+      private: internal qcom/integration-20261031 (PLAT=sm8750_mtp)
+      origin: downstream
+      release: qcom-integration-20261031
+      file: tz-sm8750-mtp.mbn
+      sha256: 2c4d402fda81d29fc211f68950531ff4d012c36f0e630419f6b39c8afd392c99
+      fingerprint: QCDFP-261031-412
+    optee:
+      private: internal qcom/integration-20261031 (PLATFORM=qcom-pakala)
+      release: qcom-integration-20261031
+      file: tee-sm8750-mtp.bin
+      sha256: 7a8580eefb121f5f5a54f75a41cb72f73138d6c7a32faaaa847b8d566d51ea4c
+      fingerprint: QCDFP-261031-412
+  kaanapali-mtp:
+    # Wildcat: TF-A and OP-TEE are built from the internal qcom/integration
+    # (tag qcom/integration-20261031), which this repository may not see.
+    # The CI holds their images only, pinned by sha256 and fingerprint; the
+    # submit job fetches them from the private store and builds the FIP
+    # around the U-Boot under test (docs/private-firmware.md).
+    tf-a:
+      private: internal qcom/integration-20261031 (PLAT=kaanapali_mtp)
+      release: qcom-integration-20261031
+      file: bl31-kaanapali-mtp.bin
+      sha256: e4b8a2f39124bc7f5ed57594578e33d0e6e70ab8358e5d3d5d33cee288ea9184
+      fingerprint: QCDFP-261031-413
+      fip_load_addr: "0xc6800000"
+      # qtestsign arguments for the fip.elf XBL loads from uefi_a/uefi_b.
+      sign: [-v7, uefi]
+    bl2:
+      # TF-A BL2 of the same build, QTI-signed.
+      private: internal qcom/integration-20261031 (PLAT=kaanapali_mtp)
+      origin: downstream
+      release: qcom-integration-20261031
+      file: tz-kaanapali-mtp.mbn
+      sha256: 6f9620f9516f1453a99ea90d0f90fc67c0e87197902af65a2e79049e5c553052
+      fingerprint: QCDFP-261031-413
+    optee:
+      private: internal qcom/integration-20261031 (PLATFORM=qcom-kaanapali)
+      release: qcom-integration-20261031
+      file: tee-kaanapali-mtp.bin
+      sha256: 75a749d9eaad006be9dc7f064886c3a8f70865baf63cbbef0bf273c98beb8897
+      fingerprint: QCDFP-261031-413
 qtestsign:
   repo: https://github.com/msm8916-mainline/qtestsign
   commit: 0eef3b552b1ada848f22bad38ab2e40407307c5b

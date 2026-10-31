@@ -319,9 +319,9 @@ def render_one(run, board, stack, package, device=None):
 
 def choose_device(lava, device_type, denied=()):
     """A healthy device of the type that is not excluded
-    (project.yaml lava.exclude_devices: production boards of other teams)
-    and has not refused this LAVA user (denied), an idle one first. None
-    when there is none."""
+    (project.yaml lava.exclude_devices: production boards of other teams,
+    boards with a known fault) and has not refused this LAVA user
+    (denied), an idle one first. None when there is none."""
     exclude = config.project()["lava"].get("exclude_devices", [])
     ok = sorted((d for d in lava.devices(device_type) if d["health"] == "Good" and
                  d["hostname"] not in denied and
