@@ -13,19 +13,19 @@ downstream: &downstream
   # (firmware-qcom-boot-qcs9100_00142.bb, firmware-qcom-cdt-qcs9100.bb,
   # QCOM_CDT_FILE cdt_rb8_core_kit). The SAIL NOR image of the release is
   # not flashed: the board keeps what the lab last wrote.
-  release: QCS9100 boot binaries 00142
+  release: QCS9100 boot binaries 00150
   bootbinaries:
-    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00142/QCS9100_bootbinaries_00142.zip
-      sha256: 17d2c5bae5c17b665bafd9bba8962f41aec7be2f874cde90b0976730f0098bf6
-    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00142/QCS9100_bootbinaries_immutable_00142.zip
-      sha256: 1aa0b67671ef026a40ca133f32128d07fffd614a47cf51eaa5cd5c7d4941d034
+    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00150/QCS9100_bootbinaries_00150.zip
+      sha256: 52af8fa3460c937fe1853e6cc8f3f9fa1235c4bc0eeb1a51b572305cc82c63e7
+    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS9100_bootbinaries.1.0/qcs9100_bootbinaries.1.0-test-device-public/00150/QCS9100_bootbinaries_immutable_00150.zip
+      sha256: 2f905f457a9583a183fde2858a0880fb3acc141d38a82ced8ebfd5cfc6a8e3ae
   cdt:
     url: https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS9100/cdt/rb8_core_kit.zip
     sha256: a252244f800d7c9e15883e12935af4113f9f2ecba6490e46cd9b943169f15bfa
     file: cdt_rb8_core_kit.bin
   xbl_config: xbl_config.elf
   partitions: {board: platforms/boards/iq-9075-evk.yaml, storage: ufs}
-  source: {meta-qcom: c853febcdeb149021fd043ac7a5eaae88f29f7b7}
+  source: {meta-qcom: 4cd87176382a393d9558690e892d5aa9d2343ee6}
   upstream:
     layers:
       meta-qcom: {repo: https://github.com/qualcomm-linux/meta-qcom, branch: master}
