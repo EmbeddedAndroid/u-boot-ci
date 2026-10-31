@@ -188,3 +188,12 @@ def test_job_names_say_downstream_firmware():
     assert jobs.render("uno-q", "stock-candidate", "f", PKG, LINUX)["job_name"].startswith(
         "u-boot-ci uno-q downstream-candidate ")
     assert jobs.stack_label("open") == "open"
+
+
+def test_private_open_gate_expects_the_pinned_images_and_this_u_boot():
+    b = config.board("rb3gen2")
+    assert jobs.gate_expect(b, "open", "f")["BL31: v"] == "f"
+    for name, fp in (("tf-a", "FP-31"), ("optee", "FP-32")):
+        b["pins"][name].update(private="internal x", fingerprint=fp)
+    assert jobs.gate_expect(b, "open", "f") == {"BL2: v": b["pins"]["bl2"]["fingerprint"], "BL31: v": "FP-31",
+                                                  "OP-TEE version": "FP-32", "U-Boot 20": "f"}

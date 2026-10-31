@@ -774,3 +774,82 @@ def test_a_bl2_links_the_commit_it_was_built_from(tmp_path, monkeypatch):
     bl2 = comp({"components": urun.components("rb3gen2", "open", "c" * 40, "fp")}, "tf-a bl2")
     assert (bl2["branch"], bl2["commit"]) == (src["branch"], src["commit"])
     assert bl2["url"] == "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/" + src["commit"]
+
+
+def test_private_pins_name_what_they_are_built_from_without_links(monkeypatch):
+    pins = config.pins()
+    for n in ("tf-a", "bl2", "optee"):
+        pins["rb3gen2"][n] = {"private": "internal %s" % n, "file": n, "sha256": n[0] * 64, "fingerprint": "FP-" + n}
+    pins["rb3gen2"]["bl2"]["origin"] = "downstream"
+    monkeypatch.setattr(config, "pins", lambda: pins)
+    t = {"components": urun.components("rb3gen2", "open", "c" * 40, "fp")}
+    pins = pins["rb3gen2"]
+    for name, pin in (("tf-a", "tf-a"), ("optee", "optee"), ("tf-a bl2", "bl2")):
+        c = comp(t, name)
+        assert c["origin"] == "downstream" and c["url"] is None and "repo" not in c and "commit" not in c
+        assert (c["branch"], c["sha256"], c["fingerprint"]) == (
+            pins[pin]["private"], pins[pin]["sha256"], pins[pin]["fingerprint"])
+    assert comp(t, "tf-a")["upstream"] is None
+
+
+def test_a_private_package_without_its_images_is_skipped_not_sent(doc, tmp_path, monkeypatch):
+    import io
+    import tarfile
+    from ubci import package
+    pk = tmp_path / "pk"
+    pk.mkdir()
+    with tarfile.open(pk / "rb3gen2-open.qcomflash.tar.gz", "w:gz") as t:
+        for n, blob in (("SOURCES.json", json.dumps({"deferred": ["tz.mbn", "uefi.elf"],
+                                                      "files": {"bl33.bin": "0" * 64}}).encode()),
+                        ("bl33.bin", b"u-boot")):
+            info = tarfile.TarInfo("ubci-rb3gen2-open/" + n)
+            info.size = len(blob)
+            t.addfile(info, io.BytesIO(blob))
+    monkeypatch.setattr(package, "WORK", str(tmp_path))
+    monkeypatch.delenv("UBCI_PRIVATE_TOKEN", raising=False)
+    pins = config.pins()
+    for name in ("tf-a", "bl2", "optee"):
+        pins["rb3gen2"][name].update(private="internal x", file=name + ".bin", fingerprint="FP-1")
+    monkeypatch.setattr(config, "pins", lambda: pins)
+    lab = SubmitLava()
+    monkeypatch.setattr(urun, "Lava", lambda: lab)
+    urun.main(["submit", doc, str(pk)])
+    t = target_of(json.load(open(doc)), "rb3gen2", "open")
+    assert t["state"] == "skipped" and t["state_detail"].startswith("private firmware not available: ")
+    assert "UBCI_PRIVATE_TOKEN" in t["state_detail"] and lab.submitted == []
+
+
+def test_a_private_board_fails_to_assemble_without_stopping_the_pass(doc, tmp_path, monkeypatch):
+    # Whatever goes wrong (a missing pin key, a failed qtestsign clone),
+    # that target is skipped with the reason and the next one still goes.
+    from ubci import package
+    pk = tmp_path / "pk"
+    pk.mkdir()
+    make_pkg(pk, "rb3gen2-open", deferred=["tz.mbn", "uefi.elf"])
+    make_pkg(pk, "ventuno-q-open")
+    (pk / "uno-q-open.qcomflash.tar.gz").write_bytes(b"not a tar")
+    make_pkg(pk, "qcs615-ride-open", deferred=["tz.mbn"])
+    monkeypatch.delenv("PIN_BL2_QCS615_RIDE", raising=False)
+    real = package.sources
+    # A package that claims to be private does not make its board so.
+    monkeypatch.setattr(package, "sources", lambda pkg: {"deferred": [], "files": {"bl33.bin": "0" * 64}}
+                        if "ventuno" in pkg else real(pkg))
+    pins = config.pins()
+    pins["rb3gen2"]["tf-a"]["private"] = "internal x"
+    monkeypatch.setattr(config, "pins", lambda: pins)
+
+    def broken(pkg, board):
+        raise KeyError("sign")
+    monkeypatch.setattr(package, "insert_private", broken)
+    lab = SubmitLava()
+    monkeypatch.setattr(urun, "Lava", lambda: lab)
+    urun.main(["submit", doc, str(pk)])
+    r = json.load(open(doc))
+    rb3 = target_of(r, "rb3gen2", "open")
+    assert (rb3["state"], rb3["state_detail"]) == ("skipped", "private firmware not available: 'sign'")
+    assert target_of(r, "ventuno-q", "open")["lava"]["job_id"] == 7
+    # A package that is not even a tar only skips its own target.
+    uno = target_of(r, "uno-q", "open")
+    assert uno["state"] == "skipped" and uno["state_detail"].startswith("package not usable: ")
+    q = target_of(r, "qcs615-ride", "open")
+    assert q["state_detail"] == "BL2 pin not available: PIN_BL2_QCS615_RIDE is not set"

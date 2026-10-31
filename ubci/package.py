@@ -4,6 +4,10 @@ python3 -m ubci.package <board> <stock|open|spl> <uefi image> <efi.bin> <out.tar
 python3 -m ubci.package insert-bl2 <package.tar.gz> <board>
     adds the board's BL2 from the environment variable named by its pin
     (secret, gzip + base64), checked against the pinned sha256
+python3 -m ubci.package insert-private <package.tar.gz> <board>
+    completes the open stack of a board with private pins: tz.mbn, and
+    the FIP of the private BL31 and OP-TEE around the package's U-Boot,
+    wrapped and test-signed ("private" below)
 python3 -m ubci.package blobs <board> <stack> <dir>
     extracts the pre-ddr blobs the board's SPL FIT carries (spl.pre_ddr)
     from the stack's downstream boot binaries into <dir>, each checked
@@ -29,6 +33,13 @@ layout. Then:
          loads it, xbl.elf when the boot ROM does) <- the U-Boot SPL built
          and signed with U-Boot (spl.mbn next to the uefi image),
          uefi_a/uefi_b <- the SPL FIT;
+  private an open stack whose TF-A and OP-TEE are built from sources the
+         CI may not see (Wildcat: tf-a pin `private`): the images are
+         pinned by sha256 (docs/private-firmware.md) and only the submit
+         job gets them. The package carries the U-Boot under test as
+         bl33.bin with tz.mbn and the uefi image deferred; insert-private
+         fetches BL2, BL31 and OP-TEE, builds the FIP (ubci.fip), wraps
+         and signs it, and drops bl33.bin;
   all    efi <- the ESP with the linux-next UKI.
 Partitions whose image the package does not carry (dtb, rootfs, persist,
 ...) are left unwritten. SOURCES.json lists every file and its sha256.
@@ -37,6 +48,7 @@ import base64
 import glob
 import gzip
 import hashlib
+import http.client
 import io
 import json
 import os
@@ -46,15 +58,21 @@ import subprocess
 import sys
 import tarfile
 import tempfile
+import urllib.error
+import urllib.parse
+import urllib.request
 import zipfile
 
-from . import config
+from . import config, fip
 from .fetch import WORK, fetch, sha256
 
 PTOOL = os.environ.get("QCOM_PTOOL_DIR", "/opt/qcom-ptool")
 # What every package must carry besides the U-Boot slot and the ESP;
 # a downstream section may name its own list (required:).
 REQUIRED = ("xbl.elf", "xbl_config.elf", "tz.mbn", "cdt.bin")
+# The U-Boot under test in a private open-stack package, until
+# insert-private builds the FIP around it; no partition is written from it.
+BL33 = "bl33.bin"
 
 
 def unzip_top(zpath, dest):
@@ -156,7 +174,13 @@ def build(board_name, stack, uefi_image, efi, out):
         partitions(s["partitions"], d)
         components = {"downstream": s["release"]}
         deferred = []
-        if stack == "open":
+        image = slot(b, stack)
+        if stack == "open" and config.private(b):
+            os.remove(os.path.join(d, "tz.mbn"))
+            deferred += ["tz.mbn", image]
+            shutil.copy(uefi_image, os.path.join(d, BL33))
+            components["bl2"] = b["pins"]["bl2"]["fingerprint"]
+        elif stack == "open":
             bl2 = b["pins"]["bl2"]
             staged = os.path.join(WORK, "pins", bl2["file"])
             if os.path.exists(staged):
@@ -170,8 +194,8 @@ def build(board_name, stack, uefi_image, efi, out):
             first = b["spl"]["slot"]
             shutil.copy(os.path.join(os.path.dirname(uefi_image), "spl.mbn"), os.path.join(d, first))
             components["spl"] = first
-        image = slot(b, stack)
-        shutil.copy(uefi_image, os.path.join(d, image))
+        if image not in deferred:
+            shutil.copy(uefi_image, os.path.join(d, image))
         shutil.copy(efi, os.path.join(d, "efi.bin"))
         for f in list(s.get("required", REQUIRED)) + [image, "efi.bin"]:
             if f not in deferred and not os.path.exists(os.path.join(d, f)):
@@ -210,6 +234,46 @@ def sources(package):
     raise SystemExit("%s has no SOURCES.json" % package)
 
 
+def rewrite(package, add, drop=()):
+    """Add files (name -> bytes) to a package and drop others, keeping
+    SOURCES.json true: added files leave "deferred" with their sha256."""
+    tmp = package + ".tmp"
+    top = None
+    with tarfile.open(package) as src, tarfile.open(tmp, "w:gz", compresslevel=6) as dst:
+        for m in src.getmembers():
+            name = m.name.split("/", 1)[-1]
+            if name in drop or name in add:
+                continue
+            f = src.extractfile(m) if m.isfile() else None
+            if name == "SOURCES.json":
+                meta = json.load(f)
+                meta["deferred"] = [x for x in meta.get("deferred", []) if x not in add]
+                for x in drop:
+                    meta["files"].pop(x, None)
+                for x, data in add.items():
+                    meta["files"][x] = hashlib.sha256(data).hexdigest()
+                blob = json.dumps(meta, indent=1).encode()
+                m.size = len(blob)
+                f = io.BytesIO(blob)
+                top = m.name.split("/")[0]
+            dst.addfile(m, f)
+        if top is None:
+            raise SystemExit("%s has no SOURCES.json" % package)
+        for x, data in sorted(add.items()):
+            info = tarfile.TarInfo(top + "/" + x)
+            info.size, info.mode = len(data), 0o644
+            dst.addfile(info, io.BytesIO(data))
+    os.replace(tmp, package)
+
+
+def member(package, name):
+    with tarfile.open(package) as t:
+        for m in t.getmembers():
+            if m.name.split("/", 1)[-1] == name:
+                return t.extractfile(m).read()
+    raise SystemExit("%s has no %s" % (package, name))
+
+
 def insert_bl2(package, board_name, env=os.environ):
     """Add the deferred BL2 to a package from the secret its pin names."""
     bl2 = config.board(board_name)["pins"]["bl2"]
@@ -219,28 +283,110 @@ def insert_bl2(package, board_name, env=os.environ):
     data = gzip.decompress(base64.b64decode(value))
     if hashlib.sha256(data).hexdigest() != bl2["sha256"]:
         raise SystemExit("%s does not match the pinned sha256" % bl2["secret"])
-    tmp = package + ".tmp"
-    with tarfile.open(package) as src, tarfile.open(tmp, "w:gz", compresslevel=6) as dst:
-        for m in src.getmembers():
-            f = src.extractfile(m) if m.isfile() else None
-            if m.name.endswith("/SOURCES.json"):
-                meta = json.load(f)
-                meta["deferred"] = [x for x in meta.get("deferred", []) if x != "tz.mbn"]
-                meta["files"]["tz.mbn"] = bl2["sha256"]
-                blob = json.dumps(meta, indent=1).encode()
-                m.size = len(blob)
-                f = io.BytesIO(blob)
-                top = m.name.split("/")[0]
-            dst.addfile(m, f)
-        info = tarfile.TarInfo(top + "/tz.mbn")
-        info.size, info.mode = len(data), 0o644
-        dst.addfile(info, io.BytesIO(data))
-    os.replace(tmp, package)
+    rewrite(package, {"tz.mbn": data})
+
+
+GITHUB_API = "https://api.github.com"
+
+
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *args):
+        return None
+
+
+def github_get(url, token, accept):
+    """url read with the bearer token. GitHub answers an asset with a
+    redirect to its file host: that hop is fetched without the token."""
+    req = urllib.request.Request(url, headers={"Authorization": "Bearer " + token, "Accept": accept,
+                                               "X-GitHub-Api-Version": "2022-11-28"})
+    try:
+        with urllib.request.build_opener(NoRedirect).open(req, timeout=300) as r:
+            return r.read()
+    except urllib.error.HTTPError as e:
+        if e.code not in (301, 302, 303, 307, 308) or not e.headers.get("Location"):
+            raise
+        location = urllib.parse.urljoin(url, e.headers["Location"])
+    if urllib.parse.urlsplit(location).scheme != urllib.parse.urlsplit(GITHUB_API).scheme:
+        raise ValueError("redirect leaves %s" % urllib.parse.urlsplit(GITHUB_API).scheme)
+    with urllib.request.urlopen(urllib.request.Request(location), timeout=300) as r:
+        return r.read()
+
+
+def private_file(pin, env=os.environ, store=None):
+    """A private pin's image: staged in $UBCI_WORK/pins, or the asset
+    <file> of the release <release> of the private store (a private GitHub
+    repository, pins.yaml private_store) read with $UBCI_PRIVATE_TOKEN;
+    either way checked against the pinned sha256."""
+    if os.path.exists(os.path.join(WORK, "pins", pin["file"])):
+        return open(fetch(None, pin["sha256"], pin["file"]), "rb").read()
+    token = env.get("UBCI_PRIVATE_TOKEN", "").strip()
+    if not token:
+        raise SystemExit("%s is not staged and UBCI_PRIVATE_TOKEN is not set" % pin["file"])
+    store = store or yaml_pins()["private_store"]
+    try:
+        release = json.loads(github_get("%s/repos/%s/releases/tags/%s" % (GITHUB_API, store, pin["release"]),
+                                        token, "application/vnd.github+json"))
+        url = [a["url"] for a in release.get("assets", []) if a.get("name") == pin["file"]]
+        if not url:
+            raise SystemExit("%s: not in release %s of the private store" % (pin["file"], pin["release"]))
+        # The token goes to the API only, whatever the release says.
+        if not url[0].startswith(GITHUB_API + "/"):
+            raise ValueError("asset URL outside the API")
+        data = github_get(url[0], token, "application/octet-stream")
+    except (OSError, ValueError, KeyError, http.client.HTTPException) as e:
+        # Other errors can quote a URL or the header, and the reason is
+        # published: only an HTTP status is said as is.
+        if isinstance(e, urllib.error.HTTPError):
+            why = "HTTP Error %d" % e.code
+        else:
+            why = type(e).__name__
+            # The job log masks the token.
+            print("private store: %r" % e, file=sys.stderr)
+        raise SystemExit("%s: cannot be read from the private store (%s)" % (pin["file"], why))
+    if hashlib.sha256(data).hexdigest() != pin["sha256"]:
+        raise SystemExit("%s does not match the pinned sha256" % pin["file"])
+    return data
+
+
+def qtestsign(elf, args):
+    """elf signed by the pinned qtestsign (args: its version and image type)."""
+    top = yaml_pins()["qtestsign"]
+    here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    tree = subprocess.run([os.path.join(here, "scripts", "checkout.sh"), "qtestsign", top["repo"], top["commit"]],
+                          check=True, capture_output=True, text=True).stdout.strip()
+    work = tempfile.mkdtemp(dir=WORK)
+    try:
+        src, out = os.path.join(work, "in.elf"), os.path.join(work, "out.elf")
+        open(src, "wb").write(elf)
+        subprocess.run([sys.executable, os.path.join(tree, "qtestsign.py")] + list(args) + ["-o", out, src],
+                       check=True, stdout=subprocess.DEVNULL)
+        return open(out, "rb").read()
+    finally:
+        shutil.rmtree(work)
+
+
+def yaml_pins():
+    import yaml
+    return yaml.safe_load(open(os.path.join(config.CONFIG, "pins.yaml")))
+
+
+def insert_private(package, board_name, env=os.environ, sign=qtestsign):
+    """Complete a private open-stack package: tz.mbn and the signed FIP
+    of the private BL31 and OP-TEE around the package's bl33.bin."""
+    b = config.board(board_name)
+    p = b["pins"]
+    tz, bl31, bl32 = (private_file(p[n], env) for n in ("bl2", "tf-a", "optee"))
+    image = fip.build({"bl31": bl31, "bl32": bl32, "bl33": member(package, BL33)})
+    signed = sign(fip.elf(image, int(p["tf-a"]["fip_load_addr"], 16)), p["tf-a"]["sign"])
+    rewrite(package, {"tz.mbn": tz, slot(b, "open"): signed}, drop=(BL33,))
 
 
 if __name__ == "__main__":
     if len(sys.argv) == 4 and sys.argv[1] == "insert-bl2":
         insert_bl2(sys.argv[2], sys.argv[3])
+        sys.exit(0)
+    if len(sys.argv) == 4 and sys.argv[1] == "insert-private":
+        insert_private(sys.argv[2], sys.argv[3])
         sys.exit(0)
     if len(sys.argv) == 5 and sys.argv[1] == "blobs":
         print("\n".join(blobs(*sys.argv[2:5])))

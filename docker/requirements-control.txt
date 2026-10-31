@@ -1,6 +1,8 @@
 # The control image (Dockerfile --target control): what ubci.stack,
-# ubci.run new/site and publish-site.sh import. Same pins as
+# ubci.run new/site and publish-site.sh import, and qtestsign, which
+# signs the FIP of a private open stack in the submit job. Same pins as
 # requirements.txt.
 b4==0.15.2
 jsonschema==4.23.0
 PyYAML==6.0.2
+cryptography==44.0.2

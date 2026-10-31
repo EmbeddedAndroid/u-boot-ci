@@ -111,6 +111,13 @@ def components(board, stack, commit, fp, branch=None):
     carry = yaml.safe_load(open(os.path.join(config.CONFIG, "carry.yaml"))).get(board, {})
     for name in ("tf-a", "optee"):
         pin = b["pins"][name]
+        if pin.get("private"):
+            # Built from sources a reader cannot check: what it was built
+            # from, its fingerprint and sha256, no link.
+            out.append({"name": name, "role": "pinned", "origin": "downstream", "branch": pin["private"],
+                        "url": None, "fingerprint": pin["fingerprint"], "sha256": pin["sha256"],
+                        "upstream": None})
+            continue
         c = carry.get(name)
         comp = {"name": name, "role": "pinned", "origin": "upstream", "repo": pin["repo"],
                 "branch": pin["branch"], "commit": pin["commit"],
@@ -131,7 +138,9 @@ def components(board, stack, commit, fp, branch=None):
     bl2 = b["pins"]["bl2"]
     tz = {"name": bl2.get("name", "tf-a bl2"), "role": "pinned", "origin": bl2.get("origin", "upstream"),
           "fingerprint": bl2["fingerprint"], "sha256": bl2["sha256"], "upstream": None}
-    if tz["origin"] == "upstream":
+    if bl2.get("private"):
+        tz.update(branch=bl2["private"], url=None)
+    elif tz["origin"] == "upstream":
         # A pre-signed BL2 outlives tf-a pin bumps: it names the commit it
         # was built from, or it is the tf-a pin's.
         src = bl2.get("source") or b["pins"]["tf-a"]
@@ -398,14 +407,21 @@ def submit_pass(path, run, lava, packages):
                 refused(t, dt, denied[dt])
                 save(path, run)
             continue
-        if "tz.mbn" in upackage.sources(pkg).get("deferred", []):
-            try:
+        # The config, not the package the untrusted job wrote, decides;
+        # any failure only skips this target, never the whole pass.
+        private = t["stack"] == "open" and config.private(b)
+        step = "private firmware not available" if private else "package not usable"
+        try:
+            if private:
+                upackage.insert_private(pkg, t["board"])
+            elif "tz.mbn" in upackage.sources(pkg).get("deferred", []):
+                step = "BL2 pin not available"
                 upackage.insert_bl2(pkg, t["board"])
-            except SystemExit as e:
-                t["state"] = "skipped"
-                t["state_detail"] = "BL2 pin not available: %s" % e
-                save(path, run)
-                continue
+        except (Exception, SystemExit) as e:
+            t["state"] = "skipped"
+            t["state_detail"] = "%s: %s" % (step, str(e) or type(e).__name__)
+            save(path, run)
+            continue
         url, token = lava.upload(pkg)
         package = {"url": url, "token": token, "path": package_dir(pkg)}
         job_id = None

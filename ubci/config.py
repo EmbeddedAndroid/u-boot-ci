@@ -48,6 +48,12 @@ def pending(b, stack):
     return None
 
 
+def private(b):
+    """Whether the board's open stack runs private images (TF-A and OP-TEE
+    built from sources the CI may not see) instead of building its pins."""
+    return bool(((b.get("pins") or {}).get("tf-a") or {}).get("private"))
+
+
 def board(name):
     path = os.path.join(CONFIG, "boards", name + ".yaml")
     if not os.path.exists(path):

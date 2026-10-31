@@ -22,8 +22,49 @@ Both environments hold the same secrets:
 | `PIN_BL2_RB3GEN2` | the open-stack tz image (`tz.mbn`) of RB3 Gen 2: `gzip -9 < tz-rb3gen2.mbn \| base64 -w0` |
 | `PIN_BL2_VENTUNO_Q`, `_UNO_Q`, `_QCS615_RIDE`, `_LEMANS_EVK` | the same for the other boards (Lemans: its U-Boot SPL) |
 
+`lava-hw` also holds the read token of the private store of the Wildcat
+boards' TF-A and OP-TEE images, the release assets of the private
+repository EmbeddedAndroid/ubci-private-firmware
+([private-firmware.md](private-firmware.md)); `lava-pr` does not need it
+(pin candidates validate the stock stack):
+
+| secret | content |
+|---|---|
+| `UBCI_PRIVATE_TOKEN` | a fine-grained personal access token that can read that one repository's contents and nothing else |
+
+To create it:
+
+1. GitHub, Settings, Developer settings, Personal access tokens,
+   Fine-grained tokens, Generate new token, as the owner of the store
+   (EmbeddedAndroid).
+2. Name `ubci-private-firmware-read`, an expiration (a year at most; the
+   cells skip with "HTTP Error 401" once it lapses), resource owner
+   EmbeddedAndroid.
+3. Repository access: Only select repositories,
+   `EmbeddedAndroid/ubci-private-firmware`.
+4. Repository permissions: Contents, Read-only (Metadata, Read-only is
+   added by GitHub). No other permission, no account permission.
+5. Generate, then in u-boot-ci: Settings, Environments, `lava-hw`, Add
+   environment secret `UBCI_PRIVATE_TOKEN` with the token as its value,
+   or from a shell (it prompts for the value, so the token stays out of
+   the shell history):
+
+       gh secret set UBCI_PRIVATE_TOKEN --env lava-hw --repo EmbeddedAndroid/u-boot-ci
+
+6. Check it without printing it, from a u-boot-ci checkout (or the
+   control container): with nothing staged, `ubci.package` reads every
+   private image from the store and checks its sha256:
+
+       read -rs UBCI_PRIVATE_TOKEN; export UBCI_PRIVATE_TOKEN
+       UBCI_WORK=$(mktemp -d) python3 -c 'from ubci import config, package
+       for b, p in config.pins().items():
+           for n in ("bl2", "tf-a", "optee"):
+               if (p.get(n) or {}).get("private"):
+                   package.private_file(p[n]); print(b, n, "ok")'
+
 Without `LAVA_TOKEN` a run does its host checks and marks hardware
-`skipped`.
+`skipped`; without `UBCI_PRIVATE_TOKEN` the private boards' open stacks
+are `skipped` with "private firmware not available".
 
 The jobs no longer restore the lab's image at the end (every job flashes
 its whole package, [architecture.md](architecture.md)), so the

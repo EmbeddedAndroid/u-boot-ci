@@ -11,6 +11,10 @@
 #              pin's load addresses (U-Boot SPL loads it; Lemans), with
 #              the board's pre-ddr blobs when its SPL brings up DRAM
 #              (ubci.fit).
+#   bl33.bin   with private pins (tf-a `private`: TF-A and OP-TEE built
+#              from sources this job may not see): U-Boot alone; the
+#              submit job builds the FIP around it from the pinned images
+#              (ubci.package insert-private).
 # The spl stack builds the same FIT around its own SPL
 # (scripts/build-uboot.sh); the pinned, pre-signed tz image of the open
 # stack (BL2 or SPL) is added by ubci.package.
@@ -28,6 +32,14 @@ out=$(realpath "$out")
 checkout() { "$repo/scripts/checkout.sh" "$@"; }
 
 opt() { (cd "$repo" && python3 -m ubci.config get "$board" "$1" 2>/dev/null) || true; }
+
+if [ -n "$(opt pins.tf-a.private)" ]; then
+	cp "$bl33" "$out/bl33.bin"
+	printf '{"board": "%s", "fingerprint": "%s", "private": true, "image": "bl33.bin", "image_sha256": "%s"}\n' \
+		"$board" "$fp" "$(sha256sum "$out/bl33.bin" | cut -d' ' -f1)" >"$out/open-stack.json"
+	cat "$out/open-stack.json"
+	exit 0
+fi
 
 optee=$(checkout "optee_os" "$(cfg pins.optee.repo)" "$(cfg pins.optee.commit)")
 mapfile -t optee_args < <(opt pins.optee.make_args)

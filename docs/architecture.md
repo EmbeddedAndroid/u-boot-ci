@@ -31,7 +31,7 @@ arm64.
 |---|---|---|---|---|
 | prepare | CIL arm64, `2c-4g-20g` | no | none (writes gh-pages) | resolves the branch commit, the newest linux-next tag and the latest nightly of that branch (the baseline); for an ad-hoc run fetches the series with b4 and applies them with `git am` (`ubci.stack`); creates the run document (`ubci.run new`) and publishes it, state `building` |
 | ci | CIL xeon, `32c-32g-200g` | yes | none | builds pristine linux-next and the initramfs once per tag and config (Actions cache, [linux-payload.md](linux-payload.md)) and uploads them, then `scripts/run-all.sh`: applies the stack of an ad-hoc run, runs the host checks (`scripts/host-check.sh`: carry, buildman, fragments, checkpatch, docs, sandbox and QEMU test.py), builds every queued board and stack (`scripts/build-target.sh`: U-Boot with the run fingerprint, for the open stack TF-A BL31 + OP-TEE from the pins and the FIP, the ESP with the UKI, the qcomflash package) and sizes every build |
-| submit | CIL arm64, `2c-4g-20g` | no | environment `lava-hw`: `LAVA_TOKEN`, BL2 pins (writes gh-pages) | records the Linux payload and the host checks, adds the BL2 to the open-stack packages, uploads each package to the LAVA artifact store, submits the jobs (device choice and cap below), collects results every 5 minutes and republishes the dashboard until the run is done |
+| submit | CIL arm64, `2c-4g-20g` | no | environment `lava-hw`: `LAVA_TOKEN`, BL2 pins, the private store token (writes gh-pages) | records the Linux payload and the host checks, adds the BL2 to the open-stack packages (and for a private board BL2, BL31 and OP-TEE with the FIP around U-Boot, [private-firmware.md](private-firmware.md)), uploads each package to the LAVA artifact store, submits the jobs (device choice and cap below), collects results every 5 minutes and republishes the dashboard until the run is done |
 | finalize | CIL arm64, `2c-4g-20g`, only when the run ended before `submit` did | no | none (writes gh-pages) | closes the published run document (`ubci.run close`): the run and its unfinished targets become `cancelled` after a cancel, `error` after a failure, with the reason |
 
 `run-all.sh` runs every step whatever the earlier ones did: a failing check,
@@ -67,7 +67,10 @@ it applies patches but runs nothing from them. Only the submit job declares an e
 the nightly and ad-hoc runs; `lava-pr`, which waits for a reviewer, for
 the pin-candidate job that runs PR-branch code.
 The submit job only moves the packages `ci` produced (opaque bytes)
-to LAVA and reads results back; it never executes them. Console text that
+to LAVA and reads results back; it never executes them. For a private
+board it also wraps the U-Boot bytes in a FIP and signs that with the
+pinned tools, which is the reason the internal images never meet the
+code under test ([private-firmware.md](private-firmware.md)). Console text that
 comes back is data: the dashboard sets it as text, never as HTML. The
 host-check results `ci` reports are data from untrusted code too: a
 series can fake its own run's results, never another run's.

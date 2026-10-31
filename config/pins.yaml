@@ -178,3 +178,7 @@ qtestsign:
 swiv:
   repo: https://github.com/qualcomm-linux/boot-firmware-ci
   commit: a0f007327c1ffc0b568def06c4b035b8d3fb05ac
+# The private GitHub repository whose release assets hold the images of
+# the private pins (docs/private-firmware.md); read with the lava-hw
+# secret UBCI_PRIVATE_TOKEN.
+private_store: EmbeddedAndroid/ubci-private-firmware

@@ -33,7 +33,9 @@
    its own package flashed (anything the package leaves out, like the
    Lemans SAIL NOR, is whatever the lab last wrote).
 2. For an open stack, its pins in `config/pins.yaml` (TF-A, OP-TEE, the
-   signed tz image), `python3 -m ubci.carry`, and its `PIN_BL2_<BOARD>`
+   signed tz image; private images for a Wildcat board,
+   [private-firmware.md](private-firmware.md), staged in the private
+   store instead of the steps below), `python3 -m ubci.carry`, and its `PIN_BL2_<BOARD>`
    secret in both environments, in
    `scripts/in-container.sh` and in the `submit` jobs of `run.yml` and
    `pin-candidate.yml` ([setup.md](setup.md)).

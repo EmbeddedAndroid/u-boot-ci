@@ -1,4 +1,5 @@
 import hashlib
+import json
 import os
 import shutil
 import zipfile
@@ -206,3 +207,182 @@ def test_a_pre_ddr_blob_with_another_sha256_is_refused(blob_zip, monkeypatch):
     dest = blob_zip({"QcLib.elf": b"qclib", "shrm.elf": b"other shrm"})
     with pytest.raises(SystemExit, match="pre-ddr blob shrm.elf: sha256"):
         package.blobs("shikra", "spl", dest)
+
+
+def private_board():
+    b = fake_board(slot="uefi.elf")
+    b["u-boot"]["open"] = dict(b["u-boot"]["stock"])
+    p = {n: {"private": "internal x", "file": "%s-b.bin" % n, "sha256": "", "fingerprint": "FP-1"}
+         for n in ("tf-a", "bl2", "optee")}
+    p["tf-a"].update(fip_load_addr="0xa7000000", sign=["-v7", "uefi"])
+    b["pins"] = p
+    return b
+
+
+def test_a_private_open_stack_leaves_tz_and_the_fip_to_the_submit_job(fake_build):
+    import tarfile
+    name, skipped, src, out = fake_build(private_board(), layout=LAYOUT.replace("boot.img", "uefi.elf"),
+                                         stack="open")
+    assert src["deferred"] == ["tz.mbn", "uefi.elf"] and src["files"]["bl33.bin"]
+    with tarfile.open(out) as t:
+        names = [n.split("/", 1)[-1] for n in t.getnames()]
+        assert t.extractfile(name + "/bl33.bin").read() == b"U-Boot under test"
+    # Never the downstream QTEE or a stale image in their place.
+    assert "tz.mbn" not in names and "uefi.elf" not in names
+    assert "tz_a (tz.mbn)" not in skipped and "uefi_a (uefi.elf)" not in skipped
+
+
+def stage_private(tmp_path, monkeypatch, b, data):
+    import hashlib
+    from ubci import fetch
+    (tmp_path / "pins").mkdir(exist_ok=True)
+    for n, blob in data.items():
+        (tmp_path / "pins" / b["pins"][n]["file"]).write_bytes(blob)
+        b["pins"][n]["sha256"] = hashlib.sha256(blob).hexdigest()
+    monkeypatch.setattr(package, "WORK", str(tmp_path))
+    monkeypatch.setattr(fetch, "WORK", str(tmp_path))
+    monkeypatch.setattr(package, "fetch", fetch.fetch)
+
+
+def test_insert_private_builds_the_signed_fip_around_the_u_boot_under_test(fake_build, tmp_path, monkeypatch):
+    import tarfile
+    from ubci import fip
+    b = private_board()
+    name, _, _, out = fake_build(b, layout=LAYOUT.replace("boot.img", "uefi.elf"), stack="open")
+    stage_private(tmp_path, monkeypatch, b, {"bl2": b"bl2", "tf-a": b"bl31", "optee": b"tee"})
+    signed = []
+
+    def sign(elf, args):
+        signed.append((elf, args))
+        return b"signed:" + elf
+    package.insert_private(out, "x", env={}, sign=sign)
+    elf, args = signed[0]
+    assert args == ["-v7", "uefi"]
+    assert elf == fip.elf(fip.build({"bl31": b"bl31", "bl32": b"tee", "bl33": b"U-Boot under test"}), 0xa7000000)
+    with tarfile.open(out) as t:
+        assert t.extractfile(name + "/uefi.elf").read() == b"signed:" + elf
+        assert t.extractfile(name + "/tz.mbn").read() == b"bl2"
+        assert name + "/bl33.bin" not in t.getnames()
+    src = package.sources(out)
+    assert src["deferred"] == [] and "bl33.bin" not in src["files"] and set(src["files"]) >= {"tz.mbn", "uefi.elf"}
+
+
+def test_insert_private_refuses_a_wrong_or_missing_image(fake_build, tmp_path, monkeypatch):
+    b = private_board()
+    _, _, _, out = fake_build(b, layout=LAYOUT.replace("boot.img", "uefi.elf"), stack="open")
+    stage_private(tmp_path, monkeypatch, b, {"bl2": b"bl2", "tf-a": b"bl31", "optee": b"tee"})
+    b["pins"]["optee"]["sha256"] = "0" * 64
+    with pytest.raises(SystemExit, match="sha256"):
+        package.insert_private(out, "x", env={}, sign=lambda e, a: e)
+    (tmp_path / "pins" / b["pins"]["optee"]["file"]).unlink()
+    with pytest.raises(SystemExit, match="UBCI_PRIVATE_TOKEN is not set"):
+        package.insert_private(out, "x", env={}, sign=lambda e, a: e)
+    assert package.sources(out)["deferred"] == ["tz.mbn", "uefi.elf"]
+
+
+def test_private_file_is_a_release_asset_read_with_the_token_only_from_the_api(tmp_path, monkeypatch, capsys):
+    import hashlib
+    import http.server
+    import threading
+    monkeypatch.setattr(package, "WORK", str(tmp_path))
+    seen = []
+    servers = []
+
+    def serve(handler):
+        srv = http.server.HTTPServer(("127.0.0.1", 0), handler)
+        threading.Thread(target=srv.serve_forever, daemon=True).start()
+        servers.append(srv)
+        return "http://127.0.0.1:%d" % srv.server_port
+
+    class Quiet(http.server.BaseHTTPRequestHandler):
+        def reply(self, code, body=b"", **headers):
+            self.send_response(code)
+            for k, v in headers.items():
+                self.send_header(k, v)
+            self.end_headers()
+            self.wfile.write(body)
+
+        def log_message(self, *args):
+            pass
+
+    class Files(Quiet):
+        def do_GET(self):
+            seen.append(("files", self.path, self.headers.get("Authorization"), self.headers.get("Accept")))
+            self.reply(200, b"image") if self.path == "/blob/bl31?sig=1" else self.reply(404)
+
+    files = serve(Files)
+
+    class Api(Quiet):
+        def do_GET(self):
+            seen.append(("api", self.path, self.headers.get("Authorization"), self.headers.get("Accept")))
+            assets = [{"name": "bl31-b.bin", "url": api + "/repos/o/fw/releases/assets/1"},
+                      {"name": "gone.bin", "url": api + "/repos/o/fw/releases/assets/2"},
+                      {"name": "loop.bin", "url": api + "/repos/o/fw/releases/assets/3"},
+                      {"name": "far.bin", "url": files + "/repos/o/fw/releases/assets/4"}]
+            if self.path == "/repos/o/fw/releases/tags/r1":
+                self.reply(200, json.dumps({"assets": assets}).encode())
+            elif self.path == "/repos/o/fw/releases/assets/1":
+                self.reply(302, Location=files + "/blob/bl31?sig=1")
+            elif self.path == "/repos/o/fw/releases/assets/3":
+                self.reply(302, Location="ftp://elsewhere/x")
+            else:
+                self.reply(404)
+
+    api = serve(Api)
+    monkeypatch.setattr(package, "GITHUB_API", api)
+    try:
+        env = {"UBCI_PRIVATE_TOKEN": "s3cret\n"}
+        pin = {"file": "bl31-b.bin", "release": "r1", "sha256": hashlib.sha256(b"image").hexdigest()}
+        assert package.private_file(pin, env, store="o/fw") == b"image"
+        assert seen == [("api", "/repos/o/fw/releases/tags/r1", "Bearer s3cret", "application/vnd.github+json"),
+                        ("api", "/repos/o/fw/releases/assets/1", "Bearer s3cret", "application/octet-stream"),
+                        ("files", "/blob/bl31?sig=1", None, None)]
+        with pytest.raises(SystemExit, match="does not match"):
+            package.private_file(dict(pin, sha256="0" * 64), env, store="o/fw")
+        with pytest.raises(SystemExit, match="not in release r1 of the private store"):
+            package.private_file(dict(pin, file="new.bin"), env, store="o/fw")
+        for change in ({"file": "gone.bin"}, {"file": "loop.bin"}, {"file": "far.bin"}, {"release": "r2"}):
+            with pytest.raises(SystemExit, match="cannot be read from the private store") as e:
+                package.private_file(dict(pin, **change), env, store="o/fw")
+            assert "s3cret" not in str(e.value) and "127.0.0.1" not in str(e.value)
+        # A redirect off the API's scheme is refused before it is followed.
+        assert "redirect leaves" in capsys.readouterr().err
+        # The token went to the API and nowhere else.
+        assert [x for x in seen if x[2]] == [x for x in seen if x[0] == "api"]
+        assert not [x for x in seen if x[0] == "files" and x[1] != "/blob/bl31?sig=1"]
+        # A broken token is reported without quoting it.
+        with pytest.raises(SystemExit, match="cannot be read from the private store") as e:
+            package.private_file(pin, {"UBCI_PRIVATE_TOKEN": "s3cret\nX: y"}, store="o/fw")
+        assert "s3cret" not in str(e.value)
+        # The job log, where the token is masked, gets the cause.
+        assert "ValueError" in capsys.readouterr().err
+        with pytest.raises(SystemExit, match="UBCI_PRIVATE_TOKEN is not set"):
+            package.private_file(pin, {"UBCI_PRIVATE_TOKEN": " "}, store="o/fw")
+    finally:
+        for srv in servers:
+            srv.shutdown()
+
+
+def test_the_private_pins_name_a_release_of_the_store():
+    pins = config.pins()
+    assert package.yaml_pins()["private_store"].count("/") == 1
+    for board, p in pins.items():
+        for name in ("bl2", "tf-a", "optee"):
+            if (p.get(name) or {}).get("private"):
+                assert p[name]["release"] and p[name]["file"], (board, name)
+
+def test_the_signed_fip_elf_matches_tf_a_and_qtestsign():
+    # The pinned qtestsign over ubci.fip's ELF gives what qtestsign gives
+    # over generate_fip_elf.sh's linker output (tests/test_fip.py).
+    import hashlib
+    from ubci import fip
+    import subprocess
+    from tests.test_fip import GOLDEN, GOLDEN_SIGNED
+    top = package.yaml_pins()["qtestsign"]
+    try:
+        subprocess.run([os.path.join(package.config.ROOT, "scripts", "checkout.sh"), "qtestsign", top["repo"],
+                        top["commit"]], check=True, capture_output=True)
+    except subprocess.CalledProcessError:
+        pytest.skip("needs the pinned qtestsign (network on first use)")
+    signed = package.qtestsign(fip.elf(fip.build(GOLDEN), 0xa7000000), ["-v7", "uefi"])
+    assert hashlib.sha256(signed).hexdigest() == GOLDEN_SIGNED

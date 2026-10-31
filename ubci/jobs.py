@@ -71,8 +71,10 @@ def gate_expect(board, stack, fp):
     if base_stack(stack) == "open":
         bl2 = board["pins"]["bl2"]
         expect[bl2.get("banner", "BL2: v")] = bl2["fingerprint"]
-        expect["BL31: v"] = fp
-        expect["OP-TEE version"] = fp
+        # Private images are not rebuilt per run: they show their own.
+        pins = board["pins"]
+        expect["BL31: v"] = pins["tf-a"]["fingerprint"] if pins["tf-a"].get("private") else fp
+        expect["OP-TEE version"] = pins["optee"]["fingerprint"] if pins["optee"].get("private") else fp
     expect["U-Boot 20"] = fp
     return expect
 

@@ -59,6 +59,10 @@ Pins (`config/pins.yaml`), per board:
   environments, only in the submit job, and checks the sha256 before
   adding them to the package ([setup.md](setup.md)); the dashboard shows
   the sha256 only.
+- `private`: the board's TF-A, BL2 and OP-TEE are images built from
+  sources CI may not see (Wildcat), pinned by file, sha256 and
+  fingerprint; the submit job builds the FIP around the U-Boot under
+  test ([private-firmware.md](private-firmware.md)).
 - `pending`: set while the pinned commit is not public yet. The open
   stack of that board is then skipped with
   "open-stack pin not public yet" instead of failing its build, and

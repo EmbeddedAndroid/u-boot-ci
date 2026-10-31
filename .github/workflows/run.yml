@@ -248,6 +248,8 @@ jobs:
       PIN_BL2_UNO_Q: ${{ secrets.PIN_BL2_UNO_Q }}
       PIN_BL2_QCS615_RIDE: ${{ secrets.PIN_BL2_QCS615_RIDE }}
       PIN_BL2_LEMANS_EVK: ${{ secrets.PIN_BL2_LEMANS_EVK }}
+      # The private open-stack images (docs/private-firmware.md).
+      UBCI_PRIVATE_TOKEN: ${{ secrets.UBCI_PRIVATE_TOKEN }}
       BASE: ${{ inputs.base }}
       UBCI_IMAGE: u-boot-ci-control:1
     steps:
