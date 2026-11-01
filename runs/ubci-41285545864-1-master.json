@@ -1,5 +1,46 @@
 {
- "host_checks": [],
+ "host_checks": [
+  {
+   "name": "buildman",
+   "result": "skip",
+   "summary": "did not run"
+  },
+  {
+   "name": "carry",
+   "result": "skip",
+   "summary": "did not run"
+  },
+  {
+   "name": "checkpatch",
+   "result": "skip",
+   "summary": "did not run"
+  },
+  {
+   "name": "docs",
+   "result": "skip",
+   "summary": "did not run"
+  },
+  {
+   "name": "fragments",
+   "result": "skip",
+   "summary": "did not run"
+  },
+  {
+   "name": "qemu_arm64",
+   "result": "skip",
+   "summary": "did not run"
+  },
+  {
+   "name": "sandbox",
+   "result": "skip",
+   "summary": "did not run"
+  },
+  {
+   "name": "size",
+   "result": "skip",
+   "summary": "did not run"
+  }
+ ],
  "linux": null,
  "project": "u-boot",
  "run": {
@@ -8,17 +49,17 @@
    "commit": "ece349ade2973e220f524ce59e59711cc919263f",
    "repo": "https://git.u-boot-project.org/u-boot/u-boot.git"
   },
-  "baseline": null,
+  "baseline": "ubci-41270316696-1-master",
   "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/41285545864",
   "created": "2026-11-01T07:41:51Z",
   "id": "ubci-41285545864-1-master",
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-11-01T07:41:55Z"
+  "updated": "2026-11-01T07:53:55Z"
  },
  "schema": "fwci-run/1",
- "state": "building",
+ "state": "done",
  "targets": [
   {
    "board": "rb3gen2",
@@ -106,10 +147,12 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "stock",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "rb3gen2",
@@ -1202,10 +1245,12 @@
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
     ],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "rb3gen2",
@@ -1228,14 +1273,16 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "spl": {
     "gaps": [],
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "ventuno-q",
@@ -1332,10 +1379,12 @@
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
     ],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "stock",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "ventuno-q",
@@ -2440,10 +2489,12 @@
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
     ],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "ventuno-q",
@@ -2466,14 +2517,16 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "spl": {
     "gaps": [],
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "uno-q",
@@ -2562,10 +2615,12 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "stock",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "uno-q",
@@ -3653,10 +3708,12 @@
      "no Agatti EL2 overlay in linux-next"
     ],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "uno-q",
@@ -3679,14 +3736,16 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "spl": {
     "gaps": [],
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "qcs615-ride",
@@ -3769,10 +3828,12 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "stock",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "qcs615-ride",
@@ -4863,10 +4924,12 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "qcs615-ride",
@@ -4889,14 +4952,16 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "spl": {
     "gaps": [],
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "lemans-evk",
@@ -4984,10 +5049,12 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "stock",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "lemans-evk",
@@ -6075,10 +6142,12 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "lemans-evk",
@@ -7168,7 +7237,8 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "spl": {
     "gaps": [],
@@ -7212,7 +7282,8 @@
     ]
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "shikra-iqs-evk",
@@ -7290,10 +7361,12 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "stock",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "shikra-iqs-evk",
@@ -7316,10 +7389,12 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "shikra-iqs-evk",
@@ -7342,7 +7417,8 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "spl": {
     "gaps": [
@@ -7413,7 +7489,8 @@
     ]
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "sm8750-mtp",
@@ -7436,10 +7513,12 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "stock",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "sm8750-mtp",
@@ -7574,10 +7653,12 @@
      "upstream U-Boot has no SM8750 clock or pinctrl driver yet (they are on qcom/pakala of the EmbeddedAndroid U-Boot fork, not posted)"
     ],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "sm8750-mtp",
@@ -7600,14 +7681,16 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "spl": {
     "gaps": [],
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "kaanapali-mtp",
@@ -7630,10 +7713,12 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "stock",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "kaanapali-mtp",
@@ -7768,10 +7853,12 @@
      "upstream U-Boot has no SM8850 clock or pinctrl driver yet (they are on qcom/kaanapali of the EmbeddedAndroid U-Boot fork, not posted)"
     ],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   },
   {
    "board": "kaanapali-mtp",
@@ -7794,14 +7881,16 @@
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
-    "verdict": "not-run"
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
    },
    "spl": {
     "gaps": [],
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "error",
+   "state_detail": "no package and no build result from the ci job"
   }
  ]
 }
