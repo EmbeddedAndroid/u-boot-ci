@@ -2,6 +2,7 @@ import io
 import json
 import os
 import shutil
+import subprocess
 
 import pytest
 
@@ -167,6 +168,44 @@ def test_pr_is_created_once_then_updated_never_duplicated():
     gh = FakeGh([pr(7, "t", "b")])
     assert pinwatch.open_or_update_pr("pin/stock-rb3gen2", "t", "b", run=gh) == ("unchanged", 7)
     assert [c[:2] for c in gh.calls] == [("pr", "list")]
+
+
+def test_an_open_pr_is_updated_through_the_rest_api():
+    gh = FakeGh([pr(7, "old title", "old\nSource: x")])
+    assert pinwatch.open_or_update_pr("pin/stock-rb3gen2", "t=1", "b\nSource: y", run=gh) == ("updated", 7)
+    assert gh.calls[1:] == [("api", "-X", "PATCH", "repos/{owner}/{repo}/pulls/7",
+                             "-f", "title=t=1", "-f", "body=b\nSource: y")]
+    assert not [c for c in gh.calls if c[:2] == ("pr", "edit")]
+
+
+def test_a_failed_update_is_not_reported_as_updated():
+    def run(*args):
+        if args[0] == "api":
+            raise subprocess.CalledProcessError(1, ["gh"] + list(args))
+        return json.dumps([pr(7, "t", "old")])
+    with pytest.raises(subprocess.CalledProcessError):
+        pinwatch.open_or_update_pr("pin/stock-rb3gen2", "t", "b", run=run)
+
+
+def fake_gh_on_path(tmp_path, monkeypatch, script):
+    exe = tmp_path / "gh"
+    exe.write_text("#!/bin/sh\n" + script)
+    exe.chmod(0o755)
+    monkeypatch.setenv("PATH", "%s:%s" % (tmp_path, os.environ["PATH"]))
+
+
+def test_gh_failure_prints_its_stderr(tmp_path, monkeypatch, capsys):
+    fake_gh_on_path(tmp_path, monkeypatch, "echo 'GraphQL: Projects (classic) is being deprecated' >&2\nexit 1\n")
+    with pytest.raises(subprocess.CalledProcessError) as e:
+        pinwatch.gh("pr", "edit", "1")
+    assert e.value.returncode == 1
+    assert "Projects (classic) is being deprecated" in capsys.readouterr().err
+
+
+def test_gh_success_returns_stdout_and_prints_nothing(tmp_path, monkeypatch, capsys):
+    fake_gh_on_path(tmp_path, monkeypatch, 'echo "$@"; echo noise >&2\n')
+    assert pinwatch.gh("api", "-X", "PATCH", "x") == "api -X PATCH x\n"
+    assert capsys.readouterr().err == ""
 
 
 def test_a_declined_bump_is_not_reopened_but_a_newer_one_is():

@@ -40,7 +40,11 @@ def verify(files, fetch=None):
 
 
 def gh(*args):
-    return subprocess.run(["gh"] + list(args), check=True, capture_output=True, text=True).stdout
+    r = subprocess.run(["gh"] + list(args), capture_output=True, text=True)
+    if r.returncode:
+        sys.stderr.write(r.stderr)
+        raise subprocess.CalledProcessError(r.returncode, r.args, r.stdout, r.stderr)
+    return r.stdout
 
 
 def prs(branch, run):
@@ -76,7 +80,10 @@ def open_or_update_pr(branch, title, body, run=gh, base="main"):
         pr = open_[0]
         if pr.get("title") == title and pr.get("body") == body:
             return "unchanged", pr["number"]
-        run("pr", "edit", str(pr["number"]), "--title", title, "--body", body)
+        # gh pr edit (2.62.0 here) reads the PR's classic project cards
+        # first, which GitHub now answers with an error.
+        run("api", "-X", "PATCH", "repos/{owner}/{repo}/pulls/%d" % pr["number"],
+            "-f", "title=" + title, "-f", "body=" + body)
         return "updated", pr["number"]
     url = run("pr", "create", "--head", branch, "--base", base, "--title", title, "--body", body).strip()
     return "created", url
