@@ -692,7 +692,7 @@ def test_open_stack_pins_link_their_commits_and_say_when_not_public(tmp_path, mo
     spl = comp(target_of(r, "lemans-evk", "open"), "u-boot spl")
     assert spl["origin"] == "downstream" and "commit" not in spl and spl["fingerprint"].startswith("LEMANSFP-")
     bl2 = comp(target_of(r, "uno-q", "open"), "tf-a bl2")
-    assert bl2["origin"] == "upstream" and bl2["commit"] == pins["uno-q"]["bl2"]["source"]["commit"]
+    assert bl2["origin"] == "upstream" and bl2["commit"] == pins["uno-q"]["tf-a"]["commit"]
 
 
 def test_built_records_the_configs_the_base_had(doc, tmp_path):
@@ -775,7 +775,8 @@ def test_an_spl_target_asked_for_runs_whatever_the_stack(tmp_path):
 def test_a_bl2_links_the_commit_it_was_built_from(tmp_path, monkeypatch):
     from ubci import config
     pins = config.pins()
-    src = pins["rb3gen2"]["bl2"].pop("source")
+    assert "source" not in pins["rb3gen2"]["bl2"]
+    src = {"repo": pins["rb3gen2"]["tf-a"]["repo"], "branch": "elsewhere", "commit": "2" * 40}
     pins["rb3gen2"]["tf-a"]["commit"] = "1" * 40
     monkeypatch.setattr(config, "pins", lambda: pins)
     bl2 = comp({"components": urun.components("rb3gen2", "open", "c" * 40, "fp")}, "tf-a bl2")

@@ -198,3 +198,17 @@ def test_shikra_has_no_spl_stack_and_says_what_is_missing(tmp_path):
     assert why.startswith("no SPL stack for this board: no posted Shikra SPL enablement (defconfig, config fragment or "
                           "Kconfig select); no posted FIT template")
     assert "qcom: shikra: add eMMC SPL boot support v2 <20261013053244.2954876-1-abhilash.v@" in why
+
+
+def test_every_public_pin_is_one_integration_commit():
+    # TF-A, its pre-signed BL2 and OP-TEE all come from the pinned
+    # qcom/integration commits: no BL2 from another branch or snapshot.
+    pins = config.pins()
+    tfa = {p["tf-a"]["commit"] for p in pins.values() if not config.private({"pins": p})}
+    optee = {p["optee"]["commit"] for p in pins.values() if not config.private({"pins": p})}
+    assert len(tfa) == 1 and len(optee) == 1
+    for name, p in pins.items():
+        if config.private({"pins": p}):
+            continue
+        assert p["tf-a"]["branch"] == p["optee"]["branch"] == "qcom/integration", name
+        assert "source" not in p.get("bl2", {}), name
