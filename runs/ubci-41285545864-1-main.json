@@ -65,7 +65,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main 3401e006432a",
-  "updated": "2026-11-01T08:53:29Z"
+  "updated": "2026-11-01T08:59:03Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -1450,6 +1450,12 @@
    ],
    "fingerprint": "ubci-41285545864-1-main-open-rb3gen2",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "rb3g2-01",
+    "health": "Unknown",
+    "job_id": 528820,
+    "url": "https://lava.infra.foundries.io/scheduler/job/528820"
+   },
    "linux_boot": {
     "gaps": [
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
@@ -1458,8 +1464,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "flashing"
   },
   {
    "board": "rb3gen2",
@@ -2935,6 +2942,12 @@
    ],
    "fingerprint": "ubci-41285545864-1-main-open-ventuno-q",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 528821,
+    "url": "https://lava.infra.foundries.io/scheduler/job/528821"
+   },
    "linux_boot": {
     "gaps": [
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
@@ -2943,6 +2956,7 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": 3,
    "stack": "open",
    "state": "queued"
   },
@@ -4392,7 +4406,8 @@
     "versus_baseline": "unknown"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "BL2 pin not available: PIN_BL2_UNO_Q is not set"
   },
   {
    "board": "uno-q",
@@ -5784,7 +5799,8 @@
     "versus_baseline": "unknown"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "BL2 pin not available: PIN_BL2_QCS615_RIDE is not set"
   },
   {
    "board": "qcs615-ride",
@@ -7255,7 +7271,8 @@
     "versus_baseline": "unknown"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "BL2 pin not available: PIN_BL2_LEMANS_EVK is not set"
   },
   {
    "board": "lemans-evk",
