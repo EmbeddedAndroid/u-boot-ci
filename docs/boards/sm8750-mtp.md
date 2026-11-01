@@ -11,9 +11,9 @@ written; LUN 3 (CDT, DDR training) and LUN 5 stay as the lab wrote them.
 The EDL programmer is `xbl_s_devprg_ns.melf`.
 
 TF-A (PLAT=sm8750_mtp) and OP-TEE are built from the internal
-`qcom/integration` (tag `qcom/integration-20261031`), gated on this
+`qcom/integration` (tag `qcom/integration-20261101`), gated on this
 board, and pinned as images ([private-firmware.md](../private-firmware.md)):
-BL2 in `tz_a`/`tz_b`, QTI-signed, fingerprint `QCDFP-261031-412` on BL2, BL31 and
+BL2 in `tz_a`/`tz_b`, QTI-signed, fingerprint `QCDFP-261101-475` on BL2, BL31 and
 OP-TEE; the FIP of BL31, OP-TEE and the U-Boot under test is built by
 the submit job and wrapped at 0xa7000000 for `uefi_a`/`uefi_b` (qtestsign
 v7, uefi). U-Boot: `qcom_defconfig` + `tfa-optee.config` (+ the board

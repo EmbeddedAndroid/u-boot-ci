@@ -34,7 +34,7 @@ the release of the private store that holds `file`:
 
 ```yaml
 sm8750-mtp:
-  tf-a:   {private: ..., release: qcom-integration-20261031, file: bl31-sm8750-mtp.bin,
+  tf-a:   {private: ..., release: qcom-integration-20261101, file: bl31-sm8750-mtp.bin,
            sha256: ..., fingerprint: ..., fip_load_addr: "0xa7000000", sign: [-v7, uefi]}
   bl2:    {private: ..., origin: downstream, release: ..., file: tz-sm8750-mtp.mbn, sha256: ..., fingerprint: ...}
   optee:  {private: ..., release: ..., file: tee-sm8750-mtp.bin, sha256: ..., fingerprint: ...}
