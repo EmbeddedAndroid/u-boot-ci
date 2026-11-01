@@ -65,7 +65,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main 3401e006432a",
-  "updated": "2026-11-01T05:08:06Z"
+  "updated": "2026-11-01T05:13:34Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -1450,6 +1450,12 @@
    ],
    "fingerprint": "ubci-41270316696-1-main-open-rb3gen2",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "rb3g2-01",
+    "health": "Unknown",
+    "job_id": 528729,
+    "url": "https://lava.infra.foundries.io/scheduler/job/528729"
+   },
    "linux_boot": {
     "gaps": [
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
@@ -1458,8 +1464,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "flashing"
   },
   {
    "board": "rb3gen2",
@@ -2935,6 +2942,12 @@
    ],
    "fingerprint": "ubci-41270316696-1-main-open-ventuno-q",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 528730,
+    "url": "https://lava.infra.foundries.io/scheduler/job/528730"
+   },
    "linux_boot": {
     "gaps": [
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
@@ -2943,6 +2956,7 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": 3,
    "stack": "open",
    "state": "queued"
   },
