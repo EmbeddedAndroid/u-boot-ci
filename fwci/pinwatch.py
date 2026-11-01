@@ -13,6 +13,7 @@ import hashlib
 import json
 import subprocess
 import sys
+import time
 import urllib.request
 
 
@@ -25,18 +26,32 @@ def diff(current, upstream):
     return {k: (current.get(k), v) for k, v in upstream.items() if current.get(k) != v}
 
 
-def verify(files, fetch=None):
+def _sha256(url, fetch):
+    h = hashlib.sha256()
+    with fetch(url) as r:
+        for block in iter(lambda: r.read(1 << 20), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+def verify(files, fetch=None, attempts=3, sleep=time.sleep):
     """Download every (url, sha256) and check it; raises PinError on the
     first mismatch, so no pull request is opened for a pin that does not
-    match its own upstream."""
+    match its own upstream. A failed download (timeout, reset, TLS
+    handshake) is retried; a digest mismatch is not."""
     fetch = fetch or (lambda u: urllib.request.urlopen(u, timeout=600))
     for url, digest in files:
-        h = hashlib.sha256()
-        with fetch(url) as r:
-            for block in iter(lambda: r.read(1 << 20), b""):
-                h.update(block)
-        if h.hexdigest() != digest:
-            raise PinError("%s: sha256 %s, upstream recipe says %s" % (url, h.hexdigest(), digest))
+        for attempt in range(1, attempts + 1):
+            try:
+                got = _sha256(url, fetch)
+                break
+            except OSError as e:
+                if attempt == attempts:
+                    raise
+                sys.stderr.write("%s: %s, retry %d of %d\n" % (url, e, attempt, attempts - 1))
+                sleep(30 * attempt)
+        if got != digest:
+            raise PinError("%s: sha256 %s, upstream recipe says %s" % (url, got, digest))
 
 
 def gh(*args):

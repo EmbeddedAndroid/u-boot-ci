@@ -1,3 +1,4 @@
+import hashlib
 import io
 import json
 import os
@@ -267,3 +268,37 @@ def test_a_board_without_a_stock_stack_is_not_watched(tmp_path, monkeypatch):
     assert stockpin.check("sm8750-mtp", str(tmp_path), verify=False) == {
         "board": "sm8750-mtp", "result": "no stock stack to validate a bump on"}
     assert os.listdir(tmp_path) == []
+
+
+class _Flaky:
+    """fetch() that fails `fails` times with `exc`, then serves `data`."""
+    def __init__(self, data, fails, exc):
+        self.data, self.fails, self.exc, self.calls = data, fails, exc, 0
+
+    def __call__(self, url):
+        self.calls += 1
+        if self.calls <= self.fails:
+            raise self.exc
+        return io.BytesIO(self.data)
+
+
+def test_verify_retries_a_transient_download_error():
+    import urllib.error
+    data = b"fw"
+    f = _Flaky(data, 2, urllib.error.URLError("_ssl.c:983: The handshake operation timed out"))
+    pinwatch.verify([("https://x/a.zip", hashlib.sha256(data).hexdigest())], fetch=f, sleep=lambda s: None)
+    assert f.calls == 3
+
+
+def test_verify_gives_up_after_the_last_attempt():
+    f = _Flaky(b"fw", 5, TimeoutError("timed out"))
+    with pytest.raises(TimeoutError):
+        pinwatch.verify([("https://x/a.zip", "00")], fetch=f, sleep=lambda s: None)
+    assert f.calls == 3
+
+
+def test_verify_does_not_retry_a_digest_mismatch():
+    f = _Flaky(b"fw", 0, OSError())
+    with pytest.raises(pinwatch.PinError):
+        pinwatch.verify([("https://x/a.zip", "00")], fetch=f, sleep=lambda s: None)
+    assert f.calls == 1
