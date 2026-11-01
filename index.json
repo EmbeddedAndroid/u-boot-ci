@@ -948,7 +948,9 @@
       },
       "distance": {},
       "fingerprint": "ubci-41270316696-1-main-open-kaanapali-mtp",
-      "fragments_missing": [],
+      "fragments_missing": [
+       "kaanapali-mtp.config"
+      ],
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
@@ -957,8 +959,8 @@
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "open",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "private firmware not available: tz-kaanapali-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set",
       "versus": "unknown"
      }
     ],
@@ -982,13 +984,13 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "board",
       "queue_position": null,
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no SPL stack for this board: no SPL in flight for this board",
       "versus": "unknown"
      }
     ],
@@ -1017,8 +1019,8 @@
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)",
       "versus": "unknown"
      }
     ],
@@ -2320,7 +2322,7 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "upstream",
       "queue_position": null,
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [
@@ -2362,8 +2364,8 @@
        }
       ],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no upstream SPL: qcom_lemans_spl_defconfig not in the tree; in flight: Enable U-Boot SPL support for Lemans EVK v4 <20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: ufs: add UFS boot support for Qualcomm Snapdragon in SPL v4 <20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: Add NVMEM bitfield support and reboot-mode v5 <20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>",
       "versus": "unknown"
      }
     ],
@@ -2825,10 +2827,10 @@
       "fingerprint": "ubci-41270316696-1-main-stock-lemans-evk",
       "fragments_missing": [],
       "gate": "not-run",
-      "job_url": "",
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/528720",
       "new_fail": 0,
       "no_spl": null,
-      "queue_position": null,
+      "queue_position": 1,
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "stock",
@@ -3404,7 +3406,9 @@
        "tf-a": 95
       },
       "fingerprint": "ubci-41270316696-1-main-open-qcs615-ride",
-      "fragments_missing": [],
+      "fragments_missing": [
+       "qcs615-ride.config"
+      ],
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
@@ -3606,13 +3610,13 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "board",
       "queue_position": null,
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no SPL stack for this board: no SPL in flight for this board",
       "versus": "unknown"
      }
     ],
@@ -4074,14 +4078,14 @@
       "fingerprint": "ubci-41270316696-1-main-stock-qcs615-ride",
       "fragments_missing": [],
       "gate": "not-run",
-      "job_url": "",
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/528719",
       "new_fail": 0,
       "no_spl": null,
       "queue_position": null,
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "queued",
+      "state": "flashing",
       "state_detail": "",
       "versus": "unknown"
      }
@@ -4941,13 +4945,13 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "board",
       "queue_position": null,
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no SPL stack for this board: no SPL in flight for this board",
       "versus": "unknown"
      }
     ],
@@ -5670,8 +5674,8 @@
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "open",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no open stack for this board: the Shikra open stack boots through U-Boot SPL (the spl stack): TF-A shikra_evk builds BL31 only, there is no BL2 for a FIP flow",
       "versus": "unknown"
      }
     ],
@@ -6229,7 +6233,7 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "board",
       "queue_position": null,
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [
@@ -6295,8 +6299,8 @@
        }
       ],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no SPL stack for this board: no posted Shikra SPL enablement (defconfig, config fragment or Kconfig select); no posted FIT template (the CI carries its own, ubci/fit.py); in flight: Initial Shikra SoC support v4 <20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com>; Enable HS200/HS400 eMMC modes on Qualcomm v2 <20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com>; tools: qcom: mkmbn: ipq5210 and multi-elf v3 <20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: shikra: add eMMC SPL boot support v2 <20261013053244.2954876-1-abhilash.v@oss.qualcomm.com>; qcom: shikra: SPL SD card boot v2 <20261013053517.2955571-1-abhilash.v@oss.qualcomm.com>; qcom: spl: enable CDT for shikra v2 <20261023084019.3722376-1-abhilash.v@oss.qualcomm.com>; DDR training for Shikra SPL v1 <20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>",
       "versus": "unknown"
      }
     ],
@@ -6661,8 +6665,8 @@
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "board not in this base: none of qcom_shikra_iqs_defconfig",
       "versus": "unknown"
      }
     ],
@@ -6721,7 +6725,9 @@
       },
       "distance": {},
       "fingerprint": "ubci-41270316696-1-main-open-sm8750-mtp",
-      "fragments_missing": [],
+      "fragments_missing": [
+       "sm8750-mtp.config"
+      ],
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
@@ -6730,8 +6736,8 @@
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "open",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "private firmware not available: tz-sm8750-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set",
       "versus": "unknown"
      }
     ],
@@ -6755,13 +6761,13 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "board",
       "queue_position": null,
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no SPL stack for this board: no SPL in flight for this board",
       "versus": "unknown"
      }
     ],
@@ -6790,8 +6796,8 @@
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)",
       "versus": "unknown"
      }
     ],
@@ -7362,7 +7368,9 @@
        "tf-a": 95
       },
       "fingerprint": "ubci-41270316696-1-main-open-uno-q",
-      "fragments_missing": [],
+      "fragments_missing": [
+       "arduino-uno-q.config"
+      ],
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
@@ -7564,13 +7572,13 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "board",
       "queue_position": null,
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no SPL stack for this board: no SPL in flight for this board",
       "versus": "unknown"
      }
     ],
@@ -8068,14 +8076,14 @@
       "fingerprint": "ubci-41270316696-1-main-stock-uno-q",
       "fragments_missing": [],
       "gate": "not-run",
-      "job_url": "",
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/528718",
       "new_fail": 0,
       "no_spl": null,
       "queue_position": null,
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "queued",
+      "state": "flashing",
       "state_detail": "",
       "versus": "unknown"
      }
@@ -8749,7 +8757,9 @@
        "tf-a": 95
       },
       "fingerprint": "ubci-41270316696-1-main-open-ventuno-q",
-      "fragments_missing": [],
+      "fragments_missing": [
+       "arduino-ventuno-q.config"
+      ],
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
@@ -8951,13 +8961,13 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "board",
       "queue_position": null,
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no SPL stack for this board: no SPL in flight for this board",
       "versus": "unknown"
      }
     ],
@@ -9475,22 +9485,72 @@
       "fingerprint": "ubci-41270316696-1-main-stock-ventuno-q",
       "fragments_missing": [],
       "gate": "not-run",
-      "job_url": "",
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/528717",
       "new_fail": 0,
       "no_spl": null,
       "queue_position": null,
       "run": "ubci-41270316696-1-main",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "queued",
+      "state": "flashing",
       "state_detail": "",
       "versus": "unknown"
      }
     ]
    },
-   "host_checks": [],
+   "host_checks": [
+    {
+     "name": "buildman",
+     "result": "pass",
+     "summary": "every snapdragon board built without warnings"
+    },
+    {
+     "name": "carry",
+     "result": "pass",
+     "summary": "carry.yaml matches the pins"
+    },
+    {
+     "name": "checkpatch",
+     "result": "pass",
+     "summary": "0 new commits: 0 with errors, 0 with warnings only"
+    },
+    {
+     "name": "docs",
+     "result": "pass",
+     "summary": "htmldocs built without warnings"
+    },
+    {
+     "name": "fragments",
+     "result": "pass",
+     "summary": "1 combinations built"
+    },
+    {
+     "name": "qemu_arm64",
+     "result": "pass",
+     "summary": "250 passed, 607 skipped, 2 deselected in 122.06s (0:02:02)"
+    },
+    {
+     "name": "sandbox",
+     "result": "pass",
+     "summary": "1428 passed, 229 skipped, 3 deselected, 1 xfailed in 841.03s (0:14:01)"
+    },
+    {
+     "name": "size",
+     "result": "pass",
+     "summary": "kaanapali-mtp-open 1688128 B, lemans-evk-open 1712424 B, lemans-evk-stock 1712216 B, qcs615-ride-open 1651648 B, qcs615-ride-stock 1621680 B, rb3gen2-open 1707808 B, rb3gen2-stock 1699064 B, sm8750-mtp-open 1684448 B, uno-q-open 1611176 B, uno-q-stock 0 B, ventuno-q-open 1693464 B, ventuno-q-stock 1700384 B"
+    }
+   ],
    "latest_nightly": "ubci-41270316696-1-main",
-   "linux": null,
+   "linux": {
+    "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+    "config": "arch/arm64/configs/defconfig",
+    "image_sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+    "modules_sha256": "ec4aed96c2e3752654b983373fd7e658bfc9b7d855432e537c13abd236cdc021",
+    "release": "7.3.0-next-20261030",
+    "tag": "next-20261030",
+    "tag_url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tag/?h=next-20261030",
+    "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+   },
    "matrix": [
     {
      "board": "rb3gen2",
@@ -9630,13 +9690,13 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "board",
      "queue_position": null,
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no SPL stack for this board: no SPL in flight for this board",
      "versus": "unknown"
     },
     {
@@ -9680,14 +9740,14 @@
      "fingerprint": "ubci-41270316696-1-main-stock-ventuno-q",
      "fragments_missing": [],
      "gate": "not-run",
-     "job_url": "",
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/528717",
      "new_fail": 0,
      "no_spl": null,
      "queue_position": null,
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
+     "state": "flashing",
      "state_detail": "",
      "versus": "unknown"
     },
@@ -9745,7 +9805,9 @@
       "tf-a": 95
      },
      "fingerprint": "ubci-41270316696-1-main-open-ventuno-q",
-     "fragments_missing": [],
+     "fragments_missing": [
+      "arduino-ventuno-q.config"
+     ],
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
@@ -9777,13 +9839,13 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "board",
      "queue_position": null,
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no SPL stack for this board: no SPL in flight for this board",
      "versus": "unknown"
     },
     {
@@ -9831,14 +9893,14 @@
      "fingerprint": "ubci-41270316696-1-main-stock-uno-q",
      "fragments_missing": [],
      "gate": "not-run",
-     "job_url": "",
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/528718",
      "new_fail": 0,
      "no_spl": null,
      "queue_position": null,
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
+     "state": "flashing",
      "state_detail": "",
      "versus": "unknown"
     },
@@ -9896,7 +9958,9 @@
       "tf-a": 95
      },
      "fingerprint": "ubci-41270316696-1-main-open-uno-q",
-     "fragments_missing": [],
+     "fragments_missing": [
+      "arduino-uno-q.config"
+     ],
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
@@ -9928,13 +9992,13 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "board",
      "queue_position": null,
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no SPL stack for this board: no SPL in flight for this board",
      "versus": "unknown"
     },
     {
@@ -9978,14 +10042,14 @@
      "fingerprint": "ubci-41270316696-1-main-stock-qcs615-ride",
      "fragments_missing": [],
      "gate": "not-run",
-     "job_url": "",
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/528719",
      "new_fail": 0,
      "no_spl": null,
      "queue_position": null,
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
+     "state": "flashing",
      "state_detail": "",
      "versus": "unknown"
     },
@@ -10043,7 +10107,9 @@
       "tf-a": 95
      },
      "fingerprint": "ubci-41270316696-1-main-open-qcs615-ride",
-     "fragments_missing": [],
+     "fragments_missing": [
+      "qcs615-ride.config"
+     ],
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
@@ -10075,13 +10141,13 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "board",
      "queue_position": null,
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no SPL stack for this board: no SPL in flight for this board",
      "versus": "unknown"
     },
     {
@@ -10125,10 +10191,10 @@
      "fingerprint": "ubci-41270316696-1-main-stock-lemans-evk",
      "fragments_missing": [],
      "gate": "not-run",
-     "job_url": "",
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/528720",
      "new_fail": 0,
      "no_spl": null,
-     "queue_position": null,
+     "queue_position": 1,
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "stock",
@@ -10263,7 +10329,7 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "upstream",
      "queue_position": null,
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [
@@ -10305,8 +10371,8 @@
       }
      ],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no upstream SPL: qcom_lemans_spl_defconfig not in the tree; in flight: Enable U-Boot SPL support for Lemans EVK v4 <20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: ufs: add UFS boot support for Qualcomm Snapdragon in SPL v4 <20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: Add NVMEM bitfield support and reboot-mode v5 <20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>",
      "versus": "unknown"
     },
     {
@@ -10357,8 +10423,8 @@
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "board not in this base: none of qcom_shikra_iqs_defconfig",
      "versus": "unknown"
     },
     {
@@ -10385,8 +10451,8 @@
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "open",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no open stack for this board: the Shikra open stack boots through U-Boot SPL (the spl stack): TF-A shikra_evk builds BL31 only, there is no BL2 for a FIP flow",
      "versus": "unknown"
     },
     {
@@ -10408,7 +10474,7 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "board",
      "queue_position": null,
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [
@@ -10474,8 +10540,8 @@
       }
      ],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no SPL stack for this board: no posted Shikra SPL enablement (defconfig, config fragment or Kconfig select); no posted FIT template (the CI carries its own, ubci/fit.py); in flight: Initial Shikra SoC support v4 <20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com>; Enable HS200/HS400 eMMC modes on Qualcomm v2 <20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com>; tools: qcom: mkmbn: ipq5210 and multi-elf v3 <20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: shikra: add eMMC SPL boot support v2 <20261013053244.2954876-1-abhilash.v@oss.qualcomm.com>; qcom: shikra: SPL SD card boot v2 <20261013053517.2955571-1-abhilash.v@oss.qualcomm.com>; qcom: spl: enable CDT for shikra v2 <20261023084019.3722376-1-abhilash.v@oss.qualcomm.com>; DDR training for Shikra SPL v1 <20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>",
      "versus": "unknown"
     },
     {
@@ -10502,8 +10568,8 @@
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)",
      "versus": "unknown"
     },
     {
@@ -10560,7 +10626,9 @@
      },
      "distance": {},
      "fingerprint": "ubci-41270316696-1-main-open-sm8750-mtp",
-     "fragments_missing": [],
+     "fragments_missing": [
+      "sm8750-mtp.config"
+     ],
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
@@ -10569,8 +10637,8 @@
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "open",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "private firmware not available: tz-sm8750-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set",
      "versus": "unknown"
     },
     {
@@ -10592,13 +10660,13 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "board",
      "queue_position": null,
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no SPL stack for this board: no SPL in flight for this board",
      "versus": "unknown"
     },
     {
@@ -10625,8 +10693,8 @@
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)",
      "versus": "unknown"
     },
     {
@@ -10683,7 +10751,9 @@
      },
      "distance": {},
      "fingerprint": "ubci-41270316696-1-main-open-kaanapali-mtp",
-     "fragments_missing": [],
+     "fragments_missing": [
+      "kaanapali-mtp.config"
+     ],
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
@@ -10692,8 +10762,8 @@
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "open",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "private firmware not available: tz-kaanapali-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set",
      "versus": "unknown"
     },
     {
@@ -10715,13 +10785,13 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "board",
      "queue_position": null,
      "run": "ubci-41270316696-1-main",
      "spl_in_flight": [],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no SPL stack for this board: no SPL in flight for this board",
      "versus": "unknown"
     }
    ]
@@ -21558,7 +21628,9 @@
     },
     "distance": {},
     "fingerprint": "ubci-41270316696-1-main-open-kaanapali-mtp",
-    "fragments_missing": [],
+    "fragments_missing": [
+     "kaanapali-mtp.config"
+    ],
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
@@ -21567,8 +21639,8 @@
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "open",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "private firmware not available: tz-kaanapali-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set",
     "versus": "unknown"
    }
   ],
@@ -21592,13 +21664,13 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
-    "no_spl": null,
+    "no_spl": "board",
     "queue_position": null,
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "spl",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "no SPL stack for this board: no SPL in flight for this board",
     "versus": "unknown"
    }
   ],
@@ -21627,8 +21699,8 @@
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "stock",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)",
     "versus": "unknown"
    }
   ],
@@ -22930,7 +23002,7 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
-    "no_spl": null,
+    "no_spl": "upstream",
     "queue_position": null,
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [
@@ -22972,8 +23044,8 @@
      }
     ],
     "stack": "spl",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "no upstream SPL: qcom_lemans_spl_defconfig not in the tree; in flight: Enable U-Boot SPL support for Lemans EVK v4 <20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: ufs: add UFS boot support for Qualcomm Snapdragon in SPL v4 <20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: Add NVMEM bitfield support and reboot-mode v5 <20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>",
     "versus": "unknown"
    }
   ],
@@ -23435,10 +23507,10 @@
     "fingerprint": "ubci-41270316696-1-main-stock-lemans-evk",
     "fragments_missing": [],
     "gate": "not-run",
-    "job_url": "",
+    "job_url": "https://lava.infra.foundries.io/scheduler/job/528720",
     "new_fail": 0,
     "no_spl": null,
-    "queue_position": null,
+    "queue_position": 1,
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "stock",
@@ -24014,7 +24086,9 @@
      "tf-a": 95
     },
     "fingerprint": "ubci-41270316696-1-main-open-qcs615-ride",
-    "fragments_missing": [],
+    "fragments_missing": [
+     "qcs615-ride.config"
+    ],
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
@@ -24216,13 +24290,13 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
-    "no_spl": null,
+    "no_spl": "board",
     "queue_position": null,
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "spl",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "no SPL stack for this board: no SPL in flight for this board",
     "versus": "unknown"
    }
   ],
@@ -24684,14 +24758,14 @@
     "fingerprint": "ubci-41270316696-1-main-stock-qcs615-ride",
     "fragments_missing": [],
     "gate": "not-run",
-    "job_url": "",
+    "job_url": "https://lava.infra.foundries.io/scheduler/job/528719",
     "new_fail": 0,
     "no_spl": null,
     "queue_position": null,
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "stock",
-    "state": "queued",
+    "state": "flashing",
     "state_detail": "",
     "versus": "unknown"
    }
@@ -25551,13 +25625,13 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
-    "no_spl": null,
+    "no_spl": "board",
     "queue_position": null,
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "spl",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "no SPL stack for this board: no SPL in flight for this board",
     "versus": "unknown"
    }
   ],
@@ -26280,8 +26354,8 @@
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "open",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "no open stack for this board: the Shikra open stack boots through U-Boot SPL (the spl stack): TF-A shikra_evk builds BL31 only, there is no BL2 for a FIP flow",
     "versus": "unknown"
    }
   ],
@@ -26839,7 +26913,7 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
-    "no_spl": null,
+    "no_spl": "board",
     "queue_position": null,
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [
@@ -26905,8 +26979,8 @@
      }
     ],
     "stack": "spl",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "no SPL stack for this board: no posted Shikra SPL enablement (defconfig, config fragment or Kconfig select); no posted FIT template (the CI carries its own, ubci/fit.py); in flight: Initial Shikra SoC support v4 <20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com>; Enable HS200/HS400 eMMC modes on Qualcomm v2 <20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com>; tools: qcom: mkmbn: ipq5210 and multi-elf v3 <20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: shikra: add eMMC SPL boot support v2 <20261013053244.2954876-1-abhilash.v@oss.qualcomm.com>; qcom: shikra: SPL SD card boot v2 <20261013053517.2955571-1-abhilash.v@oss.qualcomm.com>; qcom: spl: enable CDT for shikra v2 <20261023084019.3722376-1-abhilash.v@oss.qualcomm.com>; DDR training for Shikra SPL v1 <20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>",
     "versus": "unknown"
    }
   ],
@@ -27271,8 +27345,8 @@
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "stock",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "board not in this base: none of qcom_shikra_iqs_defconfig",
     "versus": "unknown"
    }
   ],
@@ -27331,7 +27405,9 @@
     },
     "distance": {},
     "fingerprint": "ubci-41270316696-1-main-open-sm8750-mtp",
-    "fragments_missing": [],
+    "fragments_missing": [
+     "sm8750-mtp.config"
+    ],
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
@@ -27340,8 +27416,8 @@
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "open",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "private firmware not available: tz-sm8750-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set",
     "versus": "unknown"
    }
   ],
@@ -27365,13 +27441,13 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
-    "no_spl": null,
+    "no_spl": "board",
     "queue_position": null,
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "spl",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "no SPL stack for this board: no SPL in flight for this board",
     "versus": "unknown"
    }
   ],
@@ -27400,8 +27476,8 @@
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "stock",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)",
     "versus": "unknown"
    }
   ],
@@ -27972,7 +28048,9 @@
      "tf-a": 95
     },
     "fingerprint": "ubci-41270316696-1-main-open-uno-q",
-    "fragments_missing": [],
+    "fragments_missing": [
+     "arduino-uno-q.config"
+    ],
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
@@ -28174,13 +28252,13 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
-    "no_spl": null,
+    "no_spl": "board",
     "queue_position": null,
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "spl",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "no SPL stack for this board: no SPL in flight for this board",
     "versus": "unknown"
    }
   ],
@@ -28678,14 +28756,14 @@
     "fingerprint": "ubci-41270316696-1-main-stock-uno-q",
     "fragments_missing": [],
     "gate": "not-run",
-    "job_url": "",
+    "job_url": "https://lava.infra.foundries.io/scheduler/job/528718",
     "new_fail": 0,
     "no_spl": null,
     "queue_position": null,
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "stock",
-    "state": "queued",
+    "state": "flashing",
     "state_detail": "",
     "versus": "unknown"
    }
@@ -29359,7 +29437,9 @@
      "tf-a": 95
     },
     "fingerprint": "ubci-41270316696-1-main-open-ventuno-q",
-    "fragments_missing": [],
+    "fragments_missing": [
+     "arduino-ventuno-q.config"
+    ],
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
@@ -29561,13 +29641,13 @@
     "gate": "not-run",
     "job_url": "",
     "new_fail": 0,
-    "no_spl": null,
+    "no_spl": "board",
     "queue_position": null,
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "spl",
-    "state": "queued",
-    "state_detail": "",
+    "state": "skipped",
+    "state_detail": "no SPL stack for this board: no SPL in flight for this board",
     "versus": "unknown"
    }
   ],
@@ -30085,22 +30165,72 @@
     "fingerprint": "ubci-41270316696-1-main-stock-ventuno-q",
     "fragments_missing": [],
     "gate": "not-run",
-    "job_url": "",
+    "job_url": "https://lava.infra.foundries.io/scheduler/job/528717",
     "new_fail": 0,
     "no_spl": null,
     "queue_position": null,
     "run": "ubci-41270316696-1-main",
     "spl_in_flight": [],
     "stack": "stock",
-    "state": "queued",
+    "state": "flashing",
     "state_detail": "",
     "versus": "unknown"
    }
   ]
  },
- "host_checks": [],
+ "host_checks": [
+  {
+   "name": "buildman",
+   "result": "pass",
+   "summary": "every snapdragon board built without warnings"
+  },
+  {
+   "name": "carry",
+   "result": "pass",
+   "summary": "carry.yaml matches the pins"
+  },
+  {
+   "name": "checkpatch",
+   "result": "pass",
+   "summary": "0 new commits: 0 with errors, 0 with warnings only"
+  },
+  {
+   "name": "docs",
+   "result": "pass",
+   "summary": "htmldocs built without warnings"
+  },
+  {
+   "name": "fragments",
+   "result": "pass",
+   "summary": "1 combinations built"
+  },
+  {
+   "name": "qemu_arm64",
+   "result": "pass",
+   "summary": "250 passed, 607 skipped, 2 deselected in 122.06s (0:02:02)"
+  },
+  {
+   "name": "sandbox",
+   "result": "pass",
+   "summary": "1428 passed, 229 skipped, 3 deselected, 1 xfailed in 841.03s (0:14:01)"
+  },
+  {
+   "name": "size",
+   "result": "pass",
+   "summary": "kaanapali-mtp-open 1688128 B, lemans-evk-open 1712424 B, lemans-evk-stock 1712216 B, qcs615-ride-open 1651648 B, qcs615-ride-stock 1621680 B, rb3gen2-open 1707808 B, rb3gen2-stock 1699064 B, sm8750-mtp-open 1684448 B, uno-q-open 1611176 B, uno-q-stock 0 B, ventuno-q-open 1693464 B, ventuno-q-stock 1700384 B"
+  }
+ ],
  "latest_nightly": "ubci-41270316696-1-main",
- "linux": null,
+ "linux": {
+  "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+  "config": "arch/arm64/configs/defconfig",
+  "image_sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+  "modules_sha256": "ec4aed96c2e3752654b983373fd7e658bfc9b7d855432e537c13abd236cdc021",
+  "release": "7.3.0-next-20261030",
+  "tag": "next-20261030",
+  "tag_url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tag/?h=next-20261030",
+  "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+ },
  "matrix": [
   {
    "board": "rb3gen2",
@@ -30240,13 +30370,13 @@
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
-   "no_spl": null,
+   "no_spl": "board",
    "queue_position": null,
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "spl",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board",
    "versus": "unknown"
   },
   {
@@ -30290,14 +30420,14 @@
    "fingerprint": "ubci-41270316696-1-main-stock-ventuno-q",
    "fragments_missing": [],
    "gate": "not-run",
-   "job_url": "",
+   "job_url": "https://lava.infra.foundries.io/scheduler/job/528717",
    "new_fail": 0,
    "no_spl": null,
    "queue_position": null,
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "stock",
-   "state": "queued",
+   "state": "flashing",
    "state_detail": "",
    "versus": "unknown"
   },
@@ -30355,7 +30485,9 @@
     "tf-a": 95
    },
    "fingerprint": "ubci-41270316696-1-main-open-ventuno-q",
-   "fragments_missing": [],
+   "fragments_missing": [
+    "arduino-ventuno-q.config"
+   ],
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
@@ -30387,13 +30519,13 @@
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
-   "no_spl": null,
+   "no_spl": "board",
    "queue_position": null,
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "spl",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board",
    "versus": "unknown"
   },
   {
@@ -30441,14 +30573,14 @@
    "fingerprint": "ubci-41270316696-1-main-stock-uno-q",
    "fragments_missing": [],
    "gate": "not-run",
-   "job_url": "",
+   "job_url": "https://lava.infra.foundries.io/scheduler/job/528718",
    "new_fail": 0,
    "no_spl": null,
    "queue_position": null,
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "stock",
-   "state": "queued",
+   "state": "flashing",
    "state_detail": "",
    "versus": "unknown"
   },
@@ -30506,7 +30638,9 @@
     "tf-a": 95
    },
    "fingerprint": "ubci-41270316696-1-main-open-uno-q",
-   "fragments_missing": [],
+   "fragments_missing": [
+    "arduino-uno-q.config"
+   ],
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
@@ -30538,13 +30672,13 @@
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
-   "no_spl": null,
+   "no_spl": "board",
    "queue_position": null,
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "spl",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board",
    "versus": "unknown"
   },
   {
@@ -30588,14 +30722,14 @@
    "fingerprint": "ubci-41270316696-1-main-stock-qcs615-ride",
    "fragments_missing": [],
    "gate": "not-run",
-   "job_url": "",
+   "job_url": "https://lava.infra.foundries.io/scheduler/job/528719",
    "new_fail": 0,
    "no_spl": null,
    "queue_position": null,
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "stock",
-   "state": "queued",
+   "state": "flashing",
    "state_detail": "",
    "versus": "unknown"
   },
@@ -30653,7 +30787,9 @@
     "tf-a": 95
    },
    "fingerprint": "ubci-41270316696-1-main-open-qcs615-ride",
-   "fragments_missing": [],
+   "fragments_missing": [
+    "qcs615-ride.config"
+   ],
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
@@ -30685,13 +30821,13 @@
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
-   "no_spl": null,
+   "no_spl": "board",
    "queue_position": null,
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "spl",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board",
    "versus": "unknown"
   },
   {
@@ -30735,10 +30871,10 @@
    "fingerprint": "ubci-41270316696-1-main-stock-lemans-evk",
    "fragments_missing": [],
    "gate": "not-run",
-   "job_url": "",
+   "job_url": "https://lava.infra.foundries.io/scheduler/job/528720",
    "new_fail": 0,
    "no_spl": null,
-   "queue_position": null,
+   "queue_position": 1,
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "stock",
@@ -30873,7 +31009,7 @@
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
-   "no_spl": null,
+   "no_spl": "upstream",
    "queue_position": null,
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [
@@ -30915,8 +31051,8 @@
     }
    ],
    "stack": "spl",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "no upstream SPL: qcom_lemans_spl_defconfig not in the tree; in flight: Enable U-Boot SPL support for Lemans EVK v4 <20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: ufs: add UFS boot support for Qualcomm Snapdragon in SPL v4 <20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: Add NVMEM bitfield support and reboot-mode v5 <20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>",
    "versus": "unknown"
   },
   {
@@ -30967,8 +31103,8 @@
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "stock",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "board not in this base: none of qcom_shikra_iqs_defconfig",
    "versus": "unknown"
   },
   {
@@ -30995,8 +31131,8 @@
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "open",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "no open stack for this board: the Shikra open stack boots through U-Boot SPL (the spl stack): TF-A shikra_evk builds BL31 only, there is no BL2 for a FIP flow",
    "versus": "unknown"
   },
   {
@@ -31018,7 +31154,7 @@
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
-   "no_spl": null,
+   "no_spl": "board",
    "queue_position": null,
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [
@@ -31084,8 +31220,8 @@
     }
    ],
    "stack": "spl",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no posted Shikra SPL enablement (defconfig, config fragment or Kconfig select); no posted FIT template (the CI carries its own, ubci/fit.py); in flight: Initial Shikra SoC support v4 <20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com>; Enable HS200/HS400 eMMC modes on Qualcomm v2 <20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com>; tools: qcom: mkmbn: ipq5210 and multi-elf v3 <20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: shikra: add eMMC SPL boot support v2 <20261013053244.2954876-1-abhilash.v@oss.qualcomm.com>; qcom: shikra: SPL SD card boot v2 <20261013053517.2955571-1-abhilash.v@oss.qualcomm.com>; qcom: spl: enable CDT for shikra v2 <20261023084019.3722376-1-abhilash.v@oss.qualcomm.com>; DDR training for Shikra SPL v1 <20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>",
    "versus": "unknown"
   },
   {
@@ -31112,8 +31248,8 @@
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "stock",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)",
    "versus": "unknown"
   },
   {
@@ -31170,7 +31306,9 @@
    },
    "distance": {},
    "fingerprint": "ubci-41270316696-1-main-open-sm8750-mtp",
-   "fragments_missing": [],
+   "fragments_missing": [
+    "sm8750-mtp.config"
+   ],
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
@@ -31179,8 +31317,8 @@
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "open",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "private firmware not available: tz-sm8750-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set",
    "versus": "unknown"
   },
   {
@@ -31202,13 +31340,13 @@
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
-   "no_spl": null,
+   "no_spl": "board",
    "queue_position": null,
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "spl",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board",
    "versus": "unknown"
   },
   {
@@ -31235,8 +31373,8 @@
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "stock",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)",
    "versus": "unknown"
   },
   {
@@ -31293,7 +31431,9 @@
    },
    "distance": {},
    "fingerprint": "ubci-41270316696-1-main-open-kaanapali-mtp",
-   "fragments_missing": [],
+   "fragments_missing": [
+    "kaanapali-mtp.config"
+   ],
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
@@ -31302,8 +31442,8 @@
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "open",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "private firmware not available: tz-kaanapali-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set",
    "versus": "unknown"
   },
   {
@@ -31325,13 +31465,13 @@
    "gate": "not-run",
    "job_url": "",
    "new_fail": 0,
-   "no_spl": null,
+   "no_spl": "board",
    "queue_position": null,
    "run": "ubci-41270316696-1-main",
    "spl_in_flight": [],
    "stack": "spl",
-   "state": "queued",
-   "state_detail": "",
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board",
    "versus": "unknown"
   }
  ],
@@ -31804,7 +31944,7 @@
    "created": "2026-11-01T03:47:43Z",
    "id": "ubci-41270316696-1-main",
    "kind": "nightly",
-   "state": "building",
+   "state": "testing",
    "title": "main 3401e006432a"
   },
   {
@@ -32185,5 +32325,5 @@
    "title": "QCS8300 v4 + VENTUNO Q v2"
   }
  ],
- "updated": "2026-11-01T04:54:45Z"
+ "updated": "2026-11-01T04:57:32Z"
 }
