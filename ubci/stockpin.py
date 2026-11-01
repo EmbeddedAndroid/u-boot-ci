@@ -82,7 +82,7 @@ def bump(text, old, new, source=None):
     if old["cdt"]:
         pairs += [(old["cdt"]["url"], new["cdt"]["url"]), (old["cdt"]["sha256"], new["cdt"]["sha256"])]
     # Layer commits change in the downstream section only: another section
-    # (downstream_open) was not read at the new commit.
+    # (downstream_open, downstream_spl) was not read at the new commit.
     head = re.search(r"^downstream:.*\n", text, re.M)
     if not head:
         raise pinwatch.PinError("no downstream section in the board config")

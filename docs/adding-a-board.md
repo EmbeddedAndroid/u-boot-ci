@@ -9,7 +9,8 @@
      images every package must carry (`required`, default xbl, xbl_config,
      tz, cdt), the layer commit the pin was read at (`source`) and the
      recipes the pin watcher follows (`upstream`); `downstream_open` when
-     the open stack needs other boot firmware;
+     the open (and SPL) stack needs other boot firmware, `downstream_spl`
+     when only the SPL stack does;
    - `u-boot`: configs (`a|b` for a defconfig a series renames, `x?` for
      a board fragment a series adds), device tree, image and, when it is
      not `uefi.elf`, the package file it is written as (`slot`;

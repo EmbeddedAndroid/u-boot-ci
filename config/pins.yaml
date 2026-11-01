@@ -125,21 +125,17 @@ boards:
       commit: c6dedc7baa16400fc084dc9ff5e6533fd796bcce
       soc_branch: {name: qcom/lemans, commit: 657d882414160b1693dd7cb5dae36a21567cb5c4}
       flags: PLAT=lemans_evk SPD=opteed
-      # U-Boot SPL loads a FIT, not a FIP: BL31, OP-TEE, U-Boot.
-      image: uefi.itb
+      fip_load_addr: "0xaf000000"
+      # The FIT the SPL stack's U-Boot SPL loads: BL31, OP-TEE, U-Boot.
       fit: {atf: "0x1c200000", optee: "0x1c300000", uboot: "0xaf000000"}
       upstream: *tfa-upstream
     bl2:
-      # What XBL loads from tz on this boot chain: U-Boot SPL, pre-built
-      # and test-signed, from a tree that is not public (no Lemans SPL
-      # on U-Boot main yet). Downstream until it is.
-      name: u-boot spl
-      banner: U-Boot SPL
-      origin: downstream
+      # TF-A BL2, SWIV-annotated for lemans and test-signed as TZ with
+      # the pinned swiv and qtestsign (XBL loads it from tz_a/tz_b).
       file: tz-lemans-evk.mbn
       secret: PIN_BL2_LEMANS_EVK
-      sha256: c6cb506e3e51172446b8ec456dd647d9556ad55d5c6b94bc5ca3e39edc9a3893
-      fingerprint: LEMANSFP-261009-030954-lpb4
+      sha256: f93439ce34169eb61515e65a3c9a7ae506690851301affbe249654ce4ba2a5e3
+      fingerprint: QCDFP-261101-473
     optee:
       repo: https://github.com/EmbeddedAndroid/optee_os
       branch: qcom/integration

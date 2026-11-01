@@ -37,11 +37,12 @@ downstream: &downstream
       layer: meta-qcom
       recipe: recipes-bsp/firmware-boot/firmware-qcom-cdt-qcs9100.bb
       name: qcs9100-rb8-ck
-downstream_open:
+downstream_spl:
   # The same release with its SPL XBLConfig: XBL takes the U-Boot SPL path
   # only with xbl_config_spl.elf (meta-qcom qcom-uboot-spl-fit.inc). With
   # the default one XBL loads uefi as an ELF and stops (Error code
-  # 82000035 at boot_elf_driver.c, LAVA 512763).
+  # 82000035 at boot_elf_driver.c, LAVA 512763); the open stack's fip.elf
+  # is an ELF and takes the default one.
   <<: *downstream
   xbl_config: xbl_config_spl.elf
 u-boot:
@@ -52,7 +53,7 @@ u-boot:
     configs: ["qcom_lemans_defconfig|qcom_qcs9100_defconfig"]
     device_tree: qcom/lemans-evk
     image: u-boot.mbn
-  # open: U-Boot proper in the FIT the pinned U-Boot SPL loads.
+  # open: U-Boot as BL33 in the FIP TF-A BL2 loads.
   open:
     configs: [qcom_defconfig, tfa-optee.config]
     device_tree: qcom/lemans-evk
@@ -102,11 +103,11 @@ boot_chain:
     - {stage: Linux, origin: upstream, component: linux}
   open:
     - {stage: XBL, origin: downstream}
-    - {stage: U-Boot SPL, origin: downstream, component: u-boot spl, detail: "pre-built, not from a public commit"}
+    - {stage: TF-A BL2, origin: upstream, component: tf-a bl2}
     - {stage: TF-A BL31, origin: upstream, component: tf-a}
     - {stage: OP-TEE, origin: upstream, component: optee}
     - {stage: hypervisor, origin: none}
-    - {stage: U-Boot, origin: upstream, component: u-boot, detail: in the SPL FIT}
+    - {stage: U-Boot, origin: upstream, component: u-boot, detail: BL33 in the FIP}
     - {stage: Linux, origin: upstream, component: linux, detail: EL2}
   spl:
     - {stage: XBL, origin: downstream}

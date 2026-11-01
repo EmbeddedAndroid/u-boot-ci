@@ -86,19 +86,40 @@ def test_every_board_is_complete(board):
         assert b["pins"][name]
 
 
-def test_lemans_open_stack_takes_the_spl_xblconfig():
-    # XBL takes the U-Boot SPL path only with this XBLConfig (LAVA 512763).
+def test_lemans_spl_stack_alone_takes_the_spl_xblconfig():
+    # XBL takes the U-Boot SPL path only with this XBLConfig (LAVA 512763);
+    # the open stack's fip.elf is an ELF and needs the default one.
     b = config.board("lemans-evk")
-    assert config.downstream(b, "open")["xbl_config"] == "xbl_config_spl.elf"
-    assert config.downstream(b, "open")["bootbinaries"] == config.downstream(b, "stock")["bootbinaries"]
+    assert config.downstream(b, "spl")["xbl_config"] == "xbl_config_spl.elf"
+    assert config.downstream(b, "spl")["bootbinaries"] == config.downstream(b, "stock")["bootbinaries"]
+    assert config.downstream(b, "open") is b["downstream"]
     assert config.downstream(b, "stock")["xbl_config"] == "xbl_config.elf"
 
 
 def test_spl_stack_on_the_open_stack_firmware():
-    b = config.board("lemans-evk")
+    b = copy.deepcopy(config.board("uno-q"))
     assert config.downstream(b, "spl") is b["downstream_open"]
+    b["downstream_spl"] = {"release": "spl only"}
+    assert config.downstream(b, "spl") is b["downstream_spl"]
+    assert config.downstream(b, "open") is b["downstream_open"]
     rb3 = config.board("rb3gen2")
     assert config.downstream(rb3, "spl") is rb3["downstream"]
+
+
+@pytest.mark.parametrize("board,stack,image", [
+    ("rb3gen2", "open", "fip.elf"), ("lemans-evk", "open", "fip.elf"), ("lemans-evk", "spl", "uefi.itb"),
+    ("shikra-iqs-evk", "spl", "uefi.itb"), ("sm8750-mtp", "open", "bl33.bin")])
+def test_the_image_xbl_loads_follows_the_stack(board, stack, image):
+    assert config.image(config.board(board), stack) == image
+    p = subprocess.run(["python3", "-m", "ubci.config", "image", board, stack], cwd=REPO,
+                       capture_output=True, text=True)
+    assert (p.returncode, p.stdout) == (0, image + "\n")
+
+
+def test_image_refuses_the_stock_stack():
+    p = subprocess.run(["python3", "-m", "ubci.config", "image", "rb3gen2", "stock"], cwd=REPO,
+                       capture_output=True, text=True)
+    assert p.returncode != 0 and "image <board> <open|spl>" in p.stderr
 
 
 @pytest.mark.parametrize("board", config.boards())

@@ -689,8 +689,9 @@ def test_open_stack_pins_link_their_commits_and_say_when_not_public(tmp_path, mo
     assert tfa["url"] == "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/" + tfa["commit"]
     assert tfa["pending"] == "not pushed yet" and tfa["soc_branch"]["name"] == "qcom/talos"
     assert "pending" not in comp(target_of(r, "rb3gen2", "open"), "tf-a")
-    spl = comp(target_of(r, "lemans-evk", "open"), "u-boot spl")
-    assert spl["origin"] == "downstream" and "commit" not in spl and spl["fingerprint"].startswith("LEMANSFP-")
+    assert not [c for c in target_of(r, "lemans-evk", "open")["components"] if c["name"] == "u-boot spl"]
+    bl2 = comp(target_of(r, "lemans-evk", "open"), "tf-a bl2")
+    assert bl2["origin"] == "upstream" and bl2["commit"] == pins["lemans-evk"]["tf-a"]["commit"]
     bl2 = comp(target_of(r, "uno-q", "open"), "tf-a bl2")
     assert bl2["origin"] == "upstream" and bl2["commit"] == pins["uno-q"]["tf-a"]["commit"]
 

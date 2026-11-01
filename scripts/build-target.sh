@@ -18,7 +18,7 @@ t=$out/$board-$stack
 base=${stack%-candidate}
 "$here/build-uboot.sh" "$src" "$board" "$base" "$fp" "$t"
 if [ "$base" != stock ]; then
-	"$here/build-open-stack.sh" "$board" "$t/u-boot.bin" "$fp" "$t"
+	"$here/build-open-stack.sh" "$board" "$t/u-boot.bin" "$fp" "$t" "$base"
 	uefi=$t/$(python3 -c 'import json, sys; print(json.load(open(sys.argv[1]))["image"])' "$t/open-stack.json")
 else
 	uefi=$t/$(cd "$here/.." && python3 -m ubci.config get "$board" "u-boot.$base.image")

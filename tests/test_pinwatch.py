@@ -252,9 +252,9 @@ def test_bump_of_a_board_whose_downstream_section_is_an_anchor(tmp_path, monkeyp
     b = yaml.safe_load((out / "lemans-evk.yaml").read_text())
     assert b["downstream"]["release"] == "QCS9100 boot binaries 00150"
     assert b["downstream"]["source"] == {"meta-qcom": "c" * 40}
-    # downstream_open is the same release with its own XBLConfig.
-    assert b["downstream_open"]["bootbinaries"] == b["downstream"]["bootbinaries"]
-    assert b["downstream_open"]["xbl_config"] == "xbl_config_spl.elf"
+    # downstream_spl is the same release with its own XBLConfig.
+    assert b["downstream_spl"]["bootbinaries"] == b["downstream"]["bootbinaries"]
+    assert b["downstream_spl"]["xbl_config"] == "xbl_config_spl.elf"
     # The watcher goes on to the next board.
     monkeypatch.setattr(config, "boards", lambda: ["lemans-evk", "rb3gen2"])
     assert stockpin.main([str(tmp_path / "all"), "--no-verify"]) == 0

@@ -30,13 +30,12 @@ with its download link and sha256, and the meta layer commit with a link.
 The open-source stack: what XBL loads from `tz_a`/`tz_b` and from
 `uefi_a`/`uefi_b`, every other boot image as in the downstream package
 (or `downstream_open`, when the board's open stack needs other boot
-firmware: UNO Q). By the TF-A pin's `image`:
-
-- `fip.elf` (default): TF-A BL2 in `tz`, which loads a FIP from `uefi`
-  holding TF-A BL31, OP-TEE (BL32) and U-Boot (BL33);
-- `uefi.itb` (Lemans): U-Boot SPL in `tz`, which loads a FIT from `uefi`
-  holding BL31, OP-TEE, U-Boot and its control DTB (`ubci/fit.py`, the
-  load addresses in the pin's `fit`).
+firmware: UNO Q). TF-A BL2 in `tz` loads a FIP from `uefi` holding TF-A
+BL31, OP-TEE (BL32) and U-Boot (BL33), `fip.elf` (the TF-A pin's `image`,
+the only one so far). The SPL stack instead puts a FIT in `uefi`,
+`uefi.itb`, holding BL31, OP-TEE, U-Boot and its control DTB
+(`ubci/fit.py`, the load addresses in the pin's `fit`); `python3 -m
+ubci.config image <board> <stack>` names the image a stack builds.
 
 Pins (`config/pins.yaml`), per board:
 
@@ -50,11 +49,11 @@ Pins (`config/pins.yaml`), per board:
   a signed tz image) and pinned by file name, sha256 and its own
   fingerprint: TF-A BL2 (RB3 Gen 2 with an OEM TEST signature from
   Qualcomm's public sectools, `scripts/sign-bl2-oem.sh`; the other
-  boards with a QTI signature, pre-signed), linked to the commit it was
-  built from (`source`: repository, branch, commit), which stays put when
-  the tf-a pin moves; without `source` it is the tf-a pin's. Or on Lemans a
-  pre-built U-Boot SPL (`banner: U-Boot SPL`, `origin: downstream`: there
-  is no Lemans SPL in U-Boot `main`). The binaries are not redistributable:
+  boards with a QTI signature, pre-signed; Lemans SWIV-annotated and
+  test-signed with the pinned swiv and qtestsign), built from the tf-a
+  pin's commit. A `source` (repository, branch, commit) would name
+  another commit; every public pin builds its BL2 from its tf-a pin, and
+  a test keeps it so. The binaries are not redistributable:
   CI gets them from the `PIN_BL2_<BOARD>` secrets of the LAVA
   environments, only in the submit job, and checks the sha256 before
   adding them to the package ([setup.md](setup.md)); the dashboard shows
@@ -79,8 +78,8 @@ The open stack with its first U-Boot stage built from the tree under test
 too: U-Boot SPL and U-Boot proper come from the same tree and config
 (`u-boot.spl` in the board file), carry the same fingerprint, and the SPL
 replaces the image the board's SPL boot flow puts it in. On the other
-stacks the image before BL31 is pinned (TF-A BL2, or the pre-built Lemans
-SPL), so an SPL regression or an SPL series in review is invisible there.
+stacks the image before BL31 is the pinned TF-A BL2, so an SPL regression
+or an SPL series in review is invisible there.
 
 Per board (`spl` in `config/boards/<board>.yaml`):
 

@@ -38,7 +38,8 @@ For each board it:
 
 A board whose recipe cannot be read fails the workflow run with the reason
 in its log and gets no PR. `downstream_open` (UNO Q's open-stack boot
-firmware) is pinned by hand.
+firmware) is pinned by hand; `downstream_spl` (Lemans' SPL XBLConfig)
+merges the downstream section and follows it.
 
 ## Validation of a downstream pin PR
 

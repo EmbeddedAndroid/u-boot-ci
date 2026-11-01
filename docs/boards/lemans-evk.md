@@ -20,27 +20,26 @@ starts it at EL1 under Gunyah. The SAIL NOR image of the release is not
 flashed and no job restores it: the board runs the SAIL NOR image the
 lab last wrote (its health-check image writes it).
 
-## Open stack: an SPL boot chain
+## Open stack: TF-A BL2 and a FIP
 
-On Lemans XBL loads U-Boot SPL from `tz_a`/`tz_b`, and SPL loads a FIT
-from `uefi_a`/`uefi_b` with TF-A BL31, OP-TEE and U-Boot proper (meta-qcom
-`iq-9075-evk-open-fw-spl`). XBL takes that path only with the release's
-SPL XBLConfig, `xbl_config_spl.elf` (meta-qcom `qcom-uboot-spl-fit.inc`),
-so the open stack is built on the same release with that XBLConfig
-(`downstream_open`); with the default one XBL loads `uefi` as an ELF and
-stops at `Error code 82000035 at boot_elf_driver.c` (LAVA 512763). U-Boot
-`main` has no Lemans SPL, so SPL is a
-pinned, pre-built, test-signed binary (fingerprint
-`LEMANSFP-261009-030954-lpb4`): the one stage of this chain that is not
-built from a public commit, shown as downstream in the boot chain. The FIT
-(`scripts/build-open-stack.sh`, image `uefi.itb`, `ubci/fit.py`) is built on
-every run: BL31 at 0x1c200000, OP-TEE at 0x1c300000 (with the
-`trusted_keys` and `qcom_pas` early TAs), U-Boot under test at 0xaf000000
-with its control DTB. TF-A `PLAT=lemans_evk` and OP-TEE `qcom-lemans` pin
+The TF-A boot flow of `docs/plat/qti/lemans_evk.rst`, as on RB3 Gen 2:
+XBL loads TF-A BL2 from `tz_a`/`tz_b`, and BL2 takes the FIP XBL loaded
+from `uefi_a`/`uefi_b` (`fip.elf` at 0xaf000000) with BL31, OP-TEE and
+U-Boot under test as BL33, on the downstream release with its default
+XBLConfig. BL2 is built from the tf-a pin, SWIV-annotated for `lemans`
+(the pinned boot-firmware-ci `swiv_build_utility.py`, segment at
+0x1c042000, past BL2's image) and test-signed as `tz` with the pinned
+qtestsign (`qtestsign -v6 tz`), the treatment the SPL stack gives its
+SPL; the image is pinned by sha256 and fingerprint like every BL2.
+BL31 and OP-TEE (with the `trusted_keys` and `qcom_pas` early TAs) are
+built on every run. TF-A `PLAT=lemans_evk` and OP-TEE `qcom-lemans` pin
 the pushed `qcom/integration` of the EmbeddedAndroid forks (platform
 branches `qcom/lemans` recorded as `soc_branch`). U-Boot: `qcom_defconfig` +
 `tfa-optee.config`, `DEVICE_TREE=qcom/lemans-evk`. Linux runs at EL2 with
 the upstream `lemans-el2.dtbo`.
+
+No integration branch carries a Lemans U-Boot SPL; the SPL boot chain runs
+only on the U-Boot SPL stack below, from the tree under test.
 
 ## U-Boot SPL stack
 
@@ -50,7 +49,12 @@ loads the FIT from `uefi_a` (the Lemans SPL v4 cover letter: "PBL -> XBL
 -> U-Boot SPL"; meta-qcom `qcom-uboot-spl-fit.inc` and
 `iq-9075-evk-open-fw-spl`). So the SPL replaces `tz.mbn`, SWIV-annotated
 for `lemans` and test-signed as `tz` (`qtestsign -v6 tz`), on the same
-release with `xbl_config_spl.elf` as the open stack, and the gates start
+release with the SPL XBLConfig `xbl_config_spl.elf` (`downstream_spl`;
+meta-qcom `qcom-uboot-spl-fit.inc`: with the default one XBL loads `uefi`
+as an ELF and stops at `Error code 82000035 at boot_elf_driver.c`, LAVA
+512763), and the FIT (`uefi.itb`, `ubci/fit.py`: BL31 at 0x1c200000,
+OP-TEE at 0x1c300000, U-Boot at 0xaf000000 with its control DTB) built
+around it on every run. The gates start
 at XBL's "SBL1, End". U-Boot: `qcom_lemans_spl_defconfig` +
 `tfa-optee.config`, `DEVICE_TREE=qcom/lemans-evk`, SPL and U-Boot proper
 from the one build.

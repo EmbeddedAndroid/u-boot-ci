@@ -11,7 +11,10 @@ python3 -m ubci.config missing <board> <stack> <u-boot source> [--adhoc]
     with series applied.
 python3 -m ubci.config bootimg <board> <stack>
     prints the ubci.bootimg options of a stack that boots U-Boot as an
-    Android boot image."""
+    Android boot image.
+python3 -m ubci.config image <board> <open|spl>
+    prints the image scripts/build-open-stack.sh builds for XBL to load
+    from uefi (ubci.config.image)."""
 import glob
 import os
 import sys
@@ -27,11 +30,26 @@ def downstream(b, stack):
     """The downstream (vendor) firmware package a stack is built on: the
     board's downstream section, or downstream_open for the open and SPL
     stacks of a board whose open stack needs other boot firmware (UNO Q:
-    the edk2-based release whose XBL loads TF-A BL2 and the FIP; Lemans:
-    the XBLConfig that takes the SPL path)."""
+    the edk2-based release whose XBL loads TF-A BL2 and the FIP), or
+    downstream_spl for the SPL stack alone (Lemans: the XBLConfig that
+    takes the SPL path)."""
+    if stack == "spl" and b.get("downstream_spl"):
+        return b["downstream_spl"]
     if stack in ("open", "spl") and b.get("downstream_open"):
         return b["downstream_open"]
     return b["downstream"]
+
+
+def image(b, stack):
+    """What XBL loads from uefi on the open and SPL stacks: bl33.bin
+    (U-Boot alone; the submit job adds the FIP) with private pins,
+    uefi.itb (the FIT U-Boot SPL loads) on the SPL stack, else the tf-a
+    pin's image, by default fip.elf (the FIP TF-A BL2 loads)."""
+    if stack == "open" and private(b):
+        return "bl33.bin"
+    if stack == "spl":
+        return "uefi.itb"
+    return b["pins"]["tf-a"].get("image", "fip.elf")
 
 
 def pending(b, stack):
@@ -183,6 +201,8 @@ if __name__ == "__main__":
     elif len(sys.argv) == 4 and sys.argv[1] == "bootimg":
         bi = get(board(sys.argv[2]), "u-boot.%s" % sys.argv[3]).get("bootimg", {})
         print(" ".join("--%s %s" % (k, bi[k]) for k in ("base", "pagesize") if k in bi))
+    elif len(sys.argv) == 4 and sys.argv[1] == "image" and sys.argv[3] in ("open", "spl"):
+        print(image(board(sys.argv[2]), sys.argv[3]))
     elif len(sys.argv) in (5, 6) and sys.argv[1] == "missing" and sys.argv[5:] in ([], ["--adhoc"]):
         print(missing(sys.argv[2], sys.argv[3], sys.argv[4], adhoc=len(sys.argv) == 6) or "")
     else:

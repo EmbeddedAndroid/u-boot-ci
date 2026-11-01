@@ -1,27 +1,27 @@
 #!/bin/bash
-# build-open-stack.sh <board> <u-boot.bin> <fingerprint> <output dir>
+# build-open-stack.sh <board> <u-boot.bin> <fingerprint> <output dir> [open|spl]
 #
 # The open stack around a U-Boot under test: TF-A BL31 and OP-TEE built
 # from the commits pinned in config/pins.yaml (with the run's fingerprint
 # in their version strings, OP-TEE with the pin's make_args), and the
-# image XBL loads from uefi_a/uefi_b, by the TF-A pin's image:
+# image XBL loads from uefi_a/uefi_b (ubci.config image; the stack
+# defaults to open):
 #   fip.elf    the FIP with U-Boot as BL33, wrapped in an ELF with a
 #              qtestsign test signature (TF-A BL2 loads it);
 #   uefi.itb   a FIT of BL31, OP-TEE, U-Boot and its control DTB at the
-#              pin's load addresses (U-Boot SPL loads it; Lemans), with
+#              pin's load addresses (U-Boot SPL loads it: the spl stack), with
 #              the board's pre-ddr blobs when its SPL brings up DRAM
 #              (ubci.fit).
 #   bl33.bin   with private pins (tf-a `private`: TF-A and OP-TEE built
 #              from sources this job may not see): U-Boot alone; the
 #              submit job builds the FIP around it from the pinned images
 #              (ubci.package insert-private).
-# The spl stack builds the same FIT around its own SPL
-# (scripts/build-uboot.sh); the pinned, pre-signed tz image of the open
-# stack (BL2 or SPL) is added by ubci.package.
+# The spl stack's SPL comes from scripts/build-uboot.sh; the pinned,
+# pre-signed tz image of the open stack (BL2) is added by ubci.package.
 # open-stack.json names the image.
 set -euo pipefail
-[ $# -eq 4 ] || { sed -n '2p' "$0" >&2; exit 1; }
-board=$1 bl33=$(realpath "$2") fp=$3 out=$4
+[ $# -eq 4 ] || [ $# -eq 5 ] || { sed -n '2p' "$0" >&2; exit 1; }
+board=$1 bl33=$(realpath "$2") fp=$3 out=$4 stack=${5:-open}
 repo=$(cd "$(dirname "$0")/.." && pwd)
 cfg() { (cd "$repo" && python3 -m ubci.config get "$board" "$1"); }
 top() { (cd "$repo" && python3 -c "import sys,yaml; print(yaml.safe_load(open('config/pins.yaml'))$1)"); }
@@ -33,7 +33,8 @@ checkout() { "$repo/scripts/checkout.sh" "$@"; }
 
 opt() { (cd "$repo" && python3 -m ubci.config get "$board" "$1" 2>/dev/null) || true; }
 
-if [ -n "$(opt pins.tf-a.private)" ]; then
+image=$(cd "$repo" && python3 -m ubci.config image "$board" "$stack")
+if [ "$image" = bl33.bin ]; then
 	cp "$bl33" "$out/bl33.bin"
 	printf '{"board": "%s", "fingerprint": "%s", "private": true, "image": "bl33.bin", "image_sha256": "%s"}\n' \
 		"$board" "$fp" "$(sha256sum "$out/bl33.bin" | cut -d' ' -f1)" >"$out/open-stack.json"
@@ -51,8 +52,6 @@ bl32=$optee/out/core/tee-raw.bin
 grep -aq "$fp" "$bl32" || { echo "OP-TEE lacks $fp" >&2; exit 1; }
 
 tfa=$(checkout "tf-a-$board" "$(cfg pins.tf-a.repo)" "$(cfg pins.tf-a.commit)")
-image=$(opt pins.tf-a.image)
-image=${image:-fip.elf}
 case $image in
 fip.elf)
 	make -C "$tfa" -s -j"$(nproc)" $(cfg pins.tf-a.flags) DEBUG=0 BUILD_STRING="$fp" \
