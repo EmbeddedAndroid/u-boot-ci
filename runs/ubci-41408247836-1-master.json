@@ -1,6 +1,56 @@
 {
- "host_checks": [],
- "linux": null,
+ "host_checks": [
+  {
+   "name": "buildman",
+   "result": "pass",
+   "summary": "every snapdragon board built without warnings"
+  },
+  {
+   "name": "carry",
+   "result": "pass",
+   "summary": "carry.yaml matches the pins"
+  },
+  {
+   "name": "checkpatch",
+   "result": "pass",
+   "summary": "0 new commits: 0 with errors, 0 with warnings only"
+  },
+  {
+   "name": "docs",
+   "result": "pass",
+   "summary": "htmldocs built without warnings"
+  },
+  {
+   "name": "fragments",
+   "result": "pass",
+   "summary": "1 combinations built"
+  },
+  {
+   "name": "qemu_arm64",
+   "result": "pass",
+   "summary": "241 passed, 556 skipped, 2 deselected in 115.60s (0:01:55)"
+  },
+  {
+   "name": "sandbox",
+   "result": "pass",
+   "summary": "1317 passed, 216 skipped, 3 deselected, 1 xfailed in 748.46s (0:12:28)"
+  },
+  {
+   "name": "size",
+   "result": "pass",
+   "summary": "kaanapali-mtp-open 1450312 B, lemans-evk-open 1561424 B, lemans-evk-stock 1618560 B, qcs615-ride-open 1500712 B, qcs615-ride-stock 1557776 B, rb3gen2-open 1562088 B, rb3gen2-stock 1630024 B, sm8750-mtp-open 1520096 B, uno-q-open 1467272 B, uno-q-stock 0 B"
+  }
+ ],
+ "linux": {
+  "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+  "config": "arch/arm64/configs/defconfig",
+  "image_sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+  "modules_sha256": "ec4aed96c2e3752654b983373fd7e658bfc9b7d855432e537c13abd236cdc021",
+  "release": "7.3.0-next-20261030",
+  "tag": "next-20261030",
+  "tag_url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tag/?h=next-20261030",
+  "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+ },
  "project": "u-boot",
  "run": {
   "base": {
@@ -15,7 +65,7 @@
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-11-02T07:48:54Z"
+  "updated": "2026-11-02T08:45:49Z"
  },
  "schema": "fwci-run/1",
  "state": "building",
@@ -56,7 +106,7 @@
       {
        "name": "qcm6490_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       }
      ],
      "device_tree": "qcom/qcs6490-rb3gen2",
@@ -65,6 +115,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "278f3a1bd7d72f41140c68bf4e0a6a50ea469bd30d8aa833ed0b8d986f2be341",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
     },
     {
@@ -99,10 +150,38 @@
      "release": "QCM6490 boot binaries 00142",
      "role": "stock",
      "upstream": null
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtb_sha256": "6727455e6dba57799d1bfbe44ed3bdba3aa5b64a24f50345df96c02fab190525",
+     "dtbs": [
+      {
+       "name": "qcom/qcs6490-rb3gen2.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-stock-rb3gen2",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": null,
+    "job_id": 529242,
+    "url": "https://lava.infra.foundries.io/scheduler/job/529242"
+   },
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
@@ -159,12 +238,12 @@
       {
        "name": "qcom_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "tfa-optee.config",
        "optional": false,
-       "used": null
+       "used": true
       }
      ],
      "device_tree": "qcom/qcs6490-rb3gen2",
@@ -173,6 +252,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "e2a4e85abc209b5b9e07ac8397f82ea52481c6cbad095ec68d2ac6977629fd80",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
     },
     {
@@ -1223,6 +1303,28 @@
      "sha256": "b2d34123ec9343855d045173bb016f42dad9dae3c26c9319acbeee44644d2abb",
      "upstream": null,
      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/c6dedc7baa16400fc084dc9ff5e6533fd796bcce"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtb_sha256": "6727455e6dba57799d1bfbe44ed3bdba3aa5b64a24f50345df96c02fab190525",
+     "dtbs": [
+      {
+       "name": "qcom/qcs6490-rb3gen2.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-open-rb3gen2",
@@ -1251,6 +1353,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/qcs6490-rb3gen2.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-spl-rb3gen2",
@@ -1265,7 +1388,8 @@
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board"
   },
   {
    "board": "ventuno-q",
@@ -1353,6 +1477,27 @@
      "release": "QCS8300 boot binaries 00142",
      "role": "stock",
      "upstream": null
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/monaco-arduino-monza.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-stock-ventuno-q",
@@ -1365,7 +1510,8 @@
     "verdict": "not-run"
    },
    "stack": "stock",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree"
   },
   {
    "board": "ventuno-q",
@@ -2491,6 +2637,31 @@
      "sha256": "ed478a09a84f0178d0a8cf4ef5c10e9e4eb171c821a88283e7fc793e32e61288",
      "upstream": null,
      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/c6dedc7baa16400fc084dc9ff5e6533fd796bcce"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/monaco-arduino-monza.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      },
+      {
+       "name": "qcom/monaco-el2.dtbo",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/monaco-el2.dtso?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-open-ventuno-q",
@@ -2503,7 +2674,8 @@
     "verdict": "not-run"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree"
   },
   {
    "board": "ventuno-q",
@@ -2519,6 +2691,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/monaco-arduino-monza.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-spl-ventuno-q",
@@ -2533,7 +2726,8 @@
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board"
   },
   {
    "board": "uno-q",
@@ -2575,7 +2769,7 @@
       {
        "name": "qcom_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       }
      ],
      "device_tree": "qcom/qrb2210-arduino-imola",
@@ -2584,6 +2778,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "854c45251b5ca690d92393b2fdf029d68313a111e71ae7dffb13a92e092cc4af",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
     },
     {
@@ -2615,10 +2810,38 @@
      "release": "Arduino UNO Q boot firmware 251020",
      "role": "stock",
      "upstream": null
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtb_sha256": "07047582e336730db3635f91f3405b52267aa3f4a3c9b13ae322ecd46bbc2560",
+     "dtbs": [
+      {
+       "name": "qcom/qrb2210-arduino-imola.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-stock-uno-q",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": null,
+    "job_id": 529243,
+    "url": "https://lava.infra.foundries.io/scheduler/job/529243"
+   },
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
@@ -2675,17 +2898,17 @@
       {
        "name": "qcom_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "tfa-optee.config",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "arduino-uno-q.config",
        "optional": true,
-       "used": null
+       "used": false
       }
      ],
      "device_tree": "qcom/qrb2210-arduino-imola",
@@ -2694,6 +2917,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "efa1dcb6b7f7d91b917d92140e936d5f748157461c430f879e77956022483920",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
     },
     {
@@ -3734,6 +3958,28 @@
      "sha256": "d3eeb033d55602e2c950e3afd3afde17d99ff33c2cf201d36c3f9b85708f0a53",
      "upstream": null,
      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/c6dedc7baa16400fc084dc9ff5e6533fd796bcce"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtb_sha256": "07047582e336730db3635f91f3405b52267aa3f4a3c9b13ae322ecd46bbc2560",
+     "dtbs": [
+      {
+       "name": "qcom/qrb2210-arduino-imola.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-open-uno-q",
@@ -3762,6 +4008,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/qrb2210-arduino-imola.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-spl-uno-q",
@@ -3776,7 +4043,8 @@
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board"
   },
   {
    "board": "qcs615-ride",
@@ -3814,7 +4082,7 @@
       {
        "name": "qcom_qcs615_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       }
      ],
      "device_tree": "qcom/qcs615-ride",
@@ -3823,6 +4091,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "67da5b7cf74cfc873ad3fa6ff958608790f5d52fe2496b1d7b91013bfbc257bf",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
     },
     {
@@ -3852,10 +4121,38 @@
      "release": "QCS615 boot binaries 00142",
      "role": "stock",
      "upstream": null
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtb_sha256": "f9ec5bec65dde4fd9458f40dffe3d090b7e5e40fc1a8c920489d074356444516",
+     "dtbs": [
+      {
+       "name": "qcom/qcs615-ride.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qcs615-ride.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-stock-qcs615-ride",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": null,
+    "job_id": 529244,
+    "url": "https://lava.infra.foundries.io/scheduler/job/529244"
+   },
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
@@ -3912,17 +4209,17 @@
       {
        "name": "qcom_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "tfa-optee.config",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "qcs615-ride.config",
        "optional": true,
-       "used": null
+       "used": false
       }
      ],
      "device_tree": "qcom/qcs615-ride",
@@ -3931,6 +4228,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "551071c3a8e18917d49c708a84b7d85b56c2e10bce2609ecce2f5926acc9eb29",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
     },
     {
@@ -4976,6 +5274,32 @@
      "sha256": "5e2d730bcbd319c4e9ba9de6ba598bf55d32f9c419bb0403507c14a8b469c05a",
      "upstream": null,
      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/c6dedc7baa16400fc084dc9ff5e6533fd796bcce"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtb_sha256": "d5cdfd120cfb97000b8924db21994c3cc5ebdb1a9c90a23dbda26df177cc9163",
+     "dtbs": [
+      {
+       "name": "qcom/qcs615-ride.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qcs615-ride.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      },
+      {
+       "name": "qcom/talos-el2.dtbo",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/talos-el2.dtso?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-open-qcs615-ride",
@@ -5002,6 +5326,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/qcs615-ride.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qcs615-ride.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-spl-qcs615-ride",
@@ -5016,7 +5361,8 @@
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board"
   },
   {
    "board": "lemans-evk",
@@ -5052,9 +5398,9 @@
      "commit": "ece349ade2973e220f524ce59e59711cc919263f",
      "configs": [
       {
-       "name": "qcom_lemans_defconfig",
+       "name": "qcom_qcs9100_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       }
      ],
      "device_tree": "qcom/lemans-evk",
@@ -5063,6 +5409,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "25a59d8367ab18eade4b7cc7ec16b54bd4a37009f810681a84d7048ac51dd026",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
     },
     {
@@ -5097,10 +5444,38 @@
      "release": "QCS9100 boot binaries 00142",
      "role": "stock",
      "upstream": null
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtb_sha256": "c4d9af17d72728678e33c15539ec4ea13e80d25ad7c1e678ac4622b13e226bf1",
+     "dtbs": [
+      {
+       "name": "qcom/lemans-evk.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/lemans-evk.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-stock-lemans-evk",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": null,
+    "job_id": 529245,
+    "url": "https://lava.infra.foundries.io/scheduler/job/529245"
+   },
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
@@ -5157,12 +5532,12 @@
       {
        "name": "qcom_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "tfa-optee.config",
        "optional": false,
-       "used": null
+       "used": true
       }
      ],
      "device_tree": "qcom/lemans-evk",
@@ -5171,6 +5546,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "4cec8331b36359d5e9b6fb057e0b0ee434ba2b8df7d76f2c228c82d1ecb16044",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
     },
     {
@@ -6221,6 +6597,32 @@
      "sha256": "f93439ce34169eb61515e65a3c9a7ae506690851301affbe249654ce4ba2a5e3",
      "upstream": null,
      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/c6dedc7baa16400fc084dc9ff5e6533fd796bcce"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtb_sha256": "f946714c4d8557635b06aa6bcc7276f9b6118d82c89193f318085e2755d0b525",
+     "dtbs": [
+      {
+       "name": "qcom/lemans-evk.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/lemans-evk.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      },
+      {
+       "name": "qcom/lemans-el2.dtbo",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/lemans-el2.dtso?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-open-lemans-evk",
@@ -7344,6 +7746,31 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/lemans-evk.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/lemans-evk.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      },
+      {
+       "name": "qcom/lemans-el2.dtbo",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/lemans-el2.dtso?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-spl-lemans-evk",
@@ -7395,7 +7822,8 @@
     ]
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no upstream SPL: qcom_lemans_spl_defconfig not in the tree; in flight: Enable U-Boot SPL support for Lemans EVK v4 <20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: ufs: add UFS boot support for Qualcomm Snapdragon in SPL v4 <20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: Add NVMEM bitfield support and reboot-mode v5 <20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>"
   },
   {
    "board": "shikra-iqs-evk",
@@ -7466,6 +7894,27 @@
      "release": "SHIKRA boot binaries 00093",
      "role": "stock",
      "upstream": null
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/shikra-iqs-evk.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/shikra-iqs-evk.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-stock-shikra-iqs-evk",
@@ -7476,7 +7925,8 @@
     "verdict": "not-run"
    },
    "stack": "stock",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "board not in this base: no qcom/shikra-iqs-evk device tree"
   },
   {
    "board": "shikra-iqs-evk",
@@ -7492,6 +7942,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/shikra-iqs-evk.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/shikra-iqs-evk.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-open-shikra-iqs-evk",
@@ -7502,7 +7973,8 @@
     "verdict": "not-run"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no open stack for this board: the Shikra open stack boots through U-Boot SPL (the spl stack): TF-A shikra_evk builds BL31 only, there is no BL2 for a FIP flow"
   },
   {
    "board": "shikra-iqs-evk",
@@ -7518,6 +7990,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/shikra-iqs-evk.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/shikra-iqs-evk.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-spl-shikra-iqs-evk",
@@ -7596,7 +8089,8 @@
     ]
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no posted Shikra SPL enablement (defconfig, config fragment or Kconfig select); no posted FIT template (the CI carries its own, ubci/fit.py); in flight: Initial Shikra SoC support v4 <20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com>; Enable HS200/HS400 eMMC modes on Qualcomm v2 <20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com>; tools: qcom: mkmbn: ipq5210 and multi-elf v3 <20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: shikra: add eMMC SPL boot support v2 <20261013053244.2954876-1-abhilash.v@oss.qualcomm.com>; qcom: shikra: SPL SD card boot v2 <20261013053517.2955571-1-abhilash.v@oss.qualcomm.com>; qcom: spl: enable CDT for shikra v2 <20261023084019.3722376-1-abhilash.v@oss.qualcomm.com>; DDR training for Shikra SPL v1 <20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>"
   },
   {
    "board": "sm8750-mtp",
@@ -7612,6 +8106,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/sm8750-mtp.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/sm8750-mtp.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-stock-sm8750-mtp",
@@ -7622,7 +8137,8 @@
     "verdict": "not-run"
    },
    "stack": "stock",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)"
   },
   {
    "board": "sm8750-mtp",
@@ -7675,17 +8191,17 @@
       {
        "name": "qcom_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "tfa-optee.config",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "sm8750-mtp.config",
        "optional": true,
-       "used": null
+       "used": false
       }
      ],
      "device_tree": "qcom/sm8750-mtp",
@@ -7694,6 +8210,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "378db93a86c5b32a0d35b26fb53a0c6858883c68489200edbb04e2aad57d2233",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
     },
     {
@@ -7748,6 +8265,28 @@
      "sha256": "9c904af409bb8fe77c3cfc1e19b17c61a54fe68a65d1881bac563beccba2e23d",
      "upstream": null,
      "url": null
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtb_sha256": "70bff33dea1855a63f49adbed86a4b230404ad6e79b21da9379a52a09d58bc6e",
+     "dtbs": [
+      {
+       "name": "qcom/sm8750-mtp.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/sm8750-mtp.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-open-sm8750-mtp",
@@ -7760,7 +8299,8 @@
     "verdict": "not-run"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "private firmware not available: tz-sm8750-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set"
   },
   {
    "board": "sm8750-mtp",
@@ -7776,6 +8316,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/sm8750-mtp.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/sm8750-mtp.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-spl-sm8750-mtp",
@@ -7790,7 +8351,8 @@
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board"
   },
   {
    "board": "kaanapali-mtp",
@@ -7806,6 +8368,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/kaanapali-mtp.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-stock-kaanapali-mtp",
@@ -7816,7 +8399,8 @@
     "verdict": "not-run"
    },
    "stack": "stock",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)"
   },
   {
    "board": "kaanapali-mtp",
@@ -7869,17 +8453,17 @@
       {
        "name": "qcom_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "tfa-optee.config",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "kaanapali-mtp.config",
        "optional": true,
-       "used": null
+       "used": false
       }
      ],
      "device_tree": "qcom/kaanapali-mtp",
@@ -7888,6 +8472,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "405492486847d5263b59cad7f820980afd1a566bcec7b0ed14b4c685c740bb3c",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
     },
     {
@@ -7942,6 +8527,28 @@
      "sha256": "373376ae246c8a8619c14030a12b3273ea09ef9bfc8cc11a4e8dedd210c42072",
      "upstream": null,
      "url": null
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtb_sha256": "3312f8b004eb5bdc9ac03f36a2f89ceb96edaeb1450efdfed04a3ed065498133",
+     "dtbs": [
+      {
+       "name": "qcom/kaanapali-mtp.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-open-kaanapali-mtp",
@@ -7954,7 +8561,8 @@
     "verdict": "not-run"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "private firmware not available: tz-kaanapali-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set"
   },
   {
    "board": "kaanapali-mtp",
@@ -7970,6 +8578,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ece349ade2973e220f524ce59e59711cc919263f"
+    },
+    {
+     "branch": "next-20261030",
+     "commit": "7649ba73f9e7e1e04d0b46213e39c79ae09dd55c",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/kaanapali-mtp.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.3.0-next-20261030",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "6473e211cac6cc65998829cad4db11f4ad3f569f1b1f6aa477e6841430892c0b",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-spl-kaanapali-mtp",
@@ -7984,7 +8613,8 @@
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board"
   }
  ]
 }
