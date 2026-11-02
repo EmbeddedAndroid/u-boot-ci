@@ -167,13 +167,22 @@ branch.
   (`lava_jobs.py`: qdl flash, fingerprint gate over any banner prefixes,
   interactive bootloader and shell checks, login), the
   collector, the boot verdict, the baseline diff, the flake list, the
-  distance to upstream (`carry.py`), the LAVA MCP client and the
-  dashboard data (`site.py`). The dashboard page (`dashboard/`) only reads
+  distance to upstream (`carry.py`), the LAVA MCP client, the
+  dashboard data (`site.py`) and the boot-time parser
+  (`lava_boottime/`, see below). The dashboard page (`dashboard/`) only reads
   `index.json` and run documents.
 - `ubci/` and `scripts/` are the U-Boot project: which boards and stacks,
   how a target is built and packaged, the job flow with U-Boot's prompt and
   checks, the run command line.
 - `config/` is data: boards, pins, carried patches, flakes, project.
+
+`fwci/lava_boottime/` is vendored, not written here: a byte copy of
+the parser and platform files of lava-boottime, the tool that measures
+per-stage boot times from LAVA's own console time stamps.
+`scripts/vendor-boottime.sh <lava-boottime repository> <commit>` copies
+them and records the commit and every file's sha256 in `VENDOR.json`;
+`tests/test_boottime_vendor.py` fails when the copy differs from that
+manifest, so a change is made in lava-boottime and vendored again.
 
 A sibling CI copies or vendors `fwci/` and `dashboard/` and writes its own
 equivalent of `ubci/` (the component it swaps, its banner prefixes, its

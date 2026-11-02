@@ -1,0 +1,40 @@
+# Qualcomm boards: XBL first-stage loader, followed either by the open
+# stack (TF-A BL2 or U-Boot SPL, BL31, OP-TEE, U-Boot) or by the stock
+# firmware (hypervisor, UEFI). See docs/platforms.md for the format.
+
+loaders:
+  xbl:
+    # XBL prints its log header, or "B -" records.
+    first: 'Format: Log Type|^B -\s+\d+ - '
+    build: 'QC_IMAGE_VERSION_STRING=(\S+)'
+
+stages:
+  loader_end:
+    pattern: 'SBL1, End'
+    label: loader end (SBL1 End)
+  hyp:
+    pattern: 'Hypervisor cold boot'
+    label: hypervisor (stock)
+  uefi:
+    pattern: 'UEFI Start'
+    label: UEFI start (stock)
+  ebs:
+    pattern: 'Start EBS'
+    label: UEFI exit boot services (stock)
+
+stacks:
+  oss: [bl2, spl, bl31, optee]
+  stock: [uefi, ebs]
+
+# LAVA device type -> board family.
+families:
+  monaco-arduino-monza: ventuno-q
+  qrb2210-arduino-imola: uno-q
+  unoq: uno-q
+  qcs6490-rb3gen2: rb3gen2
+  qcs6490-rb3g2: rb3gen2
+  lemans-evk: lemans-evk
+  qcs615-ride: qcs615-ride
+  hamoa-iot-evk: hamoa
+  sm8750-mtp: pakala
+  glymur-crd: glymur
