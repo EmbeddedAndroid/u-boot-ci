@@ -21,3 +21,5 @@ jobs:
       - run: docker build --network host -q -t u-boot-ci:1 docker
       - run: scripts/in-container.sh python3 -m pytest -q tests
       - run: scripts/in-container.sh scripts/dry-run.sh work/dry-run
+      - run: docker build --network host -q -t u-boot-ci-dashboard:1 -f docker/Dockerfile.dashboard docker
+      - run: docker run --rm -u "$(id -u):$(id -g)" -e UBCI_REQUIRE_BROWSER=1 -v "$PWD:/work" -w /work u-boot-ci-dashboard:1 python3 -m pytest -q -p no:cacheprovider tests/test_dashboard.py

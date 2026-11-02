@@ -125,6 +125,7 @@ function renderMatrix() {
           el("span", {}, badge("pass", n.pass), " ", badge(n.fail ? "fail" : "none", n.fail), " ",
              badge("none", n.skip + n.unknown), n.flaky ? badge("warn", n.flaky + " flaky") : null)),
         c.new_fail ? el("div", {class: "row"}, el("span", {}, "new failures"), badge("fail", c.new_fail)) : null,
+        bootRow(c),
         chain(c.boot_chain, true),
         el("div", {class: "row"}, el("span", {}, "distance to upstream"),
           el("span", {class: "muted"}, dist || (s.startsWith("stock") ? "n/a" : "0"))));
@@ -231,6 +232,7 @@ async function renderDetail() {
   if ((lb.last_lines || []).length)
     parts.push(el("p", {}, "Last console lines ", link(lb.url, "(at this line in LAVA)")),
                el("pre", {class: "console"}, lb.last_lines.join("\n")));
+  parts.push(...bootDetail(t));
   parts.push(el("h3", {}, "Tested software"));
   for (const c of t.components || []) parts.push(component(c, r));
   const d = t.diff || {};
@@ -374,6 +376,8 @@ function refreshView() {
           " (" + lx.release + ", defconfig, kernel sha256 ", el("code", {}, lx.image_sha256.slice(0, 16)), "…)"] : null));
   if (!selected && view().matrix.length) selected = {run: view().matrix[0].run, board: view().matrix[0].board, stack: view().matrix[0].stack};
   renderAlerts(); renderMatrix(); renderHost(); renderHistory();
+  document.getElementById("bt-branch").textContent = branch ? "nightly " + branch : "";
+  renderBoottime(view(), index);
   renderDetail();
 }
 

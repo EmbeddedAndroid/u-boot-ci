@@ -148,3 +148,38 @@ linux-next of the CI, so their `init` and `login` say nothing about
 U-Boot. RB3 Gen 2 health checks boot the kernel over fastboot: their
 firmware stages all arrive in replayed backlog (untimed) and their Linux
 time includes the download.
+
+## On the dashboard
+
+- **Every matrix cell** shows `boot → Linux`: the cold boot's time to
+  "Booting Linux" (for a run from before cold boots were recorded, the
+  warm reset's, labelled as such; for a boot that stopped earlier, where
+  it stopped), and the verdict against the baseline when there is one:
+  "▲ slower" or "■ stopped earlier" (red), "▼ faster" (green), with the
+  difference; hovering it gives the threshold.
+- **The Boot time section** (`dashboard/boottime.js`, data in
+  `index.json`: `boottime` per branch, `stock_boottime`) has one card per
+  board. The bars show the latest boot of each series to "Booting Linux",
+  stock first, each split into three phases: XBL (to `SBL1, End`), what
+  runs before the bootloader (TF-A BL2/BL31, OP-TEE, a hypervisor, an
+  SPL) and the bootloader (UEFI, ABL, U-Boot) up to "Booting Linux". A
+  phase boundary that was replayed merges its two phases into one gray
+  span; a boot that stopped is drawn up to its last timed stage. The
+  history plots the time to "Booting Linux" of every nightly of the
+  branch and every stock health check; the crosshair lists every stage of
+  the nearest boot and each point links to its line in the LAVA log. A
+  table under each card lists every boot with links to each stage's line.
+  The row above the cards selects the boot kind (cold boot, warm reset,
+  warm reboot); a kind is never drawn next to another. Stock health checks
+  are cold boots, so they show in the cold view only, and health checks
+  that send the kernel over fastboot (RB3 Gen 2) are listed but not drawn:
+  their Linux time includes a download that depends on the device's lab
+  wiring (6 to 19 s across the RB3 Gen 2 devices).
+- **The detail view** of a cell lists every boot of its job with each
+  stage linked to its log line (replayed ones in parentheses), the
+  verdict per boot kind, and the on-target view separately.
+
+Series colors are slots 1 to 3 of a categorical palette validated for
+color-vision deficiency in light and dark (stock blue, downstream orange,
+open aqua; SPL takes slot 4); phases are steps of the series color.
+Values and names are text set with `textContent`, never HTML.

@@ -62,6 +62,11 @@ nightly of the branch selected above it (`main` or `master`):
 - *boot chain*: every stage of the boot, green when it is upstream
   (TF-A, OP-TEE, U-Boot, Linux), amber when downstream (XBL, QTEE,
   Gunyah, ABL, a pre-built SPL).
+- *boot → Linux*: the time from power-on to "Booting Linux" of the job's
+  cold boot (or, for runs before cold boots were recorded, of the boot
+  after U-Boot's reset, labelled "warm reset"), with "▲ slower" or
+  "▼ faster" and the difference when it moved against the baseline by
+  more than that series' own noise ([docs/boot-time.md](docs/boot-time.md)).
 - *distance to upstream*: for the open stack, how many patches each pinned
   component carries on top of its upstream. The detail view lists each one
   with its review link. Zero everywhere is the goal.
@@ -71,6 +76,15 @@ booted, this run did not); an amber one means an upstream gap (the
 baseline does not boot either). For a nightly the baseline is the previous
 nightly of the same branch; for an ad-hoc run it is the latest nightly of
 its base branch.
+
+**Boot time** has one card per board for the branch selected above it:
+bars of the latest boot to "Booting Linux" per firmware stack and the
+board's stock firmware (its lab health checks), split into XBL, the
+secure world or hypervisor, and the bootloader, and the history of the
+time to "Booting Linux" with every point linked to its line in the LAVA
+log (hover for every stage; a table under each card lists them all). A
+row above the cards selects the boot kind: cold boot, warm reset or warm
+reboot, never mixed.
 
 **Ad-hoc runs** list each requested stack (every series with its version
 and patch count, or the patch that did not apply) and per cell the
@@ -100,6 +114,11 @@ Everything runs in the build container, the same one the CI runners use:
     docker compose -f docker/compose.yaml run --rm ci python3 -m pytest -q tests
     docker compose -f docker/compose.yaml run --rm ci scripts/dry-run.sh /build/dry-run
 
+The dashboard's browser tests run in their own image:
+
+    docker build -t u-boot-ci-dashboard:1 -f docker/Dockerfile.dashboard docker
+    UBCI_IMAGE=u-boot-ci-dashboard:1 scripts/in-container.sh python3 -m pytest -q tests/test_dashboard.py
+
 The dry run renders the LAVA job of every board and stack (validated by
 LAVA when `LAVA_TOKEN` is set), builds the dashboard from sample
 results into `../work/dry-run/site` (serve it with any static server), and
@@ -119,6 +138,8 @@ Building a real run: see [docs/architecture.md](docs/architecture.md).
   validation, open-stack pins.
 - [Linux payload](docs/linux-payload.md): what the boards boot.
 - [Results schema](docs/results-schema.md): the run document.
+- [Boot time](docs/boot-time.md): how boot time is measured, compared
+  and shown.
 - [Ad-hoc runs](docs/adhoc-runs.md): testing stacked series.
 - [Flake policy](docs/flake-policy.md): flakes, allowlisted kernel
   errors, known gaps.

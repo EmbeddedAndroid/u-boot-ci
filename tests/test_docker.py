@@ -26,6 +26,21 @@ def test_control_pins_match_the_ci_image():
     assert control and all(full.get(k) == v for k, v in control.items()), control
 
 
+def test_dashboard_pins_match_the_ci_image_and_its_base():
+    dash, full = pins("requirements-dashboard.txt"), pins("requirements.txt")
+    assert all(full.get(k) == v for k, v in dash.items() if k != "playwright"), dash
+    base = re.search(r"^FROM mcr.microsoft.com/playwright/python:v(\S+)-noble$",
+                     open(os.path.join(REPO, "docker", "Dockerfile.dashboard")).read(), re.M).group(1)
+    assert dash["playwright"] == base
+
+
+def test_dashboard_image_is_not_in_the_payload_cache_keys():
+    # Changing the browser image must not rebuild linux-next and the initramfs.
+    run = open(os.path.join(REPO, ".github", "workflows", "run.yml")).read()
+    keys = re.findall(r"key: (.*hashFiles\(.*\).*)", run)
+    assert keys and not any("Dockerfile.dashboard" in k or "docker/*" in k for k in keys)
+
+
 def test_control_is_a_stage_and_the_ci_image_the_default():
     froms = re.findall(r"^FROM (\S+)(?: AS (\S+))?$", open(os.path.join(REPO, "docker", "Dockerfile")).read(), re.M)
     assert froms[0][1] == "control"

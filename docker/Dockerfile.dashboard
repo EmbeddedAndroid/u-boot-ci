@@ -1,0 +1,13 @@
+# Browser image for the dashboard tests (tests/test_dashboard.py):
+# Chromium and Playwright, with the run document schema's Python deps.
+#   docker build -t u-boot-ci-dashboard:1 -f docker/Dockerfile.dashboard docker
+# A file of its own: docker/Dockerfile is part of the Linux payload cache
+# keys in run.yml, which this image has nothing to do with.
+FROM mcr.microsoft.com/playwright/python:v1.48.0-noble
+
+COPY requirements-dashboard.txt /tmp/requirements-dashboard.txt
+RUN pip install --no-cache-dir --break-system-packages -r /tmp/requirements-dashboard.txt \
+	&& rm /tmp/requirements-dashboard.txt
+ENV HOME=/tmp/home
+RUN mkdir -m 1777 /tmp/home
+WORKDIR /work

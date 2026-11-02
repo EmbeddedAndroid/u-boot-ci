@@ -12,7 +12,7 @@
   <p class="sub">Upstream U-Boot <code>main</code> and <code>master</code> every night on real hardware, on each
     board's downstream firmware and on an open stack (TF-A, OP-TEE), booting a pristine linux-next; series
     from the list tested on demand. <span id="updated"></span></p>
-  <nav class="toc"><a href="#nightly">Nightly</a> <a href="#detail-section">Detail</a>
+  <nav class="toc"><a href="#nightly">Nightly</a> <a href="#boottime-section">Boot time</a> <a href="#detail-section">Detail</a>
     <a href="#adhoc-section">Ad-hoc runs</a> <a href="#candidates-section">Pin candidates</a> <a href="#runs-section">All runs</a></nav>
 </header>
 <main>
@@ -32,6 +32,18 @@
     <ul id="host" class="checks"></ul>
     <h3>History per board</h3>
     <div id="history"></div>
+  </section>
+  <section id="boottime-section">
+    <h2>Boot time <span id="bt-branch" class="muted"></span></h2>
+    <p class="legend">Measured on the host from the time LAVA stamps on each console line, from the power-on
+      command (or the reset) to each stage; no clock on the board is used. The cold boot (power-on to Booting
+      Linux, the last power-on of each job) is the headline; warm resets and reboots are separate series, never
+      compared with a cold boot. <b>Stock</b> is the board's own firmware booting the lab's image in its health
+      checks. Up to "Booting Linux" the comparison is fair; kernel to login depends on the image (the health checks
+      boot a different kernel and rootfs) and is shown in the tables only. Lines that reached LAVA in replayed
+      console backlog are not timed.</p>
+    <div class="filters" id="bt-filters" role="group" aria-label="Boot kind"></div>
+    <div id="boottime"><p class="muted">No boot times yet.</p></div>
   </section>
   <section id="detail-section">
     <h2>Detail <span id="detail-title" class="muted"></span></h2>
@@ -56,6 +68,7 @@
 </main>
 <footer>Data: <a href="index.json">index.json</a>, one document per run in <a href="runs/">runs/</a>
   (schema fwci-run/1). Source: <a href="https://github.com/EmbeddedAndroid/u-boot-ci">EmbeddedAndroid/u-boot-ci</a>.</footer>
+<script src="boottime.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
