@@ -36,6 +36,9 @@ from . import config, jobs
 from . import package as upackage
 
 # The first boot and the boot that starts Linux must both show this build.
+# The later gates (reboot, cold boot) are reported as cases only: the job
+# flashed once, so a later boot that shows no banner hung, it did not run
+# another build, and its boot time says where it stopped.
 GATE_SUITES = [jobs.GATE_SUITE, jobs.GATE_SUITE + "-reset"]
 BOOT_START = r"resetting \.\.\."
 # LAVA's refusal of a job pinned to a device this user may not submit to.

@@ -123,7 +123,16 @@ low priority:
    config lists under `known_gaps` (RB3 Gen 2 USB) is reported `skip`
    with the gap as its note, not as a failure.
 6. `reboot`: the gate a third time and a second login (warm reset path).
-7. `poweroff`; the job ends there.
+7. `poweroff`.
+8. **Cold boot**: power on again, the gate a fourth time
+   (`firmware-fingerprint-cold`, reported as cases like the reboot gate
+   but not counted in the fingerprint gate: the job flashed once, so a
+   banner missing there means the boot hung, which its boot time shows),
+   autoboot to the login prompt without stopping anywhere,
+   `poweroff`; the job ends there. This is the boot the target's boot
+   time is judged by ([boot-time.md](boot-time.md)): the first power-on
+   stops at the U-Boot prompt for the checks and can retrain DDR after
+   the flash, the later boots are warm.
 
 The Linux the boards boot is a pristine linux-next (latest tag, upstream
 arm64 defconfig, no patches, DTB and upstream overlays from the same tree).

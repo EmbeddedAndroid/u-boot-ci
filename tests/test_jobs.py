@@ -74,7 +74,7 @@ def test_job_ends_at_poweroff_with_no_restore(board, stack):
     qdl = [a["boot"]["path"] for a in job["actions"] if "boot" in a and a["boot"]["method"] == "qdl"]
     assert qdl == [PKG["path"]]
     last = job["actions"][-1]["test"]["interactive"][0]
-    assert last["name"] == "poweroff" and last["prompts"] == ["reboot: Power down"]
+    assert last["name"] == "cold-poweroff" and last["prompts"] == ["reboot: Power down"]
     names = {m["name"] for m in monitors(job).values()}
     assert not any("restore" in n for n in names)
     text = lava_jobs.to_yaml(job)
@@ -82,6 +82,39 @@ def test_job_ends_at_poweroff_with_no_restore(board, stack):
     assert yaml.safe_load(text) == job
     # header values are token names LAVA resolves, never secrets
     assert re.findall(r"(?m)^\s+Authorization: (\S+)$", text) == ["lava-mcp-artifact-x"]
+
+
+@pytest.mark.parametrize("stack", ["stock", "open"])
+def test_job_ends_with_a_cold_boot_to_login(stack):
+    job = jobs.render("rb3gen2", stack, "ubci-9", PKG, LINUX)
+    acts = job["actions"]
+    # The poweroff after the warm reboot, then: power on, gate, login,
+    # poweroff, with nothing stopping autoboot.
+    first_off = next(i for i, a in enumerate(acts) if "test" in a and "interactive" in a["test"]
+                     and a["test"]["interactive"][0]["name"] == "poweroff")
+    tail = acts[first_off + 1:]
+    assert tail[0] == {"boot": {"method": "minimal", "timeout": {"minutes": 1}}}
+    gate = tail[1]["test"]["monitors"][0]
+    assert gate["name"] == jobs.COLD_GATE_SUITE and gate["end"] == jobs.AUTOBOOT
+    assert gate == dict(monitors(job)[jobs.GATE_SUITE + "-reset"], name=jobs.COLD_GATE_SUITE)
+    assert tail[2]["boot"]["auto_login"]["login_prompt"] == jobs.LOGIN_PROMPT
+    assert "u-boot" not in [x["test"]["interactive"][0]["name"] for x in tail if "interactive" in x.get("test", {})]
+    assert len(tail) == 4
+
+
+def test_a_hung_cold_boot_is_not_a_failed_gate():
+    # The cold boot hangs before U-Boot: its gate case fails, the target's
+    # fingerprint gate still passes, and the cold boot compares as stopped.
+    from fwci import collect
+    from ubci import run as urun
+    assert jobs.COLD_GATE_SUITE not in urun.GATE_SUITES
+    results = [{"name": "u_boot_20", "result": r, "metadata": "definition: %d_%s\n" % (i, s)}
+               for i, (s, r) in enumerate(((jobs.GATE_SUITE, "pass"), (jobs.GATE_SUITE + "-reset", "pass"),
+                                           (jobs.COLD_GATE_SUITE, "fail")))]
+    t = collect.target({"board": "rb3gen2", "stack": "stock"}, {"id": 1, "state": "Finished", "health": "Incomplete"},
+                       results, [], "u", urun.GATE_SUITES, urun.BOOT_START)
+    assert t["fingerprint_gate"] == "pass"
+    assert [c["result"] for c in t["cases"] if c["suite"] == jobs.COLD_GATE_SUITE] == ["fail"]
 
 
 def test_uboot_checks_come_from_the_board():

@@ -4,7 +4,8 @@ Flow (docs/architecture.md): flash the package, power on, fingerprint
 gate up to U-Boot's DRAM line, stop autoboot and run the U-Boot checks,
 reset; on that boot the gate again and U-Boot autoboots the linux-next
 UKI from the ESP; Linux version gate, login, smoke checks, reboot (gate
-and login once more), poweroff.
+and login once more), poweroff; then a cold boot from power-on to login
+(gate once more) for the boot time, and poweroff.
 A job leaves the board as it ends (a hang or a timeout ends a LAVA job
 where it is): every job flashes its whole package first, so no job
 depends on what the one before left on the board.
@@ -35,6 +36,7 @@ UBOOT_FAILURE = r"Unknown command|Error|ERROR|error:|failed|FAILED"
 UBOOT_END = "@@ uboot end@@"
 UBOOT_END_PROMPT = UBOOT_END + r"\r?\n"
 GATE_SUITE = "firmware-fingerprint"
+COLD_GATE_SUITE = GATE_SUITE + "-cold"
 LINUX_SUITE = "linux-version"
 
 
@@ -151,6 +153,21 @@ def uboot_steps(fp, checks):
     return steps
 
 
+def cold_boot(xbl, expect):
+    """The job's cold boot, the one its boot time is judged by
+    (docs/boot-time.md): from power-off, power on, the fingerprint gate,
+    autoboot to the login prompt without stopping anywhere, poweroff.
+    It comes last so that it is a steady-state power-on (the first one,
+    after the flash, can retrain DDR) and changes nothing before it."""
+    return [
+        lj.power_on(),
+        lj.fingerprint_gate(COLD_GATE_SUITE, xbl, AUTOBOOT, expect),
+        lj.login(LOGIN_PROMPT, SHELL_PROMPT),
+        lj.interactive("cold-poweroff", ["reboot: Power down"],
+                       [{"name": "poweroff", "command": "poweroff"}], minutes=3),
+    ]
+
+
 def render(board_name, stack, fp, package, linux, metadata=None, device=None):
     """package: {url, token, path}; linux: {tag, release, image_sha256}."""
     b = config.board(board_name)
@@ -183,6 +200,7 @@ def render(board_name, stack, fp, package, linux, metadata=None, device=None):
         lj.interactive("poweroff", ["reboot: Power down"],
                        [{"name": "poweroff", "command": "poweroff"}], minutes=3),
     ]
+    actions += cold_boot(xbl, expect)
     meta = {"project": "u-boot-ci", "board": board_name, "stack": stack,
             "fingerprint": fp, "linux": linux["tag"], "linux-sha256": linux["image_sha256"]}
     meta.update(metadata or {})
