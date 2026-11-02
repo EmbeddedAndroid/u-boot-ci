@@ -57,6 +57,15 @@ built). The same schema serves u-boot-ci, tf-a-ci and optee-ci.
     most 200, the link points at the first);
   - `diff`: `new_fail`, `new_pass`, `still_fail` against the baseline
     (only when both fingerprint gates passed).
+  - `boot_time` (finished jobs, [boot-time.md](boot-time.md)): `version`
+    (1, the format of this block), `tool` (the parser and its commit),
+    `boots[]` (each boot of the job: `kind` `first`, `cold`, `warm-reset`
+    or `warm-reboot`, `ref_line` and `url` of its reference line,
+    `complete`, `last_stage`, `reset`, `fastboot`, and `stages`: per stage
+    `t` in seconds after the reference, the log `line` and `replayed`),
+    `headline` (index of the cold boot the target is judged by, or null)
+    and `on_target` (the on-target boot-time case: its cases with value
+    and units or the reason of a skip, and the boot it ran in).
 
 Documents written before 2026-10-25 may also carry, per target,
 `restore` (the end-of-job lab firmware restore: `pass`, `fail`,

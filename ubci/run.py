@@ -469,10 +469,11 @@ def collect_once(run, lava, base):
             continue
         job = lava.job(t["lava"]["job_id"])
         results = lava.results(job["id"]) if job["state"] == "Finished" else []
-        entries = fcollect.log_entries(lava.log(job["id"])) if job["state"] in (
-            "Running", "Finished") else []
+        log = lava.log(job["id"]) if job["state"] in ("Running", "Finished") else ""
+        entries = fcollect.log_entries(log)
         gaps = t.get("linux_boot", {}).get("gaps", [])
-        t.update(fcollect.target(t, job, results, entries, t["lava"]["url"], GATE_SUITES, BOOT_START))
+        t.update(fcollect.target(t, job, results, entries, t["lava"]["url"], GATE_SUITES, BOOT_START,
+                                 log=log))
         if gaps:
             t["linux_boot"]["gaps"] = gaps
         fcollect.apply_known_gaps(t["cases"], config.board(t["board"]).get("known_gaps", {}))

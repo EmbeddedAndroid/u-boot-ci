@@ -2,10 +2,11 @@
 schema. Pure functions over data already fetched, so they test offline."""
 import json
 import re
+import sys
 
 import yaml
 
-from . import boot_verdict
+from . import boot_verdict, boottime
 from .lava_jobs import END_MARK
 
 STATE = {"Submitted": "queued", "Scheduling": "queued", "Scheduled": "flashing",
@@ -164,11 +165,14 @@ def suite_verdict(case_list, suite):
 
 
 def target(base, job, results, entries, job_url, gate_suites, boot_start,
-           boot_end=r"reboot: Restarting system|reboot: Power down"):
+           boot_end=r"reboot: Restarting system|reboot: Power down", log=None,
+           on_target=None):
     """base: the target as the submitter wrote it (board, stack,
-    fingerprint, components, lava). job: the LAVA job record. Returns the
-    target updated with state, cases, the fingerprint gate and the boot
-    verdict."""
+    fingerprint, components, lava). job: the LAVA job record. log: the
+    raw job log, for the boot times of a finished job (on_target: the
+    suite and case of its on-target boot-time check, if it runs one).
+    Returns the target updated with state, cases, the fingerprint gate,
+    the boot verdict and the boot times."""
     t = dict(base)
     t["state"] = STATE.get(job.get("state"), "queued")
     t["lava"] = dict(base.get("lava") or {}, job_id=job["id"], url=job_url,
@@ -185,6 +189,14 @@ def target(base, job, results, entries, job_url, gate_suites, boot_start,
     if t["state"] != "done" and boot["verdict"] != "pass":
         boot = {"verdict": "not-run", "stage": "not-reached"}
     t["linux_boot"] = boot
+    # A running job's log stops mid-boot; only a finished one is measured.
+    if t["state"] == "done" and log:
+        # The log is console text from the board: whatever it holds, the
+        # rest of the target is still collected.
+        try:
+            t["boot_time"] = boottime.measure(log, entries or [], job_url, on_target)
+        except Exception as e:
+            print("%s: boot time not measured: %s: %s" % (job_url, type(e).__name__, e), file=sys.stderr)
     if t["state"] == "done" and job.get("health") != "Complete":
         t["state_detail"] = "LAVA job %s" % (job.get("health") or "unknown").lower()
     return t

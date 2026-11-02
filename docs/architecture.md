@@ -150,7 +150,8 @@ One run document per run, schema `fwci-run/1`
 ([results-schema.md](results-schema.md)). The collector
 (`fwci.collect`) turns each LAVA job (record, results, log) into a target:
 state, cases with links to their log lines, the fingerprint gate, the boot
-verdict (`fwci.boot_verdict`). `fwci.baseline` compares the
+verdict (`fwci.boot_verdict`) and, for a finished job, the boot times of
+every boot in it (`fwci.boottime`, [boot-time.md](boot-time.md)). `fwci.baseline` compares the
 run with its baseline per board and stack (new failures, new passes, still
 failing, the boot verdict against the baseline's) and `fwci.flakes` marks
 known flakes. `fwci.site` builds `index.json` from the run documents, and

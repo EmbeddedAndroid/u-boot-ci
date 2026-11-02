@@ -895,6 +895,305 @@
               }
             }
           }
+        },
+        "boot_time": {
+          "$ref": "#/$defs/boot_time"
+        }
+      }
+    },
+    "boot_stage": {
+      "type": "object",
+      "required": [
+        "t",
+        "line",
+        "replayed"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "t": {
+          "type": "number",
+          "description": "seconds after the boot's reference, as LAVA stamped the console line"
+        },
+        "line": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "0-based LAVA log entry index (#L link)"
+        },
+        "replayed": {
+          "type": "boolean",
+          "description": "the line came in console backlog: its time only bounds the stage from above and is never compared"
+        }
+      }
+    },
+    "boot": {
+      "type": "object",
+      "required": [
+        "kind",
+        "ref_line",
+        "url",
+        "complete",
+        "last_stage",
+        "stages"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "first",
+            "cold",
+            "warm-reset",
+            "warm-reboot"
+          ],
+          "description": "first: the job's first power-on (after its flash); cold: a later power-on; warm-reset: after U-Boot's reset command; warm-reboot: after the kernel's reboot"
+        },
+        "ref_line": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "url": {
+          "type": "string"
+        },
+        "complete": {
+          "type": "boolean",
+          "description": "the login prompt arrived"
+        },
+        "last_stage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reset": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "seconds after the reference at which the boot started over without a power command (watchdog, firmware reset)"
+        },
+        "fastboot": {
+          "type": "boolean",
+          "description": "the kernel was sent over fastboot: Linux includes the download"
+        },
+        "stages": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/boot_stage"
+          }
+        }
+      }
+    },
+    "boot_time": {
+      "type": "object",
+      "required": [
+        "version",
+        "tool",
+        "boots",
+        "headline"
+      ],
+      "additionalProperties": false,
+      "description": "per-stage boot times of the target's LAVA job (fwci/boottime.py)",
+      "properties": {
+        "version": {
+          "const": 1
+        },
+        "tool": {
+          "type": "string",
+          "description": "the parser that measured, with its commit"
+        },
+        "boots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/boot"
+          }
+        },
+        "headline": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "description": "index of the cold boot the target is judged by, null when the job had none"
+        },
+        "on_target": {
+          "type": "object",
+          "required": [
+            "suite",
+            "case",
+            "boot",
+            "finished",
+            "cases"
+          ],
+          "additionalProperties": false,
+          "description": "the on-target boot-time case: times from the kernel's own clock, a separate view from the host-side boots",
+          "properties": {
+            "suite": {
+              "type": "string"
+            },
+            "case": {
+              "type": "string"
+            },
+            "boot": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "finished": {
+              "type": "boolean"
+            },
+            "url": {
+              "type": "string"
+            },
+            "cases": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "result"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "result": {
+                    "enum": [
+                      "pass",
+                      "fail",
+                      "skip"
+                    ]
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "units": {
+                    "type": "string"
+                  },
+                  "note": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "versus_baseline": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "per boot kind, against the same board and stack of the baseline run",
+          "properties": {
+            "baseline": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "kinds": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "required": [
+                  "verdict"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "verdict": {
+                    "enum": [
+                      "regression",
+                      "improvement",
+                      "same",
+                      "stopped-earlier",
+                      "no-history",
+                      "unknown"
+                    ]
+                  },
+                  "stage": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "now": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "then": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "delta": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "threshold": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "noise": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "history": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "stages": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "now": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "then": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "delta": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "threshold": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "verdict": {
+                          "enum": [
+                            "regression",
+                            "improvement",
+                            "same",
+                            "no-history",
+                            "unknown"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
