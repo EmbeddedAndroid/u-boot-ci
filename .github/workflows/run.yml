@@ -175,6 +175,10 @@ jobs:
         with:
           path: work/out/initramfs
           key: ${{ steps.initramfs.outputs.cache-primary-key }}
+      - name: Pack the on-target boot-time case
+        # Without it the UKIs simply do not carry the case.
+        continue-on-error: true
+        run: $CI_RUN scripts/build-boottime-case.sh work/out/initramfs
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.base }}-linux

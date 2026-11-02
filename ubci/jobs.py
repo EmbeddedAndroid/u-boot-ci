@@ -37,6 +37,12 @@ UBOOT_END = "@@ uboot end@@"
 UBOOT_END_PROMPT = UBOOT_END + r"\r?\n"
 GATE_SUITE = "firmware-fingerprint"
 COLD_GATE_SUITE = GATE_SUITE + "-cold"
+# The on-target boot-time case (test-definitions, packed by
+# scripts/build-boottime-case.sh): one shell check that runs it; the
+# collector reads the values it prints (fwci.boottime.on_target).
+BOOTTIME_SUITE = "boot-time"
+BOOTTIME_CASE = "boot-time"
+BOOTTIME_DIR = "/opt/test-definitions/automated/linux/boot-time"
 LINUX_SUITE = "linux-version"
 
 
@@ -153,23 +159,27 @@ def uboot_steps(fp, checks):
     return steps
 
 
-def cold_boot(xbl, expect):
+def cold_boot(xbl, expect, boottime_case=False):
     """The job's cold boot, the one its boot time is judged by
     (docs/boot-time.md): from power-off, power on, the fingerprint gate,
-    autoboot to the login prompt without stopping anywhere, poweroff.
+    autoboot to the login prompt without stopping anywhere, the on-target
+    boot-time case when the UKI carries it, poweroff.
     It comes last so that it is a steady-state power-on (the first one,
     after the flash, can retrain DDR) and changes nothing before it."""
     return [
         lj.power_on(),
         lj.fingerprint_gate(COLD_GATE_SUITE, xbl, AUTOBOOT, expect),
         lj.login(LOGIN_PROMPT, SHELL_PROMPT),
+    ] + ([lj.shell_checks(BOOTTIME_SUITE, [(BOOTTIME_CASE, "cd %s && ./boot-time.sh" % BOOTTIME_DIR)],
+                          minutes=3)] if boottime_case else []) + [
         lj.interactive("cold-poweroff", ["reboot: Power down"],
                        [{"name": "poweroff", "command": "poweroff"}], minutes=3),
     ]
 
 
-def render(board_name, stack, fp, package, linux, metadata=None, device=None):
-    """package: {url, token, path}; linux: {tag, release, image_sha256}."""
+def render(board_name, stack, fp, package, linux, metadata=None, device=None, boottime_case=False):
+    """package: {url, token, path}; linux: {tag, release, image_sha256};
+    boottime_case: the UKI carries the on-target boot-time case."""
     b = config.board(board_name)
     if base_stack(stack) not in b["u-boot"]:
         raise SystemExit("%s has no %s stack" % (board_name, base_stack(stack)))
@@ -200,7 +210,7 @@ def render(board_name, stack, fp, package, linux, metadata=None, device=None):
         lj.interactive("poweroff", ["reboot: Power down"],
                        [{"name": "poweroff", "command": "poweroff"}], minutes=3),
     ]
-    actions += cold_boot(xbl, expect)
+    actions += cold_boot(xbl, expect, boottime_case)
     meta = {"project": "u-boot-ci", "board": board_name, "stack": stack,
             "fingerprint": fp, "linux": linux["tag"], "linux-sha256": linux["image_sha256"]}
     meta.update(metadata or {})

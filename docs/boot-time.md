@@ -75,6 +75,20 @@ on every downstream stack whose Linux runs at EL1), `kernel-to-init` and
 the boot they ran in, and are never mixed with the host-side numbers: the
 zeros differ (counter reset against the power-on command).
 
+The case is test-definitions' own, unchanged. `scripts/build-boottime-case.sh`
+fetches the commit `config/project.yaml` pins (`boottime_case`: repository,
+branch, commit) and packs `boot-time.sh`, its `cntvct-arm64` tool and
+`sh-test-lib` into a small cpio, which `scripts/mk-esp.sh` adds to the UKI
+as a third initrd; `esp.json` records it and the run document carries it
+in the Linux component (`boottime_case`: repository, commit link, the
+sha256 of every file). The job runs the case only when the target's UKI
+carries it, as one shell check (suite and case `boot-time`), and the
+collector reads the values the case printed. While the pin is `pending`
+(its commit not public yet) nothing is packed and no job runs the case.
+For a local run, `UBCI_BOOTTIME_CASE_REPO` fetches the pinned commit
+from another repository, a local checkout for example; the commit, and so
+the bytes, are the pin's.
+
 ## Against the baseline
 
 `fwci.baseline` compares every target with the same board and stack of

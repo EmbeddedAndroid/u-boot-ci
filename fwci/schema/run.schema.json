@@ -567,6 +567,44 @@
         },
         "dtb_sha256": {
           "$ref": "#/$defs/sha256"
+        },
+        "boottime_case": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "required": [
+            "repo",
+            "commit"
+          ],
+          "description": "payload: the on-target boot-time case the UKI carries (test-definitions repo, commit with its link, sha256 of each file packed)",
+          "properties": {
+            "repo": {
+              "type": "string"
+            },
+            "commit": {
+              "type": "string"
+            },
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "path": {
+              "type": "string"
+            },
+            "files": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/sha256"
+              }
+            },
+            "cpio_sha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          }
         }
       }
     },

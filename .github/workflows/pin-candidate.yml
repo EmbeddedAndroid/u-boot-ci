@@ -61,6 +61,7 @@ jobs:
           docker build --network host -q -t u-boot-ci:1 docker
           [ -f work/out/linux/linux.json ] || $CI_RUN scripts/build-linux.sh "${{ steps.refs.outputs.tag }}" work/out/linux
           [ -f work/out/initramfs/initramfs.json ] || $CI_RUN scripts/build-initramfs.sh work/out/initramfs
+          $CI_RUN scripts/build-boottime-case.sh work/out/initramfs || echo "boot-time case not packed"
           git clone -q --filter=blob:none "$UBOOT_REPO" work/u-boot
           git -C work/u-boot checkout -q "${{ steps.refs.outputs.commit }}"
           $CI_RUN scripts/build-target.sh work/u-boot "$b" stock-candidate "$FINGERPRINT" work/out/linux work/out/initramfs work/out/candidate

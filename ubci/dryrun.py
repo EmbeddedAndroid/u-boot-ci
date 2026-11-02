@@ -120,13 +120,11 @@ def ci_jobs(out):
     return failed
 
 
-def main(out):
+def render_jobs(out, validate=None):
+    """Every board and stack's job, as it runs when the UKI carries the
+    on-target boot-time case (the largest form: a UKI without it gets the
+    same job without that one step). Returns how many LAVA refused."""
     os.makedirs(os.path.join(out, "jobs"), exist_ok=True)
-    validate = None
-    if os.environ.get("LAVA_TOKEN"):
-        from fwci.lava_mcp import Lava
-        lava = Lava()
-        validate = lambda text: lava.call("validate_job", definition=text)
     pkg = {"url": "https://lava.example/mcp/artifacts/x/pkg.qcomflash.tar.gz",
            "token": "lava-mcp-artifact-x", "path": "ubci-pkg"}
     failed = 0
@@ -134,7 +132,7 @@ def main(out):
         for stack in config.STACKS:
             if stack not in config.board(board)["u-boot"]:
                 continue
-            text = lava_jobs.to_yaml(jobs.render(board, stack, "ubci-dry-run", pkg, LINUX))
+            text = lava_jobs.to_yaml(jobs.render(board, stack, "ubci-dry-run", pkg, LINUX, boottime_case=True))
             yaml.safe_load(text)
             path = os.path.join(out, "jobs", "%s-%s.yaml" % (board, stack))
             open(path, "w").write(text)
@@ -142,6 +140,16 @@ def main(out):
             ok = not validate or "valid" in json.dumps(verdict).lower() and "invalid" not in json.dumps(verdict).lower()
             failed += not ok
             print("%s: %s" % (os.path.basename(path), verdict))
+    return failed
+
+
+def main(out):
+    validate = None
+    if os.environ.get("LAVA_TOKEN"):
+        from fwci.lava_mcp import Lava
+        lava = Lava()
+        validate = lambda text: lava.call("validate_job", definition=text)
+    failed = render_jobs(out, validate)
     s = os.path.join(out, "site")
     shutil.rmtree(s, ignore_errors=True)
     os.makedirs(os.path.join(s, "runs"))

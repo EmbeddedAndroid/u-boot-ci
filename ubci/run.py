@@ -258,7 +258,7 @@ def built(args):
     leaves next to its packages (<board>-<stack>/u-boot.json, esp.json):
     the U-Boot configs the base had (a missing optional board fragment
     shows as not used), the U-Boot image sha256 and the sha256 of the DTB
-    the UKI carries."""
+    the UKI carries, with the on-target boot-time case it carries."""
     run = load(args.run)
     for t in run["targets"]:
         d = os.path.join(args.targets, "%s-%s" % (t["board"], t["stack"]))
@@ -277,6 +277,8 @@ def built(args):
             for c in t["components"]:
                 if c["name"] == "linux":
                     c["dtb_sha256"] = esp["dtb_sha256"]
+                    bc = esp.get("boottime_case")
+                    c["boottime_case"] = dict(bc, url=links.commit_url(bc["repo"], bc["commit"])) if bc else None
         except (OSError, ValueError):
             pass
     save(args.run, run)
@@ -312,13 +314,19 @@ def target(run, board, stack):
     raise SystemExit("no target %s/%s" % (board, stack))
 
 
+def boottime_case(t):
+    """Whether the target's UKI carries the on-target boot-time case
+    (ubci.run built, from its esp.json)."""
+    return any(c["name"] == "linux" and c.get("boottime_case") for c in t.get("components", []))
+
+
 def render_one(run, board, stack, package, device=None):
     t = target(run, board, stack)
     meta = {"run": run["run"]["id"], "u-boot": run["run"]["base"]["commit"]}
     if run["run"].get("ci_url"):
         meta["ci"] = run["run"]["ci_url"]
     return lava_jobs.to_yaml(jobs.render(board, stack, t["fingerprint"], package,
-                                         run["linux"], meta, device))
+                                         run["linux"], meta, device, boottime_case=boottime_case(t)))
 
 
 def choose_device(lava, device_type, denied=()):
@@ -477,7 +485,7 @@ def collect_once(run, lava, base, history=None):
         entries = fcollect.log_entries(log)
         gaps = t.get("linux_boot", {}).get("gaps", [])
         t.update(fcollect.target(t, job, results, entries, t["lava"]["url"], GATE_SUITES, BOOT_START,
-                                 log=log))
+                                 log=log, on_target=(jobs.BOOTTIME_SUITE, jobs.BOOTTIME_CASE)))
         if gaps:
             t["linux_boot"]["gaps"] = gaps
         fcollect.apply_known_gaps(t["cases"], config.board(t["board"]).get("known_gaps", {}))

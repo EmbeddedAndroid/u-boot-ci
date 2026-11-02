@@ -11,6 +11,7 @@ from upstream only, so the dashboard shows the real upstream state.
 | device tree | the board's DTB from that same build (`DTC_FLAGS=-@`, so overlays apply); on the open stack the upstream EL2 overlay of the SoC applied with `fdtoverlay` where linux-next has one (`config/boards/<board>.yaml`, `linux.overlays`) |
 | initramfs, part 1 | Buildroot 2026.08.1 with `config/buildroot/initramfs_defconfig`: BusyBox, eudev, kmod, a root login on `ttyMSM0` |
 | initramfs, part 2 | `/lib/modules` of the same kernel build (stripped), so the drivers defconfig builds as modules (UFS, QMP PHYs, ...) load at coldplug |
+| initramfs, part 3 | the on-target boot-time case of test-definitions under `/opt/test-definitions` (`boot-time.sh`, its `cntvct-arm64` tool and `sh-test-lib`), at the commit `config/project.yaml` pins (`boottime_case`); left out while that pin is `pending` ([boot-time.md](boot-time.md)) |
 | command line | `console=ttyMSM0,115200n8` |
 
 `scripts/build-linux.sh` builds the kernel, DTBs and modules once per tag

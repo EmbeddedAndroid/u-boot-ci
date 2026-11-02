@@ -24,3 +24,12 @@ host_checks:
   # scripts/host-check.sh buildman covers every snapdragon defconfig).
   fragments:
     - [qcom_defconfig, tfa-optee.config]
+# The on-target boot-time case (docs/boot-time.md): test-definitions'
+# boot-time test, packed into each UKI as a third initrd and run on the
+# job's cold boot. While `pending`, its commit is not public and the
+# case is left out (scripts/build-boottime-case.sh).
+boottime_case:
+  repo: https://github.com/EmbeddedAndroid/test-definitions.git
+  branch: openbootstack-tests
+  commit: ed3e5cf1d19711dbb1f77a02dbb0f8662d0404cf
+  pending: not pushed to openbootstack-tests yet

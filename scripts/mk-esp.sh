@@ -5,7 +5,8 @@
 # pristine linux-next Image, the board DTB from the same build with the
 # upstream overlays config/boards/<board>.yaml lists for the stack, the
 # command line, and an initramfs of the Buildroot userspace followed by
-# the kernel's own modules; on a FAT ESP as EFI/BOOT/BOOTAA64.EFI, the
+# the kernel's own modules (and the on-target boot-time case when it was
+# built); on a FAT ESP as EFI/BOOT/BOOTAA64.EFI, the
 # removable-media path U-Boot's EFI boot manager boots. Nothing in the
 # kernel or DT is changed.
 set -euo pipefail
@@ -27,8 +28,12 @@ else
 fi
 cmdline=$(cfg linux.cmdline)
 
+# The on-target boot-time case, when scripts/build-boottime-case.sh packed it.
+case_cpio=$initramfs/boottime-case/boottime-case.cpio.gz
+extra=()
+[ -f "$case_cpio" ] && extra=(--initrd="$case_cpio")
 ukify build --linux="$linux/Image" \
-	--initrd="$initramfs/rootfs.cpio.gz" --initrd="$linux/modules.cpio.zst" \
+	--initrd="$initramfs/rootfs.cpio.gz" --initrd="$linux/modules.cpio.zst" "${extra[@]}" \
 	--devicetree="$work/board.dtb" --cmdline="$cmdline" --efi-arch=aa64 \
 	--stub=/usr/lib/systemd/boot/efi/linuxaa64.efi.stub --output="$work/uki.efi" >/dev/null
 
@@ -39,12 +44,13 @@ truncate -s $size "$out/efi.bin"
 mkfs.fat -F 32 -S $sector "$out/efi.bin" >/dev/null
 mmd -i "$out/efi.bin" ::/EFI ::/EFI/BOOT
 mcopy -i "$out/efi.bin" "$work/uki.efi" ::/EFI/BOOT/BOOTAA64.EFI
-python3 - "$out/esp.json" "$linux/linux.json" "$initramfs/initramfs.json" <<PY
+python3 - "$out/esp.json" "$linux/linux.json" "$initramfs/initramfs.json" "${extra[@]:+$initramfs/boottime-case/boottime-case.json}" <<PY
 import hashlib, json, sys
 sha = lambda p: hashlib.sha256(open(p, "rb").read()).hexdigest()
 json.dump({"board": "$board", "stack": "$stack",
            "linux": json.load(open(sys.argv[2])),
            "initramfs": json.load(open(sys.argv[3])),
+           "boottime_case": json.load(open(sys.argv[4])) if len(sys.argv) > 4 and sys.argv[4] else None,
            "dtb": "$(cfg linux.dtb)", "overlays": "$(cfg "linux.overlays.$stack" | tr '\n' ' ')".split(),
            "dtb_sha256": sha("$work/board.dtb"), "cmdline": "$cmdline",
            "uki_sha256": sha("$work/uki.efi")}, open(sys.argv[1], "w"), indent=2)
