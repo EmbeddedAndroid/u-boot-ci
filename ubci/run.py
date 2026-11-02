@@ -12,6 +12,7 @@ python3 -m ubci.run skip <run.json> <reason>
 python3 -m ubci.run close <run.json> <cancelled|failure>
 python3 -m ubci.run collect <run.json> [--baseline base.json] [--history runs/]
         [--wait [--packages DIR]]
+python3 -m ubci.run stockref <run.json> [--limit N] [--cache DIR]
 python3 -m ubci.run site <site dir>
 """
 import argparse
@@ -29,8 +30,10 @@ import yaml
 from fwci import baseline as fbaseline
 from fwci import collect as fcollect
 from fwci import flakes as fflakes
+from fwci import boottime as fboottime
 from fwci import lava_jobs, links, schema, site
 from fwci.lava_mcp import Lava, Rejected
+from fwci.lava_rest import LavaRest
 
 from . import config, jobs
 from . import package as upackage
@@ -499,6 +502,41 @@ def collect_once(run, lava, base, history=None):
                        or {}).get("flakes", []), datetime.date.today())
 
 
+REFERENCE_SOURCE = "LAVA health checks of the board's device type: its downstream firmware booting the lab's image"
+
+
+def excluded(device):
+    return any(fnmatch.fnmatch(device, p) for p in config.project()["lava"].get("exclude_devices", []))
+
+
+def stock_reference(run, lava, limit=fboottime.REFERENCE_JOBS):
+    """Record the stock reference of every board of the run: the newest
+    health checks that ended before the run was created, one power-on
+    boot each, and the per-stage median. A board whose health checks
+    cannot be read is left out and said so."""
+    before = run["run"]["created"]
+    boards = {}
+    for board in sorted({t["board"] for t in run["targets"]}):
+        dt = config.board(board)["lava"]["device_type"]
+        try:
+            ref = fboottime.reference(lava, dt, before, limit, excluded)
+        except (OSError, ValueError) as e:
+            print("stock reference %s: %s" % (board, e), file=sys.stderr)
+            continue
+        boards[board] = {"device_type": dt, "boots": ref, "median": fboottime.reference_median(ref)}
+    run["boot_time_reference"] = {"version": 1, "tool": fboottime.TOOL, "source": REFERENCE_SOURCE,
+                                  "before": before, "boards": boards}
+    return run
+
+
+def stockref(args):
+    run = load(args.run)
+    stock_reference(run, LavaRest(config.project()["lava"]["url"], args.cache), args.limit)
+    save(args.run, run)
+    for b, r in sorted(run["boot_time_reference"]["boards"].items()):
+        print("%s: %d health check(s), Booting Linux median %s" % (b, len(r["boots"]), r["median"].get("linux")))
+
+
 def summary(args):
     """Markdown summary of a run, per board and stack (the PR comment of a
     pin candidate)."""
@@ -641,6 +679,10 @@ def main(argv=None):
     a.add_argument("--wait", action="store_true")
     a.add_argument("--packages", help="also submit queued targets from this directory on every pass")
     a.add_argument("--history", help="runs/ directory of the site: earlier runs, for boot-time noise")
+    a = sub.add_parser("stockref")
+    a.add_argument("run")
+    a.add_argument("--limit", type=int, default=fboottime.REFERENCE_JOBS)
+    a.add_argument("--cache", help="keep the job logs read here")
     a = sub.add_parser("site")
     a.add_argument("site_dir")
     args = ap.parse_args(argv)
@@ -648,7 +690,7 @@ def main(argv=None):
         site.write(args.site_dir)
     else:
         {"new": new, "host": host, "render": render, "submit": submit, "skip": skip, "summary": summary, "finished": finished, "linux": set_linux,
-         "collect": collect, "close": close, "built": built}[args.cmd](args)
+         "collect": collect, "close": close, "built": built, "stockref": stockref}[args.cmd](args)
 
 
 if __name__ == "__main__":

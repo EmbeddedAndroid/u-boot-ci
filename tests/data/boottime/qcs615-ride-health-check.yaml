@@ -1,0 +1,731 @@
+- {"dt": "2026-11-01T15:13:49.813625+00:00", "lvl": "info", "msg": "start: 0 validate"}
+- {"dt": "2026-11-01T15:13:49.861324+00:00", "lvl": "info", "msg": "start: 1 qdl-deploy (timeout 00:20:00) [qdl]"}
+- {"dt": "2026-11-01T15:13:49.861469+00:00", "lvl": "debug", "msg": "start: 1.1 lava-overlay (timeout 00:20:00) [qdl]"}
+- {"dt": "2026-11-01T15:13:49.868973+00:00", "lvl": "debug", "msg": "start: 1.1.1 lava-multinode-overlay (timeout 00:20:00) [qdl]"}
+- {"dt": "2026-11-01T15:13:49.869160+00:00", "lvl": "debug", "msg": "end: 1.1.1 lava-multinode-overlay (duration 00:00:00) [qdl]"}
+- {"dt": "2026-11-01T15:13:49.869277+00:00", "lvl": "debug", "msg": "start: 1.1.2 test-definition (timeout 00:20:00) [qdl]"}
+- {"dt": "2026-11-01T15:13:49.869512+00:00", "lvl": "debug", "msg": "start: 1.1.2.1 git-repo-action (timeout 00:20:00) [qdl]"}
+- {"dt": "2026-11-01T15:13:52.802983+00:00", "lvl": "debug", "msg": "end: 1.1.2.1 git-repo-action (duration 00:00:03) [qdl]"}
+- {"dt": "2026-11-01T15:13:52.803317+00:00", "lvl": "debug", "msg": "start: 1.1.2.2 test-overlay (timeout 00:19:57) [qdl]"}
+- {"dt": "2026-11-01T15:13:52.804361+00:00", "lvl": "debug", "msg": "end: 1.1.2.2 test-overlay (duration 00:00:00) [qdl]"}
+- {"dt": "2026-11-01T15:13:52.804707+00:00", "lvl": "debug", "msg": "start: 1.1.2.3 test-install-overlay (timeout 00:19:57) [qdl]"}
+- {"dt": "2026-11-01T15:13:52.806063+00:00", "lvl": "debug", "msg": "end: 1.1.2.3 test-install-overlay (duration 00:00:00) [qdl]"}
+- {"dt": "2026-11-01T15:13:52.806447+00:00", "lvl": "debug", "msg": "start: 1.1.2.4 test-runscript-overlay (timeout 00:19:57) [qdl]"}
+- {"dt": "2026-11-01T15:13:52.808535+00:00", "lvl": "debug", "msg": "end: 1.1.2.4 test-runscript-overlay (duration 00:00:00) [qdl]"}
+- {"dt": "2026-11-01T15:13:52.808815+00:00", "lvl": "debug", "msg": "start: 1.1.2.5 git-repo-action (timeout 00:19:57) [qdl]"}
+- {"dt": "2026-11-01T15:13:55.970030+00:00", "lvl": "debug", "msg": "end: 1.1.2.5 git-repo-action (duration 00:00:03) [qdl]"}
+- {"dt": "2026-11-01T15:13:55.970332+00:00", "lvl": "debug", "msg": "start: 1.1.2.6 test-overlay (timeout 00:19:54) [qdl]"}
+- {"dt": "2026-11-01T15:13:55.971373+00:00", "lvl": "debug", "msg": "end: 1.1.2.6 test-overlay (duration 00:00:00) [qdl]"}
+- {"dt": "2026-11-01T15:13:55.971691+00:00", "lvl": "debug", "msg": "start: 1.1.2.7 test-install-overlay (timeout 00:19:54) [qdl]"}
+- {"dt": "2026-11-01T15:13:55.973053+00:00", "lvl": "debug", "msg": "end: 1.1.2.7 test-install-overlay (duration 00:00:00) [qdl]"}
+- {"dt": "2026-11-01T15:13:55.973406+00:00", "lvl": "debug", "msg": "start: 1.1.2.8 test-runscript-overlay (timeout 00:19:54) [qdl]"}
+- {"dt": "2026-11-01T15:13:55.975328+00:00", "lvl": "debug", "msg": "end: 1.1.2.8 test-runscript-overlay (duration 00:00:00) [qdl]"}
+- {"dt": "2026-11-01T15:13:55.976321+00:00", "lvl": "debug", "msg": "end: 1.1.2 test-definition (duration 00:00:06) [qdl]"}
+- {"dt": "2026-11-01T15:13:55.976427+00:00", "lvl": "debug", "msg": "start: 1.1.3 compress-overlay (timeout 00:19:54) [qdl]"}
+- {"dt": "2026-11-01T15:14:15.642666+00:00", "lvl": "debug", "msg": "end: 1.1.3 compress-overlay (duration 00:00:20) [qdl]"}
+- {"dt": "2026-11-01T15:14:15.642846+00:00", "lvl": "debug", "msg": "end: 1.1 lava-overlay (duration 00:00:26) [qdl]"}
+- {"dt": "2026-11-01T15:14:15.642972+00:00", "lvl": "debug", "msg": "start: 1.2 download-retry (timeout 00:19:34) [qdl]"}
+- {"dt": "2026-11-01T15:14:15.643063+00:00", "lvl": "debug", "msg": "start: 1.2.1 http-download (timeout 00:19:34) [qdl]"}
+- {"dt": "2026-11-01T15:14:18.912922+00:00", "lvl": "debug", "msg": "end: 1.2.1 http-download (duration 00:00:03) [qdl]"}
+- {"dt": "2026-11-01T15:14:18.913279+00:00", "lvl": "debug", "msg": "end: 1.2 download-retry (duration 00:00:03) [qdl]"}
+- {"dt": "2026-11-01T15:14:18.913401+00:00", "lvl": "debug", "msg": "start: 1.3 qdl-extract (timeout 00:19:31) [qdl]"}
+- {"dt": "2026-11-01T15:14:24.241943+00:00", "lvl": "debug", "msg": "end: 1.3 qdl-extract (duration 00:00:05) [qdl]"}
+- {"dt": "2026-11-01T15:14:24.242154+00:00", "lvl": "debug", "msg": "start: 1.4 apply-overlay-qdl (timeout 00:19:26) [qdl]"}
+- {"dt": "2026-11-01T15:15:10.771070+00:00", "lvl": "debug", "msg": "end: 1.4 apply-overlay-qdl (duration 00:00:47) [qdl]"}
+- {"dt": "2026-11-01T15:15:10.771427+00:00", "lvl": "info", "msg": "end: 1 qdl-deploy (duration 00:01:21) [qdl]"}
+- {"dt": "2026-11-01T15:15:10.771586+00:00", "lvl": "info", "msg": "start: 2 boot-qdl-retry (timeout 00:15:00) [qdl]"}
+- {"dt": "2026-11-01T15:15:10.771704+00:00", "lvl": "debug", "msg": "start: 2.1 reset-device (timeout 00:15:00) [qdl]"}
+- {"dt": "2026-11-01T15:15:10.771815+00:00", "lvl": "debug", "msg": "start: 2.1.1 pdu-reboot (timeout 00:15:00) [qdl]"}
+- {"dt": "2026-11-01T15:15:10.772014+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:15:10.938040+00:00", "lvl": "debug", "msg": "Calling: ['sleep']"}
+- {"dt": "2026-11-01T15:15:12.939595+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:15:15.347615+00:00", "lvl": "debug", "msg": "end: 2.1.1 pdu-reboot (duration 00:00:05) [qdl]"}
+- {"dt": "2026-11-01T15:15:15.347916+00:00", "lvl": "debug", "msg": "end: 2.1 reset-device (duration 00:00:05) [qdl]"}
+- {"dt": "2026-11-01T15:15:15.348034+00:00", "lvl": "debug", "msg": "start: 2.2 enter-qdl (timeout 00:14:55) [qdl]"}
+- {"dt": "2026-11-01T15:15:15.348209+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:15:18.261417+00:00", "lvl": "debug", "msg": "end: 2.2 enter-qdl (duration 00:00:03) [qdl]"}
+- {"dt": "2026-11-01T15:15:18.261526+00:00", "lvl": "debug", "msg": "start: 2.3 wait-qdl-device (timeout 00:14:53) [qdl]"}
+- {"dt": "2026-11-01T15:15:18.349993+00:00", "lvl": "debug", "msg": "end: 2.3 wait-qdl-device (duration 00:00:00) [qdl]"}
+- {"dt": "2026-11-01T15:15:18.350410+00:00", "lvl": "debug", "msg": "start: 2.4 flash-qdl (timeout 00:14:52) [qdl]"}
+- {"dt": "2026-11-01T15:15:18.350581+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:16:16.709698+00:00", "lvl": "debug", "msg": "end: 2.4 flash-qdl (duration 00:00:58) [qdl]"}
+- {"dt": "2026-11-01T15:16:16.709843+00:00", "lvl": "debug", "msg": "start: 2.5 qdl-ramdump (timeout 00:13:54) [qdl]"}
+- {"dt": "2026-11-01T15:16:16.709944+00:00", "lvl": "debug", "msg": "end: 2.5 qdl-ramdump (duration 00:00:00) [qdl]"}
+- {"dt": "2026-11-01T15:16:16.710121+00:00", "lvl": "info", "msg": "end: 2 boot-qdl-retry (duration 00:01:06) [qdl]"}
+- {"dt": "2026-11-01T15:16:16.710243+00:00", "lvl": "info", "msg": "start: 3 user-command (timeout 00:04:00) [qdl]"}
+- {"dt": "2026-11-01T15:16:16.710493+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:16:16.734660+00:00", "lvl": "info", "msg": "end: 3 user-command (duration 00:00:00) [qdl]"}
+- {"dt": "2026-11-01T15:16:16.734791+00:00", "lvl": "info", "msg": "start: 4 minimal-boot (timeout 00:02:00) [qdl]"}
+- {"dt": "2026-11-01T15:16:16.734911+00:00", "lvl": "debug", "msg": "start: 4.1 connect-device (timeout 00:02:00) [qdl]"}
+- {"dt": "2026-11-01T15:16:16.738821+00:00", "lvl": "debug", "msg": "end: 4.1 connect-device (duration 00:00:00) [qdl]"}
+- {"dt": "2026-11-01T15:16:16.738945+00:00", "lvl": "debug", "msg": "start: 4.2 reset-device (timeout 00:02:00) [qdl]"}
+- {"dt": "2026-11-01T15:16:16.739044+00:00", "lvl": "debug", "msg": "start: 4.2.1 pdu-reboot (timeout 00:02:00) [qdl]"}
+- {"dt": "2026-11-01T15:16:16.739219+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:16:16.912954+00:00", "lvl": "debug", "msg": "Calling: ['sleep']"}
+- {"dt": "2026-11-01T15:16:18.914687+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:16:21.326515+00:00", "lvl": "debug", "msg": "end: 4.2.1 pdu-reboot (duration 00:00:05) [qdl]"}
+- {"dt": "2026-11-01T15:16:21.326816+00:00", "lvl": "debug", "msg": "end: 4.2 reset-device (duration 00:00:05) [qdl]"}
+- {"dt": "2026-11-01T15:16:21.326921+00:00", "lvl": "debug", "msg": "start: 4.3 auto-login-action (timeout 00:01:55) [qdl]"}
+- {"dt": "2026-11-01T15:16:21.327829+00:00", "lvl": "target", "msg": "Connected to ser2net."}
+- {"dt": "2026-11-01T15:16:21.327927+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.328014+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.328082+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.328179+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.328263+00:00", "lvl": "target", "msg": "\0\uFFFD\0S - \b\b\b\bFormat: Log Type - Time(microsec) - Message - Optional Info"}
+- {"dt": "2026-11-01T15:16:21.328347+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.328430+00:00", "lvl": "target", "msg": "S - QC_IMAGE_VERSION_STRING=BOOT.MXF.1.0.c1-00497.7-KODIAKLA-1"}
+- {"dt": "2026-11-01T15:16:21.328515+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.328594+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.328674+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.328754+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.328834+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.328915+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.328994+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.329070+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.329159+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.329240+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.329318+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.329395+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.329474+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.329552+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.329634+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.329713+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.329791+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.329867+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.329946+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.330023+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.330106+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.330187+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.330266+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.330344+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.330422+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.330502+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.330580+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.330658+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.330736+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.330816+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.330893+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.330972+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.331051+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.331135+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.331213+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.331292+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.331369+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.331451+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.331528+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.331608+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.331689+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.331769+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.331848+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.331927+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.332008+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.332120+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.332200+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.332279+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.332357+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.332438+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.332571+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.332661+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.332750+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.332854+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.332931+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.333008+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.333104+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.333198+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.333303+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.333391+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.333463+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.333565+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.333655+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.333746+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.333848+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.333927+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.334007+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.334096+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.334195+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.334275+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.334345+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.334406+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.334502+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.334580+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.334671+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.334775+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.334853+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.334933+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.335014+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.335114+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.335194+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.335255+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.335313+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.335370+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.335572+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.335645+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.335738+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.335801+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.335860+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.335919+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.336036+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.336119+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.336201+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.336285+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.336414+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.336482+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.336543+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.336602+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.336661+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.336719+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.336778+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.336837+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.336952+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.337032+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.338986+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.380346+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.380477+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.380579+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.380673+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.380762+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.380849+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.380933+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.381113+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.381251+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.381364+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.383448+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.424730+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.424846+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.424949+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.425042+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.425172+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.425275+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.425358+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.425419+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.425479+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.425538+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.427834+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.427951+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.474612+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.474728+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.474858+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.474928+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.475072+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.475181+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.475371+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.475492+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.475589+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.477772+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.512725+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.512841+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.512948+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.513019+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.513084+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.513183+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.515883+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.586851+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.586968+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.587046+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.587126+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.587219+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.587281+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.587341+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.587497+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.587592+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.589917+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.590021+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.613639+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.613757+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.616805+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.616921+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.667594+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.667711+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.667814+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.667908+00:00", "lvl": "target", "msg": "B -   1077016 - SBL1, End"}
+- {"dt": "2026-11-01T15:16:21.667997+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.668194+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.670726+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.747852+00:00", "lvl": "target", "msg": "0       1.148077 Hypervisor cold boot, version: gunyah-e1d3c2ddb prod (2026-02-18 23:56:32 UTC)"}
+- {"dt": "2026-11-01T15:16:21.764614+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.764746+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.794612+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.794730+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.823468+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.823570+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.823687+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.823861+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.823998+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.824107+00:00", "lvl": "target", "msg": "UEFI Start     [ 1223]"}
+- {"dt": "2026-11-01T15:16:21.824206+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.826533+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.848399+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.848515+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.933378+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.933495+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.933596+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.933688+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.933775+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.933861+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.933946+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.934021+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.936478+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.956361+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.956478+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.956596+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.959479+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:21.959595+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.064603+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.064763+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.064880+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.064973+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.065038+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.065203+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.065329+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.065447+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.065570+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.065672+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.065754+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.067681+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.162920+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.163041+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.163182+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.163307+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.163397+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.163509+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.163599+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.241585+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.241703+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.241806+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.241900+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.241988+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.242051+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.242123+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.242187+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.242260+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.242334+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.242407+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.242479+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.277121+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:22.277271+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:16:23.189991+00:00", "lvl": "target", "msg": "Start EBS        [ 2511] "}
+- {"dt": "2026-11-01T15:16:23.659335+00:00", "lvl": "target", "msg": "[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x51df805e]"}
+- {"dt": "2026-11-01T15:16:23.659584+00:00", "lvl": "debug", "msg": "start: 4.3.1 login-action (timeout 00:01:53) [qdl]"}
+- {"dt": "2026-11-01T15:16:28.638737+00:00", "lvl": "target", "msg": "[    5.234204] Run /init as init process"}
+- {"dt": "2026-11-01T15:16:38.872310+00:00", "lvl": "debug", "msg": "Matched prompt #13: login:"}
+- {"dt": "2026-11-01T15:16:38.872422+00:00", "lvl": "results", "msg": {"definition": "lava", "case": "kernel-messages", "level": "4.3.1", "duration": "15.21", "result": "pass"}}
+- {"dt": "2026-11-01T15:16:43.072901+00:00", "lvl": "debug", "msg": "end: 4.3.1 login-action (duration 00:00:19) [qdl]"}
+- {"dt": "2026-11-01T15:16:43.073030+00:00", "lvl": "results", "msg": {"definition": "lava", "case": "login-action", "level": "4.3.1", "duration": "19.41", "result": "pass"}}
+- {"dt": "2026-11-01T15:16:43.073278+00:00", "lvl": "debug", "msg": "end: 4.3 auto-login-action (duration 00:00:22) [qdl]"}
+- {"dt": "2026-11-01T15:16:43.073405+00:00", "lvl": "debug", "msg": "start: 4.4 expect-shell-connection (timeout 00:01:34) [qdl]"}
+- {"dt": "2026-11-01T15:16:43.088718+00:00", "lvl": "debug", "msg": "end: 4.4 expect-shell-connection (duration 00:00:00) [qdl]"}
+- {"dt": "2026-11-01T15:16:43.088861+00:00", "lvl": "debug", "msg": "start: 4.5 export-device-env (timeout 00:01:34) [qdl]"}
+- {"dt": "2026-11-01T15:16:43.088989+00:00", "lvl": "debug", "msg": "end: 4.5 export-device-env (duration 00:00:00) [qdl]"}
+- {"dt": "2026-11-01T15:16:43.089083+00:00", "lvl": "info", "msg": "end: 4 minimal-boot (duration 00:00:26) [qdl]"}
+- {"dt": "2026-11-01T15:16:43.089199+00:00", "lvl": "info", "msg": "start: 5 lava-test-retry (timeout 00:04:00) [qdl]"}
+- {"dt": "2026-11-01T15:16:43.089421+00:00", "lvl": "debug", "msg": "start: 5.1 lava-test-shell (timeout 00:03:00) [qdl]"}
+- {"dt": "2026-11-01T15:16:45.007296+00:00", "lvl": "debug", "msg": "end: 5.1 lava-test-shell (duration 00:00:02) [qdl]"}
+- {"dt": "2026-11-01T15:16:45.007422+00:00", "lvl": "info", "msg": "end: 5 lava-test-retry (duration 00:00:02) [qdl]"}
+- {"dt": "2026-11-01T15:16:45.007538+00:00", "lvl": "info", "msg": "start: 6 downloads (timeout 00:20:00) [flasher]"}
+- {"dt": "2026-11-01T15:16:45.007809+00:00", "lvl": "debug", "msg": "start: 6.1 lava-overlay (timeout 00:20:00) [flasher]"}
+- {"dt": "2026-11-01T15:16:45.015093+00:00", "lvl": "debug", "msg": "start: 6.1.1 lava-multinode-overlay (timeout 00:20:00) [flasher]"}
+- {"dt": "2026-11-01T15:16:45.015288+00:00", "lvl": "debug", "msg": "end: 6.1.1 lava-multinode-overlay (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:16:45.015409+00:00", "lvl": "debug", "msg": "start: 6.1.2 test-definition (timeout 00:20:00) [flasher]"}
+- {"dt": "2026-11-01T15:16:45.015659+00:00", "lvl": "debug", "msg": "start: 6.1.2.1 git-repo-action (timeout 00:20:00) [flasher]"}
+- {"dt": "2026-11-01T15:16:47.976763+00:00", "lvl": "debug", "msg": "end: 6.1.2.1 git-repo-action (duration 00:00:03) [flasher]"}
+- {"dt": "2026-11-01T15:16:47.977071+00:00", "lvl": "debug", "msg": "start: 6.1.2.2 test-overlay (timeout 00:19:57) [flasher]"}
+- {"dt": "2026-11-01T15:16:47.978047+00:00", "lvl": "debug", "msg": "end: 6.1.2.2 test-overlay (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:16:47.978411+00:00", "lvl": "debug", "msg": "start: 6.1.2.3 test-install-overlay (timeout 00:19:57) [flasher]"}
+- {"dt": "2026-11-01T15:16:47.979844+00:00", "lvl": "debug", "msg": "end: 6.1.2.3 test-install-overlay (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:16:47.980198+00:00", "lvl": "debug", "msg": "start: 6.1.2.4 test-runscript-overlay (timeout 00:19:57) [flasher]"}
+- {"dt": "2026-11-01T15:16:47.982117+00:00", "lvl": "debug", "msg": "end: 6.1.2.4 test-runscript-overlay (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:16:47.982861+00:00", "lvl": "debug", "msg": "end: 6.1.2 test-definition (duration 00:00:03) [flasher]"}
+- {"dt": "2026-11-01T15:16:47.982958+00:00", "lvl": "debug", "msg": "start: 6.1.3 compress-overlay (timeout 00:19:57) [flasher]"}
+- {"dt": "2026-11-01T15:16:57.863593+00:00", "lvl": "debug", "msg": "end: 6.1.3 compress-overlay (duration 00:00:10) [flasher]"}
+- {"dt": "2026-11-01T15:16:57.863762+00:00", "lvl": "debug", "msg": "end: 6.1 lava-overlay (duration 00:00:13) [flasher]"}
+- {"dt": "2026-11-01T15:16:57.863904+00:00", "lvl": "debug", "msg": "start: 6.2 download-retry (timeout 00:19:47) [flasher]"}
+- {"dt": "2026-11-01T15:16:57.864012+00:00", "lvl": "debug", "msg": "start: 6.2.1 http-download (timeout 00:19:47) [flasher]"}
+- {"dt": "2026-11-01T15:17:01.260960+00:00", "lvl": "debug", "msg": "end: 6.2.1 http-download (duration 00:00:03) [flasher]"}
+- {"dt": "2026-11-01T15:17:01.261315+00:00", "lvl": "debug", "msg": "end: 6.2 download-retry (duration 00:00:03) [flasher]"}
+- {"dt": "2026-11-01T15:17:01.261438+00:00", "lvl": "debug", "msg": "start: 6.3 download-postprocess-docker (timeout 00:19:44) [flasher]"}
+- {"dt": "2026-11-01T15:17:01.279077+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:17:02.603669+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:17:12.178764+00:00", "lvl": "debug", "msg": "end: 6.3 download-postprocess-docker (duration 00:00:11) [flasher]"}
+- {"dt": "2026-11-01T15:17:12.178877+00:00", "lvl": "info", "msg": "end: 6 downloads (duration 00:00:27) [flasher]"}
+- {"dt": "2026-11-01T15:17:12.178981+00:00", "lvl": "info", "msg": "start: 7 deploy-flasher-retry (timeout 00:20:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:12.179163+00:00", "lvl": "debug", "msg": "start: 7.1 deploy-flasher (timeout 00:20:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:12.179269+00:00", "lvl": "debug", "msg": "start: 7.1.1 lava-overlay (timeout 00:20:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:12.186046+00:00", "lvl": "debug", "msg": "start: 7.1.1.1 lava-multinode-overlay (timeout 00:20:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:12.186217+00:00", "lvl": "debug", "msg": "end: 7.1.1.1 lava-multinode-overlay (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:12.186328+00:00", "lvl": "debug", "msg": "start: 7.1.1.2 test-definition (timeout 00:20:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:12.186533+00:00", "lvl": "debug", "msg": "start: 7.1.1.2.1 git-repo-action (timeout 00:20:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:14.763986+00:00", "lvl": "debug", "msg": "end: 7.1.1.2.1 git-repo-action (duration 00:00:03) [flasher]"}
+- {"dt": "2026-11-01T15:17:14.764369+00:00", "lvl": "debug", "msg": "start: 7.1.1.2.2 test-overlay (timeout 00:19:57) [flasher]"}
+- {"dt": "2026-11-01T15:17:14.765371+00:00", "lvl": "debug", "msg": "end: 7.1.1.2.2 test-overlay (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:14.765684+00:00", "lvl": "debug", "msg": "start: 7.1.1.2.3 test-install-overlay (timeout 00:19:57) [flasher]"}
+- {"dt": "2026-11-01T15:17:14.766961+00:00", "lvl": "debug", "msg": "end: 7.1.1.2.3 test-install-overlay (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:14.767343+00:00", "lvl": "debug", "msg": "start: 7.1.1.2.4 test-runscript-overlay (timeout 00:19:57) [flasher]"}
+- {"dt": "2026-11-01T15:17:14.769128+00:00", "lvl": "debug", "msg": "end: 7.1.1.2.4 test-runscript-overlay (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:14.769795+00:00", "lvl": "debug", "msg": "end: 7.1.1.2 test-definition (duration 00:00:03) [flasher]"}
+- {"dt": "2026-11-01T15:17:14.769889+00:00", "lvl": "debug", "msg": "start: 7.1.1.3 compress-overlay (timeout 00:19:57) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.582641+00:00", "lvl": "debug", "msg": "end: 7.1.1.3 compress-overlay (duration 00:00:10) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.582818+00:00", "lvl": "debug", "msg": "end: 7.1.1 lava-overlay (duration 00:00:12) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.582946+00:00", "lvl": "debug", "msg": "start: 7.1.2 download-retry (timeout 00:19:48) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.583053+00:00", "lvl": "debug", "msg": "start: 7.1.2.1 pre-downloaded (timeout 00:19:48) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.583542+00:00", "lvl": "debug", "msg": "end: 7.1.2.1 pre-downloaded (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.583641+00:00", "lvl": "debug", "msg": "end: 7.1.2 download-retry (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.583763+00:00", "lvl": "debug", "msg": "start: 7.1.3 download-retry (timeout 00:19:48) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.583911+00:00", "lvl": "debug", "msg": "start: 7.1.3.1 pre-downloaded (timeout 00:19:48) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.584308+00:00", "lvl": "debug", "msg": "end: 7.1.3.1 pre-downloaded (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.584436+00:00", "lvl": "debug", "msg": "end: 7.1.3 download-retry (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.584560+00:00", "lvl": "debug", "msg": "start: 7.1.4 download-retry (timeout 00:19:48) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.584655+00:00", "lvl": "debug", "msg": "start: 7.1.4.1 pre-downloaded (timeout 00:19:48) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.584961+00:00", "lvl": "debug", "msg": "end: 7.1.4.1 pre-downloaded (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.585046+00:00", "lvl": "debug", "msg": "end: 7.1.4 download-retry (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.585178+00:00", "lvl": "debug", "msg": "start: 7.1.5 deploy-device-env (timeout 00:19:48) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.585290+00:00", "lvl": "debug", "msg": "end: 7.1.5 deploy-device-env (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:17:24.585532+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:17:27.487324+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:17:27.521807+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:17:27.523759+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:17:27.526038+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:18:21.486436+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:18:21.659938+00:00", "lvl": "debug", "msg": "end: 7.1 deploy-flasher (duration 00:01:09) [flasher]"}
+- {"dt": "2026-11-01T15:18:21.660135+00:00", "lvl": "info", "msg": "end: 7 deploy-flasher-retry (duration 00:01:09) [flasher]"}
+- {"dt": "2026-11-01T15:18:21.660276+00:00", "lvl": "info", "msg": "start: 8 user-command (timeout 00:04:00) [flasher]"}
+- {"dt": "2026-11-01T15:18:21.660608+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:18:21.684999+00:00", "lvl": "info", "msg": "end: 8 user-command (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:18:21.685218+00:00", "lvl": "info", "msg": "start: 9 minimal-boot (timeout 00:02:00) [flasher]"}
+- {"dt": "2026-11-01T15:18:21.685345+00:00", "lvl": "debug", "msg": "start: 9.1 connect-device (timeout 00:02:00) [flasher]"}
+- {"dt": "2026-11-01T15:18:21.685607+00:00", "lvl": "debug", "msg": "end: 9.1 connect-device (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:18:21.685764+00:00", "lvl": "debug", "msg": "start: 9.2 reset-device (timeout 00:02:00) [flasher]"}
+- {"dt": "2026-11-01T15:18:21.685920+00:00", "lvl": "debug", "msg": "start: 9.2.1 pdu-reboot (timeout 00:02:00) [flasher]"}
+- {"dt": "2026-11-01T15:18:21.686098+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:18:21.858445+00:00", "lvl": "debug", "msg": "Calling: ['sleep']"}
+- {"dt": "2026-11-01T15:18:23.860801+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:18:26.271406+00:00", "lvl": "debug", "msg": "end: 9.2.1 pdu-reboot (duration 00:00:05) [flasher]"}
+- {"dt": "2026-11-01T15:18:26.271685+00:00", "lvl": "debug", "msg": "end: 9.2 reset-device (duration 00:00:05) [flasher]"}
+- {"dt": "2026-11-01T15:18:26.271956+00:00", "lvl": "debug", "msg": "start: 9.3 auto-login-action (timeout 00:01:55) [flasher]"}
+- {"dt": "2026-11-01T15:18:26.272445+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.272528+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.272630+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.272729+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.272825+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.272920+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.273013+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.273125+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.273219+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.273307+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.273389+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.273497+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.273609+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.273716+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.273808+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.273902+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.273967+00:00", "lvl": "target", "msg": "\0S - \b\b\b\bFormat: Log Type - Time(microsec) - Message - Optional Info"}
+- {"dt": "2026-11-01T15:18:26.274054+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.274230+00:00", "lvl": "target", "msg": "S - QC_IMAGE_VERSION_STRING=BOOT.MXF.1.0.c1-00497.7-KODIAKLA-1"}
+- {"dt": "2026-11-01T15:18:26.274367+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.274469+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.274564+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.274654+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.274738+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.274820+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.274901+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.274981+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.275045+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.275137+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.275220+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.275300+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.275378+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.275456+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.275533+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.275612+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.275690+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.275768+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.275846+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.275924+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.276002+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.276084+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.276180+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.276266+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.276349+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.276427+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.276506+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.276586+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.276664+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.276742+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.276820+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.276898+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.276975+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.277053+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.277137+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.277217+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.277297+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.277376+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.277455+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.277534+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.277612+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.277691+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.277769+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.277847+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.277927+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.278006+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.278085+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.278175+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.278255+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.278334+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.278503+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.278577+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.278659+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.278742+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.278836+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.278930+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.279009+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.279073+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.279224+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.279312+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.279396+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.279531+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.279624+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.279720+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.279827+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.279907+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.279987+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.280067+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.280154+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.280236+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.280316+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.280395+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.280474+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.280580+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.280686+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.280792+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.280872+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.280953+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.281032+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.281146+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.281226+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.281306+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.281385+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.281478+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.281570+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.281650+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.281729+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.281808+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.281886+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.281992+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.282097+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.282225+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.282354+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.282431+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.282490+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.282551+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.282611+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.282684+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.282744+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.282920+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.283016+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.283114+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.283225+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.283290+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.283428+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.283521+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.283612+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.283717+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.283811+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.283903+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.283981+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.284072+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.284198+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.284306+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.284383+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.284480+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.284571+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.284690+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.284795+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.284899+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.285004+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.285114+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.285237+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.285316+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.285408+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.285511+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.285615+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.285705+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.285798+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.285904+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.286012+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.286109+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.286202+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.286284+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.286389+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.286464+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.286549+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.286642+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.286747+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.286838+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.287038+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.287123+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.287208+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.287290+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.287373+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.287479+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.287571+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.287664+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.287753+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.287866+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.287975+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.288069+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.288182+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.288275+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.288368+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.288462+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.288542+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.288620+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.288709+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.288805+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.288889+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.288970+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.289050+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.289136+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.289216+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.289297+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.289375+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.289452+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.289560+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.289622+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.289731+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.289822+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.289913+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.290020+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.290103+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.290210+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.290292+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.290371+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.290450+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.290529+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.329250+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.329383+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.329502+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.329599+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.329692+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.329781+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.329872+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.329986+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.330047+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.332377+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.366410+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.366527+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.366645+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.366755+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.366858+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.366959+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.369506+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.440888+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.441005+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.441135+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.441235+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.441327+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.441416+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.441519+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.441608+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.441707+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.443993+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.444115+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.467349+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.467468+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.470511+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.470630+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.521225+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.521342+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.521461+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.521556+00:00", "lvl": "target", "msg": "B -    981978 - SBL1, End"}
+- {"dt": "2026-11-01T15:18:26.521661+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.521751+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.524275+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.603297+00:00", "lvl": "target", "msg": "0       1.055060 Hypervisor cold boot, version: gunyah-e1d3c2ddb prod (2026-02-18 23:56:32 UTC)"}
+- {"dt": "2026-11-01T15:18:26.619245+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.619379+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.678141+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.678258+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.678373+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.678563+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.678723+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.678912+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.679062+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.679194+00:00", "lvl": "target", "msg": "UEFI Start     [ 1129]"}
+- {"dt": "2026-11-01T15:18:26.679290+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.681259+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.701989+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.702119+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.788039+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.788228+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.788333+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.788521+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.788711+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.788917+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.789051+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.789166+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.791085+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.811003+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.811126+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.811247+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.814133+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.814243+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.911999+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.912124+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.912231+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.912328+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.912419+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.912508+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.912595+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.912681+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.912905+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.913055+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.913179+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:26.915026+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.023856+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.023976+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.024080+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.024217+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.024308+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.024396+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.024568+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.089999+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.090115+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.090224+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.090340+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.090435+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.090538+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.090613+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.090804+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.090920+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.091030+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.091158+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.093052+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.139169+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.139374+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.139492+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.142419+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:27.142617+00:00", "lvl": "target", "msg": "."}
+- {"dt": "2026-11-01T15:18:28.095363+00:00", "lvl": "target", "msg": "Start EBS        [ 2449] "}
+- {"dt": "2026-11-01T15:18:28.516472+00:00", "lvl": "target", "msg": "[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x51df805e]"}
+- {"dt": "2026-11-01T15:18:28.517126+00:00", "lvl": "debug", "msg": "start: 9.3.1 login-action (timeout 00:01:53) [flasher]"}
+- {"dt": "2026-11-01T15:18:33.643204+00:00", "lvl": "target", "msg": "[    5.361648] Run /init as init process"}
+- {"dt": "2026-11-01T15:18:44.085510+00:00", "lvl": "debug", "msg": "Matched prompt #13: login:"}
+- {"dt": "2026-11-01T15:18:44.085853+00:00", "lvl": "results", "msg": {"definition": "lava", "case": "kernel-messages", "level": "9.3.1", "duration": "15.57", "result": "pass"}}
+- {"dt": "2026-11-01T15:18:48.188762+00:00", "lvl": "debug", "msg": "end: 9.3.1 login-action (duration 00:00:20) [flasher]"}
+- {"dt": "2026-11-01T15:18:48.189063+00:00", "lvl": "results", "msg": {"definition": "lava", "case": "login-action", "level": "9.3.1", "duration": "19.67", "result": "pass"}}
+- {"dt": "2026-11-01T15:18:48.189737+00:00", "lvl": "debug", "msg": "end: 9.3 auto-login-action (duration 00:00:22) [flasher]"}
+- {"dt": "2026-11-01T15:18:48.190047+00:00", "lvl": "debug", "msg": "start: 9.4 expect-shell-connection (timeout 00:01:33) [flasher]"}
+- {"dt": "2026-11-01T15:18:48.204000+00:00", "lvl": "debug", "msg": "end: 9.4 expect-shell-connection (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:18:48.204356+00:00", "lvl": "debug", "msg": "start: 9.5 export-device-env (timeout 00:01:33) [flasher]"}
+- {"dt": "2026-11-01T15:18:48.204663+00:00", "lvl": "debug", "msg": "end: 9.5 export-device-env (duration 00:00:00) [flasher]"}
+- {"dt": "2026-11-01T15:18:48.204939+00:00", "lvl": "info", "msg": "end: 9 minimal-boot (duration 00:00:27) [flasher]"}
+- {"dt": "2026-11-01T15:18:48.205243+00:00", "lvl": "info", "msg": "start: 10 lava-test-retry (timeout 00:04:00) [flasher]"}
+- {"dt": "2026-11-01T15:18:48.205519+00:00", "lvl": "debug", "msg": "start: 10.1 lava-test-shell (timeout 00:03:00) [flasher]"}
+- {"dt": "2026-11-01T15:18:50.104959+00:00", "lvl": "debug", "msg": "end: 10.1 lava-test-shell (duration 00:00:02) [flasher]"}
+- {"dt": "2026-11-01T15:18:50.105057+00:00", "lvl": "info", "msg": "end: 10 lava-test-retry (duration 00:00:02) [flasher]"}
+- {"dt": "2026-11-01T15:18:50.105200+00:00", "lvl": "info", "msg": "start: 11 finalize (timeout 00:04:00) [common]"}
+- {"dt": "2026-11-01T15:18:50.105316+00:00", "lvl": "debug", "msg": "start: 11.1 power-off (timeout 00:00:10) [common]"}
+- {"dt": "2026-11-01T15:18:50.105499+00:00", "lvl": "debug", "msg": "Calling: ['power']"}
+- {"dt": "2026-11-01T15:18:50.278649+00:00", "lvl": "debug", "msg": "end: 11.1 power-off (duration 00:00:00) [common]"}
+- {"dt": "2026-11-01T15:18:50.279125+00:00", "lvl": "debug", "msg": "start: 11.2 read-feedback (timeout 00:04:00) [common]"}
+- {"dt": "2026-11-01T15:18:51.381370+00:00", "lvl": "debug", "msg": "end: 11.2 read-feedback (duration 00:00:01) [common]"}
+- {"dt": "2026-11-01T15:18:51.381488+00:00", "lvl": "info", "msg": "end: 11 finalize (duration 00:00:01) [common]"}

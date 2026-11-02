@@ -293,6 +293,8 @@ jobs:
             ci scripts/publish-site.sh site "$run"
             exit 0
           fi
+          # The stock reference of each board (public health-check logs).
+          ci python3 -m ubci.run stockref "$run" || echo "stock reference not recorded"
           baseline="site/runs/${{ needs.prepare.outputs.baseline }}.json"
           b=""
           [ -n "${{ needs.prepare.outputs.baseline }}" ] && [ -f "$baseline" ] && b="--baseline $baseline"

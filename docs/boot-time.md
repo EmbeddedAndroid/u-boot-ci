@@ -125,3 +125,26 @@ ms to 190 ms (median absolute deviation; RB3 Gen 2 warm reset to Linux:
 tight for others. Each comparison records the stage, both times, the
 difference, sigma, the threshold and how many runs it came from, per
 stage as well.
+
+## Stock reference
+
+Every board also gets a third series next to the downstream and open
+stacks: its stock firmware booting the lab's own image, as the lab's
+health checks do it (stock UEFI, or ABL on UNO Q, to Linux). Once per run,
+before collecting, the submit job runs `ubci.run stockref`: for each board
+of the run, the 5 newest completed health checks of its LAVA device type
+that ended before the run was created (on devices
+`lava.exclude_devices` does not leave out), each measured like a CI job,
+read through LAVA's public REST API without a token. A health check
+counts by its last power-on (the first one after its flash can retrain
+DDR). The run document keeps the boots with their job links in
+`boot_time_reference`, and per stage the median over those boots, only
+where every one of them timed the stage (dropping the replayed ones would
+keep only the slow, live boots).
+
+Only the firmware stages are a fair comparison, up to "Booting Linux":
+the health checks boot their own kernel and rootfs, not the pristine
+linux-next of the CI, so their `init` and `login` say nothing about
+U-Boot. RB3 Gen 2 health checks boot the kernel over fastboot: their
+firmware stages all arrive in replayed backlog (untimed) and their Linux
+time includes the download.

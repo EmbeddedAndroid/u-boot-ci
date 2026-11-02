@@ -21,6 +21,12 @@ built). The same schema serves u-boot-ci, tf-a-ci and optee-ci.
   release, config and the sha256 of the Image and modules every board
   booted.
 - `host_checks[]`: name, result, summary, log link.
+- `boot_time_reference` (the stock reference, [boot-time.md](boot-time.md)):
+  `version` (1), `tool`, `source`, `before` (health checks that ended
+  before this time) and per board its LAVA `device_type`, `boots[]` (one
+  per health check, as in `boot_time.boots`, with `job`, `job_url`,
+  `device` and `end_time`) and `median` (per stage, where every boot
+  timed it).
 - `targets[]`, one per board and firmware stack:
   - `state` (`queued`, `building`, `flashing`, `testing`, `done`,
     `skipped`, `error`, `cancelled`), `state_detail`, `queue_position`;

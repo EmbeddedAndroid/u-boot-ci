@@ -255,3 +255,53 @@ def compare(t, b, baseline_id, history):
         else:
             kinds[kind] = compare_kind(now, then, t["board"], t["stack"], kind, history)
     return {"baseline": baseline_id, "kinds": kinds}
+
+
+# The stock reference: the board's downstream (vendor) firmware booting its
+# own image, from the lab's health checks: a power-on to the login prompt.
+REFERENCE_JOBS = 5
+
+
+def reference_boot(text, job_url):
+    """The boot a health check is measured by: its last power-on (the first
+    one after a flash can retrain DDR), or None."""
+    on = [b for b in boots(text, job_url) if b["kind"] in ("first", "cold")]
+    return on[-1] if on else None
+
+
+def reference(lava, device_type, before=None, limit=REFERENCE_JOBS, exclude=lambda device: False):
+    """The newest `limit` health checks of a device type that ended before
+    `before` (ISO time, None for now), completed and booted, on devices
+    not excluded: one boot each, with its job. Boots from storage only,
+    or fastboot boots only where the type has no other."""
+    direct, fastboot = [], []
+    for j in lava.jobs(limit=limit * 4, requested_device_type=device_type, health_check="true",
+                       health="Complete", end_time__lt=before):
+        if j.get("health") != "Complete" or exclude(j.get("actual_device") or ""):
+            continue
+        url = lava.job_url(j["id"])
+        b = reference_boot(lava.log(j["id"]), url)
+        if b is None:
+            continue
+        # A kernel sent over fastboot puts the download into Booting Linux:
+        # such boots compare only with each other, so boots from storage
+        # are taken first.
+        (fastboot if b["fastboot"] else direct).append(
+            dict(b, job=j["id"], job_url=url, device=j.get("actual_device"), end_time=j.get("end_time")))
+        if len(direct) == limit:
+            break
+    return direct or fastboot[:limit]
+
+
+def reference_median(ref_boots):
+    """Per stage, the median time over the reference boots, only where
+    every boot timed the stage: dropping the replayed ones would keep the
+    slow, live boots only and bias it."""
+    out = {}
+    for st in STAGES:
+        vals = [time_of(b, st) for b in ref_boots]
+        if ref_boots and all(v is not None for v in vals):
+            s = sorted(vals)
+            n = len(s)
+            out[st] = round(s[n // 2] if n % 2 else (s[n // 2 - 1] + s[n // 2]) / 2, 3)
+    return out

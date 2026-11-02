@@ -258,6 +258,62 @@
       "items": {
         "$ref": "#/$defs/target"
       }
+    },
+    "boot_time_reference": {
+      "type": "object",
+      "required": [
+        "version",
+        "tool",
+        "source",
+        "boards"
+      ],
+      "additionalProperties": false,
+      "description": "the stock reference: per board, the newest lab health checks (the downstream firmware booting its own image) before this run, one power-on boot each",
+      "properties": {
+        "version": {
+          "const": 1
+        },
+        "tool": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "before": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "boards": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "device_type",
+              "boots"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "device_type": {
+                "type": "string"
+              },
+              "boots": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/reference_boot"
+                }
+              },
+              "median": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "$defs": {
@@ -1232,6 +1288,83 @@
               }
             }
           }
+        }
+      }
+    },
+    "reference_boot": {
+      "type": "object",
+      "required": [
+        "kind",
+        "ref_line",
+        "url",
+        "complete",
+        "last_stage",
+        "stages",
+        "job",
+        "job_url"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "first",
+            "cold",
+            "warm-reset",
+            "warm-reboot"
+          ],
+          "description": "first: the job's first power-on (after its flash); cold: a later power-on; warm-reset: after U-Boot's reset command; warm-reboot: after the kernel's reboot"
+        },
+        "ref_line": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "url": {
+          "type": "string"
+        },
+        "complete": {
+          "type": "boolean",
+          "description": "the login prompt arrived"
+        },
+        "last_stage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reset": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "seconds after the reference at which the boot started over without a power command (watchdog, firmware reset)"
+        },
+        "fastboot": {
+          "type": "boolean",
+          "description": "the kernel was sent over fastboot: Linux includes the download"
+        },
+        "stages": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/boot_stage"
+          }
+        },
+        "job": {
+          "type": "integer"
+        },
+        "job_url": {
+          "type": "string"
+        },
+        "device": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "end_time": {
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     }
