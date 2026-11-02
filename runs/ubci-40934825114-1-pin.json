@@ -1,4 +1,297 @@
 {
+ "boot_time_reference": {
+  "before": "2026-10-29T19:40:14Z",
+  "boards": {
+   "rb3gen2": {
+    "boots": [
+     {
+      "complete": true,
+      "device": "rb3g2-hyd-01",
+      "end_time": "2026-10-29T15:19:45.209509Z",
+      "fastboot": true,
+      "job": 523540,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/523540",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2605,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3218,
+        "replayed": true,
+        "t": 16.284
+       },
+       "hyp": {
+        "line": 3105,
+        "replayed": true,
+        "t": 16.243
+       },
+       "init": {
+        "line": 3798,
+        "replayed": false,
+        "t": 20.761
+       },
+       "linux": {
+        "line": 3224,
+        "replayed": false,
+        "t": 16.553
+       },
+       "loader": {
+        "line": 2634,
+        "replayed": true,
+        "t": 16.226
+       },
+       "loader_end": {
+        "line": 2920,
+        "replayed": true,
+        "t": 16.237
+       },
+       "login": {
+        "line": 3977,
+        "replayed": false,
+        "t": 27.883
+       },
+       "uefi": {
+        "line": 3115,
+        "replayed": true,
+        "t": 16.243
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/523540#L2605"
+     },
+     {
+      "complete": true,
+      "device": "rb3g2-05",
+      "end_time": "2026-10-29T12:50:44.418902Z",
+      "fastboot": true,
+      "job": 523186,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/523186",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2436,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 2827,
+        "replayed": true,
+        "t": 5.774
+       },
+       "hyp": {
+        "line": 2714,
+        "replayed": true,
+        "t": 5.722
+       },
+       "init": {
+        "line": 3407,
+        "replayed": false,
+        "t": 10.234
+       },
+       "linux": {
+        "line": 2833,
+        "replayed": false,
+        "t": 6.058
+       },
+       "loader": {
+        "line": 2465,
+        "replayed": true,
+        "t": 5.712
+       },
+       "loader_end": {
+        "line": 2710,
+        "replayed": true,
+        "t": 5.722
+       },
+       "login": {
+        "line": 3586,
+        "replayed": false,
+        "t": 17.402
+       },
+       "uefi": {
+        "line": 2724,
+        "replayed": true,
+        "t": 5.722
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/523186#L2436"
+     },
+     {
+      "complete": true,
+      "device": "rb3g2-02",
+      "end_time": "2026-10-29T11:38:42.132682Z",
+      "fastboot": true,
+      "job": 522807,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/522807",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2461,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 2851,
+        "replayed": true,
+        "t": 8.299
+       },
+       "hyp": {
+        "line": 2738,
+        "replayed": true,
+        "t": 8.25
+       },
+       "init": {
+        "line": 3432,
+        "replayed": false,
+        "t": 12.76
+       },
+       "linux": {
+        "line": 2857,
+        "replayed": false,
+        "t": 8.584
+       },
+       "loader": {
+        "line": 2490,
+        "replayed": true,
+        "t": 8.237
+       },
+       "loader_end": {
+        "line": 2734,
+        "replayed": true,
+        "t": 8.25
+       },
+       "login": {
+        "line": 3611,
+        "replayed": false,
+        "t": 19.803
+       },
+       "uefi": {
+        "line": 2748,
+        "replayed": true,
+        "t": 8.251
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/522807#L2461"
+     },
+     {
+      "complete": true,
+      "device": "rb3g2-03",
+      "end_time": "2026-10-29T08:27:30.884316Z",
+      "fastboot": true,
+      "job": 522312,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/522312",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2632,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3253,
+        "replayed": true,
+        "t": 18.821
+       },
+       "hyp": {
+        "line": 3146,
+        "replayed": true,
+        "t": 18.796
+       },
+       "init": {
+        "line": 3833,
+        "replayed": false,
+        "t": 23.284
+       },
+       "linux": {
+        "line": 3259,
+        "replayed": false,
+        "t": 19.09
+       },
+       "loader": {
+        "line": 2661,
+        "replayed": true,
+        "t": 18.754
+       },
+       "loader_end": {
+        "line": 2961,
+        "replayed": true,
+        "t": 18.78
+       },
+       "login": {
+        "line": 4012,
+        "replayed": false,
+        "t": 30.277
+       },
+       "uefi": {
+        "line": 3156,
+        "replayed": true,
+        "t": 18.796
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/522312#L2632"
+     },
+     {
+      "complete": true,
+      "device": "rb3g2-01",
+      "end_time": "2026-10-29T05:43:56.976275Z",
+      "fastboot": true,
+      "job": 521887,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/521887",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2604,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3218,
+        "replayed": true,
+        "t": 17.532
+       },
+       "hyp": {
+        "line": 3105,
+        "replayed": true,
+        "t": 17.509
+       },
+       "init": {
+        "line": 3798,
+        "replayed": false,
+        "t": 22.024
+       },
+       "linux": {
+        "line": 3224,
+        "replayed": false,
+        "t": 17.832
+       },
+       "loader": {
+        "line": 2633,
+        "replayed": true,
+        "t": 17.468
+       },
+       "loader_end": {
+        "line": 2919,
+        "replayed": true,
+        "t": 17.493
+       },
+       "login": {
+        "line": 3977,
+        "replayed": false,
+        "t": 29.179
+       },
+       "uefi": {
+        "line": 3115,
+        "replayed": true,
+        "t": 17.51
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/521887#L2604"
+     }
+    ],
+    "device_type": "qcs6490-rb3gen2",
+    "median": {
+     "init": 20.761,
+     "linux": 16.553,
+     "login": 27.883
+    }
+   }
+  },
+  "source": "LAVA health checks of the board's device type: its downstream firmware booting the lab's image",
+  "tool": "lava-boottime daf3b44940e8",
+  "version": 1
+ },
  "host_checks": [],
  "linux": {
   "commit": "a39c950806213f6861d00f90729acaaa21f2d95a",
@@ -56,6 +349,150 @@
      "stage": "Linux"
     }
    ],
+   "boot_time": {
+    "boots": [
+     {
+      "complete": false,
+      "fastboot": false,
+      "kind": "first",
+      "last_stage": "uboot",
+      "ref_line": 229,
+      "reset": null,
+      "stages": {
+       "hyp": {
+        "line": 451,
+        "replayed": false,
+        "t": 3.664
+       },
+       "loader": {
+        "line": 246,
+        "replayed": true,
+        "t": 2.413
+       },
+       "loader_end": {
+        "line": 445,
+        "replayed": false,
+        "t": 3.568
+       },
+       "uboot": {
+        "line": 465,
+        "replayed": false,
+        "t": 4.176
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/524152#L229"
+     },
+     {
+      "complete": true,
+      "fastboot": false,
+      "kind": "warm-reset",
+      "last_stage": "login",
+      "ref_line": 1683,
+      "reset": null,
+      "stages": {
+       "hyp": {
+        "line": 1902,
+        "replayed": false,
+        "t": 2.188
+       },
+       "init": {
+        "line": 2420,
+        "replayed": false,
+        "t": 8.156
+       },
+       "linux": {
+        "line": 1972,
+        "replayed": false,
+        "t": 5.017
+       },
+       "loader": {
+        "line": 1698,
+        "replayed": false,
+        "t": 0.361
+       },
+       "loader_end": {
+        "line": 1896,
+        "replayed": false,
+        "t": 2.089
+       },
+       "login": {
+        "line": 2873,
+        "replayed": false,
+        "t": 14.669
+       },
+       "uboot": {
+        "line": 1916,
+        "replayed": false,
+        "t": 2.697
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/524152#L1683"
+     },
+     {
+      "complete": true,
+      "fastboot": false,
+      "kind": "warm-reboot",
+      "last_stage": "login",
+      "ref_line": 3035,
+      "reset": null,
+      "stages": {
+       "hyp": {
+        "line": 3253,
+        "replayed": false,
+        "t": 1.949
+       },
+       "init": {
+        "line": 3776,
+        "replayed": false,
+        "t": 7.929
+       },
+       "linux": {
+        "line": 3334,
+        "replayed": false,
+        "t": 4.777
+       },
+       "loader": {
+        "line": 3048,
+        "replayed": false,
+        "t": 0.173
+       },
+       "loader_end": {
+        "line": 3247,
+        "replayed": false,
+        "t": 1.853
+       },
+       "login": {
+        "line": 4260,
+        "replayed": false,
+        "t": 14.812
+       },
+       "uboot": {
+        "line": 3267,
+        "replayed": false,
+        "t": 2.473
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/524152#L3035"
+     }
+    ],
+    "headline": null,
+    "tool": "lava-boottime daf3b44940e8",
+    "version": 1,
+    "versus_baseline": {
+     "baseline": null,
+     "kinds": {
+      "first": {
+       "verdict": "unknown"
+      },
+      "warm-reboot": {
+       "verdict": "unknown"
+      },
+      "warm-reset": {
+       "verdict": "unknown"
+      }
+     }
+    }
+   },
    "cases": [
     {
      "name": "poweroff",
@@ -317,6 +754,150 @@
      "stage": "Linux"
     }
    ],
+   "boot_time": {
+    "boots": [
+     {
+      "complete": false,
+      "fastboot": false,
+      "kind": "first",
+      "last_stage": "uboot",
+      "ref_line": 227,
+      "reset": null,
+      "stages": {
+       "hyp": {
+        "line": 446,
+        "replayed": false,
+        "t": 3.322
+       },
+       "loader": {
+        "line": 244,
+        "replayed": true,
+        "t": 2.427
+       },
+       "loader_end": {
+        "line": 440,
+        "replayed": false,
+        "t": 3.223
+       },
+       "uboot": {
+        "line": 456,
+        "replayed": false,
+        "t": 3.831
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/524159#L227"
+     },
+     {
+      "complete": true,
+      "fastboot": false,
+      "kind": "warm-reset",
+      "last_stage": "login",
+      "ref_line": 1713,
+      "reset": null,
+      "stages": {
+       "hyp": {
+        "line": 1929,
+        "replayed": false,
+        "t": 1.804
+       },
+       "init": {
+        "line": 2453,
+        "replayed": false,
+        "t": 7.832
+       },
+       "linux": {
+        "line": 2007,
+        "replayed": false,
+        "t": 4.684
+       },
+       "loader": {
+        "line": 1728,
+        "replayed": false,
+        "t": 0.361
+       },
+       "loader_end": {
+        "line": 1923,
+        "replayed": false,
+        "t": 1.721
+       },
+       "login": {
+        "line": 2919,
+        "replayed": false,
+        "t": 35.835
+       },
+       "uboot": {
+        "line": 1943,
+        "replayed": false,
+        "t": 2.329
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/524159#L1713"
+     },
+     {
+      "complete": true,
+      "fastboot": false,
+      "kind": "warm-reboot",
+      "last_stage": "login",
+      "ref_line": 3084,
+      "reset": null,
+      "stages": {
+       "hyp": {
+        "line": 3299,
+        "replayed": false,
+        "t": 1.549
+       },
+       "init": {
+        "line": 3828,
+        "replayed": false,
+        "t": 7.529
+       },
+       "linux": {
+        "line": 3386,
+        "replayed": false,
+        "t": 4.381
+       },
+       "loader": {
+        "line": 3097,
+        "replayed": false,
+        "t": 0.173
+       },
+       "loader_end": {
+        "line": 3293,
+        "replayed": false,
+        "t": 1.45
+       },
+       "login": {
+        "line": 4299,
+        "replayed": false,
+        "t": 35.533
+       },
+       "uboot": {
+        "line": 3313,
+        "replayed": false,
+        "t": 2.061
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/524159#L3084"
+     }
+    ],
+    "headline": null,
+    "tool": "lava-boottime daf3b44940e8",
+    "version": 1,
+    "versus_baseline": {
+     "baseline": null,
+     "kinds": {
+      "first": {
+       "verdict": "unknown"
+      },
+      "warm-reboot": {
+       "verdict": "unknown"
+      },
+      "warm-reset": {
+       "verdict": "unknown"
+      }
+     }
+    }
+   },
    "cases": [
     {
      "name": "poweroff",
