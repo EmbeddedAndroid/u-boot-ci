@@ -132,3 +132,126 @@ def measure(text, entries, job_url, on_target_step=None, tool=TOOL):
         if ot is not None:
             bt["on_target"] = ot
     return bt
+
+
+# Regression threshold: a stage moved when the run and the baseline differ
+# by more than 3 standard deviations of a difference of two boots
+# (3 * sqrt(2) * sigma), sigma estimated robustly (1.4826 * median absolute
+# deviation) from the same series' recent runs, never under the parser's
+# resolution (the console is read in chunks of up to parser.CHUNK).
+HISTORY_MAX = 10
+HISTORY_MIN = 5
+K = 3 * 2 ** 0.5
+MAD_SIGMA = 1.4826
+FLOOR = parser.CHUNK
+
+
+def representative(bt, kind):
+    """The boot of a kind a target is compared by: the headline for cold,
+    else the last boot of that kind."""
+    if not bt:
+        return None
+    if kind == "cold":
+        return bt["boots"][bt["headline"]] if bt.get("headline") is not None else None
+    of = [b for b in bt["boots"] if b["kind"] == kind]
+    return of[-1] if of else None
+
+
+def gated_stages():
+    """Stages up to Booting Linux: the firmware's share, compared."""
+    return STAGES[:STAGES.index(HEADLINE_STAGE) + 1]
+
+
+def noise(values):
+    """(sigma, threshold) from a series' recent values, or (None, None)
+    with fewer than HISTORY_MIN of them."""
+    if len(values) < HISTORY_MIN:
+        return None, None
+    s = sorted(values)
+    med = s[len(s) // 2] if len(s) % 2 else (s[len(s) // 2 - 1] + s[len(s) // 2]) / 2
+    dev = sorted(abs(v - med) for v in values)
+    mad = dev[len(dev) // 2] if len(dev) % 2 else (dev[len(dev) // 2 - 1] + dev[len(dev) // 2]) / 2
+    sigma = MAD_SIGMA * mad
+    return sigma, max(K * sigma, FLOOR)
+
+
+def comparable_history(run, history):
+    """The earlier runs a run's boot-time noise comes from: the nightlies of
+    its base branch (another branch builds other code), never the run
+    itself."""
+    branch = run["run"].get("base", {}).get("branch")
+    return [r for r in history or [] if r["run"]["id"] != run["run"]["id"] and r["run"].get("kind") == "nightly"
+            and r["run"].get("base", {}).get("branch") == branch and r["run"]["created"] < run["run"]["created"]]
+
+
+def series(history, board, stack, kind, stage):
+    """The stage's times in the history runs (newest first, at most
+    HISTORY_MAX) for this board, stack and boot kind: targets whose
+    fingerprint gate passed, stages that were timed."""
+    out = []
+    for r in sorted(history or [], key=lambda r: r["run"]["created"], reverse=True):
+        for t in r["targets"]:
+            if t["board"] != board or t["stack"] != stack or t.get("fingerprint_gate") != "pass":
+                continue
+            v = time_of(representative(t.get("boot_time"), kind), stage)
+            if v is not None:
+                out.append(v)
+        if len(out) >= HISTORY_MAX:
+            break
+    return out[:HISTORY_MAX]
+
+
+def _verdict(delta, threshold):
+    if threshold is None:
+        return "no-history"
+    return "regression" if delta > threshold else "improvement" if delta < -threshold else "same"
+
+
+def compare_kind(now, then, board, stack, kind, history):
+    """One boot kind of a target against the baseline target."""
+    a, b = representative(now, kind), representative(then, kind)
+    if a is None or b is None:
+        return {"verdict": "unknown"}
+    gated = gated_stages()
+    stages = {}
+    for st in gated:
+        x, y = time_of(a, st), time_of(b, st)
+        if x is None or y is None:
+            continue
+        sigma, thr = noise(series(history, board, stack, kind, st))
+        d = round(x - y, 3)
+        stages[st] = {"now": x, "then": y, "delta": d, "threshold": None if thr is None else round(thr, 3),
+                      "verdict": _verdict(d, thr)}
+    # The baseline reached Linux and this run did not: slower by any
+    # measure, whatever the times of the stages before.
+    if HEADLINE_STAGE in b["stages"] and HEADLINE_STAGE not in a["stages"]:
+        return {"verdict": "stopped-earlier", "stage": HEADLINE_STAGE, "now": None,
+                "then": time_of(b, HEADLINE_STAGE), "delta": None, "threshold": None, "noise": None,
+                "history": 0, "stages": stages}
+    # Booting Linux when both have it, else the last stage both timed.
+    st = next((s for s in reversed(gated) if s in stages), None)
+    if st is None:
+        return {"verdict": "unknown", "stages": stages}
+    vals = series(history, board, stack, kind, st)
+    sigma, thr = noise(vals)
+    c = stages[st]
+    return {"verdict": c["verdict"], "stage": st, "now": c["now"], "then": c["then"], "delta": c["delta"],
+            "threshold": c["threshold"], "noise": None if sigma is None else round(sigma, 4),
+            "history": len(vals), "stages": stages}
+
+
+def compare(t, b, baseline_id, history):
+    """boot_time.versus_baseline of target t against baseline target b
+    (same board and stack): per boot kind both have."""
+    now, then = t.get("boot_time"), (b or {}).get("boot_time")
+    if not now:
+        return None
+    kinds = {}
+    for kind in ("cold", "first", "warm-reset", "warm-reboot"):
+        if representative(now, kind) is None:
+            continue
+        if not then or t.get("fingerprint_gate") != "pass" or b.get("fingerprint_gate") != "pass":
+            kinds[kind] = {"verdict": "unknown"}
+        else:
+            kinds[kind] = compare_kind(now, then, t["board"], t["stack"], kind, history)
+    return {"baseline": baseline_id, "kinds": kinds}

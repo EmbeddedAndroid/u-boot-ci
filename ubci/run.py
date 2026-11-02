@@ -10,7 +10,8 @@ python3 -m ubci.run render <run.json> <board> <stack> <package url> <token name>
 python3 -m ubci.run submit <run.json> <packages dir>   (holds LAVA_TOKEN)
 python3 -m ubci.run skip <run.json> <reason>
 python3 -m ubci.run close <run.json> <cancelled|failure>
-python3 -m ubci.run collect <run.json> [--baseline base.json] [--wait [--packages DIR]]
+python3 -m ubci.run collect <run.json> [--baseline base.json] [--history runs/]
+        [--wait [--packages DIR]]
 python3 -m ubci.run site <site dir>
 """
 import argparse
@@ -462,7 +463,7 @@ def submit_pass(path, run, lava, packages):
         save(path, run)
 
 
-def collect_once(run, lava, base):
+def collect_once(run, lava, base, history=None):
     queue = None
     for t in run["targets"]:
         if not t.get("lava") or t["state"] in ("done", "skipped", "error"):
@@ -482,7 +483,7 @@ def collect_once(run, lava, base):
             queue = lava.queue() if queue is None else queue
             t["queue_position"] = fcollect.queue_position(
                 queue, job["id"], config.board(t["board"])["lava"]["device_type"])
-    fbaseline.compare(run, base)
+    fbaseline.compare(run, base, history)
     fflakes.mark(run, (yaml.safe_load(open(os.path.join(config.CONFIG, "flakes.yaml")))
                        or {}).get("flakes", []), datetime.date.today())
 
@@ -549,14 +550,28 @@ def close(args):
     print("%s: %s" % (run["run"]["id"], run["state"]))
 
 
+def load_history(runs_dir):
+    """The run documents of a site's runs/ directory (the boot-time noise
+    of each series comes from them); unreadable ones are left out."""
+    out = []
+    for name in sorted(os.listdir(runs_dir)) if runs_dir and os.path.isdir(runs_dir) else []:
+        if name.endswith(".json"):
+            try:
+                out.append(schema.check(load(os.path.join(runs_dir, name))))
+            except (OSError, ValueError) as e:
+                print("history: %s left out: %s" % (name, str(e).splitlines()[0]), file=sys.stderr)
+    return out
+
+
 def collect(args):
     run = load(args.run)
     base = load(args.baseline) if args.baseline else None
+    history = load_history(args.history)
     lava = Lava()
     while True:
         if args.packages:
             submit_pass(args.run, run, lava, args.packages)
-        collect_once(run, lava, base)
+        collect_once(run, lava, base, history)
         save(args.run, run)
         if not args.wait or run["state"] == "done":
             break
@@ -614,6 +629,7 @@ def main(argv=None):
     a.add_argument("--baseline")
     a.add_argument("--wait", action="store_true")
     a.add_argument("--packages", help="also submit queued targets from this directory on every pass")
+    a.add_argument("--history", help="runs/ directory of the site: earlier runs, for boot-time noise")
     a = sub.add_parser("site")
     a.add_argument("site_dir")
     args = ap.parse_args(argv)

@@ -122,7 +122,7 @@ jobs:
             # A failed pass (network, a concurrent publish) is retried on the next one.
             until $CI_RUN python3 -m ubci.run finished "$run"; do
               $CI_RUN python3 -m ubci.run submit "$run" work/artifacts/out/candidate || echo "submit failed, retrying"
-              $CI_RUN python3 -m ubci.run collect "$run" || echo "collect failed, retrying"
+              $CI_RUN python3 -m ubci.run collect "$run" --history site/runs || echo "collect failed, retrying"
               $CI_RUN scripts/publish-site.sh site "$run" || echo "publish failed, retrying"
               sleep 300
             done

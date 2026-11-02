@@ -74,3 +74,40 @@ on every downstream stack whose Linux runs at EL1), `kernel-to-init` and
 `kernel-to-login`. These are stored apart, in `boot_time.on_target`, with
 the boot they ran in, and are never mixed with the host-side numbers: the
 zeros differ (counter reset against the power-on command).
+
+## Against the baseline
+
+`fwci.baseline` compares every target with the same board and stack of
+the baseline run (the previous nightly of the branch, or the nightly an
+ad-hoc run is based on), boot kind by boot kind, in
+`boot_time.versus_baseline.kinds`. A kind is compared by its cold
+headline boot, or by the last boot of that kind. Only targets whose
+fingerprint gates both passed are compared, and only stages that were
+timed (not replayed) in both.
+
+The verdict is taken at "Booting Linux", or at the last stage before it
+that both boots timed (a board that never reaches Linux is still compared
+up to U-Boot):
+
+| verdict | meaning |
+|---|---|
+| `regression` | later than the baseline by more than the threshold |
+| `improvement` | earlier by more than the threshold |
+| `same` | within the threshold |
+| `stopped-earlier` | the baseline reached "Booting Linux", this run did not |
+| `no-history` | fewer than 5 earlier runs of the series: the difference is shown, not judged |
+| `unknown` | no baseline boot of that kind, or a fingerprint gate failed |
+
+**The threshold comes from the data.** For each board, stack, boot kind
+and stage, sigma is the robust spread of that series over the 10 newest
+earlier nightlies of the same base branch whose gate passed (1.4826
+times the median absolute deviation, which a few outlying runs do not
+move), and the threshold is 3 standard deviations of the difference of
+two boots, 3 * sqrt(2) * sigma, never under 20 ms (LAVA reads the
+console in chunks of up to 20 ms, the parser's resolution). Over the
+published history up to 2026-11-01 the spread of one series runs from 1
+ms to 190 ms (median absolute deviation; RB3 Gen 2 warm reset to Linux:
+110 ms), so a fixed threshold would be too loose for some boards and too
+tight for others. Each comparison records the stage, both times, the
+difference, sigma, the threshold and how many runs it came from, per
+stage as well.

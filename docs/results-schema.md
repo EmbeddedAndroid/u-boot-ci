@@ -65,7 +65,12 @@ built). The same schema serves u-boot-ci, tf-a-ci and optee-ci.
     `t` in seconds after the reference, the log `line` and `replayed`),
     `headline` (index of the cold boot the target is judged by, or null)
     and `on_target` (the on-target boot-time case: its cases with value
-    and units or the reason of a skip, and the boot it ran in).
+    and units or the reason of a skip, and the boot it ran in), and
+    `versus_baseline`: the baseline run id and per boot kind the
+    verdict (`regression`, `improvement`, `same`, `stopped-earlier`,
+    `no-history`, `unknown`), the stage compared, both times, the
+    difference, the noise and threshold and the number of history runs,
+    and the same per stage ([boot-time.md](boot-time.md)).
 
 Documents written before 2026-10-25 may also carry, per target,
 `restore` (the end-of-job lab firmware restore: `pass`, `fail`,
