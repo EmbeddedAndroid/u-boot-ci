@@ -65,7 +65,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main ee9fc27f2a2a",
-  "updated": "2026-11-02T09:10:32Z"
+  "updated": "2026-11-02T09:15:52Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -97,7 +97,147 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "poweroff",
+     "result": "pass",
+     "suite": "poweroff"
+    },
+    {
+     "name": "reboot",
+     "result": "pass",
+     "suite": "reboot"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "cpus-online",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "modules-loaded",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "dmesg-errors",
+     "output": [
+      "<3>[    0.381888] qcom-smem smem: Found an unknown type of DRAM info struct (size = 216)",
+      "<3>[    1.858043] qcom_pmic_glink pmic-glink: Failed to create device link (0x180) with supplier 1-001c for /pmic-glink/connector@0",
+      "<3>[    2.369448] qcom_pmic_glink pmic-glink: Failed to create device link (0x180) with supplier a600000.usb for /pmic-glink/connector@0",
+      "<3>[    2.686504] qcom_pmic_glink pmic-glink: Failed to create device link (0x180) with supplier 1-001c for /pmic-glink/connector@0",
+      "<3>[    2.746251] Bluetooth: hci0: unexpected event for opcode 0xfc48"
+     ],
+     "result": "fail",
+     "suite": "smoke",
+     "url": "https://lava.infra.foundries.io/scheduler/job/529251#L2979"
+    },
+    {
+     "name": "storage",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "usb",
+     "note": "known gap: the USB-A ports sit behind a Renesas uPD720201 xHCI that needs renesas_usb_fw.mem, which is not redistributable; the Type-C port is a USB peripheral in the upstream DT",
+     "result": "skip",
+     "suite": "smoke"
+    },
+    {
+     "name": "network",
+     "result": "fail",
+     "suite": "smoke"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke-after-reboot"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "pass",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "main",
@@ -174,22 +314,32 @@
      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
+   "diff": {
+    "new_fail": [],
+    "new_pass": [],
+    "still_fail": [
+     "smoke/dmesg-errors",
+     "smoke/network",
+     "u-boot/uboot-usb"
+    ]
+   },
    "fingerprint": "ubci-41408247836-1-main-stock-rb3gen2",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
     "device": "rb3g2-01",
-    "health": "Unknown",
+    "health": "Complete",
     "job_id": 529251,
     "url": "https://lava.infra.foundries.io/scheduler/job/529251"
    },
    "linux_boot": {
-    "stage": "not-reached",
-    "verdict": "not-run",
-    "versus_baseline": "unknown"
+    "stage": "login",
+    "url": "https://lava.infra.foundries.io/scheduler/job/529251#L2909",
+    "verdict": "pass",
+    "versus_baseline": "same"
    },
    "queue_position": null,
    "stack": "stock",
-   "state": "testing"
+   "state": "done"
   },
   {
    "board": "rb3gen2",
@@ -1421,7 +1571,163 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "poweroff",
+     "result": "pass",
+     "suite": "poweroff"
+    },
+    {
+     "name": "reboot",
+     "result": "pass",
+     "suite": "reboot"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "cpus-online",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "modules-loaded",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "dmesg-errors",
+     "output": [
+      "<3>[    0.189707] qcom-smem 90900000.smem: Found an unknown type of DRAM info struct (size = 216)",
+      "<3>[    2.587679] remoteproc remoteproc0: request_firmware failed: -2",
+      "<3>[    2.620485] remoteproc remoteproc1: request_firmware failed: -2",
+      "<3>[    2.627063] remoteproc remoteproc2: request_firmware failed: -2",
+      "<3>[    2.864268] qcom-iris aa00000.video-codec: firmware download failed -2",
+      "<3>[    2.864476] qcom-iris aa00000.video-codec: video hw is power on",
+      "<3>[    2.865263] qcom-iris aa00000.video-codec: core init failed",
+      "<3>[    2.867410] qcom-iris aa00000.video-codec: firmware download failed -2",
+      "<3>[    2.867607] qcom-iris aa00000.video-codec: video hw is power on",
+      "<3>[    2.868211] qcom-iris aa00000.video-codec: core init failed",
+      "<3>[    2.983821] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[    5.573241] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[    5.573500] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[    5.576570] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[    8.165117] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[    8.165190] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[    8.166029] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[   10.755597] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[   10.755868] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[   10.757292] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[   13.347274] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[   13.347669] Bluetooth: hci0: Reading QCA version information failed (-110)"
+     ],
+     "result": "fail",
+     "suite": "smoke",
+     "url": "https://lava.infra.foundries.io/scheduler/job/529252#L2587"
+    },
+    {
+     "name": "storage",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "usb",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "network",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke-after-reboot"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "pass",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "main",
@@ -1505,11 +1811,19 @@
      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
+   "diff": {
+    "new_fail": [],
+    "new_pass": [],
+    "still_fail": [
+     "smoke/dmesg-errors",
+     "u-boot/uboot-usb"
+    ]
+   },
    "fingerprint": "ubci-41408247836-1-main-stock-ventuno-q",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
     "device": "ventunoq-hyd-02",
-    "health": "Unknown",
+    "health": "Complete",
     "job_id": 529252,
     "url": "https://lava.infra.foundries.io/scheduler/job/529252"
    },
@@ -1517,13 +1831,14 @@
     "gaps": [
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
     ],
-    "stage": "not-reached",
-    "verdict": "not-run",
-    "versus_baseline": "unknown"
+    "stage": "login",
+    "url": "https://lava.infra.foundries.io/scheduler/job/529252#L2124",
+    "verdict": "pass",
+    "versus_baseline": "same"
    },
    "queue_position": null,
    "stack": "stock",
-   "state": "testing"
+   "state": "done"
   },
   {
    "board": "ventuno-q",
@@ -2775,7 +3090,154 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "poweroff",
+     "result": "pass",
+     "suite": "poweroff"
+    },
+    {
+     "name": "reboot",
+     "result": "pass",
+     "suite": "reboot"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "cpus-online",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "modules-loaded",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "dmesg-errors",
+     "output": [
+      "<3>[    0.036016] CPUidle PSCI: failed to create CPU PM domains ret=-517",
+      "<3>[    0.076558] CPUidle PSCI: CPU 0 failed to PSCI idle",
+      "<3>[    2.935293] remoteproc remoteproc1: request_firmware failed: -2",
+      "<3>[    3.347345] qcom-iris 5a00000.video-codec: firmware download failed -2",
+      "<3>[    3.350332] qcom-iris 5a00000.video-codec: core init failed",
+      "<3>[    3.359242] qcom-iris 5a00000.video-codec: firmware download failed -2",
+      "<3>[    3.371348] qcom-iris 5a00000.video-codec: core init failed",
+      "<3>[    3.494338] Bluetooth: hci0: Frame reassembly failed (-84)",
+      "<3>[    3.645943] msm_dpu 5e01000.display-controller: [drm:adreno_request_fw [msm]] *ERROR* failed to load a702_sqe.fw",
+      "<3>[    3.656914] Bluetooth: hci0: QCA Failed to request file: qca/apbtfw11.tlv (-2)",
+      "<3>[    3.656971] Bluetooth: hci0: QCA Failed to request file: qca/apbtfw11.tlv (-2)",
+      "<3>[    3.657141] Bluetooth: hci0: unexpected event for opcode 0x0000",
+      "<3>[    5.703376] Bluetooth: hci0: QCA preshutdown_cmd failed (-56)"
+     ],
+     "result": "fail",
+     "suite": "smoke",
+     "url": "https://lava.infra.foundries.io/scheduler/job/529255#L2039"
+    },
+    {
+     "name": "storage",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "usb",
+     "result": "fail",
+     "suite": "smoke"
+    },
+    {
+     "name": "network",
+     "result": "fail",
+     "suite": "smoke"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke-after-reboot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "pass",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "main",
@@ -2849,22 +3311,33 @@
      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
+   "diff": {
+    "new_fail": [],
+    "new_pass": [],
+    "still_fail": [
+     "smoke/dmesg-errors",
+     "smoke/network",
+     "smoke/usb",
+     "u-boot/uboot-usb"
+    ]
+   },
    "fingerprint": "ubci-41408247836-1-main-stock-uno-q",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
-    "device": null,
-    "health": null,
+    "device": "unoq-01",
+    "health": "Complete",
     "job_id": 529255,
     "url": "https://lava.infra.foundries.io/scheduler/job/529255"
    },
    "linux_boot": {
-    "gaps": [],
-    "stage": "not-reached",
-    "verdict": "not-run",
-    "versus_baseline": "unknown"
+    "stage": "login",
+    "url": "https://lava.infra.foundries.io/scheduler/job/529255#L1977",
+    "verdict": "pass",
+    "versus_baseline": "same"
    },
+   "queue_position": null,
    "stack": "stock",
-   "state": "queued"
+   "state": "done"
   },
   {
    "board": "uno-q",
@@ -4091,7 +4564,89 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "fail",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "main",
@@ -4163,22 +4718,41 @@
      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
+   "diff": {
+    "new_fail": [],
+    "new_pass": [],
+    "still_fail": [
+     "linux-version/linux_version",
+     "u-boot/uboot-storage",
+     "u-boot/uboot-usb"
+    ]
+   },
    "fingerprint": "ubci-41408247836-1-main-stock-qcs615-ride",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
-    "device": null,
-    "health": null,
+    "device": "qcs615-adp-air-01",
+    "health": "Incomplete",
     "job_id": 529253,
     "url": "https://lava.infra.foundries.io/scheduler/job/529253"
    },
    "linux_boot": {
-    "gaps": [],
-    "stage": "not-reached",
-    "verdict": "not-run",
-    "versus_baseline": "unknown"
+    "last_lines": [
+     "[2K\rHit any key to stop autoboot: 1[2K\rHit any key to stop autoboot: 0",
+     "7[r[999;999H[6n8MMC: no card present",
+     "Cannot persist EFI variables without system partition",
+     "fw_name is not defined. Not generating capsule GUIDs",
+     "Loading Boot0000 'mmc 0' failed",
+     "=> \ufffd"
+    ],
+    "stage": "nothing-booted",
+    "url": "https://lava.infra.foundries.io/scheduler/job/529253#L1127",
+    "verdict": "fail",
+    "versus_baseline": "upstream-gap"
    },
+   "queue_position": null,
    "stack": "stock",
-   "state": "queued"
+   "state": "done",
+   "state_detail": "LAVA job incomplete"
   },
   {
    "board": "qcs615-ride",
@@ -5412,7 +5986,187 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "reboot",
+     "result": "fail",
+     "suite": "reboot"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "cpus-online",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "modules-loaded",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "dmesg-errors",
+     "output": [
+      "<3>[    0.000000] RME: RMM doesn't support RSI version 1.0. Supported range: 1.0-0.0",
+      "<3>[    0.200955] qcom-smem 90900000.smem: Found an unknown type of DRAM info struct (size = 216)",
+      "<3>[    2.308543] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.383554] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.533621] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.651261] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.661131] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.721100] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.732448] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.737345] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.769005] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.773960] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.776947] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.792597] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.801834] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.810339] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.814460] dwc3-qcom a800000.usb: Failed to create device link (0x180) with supplier 2-0047 for /soc@0/usb@a800000/hub@2",
+      "<3>[    2.821028] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.824520] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.828120] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.844275] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.869714] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.894761] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.974815] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    2.975931] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    3.070629] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    3.118258] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    3.155688] remoteproc remoteproc0: request_firmware failed: -2",
+      "<3>[    3.156440] remoteproc remoteproc1: request_firmware failed: -2",
+      "<3>[    3.156828] remoteproc remoteproc2: request_firmware failed: -2",
+      "<3>[    3.157104] remoteproc remoteproc3: request_firmware failed: -2",
+      "<3>[    3.157470] remoteproc remoteproc4: request_firmware failed: -2",
+      "<3>[    3.170092] dwc3-qcom a800000.usb: Failed to create device link (0x180) with supplier 2-0047 for /soc@0/usb@a800000/hub@2",
+      "<3>[    3.238686] qcom-iris aa00000.video-codec: firmware download failed -2",
+      "<3>[    3.238834] qcom-iris aa00000.video-codec: video hw is power on",
+      "<3>[    3.239202] qcom-iris aa00000.video-codec: core init failed",
+      "<3>[    3.240310] qcom-iris aa00000.video-codec: firmware download failed -2",
+      "<3>[    3.240456] qcom-iris aa00000.video-codec: video hw is power on",
+      "<3>[    3.240824] qcom-iris aa00000.video-codec: core init failed",
+      "<3>[    3.258236] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    3.268923] Bluetooth: hci0: QCA Failed to request file: qca/wcnhpbtfw21.tlv (-2)",
+      "<3>[    3.268933] Bluetooth: hci0: QCA Failed to request file: qca/hpbtfw21.tlv (-2)",
+      "<3>[    3.268934] Bluetooth: hci0: QCA Failed to request file: qca/hpbtfw21.tlv (-2)",
+      "<3>[    3.269004] Bluetooth: hci0: unexpected event for opcode 0xfc48",
+      "<3>[    3.391896] mhi mhi0: Error loading firmware: -2",
+      "<3>[    3.391952] ath11k_pci 0000:01:00.0: failed to start mhi: -110",
+      "<3>[    3.391954] ath11k_pci 0000:01:00.0: failed to power up :-110",
+      "<3>[    3.501873] msm_dpu ae01000.display-controller: [drm:adreno_request_fw [msm]] *ERROR* failed to load a660_sqe.fw",
+      "<3>[    3.614605] ath11k_pci 0000:01:00.0: failed to create soc core: -110",
+      "<3>[    3.614608] ath11k_pci 0000:01:00.0: failed to init core: -110",
+      "<3>[    5.185256] ath11k_pci 0000:01:00.0: probe with driver ath11k_pci failed with error -110",
+      "<3>[    7.141278] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    7.307002] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    7.505716] geni_spi 888000.spi: spi master firmware load failed ret: -517",
+      "<3>[    7.554678] geni_spi 888000.spi: spi master firmware load failed ret: -517"
+     ],
+     "result": "fail",
+     "suite": "smoke",
+     "url": "https://lava.infra.foundries.io/scheduler/job/529254#L2860"
+    },
+    {
+     "name": "storage",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "usb",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "network",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "pass",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "main",
@@ -5489,22 +6243,33 @@
      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=7649ba73f9e7e1e04d0b46213e39c79ae09dd55c"
     }
    ],
+   "diff": {
+    "new_fail": [],
+    "new_pass": [],
+    "still_fail": [
+     "reboot/reboot",
+     "smoke/dmesg-errors",
+     "u-boot/uboot-usb"
+    ]
+   },
    "fingerprint": "ubci-41408247836-1-main-stock-lemans-evk",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
-    "device": null,
-    "health": null,
+    "device": "rb8-02",
+    "health": "Incomplete",
     "job_id": 529254,
     "url": "https://lava.infra.foundries.io/scheduler/job/529254"
    },
    "linux_boot": {
-    "gaps": [],
-    "stage": "not-reached",
-    "verdict": "not-run",
-    "versus_baseline": "unknown"
+    "stage": "login",
+    "url": "https://lava.infra.foundries.io/scheduler/job/529254#L2798",
+    "verdict": "pass",
+    "versus_baseline": "same"
    },
+   "queue_position": null,
    "stack": "stock",
-   "state": "queued"
+   "state": "done",
+   "state_detail": "LAVA job incomplete"
   },
   {
    "board": "lemans-evk",
