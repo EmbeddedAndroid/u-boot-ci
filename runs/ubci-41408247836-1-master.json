@@ -65,7 +65,7 @@
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-11-02T08:56:55Z"
+  "updated": "2026-11-02T09:02:09Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -371,7 +371,202 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "poweroff",
+     "result": "pass",
+     "suite": "poweroff"
+    },
+    {
+     "name": "reboot",
+     "result": "pass",
+     "suite": "reboot"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "cpus-online",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "modules-loaded",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "dmesg-errors",
+     "output": [
+      "<3>[    0.199336] qcom_scm firmware:scm: qseecom: scm call failed with error -5",
+      "<3>[    0.413712] qcom-smem smem: Found an unknown type of DRAM info struct (size = 216)",
+      "<3>[    1.662601] qcom-ice 7c8000.crypto: probe with driver qcom-ice failed with error -95",
+      "<3>[    1.662841] qcom-ice 1d88000.crypto: probe with driver qcom-ice failed with error -95",
+      "<3>[    1.667156] qcomtee: QTEE returned with -22.",
+      "<3>[    2.310182] qcom_pmic_glink pmic-glink: Failed to create device link (0x180) with supplier a600000.usb for /pmic-glink/connector@0",
+      "<3>[    2.397077] qcom_pmic_glink pmic-glink: Failed to create device link (0x180) with supplier 1-001c for /pmic-glink/connector@0",
+      "<3>[    2.731114] qcom_pmic_glink pmic-glink: Failed to create device link (0x180) with supplier 1-001c for /pmic-glink/connector@0",
+      "<3>[    4.679075] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[    4.679088] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[   37.899069] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[   37.899079] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[   40.536735] xhci-pci-renesas 0001:04:00.0: can't setup: -110",
+      "<3>[   40.536768] xhci-pci-renesas 0001:04:00.0: init 0001:04:00.0 fail, -110",
+      "<3>[   40.536773] xhci-pci-renesas 0001:04:00.0: probe with driver xhci-pci-renesas failed with error -110"
+     ],
+     "result": "fail",
+     "suite": "smoke",
+     "url": "https://lava.infra.foundries.io/scheduler/job/529246#L2922"
+    },
+    {
+     "name": "storage",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "usb",
+     "note": "known gap: the USB-A ports sit behind a Renesas uPD720201 xHCI that needs renesas_usb_fw.mem, which is not redistributable; the Type-C port is a USB peripheral in the upstream DT",
+     "result": "skip",
+     "suite": "smoke"
+    },
+    {
+     "name": "network",
+     "result": "fail",
+     "suite": "smoke"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke-after-reboot"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "pass",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "master",
@@ -1470,10 +1665,10 @@
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-open-rb3gen2",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
-    "device": null,
-    "health": null,
+    "device": "rb3g2-01",
+    "health": "Complete",
     "job_id": 529246,
     "url": "https://lava.infra.foundries.io/scheduler/job/529246"
    },
@@ -1481,12 +1676,14 @@
     "gaps": [
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
     ],
-    "stage": "not-reached",
-    "verdict": "not-run",
+    "stage": "login",
+    "url": "https://lava.infra.foundries.io/scheduler/job/529246#L2852",
+    "verdict": "pass",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "done"
   },
   {
    "board": "rb3gen2",
@@ -4287,8 +4484,8 @@
    "fingerprint": "ubci-41408247836-1-master-open-uno-q",
    "fingerprint_gate": "not-run",
    "lava": {
-    "device": null,
-    "health": null,
+    "device": "unoq-01",
+    "health": "Unknown",
     "job_id": 529247,
     "url": "https://lava.infra.foundries.io/scheduler/job/529247"
    },
@@ -4300,8 +4497,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "testing"
   },
   {
    "board": "uno-q",
@@ -4603,7 +4801,137 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "bl2_v",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "bl31_v",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "op_tee_version",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "fail",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "master",
@@ -5706,21 +6034,31 @@
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-open-qcs615-ride",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
-    "device": null,
-    "health": null,
+    "device": "qcs615-adp-air-01",
+    "health": "Incomplete",
     "job_id": 529248,
     "url": "https://lava.infra.foundries.io/scheduler/job/529248"
    },
    "linux_boot": {
-    "gaps": [],
-    "stage": "not-reached",
-    "verdict": "not-run",
+    "last_lines": [
+     "Couldn't get mmc clocks: -19",
+     "Power domain id (0) not supported",
+     "Couldn't get mmc clocks: -19",
+     "Cannot persist EFI variables without system partition",
+     "fw_name is not defined. Not generating capsule GUIDs",
+     "=> "
+    ],
+    "stage": "nothing-booted",
+    "url": "https://lava.infra.foundries.io/scheduler/job/529248#L1198",
+    "verdict": "fail",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "done",
+   "state_detail": "LAVA job incomplete"
   },
   {
    "board": "qcs615-ride",
@@ -6027,7 +6365,152 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "cases": [
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "bl2_v",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "bl31_v",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "op_tee_version",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "fail",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "master",
@@ -7130,21 +7613,31 @@
     }
    ],
    "fingerprint": "ubci-41408247836-1-master-open-lemans-evk",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
-    "device": null,
-    "health": null,
+    "device": "rb8-02",
+    "health": "Incomplete",
     "job_id": 529249,
     "url": "https://lava.infra.foundries.io/scheduler/job/529249"
    },
    "linux_boot": {
-    "gaps": [],
-    "stage": "not-reached",
-    "verdict": "not-run",
+    "last_lines": [
+     "7[r[999;999H[6n8Power domain id (0) not supported",
+     "gcc@0x100000: unknown clock ID 171!",
+     "Couldn't enable mmc clocks: -2",
+     "Cannot persist EFI variables without system partition",
+     "fw_name is not defined. Not generating capsule GUIDs",
+     "=> \u0000"
+    ],
+    "stage": "nothing-booted",
+    "url": "https://lava.infra.foundries.io/scheduler/job/529249#L1642",
+    "verdict": "fail",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "done",
+   "state_detail": "LAVA job incomplete"
   },
   {
    "board": "lemans-evk",
