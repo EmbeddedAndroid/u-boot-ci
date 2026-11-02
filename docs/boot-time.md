@@ -183,3 +183,22 @@ Series colors are slots 1 to 3 of a categorical palette validated for
 color-vision deficiency in light and dark (stock blue, downstream orange,
 open aqua; SPL takes slot 4); phases are steps of the series color.
 Values and names are text set with `textContent`, never HTML.
+
+## Backfill
+
+Run documents written before boot times were recorded get them from the
+public logs of their own LAVA jobs, without a token:
+
+    scripts/site-checkout.sh site
+    python3 -m ubci.run backfill site/runs --cache work/lava-logs
+    python3 -m ubci.run site site
+
+`backfill` measures every finished target that has no `boot_time` yet,
+records each run's stock reference (the health checks that ended before
+the run was created), then, oldest run first, compares each target with
+its run's baseline using only the runs before it, as the collector would
+have. Nothing else in a document changes, and a run already backfilled is
+left as it is (`--force` measures again). A job whose log cannot be read
+is reported and skipped. These runs have no cold boot: their headline is
+null, and their warm resets and reboots, and the first power-on, carry
+the history. Publishing the result is a commit to the gh-pages branch.

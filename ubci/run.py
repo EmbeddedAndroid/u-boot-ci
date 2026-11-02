@@ -13,6 +13,7 @@ python3 -m ubci.run close <run.json> <cancelled|failure>
 python3 -m ubci.run collect <run.json> [--baseline base.json] [--history runs/]
         [--wait [--packages DIR]]
 python3 -m ubci.run stockref <run.json> [--limit N] [--cache DIR]
+python3 -m ubci.run backfill <runs dir> [--cache DIR] [--force]
 python3 -m ubci.run site <site dir>
 """
 import argparse
@@ -537,6 +538,59 @@ def stockref(args):
         print("%s: %d health check(s), Booting Linux median %s" % (b, len(r["boots"]), r["median"].get("linux")))
 
 
+def backfill_runs(runs, lava, force=False):
+    """Boot times for run documents written before they were recorded,
+    from their public LAVA logs: per finished target its boot_time, per
+    run the stock reference of the health checks before it, then, oldest
+    run first, each target against its run's baseline and history. Every
+    other field is left as it is. Returns the ids of the runs changed."""
+    changed = set()
+    for r in runs:
+        for t in r["targets"]:
+            job = (t.get("lava") or {}).get("job_id")
+            if not job or t["state"] != "done" or (t.get("boot_time") and not force):
+                continue
+            try:
+                text = lava.log(job)
+            except (OSError, ValueError) as e:
+                print("%s %s/%s: job %d not measured: %s" % (r["run"]["id"], t["board"], t["stack"], job, e),
+                      file=sys.stderr)
+                continue
+            t["boot_time"] = fboottime.measure(text, fcollect.log_entries(text), t["lava"]["url"],
+                                               (jobs.BOOTTIME_SUITE, jobs.BOOTTIME_CASE))
+            changed.add(r["run"]["id"])
+        if force or "boot_time_reference" not in r:
+            stock_reference(r, lava)
+            changed.add(r["run"]["id"])
+    by_id = {r["run"]["id"]: r for r in runs}
+    ordered = sorted(runs, key=lambda r: r["run"]["created"])
+    for i, r in enumerate(ordered):
+        base = by_id.get(r["run"].get("baseline"))
+        targets = {(t["board"], t["stack"]): t for t in (base or {}).get("targets", [])}
+        for t in r["targets"]:
+            if not t.get("boot_time"):
+                continue
+            vs = fboottime.compare(t, targets.get((t["board"], t["stack"])), (base or {}).get("run", {}).get("id"),
+                                   fboottime.comparable_history(r, ordered[:i]))
+            if vs != t["boot_time"].get("versus_baseline"):
+                t["boot_time"]["versus_baseline"] = vs
+                changed.add(r["run"]["id"])
+    return changed
+
+
+def backfill(args):
+    paths = sorted(os.path.join(args.runs, n) for n in os.listdir(args.runs) if n.endswith(".json"))
+    runs = [load(p) for p in paths]
+    changed = backfill_runs(runs, LavaRest(config.project()["lava"]["url"], args.cache), args.force)
+    for p, r in zip(paths, runs):
+        if r["run"]["id"] in changed:
+            schema.check(r)
+            with open(p + ".tmp", "w") as f:
+                json.dump(r, f, indent=1, sort_keys=True)
+            os.replace(p + ".tmp", p)
+    print("%d of %d run documents updated" % (len(changed), len(runs)))
+
+
 def summary(args):
     """Markdown summary of a run, per board and stack (the PR comment of a
     pin candidate)."""
@@ -683,6 +737,10 @@ def main(argv=None):
     a.add_argument("run")
     a.add_argument("--limit", type=int, default=fboottime.REFERENCE_JOBS)
     a.add_argument("--cache", help="keep the job logs read here")
+    a = sub.add_parser("backfill")
+    a.add_argument("runs", help="a site's runs/ directory")
+    a.add_argument("--cache", help="keep the job logs read here")
+    a.add_argument("--force", action="store_true", help="measure targets that already have boot times again")
     a = sub.add_parser("site")
     a.add_argument("site_dir")
     args = ap.parse_args(argv)
@@ -690,7 +748,7 @@ def main(argv=None):
         site.write(args.site_dir)
     else:
         {"new": new, "host": host, "render": render, "submit": submit, "skip": skip, "summary": summary, "finished": finished, "linux": set_linux,
-         "collect": collect, "close": close, "built": built, "stockref": stockref}[args.cmd](args)
+         "collect": collect, "close": close, "built": built, "stockref": stockref, "backfill": backfill}[args.cmd](args)
 
 
 if __name__ == "__main__":
