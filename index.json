@@ -542,7 +542,33 @@
      ]
     },
     "qcs615-ride/open": {
-     "cases": {},
+     "cases": {
+      "firmware-fingerprint-reboot/bl2_v": "----------s",
+      "firmware-fingerprint-reboot/bl31_v": "----------s",
+      "firmware-fingerprint-reboot/op_tee_version": "----------s",
+      "firmware-fingerprint-reboot/u_boot_20": "----------s",
+      "firmware-fingerprint-reset/bl2_v": "----------p",
+      "firmware-fingerprint-reset/bl31_v": "----------p",
+      "firmware-fingerprint-reset/op_tee_version": "----------p",
+      "firmware-fingerprint-reset/u_boot_20": "----------p",
+      "firmware-fingerprint/bl2_v": "----------p",
+      "firmware-fingerprint/bl31_v": "----------p",
+      "firmware-fingerprint/op_tee_version": "----------p",
+      "firmware-fingerprint/u_boot_20": "----------p",
+      "linux-version/linux_version": "----------f",
+      "u-boot/autoboot": "----------p",
+      "u-boot/u-boot-prompt": "----------p",
+      "u-boot/u-boot-sync": "----------p",
+      "u-boot/uboot-bdinfo": "----------p",
+      "u-boot/uboot-bootflow": "----------p",
+      "u-boot/uboot-clocks": "----------p",
+      "u-boot/uboot-dm-tree": "----------p",
+      "u-boot/uboot-efi-media": "----------p",
+      "u-boot/uboot-reset": "----------p",
+      "u-boot/uboot-storage": "----------p",
+      "u-boot/uboot-usb": "----------f",
+      "u-boot/uboot-version": "----------p"
+     },
      "runs": [
       "ubci-40199892508-1-main",
       "ubci-40279426778-1-main",
@@ -4273,7 +4299,7 @@
      },
      {
       "board": "qcs615-ride",
-      "boot": "not-run",
+      "boot": "fail",
       "boot_chain": [
        {
         "origin": "downstream",
@@ -4311,13 +4337,13 @@
         "stage": "Linux"
        }
       ],
-      "boot_stage": "not-reached",
-      "boot_url": "",
+      "boot_stage": "nothing-booted",
+      "boot_url": "https://lava.infra.foundries.io/scheduler/job/529259#L2117",
       "counts": {
-       "fail": 0,
+       "fail": 2,
        "flaky": 0,
-       "pass": 0,
-       "skip": 0,
+       "pass": 19,
+       "skip": 4,
        "unknown": 0
       },
       "distance": {
@@ -4328,7 +4354,7 @@
       "fragments_missing": [
        "qcs615-ride.config"
       ],
-      "gate": "not-run",
+      "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/529259",
       "new_fail": 0,
       "no_spl": null,
@@ -4336,8 +4362,8 @@
       "run": "ubci-41408247836-1-main",
       "spl_in_flight": [],
       "stack": "open",
-      "state": "testing",
-      "state_detail": "",
+      "state": "done",
+      "state_detail": "LAVA job incomplete",
       "versus": "unknown"
      }
     ],
@@ -12620,7 +12646,7 @@
     },
     {
      "board": "qcs615-ride",
-     "boot": "not-run",
+     "boot": "fail",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -12658,13 +12684,13 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "not-reached",
-     "boot_url": "",
+     "boot_stage": "nothing-booted",
+     "boot_url": "https://lava.infra.foundries.io/scheduler/job/529259#L2117",
      "counts": {
-      "fail": 0,
+      "fail": 2,
       "flaky": 0,
-      "pass": 0,
-      "skip": 0,
+      "pass": 19,
+      "skip": 4,
       "unknown": 0
      },
      "distance": {
@@ -12675,7 +12701,7 @@
      "fragments_missing": [
       "qcs615-ride.config"
      ],
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/529259",
      "new_fail": 0,
      "no_spl": null,
@@ -12683,8 +12709,8 @@
      "run": "ubci-41408247836-1-main",
      "spl_in_flight": [],
      "stack": "open",
-     "state": "testing",
-     "state_detail": "",
+     "state": "done",
+     "state_detail": "LAVA job incomplete",
      "versus": "unknown"
     },
     {
@@ -26370,7 +26396,33 @@
    ]
   },
   "qcs615-ride/open": {
-   "cases": {},
+   "cases": {
+    "firmware-fingerprint-reboot/bl2_v": "----------s",
+    "firmware-fingerprint-reboot/bl31_v": "----------s",
+    "firmware-fingerprint-reboot/op_tee_version": "----------s",
+    "firmware-fingerprint-reboot/u_boot_20": "----------s",
+    "firmware-fingerprint-reset/bl2_v": "----------p",
+    "firmware-fingerprint-reset/bl31_v": "----------p",
+    "firmware-fingerprint-reset/op_tee_version": "----------p",
+    "firmware-fingerprint-reset/u_boot_20": "----------p",
+    "firmware-fingerprint/bl2_v": "----------p",
+    "firmware-fingerprint/bl31_v": "----------p",
+    "firmware-fingerprint/op_tee_version": "----------p",
+    "firmware-fingerprint/u_boot_20": "----------p",
+    "linux-version/linux_version": "----------f",
+    "u-boot/autoboot": "----------p",
+    "u-boot/u-boot-prompt": "----------p",
+    "u-boot/u-boot-sync": "----------p",
+    "u-boot/uboot-bdinfo": "----------p",
+    "u-boot/uboot-bootflow": "----------p",
+    "u-boot/uboot-clocks": "----------p",
+    "u-boot/uboot-dm-tree": "----------p",
+    "u-boot/uboot-efi-media": "----------p",
+    "u-boot/uboot-reset": "----------p",
+    "u-boot/uboot-storage": "----------p",
+    "u-boot/uboot-usb": "----------f",
+    "u-boot/uboot-version": "----------p"
+   },
    "runs": [
     "ubci-40199892508-1-main",
     "ubci-40279426778-1-main",
@@ -30102,7 +30154,7 @@
    },
    {
     "board": "qcs615-ride",
-    "boot": "not-run",
+    "boot": "fail",
     "boot_chain": [
      {
       "origin": "downstream",
@@ -30140,13 +30192,13 @@
       "stage": "Linux"
      }
     ],
-    "boot_stage": "not-reached",
-    "boot_url": "",
+    "boot_stage": "nothing-booted",
+    "boot_url": "https://lava.infra.foundries.io/scheduler/job/529259#L2117",
     "counts": {
-     "fail": 0,
+     "fail": 2,
      "flaky": 0,
-     "pass": 0,
-     "skip": 0,
+     "pass": 19,
+     "skip": 4,
      "unknown": 0
     },
     "distance": {
@@ -30157,7 +30209,7 @@
     "fragments_missing": [
      "qcs615-ride.config"
     ],
-    "gate": "not-run",
+    "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/529259",
     "new_fail": 0,
     "no_spl": null,
@@ -30165,8 +30217,8 @@
     "run": "ubci-41408247836-1-main",
     "spl_in_flight": [],
     "stack": "open",
-    "state": "testing",
-    "state_detail": "",
+    "state": "done",
+    "state_detail": "LAVA job incomplete",
     "versus": "unknown"
    }
   ],
@@ -38449,7 +38501,7 @@
   },
   {
    "board": "qcs615-ride",
-   "boot": "not-run",
+   "boot": "fail",
    "boot_chain": [
     {
      "origin": "downstream",
@@ -38487,13 +38539,13 @@
      "stage": "Linux"
     }
    ],
-   "boot_stage": "not-reached",
-   "boot_url": "",
+   "boot_stage": "nothing-booted",
+   "boot_url": "https://lava.infra.foundries.io/scheduler/job/529259#L2117",
    "counts": {
-    "fail": 0,
+    "fail": 2,
     "flaky": 0,
-    "pass": 0,
-    "skip": 0,
+    "pass": 19,
+    "skip": 4,
     "unknown": 0
    },
    "distance": {
@@ -38504,7 +38556,7 @@
    "fragments_missing": [
     "qcs615-ride.config"
    ],
-   "gate": "not-run",
+   "gate": "pass",
    "job_url": "https://lava.infra.foundries.io/scheduler/job/529259",
    "new_fail": 0,
    "no_spl": null,
@@ -38512,8 +38564,8 @@
    "run": "ubci-41408247836-1-main",
    "spl_in_flight": [],
    "stack": "open",
-   "state": "testing",
-   "state_detail": "",
+   "state": "done",
+   "state_detail": "LAVA job incomplete",
    "versus": "unknown"
   },
   {
@@ -40090,5 +40142,5 @@
    "title": "QCS8300 v4 + VENTUNO Q v2"
   }
  ],
- "updated": "2026-11-02T09:27:12Z"
+ "updated": "2026-11-02T09:32:20Z"
 }
