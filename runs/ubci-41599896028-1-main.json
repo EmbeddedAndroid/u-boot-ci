@@ -2381,7 +2381,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main ab4dc5aacf95",
-  "updated": "2026-11-03T09:41:47Z"
+  "updated": "2026-11-03T09:48:06Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -4118,6 +4118,12 @@
    ],
    "fingerprint": "ubci-41599896028-1-main-open-rb3gen2",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "rb3g2-01",
+    "health": "Unknown",
+    "job_id": 532540,
+    "url": "https://lava.infra.foundries.io/scheduler/job/532540"
+   },
    "linux_boot": {
     "gaps": [
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
@@ -4126,8 +4132,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "testing"
   },
   {
    "board": "rb3gen2",
@@ -5879,6 +5886,12 @@
    ],
    "fingerprint": "ubci-41599896028-1-main-open-ventuno-q",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "ventunoq-hyd-02",
+    "health": "Unknown",
+    "job_id": 532541,
+    "url": "https://lava.infra.foundries.io/scheduler/job/532541"
+   },
    "linux_boot": {
     "gaps": [
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
@@ -5887,8 +5900,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "testing"
   },
   {
    "board": "ventuno-q",
@@ -9307,14 +9321,20 @@
    ],
    "fingerprint": "ubci-41599896028-1-main-open-qcs615-ride",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "qcs615-adp-air-01",
+    "health": "Unknown",
+    "job_id": 532542,
+    "url": "https://lava.infra.foundries.io/scheduler/job/532542"
+   },
    "linux_boot": {
-    "gaps": [],
     "stage": "not-reached",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "testing"
   },
   {
    "board": "qcs615-ride",
@@ -10995,14 +11015,20 @@
    ],
    "fingerprint": "ubci-41599896028-1-main-open-lemans-evk",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "rb8-02",
+    "health": "Unknown",
+    "job_id": 532543,
+    "url": "https://lava.infra.foundries.io/scheduler/job/532543"
+   },
    "linux_boot": {
-    "gaps": [],
     "stage": "not-reached",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "testing"
   },
   {
    "board": "lemans-evk",
