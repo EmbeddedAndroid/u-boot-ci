@@ -75911,7 +75911,7 @@
     },
     {
      "board": "rb3gen2",
-     "boot": "not-run",
+     "boot": "pass",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -75937,36 +75937,45 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "not-reached",
-     "boot_time": null,
-     "boot_url": "",
+     "boot_stage": "login",
+     "boot_time": {
+      "compared_stage": null,
+      "delta": null,
+      "kind": "cold",
+      "last_stage": "login",
+      "linux": 5.898,
+      "linux_replayed": false,
+      "threshold": null,
+      "verdict": "unknown"
+     },
+     "boot_url": "https://lava.infra.foundries.io/scheduler/job/535360#L2932",
      "counts": {
-      "fail": 0,
+      "fail": 3,
       "flaky": 0,
-      "pass": 0,
-      "skip": 0,
+      "pass": 24,
+      "skip": 1,
       "unknown": 0
      },
      "distance": {},
      "fingerprint": "ubci-41658451192-1-pin-stock-candidate-rb3gen2",
      "firmware": "QCM6490 boot binaries 00150",
      "fragments_missing": [],
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/535360",
      "new_fail": 0,
      "no_spl": null,
-     "queue_position": 1,
+     "queue_position": null,
      "run": "ubci-41658451192-1-pin",
      "spl_in_flight": [],
      "stack": "stock-candidate",
-     "state": "queued",
+     "state": "done",
      "state_detail": "",
      "versus": "unknown"
     }
    ],
    "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/41658451192",
    "run": "ubci-41658451192-1-pin",
-   "state": "testing",
+   "state": "done",
    "title": "downstream pin candidate: QCM6490 boot binaries 00142 -> QCM6490 boot binaries 00150"
   },
   "ventuno-q": {
@@ -76141,7 +76150,7 @@
    "created": "2026-11-03T15:13:34Z",
    "id": "ubci-41658451192-1-pin",
    "kind": "pin-candidate",
-   "state": "testing",
+   "state": "done",
    "title": "downstream pin candidate: QCM6490 boot binaries 00142 -> QCM6490 boot binaries 00150"
   },
   {
@@ -92755,5 +92764,5 @@
    }
   }
  },
- "updated": "2026-11-04T03:14:33Z"
+ "updated": "2026-11-04T03:18:27Z"
 }
