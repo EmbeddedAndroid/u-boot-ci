@@ -76027,7 +76027,7 @@
     },
     {
      "board": "ventuno-q",
-     "boot": "not-run",
+     "boot": "pass",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -76053,13 +76053,22 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "not-reached",
-     "boot_time": null,
-     "boot_url": "",
+     "boot_stage": "login",
+     "boot_time": {
+      "compared_stage": null,
+      "delta": null,
+      "kind": "cold",
+      "last_stage": "login",
+      "linux": 7.803,
+      "linux_replayed": false,
+      "threshold": null,
+      "verdict": "unknown"
+     },
+     "boot_url": "https://lava.infra.foundries.io/scheduler/job/535359#L2252",
      "counts": {
-      "fail": 0,
+      "fail": 2,
       "flaky": 0,
-      "pass": 0,
+      "pass": 26,
       "skip": 0,
       "unknown": 0
      },
@@ -76067,22 +76076,22 @@
      "fingerprint": "ubci-41658486565-1-pin-stock-candidate-ventuno-q",
      "firmware": "QCS8300 boot binaries 00150",
      "fragments_missing": [],
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/535359",
      "new_fail": 0,
      "no_spl": null,
-     "queue_position": 3,
+     "queue_position": null,
      "run": "ubci-41658486565-1-pin",
      "spl_in_flight": [],
      "stack": "stock-candidate",
-     "state": "queued",
+     "state": "done",
      "state_detail": "",
      "versus": "unknown"
     }
    ],
    "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/41658486565",
    "run": "ubci-41658486565-1-pin",
-   "state": "testing",
+   "state": "done",
    "title": "downstream pin candidate: QCS8300 boot binaries 00142 -> QCS8300 boot binaries 00150"
   }
  },
@@ -76110,7 +76119,7 @@
    "created": "2026-11-03T15:18:40Z",
    "id": "ubci-41658486565-1-pin",
    "kind": "pin-candidate",
-   "state": "testing",
+   "state": "done",
    "title": "downstream pin candidate: QCS8300 boot binaries 00142 -> QCS8300 boot binaries 00150"
   },
   {
@@ -92737,5 +92746,5 @@
    }
   }
  },
- "updated": "2026-11-04T02:53:19Z"
+ "updated": "2026-11-04T02:57:04Z"
 }
