@@ -1,0 +1,261 @@
+{
+ "host_checks": [],
+ "linux": {
+  "commit": "2637bdec0535a2044cd830eba9a79363651d9043",
+  "config": "arch/arm64/configs/defconfig",
+  "image_sha256": "a5c67fc972287ad4a9054b6d17f857dfaaaa964dd2cb940d791ef909100924cd",
+  "modules_sha256": "5a2aca1f5cffef0d65188d124b7001cc97d46d2bf2fefbded08d5bfd8b70c552",
+  "release": "7.4.0-rc1-next-20261102",
+  "tag": "next-20261102",
+  "tag_url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tag/?h=next-20261102",
+  "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=2637bdec0535a2044cd830eba9a79363651d9043"
+ },
+ "project": "u-boot",
+ "run": {
+  "base": {
+   "branch": "main",
+   "commit": "ab4dc5aacf957835c295b59ef2dd28281839cb20",
+   "repo": "https://git.u-boot-project.org/u-boot/u-boot.git"
+  },
+  "baseline": null,
+  "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/41658431646",
+  "created": "2026-11-03T15:20:02Z",
+  "id": "ubci-41658431646-1-pin",
+  "kind": "pin-candidate",
+  "series": null,
+  "title": "downstream pin candidate: QCS615 boot binaries 00142 -> QCS615 boot binaries 00150",
+  "updated": "2026-11-04T02:42:40Z"
+ },
+ "schema": "fwci-run/1",
+ "state": "building",
+ "targets": [
+  {
+   "board": "qcs615-ride",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (Gunyah)"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in place of UEFI",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "main",
+     "commit": "ab4dc5aacf957835c295b59ef2dd28281839cb20",
+     "configs": [
+      {
+       "name": "qcom_qcs615_defconfig",
+       "optional": false,
+       "used": true
+      }
+     ],
+     "device_tree": "qcom/qcs615-ride",
+     "fingerprint": "ubci-41658431646-1-pin-stock-qcs615-ride",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "sha256": "a32bb4d6f6026a0d7d6aaca989e89e42120de9df6d0e1f92a9d1a2afa30ef710",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ab4dc5aacf957835c295b59ef2dd28281839cb20"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS615_bootbinaries_00150.zip",
+       "sha256": "0bdafedc2b04c7a91ec977a05dca035832f70597712e69f9d4d392c0001b1b18",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS615_bootbinaries.1.0/qcs615_bootbinaries.1.0-test-device-public/00150/QCS615_bootbinaries_00150.zip"
+      },
+      {
+       "name": "ADP_AIR_SA6155P_V2.zip",
+       "sha256": "37d99eb113e286400bce0d70aa12a74d05f93d01f045bf67e7a46b3c606c8fd0",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS615/cdt/ADP_AIR_SA6155P_V2.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "a51fb4543669ac8f0f372b89f3bf15351d9ce06f",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/a51fb4543669ac8f0f372b89f3bf15351d9ce06f/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/a51fb4543669ac8f0f372b89f3bf15351d9ce06f"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS615 boot binaries 00142",
+     "role": "stock",
+     "upstream": null
+    },
+    {
+     "boottime_case": null,
+     "branch": "next-20261102",
+     "commit": "2637bdec0535a2044cd830eba9a79363651d9043",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=2637bdec0535a2044cd830eba9a79363651d9043"
+     },
+     "dtb_sha256": "f9ec5bec65dde4fd9458f40dffe3d090b7e5e40fc1a8c920489d074356444516",
+     "dtbs": [
+      {
+       "name": "qcom/qcs615-ride.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qcs615-ride.dts?id=2637bdec0535a2044cd830eba9a79363651d9043"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc1-next-20261102",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "a5c67fc972287ad4a9054b6d17f857dfaaaa964dd2cb940d791ef909100924cd",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=2637bdec0535a2044cd830eba9a79363651d9043"
+    }
+   ],
+   "fingerprint": "ubci-41658431646-1-pin-stock-qcs615-ride",
+   "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 535358,
+    "url": "https://lava.infra.foundries.io/scheduler/job/535358"
+   },
+   "linux_boot": {
+    "stage": "not-reached",
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
+   },
+   "queue_position": 9,
+   "stack": "stock",
+   "state": "queued"
+  },
+  {
+   "board": "qcs615-ride",
+   "boot_chain": [
+    {
+     "origin": "downstream",
+     "stage": "XBL"
+    },
+    {
+     "origin": "downstream",
+     "stage": "TZ (QTEE)"
+    },
+    {
+     "origin": "downstream",
+     "stage": "hypervisor (Gunyah)"
+    },
+    {
+     "component": "u-boot",
+     "detail": "in place of UEFI",
+     "origin": "upstream",
+     "stage": "U-Boot"
+    },
+    {
+     "component": "linux",
+     "origin": "upstream",
+     "stage": "Linux"
+    }
+   ],
+   "cases": [],
+   "components": [
+    {
+     "branch": "main",
+     "commit": "ab4dc5aacf957835c295b59ef2dd28281839cb20",
+     "configs": [
+      {
+       "name": "qcom_qcs615_defconfig",
+       "optional": false,
+       "used": true
+      }
+     ],
+     "device_tree": "qcom/qcs615-ride",
+     "fingerprint": "ubci-41658431646-1-pin-stock-candidate-qcs615-ride",
+     "name": "u-boot",
+     "origin": "upstream",
+     "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+     "role": "under-test",
+     "sha256": "ca882bdef9a93403f45c0aa12cc1b653ae86bb90bd8a347888996afb5db1ed31",
+     "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ab4dc5aacf957835c295b59ef2dd28281839cb20"
+    },
+    {
+     "files": [
+      {
+       "name": "QCS615_bootbinaries_00150.zip",
+       "sha256": "0bdafedc2b04c7a91ec977a05dca035832f70597712e69f9d4d392c0001b1b18",
+       "url": "https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/QCS615_bootbinaries.1.0/qcs615_bootbinaries.1.0-test-device-public/00150/QCS615_bootbinaries_00150.zip"
+      },
+      {
+       "name": "ADP_AIR_SA6155P_V2.zip",
+       "sha256": "37d99eb113e286400bce0d70aa12a74d05f93d01f045bf67e7a46b3c606c8fd0",
+       "url": "https://artifacts.codelinaro.org/artifactory/codelinaro-le/Qualcomm_Linux/QCS615/cdt/ADP_AIR_SA6155P_V2.zip"
+      }
+     ],
+     "layers": [
+      {
+       "commit": "a51fb4543669ac8f0f372b89f3bf15351d9ce06f",
+       "name": "meta-qcom",
+       "recipes": "https://github.com/qualcomm-linux/meta-qcom/tree/a51fb4543669ac8f0f372b89f3bf15351d9ce06f/recipes-bsp/firmware-boot",
+       "repo": "https://github.com/qualcomm-linux/meta-qcom",
+       "url": "https://github.com/qualcomm-linux/meta-qcom/commit/a51fb4543669ac8f0f372b89f3bf15351d9ce06f"
+      }
+     ],
+     "name": "downstream firmware",
+     "origin": "downstream",
+     "release": "QCS615 boot binaries 00150",
+     "role": "stock",
+     "upstream": null
+    },
+    {
+     "boottime_case": null,
+     "branch": "next-20261102",
+     "commit": "2637bdec0535a2044cd830eba9a79363651d9043",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=2637bdec0535a2044cd830eba9a79363651d9043"
+     },
+     "dtb_sha256": "f9ec5bec65dde4fd9458f40dffe3d090b7e5e40fc1a8c920489d074356444516",
+     "dtbs": [
+      {
+       "name": "qcom/qcs615-ride.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qcs615-ride.dts?id=2637bdec0535a2044cd830eba9a79363651d9043"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc1-next-20261102",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "a5c67fc972287ad4a9054b6d17f857dfaaaa964dd2cb940d791ef909100924cd",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=2637bdec0535a2044cd830eba9a79363651d9043"
+    }
+   ],
+   "fingerprint": "ubci-41658431646-1-pin-stock-candidate-qcs615-ride",
+   "fingerprint_gate": "not-run",
+   "linux_boot": {
+    "gaps": [],
+    "stage": "not-reached",
+    "verdict": "not-run",
+    "versus_baseline": "unknown"
+   },
+   "stack": "stock-candidate",
+   "state": "queued"
+  }
+ ]
+}
