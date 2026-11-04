@@ -75866,7 +75866,7 @@
    "cells": [
     {
      "board": "rb3gen2",
-     "boot": "pass",
+     "boot": "not-run",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -75892,44 +75892,35 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "login",
-     "boot_time": {
-      "compared_stage": null,
-      "delta": null,
-      "kind": "warm-reset",
-      "last_stage": "login",
-      "linux": 5.017,
-      "linux_replayed": false,
-      "threshold": null,
-      "verdict": "unknown"
-     },
-     "boot_url": "https://lava.infra.foundries.io/scheduler/job/524152#L2882",
+     "boot_stage": "not-reached",
+     "boot_time": null,
+     "boot_url": "",
      "counts": {
-      "fail": 2,
+      "fail": 0,
       "flaky": 0,
-      "pass": 23,
-      "skip": 1,
+      "pass": 0,
+      "skip": 0,
       "unknown": 0
      },
      "distance": {},
-     "fingerprint": "ubci-40934825114-1-pin-stock-rb3gen2",
+     "fingerprint": "ubci-41658451192-1-pin-stock-rb3gen2",
      "firmware": "QCM6490 boot binaries 00142",
      "fragments_missing": [],
-     "gate": "pass",
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/524152",
+     "gate": "not-run",
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/535301",
      "new_fail": 0,
      "no_spl": null,
-     "queue_position": null,
-     "run": "ubci-40934825114-1-pin",
+     "queue_position": 6,
+     "run": "ubci-41658451192-1-pin",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "done",
+     "state": "queued",
      "state_detail": "",
      "versus": "unknown"
     },
     {
      "board": "rb3gen2",
-     "boot": "pass",
+     "boot": "not-run",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -75955,45 +75946,36 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "login",
-     "boot_time": {
-      "compared_stage": null,
-      "delta": null,
-      "kind": "warm-reset",
-      "last_stage": "login",
-      "linux": 4.684,
-      "linux_replayed": false,
-      "threshold": null,
-      "verdict": "unknown"
-     },
-     "boot_url": "https://lava.infra.foundries.io/scheduler/job/524159#L2928",
+     "boot_stage": "not-reached",
+     "boot_time": null,
+     "boot_url": "",
      "counts": {
-      "fail": 2,
+      "fail": 0,
       "flaky": 0,
-      "pass": 23,
-      "skip": 1,
+      "pass": 0,
+      "skip": 0,
       "unknown": 0
      },
      "distance": {},
-     "fingerprint": "ubci-40934825114-1-pin-stock-candidate-rb3gen2",
+     "fingerprint": "ubci-41658451192-1-pin-stock-candidate-rb3gen2",
      "firmware": "QCM6490 boot binaries 00150",
      "fragments_missing": [],
-     "gate": "pass",
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/524159",
+     "gate": "not-run",
+     "job_url": "",
      "new_fail": 0,
      "no_spl": null,
      "queue_position": null,
-     "run": "ubci-40934825114-1-pin",
+     "run": "ubci-41658451192-1-pin",
      "spl_in_flight": [],
      "stack": "stock-candidate",
-     "state": "done",
+     "state": "queued",
      "state_detail": "",
      "versus": "unknown"
     }
    ],
-   "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/40934825114",
-   "run": "ubci-40934825114-1-pin",
-   "state": "done",
+   "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/41658451192",
+   "run": "ubci-41658451192-1-pin",
+   "state": "building",
    "title": "downstream pin candidate: QCM6490 boot binaries 00142 -> QCM6490 boot binaries 00150"
   },
   "ventuno-q": {
@@ -76126,6 +76108,19 @@
    "kind": "pin-candidate",
    "state": "building",
    "title": "downstream pin candidate: QCS8300 boot binaries 00142 -> QCS8300 boot binaries 00150"
+  },
+  {
+   "base": {
+    "branch": "main",
+    "commit": "ab4dc5aacf957835c295b59ef2dd28281839cb20",
+    "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
+    "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/ab4dc5aacf957835c295b59ef2dd28281839cb20"
+   },
+   "created": "2026-11-03T15:13:34Z",
+   "id": "ubci-41658451192-1-pin",
+   "kind": "pin-candidate",
+   "state": "building",
+   "title": "downstream pin candidate: QCM6490 boot binaries 00142 -> QCM6490 boot binaries 00150"
   },
   {
    "base": {
@@ -92738,5 +92733,5 @@
    }
   }
  },
- "updated": "2026-11-04T02:35:45Z"
+ "updated": "2026-11-04T02:35:50Z"
 }
