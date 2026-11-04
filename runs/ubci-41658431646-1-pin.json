@@ -24,7 +24,7 @@
   "kind": "pin-candidate",
   "series": null,
   "title": "downstream pin candidate: QCS615 boot binaries 00142 -> QCS615 boot binaries 00150",
-  "updated": "2026-11-04T03:19:43Z"
+  "updated": "2026-11-04T03:25:04Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -426,12 +426,18 @@
    ],
    "fingerprint": "ubci-41658431646-1-pin-stock-candidate-qcs615-ride",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 535393,
+    "url": "https://lava.infra.foundries.io/scheduler/job/535393"
+   },
    "linux_boot": {
-    "gaps": [],
     "stage": "not-reached",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": 3,
    "stack": "stock-candidate",
    "state": "queued"
   }
