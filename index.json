@@ -75991,12 +75991,21 @@
       }
      ],
      "boot_stage": "login",
-     "boot_time": null,
+     "boot_time": {
+      "compared_stage": null,
+      "delta": null,
+      "kind": "cold",
+      "last_stage": "login",
+      "linux": 7.927,
+      "linux_replayed": false,
+      "threshold": null,
+      "verdict": "unknown"
+     },
      "boot_url": "https://lava.infra.foundries.io/scheduler/job/535300#L2123",
      "counts": {
-      "fail": 0,
+      "fail": 2,
       "flaky": 0,
-      "pass": 0,
+      "pass": 26,
       "skip": 0,
       "unknown": 0
      },
@@ -76004,7 +76013,7 @@
      "fingerprint": "ubci-41658486565-1-pin-stock-ventuno-q",
      "firmware": "QCS8300 boot binaries 00142",
      "fragments_missing": [],
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/535300",
      "new_fail": 0,
      "no_spl": null,
@@ -76012,7 +76021,7 @@
      "run": "ubci-41658486565-1-pin",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "testing",
+     "state": "done",
      "state_detail": "",
      "versus": "unknown"
     },
@@ -92728,5 +92737,5 @@
    }
   }
  },
- "updated": "2026-11-04T02:42:44Z"
+ "updated": "2026-11-04T02:46:22Z"
 }

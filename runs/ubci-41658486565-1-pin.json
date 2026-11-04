@@ -24,7 +24,7 @@
   "kind": "pin-candidate",
   "series": null,
   "title": "downstream pin candidate: QCS8300 boot binaries 00142 -> QCS8300 boot binaries 00150",
-  "updated": "2026-11-04T02:40:55Z"
+  "updated": "2026-11-04T02:46:14Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -56,7 +56,356 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "boot_time": {
+    "boots": [
+     {
+      "complete": false,
+      "fastboot": false,
+      "kind": "first",
+      "last_stage": "uboot",
+      "ref_line": 204,
+      "reset": null,
+      "stages": {
+       "hyp": {
+        "line": 417,
+        "replayed": false,
+        "t": 1.636
+       },
+       "loader": {
+        "line": 221,
+        "replayed": false,
+        "t": 0.488
+       },
+       "loader_end": {
+        "line": 411,
+        "replayed": false,
+        "t": 1.501
+       },
+       "uboot": {
+        "line": 436,
+        "replayed": false,
+        "t": 3.413
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/535300#L204"
+     },
+     {
+      "complete": true,
+      "fastboot": false,
+      "kind": "warm-reset",
+      "last_stage": "login",
+      "ref_line": 1434,
+      "reset": null,
+      "stages": {
+       "hyp": {
+        "line": 1645,
+        "replayed": false,
+        "t": 2.486
+       },
+       "init": {
+        "line": 2200,
+        "replayed": false,
+        "t": 12.336
+       },
+       "linux": {
+        "line": 1700,
+        "replayed": false,
+        "t": 8.826
+       },
+       "loader": {
+        "line": 1449,
+        "replayed": false,
+        "t": 1.347
+       },
+       "loader_end": {
+        "line": 1639,
+        "replayed": false,
+        "t": 2.356
+       },
+       "login": {
+        "line": 2123,
+        "replayed": false,
+        "t": 11.863
+       },
+       "uboot": {
+        "line": 1664,
+        "replayed": false,
+        "t": 4.272
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/535300#L1434"
+     },
+     {
+      "complete": true,
+      "fastboot": false,
+      "kind": "warm-reboot",
+      "last_stage": "login",
+      "ref_line": 2698,
+      "reset": null,
+      "stages": {
+       "hyp": {
+        "line": 2907,
+        "replayed": false,
+        "t": 2.347
+       },
+       "linux": {
+        "line": 2971,
+        "replayed": false,
+        "t": 8.731
+       },
+       "loader": {
+        "line": 2711,
+        "replayed": false,
+        "t": 1.198
+       },
+       "loader_end": {
+        "line": 2901,
+        "replayed": false,
+        "t": 2.212
+       },
+       "login": {
+        "line": 3373,
+        "replayed": false,
+        "t": 11.671
+       },
+       "uboot": {
+        "line": 2926,
+        "replayed": false,
+        "t": 4.128
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/535300#L2698"
+     },
+     {
+      "complete": true,
+      "fastboot": false,
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 3540,
+      "reset": null,
+      "stages": {
+       "hyp": {
+        "line": 3747,
+        "replayed": false,
+        "t": 1.589
+       },
+       "linux": {
+        "line": 3811,
+        "replayed": false,
+        "t": 7.927
+       },
+       "loader": {
+        "line": 3551,
+        "replayed": false,
+        "t": 0.44
+       },
+       "loader_end": {
+        "line": 3741,
+        "replayed": false,
+        "t": 1.456
+       },
+       "login": {
+        "line": 4223,
+        "replayed": false,
+        "t": 10.922
+       },
+       "uboot": {
+        "line": 3766,
+        "replayed": false,
+        "t": 3.369
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/535300#L3540"
+     }
+    ],
+    "headline": 3,
+    "tool": "lava-boottime daf3b44940e8",
+    "version": 1,
+    "versus_baseline": {
+     "baseline": null,
+     "kinds": {
+      "cold": {
+       "verdict": "unknown"
+      },
+      "first": {
+       "verdict": "unknown"
+      },
+      "warm-reboot": {
+       "verdict": "unknown"
+      },
+      "warm-reset": {
+       "verdict": "unknown"
+      }
+     }
+    }
+   },
+   "cases": [
+    {
+     "name": "poweroff",
+     "result": "pass",
+     "suite": "cold-poweroff"
+    },
+    {
+     "name": "poweroff",
+     "result": "pass",
+     "suite": "poweroff"
+    },
+    {
+     "name": "reboot",
+     "result": "pass",
+     "suite": "reboot"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "cpus-online",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "modules-loaded",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "dmesg-errors",
+     "output": [
+      "<3>[    0.203032] qcom-smem 90900000.smem: Found an unknown type of DRAM info struct (size = 216)",
+      "<3>[    2.461962] remoteproc remoteproc0: request_firmware failed: -2",
+      "<3>[    2.463102] remoteproc remoteproc1: request_firmware failed: -2",
+      "<3>[    2.474082] remoteproc remoteproc2: request_firmware failed: -2",
+      "<3>[    2.662789] qcom-iris aa00000.video-codec: firmware download failed -2",
+      "<3>[    2.662994] qcom-iris aa00000.video-codec: video hw is power on",
+      "<3>[    2.663587] qcom-iris aa00000.video-codec: core init failed",
+      "<3>[    2.665274] qcom-iris aa00000.video-codec: firmware download failed -2",
+      "<3>[    2.665456] qcom-iris aa00000.video-codec: video hw is power on",
+      "<3>[    2.666048] qcom-iris aa00000.video-codec: core init failed",
+      "<3>[    2.772793] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[    5.382992] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[    5.383352] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[    5.383466] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[    7.972639] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[    7.972734] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[    7.973043] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[   10.564626] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[   10.564779] Bluetooth: hci0: Reading QCA version information failed (-110)",
+      "<3>[   10.565690] qcom_geni_serial a88000.serial: UART firmware load failed ret: -517",
+      "<3>[   13.154755] Bluetooth: hci0: command 0xfc00 tx timeout",
+      "<3>[   13.155005] Bluetooth: hci0: Reading QCA version information failed (-110)"
+     ],
+     "result": "fail",
+     "suite": "smoke",
+     "url": "https://lava.infra.foundries.io/scheduler/job/535300#L2598"
+    },
+    {
+     "name": "storage",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "usb",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "network",
+     "result": "pass",
+     "suite": "smoke"
+    },
+    {
+     "name": "linux-next-tag",
+     "result": "pass",
+     "suite": "smoke-after-reboot"
+    },
+    {
+     "name": "uboot-version",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bdinfo",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "autoboot",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-prompt",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u-boot-sync",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-dm-tree",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-clocks",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-storage",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-usb",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-efi-media",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-bootflow",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "uboot-reset",
+     "result": "pass",
+     "suite": "u-boot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-cold"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "pass",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "result": "pass",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "main",
@@ -142,10 +491,10 @@
     }
    ],
    "fingerprint": "ubci-41658486565-1-pin-stock-ventuno-q",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "pass",
    "lava": {
     "device": "ventunoq-hyd-02",
-    "health": "Unknown",
+    "health": "Complete",
     "job_id": 535300,
     "url": "https://lava.infra.foundries.io/scheduler/job/535300"
    },
@@ -160,7 +509,7 @@
    },
    "queue_position": null,
    "stack": "stock",
-   "state": "testing"
+   "state": "done"
   },
   {
    "board": "ventuno-q",
