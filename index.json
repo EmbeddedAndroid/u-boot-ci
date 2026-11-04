@@ -75732,7 +75732,7 @@
    "cells": [
     {
      "board": "qcs615-ride",
-     "boot": "not-run",
+     "boot": "fail",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -75758,30 +75758,39 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "not-reached",
-     "boot_time": null,
-     "boot_url": "",
+     "boot_stage": "nothing-booted",
+     "boot_time": {
+      "compared_stage": null,
+      "delta": null,
+      "kind": "warm-reset",
+      "last_stage": "uboot",
+      "linux": null,
+      "linux_replayed": false,
+      "threshold": null,
+      "verdict": "unknown"
+     },
+     "boot_url": "https://lava.infra.foundries.io/scheduler/job/535358#L1124",
      "counts": {
-      "fail": 0,
+      "fail": 3,
       "flaky": 0,
-      "pass": 0,
-      "skip": 0,
+      "pass": 12,
+      "skip": 2,
       "unknown": 0
      },
      "distance": {},
      "fingerprint": "ubci-41658431646-1-pin-stock-qcs615-ride",
      "firmware": "QCS615 boot binaries 00142",
      "fragments_missing": [],
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/535358",
      "new_fail": 0,
      "no_spl": null,
-     "queue_position": 2,
+     "queue_position": null,
      "run": "ubci-41658431646-1-pin",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
-     "state_detail": "",
+     "state": "done",
+     "state_detail": "LAVA job incomplete",
      "versus": "unknown"
     },
     {
@@ -75841,7 +75850,7 @@
    ],
    "ci_url": "https://github.com/EmbeddedAndroid/u-boot-ci/actions/runs/41658431646",
    "run": "ubci-41658431646-1-pin",
-   "state": "building",
+   "state": "testing",
    "title": "downstream pin candidate: QCS615 boot binaries 00142 -> QCS615 boot binaries 00150"
   },
   "rb3gen2": {
@@ -76124,7 +76133,7 @@
    "created": "2026-11-03T15:20:02Z",
    "id": "ubci-41658431646-1-pin",
    "kind": "pin-candidate",
-   "state": "building",
+   "state": "testing",
    "title": "downstream pin candidate: QCS615 boot binaries 00142 -> QCS615 boot binaries 00150"
   },
   {
@@ -92764,5 +92773,5 @@
    }
   }
  },
- "updated": "2026-11-04T03:18:27Z"
+ "updated": "2026-11-04T03:19:51Z"
 }
