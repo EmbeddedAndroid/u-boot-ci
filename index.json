@@ -75848,7 +75848,7 @@
    "cells": [
     {
      "board": "rb3gen2",
-     "boot": "not-run",
+     "boot": "pass",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -75874,21 +75874,30 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "not-reached",
-     "boot_time": null,
-     "boot_url": "",
+     "boot_stage": "login",
+     "boot_time": {
+      "compared_stage": null,
+      "delta": null,
+      "kind": "cold",
+      "last_stage": "login",
+      "linux": 5.947,
+      "linux_replayed": false,
+      "threshold": null,
+      "verdict": "unknown"
+     },
+     "boot_url": "https://lava.infra.foundries.io/scheduler/job/535301#L2909",
      "counts": {
-      "fail": 0,
+      "fail": 3,
       "flaky": 0,
-      "pass": 0,
-      "skip": 0,
+      "pass": 24,
+      "skip": 1,
       "unknown": 0
      },
      "distance": {},
      "fingerprint": "ubci-41658451192-1-pin-stock-rb3gen2",
      "firmware": "QCM6490 boot binaries 00142",
      "fragments_missing": [],
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/535301",
      "new_fail": 0,
      "no_spl": null,
@@ -75896,7 +75905,7 @@
      "run": "ubci-41658451192-1-pin",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "testing",
+     "state": "done",
      "state_detail": "",
      "versus": "unknown"
     },
@@ -92746,5 +92755,5 @@
    }
   }
  },
- "updated": "2026-11-04T03:03:56Z"
+ "updated": "2026-11-04T03:07:47Z"
 }
