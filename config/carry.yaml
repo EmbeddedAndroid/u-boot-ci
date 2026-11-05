@@ -3,295 +3,199 @@
 kaanapali-mtp: {}
 lemans-evk:
   optee:
-    base: 2cabb6d063513e1718f7627e16b0a5ce1bfd5516
+    base: 3b0528e17cc6214587d3c8f5c452e9dc8b07ca60
     carried:
-    - commit: 3b0e16c127646d4a063885756be02f0bebfb257d
+    - commit: a8a2bfc89350619870345ee09e83b2c4f4ddf656
       review: null
       subject: 'plat-qcom: hoya: move the pIMEM TEE layout to the targets'
-    - commit: 4cbdf679a00790736cfd5531fb75b07865e30006
+    - commit: 900fe1bfdb267aa3cfd826a46ce2b475428bf246
       review: null
       subject: 'plat-qcom: hoya: move the RNG base to the targets'
-    - commit: ea8d8510ec8844a7b1d05f380351558b5e85bcbd
+    - commit: 76ba422255f03ccd6bd9e8564d218f63725e5c03
       review: null
       subject: 'plat-qcom: hoya: add talos support'
-    - commit: 2bb9d29ace7d79552b394878632fb852d57f0fd9
+    - commit: 1a2366b5de55c006e1d21880af93ec1a4bd836e7
       review: null
       subject: 'ci: add qcom-talos build'
-    - commit: ef551e4e447d22259052fe3b448a65177e0778d6
+    - commit: a5e554cbfcc7f2c2ec3a563a3a4e533d4f1f754f
+      review: null
+      subject: 'clk: qcom: share the QDSP6 halt and MMIO lookup helpers'
+    - commit: 3d99cea7932048093740f680bdfcd67155271903
       review: null
       subject: 'clk: qcom: talos: add PAS clock support'
-    - commit: c8cf31840b6b513c65489163ee3f32ae76c6192a
+    - commit: c21060c463bc89edc7366098d7e35a2c76d5b4ca
       review: null
       subject: 'pta: qcom: pas: talos: add ADSP and CDSP bring-up and shutdown'
-    - commit: 0b1f7848d9637675e9338ba0b29336774d34ef0e
+    - commit: 7f1c6f5bf0aa052f0123771b4dab23196d5a9076
       review: null
       subject: 'plat-qcom: hoya: talos: enable the PAS pseudo-TA'
-    - commit: 9643647198626d08b9c773a528dd5acbf75a3e3a
-      review: null
-      subject: 'plat-qcom: wildcat: add Lanai (SM8650)'
-    - commit: a330e5c3e67538b9781fee6c7e7240668ee330f3
-      review: null
-      subject: 'pta: qcom: pas: talos: set the controller map type'
-    - commit: c5970650bbd72ebffed86030a88cea7f7436ec00
-      review: null
-      subject: 'clk: qcom: talos: restart Turing whatever its power-on flag says'
-    - commit: a2d7bc346b1ccb3f34f68ed37b9e4361530f504e
-      review: null
-      subject: 'clk: qcom: Get Lucid-EVO PLL offsets from platform'
-    - commit: e5328180e783355ac82d811f32cee6e3890bb722
-      review: null
-      subject: 'clk: qcom: lemans: return TEE_ERROR_TIMEOUT from LPASS collapse polls'
-    - commit: 26d2df5f8e95424851c985d3d199e970889e4343
-      review: null
-      subject: 'clk: qcom: lemans: reset a GP-DSP while its PDC holds it in low power'
-    - commit: 841cb20ec6f688bfc8ff6fa9978208fbc9cdaa0b
-      review: null
-      subject: 'clk: qcom: hoya: share the Lemans Q6 PAS sequences'
-    - commit: ec624733966f8538510c2de3a0d61027a600243c
-      review: null
-      subject: 'clk: qcom: lemans: return the NSP clock enable error as is'
-    - commit: 7146d510a17d8b1bfac21fbc631d84cf7cfb5f4b
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 566e9371dd9d5cc7708e65610d268dc126b31777
-      review: null
-      subject: 'clk: qcom: hoya: enable the QDSP6 boot branches with the NSP clocks'
-    - commit: 4d80359d92f4223f0491adc87b7e7f91f63d6149
-      review: null
-      subject: 'clk: qcom: monaco: add PAS clock support'
-    - commit: b343917cd3a74cae47d87d8284d245c4d364d9e3
-      review: null
-      subject: 'pta: qcom: pas: monaco: add ADSP, CDSP and GP-DSP0 bring-up'
-    - commit: 78057e5c9fed21abd4a6d50473df011eb8502e34
-      review: null
-      subject: 'plat-qcom: hoya: monaco: enable the PAS pseudo-TA'
-    - commit: 120a891f1f421c916fc9141a6bf380770ab8ba9c
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 5fa3fa072c4bb58392c0060e46f3a005c05a2654
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: 50e42d0b43d94a0ea2ed59012c8da1889d45ead8
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: ec088f71bc8cae60ca3bfbc7de12b2ea792b1f3a
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 83f98cc0168ba085a2cd1fab01d8774a942fdefe
-      review: null
-      subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 471cd2597fe272ecdcc22f35905cf5b0b2f18ba5
+    - commit: db502f641a213f947084c9bfdbca4dfd5479d5ff
       review: null
       subject: 'ta: qcom_pas: keep one image generation across INIT_IMAGE'
-    - commit: 744141f35405778dc84a6ac06e50379512619aa7
+    - commit: 3f6cc2f695e1673ff4ab8fb46825708746f355fc
       review: null
       subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: 9c09dc296a8fc8ad3f7c847fbbc5183ded4ead70
+    - commit: 84367c1f01b2de13cbed770f5b3df38f5ddf0a68
       review: null
-      subject: 'pta: qcom: pas: define iris registers from IRIS_BASE'
-    - commit: 2aa24b32551066b7721f3d17fe18f4791a6d1b77
+      subject: 'pta: qcom: pas: iris: program the CP layout and seed'
+    - commit: 5ddd5c53f79194c4a0be73cf76792fe7238ffa1b
       review: null
-      subject: 'pta: qcom: pas: kodiak: program iris CP layout and seed'
-    - commit: 9696466e016d48e4faf45e098c68ba21c5da53d3
+      subject: 'pta: qcom: pas: share the iris start and shutdown'
+    - commit: a0bb427e7c2e141ef3ff2d6b0b6cee7c81809534
       review: null
       subject: 'pta: qcom: pas: kodiak: program iris secure session settings'
-    - commit: 8c3f3fbbe85ff07e745ceaa0df13c8c9f0e2131e
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris CP layout and seed'
-    - commit: ac4bd89e8d5b58ffd5088e3b6853fcb8facc3d65
+    - commit: 65656d84ef41438edd2514c59b6103b80871c1e7
       review: null
       subject: 'pta: qcom: pas: lemans: program iris secure session settings'
-    - commit: 36a2a8feba61322a71d481ad00cfcdc372d25123
+    - commit: 1a7cb4bfecd9c5e17ef8988f84d77166d050df44
       review: null
       subject: 'pta: qcom: pas: kodiak: add the ADSP shutdown'
-    - commit: b255a52ce496d90220b3d76cc26e6ff77f4d352a
+    - commit: 41d36dbdae3660cb2e08840c98f0c04545c15c77
       review: null
       subject: 'pta: qcom: pas: kodiak: add the CDSP shutdown'
-    - commit: 8d5134bbd43cab348b3a5b66257b28b093a1b8b6
-      review: null
-      subject: 'pta: qcom: pas: kodiak: map the USB pages the ADSP reads'
-    - commit: 1dae84adceae1c1ddb315e53123d91c25255365d
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 8ea7d9e0837f7c9532444efd14fac44d3a6a66a0
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: ae40b9e1ddedb6da6031427b8757fee2cff13a97
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: cc80a5100e3b2ebf550e39382b17a9997af78e62
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 115fde748c9402d8e057b719c99ac94d621f4f9e
+    - commit: d809109845e46ea69f697e5b156f71b47cfe1718
       review: null
       subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 6330e076805ecf0bed35c9a9b927b6b15f0a11a9
-      review: null
-      subject: 'ta: qcom_pas: keep one image generation across INIT_IMAGE'
-    - commit: 8cf35a2d3adb688a8f8d3f94f2618eb7f4f4a690
-      review: null
-      subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: d47639a97e15bf697c3736ae967e7614bf1284ec
-      review: null
-      subject: 'pta: qcom: pas: define iris registers from IRIS_BASE'
-    - commit: 065b11dec6c6290ae9f2920fe984a9db2e6c7dd0
-      review: null
-      subject: 'pta: qcom: pas: kodiak: program iris CP layout and seed'
-    - commit: df57c227278689a86c0afcb6ea033c666bac6268
-      review: null
-      subject: 'pta: qcom: pas: kodiak: program iris secure session settings'
-    - commit: 5beb2b5cb2fb93ff9cf303b6f2d65de7014f91d0
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris CP layout and seed'
-    - commit: ac2381866f31f11da1cb8bf07bd0c04f60001443
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris secure session settings'
-    - commit: 824811d5f10ce5668332e9f416fe44274f8b5426
-      review: null
-      subject: 'pta: qcom: pas: kodiak: add the ADSP shutdown'
-    - commit: 9a0398cbffd453246b2e6d7ae5e085ecb287fa35
-      review: null
-      subject: 'pta: qcom: pas: kodiak: add the CDSP shutdown'
-    - commit: 979d1a895f55fd577e3d8448e898b3da6357633e
+    - commit: b994c22c17cc91f02b398c5ae468fcde1e94a8c3
       review: null
       subject: 'pta: qcom: pas: kodiak: map the USB pages the ADSP reads'
-    - commit: f7e957eb0e8dbf66f9f0f4ba8ded73b2b750f1b4
-      review: null
-      subject: 'drivers: qcom: add GENI SPI driver'
-    - commit: 005cb957e74c66647d8a888720b2a1a24e1c7d36
-      review: null
-      subject: 'drivers: qcom: spi: add lemans SPI config'
-    - commit: 4f958e24ed1468416d1772b16a9d26983ab5cd7c
-      review: null
-      subject: 'drivers: qcom: spi: add loopback SPI test'
-    - commit: 9dbfbec118beb556c597d76287a3136058021df8
-      review: null
-      subject: 'MAINTAINERS: add Qualcomm GENI SPI driver'
-    - commit: 61e0f31162ef52fea97dd9bfaaffc6b94e032229
-      review: null
-      subject: 'plat-qcom: add optional embedded DTB support'
-    - commit: 947657f8d58a42d7eeeb4bdf5e936a42c106685d
-      review: null
-      subject: 'drivers: qcom_geni_uart: add DT console driver'
-    - commit: ec96e639edda1f9edbdd98466409b08740d8c6c1
-      review: null
-      subject: 'clk: qcom: agatti: add PAS clock support'
-    - commit: f6b11715a6205d3f54383d01c2773dbc906adff0
-      review: null
-      subject: 'pta: qcom: pas: agatti: add ADSP bring-up'
-    - commit: eac15ccbca0ee32750e0c02d936d498a94a7e1d6
-      review: null
-      subject: 'plat-qcom: bruin: agatti: enable the PAS pseudo-TA'
-    - commit: 3c593694ac8af4061327660c2c76f0dfd7e7c9bf
+    - commit: a5bad9e400485694b486d2e6eda72c88f2efe7b7
       review: null
       subject: 'pta: qcom: pas: agatti: add GPU zap shader support'
-    - commit: 78f2a47cebf6e88c3ab7f8123569eccec431853d
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: 52ab21abdc7c5342d2dc399bcf05abd8a030458e
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: d80ba1cab66c8fabdd9aec8e38670fe2c45e7601
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 798f97199a8112eaeb75a07a734cf1df46e0ea39
-      review: null
-      subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 2160daf2359e7cf13cd61608edd4efb00b2fbce2
+    - commit: 9b36a57e3949cfebdb87188712322203608ac4da
       review: null
       subject: 'pta: qcom: pas: agatti: add venus bring-up'
-    - commit: edaeed5f11bbf60ba13ca916e4568864a44c17c9
+    - commit: 1fd222294d921a3dfb832b1dcddaeaa6a2f9f9ae
       review: null
       subject: 'pta: qcom: pas: agatti: clean the venus seed to memory'
-    - commit: cb93a72ec8901bb679e8ae3b900ce5a52cd43049
+    - commit: f4c9fde62d1133fb670554549e224f42e93781df
+      review: null
+      subject: 'drivers: gic: do not log an error for unused redistributor frames'
+    - commit: 7d4bded067813fba2db0840ba865a349a344cddc
       review: https://github.com/qualcomm-linux/optee_os/pull/59
       subject: 'drivers: qcom: add RPM client for Shikra'
-    - commit: ebbbd4a79f2e98232bbaec190593a38880c8b0b9
+    - commit: 4c3630d5b2e3929765b92ee9d27169a9fb446bee
       review: null
       subject: 'plat-qcom: shikra: add QUP clock support'
-    - commit: 62a6594de998900064a19d724c1dd9fc32cd6f9e
-      review: null
-      subject: 'drivers: qcom: tlmm: enable driver for Shikra'
-    - commit: 0a7009681f4352bd1acfacd14b9e6528dd7b4617
-      review: null
-      subject: 'plat-qcom: dts: add embedded DTBs for Lemans, IPQ52xx and IPQ96xx'
-    - commit: 0beba847fb390392beb542c6e585b131d0025625
-      review: null
-      subject: 'plat-qcom: take GIC bases from DT when available'
-    - commit: ef9007b31b2984e622438030b6d771d0edf0ef54
-      review: null
-      subject: 'drivers: qcom: csrng: take register base from DT when available'
-    - commit: 67b4531d230bf10a9bbeed925a554ed90eda3de7
-      review: null
-      subject: 'drivers: qcom: ramblur: take pIMEM registers and vault from DT when available'
-    - commit: 48e45590f07fa19f3f8be80f9d8b2d03858f130a
-      review: null
-      subject: 'plat-qcom: add TOPICS.md for the integration branch'
-    - commit: 033d0c629c51f805dcc36177a45151b0c5e55af3
-      review: null
-      subject: 'ci: qcom: add lanai platform build'
-    - commit: e34bccb9bec9ef0c12026ee7802b1f46a4975885
-      review: null
-      subject: 'plat-qcom: wildcat: add Kailua (SM8550)'
-    - commit: b39dc9544e5a168f7a2302dea363f106bd2b2444
-      review: null
-      subject: 'ci: qcom: add kailua platform build'
-    - commit: 755db821cf5376ca4c64f2fa46a7f59c28e02fef
-      review: null
-      subject: 'plat-qcom: list qcom/kailua in TOPICS.md'
-    - commit: 0e7ea3887fa6f074d3ac96756bc66ff8d3205a78
+    - commit: 5eff446368a056c230ac099217bc40117c4f8de9
       review: null
       subject: 'plat-qcom: wildcat: add Eliza (SM7750)'
-    - commit: 1661765f72afb9610e04ae133786769623239e26
+    - commit: 4ad50cce1b1370fe04b8eacf036b41029fdb3d7a
       review: null
       subject: 'clk: qcom: eliza: add PAS clock support'
-    - commit: f19c344f1bc0192ea943787dcc4f8ff6519e90cc
+    - commit: 6b157a62e1512bc62dc893d5a3680c6d377dc5e0
       review: null
       subject: 'pta: qcom: pas: add the ADSP DTB PAS ID'
-    - commit: e680483289db751f00d060f319911d17c9ebf918
+    - commit: 1387bb55a9ce4df2af6b297395410b986c1ed811
       review: null
       subject: 'pta: qcom: pas: eliza: add CDSP bring-up and shutdown'
-    - commit: 0d16a9bc4ae0d1e71071d2e901c0fc78125ddbce
+    - commit: 487b63834d0aa276dbdcfb8753ca0215cc81e7c4
       review: null
       subject: 'pta: qcom: pas: eliza: add ADSP bring-up and shutdown'
-    - commit: 384220270a5c6365246de143465f5f0f40892484
+    - commit: 9b2025c451bbed1ae89bf7d7af6359b81d533058
       review: null
       subject: 'plat-qcom: wildcat: eliza: enable the PAS pseudo-TA'
-    - commit: f34d0b3fb15c8a890410154faabcf9d60377ab21
+    - commit: 927ad70083a474fd3c4788c75948e659b80bff94
       review: null
       subject: 'ci: qcom: add eliza platform build'
-    - commit: b34c1c3e6b5618756444ec6aec88d94b63007052
+    - commit: 189d8423f3edf648af2bb964de8367e996e43b09
       review: null
       subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: ec305ed735d68e7c08a180fa6ed056606317f46c
+    - commit: 0b343881b41b97d8c8b137dfd1e9080c12d42cbb
       review: null
       subject: 'pta: qcom: pas: move ELF segment selection to a header'
-    - commit: ed30368d6e4760295685eef5097081e0223a4dbe
+    - commit: f765934bda8ee1e47c61dbaabb5f1dd683a48cdf
       review: null
       subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: f777efc56c4f3912eefed0f208c53c09700c9dcc
+    - commit: 11a71a633d50dffaadd0ffe98e80b797d05e4495
       review: null
       subject: 'pta: qcom: pas: eliza: add iris bring-up and shutdown'
-    - commit: 974b70e7d27ef2113386383b128f7dd382410966
+    - commit: d66f1432808c3ac83c237e458bcd202923f560b0
+      review: null
+      subject: 'plat-qcom: wildcat: add Lanai (SM8650)'
+    - commit: a7152cb8ef071dc6d1eb7b6ac98c8f6ad3042bfe
+      review: null
+      subject: 'plat-qcom: wildcat: add Kailua (SM8550)'
+    - commit: 20e87e34ce3842e6769ab1f898b16397908ddfa3
       review: null
       subject: 'plat-qcom: wildcat: eliza: enable the iris PAS support'
-    - commit: 55c31ca6386e29e22c8633bbbd483e765d0595f2
+    - commit: 3524bd885e573f871fa9a0f7b35d7ea3022908c9
       review: null
-      subject: 'plat-qcom: list qcom/eliza in TOPICS.md'
-    - commit: 4e61677becf8b57cd62a113314d77839fa7d9297
+      subject: 'ci: qcom: add lanai platform build'
+    - commit: afda7bf387c5892416ca2f71785d2177dbb0fae3
+      review: null
+      subject: 'ci: qcom: add kailua platform build'
+    - commit: 4e9e0d684d8384168372827b6486fc07f5ac4676
       review: null
       subject: 'pta: qcom: pas: eliza: map the PMIC arbiter and ADSP QUP engines'
-    - commit: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
+    - commit: 95f0bc7dd7fe0270fce14f1b1fc2910f1f58e578
       review: null
-      subject: 'plat-qcom: list the Eliza ADSP resource table regions in TOPICS.md'
-    distance: 93
-    pin: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
+      subject: 'drivers: qcom: add GENI SPI driver'
+    - commit: 29e86779b0493d4fa5f5f62ecfff4913c3fdbe19
+      review: null
+      subject: 'drivers: qcom: spi: add lemans SPI config'
+    - commit: 4db22dce39adb93dbb590361cb0bd6af2f8129c5
+      review: null
+      subject: 'drivers: qcom: spi: add loopback SPI test'
+    - commit: 49608dc89e2708e459864950fc48f52f3e0a901b
+      review: null
+      subject: 'MAINTAINERS: add Qualcomm GENI SPI driver'
+    - commit: ed8294a7b536c66730592a5a8c4f4823ad46e902
+      review: null
+      subject: 'core: arm: crypto: build the CE GCM code only with CFG_CRYPTO'
+    - commit: 1438b1d9d48274917ea2190ef87ca5b34e0d43ff
+      review: null
+      subject: 'plat-qcom: ipq52xx: add a low memory profile'
+    - commit: 7def3b19f2c574a645ab9824a5907b122dcbf508
+      review: null
+      subject: 'plat-qcom: support an embedded DTB'
+    - commit: 4e3d312535a5415b0bdb58c21c0c2e8c70397ec1
+      review: null
+      subject: 'plat-qcom: take the DRAM from an embedded DT'
+    - commit: 9808dec3db39ce649ad67eb3bab7e7c7a580f57a
+      review: null
+      subject: 'drivers: qcom: xpuv4: let an instance guard several ranges'
+    - commit: 67236c4e42e2542c3636769f30d47a4149ad3319
+      review: null
+      subject: 'plat-qcom: xpu: split out the source of the DDR guards'
+    - commit: 6f9224e3d6fe842c76e7620427434080f0f052db
+      review: null
+      subject: 'plat-qcom: xpu: take the DDR guards from an embedded DT'
+    - commit: 0bd0d2fcb71e21864334e652f12568422400a6ed
+      review: null
+      subject: 'plat-qcom: ipq96xx: describe the DRAM in a DT'
+    - commit: 0f51c5df0d4eb0b8e0a5b7388709178f6a41bc6a
+      review: null
+      subject: 'plat-qcom: lemans: describe the DRAM in a DT'
+    - commit: c919b414bedfa372538e14ab344b07368b07510b
+      review: null
+      subject: 'plat-qcom: ipq52xx: describe the DRAM in a DT'
+    - commit: e8a3fd4c88be79f80047e99b2e5dedd77e4627c7
+      review: null
+      subject: 'drivers: qcom: ramblur: split out the pIMEM configuration'
+    - commit: 0a216ba1d099fa78cf938454040eef9d166fec8b
+      review: null
+      subject: 'plat-qcom: dts: add a DT binding for the Ramblur pIMEM controller'
+    - commit: 8f2f48193722f853a16dae5496974df6cf3f09be
+      review: null
+      subject: 'drivers: qcom: ramblur: take pIMEM regs and vault from DT'
+    - commit: 6e2e787a17231944f78e79a02c65ca403a4601b2
+      review: null
+      subject: 'MAINTAINERS: add the Qualcomm device tree files'
+    - commit: d6683ecdb09130179a166c50553a5a6eb74be2b8
+      review: null
+      subject: 'drivers: qcom: spi: fix const and declaration warnings'
+    - commit: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
+      review: null
+      subject: 'plat-qcom: add TOPICS.md for the 2026-11-05 integration'
+    distance: 61
+    pin: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
     repo: https://github.com/OP-TEE/optee_os
   tf-a:
     base: 0752f3bf2808518ff76dce41cdca7e8f9800c270
     carried:
     - commit: 9bebaf3952a1fcb43b7ddfaec90a2c8180f0373a
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56131
       subject: 'fix(qti): read the xPU syndrome registers at their offsets'
     - commit: 850d5c9b0b16566c2b299e0eae1a16e73537fda3
       review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55670
@@ -372,7 +276,7 @@ lemans-evk:
       review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55730
       subject: 'refactor(qti): make the core power-down request a PM backend hook'
     - commit: 1489149e6b2c6a1c4d6f6a068c04a96ede725a2b
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56131
       subject: 'fix(qti): read the xPU syndrome registers at their offsets'
     - commit: 39283cd5eab52e486775502f0dae044a6d126935
       review: null
@@ -408,19 +312,19 @@ lemans-evk:
       review: null
       subject: 'fix(psci): offer CPU_SUSPEND to platforms with only CPU standby'
     - commit: 47e0cde04c9c78f0b687a8dad84c5742043d4899
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56134
       subject: 'feat(qti): add Talos SoC definitions'
     - commit: 7274cb3b6f403ec01b8fe8feb3098962f2fe861c
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56135
       subject: 'refactor(qti): move qcs615 under the talos directory'
     - commit: 88ca30aaf08dfa0dd62a55344436482e87b44c90
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56136
       subject: 'feat(qti): add Talos apps PDC tables'
     - commit: c816f651c433efdd1e96c8fe08bc8c007ead3f4a
       review: null
       subject: 'fix(qti): reject MEM_ASSIGN without an access control backend'
     - commit: e0e269ff0408d2510d59a6c3ac874111c47eba84
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56137
       subject: 'feat(qcs615_ride): add XBL boot support'
     - commit: 3b6a0af29dea6cf0bfffec59d1043b55861d2039
       review: null
@@ -592,295 +496,199 @@ lemans-evk:
     repo: https://review.trustedfirmware.org/TF-A/trusted-firmware-a
 qcs615-ride:
   optee:
-    base: 2cabb6d063513e1718f7627e16b0a5ce1bfd5516
+    base: 3b0528e17cc6214587d3c8f5c452e9dc8b07ca60
     carried:
-    - commit: 3b0e16c127646d4a063885756be02f0bebfb257d
+    - commit: a8a2bfc89350619870345ee09e83b2c4f4ddf656
       review: null
       subject: 'plat-qcom: hoya: move the pIMEM TEE layout to the targets'
-    - commit: 4cbdf679a00790736cfd5531fb75b07865e30006
+    - commit: 900fe1bfdb267aa3cfd826a46ce2b475428bf246
       review: null
       subject: 'plat-qcom: hoya: move the RNG base to the targets'
-    - commit: ea8d8510ec8844a7b1d05f380351558b5e85bcbd
+    - commit: 76ba422255f03ccd6bd9e8564d218f63725e5c03
       review: null
       subject: 'plat-qcom: hoya: add talos support'
-    - commit: 2bb9d29ace7d79552b394878632fb852d57f0fd9
+    - commit: 1a2366b5de55c006e1d21880af93ec1a4bd836e7
       review: null
       subject: 'ci: add qcom-talos build'
-    - commit: ef551e4e447d22259052fe3b448a65177e0778d6
+    - commit: a5e554cbfcc7f2c2ec3a563a3a4e533d4f1f754f
+      review: null
+      subject: 'clk: qcom: share the QDSP6 halt and MMIO lookup helpers'
+    - commit: 3d99cea7932048093740f680bdfcd67155271903
       review: null
       subject: 'clk: qcom: talos: add PAS clock support'
-    - commit: c8cf31840b6b513c65489163ee3f32ae76c6192a
+    - commit: c21060c463bc89edc7366098d7e35a2c76d5b4ca
       review: null
       subject: 'pta: qcom: pas: talos: add ADSP and CDSP bring-up and shutdown'
-    - commit: 0b1f7848d9637675e9338ba0b29336774d34ef0e
+    - commit: 7f1c6f5bf0aa052f0123771b4dab23196d5a9076
       review: null
       subject: 'plat-qcom: hoya: talos: enable the PAS pseudo-TA'
-    - commit: 9643647198626d08b9c773a528dd5acbf75a3e3a
-      review: null
-      subject: 'plat-qcom: wildcat: add Lanai (SM8650)'
-    - commit: a330e5c3e67538b9781fee6c7e7240668ee330f3
-      review: null
-      subject: 'pta: qcom: pas: talos: set the controller map type'
-    - commit: c5970650bbd72ebffed86030a88cea7f7436ec00
-      review: null
-      subject: 'clk: qcom: talos: restart Turing whatever its power-on flag says'
-    - commit: a2d7bc346b1ccb3f34f68ed37b9e4361530f504e
-      review: null
-      subject: 'clk: qcom: Get Lucid-EVO PLL offsets from platform'
-    - commit: e5328180e783355ac82d811f32cee6e3890bb722
-      review: null
-      subject: 'clk: qcom: lemans: return TEE_ERROR_TIMEOUT from LPASS collapse polls'
-    - commit: 26d2df5f8e95424851c985d3d199e970889e4343
-      review: null
-      subject: 'clk: qcom: lemans: reset a GP-DSP while its PDC holds it in low power'
-    - commit: 841cb20ec6f688bfc8ff6fa9978208fbc9cdaa0b
-      review: null
-      subject: 'clk: qcom: hoya: share the Lemans Q6 PAS sequences'
-    - commit: ec624733966f8538510c2de3a0d61027a600243c
-      review: null
-      subject: 'clk: qcom: lemans: return the NSP clock enable error as is'
-    - commit: 7146d510a17d8b1bfac21fbc631d84cf7cfb5f4b
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 566e9371dd9d5cc7708e65610d268dc126b31777
-      review: null
-      subject: 'clk: qcom: hoya: enable the QDSP6 boot branches with the NSP clocks'
-    - commit: 4d80359d92f4223f0491adc87b7e7f91f63d6149
-      review: null
-      subject: 'clk: qcom: monaco: add PAS clock support'
-    - commit: b343917cd3a74cae47d87d8284d245c4d364d9e3
-      review: null
-      subject: 'pta: qcom: pas: monaco: add ADSP, CDSP and GP-DSP0 bring-up'
-    - commit: 78057e5c9fed21abd4a6d50473df011eb8502e34
-      review: null
-      subject: 'plat-qcom: hoya: monaco: enable the PAS pseudo-TA'
-    - commit: 120a891f1f421c916fc9141a6bf380770ab8ba9c
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 5fa3fa072c4bb58392c0060e46f3a005c05a2654
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: 50e42d0b43d94a0ea2ed59012c8da1889d45ead8
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: ec088f71bc8cae60ca3bfbc7de12b2ea792b1f3a
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 83f98cc0168ba085a2cd1fab01d8774a942fdefe
-      review: null
-      subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 471cd2597fe272ecdcc22f35905cf5b0b2f18ba5
+    - commit: db502f641a213f947084c9bfdbca4dfd5479d5ff
       review: null
       subject: 'ta: qcom_pas: keep one image generation across INIT_IMAGE'
-    - commit: 744141f35405778dc84a6ac06e50379512619aa7
+    - commit: 3f6cc2f695e1673ff4ab8fb46825708746f355fc
       review: null
       subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: 9c09dc296a8fc8ad3f7c847fbbc5183ded4ead70
+    - commit: 84367c1f01b2de13cbed770f5b3df38f5ddf0a68
       review: null
-      subject: 'pta: qcom: pas: define iris registers from IRIS_BASE'
-    - commit: 2aa24b32551066b7721f3d17fe18f4791a6d1b77
+      subject: 'pta: qcom: pas: iris: program the CP layout and seed'
+    - commit: 5ddd5c53f79194c4a0be73cf76792fe7238ffa1b
       review: null
-      subject: 'pta: qcom: pas: kodiak: program iris CP layout and seed'
-    - commit: 9696466e016d48e4faf45e098c68ba21c5da53d3
+      subject: 'pta: qcom: pas: share the iris start and shutdown'
+    - commit: a0bb427e7c2e141ef3ff2d6b0b6cee7c81809534
       review: null
       subject: 'pta: qcom: pas: kodiak: program iris secure session settings'
-    - commit: 8c3f3fbbe85ff07e745ceaa0df13c8c9f0e2131e
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris CP layout and seed'
-    - commit: ac4bd89e8d5b58ffd5088e3b6853fcb8facc3d65
+    - commit: 65656d84ef41438edd2514c59b6103b80871c1e7
       review: null
       subject: 'pta: qcom: pas: lemans: program iris secure session settings'
-    - commit: 36a2a8feba61322a71d481ad00cfcdc372d25123
+    - commit: 1a7cb4bfecd9c5e17ef8988f84d77166d050df44
       review: null
       subject: 'pta: qcom: pas: kodiak: add the ADSP shutdown'
-    - commit: b255a52ce496d90220b3d76cc26e6ff77f4d352a
+    - commit: 41d36dbdae3660cb2e08840c98f0c04545c15c77
       review: null
       subject: 'pta: qcom: pas: kodiak: add the CDSP shutdown'
-    - commit: 8d5134bbd43cab348b3a5b66257b28b093a1b8b6
-      review: null
-      subject: 'pta: qcom: pas: kodiak: map the USB pages the ADSP reads'
-    - commit: 1dae84adceae1c1ddb315e53123d91c25255365d
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 8ea7d9e0837f7c9532444efd14fac44d3a6a66a0
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: ae40b9e1ddedb6da6031427b8757fee2cff13a97
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: cc80a5100e3b2ebf550e39382b17a9997af78e62
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 115fde748c9402d8e057b719c99ac94d621f4f9e
+    - commit: d809109845e46ea69f697e5b156f71b47cfe1718
       review: null
       subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 6330e076805ecf0bed35c9a9b927b6b15f0a11a9
-      review: null
-      subject: 'ta: qcom_pas: keep one image generation across INIT_IMAGE'
-    - commit: 8cf35a2d3adb688a8f8d3f94f2618eb7f4f4a690
-      review: null
-      subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: d47639a97e15bf697c3736ae967e7614bf1284ec
-      review: null
-      subject: 'pta: qcom: pas: define iris registers from IRIS_BASE'
-    - commit: 065b11dec6c6290ae9f2920fe984a9db2e6c7dd0
-      review: null
-      subject: 'pta: qcom: pas: kodiak: program iris CP layout and seed'
-    - commit: df57c227278689a86c0afcb6ea033c666bac6268
-      review: null
-      subject: 'pta: qcom: pas: kodiak: program iris secure session settings'
-    - commit: 5beb2b5cb2fb93ff9cf303b6f2d65de7014f91d0
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris CP layout and seed'
-    - commit: ac2381866f31f11da1cb8bf07bd0c04f60001443
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris secure session settings'
-    - commit: 824811d5f10ce5668332e9f416fe44274f8b5426
-      review: null
-      subject: 'pta: qcom: pas: kodiak: add the ADSP shutdown'
-    - commit: 9a0398cbffd453246b2e6d7ae5e085ecb287fa35
-      review: null
-      subject: 'pta: qcom: pas: kodiak: add the CDSP shutdown'
-    - commit: 979d1a895f55fd577e3d8448e898b3da6357633e
+    - commit: b994c22c17cc91f02b398c5ae468fcde1e94a8c3
       review: null
       subject: 'pta: qcom: pas: kodiak: map the USB pages the ADSP reads'
-    - commit: f7e957eb0e8dbf66f9f0f4ba8ded73b2b750f1b4
-      review: null
-      subject: 'drivers: qcom: add GENI SPI driver'
-    - commit: 005cb957e74c66647d8a888720b2a1a24e1c7d36
-      review: null
-      subject: 'drivers: qcom: spi: add lemans SPI config'
-    - commit: 4f958e24ed1468416d1772b16a9d26983ab5cd7c
-      review: null
-      subject: 'drivers: qcom: spi: add loopback SPI test'
-    - commit: 9dbfbec118beb556c597d76287a3136058021df8
-      review: null
-      subject: 'MAINTAINERS: add Qualcomm GENI SPI driver'
-    - commit: 61e0f31162ef52fea97dd9bfaaffc6b94e032229
-      review: null
-      subject: 'plat-qcom: add optional embedded DTB support'
-    - commit: 947657f8d58a42d7eeeb4bdf5e936a42c106685d
-      review: null
-      subject: 'drivers: qcom_geni_uart: add DT console driver'
-    - commit: ec96e639edda1f9edbdd98466409b08740d8c6c1
-      review: null
-      subject: 'clk: qcom: agatti: add PAS clock support'
-    - commit: f6b11715a6205d3f54383d01c2773dbc906adff0
-      review: null
-      subject: 'pta: qcom: pas: agatti: add ADSP bring-up'
-    - commit: eac15ccbca0ee32750e0c02d936d498a94a7e1d6
-      review: null
-      subject: 'plat-qcom: bruin: agatti: enable the PAS pseudo-TA'
-    - commit: 3c593694ac8af4061327660c2c76f0dfd7e7c9bf
+    - commit: a5bad9e400485694b486d2e6eda72c88f2efe7b7
       review: null
       subject: 'pta: qcom: pas: agatti: add GPU zap shader support'
-    - commit: 78f2a47cebf6e88c3ab7f8123569eccec431853d
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: 52ab21abdc7c5342d2dc399bcf05abd8a030458e
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: d80ba1cab66c8fabdd9aec8e38670fe2c45e7601
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 798f97199a8112eaeb75a07a734cf1df46e0ea39
-      review: null
-      subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 2160daf2359e7cf13cd61608edd4efb00b2fbce2
+    - commit: 9b36a57e3949cfebdb87188712322203608ac4da
       review: null
       subject: 'pta: qcom: pas: agatti: add venus bring-up'
-    - commit: edaeed5f11bbf60ba13ca916e4568864a44c17c9
+    - commit: 1fd222294d921a3dfb832b1dcddaeaa6a2f9f9ae
       review: null
       subject: 'pta: qcom: pas: agatti: clean the venus seed to memory'
-    - commit: cb93a72ec8901bb679e8ae3b900ce5a52cd43049
+    - commit: f4c9fde62d1133fb670554549e224f42e93781df
+      review: null
+      subject: 'drivers: gic: do not log an error for unused redistributor frames'
+    - commit: 7d4bded067813fba2db0840ba865a349a344cddc
       review: https://github.com/qualcomm-linux/optee_os/pull/59
       subject: 'drivers: qcom: add RPM client for Shikra'
-    - commit: ebbbd4a79f2e98232bbaec190593a38880c8b0b9
+    - commit: 4c3630d5b2e3929765b92ee9d27169a9fb446bee
       review: null
       subject: 'plat-qcom: shikra: add QUP clock support'
-    - commit: 62a6594de998900064a19d724c1dd9fc32cd6f9e
-      review: null
-      subject: 'drivers: qcom: tlmm: enable driver for Shikra'
-    - commit: 0a7009681f4352bd1acfacd14b9e6528dd7b4617
-      review: null
-      subject: 'plat-qcom: dts: add embedded DTBs for Lemans, IPQ52xx and IPQ96xx'
-    - commit: 0beba847fb390392beb542c6e585b131d0025625
-      review: null
-      subject: 'plat-qcom: take GIC bases from DT when available'
-    - commit: ef9007b31b2984e622438030b6d771d0edf0ef54
-      review: null
-      subject: 'drivers: qcom: csrng: take register base from DT when available'
-    - commit: 67b4531d230bf10a9bbeed925a554ed90eda3de7
-      review: null
-      subject: 'drivers: qcom: ramblur: take pIMEM registers and vault from DT when available'
-    - commit: 48e45590f07fa19f3f8be80f9d8b2d03858f130a
-      review: null
-      subject: 'plat-qcom: add TOPICS.md for the integration branch'
-    - commit: 033d0c629c51f805dcc36177a45151b0c5e55af3
-      review: null
-      subject: 'ci: qcom: add lanai platform build'
-    - commit: e34bccb9bec9ef0c12026ee7802b1f46a4975885
-      review: null
-      subject: 'plat-qcom: wildcat: add Kailua (SM8550)'
-    - commit: b39dc9544e5a168f7a2302dea363f106bd2b2444
-      review: null
-      subject: 'ci: qcom: add kailua platform build'
-    - commit: 755db821cf5376ca4c64f2fa46a7f59c28e02fef
-      review: null
-      subject: 'plat-qcom: list qcom/kailua in TOPICS.md'
-    - commit: 0e7ea3887fa6f074d3ac96756bc66ff8d3205a78
+    - commit: 5eff446368a056c230ac099217bc40117c4f8de9
       review: null
       subject: 'plat-qcom: wildcat: add Eliza (SM7750)'
-    - commit: 1661765f72afb9610e04ae133786769623239e26
+    - commit: 4ad50cce1b1370fe04b8eacf036b41029fdb3d7a
       review: null
       subject: 'clk: qcom: eliza: add PAS clock support'
-    - commit: f19c344f1bc0192ea943787dcc4f8ff6519e90cc
+    - commit: 6b157a62e1512bc62dc893d5a3680c6d377dc5e0
       review: null
       subject: 'pta: qcom: pas: add the ADSP DTB PAS ID'
-    - commit: e680483289db751f00d060f319911d17c9ebf918
+    - commit: 1387bb55a9ce4df2af6b297395410b986c1ed811
       review: null
       subject: 'pta: qcom: pas: eliza: add CDSP bring-up and shutdown'
-    - commit: 0d16a9bc4ae0d1e71071d2e901c0fc78125ddbce
+    - commit: 487b63834d0aa276dbdcfb8753ca0215cc81e7c4
       review: null
       subject: 'pta: qcom: pas: eliza: add ADSP bring-up and shutdown'
-    - commit: 384220270a5c6365246de143465f5f0f40892484
+    - commit: 9b2025c451bbed1ae89bf7d7af6359b81d533058
       review: null
       subject: 'plat-qcom: wildcat: eliza: enable the PAS pseudo-TA'
-    - commit: f34d0b3fb15c8a890410154faabcf9d60377ab21
+    - commit: 927ad70083a474fd3c4788c75948e659b80bff94
       review: null
       subject: 'ci: qcom: add eliza platform build'
-    - commit: b34c1c3e6b5618756444ec6aec88d94b63007052
+    - commit: 189d8423f3edf648af2bb964de8367e996e43b09
       review: null
       subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: ec305ed735d68e7c08a180fa6ed056606317f46c
+    - commit: 0b343881b41b97d8c8b137dfd1e9080c12d42cbb
       review: null
       subject: 'pta: qcom: pas: move ELF segment selection to a header'
-    - commit: ed30368d6e4760295685eef5097081e0223a4dbe
+    - commit: f765934bda8ee1e47c61dbaabb5f1dd683a48cdf
       review: null
       subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: f777efc56c4f3912eefed0f208c53c09700c9dcc
+    - commit: 11a71a633d50dffaadd0ffe98e80b797d05e4495
       review: null
       subject: 'pta: qcom: pas: eliza: add iris bring-up and shutdown'
-    - commit: 974b70e7d27ef2113386383b128f7dd382410966
+    - commit: d66f1432808c3ac83c237e458bcd202923f560b0
+      review: null
+      subject: 'plat-qcom: wildcat: add Lanai (SM8650)'
+    - commit: a7152cb8ef071dc6d1eb7b6ac98c8f6ad3042bfe
+      review: null
+      subject: 'plat-qcom: wildcat: add Kailua (SM8550)'
+    - commit: 20e87e34ce3842e6769ab1f898b16397908ddfa3
       review: null
       subject: 'plat-qcom: wildcat: eliza: enable the iris PAS support'
-    - commit: 55c31ca6386e29e22c8633bbbd483e765d0595f2
+    - commit: 3524bd885e573f871fa9a0f7b35d7ea3022908c9
       review: null
-      subject: 'plat-qcom: list qcom/eliza in TOPICS.md'
-    - commit: 4e61677becf8b57cd62a113314d77839fa7d9297
+      subject: 'ci: qcom: add lanai platform build'
+    - commit: afda7bf387c5892416ca2f71785d2177dbb0fae3
+      review: null
+      subject: 'ci: qcom: add kailua platform build'
+    - commit: 4e9e0d684d8384168372827b6486fc07f5ac4676
       review: null
       subject: 'pta: qcom: pas: eliza: map the PMIC arbiter and ADSP QUP engines'
-    - commit: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
+    - commit: 95f0bc7dd7fe0270fce14f1b1fc2910f1f58e578
       review: null
-      subject: 'plat-qcom: list the Eliza ADSP resource table regions in TOPICS.md'
-    distance: 93
-    pin: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
+      subject: 'drivers: qcom: add GENI SPI driver'
+    - commit: 29e86779b0493d4fa5f5f62ecfff4913c3fdbe19
+      review: null
+      subject: 'drivers: qcom: spi: add lemans SPI config'
+    - commit: 4db22dce39adb93dbb590361cb0bd6af2f8129c5
+      review: null
+      subject: 'drivers: qcom: spi: add loopback SPI test'
+    - commit: 49608dc89e2708e459864950fc48f52f3e0a901b
+      review: null
+      subject: 'MAINTAINERS: add Qualcomm GENI SPI driver'
+    - commit: ed8294a7b536c66730592a5a8c4f4823ad46e902
+      review: null
+      subject: 'core: arm: crypto: build the CE GCM code only with CFG_CRYPTO'
+    - commit: 1438b1d9d48274917ea2190ef87ca5b34e0d43ff
+      review: null
+      subject: 'plat-qcom: ipq52xx: add a low memory profile'
+    - commit: 7def3b19f2c574a645ab9824a5907b122dcbf508
+      review: null
+      subject: 'plat-qcom: support an embedded DTB'
+    - commit: 4e3d312535a5415b0bdb58c21c0c2e8c70397ec1
+      review: null
+      subject: 'plat-qcom: take the DRAM from an embedded DT'
+    - commit: 9808dec3db39ce649ad67eb3bab7e7c7a580f57a
+      review: null
+      subject: 'drivers: qcom: xpuv4: let an instance guard several ranges'
+    - commit: 67236c4e42e2542c3636769f30d47a4149ad3319
+      review: null
+      subject: 'plat-qcom: xpu: split out the source of the DDR guards'
+    - commit: 6f9224e3d6fe842c76e7620427434080f0f052db
+      review: null
+      subject: 'plat-qcom: xpu: take the DDR guards from an embedded DT'
+    - commit: 0bd0d2fcb71e21864334e652f12568422400a6ed
+      review: null
+      subject: 'plat-qcom: ipq96xx: describe the DRAM in a DT'
+    - commit: 0f51c5df0d4eb0b8e0a5b7388709178f6a41bc6a
+      review: null
+      subject: 'plat-qcom: lemans: describe the DRAM in a DT'
+    - commit: c919b414bedfa372538e14ab344b07368b07510b
+      review: null
+      subject: 'plat-qcom: ipq52xx: describe the DRAM in a DT'
+    - commit: e8a3fd4c88be79f80047e99b2e5dedd77e4627c7
+      review: null
+      subject: 'drivers: qcom: ramblur: split out the pIMEM configuration'
+    - commit: 0a216ba1d099fa78cf938454040eef9d166fec8b
+      review: null
+      subject: 'plat-qcom: dts: add a DT binding for the Ramblur pIMEM controller'
+    - commit: 8f2f48193722f853a16dae5496974df6cf3f09be
+      review: null
+      subject: 'drivers: qcom: ramblur: take pIMEM regs and vault from DT'
+    - commit: 6e2e787a17231944f78e79a02c65ca403a4601b2
+      review: null
+      subject: 'MAINTAINERS: add the Qualcomm device tree files'
+    - commit: d6683ecdb09130179a166c50553a5a6eb74be2b8
+      review: null
+      subject: 'drivers: qcom: spi: fix const and declaration warnings'
+    - commit: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
+      review: null
+      subject: 'plat-qcom: add TOPICS.md for the 2026-11-05 integration'
+    distance: 61
+    pin: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
     repo: https://github.com/OP-TEE/optee_os
   tf-a:
     base: 0752f3bf2808518ff76dce41cdca7e8f9800c270
     carried:
     - commit: 9bebaf3952a1fcb43b7ddfaec90a2c8180f0373a
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56131
       subject: 'fix(qti): read the xPU syndrome registers at their offsets'
     - commit: 850d5c9b0b16566c2b299e0eae1a16e73537fda3
       review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55670
@@ -961,7 +769,7 @@ qcs615-ride:
       review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55730
       subject: 'refactor(qti): make the core power-down request a PM backend hook'
     - commit: 1489149e6b2c6a1c4d6f6a068c04a96ede725a2b
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56131
       subject: 'fix(qti): read the xPU syndrome registers at their offsets'
     - commit: 39283cd5eab52e486775502f0dae044a6d126935
       review: null
@@ -997,19 +805,19 @@ qcs615-ride:
       review: null
       subject: 'fix(psci): offer CPU_SUSPEND to platforms with only CPU standby'
     - commit: 47e0cde04c9c78f0b687a8dad84c5742043d4899
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56134
       subject: 'feat(qti): add Talos SoC definitions'
     - commit: 7274cb3b6f403ec01b8fe8feb3098962f2fe861c
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56135
       subject: 'refactor(qti): move qcs615 under the talos directory'
     - commit: 88ca30aaf08dfa0dd62a55344436482e87b44c90
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56136
       subject: 'feat(qti): add Talos apps PDC tables'
     - commit: c816f651c433efdd1e96c8fe08bc8c007ead3f4a
       review: null
       subject: 'fix(qti): reject MEM_ASSIGN without an access control backend'
     - commit: e0e269ff0408d2510d59a6c3ac874111c47eba84
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56137
       subject: 'feat(qcs615_ride): add XBL boot support'
     - commit: 3b6a0af29dea6cf0bfffec59d1043b55861d2039
       review: null
@@ -1181,295 +989,199 @@ qcs615-ride:
     repo: https://review.trustedfirmware.org/TF-A/trusted-firmware-a
 rb3gen2:
   optee:
-    base: 2cabb6d063513e1718f7627e16b0a5ce1bfd5516
+    base: 3b0528e17cc6214587d3c8f5c452e9dc8b07ca60
     carried:
-    - commit: 3b0e16c127646d4a063885756be02f0bebfb257d
+    - commit: a8a2bfc89350619870345ee09e83b2c4f4ddf656
       review: null
       subject: 'plat-qcom: hoya: move the pIMEM TEE layout to the targets'
-    - commit: 4cbdf679a00790736cfd5531fb75b07865e30006
+    - commit: 900fe1bfdb267aa3cfd826a46ce2b475428bf246
       review: null
       subject: 'plat-qcom: hoya: move the RNG base to the targets'
-    - commit: ea8d8510ec8844a7b1d05f380351558b5e85bcbd
+    - commit: 76ba422255f03ccd6bd9e8564d218f63725e5c03
       review: null
       subject: 'plat-qcom: hoya: add talos support'
-    - commit: 2bb9d29ace7d79552b394878632fb852d57f0fd9
+    - commit: 1a2366b5de55c006e1d21880af93ec1a4bd836e7
       review: null
       subject: 'ci: add qcom-talos build'
-    - commit: ef551e4e447d22259052fe3b448a65177e0778d6
+    - commit: a5e554cbfcc7f2c2ec3a563a3a4e533d4f1f754f
+      review: null
+      subject: 'clk: qcom: share the QDSP6 halt and MMIO lookup helpers'
+    - commit: 3d99cea7932048093740f680bdfcd67155271903
       review: null
       subject: 'clk: qcom: talos: add PAS clock support'
-    - commit: c8cf31840b6b513c65489163ee3f32ae76c6192a
+    - commit: c21060c463bc89edc7366098d7e35a2c76d5b4ca
       review: null
       subject: 'pta: qcom: pas: talos: add ADSP and CDSP bring-up and shutdown'
-    - commit: 0b1f7848d9637675e9338ba0b29336774d34ef0e
+    - commit: 7f1c6f5bf0aa052f0123771b4dab23196d5a9076
       review: null
       subject: 'plat-qcom: hoya: talos: enable the PAS pseudo-TA'
-    - commit: 9643647198626d08b9c773a528dd5acbf75a3e3a
-      review: null
-      subject: 'plat-qcom: wildcat: add Lanai (SM8650)'
-    - commit: a330e5c3e67538b9781fee6c7e7240668ee330f3
-      review: null
-      subject: 'pta: qcom: pas: talos: set the controller map type'
-    - commit: c5970650bbd72ebffed86030a88cea7f7436ec00
-      review: null
-      subject: 'clk: qcom: talos: restart Turing whatever its power-on flag says'
-    - commit: a2d7bc346b1ccb3f34f68ed37b9e4361530f504e
-      review: null
-      subject: 'clk: qcom: Get Lucid-EVO PLL offsets from platform'
-    - commit: e5328180e783355ac82d811f32cee6e3890bb722
-      review: null
-      subject: 'clk: qcom: lemans: return TEE_ERROR_TIMEOUT from LPASS collapse polls'
-    - commit: 26d2df5f8e95424851c985d3d199e970889e4343
-      review: null
-      subject: 'clk: qcom: lemans: reset a GP-DSP while its PDC holds it in low power'
-    - commit: 841cb20ec6f688bfc8ff6fa9978208fbc9cdaa0b
-      review: null
-      subject: 'clk: qcom: hoya: share the Lemans Q6 PAS sequences'
-    - commit: ec624733966f8538510c2de3a0d61027a600243c
-      review: null
-      subject: 'clk: qcom: lemans: return the NSP clock enable error as is'
-    - commit: 7146d510a17d8b1bfac21fbc631d84cf7cfb5f4b
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 566e9371dd9d5cc7708e65610d268dc126b31777
-      review: null
-      subject: 'clk: qcom: hoya: enable the QDSP6 boot branches with the NSP clocks'
-    - commit: 4d80359d92f4223f0491adc87b7e7f91f63d6149
-      review: null
-      subject: 'clk: qcom: monaco: add PAS clock support'
-    - commit: b343917cd3a74cae47d87d8284d245c4d364d9e3
-      review: null
-      subject: 'pta: qcom: pas: monaco: add ADSP, CDSP and GP-DSP0 bring-up'
-    - commit: 78057e5c9fed21abd4a6d50473df011eb8502e34
-      review: null
-      subject: 'plat-qcom: hoya: monaco: enable the PAS pseudo-TA'
-    - commit: 120a891f1f421c916fc9141a6bf380770ab8ba9c
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 5fa3fa072c4bb58392c0060e46f3a005c05a2654
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: 50e42d0b43d94a0ea2ed59012c8da1889d45ead8
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: ec088f71bc8cae60ca3bfbc7de12b2ea792b1f3a
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 83f98cc0168ba085a2cd1fab01d8774a942fdefe
-      review: null
-      subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 471cd2597fe272ecdcc22f35905cf5b0b2f18ba5
+    - commit: db502f641a213f947084c9bfdbca4dfd5479d5ff
       review: null
       subject: 'ta: qcom_pas: keep one image generation across INIT_IMAGE'
-    - commit: 744141f35405778dc84a6ac06e50379512619aa7
+    - commit: 3f6cc2f695e1673ff4ab8fb46825708746f355fc
       review: null
       subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: 9c09dc296a8fc8ad3f7c847fbbc5183ded4ead70
+    - commit: 84367c1f01b2de13cbed770f5b3df38f5ddf0a68
       review: null
-      subject: 'pta: qcom: pas: define iris registers from IRIS_BASE'
-    - commit: 2aa24b32551066b7721f3d17fe18f4791a6d1b77
+      subject: 'pta: qcom: pas: iris: program the CP layout and seed'
+    - commit: 5ddd5c53f79194c4a0be73cf76792fe7238ffa1b
       review: null
-      subject: 'pta: qcom: pas: kodiak: program iris CP layout and seed'
-    - commit: 9696466e016d48e4faf45e098c68ba21c5da53d3
+      subject: 'pta: qcom: pas: share the iris start and shutdown'
+    - commit: a0bb427e7c2e141ef3ff2d6b0b6cee7c81809534
       review: null
       subject: 'pta: qcom: pas: kodiak: program iris secure session settings'
-    - commit: 8c3f3fbbe85ff07e745ceaa0df13c8c9f0e2131e
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris CP layout and seed'
-    - commit: ac4bd89e8d5b58ffd5088e3b6853fcb8facc3d65
+    - commit: 65656d84ef41438edd2514c59b6103b80871c1e7
       review: null
       subject: 'pta: qcom: pas: lemans: program iris secure session settings'
-    - commit: 36a2a8feba61322a71d481ad00cfcdc372d25123
+    - commit: 1a7cb4bfecd9c5e17ef8988f84d77166d050df44
       review: null
       subject: 'pta: qcom: pas: kodiak: add the ADSP shutdown'
-    - commit: b255a52ce496d90220b3d76cc26e6ff77f4d352a
+    - commit: 41d36dbdae3660cb2e08840c98f0c04545c15c77
       review: null
       subject: 'pta: qcom: pas: kodiak: add the CDSP shutdown'
-    - commit: 8d5134bbd43cab348b3a5b66257b28b093a1b8b6
-      review: null
-      subject: 'pta: qcom: pas: kodiak: map the USB pages the ADSP reads'
-    - commit: 1dae84adceae1c1ddb315e53123d91c25255365d
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 8ea7d9e0837f7c9532444efd14fac44d3a6a66a0
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: ae40b9e1ddedb6da6031427b8757fee2cff13a97
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: cc80a5100e3b2ebf550e39382b17a9997af78e62
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 115fde748c9402d8e057b719c99ac94d621f4f9e
+    - commit: d809109845e46ea69f697e5b156f71b47cfe1718
       review: null
       subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 6330e076805ecf0bed35c9a9b927b6b15f0a11a9
-      review: null
-      subject: 'ta: qcom_pas: keep one image generation across INIT_IMAGE'
-    - commit: 8cf35a2d3adb688a8f8d3f94f2618eb7f4f4a690
-      review: null
-      subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: d47639a97e15bf697c3736ae967e7614bf1284ec
-      review: null
-      subject: 'pta: qcom: pas: define iris registers from IRIS_BASE'
-    - commit: 065b11dec6c6290ae9f2920fe984a9db2e6c7dd0
-      review: null
-      subject: 'pta: qcom: pas: kodiak: program iris CP layout and seed'
-    - commit: df57c227278689a86c0afcb6ea033c666bac6268
-      review: null
-      subject: 'pta: qcom: pas: kodiak: program iris secure session settings'
-    - commit: 5beb2b5cb2fb93ff9cf303b6f2d65de7014f91d0
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris CP layout and seed'
-    - commit: ac2381866f31f11da1cb8bf07bd0c04f60001443
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris secure session settings'
-    - commit: 824811d5f10ce5668332e9f416fe44274f8b5426
-      review: null
-      subject: 'pta: qcom: pas: kodiak: add the ADSP shutdown'
-    - commit: 9a0398cbffd453246b2e6d7ae5e085ecb287fa35
-      review: null
-      subject: 'pta: qcom: pas: kodiak: add the CDSP shutdown'
-    - commit: 979d1a895f55fd577e3d8448e898b3da6357633e
+    - commit: b994c22c17cc91f02b398c5ae468fcde1e94a8c3
       review: null
       subject: 'pta: qcom: pas: kodiak: map the USB pages the ADSP reads'
-    - commit: f7e957eb0e8dbf66f9f0f4ba8ded73b2b750f1b4
-      review: null
-      subject: 'drivers: qcom: add GENI SPI driver'
-    - commit: 005cb957e74c66647d8a888720b2a1a24e1c7d36
-      review: null
-      subject: 'drivers: qcom: spi: add lemans SPI config'
-    - commit: 4f958e24ed1468416d1772b16a9d26983ab5cd7c
-      review: null
-      subject: 'drivers: qcom: spi: add loopback SPI test'
-    - commit: 9dbfbec118beb556c597d76287a3136058021df8
-      review: null
-      subject: 'MAINTAINERS: add Qualcomm GENI SPI driver'
-    - commit: 61e0f31162ef52fea97dd9bfaaffc6b94e032229
-      review: null
-      subject: 'plat-qcom: add optional embedded DTB support'
-    - commit: 947657f8d58a42d7eeeb4bdf5e936a42c106685d
-      review: null
-      subject: 'drivers: qcom_geni_uart: add DT console driver'
-    - commit: ec96e639edda1f9edbdd98466409b08740d8c6c1
-      review: null
-      subject: 'clk: qcom: agatti: add PAS clock support'
-    - commit: f6b11715a6205d3f54383d01c2773dbc906adff0
-      review: null
-      subject: 'pta: qcom: pas: agatti: add ADSP bring-up'
-    - commit: eac15ccbca0ee32750e0c02d936d498a94a7e1d6
-      review: null
-      subject: 'plat-qcom: bruin: agatti: enable the PAS pseudo-TA'
-    - commit: 3c593694ac8af4061327660c2c76f0dfd7e7c9bf
+    - commit: a5bad9e400485694b486d2e6eda72c88f2efe7b7
       review: null
       subject: 'pta: qcom: pas: agatti: add GPU zap shader support'
-    - commit: 78f2a47cebf6e88c3ab7f8123569eccec431853d
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: 52ab21abdc7c5342d2dc399bcf05abd8a030458e
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: d80ba1cab66c8fabdd9aec8e38670fe2c45e7601
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 798f97199a8112eaeb75a07a734cf1df46e0ea39
-      review: null
-      subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 2160daf2359e7cf13cd61608edd4efb00b2fbce2
+    - commit: 9b36a57e3949cfebdb87188712322203608ac4da
       review: null
       subject: 'pta: qcom: pas: agatti: add venus bring-up'
-    - commit: edaeed5f11bbf60ba13ca916e4568864a44c17c9
+    - commit: 1fd222294d921a3dfb832b1dcddaeaa6a2f9f9ae
       review: null
       subject: 'pta: qcom: pas: agatti: clean the venus seed to memory'
-    - commit: cb93a72ec8901bb679e8ae3b900ce5a52cd43049
+    - commit: f4c9fde62d1133fb670554549e224f42e93781df
+      review: null
+      subject: 'drivers: gic: do not log an error for unused redistributor frames'
+    - commit: 7d4bded067813fba2db0840ba865a349a344cddc
       review: https://github.com/qualcomm-linux/optee_os/pull/59
       subject: 'drivers: qcom: add RPM client for Shikra'
-    - commit: ebbbd4a79f2e98232bbaec190593a38880c8b0b9
+    - commit: 4c3630d5b2e3929765b92ee9d27169a9fb446bee
       review: null
       subject: 'plat-qcom: shikra: add QUP clock support'
-    - commit: 62a6594de998900064a19d724c1dd9fc32cd6f9e
-      review: null
-      subject: 'drivers: qcom: tlmm: enable driver for Shikra'
-    - commit: 0a7009681f4352bd1acfacd14b9e6528dd7b4617
-      review: null
-      subject: 'plat-qcom: dts: add embedded DTBs for Lemans, IPQ52xx and IPQ96xx'
-    - commit: 0beba847fb390392beb542c6e585b131d0025625
-      review: null
-      subject: 'plat-qcom: take GIC bases from DT when available'
-    - commit: ef9007b31b2984e622438030b6d771d0edf0ef54
-      review: null
-      subject: 'drivers: qcom: csrng: take register base from DT when available'
-    - commit: 67b4531d230bf10a9bbeed925a554ed90eda3de7
-      review: null
-      subject: 'drivers: qcom: ramblur: take pIMEM registers and vault from DT when available'
-    - commit: 48e45590f07fa19f3f8be80f9d8b2d03858f130a
-      review: null
-      subject: 'plat-qcom: add TOPICS.md for the integration branch'
-    - commit: 033d0c629c51f805dcc36177a45151b0c5e55af3
-      review: null
-      subject: 'ci: qcom: add lanai platform build'
-    - commit: e34bccb9bec9ef0c12026ee7802b1f46a4975885
-      review: null
-      subject: 'plat-qcom: wildcat: add Kailua (SM8550)'
-    - commit: b39dc9544e5a168f7a2302dea363f106bd2b2444
-      review: null
-      subject: 'ci: qcom: add kailua platform build'
-    - commit: 755db821cf5376ca4c64f2fa46a7f59c28e02fef
-      review: null
-      subject: 'plat-qcom: list qcom/kailua in TOPICS.md'
-    - commit: 0e7ea3887fa6f074d3ac96756bc66ff8d3205a78
+    - commit: 5eff446368a056c230ac099217bc40117c4f8de9
       review: null
       subject: 'plat-qcom: wildcat: add Eliza (SM7750)'
-    - commit: 1661765f72afb9610e04ae133786769623239e26
+    - commit: 4ad50cce1b1370fe04b8eacf036b41029fdb3d7a
       review: null
       subject: 'clk: qcom: eliza: add PAS clock support'
-    - commit: f19c344f1bc0192ea943787dcc4f8ff6519e90cc
+    - commit: 6b157a62e1512bc62dc893d5a3680c6d377dc5e0
       review: null
       subject: 'pta: qcom: pas: add the ADSP DTB PAS ID'
-    - commit: e680483289db751f00d060f319911d17c9ebf918
+    - commit: 1387bb55a9ce4df2af6b297395410b986c1ed811
       review: null
       subject: 'pta: qcom: pas: eliza: add CDSP bring-up and shutdown'
-    - commit: 0d16a9bc4ae0d1e71071d2e901c0fc78125ddbce
+    - commit: 487b63834d0aa276dbdcfb8753ca0215cc81e7c4
       review: null
       subject: 'pta: qcom: pas: eliza: add ADSP bring-up and shutdown'
-    - commit: 384220270a5c6365246de143465f5f0f40892484
+    - commit: 9b2025c451bbed1ae89bf7d7af6359b81d533058
       review: null
       subject: 'plat-qcom: wildcat: eliza: enable the PAS pseudo-TA'
-    - commit: f34d0b3fb15c8a890410154faabcf9d60377ab21
+    - commit: 927ad70083a474fd3c4788c75948e659b80bff94
       review: null
       subject: 'ci: qcom: add eliza platform build'
-    - commit: b34c1c3e6b5618756444ec6aec88d94b63007052
+    - commit: 189d8423f3edf648af2bb964de8367e996e43b09
       review: null
       subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: ec305ed735d68e7c08a180fa6ed056606317f46c
+    - commit: 0b343881b41b97d8c8b137dfd1e9080c12d42cbb
       review: null
       subject: 'pta: qcom: pas: move ELF segment selection to a header'
-    - commit: ed30368d6e4760295685eef5097081e0223a4dbe
+    - commit: f765934bda8ee1e47c61dbaabb5f1dd683a48cdf
       review: null
       subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: f777efc56c4f3912eefed0f208c53c09700c9dcc
+    - commit: 11a71a633d50dffaadd0ffe98e80b797d05e4495
       review: null
       subject: 'pta: qcom: pas: eliza: add iris bring-up and shutdown'
-    - commit: 974b70e7d27ef2113386383b128f7dd382410966
+    - commit: d66f1432808c3ac83c237e458bcd202923f560b0
+      review: null
+      subject: 'plat-qcom: wildcat: add Lanai (SM8650)'
+    - commit: a7152cb8ef071dc6d1eb7b6ac98c8f6ad3042bfe
+      review: null
+      subject: 'plat-qcom: wildcat: add Kailua (SM8550)'
+    - commit: 20e87e34ce3842e6769ab1f898b16397908ddfa3
       review: null
       subject: 'plat-qcom: wildcat: eliza: enable the iris PAS support'
-    - commit: 55c31ca6386e29e22c8633bbbd483e765d0595f2
+    - commit: 3524bd885e573f871fa9a0f7b35d7ea3022908c9
       review: null
-      subject: 'plat-qcom: list qcom/eliza in TOPICS.md'
-    - commit: 4e61677becf8b57cd62a113314d77839fa7d9297
+      subject: 'ci: qcom: add lanai platform build'
+    - commit: afda7bf387c5892416ca2f71785d2177dbb0fae3
+      review: null
+      subject: 'ci: qcom: add kailua platform build'
+    - commit: 4e9e0d684d8384168372827b6486fc07f5ac4676
       review: null
       subject: 'pta: qcom: pas: eliza: map the PMIC arbiter and ADSP QUP engines'
-    - commit: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
+    - commit: 95f0bc7dd7fe0270fce14f1b1fc2910f1f58e578
       review: null
-      subject: 'plat-qcom: list the Eliza ADSP resource table regions in TOPICS.md'
-    distance: 93
-    pin: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
+      subject: 'drivers: qcom: add GENI SPI driver'
+    - commit: 29e86779b0493d4fa5f5f62ecfff4913c3fdbe19
+      review: null
+      subject: 'drivers: qcom: spi: add lemans SPI config'
+    - commit: 4db22dce39adb93dbb590361cb0bd6af2f8129c5
+      review: null
+      subject: 'drivers: qcom: spi: add loopback SPI test'
+    - commit: 49608dc89e2708e459864950fc48f52f3e0a901b
+      review: null
+      subject: 'MAINTAINERS: add Qualcomm GENI SPI driver'
+    - commit: ed8294a7b536c66730592a5a8c4f4823ad46e902
+      review: null
+      subject: 'core: arm: crypto: build the CE GCM code only with CFG_CRYPTO'
+    - commit: 1438b1d9d48274917ea2190ef87ca5b34e0d43ff
+      review: null
+      subject: 'plat-qcom: ipq52xx: add a low memory profile'
+    - commit: 7def3b19f2c574a645ab9824a5907b122dcbf508
+      review: null
+      subject: 'plat-qcom: support an embedded DTB'
+    - commit: 4e3d312535a5415b0bdb58c21c0c2e8c70397ec1
+      review: null
+      subject: 'plat-qcom: take the DRAM from an embedded DT'
+    - commit: 9808dec3db39ce649ad67eb3bab7e7c7a580f57a
+      review: null
+      subject: 'drivers: qcom: xpuv4: let an instance guard several ranges'
+    - commit: 67236c4e42e2542c3636769f30d47a4149ad3319
+      review: null
+      subject: 'plat-qcom: xpu: split out the source of the DDR guards'
+    - commit: 6f9224e3d6fe842c76e7620427434080f0f052db
+      review: null
+      subject: 'plat-qcom: xpu: take the DDR guards from an embedded DT'
+    - commit: 0bd0d2fcb71e21864334e652f12568422400a6ed
+      review: null
+      subject: 'plat-qcom: ipq96xx: describe the DRAM in a DT'
+    - commit: 0f51c5df0d4eb0b8e0a5b7388709178f6a41bc6a
+      review: null
+      subject: 'plat-qcom: lemans: describe the DRAM in a DT'
+    - commit: c919b414bedfa372538e14ab344b07368b07510b
+      review: null
+      subject: 'plat-qcom: ipq52xx: describe the DRAM in a DT'
+    - commit: e8a3fd4c88be79f80047e99b2e5dedd77e4627c7
+      review: null
+      subject: 'drivers: qcom: ramblur: split out the pIMEM configuration'
+    - commit: 0a216ba1d099fa78cf938454040eef9d166fec8b
+      review: null
+      subject: 'plat-qcom: dts: add a DT binding for the Ramblur pIMEM controller'
+    - commit: 8f2f48193722f853a16dae5496974df6cf3f09be
+      review: null
+      subject: 'drivers: qcom: ramblur: take pIMEM regs and vault from DT'
+    - commit: 6e2e787a17231944f78e79a02c65ca403a4601b2
+      review: null
+      subject: 'MAINTAINERS: add the Qualcomm device tree files'
+    - commit: d6683ecdb09130179a166c50553a5a6eb74be2b8
+      review: null
+      subject: 'drivers: qcom: spi: fix const and declaration warnings'
+    - commit: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
+      review: null
+      subject: 'plat-qcom: add TOPICS.md for the 2026-11-05 integration'
+    distance: 61
+    pin: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
     repo: https://github.com/OP-TEE/optee_os
   tf-a:
     base: 0752f3bf2808518ff76dce41cdca7e8f9800c270
     carried:
     - commit: 9bebaf3952a1fcb43b7ddfaec90a2c8180f0373a
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56131
       subject: 'fix(qti): read the xPU syndrome registers at their offsets'
     - commit: 850d5c9b0b16566c2b299e0eae1a16e73537fda3
       review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55670
@@ -1550,7 +1262,7 @@ rb3gen2:
       review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55730
       subject: 'refactor(qti): make the core power-down request a PM backend hook'
     - commit: 1489149e6b2c6a1c4d6f6a068c04a96ede725a2b
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56131
       subject: 'fix(qti): read the xPU syndrome registers at their offsets'
     - commit: 39283cd5eab52e486775502f0dae044a6d126935
       review: null
@@ -1586,19 +1298,19 @@ rb3gen2:
       review: null
       subject: 'fix(psci): offer CPU_SUSPEND to platforms with only CPU standby'
     - commit: 47e0cde04c9c78f0b687a8dad84c5742043d4899
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56134
       subject: 'feat(qti): add Talos SoC definitions'
     - commit: 7274cb3b6f403ec01b8fe8feb3098962f2fe861c
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56135
       subject: 'refactor(qti): move qcs615 under the talos directory'
     - commit: 88ca30aaf08dfa0dd62a55344436482e87b44c90
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56136
       subject: 'feat(qti): add Talos apps PDC tables'
     - commit: c816f651c433efdd1e96c8fe08bc8c007ead3f4a
       review: null
       subject: 'fix(qti): reject MEM_ASSIGN without an access control backend'
     - commit: e0e269ff0408d2510d59a6c3ac874111c47eba84
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56137
       subject: 'feat(qcs615_ride): add XBL boot support'
     - commit: 3b6a0af29dea6cf0bfffec59d1043b55861d2039
       review: null
@@ -1770,295 +1482,199 @@ rb3gen2:
     repo: https://review.trustedfirmware.org/TF-A/trusted-firmware-a
 shikra-iqs-evk:
   optee:
-    base: 2cabb6d063513e1718f7627e16b0a5ce1bfd5516
+    base: 3b0528e17cc6214587d3c8f5c452e9dc8b07ca60
     carried:
-    - commit: 3b0e16c127646d4a063885756be02f0bebfb257d
+    - commit: a8a2bfc89350619870345ee09e83b2c4f4ddf656
       review: null
       subject: 'plat-qcom: hoya: move the pIMEM TEE layout to the targets'
-    - commit: 4cbdf679a00790736cfd5531fb75b07865e30006
+    - commit: 900fe1bfdb267aa3cfd826a46ce2b475428bf246
       review: null
       subject: 'plat-qcom: hoya: move the RNG base to the targets'
-    - commit: ea8d8510ec8844a7b1d05f380351558b5e85bcbd
+    - commit: 76ba422255f03ccd6bd9e8564d218f63725e5c03
       review: null
       subject: 'plat-qcom: hoya: add talos support'
-    - commit: 2bb9d29ace7d79552b394878632fb852d57f0fd9
+    - commit: 1a2366b5de55c006e1d21880af93ec1a4bd836e7
       review: null
       subject: 'ci: add qcom-talos build'
-    - commit: ef551e4e447d22259052fe3b448a65177e0778d6
+    - commit: a5e554cbfcc7f2c2ec3a563a3a4e533d4f1f754f
+      review: null
+      subject: 'clk: qcom: share the QDSP6 halt and MMIO lookup helpers'
+    - commit: 3d99cea7932048093740f680bdfcd67155271903
       review: null
       subject: 'clk: qcom: talos: add PAS clock support'
-    - commit: c8cf31840b6b513c65489163ee3f32ae76c6192a
+    - commit: c21060c463bc89edc7366098d7e35a2c76d5b4ca
       review: null
       subject: 'pta: qcom: pas: talos: add ADSP and CDSP bring-up and shutdown'
-    - commit: 0b1f7848d9637675e9338ba0b29336774d34ef0e
+    - commit: 7f1c6f5bf0aa052f0123771b4dab23196d5a9076
       review: null
       subject: 'plat-qcom: hoya: talos: enable the PAS pseudo-TA'
-    - commit: 9643647198626d08b9c773a528dd5acbf75a3e3a
-      review: null
-      subject: 'plat-qcom: wildcat: add Lanai (SM8650)'
-    - commit: a330e5c3e67538b9781fee6c7e7240668ee330f3
-      review: null
-      subject: 'pta: qcom: pas: talos: set the controller map type'
-    - commit: c5970650bbd72ebffed86030a88cea7f7436ec00
-      review: null
-      subject: 'clk: qcom: talos: restart Turing whatever its power-on flag says'
-    - commit: a2d7bc346b1ccb3f34f68ed37b9e4361530f504e
-      review: null
-      subject: 'clk: qcom: Get Lucid-EVO PLL offsets from platform'
-    - commit: e5328180e783355ac82d811f32cee6e3890bb722
-      review: null
-      subject: 'clk: qcom: lemans: return TEE_ERROR_TIMEOUT from LPASS collapse polls'
-    - commit: 26d2df5f8e95424851c985d3d199e970889e4343
-      review: null
-      subject: 'clk: qcom: lemans: reset a GP-DSP while its PDC holds it in low power'
-    - commit: 841cb20ec6f688bfc8ff6fa9978208fbc9cdaa0b
-      review: null
-      subject: 'clk: qcom: hoya: share the Lemans Q6 PAS sequences'
-    - commit: ec624733966f8538510c2de3a0d61027a600243c
-      review: null
-      subject: 'clk: qcom: lemans: return the NSP clock enable error as is'
-    - commit: 7146d510a17d8b1bfac21fbc631d84cf7cfb5f4b
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 566e9371dd9d5cc7708e65610d268dc126b31777
-      review: null
-      subject: 'clk: qcom: hoya: enable the QDSP6 boot branches with the NSP clocks'
-    - commit: 4d80359d92f4223f0491adc87b7e7f91f63d6149
-      review: null
-      subject: 'clk: qcom: monaco: add PAS clock support'
-    - commit: b343917cd3a74cae47d87d8284d245c4d364d9e3
-      review: null
-      subject: 'pta: qcom: pas: monaco: add ADSP, CDSP and GP-DSP0 bring-up'
-    - commit: 78057e5c9fed21abd4a6d50473df011eb8502e34
-      review: null
-      subject: 'plat-qcom: hoya: monaco: enable the PAS pseudo-TA'
-    - commit: 120a891f1f421c916fc9141a6bf380770ab8ba9c
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 5fa3fa072c4bb58392c0060e46f3a005c05a2654
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: 50e42d0b43d94a0ea2ed59012c8da1889d45ead8
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: ec088f71bc8cae60ca3bfbc7de12b2ea792b1f3a
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 83f98cc0168ba085a2cd1fab01d8774a942fdefe
-      review: null
-      subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 471cd2597fe272ecdcc22f35905cf5b0b2f18ba5
+    - commit: db502f641a213f947084c9bfdbca4dfd5479d5ff
       review: null
       subject: 'ta: qcom_pas: keep one image generation across INIT_IMAGE'
-    - commit: 744141f35405778dc84a6ac06e50379512619aa7
+    - commit: 3f6cc2f695e1673ff4ab8fb46825708746f355fc
       review: null
       subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: 9c09dc296a8fc8ad3f7c847fbbc5183ded4ead70
+    - commit: 84367c1f01b2de13cbed770f5b3df38f5ddf0a68
       review: null
-      subject: 'pta: qcom: pas: define iris registers from IRIS_BASE'
-    - commit: 2aa24b32551066b7721f3d17fe18f4791a6d1b77
+      subject: 'pta: qcom: pas: iris: program the CP layout and seed'
+    - commit: 5ddd5c53f79194c4a0be73cf76792fe7238ffa1b
       review: null
-      subject: 'pta: qcom: pas: kodiak: program iris CP layout and seed'
-    - commit: 9696466e016d48e4faf45e098c68ba21c5da53d3
+      subject: 'pta: qcom: pas: share the iris start and shutdown'
+    - commit: a0bb427e7c2e141ef3ff2d6b0b6cee7c81809534
       review: null
       subject: 'pta: qcom: pas: kodiak: program iris secure session settings'
-    - commit: 8c3f3fbbe85ff07e745ceaa0df13c8c9f0e2131e
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris CP layout and seed'
-    - commit: ac4bd89e8d5b58ffd5088e3b6853fcb8facc3d65
+    - commit: 65656d84ef41438edd2514c59b6103b80871c1e7
       review: null
       subject: 'pta: qcom: pas: lemans: program iris secure session settings'
-    - commit: 36a2a8feba61322a71d481ad00cfcdc372d25123
+    - commit: 1a7cb4bfecd9c5e17ef8988f84d77166d050df44
       review: null
       subject: 'pta: qcom: pas: kodiak: add the ADSP shutdown'
-    - commit: b255a52ce496d90220b3d76cc26e6ff77f4d352a
+    - commit: 41d36dbdae3660cb2e08840c98f0c04545c15c77
       review: null
       subject: 'pta: qcom: pas: kodiak: add the CDSP shutdown'
-    - commit: 8d5134bbd43cab348b3a5b66257b28b093a1b8b6
-      review: null
-      subject: 'pta: qcom: pas: kodiak: map the USB pages the ADSP reads'
-    - commit: 1dae84adceae1c1ddb315e53123d91c25255365d
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 8ea7d9e0837f7c9532444efd14fac44d3a6a66a0
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: ae40b9e1ddedb6da6031427b8757fee2cff13a97
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: cc80a5100e3b2ebf550e39382b17a9997af78e62
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 115fde748c9402d8e057b719c99ac94d621f4f9e
+    - commit: d809109845e46ea69f697e5b156f71b47cfe1718
       review: null
       subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 6330e076805ecf0bed35c9a9b927b6b15f0a11a9
-      review: null
-      subject: 'ta: qcom_pas: keep one image generation across INIT_IMAGE'
-    - commit: 8cf35a2d3adb688a8f8d3f94f2618eb7f4f4a690
-      review: null
-      subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: d47639a97e15bf697c3736ae967e7614bf1284ec
-      review: null
-      subject: 'pta: qcom: pas: define iris registers from IRIS_BASE'
-    - commit: 065b11dec6c6290ae9f2920fe984a9db2e6c7dd0
-      review: null
-      subject: 'pta: qcom: pas: kodiak: program iris CP layout and seed'
-    - commit: df57c227278689a86c0afcb6ea033c666bac6268
-      review: null
-      subject: 'pta: qcom: pas: kodiak: program iris secure session settings'
-    - commit: 5beb2b5cb2fb93ff9cf303b6f2d65de7014f91d0
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris CP layout and seed'
-    - commit: ac2381866f31f11da1cb8bf07bd0c04f60001443
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris secure session settings'
-    - commit: 824811d5f10ce5668332e9f416fe44274f8b5426
-      review: null
-      subject: 'pta: qcom: pas: kodiak: add the ADSP shutdown'
-    - commit: 9a0398cbffd453246b2e6d7ae5e085ecb287fa35
-      review: null
-      subject: 'pta: qcom: pas: kodiak: add the CDSP shutdown'
-    - commit: 979d1a895f55fd577e3d8448e898b3da6357633e
+    - commit: b994c22c17cc91f02b398c5ae468fcde1e94a8c3
       review: null
       subject: 'pta: qcom: pas: kodiak: map the USB pages the ADSP reads'
-    - commit: f7e957eb0e8dbf66f9f0f4ba8ded73b2b750f1b4
-      review: null
-      subject: 'drivers: qcom: add GENI SPI driver'
-    - commit: 005cb957e74c66647d8a888720b2a1a24e1c7d36
-      review: null
-      subject: 'drivers: qcom: spi: add lemans SPI config'
-    - commit: 4f958e24ed1468416d1772b16a9d26983ab5cd7c
-      review: null
-      subject: 'drivers: qcom: spi: add loopback SPI test'
-    - commit: 9dbfbec118beb556c597d76287a3136058021df8
-      review: null
-      subject: 'MAINTAINERS: add Qualcomm GENI SPI driver'
-    - commit: 61e0f31162ef52fea97dd9bfaaffc6b94e032229
-      review: null
-      subject: 'plat-qcom: add optional embedded DTB support'
-    - commit: 947657f8d58a42d7eeeb4bdf5e936a42c106685d
-      review: null
-      subject: 'drivers: qcom_geni_uart: add DT console driver'
-    - commit: ec96e639edda1f9edbdd98466409b08740d8c6c1
-      review: null
-      subject: 'clk: qcom: agatti: add PAS clock support'
-    - commit: f6b11715a6205d3f54383d01c2773dbc906adff0
-      review: null
-      subject: 'pta: qcom: pas: agatti: add ADSP bring-up'
-    - commit: eac15ccbca0ee32750e0c02d936d498a94a7e1d6
-      review: null
-      subject: 'plat-qcom: bruin: agatti: enable the PAS pseudo-TA'
-    - commit: 3c593694ac8af4061327660c2c76f0dfd7e7c9bf
+    - commit: a5bad9e400485694b486d2e6eda72c88f2efe7b7
       review: null
       subject: 'pta: qcom: pas: agatti: add GPU zap shader support'
-    - commit: 78f2a47cebf6e88c3ab7f8123569eccec431853d
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: 52ab21abdc7c5342d2dc399bcf05abd8a030458e
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: d80ba1cab66c8fabdd9aec8e38670fe2c45e7601
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 798f97199a8112eaeb75a07a734cf1df46e0ea39
-      review: null
-      subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 2160daf2359e7cf13cd61608edd4efb00b2fbce2
+    - commit: 9b36a57e3949cfebdb87188712322203608ac4da
       review: null
       subject: 'pta: qcom: pas: agatti: add venus bring-up'
-    - commit: edaeed5f11bbf60ba13ca916e4568864a44c17c9
+    - commit: 1fd222294d921a3dfb832b1dcddaeaa6a2f9f9ae
       review: null
       subject: 'pta: qcom: pas: agatti: clean the venus seed to memory'
-    - commit: cb93a72ec8901bb679e8ae3b900ce5a52cd43049
+    - commit: f4c9fde62d1133fb670554549e224f42e93781df
+      review: null
+      subject: 'drivers: gic: do not log an error for unused redistributor frames'
+    - commit: 7d4bded067813fba2db0840ba865a349a344cddc
       review: https://github.com/qualcomm-linux/optee_os/pull/59
       subject: 'drivers: qcom: add RPM client for Shikra'
-    - commit: ebbbd4a79f2e98232bbaec190593a38880c8b0b9
+    - commit: 4c3630d5b2e3929765b92ee9d27169a9fb446bee
       review: null
       subject: 'plat-qcom: shikra: add QUP clock support'
-    - commit: 62a6594de998900064a19d724c1dd9fc32cd6f9e
-      review: null
-      subject: 'drivers: qcom: tlmm: enable driver for Shikra'
-    - commit: 0a7009681f4352bd1acfacd14b9e6528dd7b4617
-      review: null
-      subject: 'plat-qcom: dts: add embedded DTBs for Lemans, IPQ52xx and IPQ96xx'
-    - commit: 0beba847fb390392beb542c6e585b131d0025625
-      review: null
-      subject: 'plat-qcom: take GIC bases from DT when available'
-    - commit: ef9007b31b2984e622438030b6d771d0edf0ef54
-      review: null
-      subject: 'drivers: qcom: csrng: take register base from DT when available'
-    - commit: 67b4531d230bf10a9bbeed925a554ed90eda3de7
-      review: null
-      subject: 'drivers: qcom: ramblur: take pIMEM registers and vault from DT when available'
-    - commit: 48e45590f07fa19f3f8be80f9d8b2d03858f130a
-      review: null
-      subject: 'plat-qcom: add TOPICS.md for the integration branch'
-    - commit: 033d0c629c51f805dcc36177a45151b0c5e55af3
-      review: null
-      subject: 'ci: qcom: add lanai platform build'
-    - commit: e34bccb9bec9ef0c12026ee7802b1f46a4975885
-      review: null
-      subject: 'plat-qcom: wildcat: add Kailua (SM8550)'
-    - commit: b39dc9544e5a168f7a2302dea363f106bd2b2444
-      review: null
-      subject: 'ci: qcom: add kailua platform build'
-    - commit: 755db821cf5376ca4c64f2fa46a7f59c28e02fef
-      review: null
-      subject: 'plat-qcom: list qcom/kailua in TOPICS.md'
-    - commit: 0e7ea3887fa6f074d3ac96756bc66ff8d3205a78
+    - commit: 5eff446368a056c230ac099217bc40117c4f8de9
       review: null
       subject: 'plat-qcom: wildcat: add Eliza (SM7750)'
-    - commit: 1661765f72afb9610e04ae133786769623239e26
+    - commit: 4ad50cce1b1370fe04b8eacf036b41029fdb3d7a
       review: null
       subject: 'clk: qcom: eliza: add PAS clock support'
-    - commit: f19c344f1bc0192ea943787dcc4f8ff6519e90cc
+    - commit: 6b157a62e1512bc62dc893d5a3680c6d377dc5e0
       review: null
       subject: 'pta: qcom: pas: add the ADSP DTB PAS ID'
-    - commit: e680483289db751f00d060f319911d17c9ebf918
+    - commit: 1387bb55a9ce4df2af6b297395410b986c1ed811
       review: null
       subject: 'pta: qcom: pas: eliza: add CDSP bring-up and shutdown'
-    - commit: 0d16a9bc4ae0d1e71071d2e901c0fc78125ddbce
+    - commit: 487b63834d0aa276dbdcfb8753ca0215cc81e7c4
       review: null
       subject: 'pta: qcom: pas: eliza: add ADSP bring-up and shutdown'
-    - commit: 384220270a5c6365246de143465f5f0f40892484
+    - commit: 9b2025c451bbed1ae89bf7d7af6359b81d533058
       review: null
       subject: 'plat-qcom: wildcat: eliza: enable the PAS pseudo-TA'
-    - commit: f34d0b3fb15c8a890410154faabcf9d60377ab21
+    - commit: 927ad70083a474fd3c4788c75948e659b80bff94
       review: null
       subject: 'ci: qcom: add eliza platform build'
-    - commit: b34c1c3e6b5618756444ec6aec88d94b63007052
+    - commit: 189d8423f3edf648af2bb964de8367e996e43b09
       review: null
       subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: ec305ed735d68e7c08a180fa6ed056606317f46c
+    - commit: 0b343881b41b97d8c8b137dfd1e9080c12d42cbb
       review: null
       subject: 'pta: qcom: pas: move ELF segment selection to a header'
-    - commit: ed30368d6e4760295685eef5097081e0223a4dbe
+    - commit: f765934bda8ee1e47c61dbaabb5f1dd683a48cdf
       review: null
       subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: f777efc56c4f3912eefed0f208c53c09700c9dcc
+    - commit: 11a71a633d50dffaadd0ffe98e80b797d05e4495
       review: null
       subject: 'pta: qcom: pas: eliza: add iris bring-up and shutdown'
-    - commit: 974b70e7d27ef2113386383b128f7dd382410966
+    - commit: d66f1432808c3ac83c237e458bcd202923f560b0
+      review: null
+      subject: 'plat-qcom: wildcat: add Lanai (SM8650)'
+    - commit: a7152cb8ef071dc6d1eb7b6ac98c8f6ad3042bfe
+      review: null
+      subject: 'plat-qcom: wildcat: add Kailua (SM8550)'
+    - commit: 20e87e34ce3842e6769ab1f898b16397908ddfa3
       review: null
       subject: 'plat-qcom: wildcat: eliza: enable the iris PAS support'
-    - commit: 55c31ca6386e29e22c8633bbbd483e765d0595f2
+    - commit: 3524bd885e573f871fa9a0f7b35d7ea3022908c9
       review: null
-      subject: 'plat-qcom: list qcom/eliza in TOPICS.md'
-    - commit: 4e61677becf8b57cd62a113314d77839fa7d9297
+      subject: 'ci: qcom: add lanai platform build'
+    - commit: afda7bf387c5892416ca2f71785d2177dbb0fae3
+      review: null
+      subject: 'ci: qcom: add kailua platform build'
+    - commit: 4e9e0d684d8384168372827b6486fc07f5ac4676
       review: null
       subject: 'pta: qcom: pas: eliza: map the PMIC arbiter and ADSP QUP engines'
-    - commit: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
+    - commit: 95f0bc7dd7fe0270fce14f1b1fc2910f1f58e578
       review: null
-      subject: 'plat-qcom: list the Eliza ADSP resource table regions in TOPICS.md'
-    distance: 93
-    pin: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
+      subject: 'drivers: qcom: add GENI SPI driver'
+    - commit: 29e86779b0493d4fa5f5f62ecfff4913c3fdbe19
+      review: null
+      subject: 'drivers: qcom: spi: add lemans SPI config'
+    - commit: 4db22dce39adb93dbb590361cb0bd6af2f8129c5
+      review: null
+      subject: 'drivers: qcom: spi: add loopback SPI test'
+    - commit: 49608dc89e2708e459864950fc48f52f3e0a901b
+      review: null
+      subject: 'MAINTAINERS: add Qualcomm GENI SPI driver'
+    - commit: ed8294a7b536c66730592a5a8c4f4823ad46e902
+      review: null
+      subject: 'core: arm: crypto: build the CE GCM code only with CFG_CRYPTO'
+    - commit: 1438b1d9d48274917ea2190ef87ca5b34e0d43ff
+      review: null
+      subject: 'plat-qcom: ipq52xx: add a low memory profile'
+    - commit: 7def3b19f2c574a645ab9824a5907b122dcbf508
+      review: null
+      subject: 'plat-qcom: support an embedded DTB'
+    - commit: 4e3d312535a5415b0bdb58c21c0c2e8c70397ec1
+      review: null
+      subject: 'plat-qcom: take the DRAM from an embedded DT'
+    - commit: 9808dec3db39ce649ad67eb3bab7e7c7a580f57a
+      review: null
+      subject: 'drivers: qcom: xpuv4: let an instance guard several ranges'
+    - commit: 67236c4e42e2542c3636769f30d47a4149ad3319
+      review: null
+      subject: 'plat-qcom: xpu: split out the source of the DDR guards'
+    - commit: 6f9224e3d6fe842c76e7620427434080f0f052db
+      review: null
+      subject: 'plat-qcom: xpu: take the DDR guards from an embedded DT'
+    - commit: 0bd0d2fcb71e21864334e652f12568422400a6ed
+      review: null
+      subject: 'plat-qcom: ipq96xx: describe the DRAM in a DT'
+    - commit: 0f51c5df0d4eb0b8e0a5b7388709178f6a41bc6a
+      review: null
+      subject: 'plat-qcom: lemans: describe the DRAM in a DT'
+    - commit: c919b414bedfa372538e14ab344b07368b07510b
+      review: null
+      subject: 'plat-qcom: ipq52xx: describe the DRAM in a DT'
+    - commit: e8a3fd4c88be79f80047e99b2e5dedd77e4627c7
+      review: null
+      subject: 'drivers: qcom: ramblur: split out the pIMEM configuration'
+    - commit: 0a216ba1d099fa78cf938454040eef9d166fec8b
+      review: null
+      subject: 'plat-qcom: dts: add a DT binding for the Ramblur pIMEM controller'
+    - commit: 8f2f48193722f853a16dae5496974df6cf3f09be
+      review: null
+      subject: 'drivers: qcom: ramblur: take pIMEM regs and vault from DT'
+    - commit: 6e2e787a17231944f78e79a02c65ca403a4601b2
+      review: null
+      subject: 'MAINTAINERS: add the Qualcomm device tree files'
+    - commit: d6683ecdb09130179a166c50553a5a6eb74be2b8
+      review: null
+      subject: 'drivers: qcom: spi: fix const and declaration warnings'
+    - commit: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
+      review: null
+      subject: 'plat-qcom: add TOPICS.md for the 2026-11-05 integration'
+    distance: 61
+    pin: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
     repo: https://github.com/OP-TEE/optee_os
   tf-a:
     base: 0752f3bf2808518ff76dce41cdca7e8f9800c270
     carried:
     - commit: 9bebaf3952a1fcb43b7ddfaec90a2c8180f0373a
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56131
       subject: 'fix(qti): read the xPU syndrome registers at their offsets'
     - commit: 850d5c9b0b16566c2b299e0eae1a16e73537fda3
       review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55670
@@ -2139,7 +1755,7 @@ shikra-iqs-evk:
       review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55730
       subject: 'refactor(qti): make the core power-down request a PM backend hook'
     - commit: 1489149e6b2c6a1c4d6f6a068c04a96ede725a2b
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56131
       subject: 'fix(qti): read the xPU syndrome registers at their offsets'
     - commit: 39283cd5eab52e486775502f0dae044a6d126935
       review: null
@@ -2175,19 +1791,19 @@ shikra-iqs-evk:
       review: null
       subject: 'fix(psci): offer CPU_SUSPEND to platforms with only CPU standby'
     - commit: 47e0cde04c9c78f0b687a8dad84c5742043d4899
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56134
       subject: 'feat(qti): add Talos SoC definitions'
     - commit: 7274cb3b6f403ec01b8fe8feb3098962f2fe861c
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56135
       subject: 'refactor(qti): move qcs615 under the talos directory'
     - commit: 88ca30aaf08dfa0dd62a55344436482e87b44c90
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56136
       subject: 'feat(qti): add Talos apps PDC tables'
     - commit: c816f651c433efdd1e96c8fe08bc8c007ead3f4a
       review: null
       subject: 'fix(qti): reject MEM_ASSIGN without an access control backend'
     - commit: e0e269ff0408d2510d59a6c3ac874111c47eba84
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56137
       subject: 'feat(qcs615_ride): add XBL boot support'
     - commit: 3b6a0af29dea6cf0bfffec59d1043b55861d2039
       review: null
@@ -2360,295 +1976,199 @@ shikra-iqs-evk:
 sm8750-mtp: {}
 uno-q:
   optee:
-    base: 2cabb6d063513e1718f7627e16b0a5ce1bfd5516
+    base: 3b0528e17cc6214587d3c8f5c452e9dc8b07ca60
     carried:
-    - commit: 3b0e16c127646d4a063885756be02f0bebfb257d
+    - commit: a8a2bfc89350619870345ee09e83b2c4f4ddf656
       review: null
       subject: 'plat-qcom: hoya: move the pIMEM TEE layout to the targets'
-    - commit: 4cbdf679a00790736cfd5531fb75b07865e30006
+    - commit: 900fe1bfdb267aa3cfd826a46ce2b475428bf246
       review: null
       subject: 'plat-qcom: hoya: move the RNG base to the targets'
-    - commit: ea8d8510ec8844a7b1d05f380351558b5e85bcbd
+    - commit: 76ba422255f03ccd6bd9e8564d218f63725e5c03
       review: null
       subject: 'plat-qcom: hoya: add talos support'
-    - commit: 2bb9d29ace7d79552b394878632fb852d57f0fd9
+    - commit: 1a2366b5de55c006e1d21880af93ec1a4bd836e7
       review: null
       subject: 'ci: add qcom-talos build'
-    - commit: ef551e4e447d22259052fe3b448a65177e0778d6
+    - commit: a5e554cbfcc7f2c2ec3a563a3a4e533d4f1f754f
+      review: null
+      subject: 'clk: qcom: share the QDSP6 halt and MMIO lookup helpers'
+    - commit: 3d99cea7932048093740f680bdfcd67155271903
       review: null
       subject: 'clk: qcom: talos: add PAS clock support'
-    - commit: c8cf31840b6b513c65489163ee3f32ae76c6192a
+    - commit: c21060c463bc89edc7366098d7e35a2c76d5b4ca
       review: null
       subject: 'pta: qcom: pas: talos: add ADSP and CDSP bring-up and shutdown'
-    - commit: 0b1f7848d9637675e9338ba0b29336774d34ef0e
+    - commit: 7f1c6f5bf0aa052f0123771b4dab23196d5a9076
       review: null
       subject: 'plat-qcom: hoya: talos: enable the PAS pseudo-TA'
-    - commit: 9643647198626d08b9c773a528dd5acbf75a3e3a
-      review: null
-      subject: 'plat-qcom: wildcat: add Lanai (SM8650)'
-    - commit: a330e5c3e67538b9781fee6c7e7240668ee330f3
-      review: null
-      subject: 'pta: qcom: pas: talos: set the controller map type'
-    - commit: c5970650bbd72ebffed86030a88cea7f7436ec00
-      review: null
-      subject: 'clk: qcom: talos: restart Turing whatever its power-on flag says'
-    - commit: a2d7bc346b1ccb3f34f68ed37b9e4361530f504e
-      review: null
-      subject: 'clk: qcom: Get Lucid-EVO PLL offsets from platform'
-    - commit: e5328180e783355ac82d811f32cee6e3890bb722
-      review: null
-      subject: 'clk: qcom: lemans: return TEE_ERROR_TIMEOUT from LPASS collapse polls'
-    - commit: 26d2df5f8e95424851c985d3d199e970889e4343
-      review: null
-      subject: 'clk: qcom: lemans: reset a GP-DSP while its PDC holds it in low power'
-    - commit: 841cb20ec6f688bfc8ff6fa9978208fbc9cdaa0b
-      review: null
-      subject: 'clk: qcom: hoya: share the Lemans Q6 PAS sequences'
-    - commit: ec624733966f8538510c2de3a0d61027a600243c
-      review: null
-      subject: 'clk: qcom: lemans: return the NSP clock enable error as is'
-    - commit: 7146d510a17d8b1bfac21fbc631d84cf7cfb5f4b
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 566e9371dd9d5cc7708e65610d268dc126b31777
-      review: null
-      subject: 'clk: qcom: hoya: enable the QDSP6 boot branches with the NSP clocks'
-    - commit: 4d80359d92f4223f0491adc87b7e7f91f63d6149
-      review: null
-      subject: 'clk: qcom: monaco: add PAS clock support'
-    - commit: b343917cd3a74cae47d87d8284d245c4d364d9e3
-      review: null
-      subject: 'pta: qcom: pas: monaco: add ADSP, CDSP and GP-DSP0 bring-up'
-    - commit: 78057e5c9fed21abd4a6d50473df011eb8502e34
-      review: null
-      subject: 'plat-qcom: hoya: monaco: enable the PAS pseudo-TA'
-    - commit: 120a891f1f421c916fc9141a6bf380770ab8ba9c
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 5fa3fa072c4bb58392c0060e46f3a005c05a2654
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: 50e42d0b43d94a0ea2ed59012c8da1889d45ead8
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: ec088f71bc8cae60ca3bfbc7de12b2ea792b1f3a
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 83f98cc0168ba085a2cd1fab01d8774a942fdefe
-      review: null
-      subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 471cd2597fe272ecdcc22f35905cf5b0b2f18ba5
+    - commit: db502f641a213f947084c9bfdbca4dfd5479d5ff
       review: null
       subject: 'ta: qcom_pas: keep one image generation across INIT_IMAGE'
-    - commit: 744141f35405778dc84a6ac06e50379512619aa7
+    - commit: 3f6cc2f695e1673ff4ab8fb46825708746f355fc
       review: null
       subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: 9c09dc296a8fc8ad3f7c847fbbc5183ded4ead70
+    - commit: 84367c1f01b2de13cbed770f5b3df38f5ddf0a68
       review: null
-      subject: 'pta: qcom: pas: define iris registers from IRIS_BASE'
-    - commit: 2aa24b32551066b7721f3d17fe18f4791a6d1b77
+      subject: 'pta: qcom: pas: iris: program the CP layout and seed'
+    - commit: 5ddd5c53f79194c4a0be73cf76792fe7238ffa1b
       review: null
-      subject: 'pta: qcom: pas: kodiak: program iris CP layout and seed'
-    - commit: 9696466e016d48e4faf45e098c68ba21c5da53d3
+      subject: 'pta: qcom: pas: share the iris start and shutdown'
+    - commit: a0bb427e7c2e141ef3ff2d6b0b6cee7c81809534
       review: null
       subject: 'pta: qcom: pas: kodiak: program iris secure session settings'
-    - commit: 8c3f3fbbe85ff07e745ceaa0df13c8c9f0e2131e
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris CP layout and seed'
-    - commit: ac4bd89e8d5b58ffd5088e3b6853fcb8facc3d65
+    - commit: 65656d84ef41438edd2514c59b6103b80871c1e7
       review: null
       subject: 'pta: qcom: pas: lemans: program iris secure session settings'
-    - commit: 36a2a8feba61322a71d481ad00cfcdc372d25123
+    - commit: 1a7cb4bfecd9c5e17ef8988f84d77166d050df44
       review: null
       subject: 'pta: qcom: pas: kodiak: add the ADSP shutdown'
-    - commit: b255a52ce496d90220b3d76cc26e6ff77f4d352a
+    - commit: 41d36dbdae3660cb2e08840c98f0c04545c15c77
       review: null
       subject: 'pta: qcom: pas: kodiak: add the CDSP shutdown'
-    - commit: 8d5134bbd43cab348b3a5b66257b28b093a1b8b6
-      review: null
-      subject: 'pta: qcom: pas: kodiak: map the USB pages the ADSP reads'
-    - commit: 1dae84adceae1c1ddb315e53123d91c25255365d
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 8ea7d9e0837f7c9532444efd14fac44d3a6a66a0
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: ae40b9e1ddedb6da6031427b8757fee2cff13a97
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: cc80a5100e3b2ebf550e39382b17a9997af78e62
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 115fde748c9402d8e057b719c99ac94d621f4f9e
+    - commit: d809109845e46ea69f697e5b156f71b47cfe1718
       review: null
       subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 6330e076805ecf0bed35c9a9b927b6b15f0a11a9
-      review: null
-      subject: 'ta: qcom_pas: keep one image generation across INIT_IMAGE'
-    - commit: 8cf35a2d3adb688a8f8d3f94f2618eb7f4f4a690
-      review: null
-      subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: d47639a97e15bf697c3736ae967e7614bf1284ec
-      review: null
-      subject: 'pta: qcom: pas: define iris registers from IRIS_BASE'
-    - commit: 065b11dec6c6290ae9f2920fe984a9db2e6c7dd0
-      review: null
-      subject: 'pta: qcom: pas: kodiak: program iris CP layout and seed'
-    - commit: df57c227278689a86c0afcb6ea033c666bac6268
-      review: null
-      subject: 'pta: qcom: pas: kodiak: program iris secure session settings'
-    - commit: 5beb2b5cb2fb93ff9cf303b6f2d65de7014f91d0
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris CP layout and seed'
-    - commit: ac2381866f31f11da1cb8bf07bd0c04f60001443
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris secure session settings'
-    - commit: 824811d5f10ce5668332e9f416fe44274f8b5426
-      review: null
-      subject: 'pta: qcom: pas: kodiak: add the ADSP shutdown'
-    - commit: 9a0398cbffd453246b2e6d7ae5e085ecb287fa35
-      review: null
-      subject: 'pta: qcom: pas: kodiak: add the CDSP shutdown'
-    - commit: 979d1a895f55fd577e3d8448e898b3da6357633e
+    - commit: b994c22c17cc91f02b398c5ae468fcde1e94a8c3
       review: null
       subject: 'pta: qcom: pas: kodiak: map the USB pages the ADSP reads'
-    - commit: f7e957eb0e8dbf66f9f0f4ba8ded73b2b750f1b4
-      review: null
-      subject: 'drivers: qcom: add GENI SPI driver'
-    - commit: 005cb957e74c66647d8a888720b2a1a24e1c7d36
-      review: null
-      subject: 'drivers: qcom: spi: add lemans SPI config'
-    - commit: 4f958e24ed1468416d1772b16a9d26983ab5cd7c
-      review: null
-      subject: 'drivers: qcom: spi: add loopback SPI test'
-    - commit: 9dbfbec118beb556c597d76287a3136058021df8
-      review: null
-      subject: 'MAINTAINERS: add Qualcomm GENI SPI driver'
-    - commit: 61e0f31162ef52fea97dd9bfaaffc6b94e032229
-      review: null
-      subject: 'plat-qcom: add optional embedded DTB support'
-    - commit: 947657f8d58a42d7eeeb4bdf5e936a42c106685d
-      review: null
-      subject: 'drivers: qcom_geni_uart: add DT console driver'
-    - commit: ec96e639edda1f9edbdd98466409b08740d8c6c1
-      review: null
-      subject: 'clk: qcom: agatti: add PAS clock support'
-    - commit: f6b11715a6205d3f54383d01c2773dbc906adff0
-      review: null
-      subject: 'pta: qcom: pas: agatti: add ADSP bring-up'
-    - commit: eac15ccbca0ee32750e0c02d936d498a94a7e1d6
-      review: null
-      subject: 'plat-qcom: bruin: agatti: enable the PAS pseudo-TA'
-    - commit: 3c593694ac8af4061327660c2c76f0dfd7e7c9bf
+    - commit: a5bad9e400485694b486d2e6eda72c88f2efe7b7
       review: null
       subject: 'pta: qcom: pas: agatti: add GPU zap shader support'
-    - commit: 78f2a47cebf6e88c3ab7f8123569eccec431853d
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: 52ab21abdc7c5342d2dc399bcf05abd8a030458e
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: d80ba1cab66c8fabdd9aec8e38670fe2c45e7601
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 798f97199a8112eaeb75a07a734cf1df46e0ea39
-      review: null
-      subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 2160daf2359e7cf13cd61608edd4efb00b2fbce2
+    - commit: 9b36a57e3949cfebdb87188712322203608ac4da
       review: null
       subject: 'pta: qcom: pas: agatti: add venus bring-up'
-    - commit: edaeed5f11bbf60ba13ca916e4568864a44c17c9
+    - commit: 1fd222294d921a3dfb832b1dcddaeaa6a2f9f9ae
       review: null
       subject: 'pta: qcom: pas: agatti: clean the venus seed to memory'
-    - commit: cb93a72ec8901bb679e8ae3b900ce5a52cd43049
+    - commit: f4c9fde62d1133fb670554549e224f42e93781df
+      review: null
+      subject: 'drivers: gic: do not log an error for unused redistributor frames'
+    - commit: 7d4bded067813fba2db0840ba865a349a344cddc
       review: https://github.com/qualcomm-linux/optee_os/pull/59
       subject: 'drivers: qcom: add RPM client for Shikra'
-    - commit: ebbbd4a79f2e98232bbaec190593a38880c8b0b9
+    - commit: 4c3630d5b2e3929765b92ee9d27169a9fb446bee
       review: null
       subject: 'plat-qcom: shikra: add QUP clock support'
-    - commit: 62a6594de998900064a19d724c1dd9fc32cd6f9e
-      review: null
-      subject: 'drivers: qcom: tlmm: enable driver for Shikra'
-    - commit: 0a7009681f4352bd1acfacd14b9e6528dd7b4617
-      review: null
-      subject: 'plat-qcom: dts: add embedded DTBs for Lemans, IPQ52xx and IPQ96xx'
-    - commit: 0beba847fb390392beb542c6e585b131d0025625
-      review: null
-      subject: 'plat-qcom: take GIC bases from DT when available'
-    - commit: ef9007b31b2984e622438030b6d771d0edf0ef54
-      review: null
-      subject: 'drivers: qcom: csrng: take register base from DT when available'
-    - commit: 67b4531d230bf10a9bbeed925a554ed90eda3de7
-      review: null
-      subject: 'drivers: qcom: ramblur: take pIMEM registers and vault from DT when available'
-    - commit: 48e45590f07fa19f3f8be80f9d8b2d03858f130a
-      review: null
-      subject: 'plat-qcom: add TOPICS.md for the integration branch'
-    - commit: 033d0c629c51f805dcc36177a45151b0c5e55af3
-      review: null
-      subject: 'ci: qcom: add lanai platform build'
-    - commit: e34bccb9bec9ef0c12026ee7802b1f46a4975885
-      review: null
-      subject: 'plat-qcom: wildcat: add Kailua (SM8550)'
-    - commit: b39dc9544e5a168f7a2302dea363f106bd2b2444
-      review: null
-      subject: 'ci: qcom: add kailua platform build'
-    - commit: 755db821cf5376ca4c64f2fa46a7f59c28e02fef
-      review: null
-      subject: 'plat-qcom: list qcom/kailua in TOPICS.md'
-    - commit: 0e7ea3887fa6f074d3ac96756bc66ff8d3205a78
+    - commit: 5eff446368a056c230ac099217bc40117c4f8de9
       review: null
       subject: 'plat-qcom: wildcat: add Eliza (SM7750)'
-    - commit: 1661765f72afb9610e04ae133786769623239e26
+    - commit: 4ad50cce1b1370fe04b8eacf036b41029fdb3d7a
       review: null
       subject: 'clk: qcom: eliza: add PAS clock support'
-    - commit: f19c344f1bc0192ea943787dcc4f8ff6519e90cc
+    - commit: 6b157a62e1512bc62dc893d5a3680c6d377dc5e0
       review: null
       subject: 'pta: qcom: pas: add the ADSP DTB PAS ID'
-    - commit: e680483289db751f00d060f319911d17c9ebf918
+    - commit: 1387bb55a9ce4df2af6b297395410b986c1ed811
       review: null
       subject: 'pta: qcom: pas: eliza: add CDSP bring-up and shutdown'
-    - commit: 0d16a9bc4ae0d1e71071d2e901c0fc78125ddbce
+    - commit: 487b63834d0aa276dbdcfb8753ca0215cc81e7c4
       review: null
       subject: 'pta: qcom: pas: eliza: add ADSP bring-up and shutdown'
-    - commit: 384220270a5c6365246de143465f5f0f40892484
+    - commit: 9b2025c451bbed1ae89bf7d7af6359b81d533058
       review: null
       subject: 'plat-qcom: wildcat: eliza: enable the PAS pseudo-TA'
-    - commit: f34d0b3fb15c8a890410154faabcf9d60377ab21
+    - commit: 927ad70083a474fd3c4788c75948e659b80bff94
       review: null
       subject: 'ci: qcom: add eliza platform build'
-    - commit: b34c1c3e6b5618756444ec6aec88d94b63007052
+    - commit: 189d8423f3edf648af2bb964de8367e996e43b09
       review: null
       subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: ec305ed735d68e7c08a180fa6ed056606317f46c
+    - commit: 0b343881b41b97d8c8b137dfd1e9080c12d42cbb
       review: null
       subject: 'pta: qcom: pas: move ELF segment selection to a header'
-    - commit: ed30368d6e4760295685eef5097081e0223a4dbe
+    - commit: f765934bda8ee1e47c61dbaabb5f1dd683a48cdf
       review: null
       subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: f777efc56c4f3912eefed0f208c53c09700c9dcc
+    - commit: 11a71a633d50dffaadd0ffe98e80b797d05e4495
       review: null
       subject: 'pta: qcom: pas: eliza: add iris bring-up and shutdown'
-    - commit: 974b70e7d27ef2113386383b128f7dd382410966
+    - commit: d66f1432808c3ac83c237e458bcd202923f560b0
+      review: null
+      subject: 'plat-qcom: wildcat: add Lanai (SM8650)'
+    - commit: a7152cb8ef071dc6d1eb7b6ac98c8f6ad3042bfe
+      review: null
+      subject: 'plat-qcom: wildcat: add Kailua (SM8550)'
+    - commit: 20e87e34ce3842e6769ab1f898b16397908ddfa3
       review: null
       subject: 'plat-qcom: wildcat: eliza: enable the iris PAS support'
-    - commit: 55c31ca6386e29e22c8633bbbd483e765d0595f2
+    - commit: 3524bd885e573f871fa9a0f7b35d7ea3022908c9
       review: null
-      subject: 'plat-qcom: list qcom/eliza in TOPICS.md'
-    - commit: 4e61677becf8b57cd62a113314d77839fa7d9297
+      subject: 'ci: qcom: add lanai platform build'
+    - commit: afda7bf387c5892416ca2f71785d2177dbb0fae3
+      review: null
+      subject: 'ci: qcom: add kailua platform build'
+    - commit: 4e9e0d684d8384168372827b6486fc07f5ac4676
       review: null
       subject: 'pta: qcom: pas: eliza: map the PMIC arbiter and ADSP QUP engines'
-    - commit: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
+    - commit: 95f0bc7dd7fe0270fce14f1b1fc2910f1f58e578
       review: null
-      subject: 'plat-qcom: list the Eliza ADSP resource table regions in TOPICS.md'
-    distance: 93
-    pin: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
+      subject: 'drivers: qcom: add GENI SPI driver'
+    - commit: 29e86779b0493d4fa5f5f62ecfff4913c3fdbe19
+      review: null
+      subject: 'drivers: qcom: spi: add lemans SPI config'
+    - commit: 4db22dce39adb93dbb590361cb0bd6af2f8129c5
+      review: null
+      subject: 'drivers: qcom: spi: add loopback SPI test'
+    - commit: 49608dc89e2708e459864950fc48f52f3e0a901b
+      review: null
+      subject: 'MAINTAINERS: add Qualcomm GENI SPI driver'
+    - commit: ed8294a7b536c66730592a5a8c4f4823ad46e902
+      review: null
+      subject: 'core: arm: crypto: build the CE GCM code only with CFG_CRYPTO'
+    - commit: 1438b1d9d48274917ea2190ef87ca5b34e0d43ff
+      review: null
+      subject: 'plat-qcom: ipq52xx: add a low memory profile'
+    - commit: 7def3b19f2c574a645ab9824a5907b122dcbf508
+      review: null
+      subject: 'plat-qcom: support an embedded DTB'
+    - commit: 4e3d312535a5415b0bdb58c21c0c2e8c70397ec1
+      review: null
+      subject: 'plat-qcom: take the DRAM from an embedded DT'
+    - commit: 9808dec3db39ce649ad67eb3bab7e7c7a580f57a
+      review: null
+      subject: 'drivers: qcom: xpuv4: let an instance guard several ranges'
+    - commit: 67236c4e42e2542c3636769f30d47a4149ad3319
+      review: null
+      subject: 'plat-qcom: xpu: split out the source of the DDR guards'
+    - commit: 6f9224e3d6fe842c76e7620427434080f0f052db
+      review: null
+      subject: 'plat-qcom: xpu: take the DDR guards from an embedded DT'
+    - commit: 0bd0d2fcb71e21864334e652f12568422400a6ed
+      review: null
+      subject: 'plat-qcom: ipq96xx: describe the DRAM in a DT'
+    - commit: 0f51c5df0d4eb0b8e0a5b7388709178f6a41bc6a
+      review: null
+      subject: 'plat-qcom: lemans: describe the DRAM in a DT'
+    - commit: c919b414bedfa372538e14ab344b07368b07510b
+      review: null
+      subject: 'plat-qcom: ipq52xx: describe the DRAM in a DT'
+    - commit: e8a3fd4c88be79f80047e99b2e5dedd77e4627c7
+      review: null
+      subject: 'drivers: qcom: ramblur: split out the pIMEM configuration'
+    - commit: 0a216ba1d099fa78cf938454040eef9d166fec8b
+      review: null
+      subject: 'plat-qcom: dts: add a DT binding for the Ramblur pIMEM controller'
+    - commit: 8f2f48193722f853a16dae5496974df6cf3f09be
+      review: null
+      subject: 'drivers: qcom: ramblur: take pIMEM regs and vault from DT'
+    - commit: 6e2e787a17231944f78e79a02c65ca403a4601b2
+      review: null
+      subject: 'MAINTAINERS: add the Qualcomm device tree files'
+    - commit: d6683ecdb09130179a166c50553a5a6eb74be2b8
+      review: null
+      subject: 'drivers: qcom: spi: fix const and declaration warnings'
+    - commit: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
+      review: null
+      subject: 'plat-qcom: add TOPICS.md for the 2026-11-05 integration'
+    distance: 61
+    pin: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
     repo: https://github.com/OP-TEE/optee_os
   tf-a:
     base: 0752f3bf2808518ff76dce41cdca7e8f9800c270
     carried:
     - commit: 9bebaf3952a1fcb43b7ddfaec90a2c8180f0373a
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56131
       subject: 'fix(qti): read the xPU syndrome registers at their offsets'
     - commit: 850d5c9b0b16566c2b299e0eae1a16e73537fda3
       review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55670
@@ -2729,7 +2249,7 @@ uno-q:
       review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55730
       subject: 'refactor(qti): make the core power-down request a PM backend hook'
     - commit: 1489149e6b2c6a1c4d6f6a068c04a96ede725a2b
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56131
       subject: 'fix(qti): read the xPU syndrome registers at their offsets'
     - commit: 39283cd5eab52e486775502f0dae044a6d126935
       review: null
@@ -2765,19 +2285,19 @@ uno-q:
       review: null
       subject: 'fix(psci): offer CPU_SUSPEND to platforms with only CPU standby'
     - commit: 47e0cde04c9c78f0b687a8dad84c5742043d4899
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56134
       subject: 'feat(qti): add Talos SoC definitions'
     - commit: 7274cb3b6f403ec01b8fe8feb3098962f2fe861c
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56135
       subject: 'refactor(qti): move qcs615 under the talos directory'
     - commit: 88ca30aaf08dfa0dd62a55344436482e87b44c90
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56136
       subject: 'feat(qti): add Talos apps PDC tables'
     - commit: c816f651c433efdd1e96c8fe08bc8c007ead3f4a
       review: null
       subject: 'fix(qti): reject MEM_ASSIGN without an access control backend'
     - commit: e0e269ff0408d2510d59a6c3ac874111c47eba84
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56137
       subject: 'feat(qcs615_ride): add XBL boot support'
     - commit: 3b6a0af29dea6cf0bfffec59d1043b55861d2039
       review: null
@@ -2949,295 +2469,199 @@ uno-q:
     repo: https://review.trustedfirmware.org/TF-A/trusted-firmware-a
 ventuno-q:
   optee:
-    base: 2cabb6d063513e1718f7627e16b0a5ce1bfd5516
+    base: 3b0528e17cc6214587d3c8f5c452e9dc8b07ca60
     carried:
-    - commit: 3b0e16c127646d4a063885756be02f0bebfb257d
+    - commit: a8a2bfc89350619870345ee09e83b2c4f4ddf656
       review: null
       subject: 'plat-qcom: hoya: move the pIMEM TEE layout to the targets'
-    - commit: 4cbdf679a00790736cfd5531fb75b07865e30006
+    - commit: 900fe1bfdb267aa3cfd826a46ce2b475428bf246
       review: null
       subject: 'plat-qcom: hoya: move the RNG base to the targets'
-    - commit: ea8d8510ec8844a7b1d05f380351558b5e85bcbd
+    - commit: 76ba422255f03ccd6bd9e8564d218f63725e5c03
       review: null
       subject: 'plat-qcom: hoya: add talos support'
-    - commit: 2bb9d29ace7d79552b394878632fb852d57f0fd9
+    - commit: 1a2366b5de55c006e1d21880af93ec1a4bd836e7
       review: null
       subject: 'ci: add qcom-talos build'
-    - commit: ef551e4e447d22259052fe3b448a65177e0778d6
+    - commit: a5e554cbfcc7f2c2ec3a563a3a4e533d4f1f754f
+      review: null
+      subject: 'clk: qcom: share the QDSP6 halt and MMIO lookup helpers'
+    - commit: 3d99cea7932048093740f680bdfcd67155271903
       review: null
       subject: 'clk: qcom: talos: add PAS clock support'
-    - commit: c8cf31840b6b513c65489163ee3f32ae76c6192a
+    - commit: c21060c463bc89edc7366098d7e35a2c76d5b4ca
       review: null
       subject: 'pta: qcom: pas: talos: add ADSP and CDSP bring-up and shutdown'
-    - commit: 0b1f7848d9637675e9338ba0b29336774d34ef0e
+    - commit: 7f1c6f5bf0aa052f0123771b4dab23196d5a9076
       review: null
       subject: 'plat-qcom: hoya: talos: enable the PAS pseudo-TA'
-    - commit: 9643647198626d08b9c773a528dd5acbf75a3e3a
-      review: null
-      subject: 'plat-qcom: wildcat: add Lanai (SM8650)'
-    - commit: a330e5c3e67538b9781fee6c7e7240668ee330f3
-      review: null
-      subject: 'pta: qcom: pas: talos: set the controller map type'
-    - commit: c5970650bbd72ebffed86030a88cea7f7436ec00
-      review: null
-      subject: 'clk: qcom: talos: restart Turing whatever its power-on flag says'
-    - commit: a2d7bc346b1ccb3f34f68ed37b9e4361530f504e
-      review: null
-      subject: 'clk: qcom: Get Lucid-EVO PLL offsets from platform'
-    - commit: e5328180e783355ac82d811f32cee6e3890bb722
-      review: null
-      subject: 'clk: qcom: lemans: return TEE_ERROR_TIMEOUT from LPASS collapse polls'
-    - commit: 26d2df5f8e95424851c985d3d199e970889e4343
-      review: null
-      subject: 'clk: qcom: lemans: reset a GP-DSP while its PDC holds it in low power'
-    - commit: 841cb20ec6f688bfc8ff6fa9978208fbc9cdaa0b
-      review: null
-      subject: 'clk: qcom: hoya: share the Lemans Q6 PAS sequences'
-    - commit: ec624733966f8538510c2de3a0d61027a600243c
-      review: null
-      subject: 'clk: qcom: lemans: return the NSP clock enable error as is'
-    - commit: 7146d510a17d8b1bfac21fbc631d84cf7cfb5f4b
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 566e9371dd9d5cc7708e65610d268dc126b31777
-      review: null
-      subject: 'clk: qcom: hoya: enable the QDSP6 boot branches with the NSP clocks'
-    - commit: 4d80359d92f4223f0491adc87b7e7f91f63d6149
-      review: null
-      subject: 'clk: qcom: monaco: add PAS clock support'
-    - commit: b343917cd3a74cae47d87d8284d245c4d364d9e3
-      review: null
-      subject: 'pta: qcom: pas: monaco: add ADSP, CDSP and GP-DSP0 bring-up'
-    - commit: 78057e5c9fed21abd4a6d50473df011eb8502e34
-      review: null
-      subject: 'plat-qcom: hoya: monaco: enable the PAS pseudo-TA'
-    - commit: 120a891f1f421c916fc9141a6bf380770ab8ba9c
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 5fa3fa072c4bb58392c0060e46f3a005c05a2654
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: 50e42d0b43d94a0ea2ed59012c8da1889d45ead8
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: ec088f71bc8cae60ca3bfbc7de12b2ea792b1f3a
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 83f98cc0168ba085a2cd1fab01d8774a942fdefe
-      review: null
-      subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 471cd2597fe272ecdcc22f35905cf5b0b2f18ba5
+    - commit: db502f641a213f947084c9bfdbca4dfd5479d5ff
       review: null
       subject: 'ta: qcom_pas: keep one image generation across INIT_IMAGE'
-    - commit: 744141f35405778dc84a6ac06e50379512619aa7
+    - commit: 3f6cc2f695e1673ff4ab8fb46825708746f355fc
       review: null
       subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: 9c09dc296a8fc8ad3f7c847fbbc5183ded4ead70
+    - commit: 84367c1f01b2de13cbed770f5b3df38f5ddf0a68
       review: null
-      subject: 'pta: qcom: pas: define iris registers from IRIS_BASE'
-    - commit: 2aa24b32551066b7721f3d17fe18f4791a6d1b77
+      subject: 'pta: qcom: pas: iris: program the CP layout and seed'
+    - commit: 5ddd5c53f79194c4a0be73cf76792fe7238ffa1b
       review: null
-      subject: 'pta: qcom: pas: kodiak: program iris CP layout and seed'
-    - commit: 9696466e016d48e4faf45e098c68ba21c5da53d3
+      subject: 'pta: qcom: pas: share the iris start and shutdown'
+    - commit: a0bb427e7c2e141ef3ff2d6b0b6cee7c81809534
       review: null
       subject: 'pta: qcom: pas: kodiak: program iris secure session settings'
-    - commit: 8c3f3fbbe85ff07e745ceaa0df13c8c9f0e2131e
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris CP layout and seed'
-    - commit: ac4bd89e8d5b58ffd5088e3b6853fcb8facc3d65
+    - commit: 65656d84ef41438edd2514c59b6103b80871c1e7
       review: null
       subject: 'pta: qcom: pas: lemans: program iris secure session settings'
-    - commit: 36a2a8feba61322a71d481ad00cfcdc372d25123
+    - commit: 1a7cb4bfecd9c5e17ef8988f84d77166d050df44
       review: null
       subject: 'pta: qcom: pas: kodiak: add the ADSP shutdown'
-    - commit: b255a52ce496d90220b3d76cc26e6ff77f4d352a
+    - commit: 41d36dbdae3660cb2e08840c98f0c04545c15c77
       review: null
       subject: 'pta: qcom: pas: kodiak: add the CDSP shutdown'
-    - commit: 8d5134bbd43cab348b3a5b66257b28b093a1b8b6
-      review: null
-      subject: 'pta: qcom: pas: kodiak: map the USB pages the ADSP reads'
-    - commit: 1dae84adceae1c1ddb315e53123d91c25255365d
-      review: null
-      subject: 'pta: qcom: pas: reset the subsystem when a start fails'
-    - commit: 8ea7d9e0837f7c9532444efd14fac44d3a6a66a0
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: ae40b9e1ddedb6da6031427b8757fee2cff13a97
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: cc80a5100e3b2ebf550e39382b17a9997af78e62
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 115fde748c9402d8e057b719c99ac94d621f4f9e
+    - commit: d809109845e46ea69f697e5b156f71b47cfe1718
       review: null
       subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 6330e076805ecf0bed35c9a9b927b6b15f0a11a9
-      review: null
-      subject: 'ta: qcom_pas: keep one image generation across INIT_IMAGE'
-    - commit: 8cf35a2d3adb688a8f8d3f94f2618eb7f4f4a690
-      review: null
-      subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: d47639a97e15bf697c3736ae967e7614bf1284ec
-      review: null
-      subject: 'pta: qcom: pas: define iris registers from IRIS_BASE'
-    - commit: 065b11dec6c6290ae9f2920fe984a9db2e6c7dd0
-      review: null
-      subject: 'pta: qcom: pas: kodiak: program iris CP layout and seed'
-    - commit: df57c227278689a86c0afcb6ea033c666bac6268
-      review: null
-      subject: 'pta: qcom: pas: kodiak: program iris secure session settings'
-    - commit: 5beb2b5cb2fb93ff9cf303b6f2d65de7014f91d0
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris CP layout and seed'
-    - commit: ac2381866f31f11da1cb8bf07bd0c04f60001443
-      review: null
-      subject: 'pta: qcom: pas: lemans: program iris secure session settings'
-    - commit: 824811d5f10ce5668332e9f416fe44274f8b5426
-      review: null
-      subject: 'pta: qcom: pas: kodiak: add the ADSP shutdown'
-    - commit: 9a0398cbffd453246b2e6d7ae5e085ecb287fa35
-      review: null
-      subject: 'pta: qcom: pas: kodiak: add the CDSP shutdown'
-    - commit: 979d1a895f55fd577e3d8448e898b3da6357633e
+    - commit: b994c22c17cc91f02b398c5ae468fcde1e94a8c3
       review: null
       subject: 'pta: qcom: pas: kodiak: map the USB pages the ADSP reads'
-    - commit: f7e957eb0e8dbf66f9f0f4ba8ded73b2b750f1b4
-      review: null
-      subject: 'drivers: qcom: add GENI SPI driver'
-    - commit: 005cb957e74c66647d8a888720b2a1a24e1c7d36
-      review: null
-      subject: 'drivers: qcom: spi: add lemans SPI config'
-    - commit: 4f958e24ed1468416d1772b16a9d26983ab5cd7c
-      review: null
-      subject: 'drivers: qcom: spi: add loopback SPI test'
-    - commit: 9dbfbec118beb556c597d76287a3136058021df8
-      review: null
-      subject: 'MAINTAINERS: add Qualcomm GENI SPI driver'
-    - commit: 61e0f31162ef52fea97dd9bfaaffc6b94e032229
-      review: null
-      subject: 'plat-qcom: add optional embedded DTB support'
-    - commit: 947657f8d58a42d7eeeb4bdf5e936a42c106685d
-      review: null
-      subject: 'drivers: qcom_geni_uart: add DT console driver'
-    - commit: ec96e639edda1f9edbdd98466409b08740d8c6c1
-      review: null
-      subject: 'clk: qcom: agatti: add PAS clock support'
-    - commit: f6b11715a6205d3f54383d01c2773dbc906adff0
-      review: null
-      subject: 'pta: qcom: pas: agatti: add ADSP bring-up'
-    - commit: eac15ccbca0ee32750e0c02d936d498a94a7e1d6
-      review: null
-      subject: 'plat-qcom: bruin: agatti: enable the PAS pseudo-TA'
-    - commit: 3c593694ac8af4061327660c2c76f0dfd7e7c9bf
+    - commit: a5bad9e400485694b486d2e6eda72c88f2efe7b7
       review: null
       subject: 'pta: qcom: pas: agatti: add GPU zap shader support'
-    - commit: 78f2a47cebf6e88c3ab7f8123569eccec431853d
-      review: null
-      subject: 'core: pta: qcom: pas: Move elf related helpers to pas_elf.c'
-    - commit: 52ab21abdc7c5342d2dc399bcf05abd8a030458e
-      review: null
-      subject: 'core: pta: qcom: pas: Set fw_base for non-relocatable images'
-    - commit: d80ba1cab66c8fabdd9aec8e38670fe2c45e7601
-      review: null
-      subject: 'pta: qcom: pas: bound the program header table in pas_elf_parse()'
-    - commit: 798f97199a8112eaeb75a07a734cf1df46e0ea39
-      review: null
-      subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: 2160daf2359e7cf13cd61608edd4efb00b2fbce2
+    - commit: 9b36a57e3949cfebdb87188712322203608ac4da
       review: null
       subject: 'pta: qcom: pas: agatti: add venus bring-up'
-    - commit: edaeed5f11bbf60ba13ca916e4568864a44c17c9
+    - commit: 1fd222294d921a3dfb832b1dcddaeaa6a2f9f9ae
       review: null
       subject: 'pta: qcom: pas: agatti: clean the venus seed to memory'
-    - commit: cb93a72ec8901bb679e8ae3b900ce5a52cd43049
+    - commit: f4c9fde62d1133fb670554549e224f42e93781df
+      review: null
+      subject: 'drivers: gic: do not log an error for unused redistributor frames'
+    - commit: 7d4bded067813fba2db0840ba865a349a344cddc
       review: https://github.com/qualcomm-linux/optee_os/pull/59
       subject: 'drivers: qcom: add RPM client for Shikra'
-    - commit: ebbbd4a79f2e98232bbaec190593a38880c8b0b9
+    - commit: 4c3630d5b2e3929765b92ee9d27169a9fb446bee
       review: null
       subject: 'plat-qcom: shikra: add QUP clock support'
-    - commit: 62a6594de998900064a19d724c1dd9fc32cd6f9e
-      review: null
-      subject: 'drivers: qcom: tlmm: enable driver for Shikra'
-    - commit: 0a7009681f4352bd1acfacd14b9e6528dd7b4617
-      review: null
-      subject: 'plat-qcom: dts: add embedded DTBs for Lemans, IPQ52xx and IPQ96xx'
-    - commit: 0beba847fb390392beb542c6e585b131d0025625
-      review: null
-      subject: 'plat-qcom: take GIC bases from DT when available'
-    - commit: ef9007b31b2984e622438030b6d771d0edf0ef54
-      review: null
-      subject: 'drivers: qcom: csrng: take register base from DT when available'
-    - commit: 67b4531d230bf10a9bbeed925a554ed90eda3de7
-      review: null
-      subject: 'drivers: qcom: ramblur: take pIMEM registers and vault from DT when available'
-    - commit: 48e45590f07fa19f3f8be80f9d8b2d03858f130a
-      review: null
-      subject: 'plat-qcom: add TOPICS.md for the integration branch'
-    - commit: 033d0c629c51f805dcc36177a45151b0c5e55af3
-      review: null
-      subject: 'ci: qcom: add lanai platform build'
-    - commit: e34bccb9bec9ef0c12026ee7802b1f46a4975885
-      review: null
-      subject: 'plat-qcom: wildcat: add Kailua (SM8550)'
-    - commit: b39dc9544e5a168f7a2302dea363f106bd2b2444
-      review: null
-      subject: 'ci: qcom: add kailua platform build'
-    - commit: 755db821cf5376ca4c64f2fa46a7f59c28e02fef
-      review: null
-      subject: 'plat-qcom: list qcom/kailua in TOPICS.md'
-    - commit: 0e7ea3887fa6f074d3ac96756bc66ff8d3205a78
+    - commit: 5eff446368a056c230ac099217bc40117c4f8de9
       review: null
       subject: 'plat-qcom: wildcat: add Eliza (SM7750)'
-    - commit: 1661765f72afb9610e04ae133786769623239e26
+    - commit: 4ad50cce1b1370fe04b8eacf036b41029fdb3d7a
       review: null
       subject: 'clk: qcom: eliza: add PAS clock support'
-    - commit: f19c344f1bc0192ea943787dcc4f8ff6519e90cc
+    - commit: 6b157a62e1512bc62dc893d5a3680c6d377dc5e0
       review: null
       subject: 'pta: qcom: pas: add the ADSP DTB PAS ID'
-    - commit: e680483289db751f00d060f319911d17c9ebf918
+    - commit: 1387bb55a9ce4df2af6b297395410b986c1ed811
       review: null
       subject: 'pta: qcom: pas: eliza: add CDSP bring-up and shutdown'
-    - commit: 0d16a9bc4ae0d1e71071d2e901c0fc78125ddbce
+    - commit: 487b63834d0aa276dbdcfb8753ca0215cc81e7c4
       review: null
       subject: 'pta: qcom: pas: eliza: add ADSP bring-up and shutdown'
-    - commit: 384220270a5c6365246de143465f5f0f40892484
+    - commit: 9b2025c451bbed1ae89bf7d7af6359b81d533058
       review: null
       subject: 'plat-qcom: wildcat: eliza: enable the PAS pseudo-TA'
-    - commit: f34d0b3fb15c8a890410154faabcf9d60377ab21
+    - commit: 927ad70083a474fd3c4788c75948e659b80bff94
       review: null
       subject: 'ci: qcom: add eliza platform build'
-    - commit: b34c1c3e6b5618756444ec6aec88d94b63007052
+    - commit: 189d8423f3edf648af2bb964de8367e996e43b09
       review: null
       subject: 'pta: qcom: pas: pass image metadata to the subsystem'
-    - commit: ec305ed735d68e7c08a180fa6ed056606317f46c
+    - commit: 0b343881b41b97d8c8b137dfd1e9080c12d42cbb
       review: null
       subject: 'pta: qcom: pas: move ELF segment selection to a header'
-    - commit: ed30368d6e4760295685eef5097081e0223a4dbe
+    - commit: f765934bda8ee1e47c61dbaabb5f1dd683a48cdf
       review: null
       subject: 'pta: qcom: pas: add video firmware seed helpers'
-    - commit: f777efc56c4f3912eefed0f208c53c09700c9dcc
+    - commit: 11a71a633d50dffaadd0ffe98e80b797d05e4495
       review: null
       subject: 'pta: qcom: pas: eliza: add iris bring-up and shutdown'
-    - commit: 974b70e7d27ef2113386383b128f7dd382410966
+    - commit: d66f1432808c3ac83c237e458bcd202923f560b0
+      review: null
+      subject: 'plat-qcom: wildcat: add Lanai (SM8650)'
+    - commit: a7152cb8ef071dc6d1eb7b6ac98c8f6ad3042bfe
+      review: null
+      subject: 'plat-qcom: wildcat: add Kailua (SM8550)'
+    - commit: 20e87e34ce3842e6769ab1f898b16397908ddfa3
       review: null
       subject: 'plat-qcom: wildcat: eliza: enable the iris PAS support'
-    - commit: 55c31ca6386e29e22c8633bbbd483e765d0595f2
+    - commit: 3524bd885e573f871fa9a0f7b35d7ea3022908c9
       review: null
-      subject: 'plat-qcom: list qcom/eliza in TOPICS.md'
-    - commit: 4e61677becf8b57cd62a113314d77839fa7d9297
+      subject: 'ci: qcom: add lanai platform build'
+    - commit: afda7bf387c5892416ca2f71785d2177dbb0fae3
+      review: null
+      subject: 'ci: qcom: add kailua platform build'
+    - commit: 4e9e0d684d8384168372827b6486fc07f5ac4676
       review: null
       subject: 'pta: qcom: pas: eliza: map the PMIC arbiter and ADSP QUP engines'
-    - commit: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
+    - commit: 95f0bc7dd7fe0270fce14f1b1fc2910f1f58e578
       review: null
-      subject: 'plat-qcom: list the Eliza ADSP resource table regions in TOPICS.md'
-    distance: 93
-    pin: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
+      subject: 'drivers: qcom: add GENI SPI driver'
+    - commit: 29e86779b0493d4fa5f5f62ecfff4913c3fdbe19
+      review: null
+      subject: 'drivers: qcom: spi: add lemans SPI config'
+    - commit: 4db22dce39adb93dbb590361cb0bd6af2f8129c5
+      review: null
+      subject: 'drivers: qcom: spi: add loopback SPI test'
+    - commit: 49608dc89e2708e459864950fc48f52f3e0a901b
+      review: null
+      subject: 'MAINTAINERS: add Qualcomm GENI SPI driver'
+    - commit: ed8294a7b536c66730592a5a8c4f4823ad46e902
+      review: null
+      subject: 'core: arm: crypto: build the CE GCM code only with CFG_CRYPTO'
+    - commit: 1438b1d9d48274917ea2190ef87ca5b34e0d43ff
+      review: null
+      subject: 'plat-qcom: ipq52xx: add a low memory profile'
+    - commit: 7def3b19f2c574a645ab9824a5907b122dcbf508
+      review: null
+      subject: 'plat-qcom: support an embedded DTB'
+    - commit: 4e3d312535a5415b0bdb58c21c0c2e8c70397ec1
+      review: null
+      subject: 'plat-qcom: take the DRAM from an embedded DT'
+    - commit: 9808dec3db39ce649ad67eb3bab7e7c7a580f57a
+      review: null
+      subject: 'drivers: qcom: xpuv4: let an instance guard several ranges'
+    - commit: 67236c4e42e2542c3636769f30d47a4149ad3319
+      review: null
+      subject: 'plat-qcom: xpu: split out the source of the DDR guards'
+    - commit: 6f9224e3d6fe842c76e7620427434080f0f052db
+      review: null
+      subject: 'plat-qcom: xpu: take the DDR guards from an embedded DT'
+    - commit: 0bd0d2fcb71e21864334e652f12568422400a6ed
+      review: null
+      subject: 'plat-qcom: ipq96xx: describe the DRAM in a DT'
+    - commit: 0f51c5df0d4eb0b8e0a5b7388709178f6a41bc6a
+      review: null
+      subject: 'plat-qcom: lemans: describe the DRAM in a DT'
+    - commit: c919b414bedfa372538e14ab344b07368b07510b
+      review: null
+      subject: 'plat-qcom: ipq52xx: describe the DRAM in a DT'
+    - commit: e8a3fd4c88be79f80047e99b2e5dedd77e4627c7
+      review: null
+      subject: 'drivers: qcom: ramblur: split out the pIMEM configuration'
+    - commit: 0a216ba1d099fa78cf938454040eef9d166fec8b
+      review: null
+      subject: 'plat-qcom: dts: add a DT binding for the Ramblur pIMEM controller'
+    - commit: 8f2f48193722f853a16dae5496974df6cf3f09be
+      review: null
+      subject: 'drivers: qcom: ramblur: take pIMEM regs and vault from DT'
+    - commit: 6e2e787a17231944f78e79a02c65ca403a4601b2
+      review: null
+      subject: 'MAINTAINERS: add the Qualcomm device tree files'
+    - commit: d6683ecdb09130179a166c50553a5a6eb74be2b8
+      review: null
+      subject: 'drivers: qcom: spi: fix const and declaration warnings'
+    - commit: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
+      review: null
+      subject: 'plat-qcom: add TOPICS.md for the 2026-11-05 integration'
+    distance: 61
+    pin: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
     repo: https://github.com/OP-TEE/optee_os
   tf-a:
     base: 0752f3bf2808518ff76dce41cdca7e8f9800c270
     carried:
     - commit: 9bebaf3952a1fcb43b7ddfaec90a2c8180f0373a
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56131
       subject: 'fix(qti): read the xPU syndrome registers at their offsets'
     - commit: 850d5c9b0b16566c2b299e0eae1a16e73537fda3
       review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55670
@@ -3318,7 +2742,7 @@ ventuno-q:
       review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55730
       subject: 'refactor(qti): make the core power-down request a PM backend hook'
     - commit: 1489149e6b2c6a1c4d6f6a068c04a96ede725a2b
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56131
       subject: 'fix(qti): read the xPU syndrome registers at their offsets'
     - commit: 39283cd5eab52e486775502f0dae044a6d126935
       review: null
@@ -3354,19 +2778,19 @@ ventuno-q:
       review: null
       subject: 'fix(psci): offer CPU_SUSPEND to platforms with only CPU standby'
     - commit: 47e0cde04c9c78f0b687a8dad84c5742043d4899
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56134
       subject: 'feat(qti): add Talos SoC definitions'
     - commit: 7274cb3b6f403ec01b8fe8feb3098962f2fe861c
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56135
       subject: 'refactor(qti): move qcs615 under the talos directory'
     - commit: 88ca30aaf08dfa0dd62a55344436482e87b44c90
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56136
       subject: 'feat(qti): add Talos apps PDC tables'
     - commit: c816f651c433efdd1e96c8fe08bc8c007ead3f4a
       review: null
       subject: 'fix(qti): reject MEM_ASSIGN without an access control backend'
     - commit: e0e269ff0408d2510d59a6c3ac874111c47eba84
-      review: null
+      review: https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/56137
       subject: 'feat(qcs615_ride): add XBL boot support'
     - commit: 3b6a0af29dea6cf0bfffec59d1043b55861d2039
       review: null

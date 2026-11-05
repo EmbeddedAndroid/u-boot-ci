@@ -4,8 +4,9 @@
 # they match the pinned commits.
 #
 # TF-A and OP-TEE pin the hardware-gated qcom/integration of the
-# EmbeddedAndroid forks at tag qcom/integration-20261101 (the commit, so a
-# later force-push of the branch cannot move a pin). soc_branch records
+# EmbeddedAndroid forks by commit at a dated tag (TF-A
+# qcom/integration-20261101, OP-TEE qcom/integration-20261105), so a
+# later force-push of the branch cannot move a pin. soc_branch records
 # the per-platform branch head that commit merges. The BL2s are built from
 # the same commit as the board's tf-a pin.
 boards:
@@ -37,8 +38,8 @@ boards:
     optee:
       repo: https://github.com/EmbeddedAndroid/optee_os
       branch: qcom/integration
-      commit: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
-      soc_branch: {name: qcom/kodiak, commit: 1dae84adceae1c1ddb315e53123d91c25255365d}
+      commit: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
+      soc_branch: {name: qcom/kodiak, commit: b994c22c17cc91f02b398c5ae468fcde1e94a8c3}
       platform: qcom-kodiak
       # The early TAs the board's remoteprocs need (qcom_pas) and
       # trusted keys, as the gated build; one make argument per item.
@@ -68,8 +69,8 @@ boards:
     optee:
       repo: https://github.com/EmbeddedAndroid/optee_os
       branch: qcom/integration
-      commit: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
-      soc_branch: {name: qcom/monaco, commit: 78057e5c9fed21abd4a6d50473df011eb8502e34}
+      commit: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
+      soc_branch: {name: qcom/monaco, commit: 3b0528e17cc6214587d3c8f5c452e9dc8b07ca60}
       platform: qcom-monaco
       make_args: *optee-pas-args
       upstream: *optee-upstream
@@ -92,8 +93,8 @@ boards:
     optee:
       repo: https://github.com/EmbeddedAndroid/optee_os
       branch: qcom/integration
-      commit: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
-      soc_branch: {name: qcom/agatti, commit: edaeed5f11bbf60ba13ca916e4568864a44c17c9}
+      commit: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
+      soc_branch: {name: qcom/agatti, commit: f4c9fde62d1133fb670554549e224f42e93781df}
       platform: qcom-agatti
       upstream: *optee-upstream
   qcs615-ride:
@@ -113,8 +114,8 @@ boards:
     optee:
       repo: https://github.com/EmbeddedAndroid/optee_os
       branch: qcom/integration
-      commit: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
-      soc_branch: {name: qcom/talos, commit: 120a891f1f421c916fc9141a6bf380770ab8ba9c}
+      commit: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
+      soc_branch: {name: qcom/talos, commit: 7f1c6f5bf0aa052f0123771b4dab23196d5a9076}
       platform: qcom-talos
       make_args: *optee-pas-args
       upstream: *optee-upstream
@@ -139,8 +140,8 @@ boards:
     optee:
       repo: https://github.com/EmbeddedAndroid/optee_os
       branch: qcom/integration
-      commit: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
-      soc_branch: {name: qcom/lemans, commit: 67b4531d230bf10a9bbeed925a554ed90eda3de7}
+      commit: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
+      soc_branch: {name: qcom/lemans, commit: d6683ecdb09130179a166c50553a5a6eb74be2b8}
       platform: qcom-lemans
       make_args: *optee-pas-args
       upstream: *optee-upstream
@@ -159,8 +160,8 @@ boards:
     optee:
       repo: https://github.com/EmbeddedAndroid/optee_os
       branch: qcom/integration
-      commit: d1470ab9f4fcc7ab0ec751da9d8120885f2b9bb2
-      soc_branch: {name: qcom/shikra, commit: 62a6594de998900064a19d724c1dd9fc32cd6f9e}
+      commit: b5e5f7a0f85aff4d1da7077370b74f2c63b89394
+      soc_branch: {name: qcom/shikra, commit: 4c3630d5b2e3929765b92ee9d27169a9fb446bee}
       platform: qcom-shikra
       upstream: *optee-upstream
   sm8750-mtp:
