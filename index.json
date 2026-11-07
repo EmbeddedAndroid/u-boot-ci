@@ -8863,6 +8863,55 @@
        },
        "threshold": null,
        "verdict": "no-history"
+      },
+      {
+       "compared_stage": null,
+       "complete": false,
+       "created": "2026-11-07T08:55:03Z",
+       "delta": null,
+       "device": "unoq-01",
+       "gate": "pass",
+       "job_url": "https://lava.infra.foundries.io/scheduler/job/547417",
+       "kind": "first",
+       "last_stage": "uboot",
+       "linux": null,
+       "ref_line": 169,
+       "reset": null,
+       "run": "ubci-42350574348-1-main",
+       "stages": {
+        "bl2": [
+         1.386,
+         317,
+         0
+        ],
+        "bl31": [
+         1.447,
+         337,
+         0
+        ],
+        "loader": [
+         0.75,
+         187,
+         0
+        ],
+        "loader_end": [
+         1.385,
+         313,
+         0
+        ],
+        "optee": [
+         1.57,
+         344,
+         0
+        ],
+        "uboot": [
+         2.072,
+         360,
+         0
+        ]
+       },
+       "threshold": null,
+       "verdict": "unknown"
       }
      ]
     },
@@ -23077,6 +23126,55 @@
          },
          "threshold": null,
          "verdict": "no-history"
+        },
+        {
+         "compared_stage": null,
+         "complete": false,
+         "created": "2026-11-07T08:55:03Z",
+         "delta": null,
+         "device": "unoq-01",
+         "gate": "pass",
+         "job_url": "https://lava.infra.foundries.io/scheduler/job/547417",
+         "kind": "first",
+         "last_stage": "uboot",
+         "linux": null,
+         "ref_line": 169,
+         "reset": null,
+         "run": "ubci-42350574348-1-main",
+         "stages": {
+          "bl2": [
+           1.386,
+           317,
+           0
+          ],
+          "bl31": [
+           1.447,
+           337,
+           0
+          ],
+          "loader": [
+           0.75,
+           187,
+           0
+          ],
+          "loader_end": [
+           1.385,
+           313,
+           0
+          ],
+          "optee": [
+           1.57,
+           344,
+           0
+          ],
+          "uboot": [
+           2.072,
+           360,
+           0
+          ]
+         },
+         "threshold": null,
+         "verdict": "unknown"
         }
        ]
       },
@@ -29370,24 +29468,24 @@
     },
     "uno-q/open": {
      "cases": {
-      "firmware-fingerprint-cold/bl2_v": "-----------sss--",
-      "firmware-fingerprint-cold/bl31_v": "-----------sss--",
-      "firmware-fingerprint-cold/op_tee_version": "-----------sss--",
-      "firmware-fingerprint-cold/u_boot_20": "-----------sss--",
-      "firmware-fingerprint-reboot/bl2_v": "----------ssss--",
-      "firmware-fingerprint-reboot/bl31_v": "----------ssss--",
-      "firmware-fingerprint-reboot/op_tee_version": "----------ssss--",
-      "firmware-fingerprint-reboot/u_boot_20": "----------ssss--",
-      "firmware-fingerprint-reset/bl2_v": "----------ssss--",
-      "firmware-fingerprint-reset/bl31_v": "----------ssss--",
-      "firmware-fingerprint-reset/op_tee_version": "----------ssss--",
-      "firmware-fingerprint-reset/u_boot_20": "----------ssss--",
-      "firmware-fingerprint/bl2_v": "----------pppp--",
-      "firmware-fingerprint/bl31_v": "----------pppp--",
-      "firmware-fingerprint/op_tee_version": "----------pppp--",
-      "firmware-fingerprint/u_boot_20": "----------pppp--",
-      "linux-version/linux_version": "----------ssss--",
-      "u-boot/autoboot": "----------ffff--"
+      "firmware-fingerprint-cold/bl2_v": "-----------sss-s",
+      "firmware-fingerprint-cold/bl31_v": "-----------sss-s",
+      "firmware-fingerprint-cold/op_tee_version": "-----------sss-s",
+      "firmware-fingerprint-cold/u_boot_20": "-----------sss-s",
+      "firmware-fingerprint-reboot/bl2_v": "----------ssss-s",
+      "firmware-fingerprint-reboot/bl31_v": "----------ssss-s",
+      "firmware-fingerprint-reboot/op_tee_version": "----------ssss-s",
+      "firmware-fingerprint-reboot/u_boot_20": "----------ssss-s",
+      "firmware-fingerprint-reset/bl2_v": "----------ssss-s",
+      "firmware-fingerprint-reset/bl31_v": "----------ssss-s",
+      "firmware-fingerprint-reset/op_tee_version": "----------ssss-s",
+      "firmware-fingerprint-reset/u_boot_20": "----------ssss-s",
+      "firmware-fingerprint/bl2_v": "----------pppp-p",
+      "firmware-fingerprint/bl31_v": "----------pppp-p",
+      "firmware-fingerprint/op_tee_version": "----------pppp-p",
+      "firmware-fingerprint/u_boot_20": "----------pppp-p",
+      "linux-version/linux_version": "----------ssss-s",
+      "u-boot/autoboot": "----------ffff-f"
      },
      "runs": [
       "ubci-40199892508-1-main",
@@ -43942,10 +44040,10 @@
       "boot_time": null,
       "boot_url": "",
       "counts": {
-       "fail": 0,
+       "fail": 1,
        "flaky": 0,
-       "pass": 0,
-       "skip": 0,
+       "pass": 4,
+       "skip": 13,
        "unknown": 0
       },
       "distance": {
@@ -43956,7 +44054,7 @@
       "fragments_missing": [
        "arduino-uno-q.config"
       ],
-      "gate": "not-run",
+      "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/547417",
       "new_fail": 0,
       "no_spl": null,
@@ -43964,8 +44062,8 @@
       "run": "ubci-42350574348-1-main",
       "spl_in_flight": [],
       "stack": "open",
-      "state": "testing",
-      "state_detail": "",
+      "state": "done",
+      "state_detail": "LAVA job incomplete",
       "versus": "unknown"
      }
     ],
@@ -48654,10 +48752,10 @@
      "boot_time": null,
      "boot_url": "",
      "counts": {
-      "fail": 0,
+      "fail": 1,
       "flaky": 0,
-      "pass": 0,
-      "skip": 0,
+      "pass": 4,
+      "skip": 13,
       "unknown": 0
      },
      "distance": {
@@ -48668,7 +48766,7 @@
      "fragments_missing": [
       "arduino-uno-q.config"
      ],
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/547417",
      "new_fail": 0,
      "no_spl": null,
@@ -48676,8 +48774,8 @@
      "run": "ubci-42350574348-1-main",
      "spl_in_flight": [],
      "stack": "open",
-     "state": "testing",
-     "state_detail": "",
+     "state": "done",
+     "state_detail": "LAVA job incomplete",
      "versus": "unknown"
     },
     {
@@ -80878,24 +80976,24 @@
   },
   "uno-q/open": {
    "cases": {
-    "firmware-fingerprint-cold/bl2_v": "-----------sss--",
-    "firmware-fingerprint-cold/bl31_v": "-----------sss--",
-    "firmware-fingerprint-cold/op_tee_version": "-----------sss--",
-    "firmware-fingerprint-cold/u_boot_20": "-----------sss--",
-    "firmware-fingerprint-reboot/bl2_v": "----------ssss--",
-    "firmware-fingerprint-reboot/bl31_v": "----------ssss--",
-    "firmware-fingerprint-reboot/op_tee_version": "----------ssss--",
-    "firmware-fingerprint-reboot/u_boot_20": "----------ssss--",
-    "firmware-fingerprint-reset/bl2_v": "----------ssss--",
-    "firmware-fingerprint-reset/bl31_v": "----------ssss--",
-    "firmware-fingerprint-reset/op_tee_version": "----------ssss--",
-    "firmware-fingerprint-reset/u_boot_20": "----------ssss--",
-    "firmware-fingerprint/bl2_v": "----------pppp--",
-    "firmware-fingerprint/bl31_v": "----------pppp--",
-    "firmware-fingerprint/op_tee_version": "----------pppp--",
-    "firmware-fingerprint/u_boot_20": "----------pppp--",
-    "linux-version/linux_version": "----------ssss--",
-    "u-boot/autoboot": "----------ffff--"
+    "firmware-fingerprint-cold/bl2_v": "-----------sss-s",
+    "firmware-fingerprint-cold/bl31_v": "-----------sss-s",
+    "firmware-fingerprint-cold/op_tee_version": "-----------sss-s",
+    "firmware-fingerprint-cold/u_boot_20": "-----------sss-s",
+    "firmware-fingerprint-reboot/bl2_v": "----------ssss-s",
+    "firmware-fingerprint-reboot/bl31_v": "----------ssss-s",
+    "firmware-fingerprint-reboot/op_tee_version": "----------ssss-s",
+    "firmware-fingerprint-reboot/u_boot_20": "----------ssss-s",
+    "firmware-fingerprint-reset/bl2_v": "----------ssss-s",
+    "firmware-fingerprint-reset/bl31_v": "----------ssss-s",
+    "firmware-fingerprint-reset/op_tee_version": "----------ssss-s",
+    "firmware-fingerprint-reset/u_boot_20": "----------ssss-s",
+    "firmware-fingerprint/bl2_v": "----------pppp-p",
+    "firmware-fingerprint/bl31_v": "----------pppp-p",
+    "firmware-fingerprint/op_tee_version": "----------pppp-p",
+    "firmware-fingerprint/u_boot_20": "----------pppp-p",
+    "linux-version/linux_version": "----------ssss-s",
+    "u-boot/autoboot": "----------ffff-f"
    },
    "runs": [
     "ubci-40199892508-1-main",
@@ -95451,10 +95549,10 @@
     "boot_time": null,
     "boot_url": "",
     "counts": {
-     "fail": 0,
+     "fail": 1,
      "flaky": 0,
-     "pass": 0,
-     "skip": 0,
+     "pass": 4,
+     "skip": 13,
      "unknown": 0
     },
     "distance": {
@@ -95465,7 +95563,7 @@
     "fragments_missing": [
      "arduino-uno-q.config"
     ],
-    "gate": "not-run",
+    "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/547417",
     "new_fail": 0,
     "no_spl": null,
@@ -95473,8 +95571,8 @@
     "run": "ubci-42350574348-1-main",
     "spl_in_flight": [],
     "stack": "open",
-    "state": "testing",
-    "state_detail": "",
+    "state": "done",
+    "state_detail": "LAVA job incomplete",
     "versus": "unknown"
    }
   ],
@@ -100163,10 +100261,10 @@
    "boot_time": null,
    "boot_url": "",
    "counts": {
-    "fail": 0,
+    "fail": 1,
     "flaky": 0,
-    "pass": 0,
-    "skip": 0,
+    "pass": 4,
+    "skip": 13,
     "unknown": 0
    },
    "distance": {
@@ -100177,7 +100275,7 @@
    "fragments_missing": [
     "arduino-uno-q.config"
    ],
-   "gate": "not-run",
+   "gate": "pass",
    "job_url": "https://lava.infra.foundries.io/scheduler/job/547417",
    "new_fail": 0,
    "no_spl": null,
@@ -100185,8 +100283,8 @@
    "run": "ubci-42350574348-1-main",
    "spl_in_flight": [],
    "stack": "open",
-   "state": "testing",
-   "state_detail": "",
+   "state": "done",
+   "state_detail": "LAVA job incomplete",
    "versus": "unknown"
   },
   {
@@ -101602,7 +101700,7 @@
    "created": "2026-11-07T08:55:03Z",
    "id": "ubci-42350574348-1-main",
    "kind": "nightly",
-   "state": "testing",
+   "state": "done",
    "title": "main feb8913982e4"
   },
   {
@@ -123234,5 +123332,5 @@
    }
   }
  },
- "updated": "2026-11-07T10:37:31Z"
+ "updated": "2026-11-07T10:47:49Z"
 }
