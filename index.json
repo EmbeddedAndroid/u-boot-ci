@@ -62610,7 +62610,9 @@
       },
       "distance": {},
       "fingerprint": "ubci-42458869156-1-master-open-kaanapali-mtp",
-      "fragments_missing": [],
+      "fragments_missing": [
+       "kaanapali-mtp.config"
+      ],
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
@@ -62619,8 +62621,8 @@
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "open",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "private firmware not available: tz-kaanapali-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set",
       "versus": "unknown"
      }
     ],
@@ -62877,13 +62879,13 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "board",
       "queue_position": null,
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no SPL stack for this board: no SPL in flight for this board",
       "versus": "unknown"
      }
     ],
@@ -63145,8 +63147,8 @@
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)",
       "versus": "unknown"
      }
     ],
@@ -65902,7 +65904,7 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "upstream",
       "queue_position": null,
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [
@@ -65944,8 +65946,8 @@
        }
       ],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no upstream SPL: qcom_lemans_spl_defconfig not in the tree; in flight: Enable U-Boot SPL support for Lemans EVK v4 <20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: ufs: add UFS boot support for Qualcomm Snapdragon in SPL v4 <20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: Add NVMEM bitfield support and reboot-mode v5 <20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>",
       "versus": "unknown"
      }
     ],
@@ -66966,10 +66968,10 @@
       "fingerprint": "ubci-42458869156-1-master-stock-lemans-evk",
       "fragments_missing": [],
       "gate": "not-run",
-      "job_url": "",
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/549302",
       "new_fail": 0,
       "no_spl": null,
-      "queue_position": null,
+      "queue_position": 1,
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "stock",
@@ -68146,7 +68148,9 @@
        "tf-a": 99
       },
       "fingerprint": "ubci-42458869156-1-master-open-qcs615-ride",
-      "fragments_missing": [],
+      "fragments_missing": [
+       "qcs615-ride.config"
+      ],
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
@@ -68587,13 +68591,13 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "board",
       "queue_position": null,
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no SPL stack for this board: no SPL in flight for this board",
       "versus": "unknown"
      }
     ],
@@ -69587,10 +69591,10 @@
       "fingerprint": "ubci-42458869156-1-master-stock-qcs615-ride",
       "fragments_missing": [],
       "gate": "not-run",
-      "job_url": "",
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/549301",
       "new_fail": 0,
       "no_spl": null,
-      "queue_position": null,
+      "queue_position": 1,
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "stock",
@@ -71374,13 +71378,13 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "board",
       "queue_position": null,
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no SPL stack for this board: no SPL in flight for this board",
       "versus": "unknown"
      }
     ],
@@ -72459,14 +72463,14 @@
       "fingerprint": "ubci-42458869156-1-master-stock-rb3gen2",
       "fragments_missing": [],
       "gate": "not-run",
-      "job_url": "",
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/549299",
       "new_fail": 0,
       "no_spl": null,
       "queue_position": null,
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "queued",
+      "state": "testing",
       "state_detail": "",
       "versus": "unknown"
      }
@@ -72903,8 +72907,8 @@
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "open",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no open stack for this board: the Shikra open stack boots through U-Boot SPL (the spl stack): TF-A shikra_evk builds BL31 only, there is no BL2 for a FIP flow",
       "versus": "unknown"
      }
     ],
@@ -74189,7 +74193,7 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "board",
       "queue_position": null,
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [
@@ -74255,8 +74259,8 @@
        }
       ],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no SPL stack for this board: no posted Shikra SPL enablement (defconfig, config fragment or Kconfig select); no posted FIT template (the CI carries its own, ubci/fit.py); in flight: Initial Shikra SoC support v4 <20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com>; Enable HS200/HS400 eMMC modes on Qualcomm v2 <20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com>; tools: qcom: mkmbn: ipq5210 and multi-elf v3 <20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: shikra: add eMMC SPL boot support v2 <20261013053244.2954876-1-abhilash.v@oss.qualcomm.com>; qcom: shikra: SPL SD card boot v2 <20261013053517.2955571-1-abhilash.v@oss.qualcomm.com>; qcom: spl: enable CDT for shikra v2 <20261023084019.3722376-1-abhilash.v@oss.qualcomm.com>; DDR training for Shikra SPL v1 <20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>",
       "versus": "unknown"
      }
     ],
@@ -75052,8 +75056,8 @@
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "board not in this base: no qcom/shikra-iqs-evk device tree",
       "versus": "unknown"
      }
     ],
@@ -75669,7 +75673,9 @@
       },
       "distance": {},
       "fingerprint": "ubci-42458869156-1-master-open-sm8750-mtp",
-      "fragments_missing": [],
+      "fragments_missing": [
+       "sm8750-mtp.config"
+      ],
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
@@ -75678,8 +75684,8 @@
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "open",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "private firmware not available: tz-sm8750-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set",
       "versus": "unknown"
      }
     ],
@@ -75936,13 +75942,13 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "board",
       "queue_position": null,
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no SPL stack for this board: no SPL in flight for this board",
       "versus": "unknown"
      }
     ],
@@ -76204,8 +76210,8 @@
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)",
       "versus": "unknown"
      }
     ],
@@ -77341,7 +77347,9 @@
        "tf-a": 99
       },
       "fingerprint": "ubci-42458869156-1-master-open-uno-q",
-      "fragments_missing": [],
+      "fragments_missing": [
+       "arduino-uno-q.config"
+      ],
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
@@ -77782,13 +77790,13 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "board",
       "queue_position": null,
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no SPL stack for this board: no SPL in flight for this board",
       "versus": "unknown"
      }
     ],
@@ -78877,14 +78885,14 @@
       "fingerprint": "ubci-42458869156-1-master-stock-uno-q",
       "fragments_missing": [],
       "gate": "not-run",
-      "job_url": "",
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/549300",
       "new_fail": 0,
       "no_spl": null,
       "queue_position": null,
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "queued",
+      "state": "testing",
       "state_detail": "",
       "versus": "unknown"
      }
@@ -80106,8 +80114,8 @@
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "open",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree",
       "versus": "unknown"
      }
     ],
@@ -80538,13 +80546,13 @@
       "gate": "not-run",
       "job_url": "",
       "new_fail": 0,
-      "no_spl": null,
+      "no_spl": "board",
       "queue_position": null,
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "spl",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "no SPL stack for this board: no SPL in flight for this board",
       "versus": "unknown"
      }
     ],
@@ -81504,15 +81512,65 @@
       "run": "ubci-42458869156-1-master",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "queued",
-      "state_detail": "",
+      "state": "skipped",
+      "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree",
       "versus": "unknown"
      }
     ]
    },
-   "host_checks": [],
+   "host_checks": [
+    {
+     "name": "buildman",
+     "result": "pass",
+     "summary": "every snapdragon board built without warnings"
+    },
+    {
+     "name": "carry",
+     "result": "fail",
+     "summary": "config/carry.yaml is stale for [('lemans-evk', 'optee'), ('lemans-evk', 'tf-a'), ('qcs615-ride', 'optee'), ('qcs615-ride', 'tf-a'), ('rb3gen2', 'optee'), ('rb3gen2', 'tf-a'), ('shikra-iqs-evk', 'optee'), ('shikra-iqs-evk', 'tf-a'), ('uno-q', 'optee'), ('uno-q', 'tf-a'), ('ventuno-q', 'optee'), ('ventuno-q', 'tf-a')]; run python3 -m ubci.carry"
+    },
+    {
+     "name": "checkpatch",
+     "result": "pass",
+     "summary": "0 new commits: 0 with errors, 0 with warnings only"
+    },
+    {
+     "name": "docs",
+     "result": "pass",
+     "summary": "htmldocs built without warnings"
+    },
+    {
+     "name": "fragments",
+     "result": "pass",
+     "summary": "1 combinations built"
+    },
+    {
+     "name": "qemu_arm64",
+     "result": "pass",
+     "summary": "241 passed, 556 skipped, 2 deselected in 119.21s (0:01:59)"
+    },
+    {
+     "name": "sandbox",
+     "result": "pass",
+     "summary": "1317 passed, 216 skipped, 3 deselected, 1 xfailed in 735.40s (0:12:15)"
+    },
+    {
+     "name": "size",
+     "result": "pass",
+     "summary": "kaanapali-mtp-open 1450312 B, lemans-evk-open 1561424 B, lemans-evk-stock 1618560 B, qcs615-ride-open 1500712 B, qcs615-ride-stock 1557776 B, rb3gen2-open 1562088 B, rb3gen2-stock 1630024 B, sm8750-mtp-open 1520096 B, uno-q-open 1467272 B, uno-q-stock 0 B"
+    }
+   ],
    "latest_nightly": "ubci-42458869156-1-master",
-   "linux": null,
+   "linux": {
+    "commit": "ddfe51b0a0f5dc9e415cc2c8ad8db17532dd426b",
+    "config": "arch/arm64/configs/defconfig",
+    "image_sha256": "a35cf5dd1ce1d86dffa841d2e3315a925a0e3cb8d7a0476a0d4ccb6c8ffd60a4",
+    "modules_sha256": "8a806dda6bfadcac160f8edbe85a6fc974e919815fabfba2dda2348144e30bf0",
+    "release": "7.4.0-rc1-next-20261105",
+    "tag": "next-20261105",
+    "tag_url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tag/?h=next-20261105",
+    "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=ddfe51b0a0f5dc9e415cc2c8ad8db17532dd426b"
+   },
    "matrix": [
     {
      "board": "rb3gen2",
@@ -81556,14 +81614,14 @@
      "fingerprint": "ubci-42458869156-1-master-stock-rb3gen2",
      "fragments_missing": [],
      "gate": "not-run",
-     "job_url": "",
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/549299",
      "new_fail": 0,
      "no_spl": null,
      "queue_position": null,
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
+     "state": "testing",
      "state_detail": "",
      "versus": "unknown"
     },
@@ -81655,13 +81713,13 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "board",
      "queue_position": null,
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no SPL stack for this board: no SPL in flight for this board",
      "versus": "unknown"
     },
     {
@@ -81713,8 +81771,8 @@
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree",
      "versus": "unknown"
     },
     {
@@ -81781,8 +81839,8 @@
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "open",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "board not in this base: no qcom/monaco-arduino-monza device tree",
      "versus": "unknown"
     },
     {
@@ -81805,13 +81863,13 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "board",
      "queue_position": null,
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no SPL stack for this board: no SPL in flight for this board",
      "versus": "unknown"
     },
     {
@@ -81860,14 +81918,14 @@
      "fingerprint": "ubci-42458869156-1-master-stock-uno-q",
      "fragments_missing": [],
      "gate": "not-run",
-     "job_url": "",
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/549300",
      "new_fail": 0,
      "no_spl": null,
      "queue_position": null,
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
+     "state": "testing",
      "state_detail": "",
      "versus": "unknown"
     },
@@ -81926,7 +81984,9 @@
       "tf-a": 99
      },
      "fingerprint": "ubci-42458869156-1-master-open-uno-q",
-     "fragments_missing": [],
+     "fragments_missing": [
+      "arduino-uno-q.config"
+     ],
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
@@ -81959,13 +82019,13 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "board",
      "queue_position": null,
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no SPL stack for this board: no SPL in flight for this board",
      "versus": "unknown"
     },
     {
@@ -82010,10 +82070,10 @@
      "fingerprint": "ubci-42458869156-1-master-stock-qcs615-ride",
      "fragments_missing": [],
      "gate": "not-run",
-     "job_url": "",
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/549301",
      "new_fail": 0,
      "no_spl": null,
-     "queue_position": null,
+     "queue_position": 1,
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "stock",
@@ -82076,7 +82136,9 @@
       "tf-a": 99
      },
      "fingerprint": "ubci-42458869156-1-master-open-qcs615-ride",
-     "fragments_missing": [],
+     "fragments_missing": [
+      "qcs615-ride.config"
+     ],
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
@@ -82109,13 +82171,13 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "board",
      "queue_position": null,
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no SPL stack for this board: no SPL in flight for this board",
      "versus": "unknown"
     },
     {
@@ -82160,10 +82222,10 @@
      "fingerprint": "ubci-42458869156-1-master-stock-lemans-evk",
      "fragments_missing": [],
      "gate": "not-run",
-     "job_url": "",
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/549302",
      "new_fail": 0,
      "no_spl": null,
-     "queue_position": null,
+     "queue_position": 1,
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "stock",
@@ -82299,7 +82361,7 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "upstream",
      "queue_position": null,
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [
@@ -82341,8 +82403,8 @@
       }
      ],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no upstream SPL: qcom_lemans_spl_defconfig not in the tree; in flight: Enable U-Boot SPL support for Lemans EVK v4 <20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: ufs: add UFS boot support for Qualcomm Snapdragon in SPL v4 <20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: Add NVMEM bitfield support and reboot-mode v5 <20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>",
      "versus": "unknown"
     },
     {
@@ -82394,8 +82456,8 @@
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "board not in this base: no qcom/shikra-iqs-evk device tree",
      "versus": "unknown"
     },
     {
@@ -82423,8 +82485,8 @@
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "open",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no open stack for this board: the Shikra open stack boots through U-Boot SPL (the spl stack): TF-A shikra_evk builds BL31 only, there is no BL2 for a FIP flow",
      "versus": "unknown"
     },
     {
@@ -82447,7 +82509,7 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "board",
      "queue_position": null,
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [
@@ -82513,8 +82575,8 @@
       }
      ],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no SPL stack for this board: no posted Shikra SPL enablement (defconfig, config fragment or Kconfig select); no posted FIT template (the CI carries its own, ubci/fit.py); in flight: Initial Shikra SoC support v4 <20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com>; Enable HS200/HS400 eMMC modes on Qualcomm v2 <20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com>; tools: qcom: mkmbn: ipq5210 and multi-elf v3 <20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: shikra: add eMMC SPL boot support v2 <20261013053244.2954876-1-abhilash.v@oss.qualcomm.com>; qcom: shikra: SPL SD card boot v2 <20261013053517.2955571-1-abhilash.v@oss.qualcomm.com>; qcom: spl: enable CDT for shikra v2 <20261023084019.3722376-1-abhilash.v@oss.qualcomm.com>; DDR training for Shikra SPL v1 <20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>",
      "versus": "unknown"
     },
     {
@@ -82542,8 +82604,8 @@
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)",
      "versus": "unknown"
     },
     {
@@ -82601,7 +82663,9 @@
      },
      "distance": {},
      "fingerprint": "ubci-42458869156-1-master-open-sm8750-mtp",
-     "fragments_missing": [],
+     "fragments_missing": [
+      "sm8750-mtp.config"
+     ],
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
@@ -82610,8 +82674,8 @@
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "open",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "private firmware not available: tz-sm8750-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set",
      "versus": "unknown"
     },
     {
@@ -82634,13 +82698,13 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "board",
      "queue_position": null,
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no SPL stack for this board: no SPL in flight for this board",
      "versus": "unknown"
     },
     {
@@ -82668,8 +82732,8 @@
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)",
      "versus": "unknown"
     },
     {
@@ -82727,7 +82791,9 @@
      },
      "distance": {},
      "fingerprint": "ubci-42458869156-1-master-open-kaanapali-mtp",
-     "fragments_missing": [],
+     "fragments_missing": [
+      "kaanapali-mtp.config"
+     ],
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
@@ -82736,8 +82802,8 @@
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "open",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "private firmware not available: tz-kaanapali-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set",
      "versus": "unknown"
     },
     {
@@ -82760,13 +82826,13 @@
      "gate": "not-run",
      "job_url": "",
      "new_fail": 0,
-     "no_spl": null,
+     "no_spl": "board",
      "queue_position": null,
      "run": "ubci-42458869156-1-master",
      "spl_in_flight": [],
      "stack": "spl",
-     "state": "queued",
-     "state_detail": "",
+     "state": "skipped",
+     "state_detail": "no SPL stack for this board: no SPL in flight for this board",
      "versus": "unknown"
     }
    ]
@@ -105165,7 +105231,7 @@
    "created": "2026-11-08T07:31:18Z",
    "id": "ubci-42458869156-1-master",
    "kind": "nightly",
-   "state": "building",
+   "state": "testing",
    "title": "master ece349ade297"
   },
   {
@@ -107706,217 +107772,61 @@
        0
       ]
      }
+    },
+    {
+     "device": "kaanapali-mtp-04",
+     "end_time": "2026-11-07T20:46:14.142497Z",
+     "fastboot": false,
+     "job": 548254,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/548254",
+     "last_stage": "login",
+     "linux": 6.109,
+     "ref_line": 5926,
+     "stages": {
+      "ebs": [
+       5.744,
+       6796,
+       0
+      ],
+      "hyp": [
+       3.709,
+       6493,
+       0
+      ],
+      "init": [
+       11.757,
+       7623,
+       0
+      ],
+      "linux": [
+       6.109,
+       6812,
+       0
+      ],
+      "loader": [
+       2.323,
+       5987,
+       1
+      ],
+      "loader_end": [
+       2.327,
+       6146,
+       1
+      ],
+      "login": [
+       18.431,
+       7876,
+       0
+      ],
+      "uefi": [
+       3.793,
+       6501,
+       0
+      ]
+     }
     }
    ],
    "lemans-evk": [
-    {
-     "device": "rb8-hyd-07",
-     "end_time": "2026-10-26T20:37:02.932351Z",
-     "fastboot": false,
-     "job": 515120,
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/515120",
-     "last_stage": "login",
-     "linux": 4.699,
-     "ref_line": 5667,
-     "stages": {
-      "ebs": [
-       4.11,
-       6204,
-       0
-      ],
-      "hyp": [
-       1.678,
-       5973,
-       0
-      ],
-      "init": [
-       11.498,
-       7180,
-       0
-      ],
-      "linux": [
-       4.699,
-       6228,
-       0
-      ],
-      "loader": [
-       0.102,
-       5706,
-       1
-      ],
-      "loader_end": [
-       1.595,
-       5969,
-       0
-      ],
-      "login": [
-       20.157,
-       7604,
-       0
-      ],
-      "uefi": [
-       1.804,
-       5984,
-       0
-      ]
-     }
-    },
-    {
-     "device": "rb8-02",
-     "end_time": "2026-10-27T05:56:42.502227Z",
-     "fastboot": false,
-     "job": 515734,
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/515734",
-     "last_stage": "login",
-     "linux": 4.657,
-     "ref_line": 6086,
-     "stages": {
-      "ebs": [
-       4.097,
-       6626,
-       0
-      ],
-      "hyp": [
-       1.697,
-       6395,
-       0
-      ],
-      "init": [
-       11.31,
-       7583,
-       0
-      ],
-      "linux": [
-       4.657,
-       6650,
-       0
-      ],
-      "loader": [
-       0.166,
-       6128,
-       1
-      ],
-      "loader_end": [
-       1.601,
-       6391,
-       0
-      ],
-      "login": [
-       19.345,
-       7970,
-       0
-      ],
-      "uefi": [
-       1.822,
-       6406,
-       0
-      ]
-     }
-    },
-    {
-     "device": "rb8-hyd-08",
-     "end_time": "2026-10-27T14:15:44.084480Z",
-     "fastboot": false,
-     "job": 516772,
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/516772",
-     "last_stage": "login",
-     "linux": 4.701,
-     "ref_line": 5931,
-     "stages": {
-      "ebs": [
-       4.144,
-       6471,
-       0
-      ],
-      "hyp": [
-       1.681,
-       6240,
-       0
-      ],
-      "init": [
-       11.312,
-       7425,
-       0
-      ],
-      "linux": [
-       4.701,
-       6495,
-       0
-      ],
-      "loader": [
-       0.092,
-       5973,
-       1
-      ],
-      "loader_end": [
-       1.582,
-       6236,
-       0
-      ],
-      "login": [
-       19.504,
-       7808,
-       0
-      ],
-      "uefi": [
-       1.79,
-       6251,
-       0
-      ]
-     }
-    },
-    {
-     "device": "rb8-hyd-02",
-     "end_time": "2026-10-27T14:23:07.447941Z",
-     "fastboot": false,
-     "job": 516779,
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/516779",
-     "last_stage": "login",
-     "linux": 4.715,
-     "ref_line": 6090,
-     "stages": {
-      "ebs": [
-       4.155,
-       6627,
-       0
-      ],
-      "hyp": [
-       1.676,
-       6396,
-       0
-      ],
-      "init": [
-       11.386,
-       7587,
-       0
-      ],
-      "linux": [
-       4.715,
-       6651,
-       0
-      ],
-      "loader": [
-       0.099,
-       6129,
-       1
-      ],
-      "loader_end": [
-       1.592,
-       6392,
-       0
-      ],
-      "login": [
-       20.314,
-       8011,
-       0
-      ],
-      "uefi": [
-       1.801,
-       6407,
-       0
-      ]
-     }
-    },
     {
      "device": "rb8-hyd-06",
      "end_time": "2026-10-27T20:11:22.501816Z",
@@ -110828,6 +110738,214 @@
        0
       ]
      }
+    },
+    {
+     "device": "rb8-03",
+     "end_time": "2026-11-07T09:53:58.571255Z",
+     "fastboot": false,
+     "job": 547380,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/547380",
+     "last_stage": "login",
+     "linux": 4.662,
+     "ref_line": 6075,
+     "stages": {
+      "ebs": [
+       4.115,
+       6612,
+       0
+      ],
+      "hyp": [
+       1.701,
+       6381,
+       0
+      ],
+      "init": [
+       11.237,
+       7559,
+       0
+      ],
+      "linux": [
+       4.662,
+       6636,
+       0
+      ],
+      "loader": [
+       0.172,
+       6114,
+       1
+      ],
+      "loader_end": [
+       1.618,
+       6377,
+       0
+      ],
+      "login": [
+       19.717,
+       7976,
+       0
+      ],
+      "uefi": [
+       1.826,
+       6392,
+       0
+      ]
+     }
+    },
+    {
+     "device": "rb8-hyd-03",
+     "end_time": "2026-11-07T20:47:59.038024Z",
+     "fastboot": false,
+     "job": 548261,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/548261",
+     "last_stage": "login",
+     "linux": 4.606,
+     "ref_line": 6073,
+     "stages": {
+      "ebs": [
+       4.018,
+       6610,
+       0
+      ],
+      "hyp": [
+       1.682,
+       6379,
+       0
+      ],
+      "init": [
+       11.23,
+       7564,
+       0
+      ],
+      "linux": [
+       4.606,
+       6634,
+       0
+      ],
+      "loader": [
+       0.092,
+       6112,
+       1
+      ],
+      "loader_end": [
+       1.582,
+       6375,
+       0
+      ],
+      "login": [
+       20.241,
+       7989,
+       0
+      ],
+      "uefi": [
+       1.791,
+       6390,
+       0
+      ]
+     }
+    },
+    {
+     "device": "rb8-hyd-02",
+     "end_time": "2026-11-07T20:50:44.298495Z",
+     "fastboot": false,
+     "job": 548267,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/548267",
+     "last_stage": "login",
+     "linux": 4.677,
+     "ref_line": 6068,
+     "stages": {
+      "ebs": [
+       4.073,
+       6604,
+       0
+      ],
+      "hyp": [
+       1.673,
+       6373,
+       0
+      ],
+      "init": [
+       11.365,
+       7568,
+       0
+      ],
+      "linux": [
+       4.677,
+       6628,
+       0
+      ],
+      "loader": [
+       0.096,
+       6106,
+       1
+      ],
+      "loader_end": [
+       1.59,
+       6369,
+       0
+      ],
+      "login": [
+       20.68,
+       7989,
+       0
+      ],
+      "uefi": [
+       1.798,
+       6384,
+       0
+      ]
+     }
+    },
+    {
+     "device": "rb8-02",
+     "end_time": "2026-11-08T06:50:46.299679Z",
+     "fastboot": false,
+     "job": 549238,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/549238",
+     "last_stage": "login",
+     "linux": 4.654,
+     "ref_line": 6085,
+     "stages": {
+      "ebs": [
+       4.11,
+       6627,
+       0
+      ],
+      "hyp": [
+       1.694,
+       6396,
+       0
+      ],
+      "init": [
+       11.278,
+       7580,
+       0
+      ],
+      "linux": [
+       4.654,
+       6651,
+       0
+      ],
+      "loader": [
+       0.167,
+       6129,
+       1
+      ],
+      "loader_end": [
+       1.599,
+       6392,
+       0
+      ],
+      "login": [
+       19.166,
+       7954,
+       0
+      ],
+      "uefi": [
+       1.806,
+       6407,
+       0
+      ]
+     }
     }
    ],
    "qcs615-ride": [
@@ -112442,217 +112560,113 @@
        0
       ]
      }
+    },
+    {
+     "device": "qcs615-adp-air-01",
+     "end_time": "2026-11-07T15:45:51.934519Z",
+     "fastboot": false,
+     "job": 547818,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/547818",
+     "last_stage": "login",
+     "linux": 4.623,
+     "ref_line": 4449,
+     "stages": {
+      "ebs": [
+       4.16,
+       4809,
+       0
+      ],
+      "hyp": [
+       2.707,
+       4696,
+       0
+      ],
+      "init": [
+       9.582,
+       5518,
+       0
+      ],
+      "linux": [
+       4.623,
+       4821,
+       0
+      ],
+      "loader": [
+       2.411,
+       4474,
+       1
+      ],
+      "loader_end": [
+       2.625,
+       4692,
+       0
+      ],
+      "login": [
+       19.742,
+       5952,
+       0
+      ],
+      "uefi": [
+       2.781,
+       4706,
+       0
+      ]
+     }
+    },
+    {
+     "device": "qcs615-adp-air-03",
+     "end_time": "2026-11-07T15:49:14.940867Z",
+     "fastboot": false,
+     "job": 547821,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/547821",
+     "last_stage": "login",
+     "linux": 4.63,
+     "ref_line": 4462,
+     "stages": {
+      "ebs": [
+       4.188,
+       4822,
+       0
+      ],
+      "hyp": [
+       2.724,
+       4709,
+       0
+      ],
+      "init": [
+       9.58,
+       5525,
+       0
+      ],
+      "linux": [
+       4.63,
+       4834,
+       0
+      ],
+      "loader": [
+       2.414,
+       4487,
+       1
+      ],
+      "loader_end": [
+       2.644,
+       4705,
+       0
+      ],
+      "login": [
+       19.973,
+       5942,
+       0
+      ],
+      "uefi": [
+       2.8,
+       4719,
+       0
+      ]
+     }
     }
    ],
    "rb3gen2": [
-    {
-     "device": "rb3g2-02",
-     "end_time": "2026-10-25T11:37:34.632018Z",
-     "fastboot": true,
-     "job": 512886,
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/512886",
-     "last_stage": "login",
-     "linux": 8.404,
-     "ref_line": 2441,
-     "stages": {
-      "ebs": [
-       8.135,
-       2831,
-       1
-      ],
-      "hyp": [
-       8.066,
-       2718,
-       1
-      ],
-      "init": [
-       12.599,
-       3411,
-       0
-      ],
-      "linux": [
-       8.404,
-       2837,
-       0
-      ],
-      "loader": [
-       8.061,
-       2470,
-       1
-      ],
-      "loader_end": [
-       8.066,
-       2714,
-       1
-      ],
-      "login": [
-       19.558,
-       3590,
-       0
-      ],
-      "uefi": [
-       8.066,
-       2728,
-       1
-      ]
-     }
-    },
-    {
-     "device": "rb3g2-05",
-     "end_time": "2026-10-25T12:49:19.660710Z",
-     "fastboot": true,
-     "job": 513038,
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/513038",
-     "last_stage": "login",
-     "linux": 6.073,
-     "ref_line": 2436,
-     "stages": {
-      "ebs": [
-       5.805,
-       2826,
-       1
-      ],
-      "hyp": [
-       5.735,
-       2713,
-       1
-      ],
-      "init": [
-       10.249,
-       3406,
-       0
-      ],
-      "linux": [
-       6.073,
-       2832,
-       0
-      ],
-      "loader": [
-       5.73,
-       2465,
-       1
-      ],
-      "loader_end": [
-       5.735,
-       2709,
-       1
-      ],
-      "login": [
-       17.388,
-       3585,
-       0
-      ],
-      "uefi": [
-       5.735,
-       2723,
-       1
-      ]
-     }
-    },
-    {
-     "device": "rb3g2-hyd-01",
-     "end_time": "2026-10-25T17:10:40.947831Z",
-     "fastboot": true,
-     "job": 513422,
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/513422",
-     "last_stage": "login",
-     "linux": 16.619,
-     "ref_line": 2604,
-     "stages": {
-      "ebs": [
-       16.35,
-       3222,
-       1
-      ],
-      "hyp": [
-       16.297,
-       3109,
-       1
-      ],
-      "init": [
-       20.846,
-       3802,
-       0
-      ],
-      "linux": [
-       16.619,
-       3228,
-       0
-      ],
-      "loader": [
-       16.281,
-       2633,
-       1
-      ],
-      "loader_end": [
-       16.293,
-       2923,
-       1
-      ],
-      "login": [
-       27.95,
-       3981,
-       0
-      ],
-      "uefi": [
-       16.298,
-       3119,
-       1
-      ]
-     }
-    },
-    {
-     "device": "rb3g2-03",
-     "end_time": "2026-10-25T23:23:59.597546Z",
-     "fastboot": true,
-     "job": 513836,
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/513836",
-     "last_stage": "login",
-     "linux": 18.923,
-     "ref_line": 2604,
-     "stages": {
-      "ebs": [
-       18.639,
-       3211,
-       1
-      ],
-      "hyp": [
-       18.62,
-       3104,
-       1
-      ],
-      "init": [
-       23.086,
-       3791,
-       0
-      ],
-      "linux": [
-       18.923,
-       3217,
-       0
-      ],
-      "loader": [
-       18.58,
-       2633,
-       1
-      ],
-      "loader_end": [
-       18.605,
-       2919,
-       1
-      ],
-      "login": [
-       30.267,
-       3970,
-       0
-      ],
-      "uefi": [
-       18.621,
-       3114,
-       1
-      ]
-     }
-    },
     {
      "device": "rb3g2-01",
      "end_time": "2026-10-26T00:36:57.799814Z",
@@ -115564,165 +115578,217 @@
        1
       ]
      }
+    },
+    {
+     "device": "rb3g2-02",
+     "end_time": "2026-11-07T11:40:41.531266Z",
+     "fastboot": true,
+     "job": 547606,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/547606",
+     "last_stage": "login",
+     "linux": 18.781,
+     "ref_line": 2584,
+     "stages": {
+      "ebs": [
+       18.509,
+       3198,
+       1
+      ],
+      "hyp": [
+       18.461,
+       3085,
+       1
+      ],
+      "init": [
+       22.938,
+       3778,
+       0
+      ],
+      "linux": [
+       18.781,
+       3204,
+       0
+      ],
+      "loader": [
+       18.442,
+       2613,
+       1
+      ],
+      "loader_end": [
+       18.454,
+       2899,
+       1
+      ],
+      "login": [
+       30.029,
+       3957,
+       0
+      ],
+      "uefi": [
+       18.461,
+       3095,
+       1
+      ]
+     }
+    },
+    {
+     "device": "rb3g2-hyd-01",
+     "end_time": "2026-11-07T20:56:19.146109Z",
+     "fastboot": true,
+     "job": 548271,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/548271",
+     "last_stage": "login",
+     "linux": 16.508,
+     "ref_line": 2618,
+     "stages": {
+      "ebs": [
+       16.224,
+       3248,
+       1
+      ],
+      "hyp": [
+       16.192,
+       3135,
+       1
+      ],
+      "init": [
+       20.687,
+       3828,
+       0
+      ],
+      "linux": [
+       16.508,
+       3254,
+       0
+      ],
+      "loader": [
+       16.169,
+       2647,
+       1
+      ],
+      "loader_end": [
+       16.187,
+       2949,
+       1
+      ],
+      "login": [
+       27.967,
+       4007,
+       0
+      ],
+      "uefi": [
+       16.193,
+       3145,
+       1
+      ]
+     }
+    },
+    {
+     "device": "rb3g2-03",
+     "end_time": "2026-11-08T04:38:21.883576Z",
+     "fastboot": true,
+     "job": 548783,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/548783",
+     "last_stage": "login",
+     "linux": 19.006,
+     "ref_line": 2606,
+     "stages": {
+      "ebs": [
+       18.759,
+       3213,
+       1
+      ],
+      "hyp": [
+       18.75,
+       3106,
+       1
+      ],
+      "init": [
+       23.153,
+       3793,
+       0
+      ],
+      "linux": [
+       19.006,
+       3219,
+       0
+      ],
+      "loader": [
+       18.709,
+       2635,
+       1
+      ],
+      "loader_end": [
+       18.734,
+       2921,
+       1
+      ],
+      "login": [
+       30.369,
+       3972,
+       0
+      ],
+      "uefi": [
+       18.75,
+       3116,
+       1
+      ]
+     }
+    },
+    {
+     "device": "rb3g2-01",
+     "end_time": "2026-11-08T07:19:18.630261Z",
+     "fastboot": true,
+     "job": 549245,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/549245",
+     "last_stage": "login",
+     "linux": 18.432,
+     "ref_line": 2605,
+     "stages": {
+      "ebs": [
+       18.131,
+       3235,
+       1
+      ],
+      "hyp": [
+       18.109,
+       3122,
+       1
+      ],
+      "init": [
+       22.659,
+       3819,
+       0
+      ],
+      "linux": [
+       18.432,
+       3241,
+       0
+      ],
+      "loader": [
+       18.066,
+       2634,
+       1
+      ],
+      "loader_end": [
+       18.093,
+       2936,
+       1
+      ],
+      "login": [
+       29.618,
+       3998,
+       0
+      ],
+      "uefi": [
+       18.11,
+       3132,
+       1
+      ]
+     }
     }
    ],
    "shikra-iqs-evk": [
-    {
-     "device": "shikra-hyd-03",
-     "end_time": "2026-10-26T07:46:00.159927Z",
-     "fastboot": false,
-     "job": 514068,
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/514068",
-     "last_stage": "login",
-     "linux": 23.033,
-     "ref_line": 1719,
-     "stages": {
-      "ebs": [
-       22.426,
-       2048,
-       0
-      ],
-      "hyp": [
-       19.721,
-       1905,
-       0
-      ],
-      "init": [
-       27.706,
-       2729,
-       0
-      ],
-      "linux": [
-       23.033,
-       2056,
-       0
-      ],
-      "loader": [
-       2.342,
-       1735,
-       1
-      ],
-      "loader_end": [
-       19.548,
-       1900,
-       0
-      ],
-      "login": [
-       51.915,
-       3387,
-       0
-      ],
-      "uefi": [
-       19.833,
-       1913,
-       0
-      ]
-     }
-    },
-    {
-     "device": "shikra-hyd-04",
-     "end_time": "2026-10-26T07:49:28.531204Z",
-     "fastboot": false,
-     "job": 514069,
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/514069",
-     "last_stage": "login",
-     "linux": 23.828,
-     "ref_line": 1719,
-     "stages": {
-      "ebs": [
-       23.207,
-       2048,
-       0
-      ],
-      "hyp": [
-       20.516,
-       1905,
-       0
-      ],
-      "init": [
-       28.423,
-       2719,
-       0
-      ],
-      "linux": [
-       23.828,
-       2056,
-       0
-      ],
-      "loader": [
-       2.336,
-       1735,
-       1
-      ],
-      "loader_end": [
-       20.356,
-       1900,
-       0
-      ],
-      "login": [
-       53.414,
-       3618,
-       0
-      ],
-      "uefi": [
-       20.631,
-       1913,
-       0
-      ]
-     }
-    },
-    {
-     "device": "shikra-hyd-02",
-     "end_time": "2026-10-26T11:29:54.795990Z",
-     "fastboot": false,
-     "job": 514377,
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/514377",
-     "last_stage": "login",
-     "linux": 23.007,
-     "ref_line": 1719,
-     "stages": {
-      "ebs": [
-       22.383,
-       2048,
-       0
-      ],
-      "hyp": [
-       19.695,
-       1905,
-       0
-      ],
-      "init": [
-       27.682,
-       2728,
-       0
-      ],
-      "linux": [
-       23.007,
-       2056,
-       0
-      ],
-      "loader": [
-       2.328,
-       1735,
-       1
-      ],
-      "loader_end": [
-       19.522,
-       1900,
-       0
-      ],
-      "login": [
-       51.297,
-       3376,
-       0
-      ],
-      "uefi": [
-       19.81,
-       1913,
-       0
-      ]
-     }
-    },
     {
      "device": "shikra-hyd-06",
      "end_time": "2026-10-26T13:37:28.870651Z",
@@ -118582,6 +118648,266 @@
        0
       ]
      }
+    },
+    {
+     "device": "shikra-cmb-01",
+     "end_time": "2026-11-07T20:46:31.023896Z",
+     "fastboot": false,
+     "job": 548262,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/548262",
+     "last_stage": "login",
+     "linux": 9.947,
+     "ref_line": 1536,
+     "stages": {
+      "ebs": [
+       9.324,
+       1841,
+       0
+      ],
+      "hyp": [
+       5.675,
+       1698,
+       0
+      ],
+      "init": [
+       14.606,
+       2522,
+       0
+      ],
+      "linux": [
+       9.947,
+       1849,
+       0
+      ],
+      "loader": [
+       2.307,
+       1553,
+       1
+      ],
+      "loader_end": [
+       5.5,
+       1693,
+       0
+      ],
+      "login": [
+       38.494,
+       3106,
+       0
+      ],
+      "uefi": [
+       5.788,
+       1706,
+       0
+      ]
+     }
+    },
+    {
+     "device": "shikra-hyd-07",
+     "end_time": "2026-11-07T20:47:17.877151Z",
+     "fastboot": false,
+     "job": 548259,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/548259",
+     "last_stage": "login",
+     "linux": 22.989,
+     "ref_line": 1730,
+     "stages": {
+      "ebs": [
+       22.397,
+       2059,
+       0
+      ],
+      "hyp": [
+       19.709,
+       1916,
+       0
+      ],
+      "init": [
+       27.584,
+       2730,
+       0
+      ],
+      "linux": [
+       22.989,
+       2067,
+       0
+      ],
+      "loader": [
+       2.327,
+       1746,
+       1
+      ],
+      "loader_end": [
+       19.533,
+       1911,
+       0
+      ],
+      "login": [
+       51.695,
+       3390,
+       0
+      ],
+      "uefi": [
+       19.821,
+       1924,
+       0
+      ]
+     }
+    },
+    {
+     "device": "shikra-hyd-04",
+     "end_time": "2026-11-08T07:24:48.100519Z",
+     "fastboot": false,
+     "job": 549258,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/549258",
+     "last_stage": "login",
+     "linux": 23.095,
+     "ref_line": 1732,
+     "stages": {
+      "ebs": [
+       22.485,
+       2061,
+       0
+      ],
+      "hyp": [
+       19.78,
+       1918,
+       0
+      ],
+      "init": [
+       27.7,
+       2732,
+       0
+      ],
+      "linux": [
+       23.095,
+       2069,
+       0
+      ],
+      "loader": [
+       2.336,
+       1748,
+       1
+      ],
+      "loader_end": [
+       19.62,
+       1913,
+       0
+      ],
+      "login": [
+       52.455,
+       3608,
+       0
+      ],
+      "uefi": [
+       19.895,
+       1926,
+       0
+      ]
+     }
+    },
+    {
+     "device": "shikra-hyd-03",
+     "end_time": "2026-11-08T07:25:09.784921Z",
+     "fastboot": false,
+     "job": 549257,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/549257",
+     "last_stage": "login",
+     "linux": 9.096,
+     "ref_line": 1537,
+     "stages": {
+      "ebs": [
+       8.473,
+       1841,
+       0
+      ],
+      "hyp": [
+       5.784,
+       1698,
+       0
+      ],
+      "init": [
+       13.756,
+       2522,
+       0
+      ],
+      "linux": [
+       9.096,
+       1849,
+       0
+      ],
+      "loader": [
+       2.339,
+       1553,
+       1
+      ],
+      "loader_end": [
+       5.608,
+       1693,
+       0
+      ],
+      "login": [
+       37.291,
+       3180,
+       0
+      ],
+      "uefi": [
+       5.896,
+       1706,
+       0
+      ]
+     }
+    },
+    {
+     "device": "shikra-hyd-02",
+     "end_time": "2026-11-08T07:25:49.541363Z",
+     "fastboot": false,
+     "job": 549256,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/549256",
+     "last_stage": "login",
+     "linux": 22.993,
+     "ref_line": 1732,
+     "stages": {
+      "ebs": [
+       22.383,
+       2061,
+       0
+      ],
+      "hyp": [
+       19.71,
+       1918,
+       0
+      ],
+      "init": [
+       27.601,
+       2733,
+       0
+      ],
+      "linux": [
+       22.993,
+       2069,
+       0
+      ],
+      "loader": [
+       2.347,
+       1748,
+       1
+      ],
+      "loader_end": [
+       19.534,
+       1913,
+       0
+      ],
+      "login": [
+       51.169,
+       3393,
+       0
+      ],
+      "uefi": [
+       19.822,
+       1926,
+       0
+      ]
+     }
     }
    ],
    "sm8750-mtp": [
@@ -120404,165 +120730,113 @@
        0
       ]
      }
+    },
+    {
+     "device": "pakala-hyd-04",
+     "end_time": "2026-11-07T20:44:58.250302Z",
+     "fastboot": false,
+     "job": 548260,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/548260",
+     "last_stage": "login",
+     "linux": 6.276,
+     "ref_line": 2737,
+     "stages": {
+      "ebs": [
+       5.972,
+       3266,
+       0
+      ],
+      "hyp": [
+       4.439,
+       3021,
+       0
+      ],
+      "init": [
+       11.19,
+       3977,
+       0
+      ],
+      "linux": [
+       6.276,
+       3282,
+       0
+      ],
+      "loader": [
+       2.327,
+       2752,
+       1
+      ],
+      "loader_end": [
+       4.26,
+       3017,
+       0
+      ],
+      "login": [
+       21.64,
+       4356,
+       0
+      ],
+      "uefi": [
+       4.503,
+       3029,
+       0
+      ]
+     }
+    },
+    {
+     "device": "pakala-hyd-03",
+     "end_time": "2026-11-07T20:47:16.282079Z",
+     "fastboot": false,
+     "job": 548265,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/548265",
+     "last_stage": "login",
+     "linux": 6.57,
+     "ref_line": 2737,
+     "stages": {
+      "ebs": [
+       6.266,
+       3264,
+       0
+      ],
+      "hyp": [
+       4.73,
+       3019,
+       0
+      ],
+      "init": [
+       11.453,
+       3971,
+       0
+      ],
+      "linux": [
+       6.57,
+       3280,
+       0
+      ],
+      "loader": [
+       2.618,
+       2752,
+       0
+      ],
+      "loader_end": [
+       4.541,
+       3015,
+       0
+      ],
+      "login": [
+       20.621,
+       4335,
+       0
+      ],
+      "uefi": [
+       4.794,
+       3027,
+       0
+      ]
+     }
     }
    ],
    "uno-q": [
-    {
-     "device": "unoq-05",
-     "end_time": "2026-10-26T20:09:43.750702Z",
-     "fastboot": false,
-     "job": 515109,
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/515109",
-     "last_stage": "login",
-     "linux": 8.203,
-     "ref_line": 3304,
-     "stages": {
-      "ebs": [
-       1.982,
-       3599,
-       0
-      ],
-      "init": [
-       10.196,
-       3961,
-       0
-      ],
-      "linux": [
-       8.203,
-       3628,
-       0
-      ],
-      "loader": [
-       0.199,
-       3320,
-       1
-      ],
-      "loader_end": [
-       1.264,
-       3507,
-       0
-      ],
-      "login": [
-       26.761,
-       4331,
-       0
-      ],
-      "uboot": [
-       2.468,
-       3605,
-       0
-      ],
-      "uefi": [
-       1.463,
-       3513,
-       0
-      ]
-     }
-    },
-    {
-     "device": "unoq-04",
-     "end_time": "2026-10-27T05:40:32.255541Z",
-     "fastboot": false,
-     "job": 515728,
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/515728",
-     "last_stage": "login",
-     "linux": 8.368,
-     "ref_line": 3313,
-     "stages": {
-      "ebs": [
-       1.998,
-       3613,
-       0
-      ],
-      "init": [
-       10.36,
-       3975,
-       0
-      ],
-      "linux": [
-       8.368,
-       3642,
-       0
-      ],
-      "loader": [
-       0.201,
-       3330,
-       1
-      ],
-      "loader_end": [
-       1.37,
-       3519,
-       0
-      ],
-      "login": [
-       26.299,
-       4351,
-       0
-      ],
-      "uboot": [
-       2.479,
-       3619,
-       0
-      ],
-      "uefi": [
-       1.567,
-       3525,
-       0
-      ]
-     }
-    },
-    {
-     "device": "unoq-02",
-     "end_time": "2026-10-27T14:11:35.803074Z",
-     "fastboot": false,
-     "job": 516766,
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/516766",
-     "last_stage": "login",
-     "linux": 11.46,
-     "ref_line": 3254,
-     "stages": {
-      "ebs": [
-       3.558,
-       3549,
-       0
-      ],
-      "init": [
-       13.425,
-       3911,
-       0
-      ],
-      "linux": [
-       11.46,
-       3578,
-       0
-      ],
-      "loader": [
-       0.262,
-       3270,
-       1
-      ],
-      "loader_end": [
-       1.502,
-       3457,
-       0
-      ],
-      "login": [
-       32.579,
-       4291,
-       0
-      ],
-      "uboot": [
-       4.034,
-       3555,
-       0
-      ],
-      "uefi": [
-       1.681,
-       3463,
-       0
-      ]
-     }
-    },
     {
      "device": "unoq-09",
      "end_time": "2026-10-27T17:04:44.512214Z",
@@ -123526,61 +123800,165 @@
        0
       ]
      }
-    }
-   ],
-   "ventuno-q": [
+    },
     {
-     "device": "ventunoq-hyd-07",
-     "end_time": "2026-10-26T05:53:56.017505Z",
+     "device": "unoq-02",
+     "end_time": "2026-11-07T14:12:25.908936Z",
      "fastboot": false,
-     "job": 514012,
-     "job_url": "https://lava.infra.foundries.io/scheduler/job/514012",
+     "job": 547755,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/547755",
      "last_stage": "login",
-     "linux": 6.183,
-     "ref_line": 2106,
+     "linux": 10.964,
+     "ref_line": 3325,
      "stages": {
       "ebs": [
-       4.825,
-       2482,
-       0
-      ],
-      "hyp": [
-       1.635,
-       2312,
+       3.057,
+       3618,
        0
       ],
       "init": [
-       11.796,
-       3264,
+       12.929,
+       3980,
        0
       ],
       "linux": [
-       6.183,
-       2493,
+       10.964,
+       3647,
        0
       ],
       "loader": [
-       0.501,
-       2123,
-       0
+       0.268,
+       3339,
+       1
       ],
       "loader_end": [
-       1.523,
-       2307,
+       1.475,
+       3526,
        0
       ],
       "login": [
-       68.714,
-       9677,
+       32.205,
+       4389,
+       0
+      ],
+      "uboot": [
+       3.532,
+       3624,
        0
       ],
       "uefi": [
-       2.091,
-       2371,
+       1.654,
+       3532,
        0
       ]
      }
     },
+    {
+     "device": "unoq-03",
+     "end_time": "2026-11-07T15:42:39.435552Z",
+     "fastboot": false,
+     "job": 547798,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/547798",
+     "last_stage": "login",
+     "linux": 8.625,
+     "ref_line": 3280,
+     "stages": {
+      "ebs": [
+       2.196,
+       3579,
+       0
+      ],
+      "init": [
+       10.594,
+       3941,
+       0
+      ],
+      "linux": [
+       8.625,
+       3608,
+       0
+      ],
+      "loader": [
+       0.283,
+       3296,
+       1
+      ],
+      "loader_end": [
+       1.57,
+       3485,
+       0
+      ],
+      "login": [
+       28.212,
+       4311,
+       0
+      ],
+      "uboot": [
+       2.677,
+       3585,
+       0
+      ],
+      "uefi": [
+       1.749,
+       3491,
+       0
+      ]
+     }
+    },
+    {
+     "device": "unoq-01",
+     "end_time": "2026-11-08T01:54:38.197629Z",
+     "fastboot": false,
+     "job": 548402,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/548402",
+     "last_stage": "login",
+     "linux": 11.401,
+     "ref_line": 3306,
+     "stages": {
+      "ebs": [
+       3.461,
+       3599,
+       0
+      ],
+      "init": [
+       13.365,
+       3961,
+       0
+      ],
+      "linux": [
+       11.401,
+       3628,
+       0
+      ],
+      "loader": [
+       0.268,
+       3320,
+       1
+      ],
+      "loader_end": [
+       1.465,
+       3507,
+       0
+      ],
+      "login": [
+       31.2,
+       4330,
+       0
+      ],
+      "uboot": [
+       3.954,
+       3605,
+       0
+      ],
+      "uefi": [
+       1.644,
+       3513,
+       0
+      ]
+     }
+    }
+   ],
+   "ventuno-q": [
     {
      "device": "ventunoq-hyd-04",
      "end_time": "2026-10-26T06:08:25.134164Z",
@@ -126648,6 +127026,58 @@
        0
       ]
      }
+    },
+    {
+     "device": "ventunoq-01",
+     "end_time": "2026-11-07T19:47:07.216637Z",
+     "fastboot": false,
+     "job": 548107,
+     "job_url": "https://lava.infra.foundries.io/scheduler/job/548107",
+     "last_stage": "login",
+     "linux": 6.454,
+     "ref_line": 2132,
+     "stages": {
+      "ebs": [
+       6.05,
+       2506,
+       0
+      ],
+      "hyp": [
+       1.743,
+       2336,
+       0
+      ],
+      "init": [
+       12.104,
+       3291,
+       0
+      ],
+      "linux": [
+       6.454,
+       2517,
+       0
+      ],
+      "loader": [
+       0.613,
+       2147,
+       0
+      ],
+      "loader_end": [
+       1.618,
+       2331,
+       0
+      ],
+      "login": [
+       32.285,
+       3915,
+       0
+      ],
+      "uefi": [
+       2.175,
+       2395,
+       0
+      ]
+     }
     }
    ]
   },
@@ -126655,160 +127085,160 @@
    "kaanapali-mtp": {
     "device_type": "kaanapali-mtp",
     "jobs": [
+     548254,
      547198,
      547197,
      547196,
-     547195,
-     547194
+     547195
     ],
     "median": {
-     "ebs": 5.487,
-     "hyp": 3.455,
-     "init": 11.528,
-     "linux": 5.855,
-     "login": 18.207,
-     "uefi": 3.551
+     "ebs": 5.499,
+     "hyp": 3.464,
+     "init": 11.631,
+     "linux": 5.864,
+     "login": 18.21,
+     "uefi": 3.561
     },
-    "run": "ubci-42350574348-1-main"
+    "run": "ubci-42458869156-1-master"
    },
    "lemans-evk": {
     "device_type": "lemans-evk",
     "jobs": [
-     547201,
-     547200,
-     547199,
-     547193,
-     547192
+     549238,
+     548267,
+     548261,
+     547380,
+     547201
     ],
     "median": {
-     "ebs": 4.096,
-     "hyp": 1.681,
-     "init": 11.295,
-     "linux": 4.685,
-     "loader_end": 1.592,
-     "login": 20.122,
-     "uefi": 1.801
+     "ebs": 4.08,
+     "hyp": 1.682,
+     "init": 11.261,
+     "linux": 4.662,
+     "loader_end": 1.59,
+     "login": 19.717,
+     "uefi": 1.798
     },
-    "run": "ubci-42350574348-1-main"
+    "run": "ubci-42458869156-1-master"
    },
    "qcs615-ride": {
     "device_type": "qcs615-ride",
     "jobs": [
+     547821,
+     547818,
      544657,
      544656,
-     541141,
-     541121,
-     537463
+     541141
     ],
     "median": {
-     "ebs": 4.214,
-     "hyp": 2.764,
-     "init": 9.697,
-     "linux": 4.659,
-     "loader_end": 2.684,
-     "login": 20.173,
-     "uefi": 2.84
+     "ebs": 4.188,
+     "hyp": 2.724,
+     "init": 9.673,
+     "linux": 4.63,
+     "loader_end": 2.644,
+     "login": 19.973,
+     "uefi": 2.8
     },
-    "run": "ubci-42350574348-1-main"
+    "run": "ubci-42458869156-1-master"
    },
    "rb3gen2": {
     "device_type": "qcs6490-rb3gen2",
     "jobs": [
-     547173,
-     546707,
-     545663,
-     544326,
-     543830
+     549245,
+     548783,
+     548271,
+     547606,
+     547173
     ],
     "median": {
-     "init": 22.489,
-     "linux": 18.278,
-     "login": 29.446
+     "init": 22.659,
+     "linux": 18.432,
+     "login": 29.618
     },
-    "run": "ubci-42350574348-1-main"
+    "run": "ubci-42458869156-1-master"
    },
    "shikra-iqs-evk": {
     "device_type": "shikra-iqs-evk",
     "jobs": [
-     547205,
-     547204,
-     547179,
-     547178,
-     547177
+     549258,
+     549257,
+     549256,
+     548262,
+     548259
     ],
     "median": {
-     "ebs": 8.314,
-     "hyp": 5.638,
-     "init": 13.543,
-     "linux": 8.933,
-     "loader_end": 5.478,
-     "login": 37.04,
-     "uefi": 5.766
+     "ebs": 22.383,
+     "hyp": 19.709,
+     "init": 27.584,
+     "linux": 22.989,
+     "loader_end": 19.533,
+     "login": 51.169,
+     "uefi": 19.821
     },
-    "run": "ubci-42350574348-1-main"
+    "run": "ubci-42458869156-1-master"
    },
    "sm8750-mtp": {
     "device_type": "sm8750-mtp",
     "jobs": [
+     548265,
+     548260,
      547208,
      547207,
-     547206,
-     545656,
-     545655
+     547206
     ],
     "median": {
-     "ebs": 6.055,
-     "hyp": 4.531,
-     "init": 11.315,
-     "linux": 6.372,
-     "loader_end": 4.339,
-     "login": 22.345,
-     "uefi": 4.595
+     "ebs": 6.021,
+     "hyp": 4.501,
+     "init": 11.269,
+     "linux": 6.325,
+     "loader_end": 4.31,
+     "login": 21.64,
+     "uefi": 4.566
     },
-    "run": "ubci-42350574348-1-main"
+    "run": "ubci-42458869156-1-master"
    },
    "uno-q": {
     "device_type": "qrb2210-arduino-imola",
     "jobs": [
+     548402,
+     547798,
+     547755,
      547216,
-     547213,
-     547212,
-     545972,
-     544633
+     547213
     ],
     "median": {
-     "ebs": 2.081,
-     "init": 10.462,
-     "linux": 8.469,
-     "loader_end": 1.456,
-     "login": 27.039,
-     "uboot": 2.567,
-     "uefi": 1.648
+     "ebs": 2.196,
+     "init": 10.594,
+     "linux": 8.625,
+     "loader_end": 1.465,
+     "login": 28.212,
+     "uboot": 2.677,
+     "uefi": 1.644
     },
-    "run": "ubci-42350574348-1-main"
+    "run": "ubci-42458869156-1-master"
    },
    "ventuno-q": {
     "device_type": "monaco-arduino-monza",
     "jobs": [
+     548107,
      547355,
      545385,
      543997,
-     541752,
-     539929
+     541752
     ],
     "median": {
      "ebs": 4.911,
-     "hyp": 1.632,
-     "init": 10.933,
-     "linux": 5.287,
-     "loader": 0.499,
-     "loader_end": 1.519,
+     "hyp": 1.735,
+     "init": 10.959,
+     "linux": 5.317,
+     "loader": 0.606,
+     "loader_end": 1.615,
      "login": 31.139,
-     "uefi": 2.084
+     "uefi": 2.171
     },
-    "run": "ubci-42350574348-1-main"
+    "run": "ubci-42458869156-1-master"
    }
   }
  },
- "updated": "2026-11-08T07:31:35Z"
+ "updated": "2026-11-08T08:27:16Z"
 }
