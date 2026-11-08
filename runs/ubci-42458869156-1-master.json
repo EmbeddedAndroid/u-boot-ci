@@ -2381,10 +2381,10 @@
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-11-08T08:43:43Z"
+  "updated": "2026-11-08T08:54:06Z"
  },
  "schema": "fwci-run/1",
- "state": "testing",
+ "state": "done",
  "targets": [
   {
    "board": "rb3gen2",
@@ -6981,7 +6981,162 @@
      "stage": "Linux"
     }
    ],
-   "cases": [],
+   "boot_time": {
+    "boots": [
+     {
+      "complete": false,
+      "fastboot": false,
+      "kind": "first",
+      "last_stage": "optee",
+      "ref_line": 165,
+      "reset": null,
+      "stages": {
+       "bl2": {
+        "line": 313,
+        "replayed": false,
+        "t": 1.486
+       },
+       "bl31": {
+        "line": 333,
+        "replayed": false,
+        "t": 1.547
+       },
+       "loader": {
+        "line": 183,
+        "replayed": false,
+        "t": 0.851
+       },
+       "loader_end": {
+        "line": 309,
+        "replayed": false,
+        "t": 1.486
+       },
+       "optee": {
+        "line": 340,
+        "replayed": false,
+        "t": 1.671
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/549305#L165"
+     }
+    ],
+    "headline": null,
+    "tool": "lava-boottime daf3b44940e8",
+    "version": 1,
+    "versus_baseline": {
+     "baseline": "ubci-42350574348-1-master",
+     "kinds": {
+      "first": {
+       "verdict": "unknown"
+      }
+     }
+    }
+   },
+   "cases": [
+    {
+     "name": "autoboot",
+     "result": "fail",
+     "suite": "u-boot"
+    },
+    {
+     "name": "bl2_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "bl31_v",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "op_tee_version",
+     "result": "pass",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "u_boot_20",
+     "result": "fail",
+     "suite": "firmware-fingerprint"
+    },
+    {
+     "name": "bl2_v",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-cold"
+    },
+    {
+     "name": "bl31_v",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-cold"
+    },
+    {
+     "name": "op_tee_version",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-cold"
+    },
+    {
+     "name": "u_boot_20",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-cold"
+    },
+    {
+     "name": "bl2_v",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "bl31_v",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "op_tee_version",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "u_boot_20",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reboot"
+    },
+    {
+     "name": "bl2_v",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "bl31_v",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "op_tee_version",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "u_boot_20",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "firmware-fingerprint-reset"
+    },
+    {
+     "name": "linux_version",
+     "note": "not reached: the job ended before this check started",
+     "result": "skip",
+     "suite": "linux-version"
+    }
+   ],
    "components": [
     {
      "branch": "master",
@@ -8076,10 +8231,10 @@
     }
    ],
    "fingerprint": "ubci-42458869156-1-master-open-uno-q",
-   "fingerprint_gate": "not-run",
+   "fingerprint_gate": "fail",
    "lava": {
     "device": "unoq-01",
-    "health": "Unknown",
+    "health": "Incomplete",
     "job_id": 549305,
     "url": "https://lava.infra.foundries.io/scheduler/job/549305"
    },
@@ -8087,13 +8242,15 @@
     "gaps": [
      "no Agatti EL2 overlay in linux-next"
     ],
+    "last_lines": [],
     "stage": "not-reached",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
    "queue_position": null,
    "stack": "open",
-   "state": "testing"
+   "state": "done",
+   "state_detail": "LAVA job incomplete"
   },
   {
    "board": "uno-q",
