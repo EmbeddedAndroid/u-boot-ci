@@ -2381,7 +2381,7 @@
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-11-08T08:32:30Z"
+  "updated": "2026-11-08T08:38:29Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -4159,6 +4159,12 @@
    ],
    "fingerprint": "ubci-42458869156-1-master-open-rb3gen2",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "rb3g2-01",
+    "health": "Unknown",
+    "job_id": 549304,
+    "url": "https://lava.infra.foundries.io/scheduler/job/549304"
+   },
    "linux_boot": {
     "gaps": [
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
@@ -4167,8 +4173,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "testing"
   },
   {
    "board": "rb3gen2",
@@ -7399,6 +7406,12 @@
    ],
    "fingerprint": "ubci-42458869156-1-master-open-uno-q",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "unoq-01",
+    "health": "Unknown",
+    "job_id": 549305,
+    "url": "https://lava.infra.foundries.io/scheduler/job/549305"
+   },
    "linux_boot": {
     "gaps": [
      "no Agatti EL2 overlay in linux-next"
@@ -7407,8 +7420,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "testing"
   },
   {
    "board": "uno-q",
@@ -8978,14 +8992,20 @@
    ],
    "fingerprint": "ubci-42458869156-1-master-open-qcs615-ride",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "qcs615-adp-air-03",
+    "health": "Unknown",
+    "job_id": 549309,
+    "url": "https://lava.infra.foundries.io/scheduler/job/549309"
+   },
    "linux_boot": {
-    "gaps": [],
     "stage": "not-reached",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "flashing"
   },
   {
    "board": "qcs615-ride",
@@ -10567,12 +10587,18 @@
    ],
    "fingerprint": "ubci-42458869156-1-master-open-lemans-evk",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 549311,
+    "url": "https://lava.infra.foundries.io/scheduler/job/549311"
+   },
    "linux_boot": {
-    "gaps": [],
     "stage": "not-reached",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": 1,
    "stack": "open",
    "state": "queued"
   },
