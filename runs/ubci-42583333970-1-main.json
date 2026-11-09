@@ -2381,7 +2381,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main 934995f642a2",
-  "updated": "2026-11-09T09:39:54Z"
+  "updated": "2026-11-09T09:45:25Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -7910,7 +7910,7 @@
    "fingerprint": "ubci-42583333970-1-main-open-uno-q",
    "fingerprint_gate": "not-run",
    "lava": {
-    "device": null,
+    "device": "unoq-01",
     "health": "Unknown",
     "job_id": 550268,
     "url": "https://lava.infra.foundries.io/scheduler/job/550268"
@@ -7923,9 +7923,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
-   "queue_position": 1,
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "testing"
   },
   {
    "board": "uno-q",
@@ -9419,12 +9419,18 @@
    ],
    "fingerprint": "ubci-42583333970-1-main-open-qcs615-ride",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 550270,
+    "url": "https://lava.infra.foundries.io/scheduler/job/550270"
+   },
    "linux_boot": {
-    "gaps": [],
     "stage": "not-reached",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": 1,
    "stack": "open",
    "state": "queued"
   },
