@@ -2381,7 +2381,7 @@
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-11-09T09:16:04Z"
+  "updated": "2026-11-09T09:21:39Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -4156,6 +4156,12 @@
    ],
    "fingerprint": "ubci-42583333970-1-master-open-rb3gen2",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "rb3g2-01",
+    "health": "Unknown",
+    "job_id": 550254,
+    "url": "https://lava.infra.foundries.io/scheduler/job/550254"
+   },
    "linux_boot": {
     "gaps": [
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
@@ -4164,8 +4170,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "flashing"
   },
   {
    "board": "rb3gen2",
@@ -7395,6 +7402,12 @@
    ],
    "fingerprint": "ubci-42583333970-1-master-open-uno-q",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "unoq-01",
+    "health": "Unknown",
+    "job_id": 550255,
+    "url": "https://lava.infra.foundries.io/scheduler/job/550255"
+   },
    "linux_boot": {
     "gaps": [
      "no Agatti EL2 overlay in linux-next"
@@ -7403,8 +7416,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "flashing"
   },
   {
    "board": "uno-q",
