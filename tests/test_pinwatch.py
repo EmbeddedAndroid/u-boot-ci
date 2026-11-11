@@ -56,13 +56,13 @@ def test_newest_version_wins(tmp_path):
 
 
 def newer_layer(tmp_path):
-    """meta-qcom with a 00150 QCM6490 release next to 00142."""
+    """meta-qcom with a 00151 QCM6490 release next to 00150, the pin."""
     root = tmp_path / "meta-qcom"
     shutil.copytree(ROOTS["meta-qcom"], root)
     d = root / "recipes-bsp" / "firmware-boot"
-    text = (d / "firmware-qcom-boot-qcs6490_00142.bb").read_text()
-    (d / "firmware-qcom-boot-qcs6490_00150.bb").write_text(
-        text.replace("22e45047b3349a1611d27167616dd04f08e8351120ac121f6921b47b9f709216", "1" * 64))
+    text = (d / "firmware-qcom-boot-qcs6490_00150.bb").read_text()
+    (d / "firmware-qcom-boot-qcs6490_00151.bb").write_text(
+        text.replace("f6982fed9eaa546649f53c4aedc960f031123c3b7dac06803dc7dabbff533ee0", "1" * 64))
     return {"meta-qcom": str(root)}
 
 
@@ -72,11 +72,11 @@ def test_bump_writes_the_pr_and_keeps_the_rest_of_the_config(tmp_path, monkeypat
     out = tmp_path / "out"
     out.mkdir()
     r = stockpin.check("rb3gen2", str(out), verify=False)
-    assert r == {"board": "rb3gen2", "result": "bump", "from": "QCM6490 boot binaries 00142",
-                 "to": "QCM6490 boot binaries 00150"}
+    assert r == {"board": "rb3gen2", "result": "bump", "from": "QCM6490 boot binaries 00150",
+                 "to": "QCM6490 boot binaries 00151"}
     new = (out / "rb3gen2.yaml").read_text()
     old = open(os.path.join(config.CONFIG, "boards", "rb3gen2.yaml")).read()
-    assert "1" * 64 in new and "00150/QCM6490_bootbinaries_00150.zip" in new
+    assert "1" * 64 in new and "00151/QCM6490_bootbinaries_00151.zip" in new
     assert new.count("\n") == old.count("\n") and "# Qualcomm RB3 Gen 2" in new
     assert (out / "rb3gen2.title").read_text().startswith("config: rb3gen2: bump downstream firmware")
     assert "https://github.com/qualcomm-linux/meta-qcom/commit/" + "c" * 40 in (out / "rb3gen2.body").read_text()
