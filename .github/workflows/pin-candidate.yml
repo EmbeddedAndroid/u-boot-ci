@@ -44,7 +44,8 @@ jobs:
           [ -f "config/boards/$board.yaml" ] || { echo "no board $board" >&2; exit 1; }
           echo "board=$board" >> "$GITHUB_OUTPUT"
           echo "commit=$(git ls-remote "$UBOOT_REPO" refs/heads/main | cut -f1)" >> "$GITHUB_OUTPUT"
-          echo "tag=$(git ls-remote --tags "$LINUX_NEXT" 'refs/tags/next-*' | sed -n 's|.*refs/tags/\(next-[0-9]\{8\}\)$|\1|p' | sort | tail -1)" >> "$GITHUB_OUTPUT"
+          tag=$(scripts/linux-next-tag.sh)
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
       - uses: actions/cache@v4
         with:
           path: work/out/linux

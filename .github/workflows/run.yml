@@ -78,7 +78,7 @@ jobs:
           case $BASE in main|master) ;; *) echo "bad base '$BASE'" >&2; exit 1 ;; esac
           commit=$(git ls-remote "$UBOOT_REPO" "refs/heads/$BASE" | cut -f1)
           [ -n "$commit" ] || { echo "no $BASE branch" >&2; exit 1; }
-          tag=$(git ls-remote --tags "$LINUX_NEXT" 'refs/tags/next-*' | sed -n 's|.*refs/tags/\(next-[0-9]\{8\}\)$|\1|p' | sort | tail -1)
+          tag=$(scripts/linux-next-tag.sh)
           # The latest nightly of the same branch: the baseline of this run,
           # and for a nightly the start of "the day's new commits".
           git fetch -q origin gh-pages 2>/dev/null && git show origin/gh-pages:index.json > previous.json 2>/dev/null || echo '{}' > previous.json
