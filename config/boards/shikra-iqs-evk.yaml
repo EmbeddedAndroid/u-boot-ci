@@ -14,14 +14,14 @@ downstream:
   # The boot binaries meta-qcom pins for shikra-evk
   # (firmware-qcom-boot-shikra_00093.bb) with qcom-ptool's shikra-evk
   # eMMC layout.
-  release: SHIKRA boot binaries 00093
+  release: SHIKRA boot binaries 00103
   bootbinaries:
-    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/SHIKRA_bootbinaries.1.0/shikra_bootbinaries.1.0-test-device-public/00093/SHIKRA_bootbinaries_00093.zip
-      sha256: 9239eb9a78096bbd0d484a51a4c0ae8914fd9d41c93c57f121725529a6ce2b5c
+    - url: https://softwarecenter.qualcomm.com/nexus/generic/product/chip/tech-package/SHIKRA_bootbinaries.1.0/shikra_bootbinaries.1.0-test-device-public/00103/SHIKRA_bootbinaries_00103.zip
+      sha256: 021f55367fe8ee9444000236ab82b5127dd6d73b9c25573b30476bc7fb88bffb
   xbl_config: xbl_config.elf
   partitions: {conf: platforms/shikra-evk/emmc/partitions.conf}
   required: [xbl.elf, xbl_config.elf, tz.mbn]
-  source: {meta-qcom: c853febcdeb149021fd043ac7a5eaae88f29f7b7}
+  source: {meta-qcom: 1485a7e4e80a9fbae9363e2158039d33a771f416}
   upstream:
     layers:
       meta-qcom: {repo: https://github.com/qualcomm-linux/meta-qcom, branch: master}
