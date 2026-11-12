@@ -2381,7 +2381,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main 3cb2cbbc75aa",
-  "updated": "2026-11-12T12:20:29Z"
+  "updated": "2026-11-12T12:31:05Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -9585,14 +9585,20 @@
    ],
    "fingerprint": "ubci-43182720520-1-main-open-qcs615-ride",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "qcs615-adp-air-01",
+    "health": "Unknown",
+    "job_id": 561234,
+    "url": "https://lava.infra.foundries.io/scheduler/job/561234"
+   },
    "linux_boot": {
-    "gaps": [],
     "stage": "not-reached",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "flashing"
   },
   {
    "board": "qcs615-ride",
