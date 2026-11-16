@@ -2381,7 +2381,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main 6487c50b8a40",
-  "updated": "2026-11-16T10:33:25Z"
+  "updated": "2026-11-16T13:54:53Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -2493,14 +2493,20 @@
    ],
    "fingerprint": "ubci-43828138653-1-main-stock-rb3gen2",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "rb3g2-01",
+    "health": "Unknown",
+    "job_id": 575927,
+    "url": "https://lava.infra.foundries.io/scheduler/job/575927"
+   },
    "linux_boot": {
-    "gaps": [],
     "stage": "not-reached",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "stock",
-   "state": "queued"
+   "state": "flashing"
   },
   {
    "board": "rb3gen2",
