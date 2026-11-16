@@ -1721,6 +1721,45 @@
        },
        "threshold": null,
        "verdict": "unknown"
+      },
+      {
+       "compared_stage": "uboot",
+       "complete": false,
+       "created": "2026-11-16T08:11:48Z",
+       "delta": 0.012,
+       "device": "rb8-hyd-06",
+       "gate": "pass",
+       "job_url": "https://lava.infra.foundries.io/scheduler/job/574966",
+       "kind": "first",
+       "last_stage": "uboot",
+       "linux": null,
+       "ref_line": 243,
+       "reset": null,
+       "run": "ubci-43828138653-1-main",
+       "stages": {
+        "hyp": [
+         1.68,
+         470,
+         0
+        ],
+        "loader": [
+         0.365,
+         260,
+         0
+        ],
+        "loader_end": [
+         1.597,
+         464,
+         0
+        ],
+        "uboot": [
+         2.941,
+         485,
+         0
+        ]
+       },
+       "threshold": 0.05,
+       "verdict": "same"
       }
      ],
      "warm-reset": [
@@ -2533,6 +2572,60 @@
        },
        "threshold": null,
        "verdict": "unknown"
+      },
+      {
+       "compared_stage": "linux",
+       "complete": true,
+       "created": "2026-11-16T08:11:48Z",
+       "delta": 0.016,
+       "device": "rb8-hyd-06",
+       "gate": "pass",
+       "job_url": "https://lava.infra.foundries.io/scheduler/job/574966",
+       "kind": "warm-reset",
+       "last_stage": "login",
+       "linux": 4.778,
+       "ref_line": 1580,
+       "reset": null,
+       "run": "ubci-43828138653-1-main",
+       "stages": {
+        "hyp": [
+         1.645,
+         1805,
+         0
+        ],
+        "init": [
+         8.425,
+         2376,
+         0
+        ],
+        "linux": [
+         4.778,
+         1857,
+         0
+        ],
+        "loader": [
+         0.33,
+         1595,
+         0
+        ],
+        "loader_end": [
+         1.562,
+         1799,
+         0
+        ],
+        "login": [
+         9.897,
+         2614,
+         0
+        ],
+        "uboot": [
+         2.906,
+         1820,
+         0
+        ]
+       },
+       "threshold": 0.088,
+       "verdict": "same"
       }
      ]
     }
@@ -15982,6 +16075,45 @@
        },
        "threshold": null,
        "verdict": "unknown"
+      },
+      {
+       "compared_stage": "uboot",
+       "complete": false,
+       "created": "2026-11-16T08:11:48Z",
+       "delta": -0.164,
+       "device": "ventunoq-01",
+       "gate": "pass",
+       "job_url": "https://lava.infra.foundries.io/scheduler/job/574965",
+       "kind": "first",
+       "last_stage": "uboot",
+       "linux": null,
+       "ref_line": 194,
+       "reset": null,
+       "run": "ubci-43828138653-1-main",
+       "stages": {
+        "hyp": [
+         1.701,
+         407,
+         0
+        ],
+        "loader": [
+         0.612,
+         211,
+         0
+        ],
+        "loader_end": [
+         1.612,
+         401,
+         0
+        ],
+        "uboot": [
+         3.407,
+         422,
+         0
+        ]
+       },
+       "threshold": 0.45,
+       "verdict": "same"
       }
      ],
      "warm-reboot": [
@@ -17077,6 +17209,45 @@
        },
        "threshold": null,
        "verdict": "unknown"
+      },
+      {
+       "compared_stage": "uboot",
+       "complete": false,
+       "created": "2026-11-16T08:11:48Z",
+       "delta": -0.164,
+       "device": "ventunoq-01",
+       "gate": "pass",
+       "job_url": "https://lava.infra.foundries.io/scheduler/job/574965",
+       "kind": "warm-reset",
+       "last_stage": "uboot",
+       "linux": null,
+       "ref_line": 1424,
+       "reset": 17.605,
+       "run": "ubci-43828138653-1-main",
+       "stages": {
+        "hyp": [
+         2.464,
+         1635,
+         0
+        ],
+        "loader": [
+         1.379,
+         1439,
+         0
+        ],
+        "loader_end": [
+         2.375,
+         1629,
+         0
+        ],
+        "uboot": [
+         4.172,
+         1650,
+         0
+        ]
+       },
+       "threshold": 0.988,
+       "verdict": "same"
       }
      ]
     }
@@ -18386,6 +18557,45 @@
          },
          "threshold": null,
          "verdict": "unknown"
+        },
+        {
+         "compared_stage": "uboot",
+         "complete": false,
+         "created": "2026-11-16T08:11:48Z",
+         "delta": 0.012,
+         "device": "rb8-hyd-06",
+         "gate": "pass",
+         "job_url": "https://lava.infra.foundries.io/scheduler/job/574966",
+         "kind": "first",
+         "last_stage": "uboot",
+         "linux": null,
+         "ref_line": 243,
+         "reset": null,
+         "run": "ubci-43828138653-1-main",
+         "stages": {
+          "hyp": [
+           1.68,
+           470,
+           0
+          ],
+          "loader": [
+           0.365,
+           260,
+           0
+          ],
+          "loader_end": [
+           1.597,
+           464,
+           0
+          ],
+          "uboot": [
+           2.941,
+           485,
+           0
+          ]
+         },
+         "threshold": 0.05,
+         "verdict": "same"
         }
        ],
        "warm-reset": [
@@ -19198,6 +19408,60 @@
          },
          "threshold": null,
          "verdict": "unknown"
+        },
+        {
+         "compared_stage": "linux",
+         "complete": true,
+         "created": "2026-11-16T08:11:48Z",
+         "delta": 0.016,
+         "device": "rb8-hyd-06",
+         "gate": "pass",
+         "job_url": "https://lava.infra.foundries.io/scheduler/job/574966",
+         "kind": "warm-reset",
+         "last_stage": "login",
+         "linux": 4.778,
+         "ref_line": 1580,
+         "reset": null,
+         "run": "ubci-43828138653-1-main",
+         "stages": {
+          "hyp": [
+           1.645,
+           1805,
+           0
+          ],
+          "init": [
+           8.425,
+           2376,
+           0
+          ],
+          "linux": [
+           4.778,
+           1857,
+           0
+          ],
+          "loader": [
+           0.33,
+           1595,
+           0
+          ],
+          "loader_end": [
+           1.562,
+           1799,
+           0
+          ],
+          "login": [
+           9.897,
+           2614,
+           0
+          ],
+          "uboot": [
+           2.906,
+           1820,
+           0
+          ]
+         },
+         "threshold": 0.088,
+         "verdict": "same"
         }
        ]
       }
@@ -32647,6 +32911,45 @@
          },
          "threshold": null,
          "verdict": "unknown"
+        },
+        {
+         "compared_stage": "uboot",
+         "complete": false,
+         "created": "2026-11-16T08:11:48Z",
+         "delta": -0.164,
+         "device": "ventunoq-01",
+         "gate": "pass",
+         "job_url": "https://lava.infra.foundries.io/scheduler/job/574965",
+         "kind": "first",
+         "last_stage": "uboot",
+         "linux": null,
+         "ref_line": 194,
+         "reset": null,
+         "run": "ubci-43828138653-1-main",
+         "stages": {
+          "hyp": [
+           1.701,
+           407,
+           0
+          ],
+          "loader": [
+           0.612,
+           211,
+           0
+          ],
+          "loader_end": [
+           1.612,
+           401,
+           0
+          ],
+          "uboot": [
+           3.407,
+           422,
+           0
+          ]
+         },
+         "threshold": 0.45,
+         "verdict": "same"
         }
        ],
        "warm-reboot": [
@@ -33742,6 +34045,45 @@
          },
          "threshold": null,
          "verdict": "unknown"
+        },
+        {
+         "compared_stage": "uboot",
+         "complete": false,
+         "created": "2026-11-16T08:11:48Z",
+         "delta": -0.164,
+         "device": "ventunoq-01",
+         "gate": "pass",
+         "job_url": "https://lava.infra.foundries.io/scheduler/job/574965",
+         "kind": "warm-reset",
+         "last_stage": "uboot",
+         "linux": null,
+         "ref_line": 1424,
+         "reset": 17.605,
+         "run": "ubci-43828138653-1-main",
+         "stages": {
+          "hyp": [
+           2.464,
+           1635,
+           0
+          ],
+          "loader": [
+           1.379,
+           1439,
+           0
+          ],
+          "loader_end": [
+           2.375,
+           1629,
+           0
+          ],
+          "uboot": [
+           4.172,
+           1650,
+           0
+          ]
+         },
+         "threshold": 0.988,
+         "verdict": "same"
         }
        ]
       }
@@ -33908,31 +34250,31 @@
     },
     "lemans-evk/stock": {
      "cases": {
-      "firmware-fingerprint-cold/u_boot_20": "-----------sss-s-s-s-",
-      "firmware-fingerprint-reboot/u_boot_20": "ssssss-sssssss-s-s-s-",
-      "firmware-fingerprint-reset/u_boot_20": "ppppps-ppppppp-p-p-p-",
-      "firmware-fingerprint/u_boot_20": "pppppp-ppppppp-p-p-p-",
-      "linux-version/linux_version": "ppppps-ppppppp-p-p-p-",
-      "reboot/reboot": "fffff--fffffff-f-f-f-",
-      "smoke/cpus-online": "ppppp--ppppppp-p-p-p-",
-      "smoke/dmesg-errors": "fffff--fffffff-f-f-f-",
-      "smoke/linux-next-tag": "ppppp--ppppppp-p-p-p-",
-      "smoke/modules-loaded": "ppppp--ppppppp-p-p-p-",
-      "smoke/network": "ppppp--ppppppp-p-p-p-",
-      "smoke/storage": "ppppp--ppppppp-p-p-p-",
-      "smoke/usb": "ppppp--ppppppp-p-p-p-",
-      "u-boot/autoboot": "pppppf-ppppppp-p-p-p-",
-      "u-boot/u-boot-prompt": "ppppp--ppppppp-p-p-p-",
-      "u-boot/u-boot-sync": "ppppp--ppppppp-p-p-p-",
-      "u-boot/uboot-bdinfo": "ppppp--ppppppp-p-p-p-",
-      "u-boot/uboot-bootflow": "ppppp--ppppppp-p-p-p-",
-      "u-boot/uboot-clocks": "ppppp--ppppppp-p-p-p-",
-      "u-boot/uboot-dm-tree": "ppppp--ppppppp-p-p-p-",
-      "u-boot/uboot-efi-media": "ppppp--ppppppp-p-p-p-",
-      "u-boot/uboot-reset": "ppppp--ppppppp-p-p-p-",
-      "u-boot/uboot-storage": "ppppp--ppppppp-p-p-p-",
-      "u-boot/uboot-usb": "ppppp--fffffff-f-f-f-",
-      "u-boot/uboot-version": "ppppp--ppppppp-p-p-p-"
+      "firmware-fingerprint-cold/u_boot_20": "-----------sss-s-s-ss",
+      "firmware-fingerprint-reboot/u_boot_20": "ssssss-sssssss-s-s-ss",
+      "firmware-fingerprint-reset/u_boot_20": "ppppps-ppppppp-p-p-pp",
+      "firmware-fingerprint/u_boot_20": "pppppp-ppppppp-p-p-pp",
+      "linux-version/linux_version": "ppppps-ppppppp-p-p-pp",
+      "reboot/reboot": "fffff--fffffff-f-f-ff",
+      "smoke/cpus-online": "ppppp--ppppppp-p-p-pp",
+      "smoke/dmesg-errors": "fffff--fffffff-f-f-ff",
+      "smoke/linux-next-tag": "ppppp--ppppppp-p-p-pp",
+      "smoke/modules-loaded": "ppppp--ppppppp-p-p-pp",
+      "smoke/network": "ppppp--ppppppp-p-p-pp",
+      "smoke/storage": "ppppp--ppppppp-p-p-pp",
+      "smoke/usb": "ppppp--ppppppp-p-p-pp",
+      "u-boot/autoboot": "pppppf-ppppppp-p-p-pp",
+      "u-boot/u-boot-prompt": "ppppp--ppppppp-p-p-pp",
+      "u-boot/u-boot-sync": "ppppp--ppppppp-p-p-pp",
+      "u-boot/uboot-bdinfo": "ppppp--ppppppp-p-p-pp",
+      "u-boot/uboot-bootflow": "ppppp--ppppppp-p-p-pp",
+      "u-boot/uboot-clocks": "ppppp--ppppppp-p-p-pp",
+      "u-boot/uboot-dm-tree": "ppppp--ppppppp-p-p-pp",
+      "u-boot/uboot-efi-media": "ppppp--ppppppp-p-p-pp",
+      "u-boot/uboot-reset": "ppppp--ppppppp-p-p-pp",
+      "u-boot/uboot-storage": "ppppp--ppppppp-p-p-pp",
+      "u-boot/uboot-usb": "ppppp--fffffff-f-f-ff",
+      "u-boot/uboot-version": "ppppp--ppppppp-p-p-pp"
      },
      "runs": [
       "ubci-40199892508-1-main",
@@ -34579,11 +34921,11 @@
     },
     "ventuno-q/stock": {
      "cases": {
-      "firmware-fingerprint-cold/u_boot_20": "-------------s-s-s-s-s-",
-      "firmware-fingerprint-reboot/u_boot_20": "ffsssssspppppp-s-s-s-s-",
-      "firmware-fingerprint-reset/u_boot_20": "pppppppppppppp-p-p-p-p-",
-      "firmware-fingerprint/u_boot_20": "pppppppppppppp-p-p-p-p-",
-      "linux-version/linux_version": "ffffffffpppppp-f-f-f-f-",
+      "firmware-fingerprint-cold/u_boot_20": "-------------s-s-s-s-ss",
+      "firmware-fingerprint-reboot/u_boot_20": "ffsssssspppppp-s-s-s-ss",
+      "firmware-fingerprint-reset/u_boot_20": "pppppppppppppp-p-p-p-pp",
+      "firmware-fingerprint/u_boot_20": "pppppppppppppp-p-p-p-pp",
+      "linux-version/linux_version": "ffffffffpppppp-f-f-f-ff",
       "poweroff/poweroff": "--------ppppp----------",
       "reboot/reboot": "--------pppppp---------",
       "smoke-after-reboot/linux-next-tag": "--------ppppp----------",
@@ -34595,18 +34937,18 @@
       "smoke/storage": "--------pppppp---------",
       "smoke/usb": "--------pppppp---------",
       "stock-restore/uefi_ver": "ff---------------------",
-      "u-boot/autoboot": "pppppppppppppp-p-p-p-p-",
-      "u-boot/u-boot-prompt": "pppppppppppppp-p-p-p-p-",
-      "u-boot/u-boot-sync": "pppppppppppppp-p-p-p-p-",
-      "u-boot/uboot-bdinfo": "pppppppppppppp-p-p-p-p-",
-      "u-boot/uboot-bootflow": "pppppppppppppp-p-p-p-p-",
-      "u-boot/uboot-clocks": "pppppppppppppp-p-p-p-p-",
-      "u-boot/uboot-dm-tree": "pppppppppppppp-p-p-p-p-",
-      "u-boot/uboot-efi-media": "ffffffffpppppp-p-p-p-p-",
-      "u-boot/uboot-reset": "pppppppppppppp-p-p-p-p-",
-      "u-boot/uboot-storage": "ffffffffpppppp-p-p-p-p-",
-      "u-boot/uboot-usb": "ppppppppffffff-f-f-f-f-",
-      "u-boot/uboot-version": "pppppppppppppp-p-p-p-p-"
+      "u-boot/autoboot": "pppppppppppppp-p-p-p-pp",
+      "u-boot/u-boot-prompt": "pppppppppppppp-p-p-p-pp",
+      "u-boot/u-boot-sync": "pppppppppppppp-p-p-p-pp",
+      "u-boot/uboot-bdinfo": "pppppppppppppp-p-p-p-pp",
+      "u-boot/uboot-bootflow": "pppppppppppppp-p-p-p-pp",
+      "u-boot/uboot-clocks": "pppppppppppppp-p-p-p-pp",
+      "u-boot/uboot-dm-tree": "pppppppppppppp-p-p-p-pp",
+      "u-boot/uboot-efi-media": "ffffffffpppppp-p-p-p-pp",
+      "u-boot/uboot-reset": "pppppppppppppp-p-p-p-pp",
+      "u-boot/uboot-storage": "ffffffffpppppp-p-p-p-pp",
+      "u-boot/uboot-usb": "ppppppppffffff-f-f-f-ff",
+      "u-boot/uboot-version": "pppppppppppppp-p-p-p-pp"
      },
      "runs": [
       "ubci-40152748187-1-main",
@@ -41011,7 +41353,7 @@
      },
      {
       "board": "lemans-evk",
-      "boot": "not-run",
+      "boot": "pass",
       "boot_chain": [
        {
         "origin": "downstream",
@@ -41037,20 +41379,29 @@
         "stage": "Linux"
        }
       ],
-      "boot_stage": "not-reached",
-      "boot_time": null,
-      "boot_url": "",
+      "boot_stage": "login",
+      "boot_time": {
+       "compared_stage": "linux",
+       "delta": 0.016,
+       "kind": "warm-reset",
+       "last_stage": "login",
+       "linux": 4.778,
+       "linux_replayed": false,
+       "threshold": 0.088,
+       "verdict": "same"
+      },
+      "boot_url": "https://lava.infra.foundries.io/scheduler/job/574966#L2613",
       "counts": {
-       "fail": 0,
+       "fail": 3,
        "flaky": 0,
-       "pass": 0,
-       "skip": 0,
+       "pass": 20,
+       "skip": 2,
        "unknown": 0
       },
       "distance": {},
       "fingerprint": "ubci-43828138653-1-main-stock-lemans-evk",
       "fragments_missing": [],
-      "gate": "not-run",
+      "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/574966",
       "new_fail": 0,
       "no_spl": null,
@@ -41058,9 +41409,9 @@
       "run": "ubci-43828138653-1-main",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "testing",
-      "state_detail": "",
-      "versus": "unknown"
+      "state": "done",
+      "state_detail": "LAVA job incomplete",
+      "versus": "same"
      }
     ],
     "qcs615-ride/open": [
@@ -59579,7 +59930,7 @@
      },
      {
       "board": "ventuno-q",
-      "boot": "not-run",
+      "boot": "fail",
       "boot_chain": [
        {
         "origin": "downstream",
@@ -59605,20 +59956,29 @@
         "stage": "Linux"
        }
       ],
-      "boot_stage": "not-reached",
-      "boot_time": null,
-      "boot_url": "",
+      "boot_stage": "no-efi-stub",
+      "boot_time": {
+       "compared_stage": "uboot",
+       "delta": -0.164,
+       "kind": "warm-reset",
+       "last_stage": "uboot",
+       "linux": null,
+       "linux_replayed": false,
+       "threshold": 0.988,
+       "verdict": "same"
+      },
+      "boot_url": "https://lava.infra.foundries.io/scheduler/job/574965#L1854",
       "counts": {
-       "fail": 0,
+       "fail": 2,
        "flaky": 0,
-       "pass": 0,
-       "skip": 0,
+       "pass": 13,
+       "skip": 2,
        "unknown": 0
       },
       "distance": {},
       "fingerprint": "ubci-43828138653-1-main-stock-ventuno-q",
       "fragments_missing": [],
-      "gate": "not-run",
+      "gate": "pass",
       "job_url": "https://lava.infra.foundries.io/scheduler/job/574965",
       "new_fail": 0,
       "no_spl": null,
@@ -59626,9 +59986,9 @@
       "run": "ubci-43828138653-1-main",
       "spl_in_flight": [],
       "stack": "stock",
-      "state": "testing",
-      "state_detail": "",
-      "versus": "unknown"
+      "state": "done",
+      "state_detail": "LAVA job incomplete",
+      "versus": "upstream-gap"
      }
     ]
    },
@@ -59838,7 +60198,7 @@
     },
     {
      "board": "ventuno-q",
-     "boot": "not-run",
+     "boot": "fail",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -59864,20 +60224,29 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "not-reached",
-     "boot_time": null,
-     "boot_url": "",
+     "boot_stage": "no-efi-stub",
+     "boot_time": {
+      "compared_stage": "uboot",
+      "delta": -0.164,
+      "kind": "warm-reset",
+      "last_stage": "uboot",
+      "linux": null,
+      "linux_replayed": false,
+      "threshold": 0.988,
+      "verdict": "same"
+     },
+     "boot_url": "https://lava.infra.foundries.io/scheduler/job/574965#L1854",
      "counts": {
-      "fail": 0,
+      "fail": 2,
       "flaky": 0,
-      "pass": 0,
-      "skip": 0,
+      "pass": 13,
+      "skip": 2,
       "unknown": 0
      },
      "distance": {},
      "fingerprint": "ubci-43828138653-1-main-stock-ventuno-q",
      "fragments_missing": [],
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/574965",
      "new_fail": 0,
      "no_spl": null,
@@ -59885,9 +60254,9 @@
      "run": "ubci-43828138653-1-main",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "testing",
-     "state_detail": "",
-     "versus": "unknown"
+     "state": "done",
+     "state_detail": "LAVA job incomplete",
+     "versus": "upstream-gap"
     },
     {
      "board": "ventuno-q",
@@ -60298,7 +60667,7 @@
     },
     {
      "board": "lemans-evk",
-     "boot": "not-run",
+     "boot": "pass",
      "boot_chain": [
       {
        "origin": "downstream",
@@ -60324,20 +60693,29 @@
        "stage": "Linux"
       }
      ],
-     "boot_stage": "not-reached",
-     "boot_time": null,
-     "boot_url": "",
+     "boot_stage": "login",
+     "boot_time": {
+      "compared_stage": "linux",
+      "delta": 0.016,
+      "kind": "warm-reset",
+      "last_stage": "login",
+      "linux": 4.778,
+      "linux_replayed": false,
+      "threshold": 0.088,
+      "verdict": "same"
+     },
+     "boot_url": "https://lava.infra.foundries.io/scheduler/job/574966#L2613",
      "counts": {
-      "fail": 0,
+      "fail": 3,
       "flaky": 0,
-      "pass": 0,
-      "skip": 0,
+      "pass": 20,
+      "skip": 2,
       "unknown": 0
      },
      "distance": {},
      "fingerprint": "ubci-43828138653-1-main-stock-lemans-evk",
      "fragments_missing": [],
-     "gate": "not-run",
+     "gate": "pass",
      "job_url": "https://lava.infra.foundries.io/scheduler/job/574966",
      "new_fail": 0,
      "no_spl": null,
@@ -60345,9 +60723,9 @@
      "run": "ubci-43828138653-1-main",
      "spl_in_flight": [],
      "stack": "stock",
-     "state": "testing",
-     "state_detail": "",
-     "versus": "unknown"
+     "state": "done",
+     "state_detail": "LAVA job incomplete",
+     "versus": "same"
     },
     {
      "board": "lemans-evk",
@@ -101963,31 +102341,31 @@
   },
   "lemans-evk/stock": {
    "cases": {
-    "firmware-fingerprint-cold/u_boot_20": "-----------sss-s-s-s-",
-    "firmware-fingerprint-reboot/u_boot_20": "ssssss-sssssss-s-s-s-",
-    "firmware-fingerprint-reset/u_boot_20": "ppppps-ppppppp-p-p-p-",
-    "firmware-fingerprint/u_boot_20": "pppppp-ppppppp-p-p-p-",
-    "linux-version/linux_version": "ppppps-ppppppp-p-p-p-",
-    "reboot/reboot": "fffff--fffffff-f-f-f-",
-    "smoke/cpus-online": "ppppp--ppppppp-p-p-p-",
-    "smoke/dmesg-errors": "fffff--fffffff-f-f-f-",
-    "smoke/linux-next-tag": "ppppp--ppppppp-p-p-p-",
-    "smoke/modules-loaded": "ppppp--ppppppp-p-p-p-",
-    "smoke/network": "ppppp--ppppppp-p-p-p-",
-    "smoke/storage": "ppppp--ppppppp-p-p-p-",
-    "smoke/usb": "ppppp--ppppppp-p-p-p-",
-    "u-boot/autoboot": "pppppf-ppppppp-p-p-p-",
-    "u-boot/u-boot-prompt": "ppppp--ppppppp-p-p-p-",
-    "u-boot/u-boot-sync": "ppppp--ppppppp-p-p-p-",
-    "u-boot/uboot-bdinfo": "ppppp--ppppppp-p-p-p-",
-    "u-boot/uboot-bootflow": "ppppp--ppppppp-p-p-p-",
-    "u-boot/uboot-clocks": "ppppp--ppppppp-p-p-p-",
-    "u-boot/uboot-dm-tree": "ppppp--ppppppp-p-p-p-",
-    "u-boot/uboot-efi-media": "ppppp--ppppppp-p-p-p-",
-    "u-boot/uboot-reset": "ppppp--ppppppp-p-p-p-",
-    "u-boot/uboot-storage": "ppppp--ppppppp-p-p-p-",
-    "u-boot/uboot-usb": "ppppp--fffffff-f-f-f-",
-    "u-boot/uboot-version": "ppppp--ppppppp-p-p-p-"
+    "firmware-fingerprint-cold/u_boot_20": "-----------sss-s-s-ss",
+    "firmware-fingerprint-reboot/u_boot_20": "ssssss-sssssss-s-s-ss",
+    "firmware-fingerprint-reset/u_boot_20": "ppppps-ppppppp-p-p-pp",
+    "firmware-fingerprint/u_boot_20": "pppppp-ppppppp-p-p-pp",
+    "linux-version/linux_version": "ppppps-ppppppp-p-p-pp",
+    "reboot/reboot": "fffff--fffffff-f-f-ff",
+    "smoke/cpus-online": "ppppp--ppppppp-p-p-pp",
+    "smoke/dmesg-errors": "fffff--fffffff-f-f-ff",
+    "smoke/linux-next-tag": "ppppp--ppppppp-p-p-pp",
+    "smoke/modules-loaded": "ppppp--ppppppp-p-p-pp",
+    "smoke/network": "ppppp--ppppppp-p-p-pp",
+    "smoke/storage": "ppppp--ppppppp-p-p-pp",
+    "smoke/usb": "ppppp--ppppppp-p-p-pp",
+    "u-boot/autoboot": "pppppf-ppppppp-p-p-pp",
+    "u-boot/u-boot-prompt": "ppppp--ppppppp-p-p-pp",
+    "u-boot/u-boot-sync": "ppppp--ppppppp-p-p-pp",
+    "u-boot/uboot-bdinfo": "ppppp--ppppppp-p-p-pp",
+    "u-boot/uboot-bootflow": "ppppp--ppppppp-p-p-pp",
+    "u-boot/uboot-clocks": "ppppp--ppppppp-p-p-pp",
+    "u-boot/uboot-dm-tree": "ppppp--ppppppp-p-p-pp",
+    "u-boot/uboot-efi-media": "ppppp--ppppppp-p-p-pp",
+    "u-boot/uboot-reset": "ppppp--ppppppp-p-p-pp",
+    "u-boot/uboot-storage": "ppppp--ppppppp-p-p-pp",
+    "u-boot/uboot-usb": "ppppp--fffffff-f-f-ff",
+    "u-boot/uboot-version": "ppppp--ppppppp-p-p-pp"
    },
    "runs": [
     "ubci-40199892508-1-main",
@@ -102634,11 +103012,11 @@
   },
   "ventuno-q/stock": {
    "cases": {
-    "firmware-fingerprint-cold/u_boot_20": "-------------s-s-s-s-s-",
-    "firmware-fingerprint-reboot/u_boot_20": "ffsssssspppppp-s-s-s-s-",
-    "firmware-fingerprint-reset/u_boot_20": "pppppppppppppp-p-p-p-p-",
-    "firmware-fingerprint/u_boot_20": "pppppppppppppp-p-p-p-p-",
-    "linux-version/linux_version": "ffffffffpppppp-f-f-f-f-",
+    "firmware-fingerprint-cold/u_boot_20": "-------------s-s-s-s-ss",
+    "firmware-fingerprint-reboot/u_boot_20": "ffsssssspppppp-s-s-s-ss",
+    "firmware-fingerprint-reset/u_boot_20": "pppppppppppppp-p-p-p-pp",
+    "firmware-fingerprint/u_boot_20": "pppppppppppppp-p-p-p-pp",
+    "linux-version/linux_version": "ffffffffpppppp-f-f-f-ff",
     "poweroff/poweroff": "--------ppppp----------",
     "reboot/reboot": "--------pppppp---------",
     "smoke-after-reboot/linux-next-tag": "--------ppppp----------",
@@ -102650,18 +103028,18 @@
     "smoke/storage": "--------pppppp---------",
     "smoke/usb": "--------pppppp---------",
     "stock-restore/uefi_ver": "ff---------------------",
-    "u-boot/autoboot": "pppppppppppppp-p-p-p-p-",
-    "u-boot/u-boot-prompt": "pppppppppppppp-p-p-p-p-",
-    "u-boot/u-boot-sync": "pppppppppppppp-p-p-p-p-",
-    "u-boot/uboot-bdinfo": "pppppppppppppp-p-p-p-p-",
-    "u-boot/uboot-bootflow": "pppppppppppppp-p-p-p-p-",
-    "u-boot/uboot-clocks": "pppppppppppppp-p-p-p-p-",
-    "u-boot/uboot-dm-tree": "pppppppppppppp-p-p-p-p-",
-    "u-boot/uboot-efi-media": "ffffffffpppppp-p-p-p-p-",
-    "u-boot/uboot-reset": "pppppppppppppp-p-p-p-p-",
-    "u-boot/uboot-storage": "ffffffffpppppp-p-p-p-p-",
-    "u-boot/uboot-usb": "ppppppppffffff-f-f-f-f-",
-    "u-boot/uboot-version": "pppppppppppppp-p-p-p-p-"
+    "u-boot/autoboot": "pppppppppppppp-p-p-p-pp",
+    "u-boot/u-boot-prompt": "pppppppppppppp-p-p-p-pp",
+    "u-boot/u-boot-sync": "pppppppppppppp-p-p-p-pp",
+    "u-boot/uboot-bdinfo": "pppppppppppppp-p-p-p-pp",
+    "u-boot/uboot-bootflow": "pppppppppppppp-p-p-p-pp",
+    "u-boot/uboot-clocks": "pppppppppppppp-p-p-p-pp",
+    "u-boot/uboot-dm-tree": "pppppppppppppp-p-p-p-pp",
+    "u-boot/uboot-efi-media": "ffffffffpppppp-p-p-p-pp",
+    "u-boot/uboot-reset": "pppppppppppppp-p-p-p-pp",
+    "u-boot/uboot-storage": "ffffffffpppppp-p-p-p-pp",
+    "u-boot/uboot-usb": "ppppppppffffff-f-f-f-ff",
+    "u-boot/uboot-version": "pppppppppppppp-p-p-p-pp"
    },
    "runs": [
     "ubci-40152748187-1-main",
@@ -109067,7 +109445,7 @@
    },
    {
     "board": "lemans-evk",
-    "boot": "not-run",
+    "boot": "pass",
     "boot_chain": [
      {
       "origin": "downstream",
@@ -109093,20 +109471,29 @@
       "stage": "Linux"
      }
     ],
-    "boot_stage": "not-reached",
-    "boot_time": null,
-    "boot_url": "",
+    "boot_stage": "login",
+    "boot_time": {
+     "compared_stage": "linux",
+     "delta": 0.016,
+     "kind": "warm-reset",
+     "last_stage": "login",
+     "linux": 4.778,
+     "linux_replayed": false,
+     "threshold": 0.088,
+     "verdict": "same"
+    },
+    "boot_url": "https://lava.infra.foundries.io/scheduler/job/574966#L2613",
     "counts": {
-     "fail": 0,
+     "fail": 3,
      "flaky": 0,
-     "pass": 0,
-     "skip": 0,
+     "pass": 20,
+     "skip": 2,
      "unknown": 0
     },
     "distance": {},
     "fingerprint": "ubci-43828138653-1-main-stock-lemans-evk",
     "fragments_missing": [],
-    "gate": "not-run",
+    "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/574966",
     "new_fail": 0,
     "no_spl": null,
@@ -109114,9 +109501,9 @@
     "run": "ubci-43828138653-1-main",
     "spl_in_flight": [],
     "stack": "stock",
-    "state": "testing",
-    "state_detail": "",
-    "versus": "unknown"
+    "state": "done",
+    "state_detail": "LAVA job incomplete",
+    "versus": "same"
    }
   ],
   "qcs615-ride/open": [
@@ -127635,7 +128022,7 @@
    },
    {
     "board": "ventuno-q",
-    "boot": "not-run",
+    "boot": "fail",
     "boot_chain": [
      {
       "origin": "downstream",
@@ -127661,20 +128048,29 @@
       "stage": "Linux"
      }
     ],
-    "boot_stage": "not-reached",
-    "boot_time": null,
-    "boot_url": "",
+    "boot_stage": "no-efi-stub",
+    "boot_time": {
+     "compared_stage": "uboot",
+     "delta": -0.164,
+     "kind": "warm-reset",
+     "last_stage": "uboot",
+     "linux": null,
+     "linux_replayed": false,
+     "threshold": 0.988,
+     "verdict": "same"
+    },
+    "boot_url": "https://lava.infra.foundries.io/scheduler/job/574965#L1854",
     "counts": {
-     "fail": 0,
+     "fail": 2,
      "flaky": 0,
-     "pass": 0,
-     "skip": 0,
+     "pass": 13,
+     "skip": 2,
      "unknown": 0
     },
     "distance": {},
     "fingerprint": "ubci-43828138653-1-main-stock-ventuno-q",
     "fragments_missing": [],
-    "gate": "not-run",
+    "gate": "pass",
     "job_url": "https://lava.infra.foundries.io/scheduler/job/574965",
     "new_fail": 0,
     "no_spl": null,
@@ -127682,9 +128078,9 @@
     "run": "ubci-43828138653-1-main",
     "spl_in_flight": [],
     "stack": "stock",
-    "state": "testing",
-    "state_detail": "",
-    "versus": "unknown"
+    "state": "done",
+    "state_detail": "LAVA job incomplete",
+    "versus": "upstream-gap"
    }
   ]
  },
@@ -127894,7 +128290,7 @@
   },
   {
    "board": "ventuno-q",
-   "boot": "not-run",
+   "boot": "fail",
    "boot_chain": [
     {
      "origin": "downstream",
@@ -127920,20 +128316,29 @@
      "stage": "Linux"
     }
    ],
-   "boot_stage": "not-reached",
-   "boot_time": null,
-   "boot_url": "",
+   "boot_stage": "no-efi-stub",
+   "boot_time": {
+    "compared_stage": "uboot",
+    "delta": -0.164,
+    "kind": "warm-reset",
+    "last_stage": "uboot",
+    "linux": null,
+    "linux_replayed": false,
+    "threshold": 0.988,
+    "verdict": "same"
+   },
+   "boot_url": "https://lava.infra.foundries.io/scheduler/job/574965#L1854",
    "counts": {
-    "fail": 0,
+    "fail": 2,
     "flaky": 0,
-    "pass": 0,
-    "skip": 0,
+    "pass": 13,
+    "skip": 2,
     "unknown": 0
    },
    "distance": {},
    "fingerprint": "ubci-43828138653-1-main-stock-ventuno-q",
    "fragments_missing": [],
-   "gate": "not-run",
+   "gate": "pass",
    "job_url": "https://lava.infra.foundries.io/scheduler/job/574965",
    "new_fail": 0,
    "no_spl": null,
@@ -127941,9 +128346,9 @@
    "run": "ubci-43828138653-1-main",
    "spl_in_flight": [],
    "stack": "stock",
-   "state": "testing",
-   "state_detail": "",
-   "versus": "unknown"
+   "state": "done",
+   "state_detail": "LAVA job incomplete",
+   "versus": "upstream-gap"
   },
   {
    "board": "ventuno-q",
@@ -128354,7 +128759,7 @@
   },
   {
    "board": "lemans-evk",
-   "boot": "not-run",
+   "boot": "pass",
    "boot_chain": [
     {
      "origin": "downstream",
@@ -128380,20 +128785,29 @@
      "stage": "Linux"
     }
    ],
-   "boot_stage": "not-reached",
-   "boot_time": null,
-   "boot_url": "",
+   "boot_stage": "login",
+   "boot_time": {
+    "compared_stage": "linux",
+    "delta": 0.016,
+    "kind": "warm-reset",
+    "last_stage": "login",
+    "linux": 4.778,
+    "linux_replayed": false,
+    "threshold": 0.088,
+    "verdict": "same"
+   },
+   "boot_url": "https://lava.infra.foundries.io/scheduler/job/574966#L2613",
    "counts": {
-    "fail": 0,
+    "fail": 3,
     "flaky": 0,
-    "pass": 0,
-    "skip": 0,
+    "pass": 20,
+    "skip": 2,
     "unknown": 0
    },
    "distance": {},
    "fingerprint": "ubci-43828138653-1-main-stock-lemans-evk",
    "fragments_missing": [],
-   "gate": "not-run",
+   "gate": "pass",
    "job_url": "https://lava.infra.foundries.io/scheduler/job/574966",
    "new_fail": 0,
    "no_spl": null,
@@ -128401,9 +128815,9 @@
    "run": "ubci-43828138653-1-main",
    "spl_in_flight": [],
    "stack": "stock",
-   "state": "testing",
-   "state_detail": "",
-   "versus": "unknown"
+   "state": "done",
+   "state_detail": "LAVA job incomplete",
+   "versus": "same"
   },
   {
    "board": "lemans-evk",
@@ -154482,5 +154896,5 @@
    }
   }
  },
- "updated": "2026-11-16T09:58:03Z"
+ "updated": "2026-11-16T10:00:19Z"
 }
