@@ -2381,7 +2381,7 @@
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-11-16T09:41:36Z"
+  "updated": "2026-11-16T09:47:05Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -2504,7 +2504,7 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
-   "queue_position": 3,
+   "queue_position": 1,
    "stack": "stock",
    "state": "queued"
   },
@@ -6888,6 +6888,12 @@
    ],
    "fingerprint": "ubci-43828138653-1-master-open-uno-q",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "unoq-01",
+    "health": "Unknown",
+    "job_id": 574876,
+    "url": "https://lava.infra.foundries.io/scheduler/job/574876"
+   },
    "linux_boot": {
     "gaps": [
      "no Agatti EL2 overlay in linux-next"
@@ -6896,8 +6902,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "flashing"
   },
   {
    "board": "uno-q",
@@ -7065,7 +7072,7 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
-   "queue_position": 6,
+   "queue_position": 5,
    "stack": "stock",
    "state": "queued"
   },
@@ -8383,7 +8390,7 @@
    "fingerprint": "ubci-43828138653-1-master-stock-lemans-evk",
    "fingerprint_gate": "not-run",
    "lava": {
-    "device": null,
+    "device": "rb8-03",
     "health": "Unknown",
     "job_id": 574875,
     "url": "https://lava.infra.foundries.io/scheduler/job/574875"
@@ -8393,9 +8400,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
-   "queue_position": 1,
+   "queue_position": null,
    "stack": "stock",
-   "state": "queued"
+   "state": "testing"
   },
   {
    "board": "lemans-evk",
