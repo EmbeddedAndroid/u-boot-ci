@@ -2367,6 +2367,7 @@
   "tag_url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tag/?h=next-20261113",
   "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=84abb955b1015477aa11a96e2f3ac1b938b77f48"
  },
+ "note": "workflow cancelled",
  "project": "u-boot",
  "run": {
   "base": {
@@ -2381,10 +2382,10 @@
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-11-16T15:30:36Z"
+  "updated": "2026-11-16T15:41:11Z"
  },
  "schema": "fwci-run/1",
- "state": "testing",
+ "state": "cancelled",
  "targets": [
   {
    "board": "rb3gen2",
@@ -8415,7 +8416,8 @@
    },
    "queue_position": 26,
    "stack": "stock",
-   "state": "queued"
+   "state": "cancelled",
+   "state_detail": "workflow cancelled before this target finished; LAVA job 574874 was not collected"
   },
   {
    "board": "qcs615-ride",
@@ -9568,7 +9570,8 @@
     "versus_baseline": "unknown"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "cancelled",
+   "state_detail": "workflow cancelled before this target finished"
   },
   {
    "board": "qcs615-ride",
