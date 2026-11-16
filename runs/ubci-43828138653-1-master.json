@@ -2381,7 +2381,7 @@
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-11-16T13:55:43Z"
+  "updated": "2026-11-16T14:01:14Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -4155,6 +4155,12 @@
    ],
    "fingerprint": "ubci-43828138653-1-master-open-rb3gen2",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "rb3g2-01",
+    "health": "Unknown",
+    "job_id": 575942,
+    "url": "https://lava.infra.foundries.io/scheduler/job/575942"
+   },
    "linux_boot": {
     "gaps": [
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
@@ -4163,8 +4169,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "flashing"
   },
   {
    "board": "rb3gen2",
@@ -7736,7 +7743,7 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
-   "queue_position": 13,
+   "queue_position": 12,
    "stack": "stock",
    "state": "queued"
   },
