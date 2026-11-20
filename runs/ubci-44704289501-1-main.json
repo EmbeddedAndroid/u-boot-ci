@@ -2381,7 +2381,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main c1958b5f6cce",
-  "updated": "2026-11-20T11:43:51Z"
+  "updated": "2026-11-20T11:49:25Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -7098,6 +7098,12 @@
    ],
    "fingerprint": "ubci-44704289501-1-main-open-uno-q",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "unoq-01",
+    "health": "Unknown",
+    "job_id": 593719,
+    "url": "https://lava.infra.foundries.io/scheduler/job/593719"
+   },
    "linux_boot": {
     "gaps": [
      "no Agatti EL2 overlay in linux-next"
@@ -7106,8 +7112,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "flashing"
   },
   {
    "board": "uno-q",
