@@ -2381,7 +2381,7 @@
   "kind": "nightly",
   "series": null,
   "title": "master ece349ade297",
-  "updated": "2026-11-22T10:13:34Z"
+  "updated": "2026-11-22T10:19:18Z"
  },
  "schema": "fwci-run/1",
  "state": "testing",
@@ -3993,6 +3993,12 @@
    ],
    "fingerprint": "ubci-45001173390-1-master-open-rb3gen2",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": "Unknown",
+    "job_id": 600899,
+    "url": "https://lava.infra.foundries.io/scheduler/job/600899"
+   },
    "linux_boot": {
     "gaps": [
      "no Kodiak EL2 overlay (kodiak-el2.dtso) in linux-next"
@@ -4001,6 +4007,7 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": 1,
    "stack": "open",
    "state": "queued"
   },
@@ -6699,7 +6706,7 @@
    "fingerprint": "ubci-45001173390-1-master-open-uno-q",
    "fingerprint_gate": "not-run",
    "lava": {
-    "device": null,
+    "device": "unoq-01",
     "health": "Unknown",
     "job_id": 600898,
     "url": "https://lava.infra.foundries.io/scheduler/job/600898"
@@ -6712,9 +6719,9 @@
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
-   "queue_position": 1,
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "testing"
   },
   {
    "board": "uno-q",
@@ -8208,14 +8215,20 @@
    ],
    "fingerprint": "ubci-45001173390-1-master-open-qcs615-ride",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": "qcs615-adp-air-01",
+    "health": "Unknown",
+    "job_id": 600900,
+    "url": "https://lava.infra.foundries.io/scheduler/job/600900"
+   },
    "linux_boot": {
-    "gaps": [],
     "stage": "not-reached",
     "verdict": "not-run",
     "versus_baseline": "unknown"
    },
+   "queue_position": null,
    "stack": "open",
-   "state": "queued"
+   "state": "flashing"
   },
   {
    "board": "qcs615-ride",
