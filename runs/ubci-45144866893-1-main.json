@@ -1,6 +1,2372 @@
 {
- "host_checks": [],
- "linux": null,
+ "boot_time_reference": {
+  "before": "2026-11-23T09:18:19Z",
+  "boards": {
+   "kaanapali-mtp": {
+    "boots": [
+     {
+      "complete": true,
+      "device": "kaanapali-mtp-05",
+      "end_time": "2026-11-22T13:51:12.635074Z",
+      "fastboot": false,
+      "job": 601151,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/601151",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 5153,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 6022,
+        "replayed": false,
+        "t": 5.747
+       },
+       "hyp": {
+        "line": 5720,
+        "replayed": false,
+        "t": 3.715
+       },
+       "init": {
+        "line": 6855,
+        "replayed": false,
+        "t": 11.811
+       },
+       "linux": {
+        "line": 6038,
+        "replayed": false,
+        "t": 6.115
+       },
+       "loader": {
+        "line": 5214,
+        "replayed": true,
+        "t": 2.352
+       },
+       "loader_end": {
+        "line": 5373,
+        "replayed": true,
+        "t": 2.36
+       },
+       "login": {
+        "line": 7108,
+        "replayed": false,
+        "t": 18.531
+       },
+       "uefi": {
+        "line": 5728,
+        "replayed": false,
+        "t": 3.795
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/601151#L5153"
+     },
+     {
+      "complete": true,
+      "device": "kaanapali-mtp-04",
+      "end_time": "2026-11-22T13:37:29.039901Z",
+      "fastboot": false,
+      "job": 601111,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/601111",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 5934,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 6804,
+        "replayed": false,
+        "t": 5.743
+       },
+       "hyp": {
+        "line": 6501,
+        "replayed": false,
+        "t": 3.724
+       },
+       "init": {
+        "line": 7631,
+        "replayed": false,
+        "t": 11.756
+       },
+       "linux": {
+        "line": 6820,
+        "replayed": false,
+        "t": 6.108
+       },
+       "loader": {
+        "line": 5995,
+        "replayed": true,
+        "t": 2.344
+       },
+       "loader_end": {
+        "line": 6154,
+        "replayed": true,
+        "t": 2.348
+       },
+       "login": {
+        "line": 7885,
+        "replayed": false,
+        "t": 18.367
+       },
+       "uefi": {
+        "line": 6509,
+        "replayed": false,
+        "t": 3.807
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/601111#L5934"
+     },
+     {
+      "complete": true,
+      "device": "kaanapali-mtp-08",
+      "end_time": "2026-11-22T12:43:39.960620Z",
+      "fastboot": false,
+      "job": 600961,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600961",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 5941,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 6811,
+        "replayed": false,
+        "t": 5.452
+       },
+       "hyp": {
+        "line": 6508,
+        "replayed": false,
+        "t": 3.42
+       },
+       "init": {
+        "line": 7639,
+        "replayed": false,
+        "t": 11.468
+       },
+       "linux": {
+        "line": 6827,
+        "replayed": false,
+        "t": 5.82
+       },
+       "loader": {
+        "line": 6002,
+        "replayed": true,
+        "t": 2.306
+       },
+       "loader_end": {
+        "line": 6161,
+        "replayed": true,
+        "t": 2.31
+       },
+       "login": {
+        "line": 7891,
+        "replayed": false,
+        "t": 18.159
+       },
+       "uefi": {
+        "line": 6516,
+        "replayed": false,
+        "t": 3.501
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600961#L5941"
+     },
+     {
+      "complete": true,
+      "device": "kaanapali-mtp-09",
+      "end_time": "2026-11-22T12:41:49.588813Z",
+      "fastboot": false,
+      "job": 600949,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600949",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 5936,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 6806,
+        "replayed": false,
+        "t": 5.489
+       },
+       "hyp": {
+        "line": 6503,
+        "replayed": false,
+        "t": 3.457
+       },
+       "init": {
+        "line": 7634,
+        "replayed": false,
+        "t": 11.504
+       },
+       "linux": {
+        "line": 6822,
+        "replayed": false,
+        "t": 5.844
+       },
+       "loader": {
+        "line": 5997,
+        "replayed": true,
+        "t": 2.332
+       },
+       "loader_end": {
+        "line": 6156,
+        "replayed": true,
+        "t": 2.337
+       },
+       "login": {
+        "line": 7886,
+        "replayed": false,
+        "t": 18.195
+       },
+       "uefi": {
+        "line": 6511,
+        "replayed": false,
+        "t": 3.553
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600949#L5936"
+     },
+     {
+      "complete": true,
+      "device": "kaanapali-mtp-06",
+      "end_time": "2026-11-22T12:41:53.709048Z",
+      "fastboot": false,
+      "job": 600948,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600948",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 5951,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 6821,
+        "replayed": false,
+        "t": 5.485
+       },
+       "hyp": {
+        "line": 6518,
+        "replayed": false,
+        "t": 3.469
+       },
+       "init": {
+        "line": 7659,
+        "replayed": false,
+        "t": 11.581
+       },
+       "linux": {
+        "line": 6837,
+        "replayed": false,
+        "t": 5.853
+       },
+       "loader": {
+        "line": 6012,
+        "replayed": true,
+        "t": 2.33
+       },
+       "loader_end": {
+        "line": 6171,
+        "replayed": true,
+        "t": 2.334
+       },
+       "login": {
+        "line": 7911,
+        "replayed": false,
+        "t": 18.432
+       },
+       "uefi": {
+        "line": 6526,
+        "replayed": false,
+        "t": 3.565
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600948#L5951"
+     }
+    ],
+    "device_type": "kaanapali-mtp",
+    "median": {
+     "ebs": 5.489,
+     "hyp": 3.469,
+     "init": 11.581,
+     "linux": 5.853,
+     "login": 18.367,
+     "uefi": 3.565
+    }
+   },
+   "lemans-evk": {
+    "boots": [
+     {
+      "complete": true,
+      "device": "rb8-02",
+      "end_time": "2026-11-23T07:25:36.477248Z",
+      "fastboot": false,
+      "job": 602609,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/602609",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 6064,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 6604,
+        "replayed": false,
+        "t": 4.13
+       },
+       "hyp": {
+        "line": 6373,
+        "replayed": false,
+        "t": 1.698
+       },
+       "init": {
+        "line": 7553,
+        "replayed": false,
+        "t": 11.327
+       },
+       "linux": {
+        "line": 6628,
+        "replayed": false,
+        "t": 4.751
+       },
+       "loader": {
+        "line": 6106,
+        "replayed": true,
+        "t": 0.167
+       },
+       "loader_end": {
+        "line": 6369,
+        "replayed": false,
+        "t": 1.603
+       },
+       "login": {
+        "line": 7941,
+        "replayed": false,
+        "t": 19.394
+       },
+       "uefi": {
+        "line": 6384,
+        "replayed": false,
+        "t": 1.823
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/602609#L6064"
+     },
+     {
+      "complete": true,
+      "device": "rb8-03",
+      "end_time": "2026-11-23T07:21:57.205636Z",
+      "fastboot": false,
+      "job": 602600,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/602600",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 6099,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 6636,
+        "replayed": false,
+        "t": 4.09
+       },
+       "hyp": {
+        "line": 6405,
+        "replayed": false,
+        "t": 1.69
+       },
+       "init": {
+        "line": 7586,
+        "replayed": false,
+        "t": 11.226
+       },
+       "linux": {
+        "line": 6660,
+        "replayed": false,
+        "t": 4.647
+       },
+       "loader": {
+        "line": 6138,
+        "replayed": true,
+        "t": 0.164
+       },
+       "loader_end": {
+        "line": 6401,
+        "replayed": false,
+        "t": 1.594
+       },
+       "login": {
+        "line": 8006,
+        "replayed": false,
+        "t": 19.849
+       },
+       "uefi": {
+        "line": 6416,
+        "replayed": false,
+        "t": 1.802
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/602600#L6099"
+     },
+     {
+      "complete": true,
+      "device": "rb8-hyd-03",
+      "end_time": "2026-11-23T06:03:14.108221Z",
+      "fastboot": false,
+      "job": 602362,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/602362",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 6097,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 6634,
+        "replayed": false,
+        "t": 4.08
+       },
+       "hyp": {
+        "line": 6403,
+        "replayed": false,
+        "t": 1.665
+       },
+       "init": {
+        "line": 7590,
+        "replayed": false,
+        "t": 11.277
+       },
+       "linux": {
+        "line": 6658,
+        "replayed": false,
+        "t": 4.637
+       },
+       "loader": {
+        "line": 6136,
+        "replayed": true,
+        "t": 0.089
+       },
+       "loader_end": {
+        "line": 6399,
+        "replayed": false,
+        "t": 1.582
+       },
+       "login": {
+        "line": 8014,
+        "replayed": false,
+        "t": 20.352
+       },
+       "uefi": {
+        "line": 6414,
+        "replayed": false,
+        "t": 1.79
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/602362#L6097"
+     },
+     {
+      "complete": true,
+      "device": "rb8-hyd-08",
+      "end_time": "2026-11-23T05:17:54.864773Z",
+      "fastboot": false,
+      "job": 602337,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/602337",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 6069,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 6609,
+        "replayed": false,
+        "t": 4.069
+       },
+       "hyp": {
+        "line": 6378,
+        "replayed": false,
+        "t": 1.669
+       },
+       "init": {
+        "line": 7583,
+        "replayed": false,
+        "t": 11.458
+       },
+       "linux": {
+        "line": 6633,
+        "replayed": false,
+        "t": 4.658
+       },
+       "loader": {
+        "line": 6111,
+        "replayed": true,
+        "t": 0.094
+       },
+       "loader_end": {
+        "line": 6374,
+        "replayed": false,
+        "t": 1.586
+       },
+       "login": {
+        "line": 7967,
+        "replayed": false,
+        "t": 19.509
+       },
+       "uefi": {
+        "line": 6389,
+        "replayed": false,
+        "t": 1.794
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/602337#L6069"
+     },
+     {
+      "complete": true,
+      "device": "rb8-hyd-07",
+      "end_time": "2026-11-22T14:13:12.454864Z",
+      "fastboot": false,
+      "job": 601195,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/601195",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 6079,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 6616,
+        "replayed": false,
+        "t": 4.093
+       },
+       "hyp": {
+        "line": 6385,
+        "replayed": false,
+        "t": 1.678
+       },
+       "init": {
+        "line": 7583,
+        "replayed": false,
+        "t": 11.386
+       },
+       "linux": {
+        "line": 6640,
+        "replayed": false,
+        "t": 4.653
+       },
+       "loader": {
+        "line": 6118,
+        "replayed": true,
+        "t": 0.104
+       },
+       "loader_end": {
+        "line": 6381,
+        "replayed": false,
+        "t": 1.581
+       },
+       "login": {
+        "line": 8007,
+        "replayed": false,
+        "t": 20.829
+       },
+       "uefi": {
+        "line": 6396,
+        "replayed": false,
+        "t": 1.791
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/601195#L6079"
+     }
+    ],
+    "device_type": "lemans-evk",
+    "median": {
+     "ebs": 4.09,
+     "hyp": 1.678,
+     "init": 11.327,
+     "linux": 4.653,
+     "loader_end": 1.586,
+     "login": 19.849,
+     "uefi": 1.794
+    }
+   },
+   "qcs615-ride": {
+    "boots": [
+     {
+      "complete": true,
+      "device": "qcs615-adp-air-03",
+      "end_time": "2026-11-23T07:30:02.405823Z",
+      "fastboot": false,
+      "job": 602612,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/602612",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 4443,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 4803,
+        "replayed": false,
+        "t": 4.193
+       },
+       "hyp": {
+        "line": 4690,
+        "replayed": false,
+        "t": 2.73
+       },
+       "init": {
+        "line": 5518,
+        "replayed": false,
+        "t": 9.663
+       },
+       "linux": {
+        "line": 4815,
+        "replayed": false,
+        "t": 4.612
+       },
+       "loader": {
+        "line": 4468,
+        "replayed": true,
+        "t": 2.416
+       },
+       "loader_end": {
+        "line": 4686,
+        "replayed": false,
+        "t": 2.649
+       },
+       "login": {
+        "line": 5942,
+        "replayed": false,
+        "t": 20.172
+       },
+       "uefi": {
+        "line": 4700,
+        "replayed": false,
+        "t": 2.805
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/602612#L4443"
+     },
+     {
+      "complete": true,
+      "device": "qcs615-adp-air-01",
+      "end_time": "2026-11-22T23:49:50.516929Z",
+      "fastboot": false,
+      "job": 601826,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/601826",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 4432,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 4792,
+        "replayed": false,
+        "t": 4.217
+       },
+       "hyp": {
+        "line": 4679,
+        "replayed": false,
+        "t": 2.765
+       },
+       "init": {
+        "line": 5507,
+        "replayed": false,
+        "t": 9.737
+       },
+       "linux": {
+        "line": 4804,
+        "replayed": false,
+        "t": 4.68
+       },
+       "loader": {
+        "line": 4457,
+        "replayed": true,
+        "t": 2.415
+       },
+       "loader_end": {
+        "line": 4675,
+        "replayed": false,
+        "t": 2.685
+       },
+       "login": {
+        "line": 5929,
+        "replayed": false,
+        "t": 20.325
+       },
+       "uefi": {
+        "line": 4689,
+        "replayed": false,
+        "t": 2.841
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/601826#L4432"
+     },
+     {
+      "complete": true,
+      "device": "qcs615-adp-air-03",
+      "end_time": "2026-11-22T07:26:41.873690Z",
+      "fastboot": false,
+      "job": 600828,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600828",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 4446,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 4806,
+        "replayed": false,
+        "t": 4.271
+       },
+       "hyp": {
+        "line": 4693,
+        "replayed": false,
+        "t": 2.829
+       },
+       "init": {
+        "line": 5524,
+        "replayed": false,
+        "t": 9.704
+       },
+       "linux": {
+        "line": 4818,
+        "replayed": false,
+        "t": 4.725
+       },
+       "loader": {
+        "line": 4471,
+        "replayed": true,
+        "t": 2.413
+       },
+       "loader_end": {
+        "line": 4689,
+        "replayed": false,
+        "t": 2.748
+       },
+       "login": {
+        "line": 5950,
+        "replayed": false,
+        "t": 19.943
+       },
+       "uefi": {
+        "line": 4703,
+        "replayed": false,
+        "t": 2.905
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600828#L4446"
+     },
+     {
+      "complete": true,
+      "device": "qcs615-adp-air-01",
+      "end_time": "2026-11-21T23:49:25.606187Z",
+      "fastboot": false,
+      "job": 600069,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600069",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 4459,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 4819,
+        "replayed": false,
+        "t": 4.252
+       },
+       "hyp": {
+        "line": 4706,
+        "replayed": false,
+        "t": 2.791
+       },
+       "init": {
+        "line": 5527,
+        "replayed": false,
+        "t": 9.734
+       },
+       "linux": {
+        "line": 4831,
+        "replayed": false,
+        "t": 4.703
+       },
+       "loader": {
+        "line": 4484,
+        "replayed": true,
+        "t": 2.414
+       },
+       "loader_end": {
+        "line": 4702,
+        "replayed": false,
+        "t": 2.71
+       },
+       "login": {
+        "line": 5942,
+        "replayed": false,
+        "t": 19.966
+       },
+       "uefi": {
+        "line": 4716,
+        "replayed": false,
+        "t": 2.867
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600069#L4459"
+     },
+     {
+      "complete": true,
+      "device": "qcs615-adp-air-03",
+      "end_time": "2026-11-21T07:26:27.453873Z",
+      "fastboot": false,
+      "job": 598021,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/598021",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 4456,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 4816,
+        "replayed": false,
+        "t": 4.314
+       },
+       "hyp": {
+        "line": 4703,
+        "replayed": false,
+        "t": 2.845
+       },
+       "init": {
+        "line": 5529,
+        "replayed": false,
+        "t": 9.732
+       },
+       "linux": {
+        "line": 4828,
+        "replayed": false,
+        "t": 4.784
+       },
+       "loader": {
+        "line": 4481,
+        "replayed": true,
+        "t": 2.414
+       },
+       "loader_end": {
+        "line": 4699,
+        "replayed": false,
+        "t": 2.764
+       },
+       "login": {
+        "line": 5943,
+        "replayed": false,
+        "t": 20.328
+       },
+       "uefi": {
+        "line": 4713,
+        "replayed": false,
+        "t": 2.92
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/598021#L4456"
+     }
+    ],
+    "device_type": "qcs615-ride",
+    "median": {
+     "ebs": 4.252,
+     "hyp": 2.791,
+     "init": 9.732,
+     "linux": 4.703,
+     "loader_end": 2.71,
+     "login": 20.172,
+     "uefi": 2.867
+    }
+   },
+   "rb3gen2": {
+    "boots": [
+     {
+      "complete": true,
+      "device": "rb3g2-03",
+      "end_time": "2026-11-23T08:59:04.906952Z",
+      "fastboot": true,
+      "job": 602922,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/602922",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2605,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3226,
+        "replayed": true,
+        "t": 18.607
+       },
+       "hyp": {
+        "line": 3119,
+        "replayed": true,
+        "t": 18.598
+       },
+       "init": {
+        "line": 3806,
+        "replayed": false,
+        "t": 23.044
+       },
+       "linux": {
+        "line": 3232,
+        "replayed": false,
+        "t": 18.868
+       },
+       "loader": {
+        "line": 2634,
+        "replayed": true,
+        "t": 18.554
+       },
+       "loader_end": {
+        "line": 2934,
+        "replayed": true,
+        "t": 18.583
+       },
+       "login": {
+        "line": 3985,
+        "replayed": false,
+        "t": 30.023
+       },
+       "uefi": {
+        "line": 3129,
+        "replayed": true,
+        "t": 18.599
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/602922#L2605"
+     },
+     {
+      "complete": true,
+      "device": "rb3g2-hyd-01",
+      "end_time": "2026-11-22T22:11:06.334322Z",
+      "fastboot": true,
+      "job": 601796,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/601796",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2604,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3218,
+        "replayed": true,
+        "t": 16.119
+       },
+       "hyp": {
+        "line": 3105,
+        "replayed": true,
+        "t": 16.069
+       },
+       "init": {
+        "line": 3798,
+        "replayed": false,
+        "t": 20.567
+       },
+       "linux": {
+        "line": 3224,
+        "replayed": false,
+        "t": 16.388
+       },
+       "loader": {
+        "line": 2633,
+        "replayed": true,
+        "t": 16.053
+       },
+       "loader_end": {
+        "line": 2919,
+        "replayed": true,
+        "t": 16.064
+       },
+       "login": {
+        "line": 3977,
+        "replayed": false,
+        "t": 27.671
+       },
+       "uefi": {
+        "line": 3115,
+        "replayed": true,
+        "t": 16.069
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/601796#L2604"
+     },
+     {
+      "complete": true,
+      "device": "rb3g2-01",
+      "end_time": "2026-11-22T15:38:36.787633Z",
+      "fastboot": true,
+      "job": 601218,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/601218",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2591,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3233,
+        "replayed": true,
+        "t": 18.008
+       },
+       "hyp": {
+        "line": 3120,
+        "replayed": true,
+        "t": 17.991
+       },
+       "init": {
+        "line": 3813,
+        "replayed": false,
+        "t": 22.52
+       },
+       "linux": {
+        "line": 3239,
+        "replayed": false,
+        "t": 18.312
+       },
+       "loader": {
+        "line": 2620,
+        "replayed": true,
+        "t": 17.947
+       },
+       "loader_end": {
+        "line": 2934,
+        "replayed": true,
+        "t": 17.975
+       },
+       "login": {
+        "line": 3992,
+        "replayed": false,
+        "t": 29.719
+       },
+       "uefi": {
+        "line": 3130,
+        "replayed": true,
+        "t": 17.992
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/601218#L2591"
+     },
+     {
+      "complete": true,
+      "device": "rb3g2-02",
+      "end_time": "2026-11-22T11:44:03.181608Z",
+      "fastboot": true,
+      "job": 600939,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600939",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2440,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 2830,
+        "replayed": true,
+        "t": 8.118
+       },
+       "hyp": {
+        "line": 2717,
+        "replayed": true,
+        "t": 8.049
+       },
+       "init": {
+        "line": 3410,
+        "replayed": false,
+        "t": 12.582
+       },
+       "linux": {
+        "line": 2836,
+        "replayed": false,
+        "t": 8.387
+       },
+       "loader": {
+        "line": 2469,
+        "replayed": true,
+        "t": 8.044
+       },
+       "loader_end": {
+        "line": 2713,
+        "replayed": true,
+        "t": 8.049
+       },
+       "login": {
+        "line": 3589,
+        "replayed": false,
+        "t": 19.526
+       },
+       "uefi": {
+        "line": 2727,
+        "replayed": true,
+        "t": 8.049
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600939#L2440"
+     },
+     {
+      "complete": true,
+      "device": "rb3g2-03",
+      "end_time": "2026-11-22T08:47:48.251561Z",
+      "fastboot": true,
+      "job": 600882,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600882",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2604,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3225,
+        "replayed": true,
+        "t": 18.709
+       },
+       "hyp": {
+        "line": 3118,
+        "replayed": true,
+        "t": 18.7
+       },
+       "init": {
+        "line": 3805,
+        "replayed": false,
+        "t": 23.11
+       },
+       "linux": {
+        "line": 3231,
+        "replayed": false,
+        "t": 18.947
+       },
+       "loader": {
+        "line": 2633,
+        "replayed": true,
+        "t": 18.659
+       },
+       "loader_end": {
+        "line": 2933,
+        "replayed": true,
+        "t": 18.685
+       },
+       "login": {
+        "line": 3984,
+        "replayed": false,
+        "t": 30.198
+       },
+       "uefi": {
+        "line": 3128,
+        "replayed": true,
+        "t": 18.701
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600882#L2604"
+     }
+    ],
+    "device_type": "qcs6490-rb3gen2",
+    "median": {
+     "init": 22.52,
+     "linux": 18.312,
+     "login": 29.719
+    }
+   },
+   "shikra-iqs-evk": {
+    "boots": [
+     {
+      "complete": true,
+      "device": "shikra-cmb-01",
+      "end_time": "2026-11-23T07:24:40.029803Z",
+      "fastboot": false,
+      "job": 602611,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/602611",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 1536,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 1840,
+        "replayed": false,
+        "t": 8.703
+       },
+       "hyp": {
+        "line": 1698,
+        "replayed": false,
+        "t": 5.615
+       },
+       "init": {
+        "line": 2519,
+        "replayed": false,
+        "t": 13.996
+       },
+       "linux": {
+        "line": 1848,
+        "replayed": false,
+        "t": 9.327
+       },
+       "loader": {
+        "line": 1553,
+        "replayed": true,
+        "t": 2.316
+       },
+       "loader_end": {
+        "line": 1693,
+        "replayed": false,
+        "t": 5.452
+       },
+       "login": {
+        "line": 3104,
+        "replayed": false,
+        "t": 37.918
+       },
+       "uefi": {
+        "line": 1706,
+        "replayed": false,
+        "t": 5.74
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/602611#L1536"
+     },
+     {
+      "complete": true,
+      "device": "shikra-hyd-05",
+      "end_time": "2026-11-23T05:17:13.645085Z",
+      "fastboot": false,
+      "job": 602338,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/602338",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 1537,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 1838,
+        "replayed": false,
+        "t": 6.766
+       },
+       "hyp": {
+        "line": 1701,
+        "replayed": false,
+        "t": 3.931
+       },
+       "init": {
+        "line": 2520,
+        "replayed": false,
+        "t": 12.107
+       },
+       "linux": {
+        "line": 1846,
+        "replayed": false,
+        "t": 7.406
+       },
+       "loader": {
+        "line": 1553,
+        "replayed": true,
+        "t": 2.342
+       },
+       "loader_end": {
+        "line": 1696,
+        "replayed": false,
+        "t": 3.771
+       },
+       "login": {
+        "line": 3243,
+        "replayed": false,
+        "t": 35.309
+       },
+       "uefi": {
+        "line": 1709,
+        "replayed": false,
+        "t": 4.046
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/602338#L1537"
+     },
+     {
+      "complete": true,
+      "device": "shikra-cmb-02",
+      "end_time": "2026-11-22T14:21:03.974384Z",
+      "fastboot": false,
+      "job": 601196,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/601196",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 1538,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 1840,
+        "replayed": false,
+        "t": 6.929
+       },
+       "hyp": {
+        "line": 1703,
+        "replayed": false,
+        "t": 3.902
+       },
+       "init": {
+        "line": 2521,
+        "replayed": false,
+        "t": 12.222
+       },
+       "linux": {
+        "line": 1848,
+        "replayed": false,
+        "t": 7.553
+       },
+       "loader": {
+        "line": 1555,
+        "replayed": true,
+        "t": 2.312
+       },
+       "loader_end": {
+        "line": 1698,
+        "replayed": false,
+        "t": 3.729
+       },
+       "login": {
+        "line": 3101,
+        "replayed": false,
+        "t": 34.209
+       },
+       "uefi": {
+        "line": 1711,
+        "replayed": false,
+        "t": 4.014
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/601196#L1538"
+     },
+     {
+      "complete": true,
+      "device": "shikra-hyd-03",
+      "end_time": "2026-11-22T12:45:51.441528Z",
+      "fastboot": false,
+      "job": 600962,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600962",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 1524,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 1827,
+        "replayed": false,
+        "t": 8.7
+       },
+       "hyp": {
+        "line": 1685,
+        "replayed": false,
+        "t": 5.641
+       },
+       "init": {
+        "line": 2498,
+        "replayed": false,
+        "t": 13.981
+       },
+       "linux": {
+        "line": 1835,
+        "replayed": false,
+        "t": 9.369
+       },
+       "loader": {
+        "line": 1540,
+        "replayed": true,
+        "t": 2.34
+       },
+       "loader_end": {
+        "line": 1680,
+        "replayed": false,
+        "t": 5.468
+       },
+       "login": {
+        "line": 3157,
+        "replayed": false,
+        "t": 38.622
+       },
+       "uefi": {
+        "line": 1693,
+        "replayed": false,
+        "t": 5.754
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600962#L1524"
+     },
+     {
+      "complete": true,
+      "device": "shikra-hyd-07",
+      "end_time": "2026-11-22T12:41:26.941635Z",
+      "fastboot": false,
+      "job": 600945,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600945",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 1537,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 1841,
+        "replayed": false,
+        "t": 8.386
+       },
+       "hyp": {
+        "line": 1698,
+        "replayed": false,
+        "t": 5.696
+       },
+       "init": {
+        "line": 2522,
+        "replayed": false,
+        "t": 13.698
+       },
+       "linux": {
+        "line": 1849,
+        "replayed": false,
+        "t": 9.007
+       },
+       "loader": {
+        "line": 1553,
+        "replayed": true,
+        "t": 2.334
+       },
+       "loader_end": {
+        "line": 1693,
+        "replayed": false,
+        "t": 5.52
+       },
+       "login": {
+        "line": 3184,
+        "replayed": false,
+        "t": 38.321
+       },
+       "uefi": {
+        "line": 1706,
+        "replayed": false,
+        "t": 5.807
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600945#L1537"
+     }
+    ],
+    "device_type": "shikra-iqs-evk",
+    "median": {
+     "ebs": 8.386,
+     "hyp": 5.615,
+     "init": 13.698,
+     "linux": 9.007,
+     "loader_end": 5.452,
+     "login": 37.918,
+     "uefi": 5.74
+    }
+   },
+   "sm8750-mtp": {
+    "boots": [
+     {
+      "complete": true,
+      "device": "pakala-hyd-04",
+      "end_time": "2026-11-22T12:45:42.269332Z",
+      "fastboot": false,
+      "job": 600967,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600967",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2517,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3046,
+        "replayed": false,
+        "t": 5.993
+       },
+       "hyp": {
+        "line": 2801,
+        "replayed": false,
+        "t": 4.473
+       },
+       "init": {
+        "line": 3759,
+        "replayed": false,
+        "t": 11.241
+       },
+       "linux": {
+        "line": 3062,
+        "replayed": false,
+        "t": 6.3
+       },
+       "loader": {
+        "line": 2532,
+        "replayed": true,
+        "t": 2.328
+       },
+       "loader_end": {
+        "line": 2797,
+        "replayed": false,
+        "t": 4.281
+       },
+       "login": {
+        "line": 4127,
+        "replayed": false,
+        "t": 20.908
+       },
+       "uefi": {
+        "line": 2809,
+        "replayed": false,
+        "t": 4.537
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600967#L2517"
+     },
+     {
+      "complete": true,
+      "device": "pakala-hyd-05",
+      "end_time": "2026-11-22T12:43:57.851189Z",
+      "fastboot": false,
+      "job": 600964,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600964",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2739,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3266,
+        "replayed": false,
+        "t": 5.735
+       },
+       "hyp": {
+        "line": 3021,
+        "replayed": false,
+        "t": 4.202
+       },
+       "init": {
+        "line": 3986,
+        "replayed": false,
+        "t": 11.034
+       },
+       "linux": {
+        "line": 3282,
+        "replayed": false,
+        "t": 6.039
+       },
+       "loader": {
+        "line": 2754,
+        "replayed": true,
+        "t": 2.335
+       },
+       "loader_end": {
+        "line": 3017,
+        "replayed": false,
+        "t": 4.01
+       },
+       "login": {
+        "line": 4354,
+        "replayed": false,
+        "t": 23.85
+       },
+       "uefi": {
+        "line": 3029,
+        "replayed": false,
+        "t": 4.266
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600964#L2739"
+     },
+     {
+      "complete": true,
+      "device": "pakala-hyd-06",
+      "end_time": "2026-11-22T12:40:17.385031Z",
+      "fastboot": false,
+      "job": 600959,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600959",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2739,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3266,
+        "replayed": false,
+        "t": 6.009
+       },
+       "hyp": {
+        "line": 3021,
+        "replayed": false,
+        "t": 4.489
+       },
+       "init": {
+        "line": 3988,
+        "replayed": false,
+        "t": 11.321
+       },
+       "linux": {
+        "line": 3282,
+        "replayed": false,
+        "t": 6.313
+       },
+       "loader": {
+        "line": 2754,
+        "replayed": false,
+        "t": 2.522
+       },
+       "loader_end": {
+        "line": 3017,
+        "replayed": false,
+        "t": 4.301
+       },
+       "login": {
+        "line": 4341,
+        "replayed": false,
+        "t": 24.107
+       },
+       "uefi": {
+        "line": 3029,
+        "replayed": false,
+        "t": 4.553
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600959#L2739"
+     },
+     {
+      "complete": true,
+      "device": "pakala-hyd-03",
+      "end_time": "2026-11-22T12:39:42.155751Z",
+      "fastboot": false,
+      "job": 600958,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600958",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2739,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3266,
+        "replayed": false,
+        "t": 6.068
+       },
+       "hyp": {
+        "line": 3021,
+        "replayed": false,
+        "t": 4.535
+       },
+       "init": {
+        "line": 4080,
+        "replayed": false,
+        "t": 12.019
+       },
+       "linux": {
+        "line": 3282,
+        "replayed": false,
+        "t": 6.372
+       },
+       "loader": {
+        "line": 2754,
+        "replayed": false,
+        "t": 2.628
+       },
+       "loader_end": {
+        "line": 3017,
+        "replayed": false,
+        "t": 4.355
+       },
+       "login": {
+        "line": 4328,
+        "replayed": false,
+        "t": 23.126
+       },
+       "uefi": {
+        "line": 3029,
+        "replayed": false,
+        "t": 4.599
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600958#L2739"
+     },
+     {
+      "complete": true,
+      "device": "pakala-hyd-02",
+      "end_time": "2026-11-22T12:40:19.045387Z",
+      "fastboot": false,
+      "job": 600957,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600957",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2739,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3261,
+        "replayed": false,
+        "t": 6.083
+       },
+       "hyp": {
+        "line": 3021,
+        "replayed": false,
+        "t": 4.515
+       },
+       "init": {
+        "line": 3972,
+        "replayed": false,
+        "t": 11.334
+       },
+       "linux": {
+        "line": 3277,
+        "replayed": false,
+        "t": 6.403
+       },
+       "loader": {
+        "line": 2754,
+        "replayed": false,
+        "t": 2.611
+       },
+       "loader_end": {
+        "line": 3017,
+        "replayed": false,
+        "t": 4.327
+       },
+       "login": {
+        "line": 4326,
+        "replayed": false,
+        "t": 24.358
+       },
+       "uefi": {
+        "line": 3029,
+        "replayed": false,
+        "t": 4.58
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600957#L2739"
+     }
+    ],
+    "device_type": "sm8750-mtp",
+    "median": {
+     "ebs": 6.009,
+     "hyp": 4.489,
+     "init": 11.321,
+     "linux": 6.313,
+     "loader_end": 4.301,
+     "login": 23.85,
+     "uefi": 4.553
+    }
+   },
+   "uno-q": {
+    "boots": [
+     {
+      "complete": true,
+      "device": "unoq-04",
+      "end_time": "2026-11-23T05:23:19.525037Z",
+      "fastboot": false,
+      "job": 602339,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/602339",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 3307,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3606,
+        "replayed": false,
+        "t": 2.027
+       },
+       "init": {
+        "line": 3968,
+        "replayed": false,
+        "t": 10.405
+       },
+       "linux": {
+        "line": 3635,
+        "replayed": false,
+        "t": 8.415
+       },
+       "loader": {
+        "line": 3323,
+        "replayed": true,
+        "t": 0.202
+       },
+       "loader_end": {
+        "line": 3512,
+        "replayed": false,
+        "t": 1.4
+       },
+       "login": {
+        "line": 4328,
+        "replayed": false,
+        "t": 26.717
+       },
+       "uboot": {
+        "line": 3612,
+        "replayed": false,
+        "t": 2.51
+       },
+       "uefi": {
+        "line": 3518,
+        "replayed": false,
+        "t": 1.599
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/602339#L3307"
+     },
+     {
+      "complete": true,
+      "device": "unoq-01",
+      "end_time": "2026-11-23T02:04:23.738859Z",
+      "fastboot": false,
+      "job": 601870,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/601870",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 3303,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3598,
+        "replayed": false,
+        "t": 3.799
+       },
+       "init": {
+        "line": 3960,
+        "replayed": false,
+        "t": 13.667
+       },
+       "linux": {
+        "line": 3627,
+        "replayed": false,
+        "t": 11.703
+       },
+       "loader": {
+        "line": 3319,
+        "replayed": true,
+        "t": 0.267
+       },
+       "loader_end": {
+        "line": 3506,
+        "replayed": false,
+        "t": 1.47
+       },
+       "login": {
+        "line": 4329,
+        "replayed": false,
+        "t": 33.138
+       },
+       "uboot": {
+        "line": 3604,
+        "replayed": false,
+        "t": 4.291
+       },
+       "uefi": {
+        "line": 3512,
+        "replayed": false,
+        "t": 1.649
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/601870#L3303"
+     },
+     {
+      "complete": true,
+      "device": "unoq-03",
+      "end_time": "2026-11-22T15:50:39.577881Z",
+      "fastboot": false,
+      "job": 601217,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/601217",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 3282,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3581,
+        "replayed": false,
+        "t": 2.058
+       },
+       "init": {
+        "line": 3943,
+        "replayed": false,
+        "t": 10.474
+       },
+       "linux": {
+        "line": 3610,
+        "replayed": false,
+        "t": 8.504
+       },
+       "loader": {
+        "line": 3298,
+        "replayed": true,
+        "t": 0.285
+       },
+       "loader_end": {
+        "line": 3487,
+        "replayed": false,
+        "t": 1.452
+       },
+       "login": {
+        "line": 4317,
+        "replayed": false,
+        "t": 27.64
+       },
+       "uboot": {
+        "line": 3587,
+        "replayed": false,
+        "t": 2.552
+       },
+       "uefi": {
+        "line": 3493,
+        "replayed": false,
+        "t": 1.631
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/601217#L3282"
+     },
+     {
+      "complete": true,
+      "device": "unoq-02",
+      "end_time": "2026-11-22T14:20:36.805955Z",
+      "fastboot": false,
+      "job": 601153,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/601153",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 3275,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3570,
+        "replayed": false,
+        "t": 3.265
+       },
+       "init": {
+        "line": 3932,
+        "replayed": false,
+        "t": 13.152
+       },
+       "linux": {
+        "line": 3599,
+        "replayed": false,
+        "t": 11.188
+       },
+       "loader": {
+        "line": 3291,
+        "replayed": true,
+        "t": 0.275
+       },
+       "loader_end": {
+        "line": 3478,
+        "replayed": false,
+        "t": 1.439
+       },
+       "login": {
+        "line": 4299,
+        "replayed": false,
+        "t": 30.75
+       },
+       "uboot": {
+        "line": 3576,
+        "replayed": false,
+        "t": 3.745
+       },
+       "uefi": {
+        "line": 3484,
+        "replayed": false,
+        "t": 1.618
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/601153#L3275"
+     },
+     {
+      "complete": true,
+      "device": "unoq-08",
+      "end_time": "2026-11-22T12:46:35.568671Z",
+      "fastboot": false,
+      "job": 600956,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600956",
+      "kind": "cold",
+      "last_stage": "login",
+      "ref_line": 3309,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 3608,
+        "replayed": false,
+        "t": 2.038
+       },
+       "init": {
+        "line": 3970,
+        "replayed": false,
+        "t": 10.426
+       },
+       "linux": {
+        "line": 3637,
+        "replayed": false,
+        "t": 8.436
+       },
+       "loader": {
+        "line": 3325,
+        "replayed": true,
+        "t": 0.21
+       },
+       "loader_end": {
+        "line": 3514,
+        "replayed": false,
+        "t": 1.42
+       },
+       "login": {
+        "line": 4339,
+        "replayed": false,
+        "t": 26.717
+       },
+       "uboot": {
+        "line": 3614,
+        "replayed": false,
+        "t": 2.525
+       },
+       "uefi": {
+        "line": 3520,
+        "replayed": false,
+        "t": 1.615
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600956#L3309"
+     }
+    ],
+    "device_type": "qrb2210-arduino-imola",
+    "median": {
+     "ebs": 2.058,
+     "init": 10.474,
+     "linux": 8.504,
+     "loader_end": 1.439,
+     "login": 27.64,
+     "uboot": 2.552,
+     "uefi": 1.618
+    }
+   },
+   "ventuno-q": {
+    "boots": [
+     {
+      "complete": true,
+      "device": "ventunoq-01",
+      "end_time": "2026-11-22T20:05:25.206718Z",
+      "fastboot": false,
+      "job": 601749,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/601749",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2002,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 2376,
+        "replayed": false,
+        "t": 4.918
+       },
+       "hyp": {
+        "line": 2206,
+        "replayed": false,
+        "t": 1.737
+       },
+       "init": {
+        "line": 3169,
+        "replayed": false,
+        "t": 11.022
+       },
+       "linux": {
+        "line": 2387,
+        "replayed": false,
+        "t": 5.32
+       },
+       "loader": {
+        "line": 2017,
+        "replayed": false,
+        "t": 0.606
+       },
+       "loader_end": {
+        "line": 2201,
+        "replayed": false,
+        "t": 1.613
+       },
+       "login": {
+        "line": 3809,
+        "replayed": false,
+        "t": 31.233
+       },
+       "uefi": {
+        "line": 2265,
+        "replayed": false,
+        "t": 2.168
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/601749#L2002"
+     },
+     {
+      "complete": true,
+      "device": "ventunoq-hyd-02",
+      "end_time": "2026-11-22T10:07:40.413070Z",
+      "fastboot": false,
+      "job": 600889,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/600889",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2015,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 2395,
+        "replayed": false,
+        "t": 4.89
+       },
+       "hyp": {
+        "line": 2220,
+        "replayed": false,
+        "t": 1.624
+       },
+       "init": {
+        "line": 3182,
+        "replayed": false,
+        "t": 10.911
+       },
+       "linux": {
+        "line": 2406,
+        "replayed": false,
+        "t": 5.248
+       },
+       "loader": {
+        "line": 2031,
+        "replayed": false,
+        "t": 0.491
+       },
+       "loader_end": {
+        "line": 2215,
+        "replayed": false,
+        "t": 1.512
+       },
+       "login": {
+        "line": 3834,
+        "replayed": false,
+        "t": 30.887
+       },
+       "uefi": {
+        "line": 2279,
+        "replayed": false,
+        "t": 2.079
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/600889#L2015"
+     },
+     {
+      "complete": true,
+      "device": "ventunoq-01",
+      "end_time": "2026-11-21T20:05:25.941297Z",
+      "fastboot": false,
+      "job": 599281,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/599281",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2002,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 2376,
+        "replayed": false,
+        "t": 4.929
+       },
+       "hyp": {
+        "line": 2206,
+        "replayed": false,
+        "t": 1.744
+       },
+       "init": {
+        "line": 3160,
+        "replayed": false,
+        "t": 10.9
+       },
+       "linux": {
+        "line": 2387,
+        "replayed": false,
+        "t": 5.291
+       },
+       "loader": {
+        "line": 2017,
+        "replayed": false,
+        "t": 0.609
+       },
+       "loader_end": {
+        "line": 2201,
+        "replayed": false,
+        "t": 1.619
+       },
+       "login": {
+        "line": 3787,
+        "replayed": false,
+        "t": 30.887
+       },
+       "uefi": {
+        "line": 2265,
+        "replayed": false,
+        "t": 2.174
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/599281#L2002"
+     },
+     {
+      "complete": true,
+      "device": "ventunoq-hyd-02",
+      "end_time": "2026-11-21T10:07:58.672647Z",
+      "fastboot": false,
+      "job": 598410,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/598410",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2002,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 2381,
+        "replayed": false,
+        "t": 4.894
+       },
+       "hyp": {
+        "line": 2206,
+        "replayed": false,
+        "t": 1.617
+       },
+       "init": {
+        "line": 3164,
+        "replayed": false,
+        "t": 10.908
+       },
+       "linux": {
+        "line": 2392,
+        "replayed": false,
+        "t": 5.266
+       },
+       "loader": {
+        "line": 2017,
+        "replayed": false,
+        "t": 0.491
+       },
+       "loader_end": {
+        "line": 2201,
+        "replayed": false,
+        "t": 1.511
+       },
+       "login": {
+        "line": 3811,
+        "replayed": false,
+        "t": 29.718
+       },
+       "uefi": {
+        "line": 2265,
+        "replayed": false,
+        "t": 2.075
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/598410#L2002"
+     },
+     {
+      "complete": true,
+      "device": "ventunoq-01",
+      "end_time": "2026-11-20T20:04:24.959701Z",
+      "fastboot": false,
+      "job": 595276,
+      "job_url": "https://lava.infra.foundries.io/scheduler/job/595276",
+      "kind": "first",
+      "last_stage": "login",
+      "ref_line": 2002,
+      "reset": null,
+      "stages": {
+       "ebs": {
+        "line": 2376,
+        "replayed": false,
+        "t": 5.994
+       },
+       "hyp": {
+        "line": 2206,
+        "replayed": false,
+        "t": 1.737
+       },
+       "init": {
+        "line": 3159,
+        "replayed": false,
+        "t": 12.026
+       },
+       "linux": {
+        "line": 2387,
+        "replayed": false,
+        "t": 6.37
+       },
+       "loader": {
+        "line": 2017,
+        "replayed": false,
+        "t": 0.607
+       },
+       "loader_end": {
+        "line": 2201,
+        "replayed": false,
+        "t": 1.613
+       },
+       "login": {
+        "line": 3790,
+        "replayed": false,
+        "t": 30.781
+       },
+       "uefi": {
+        "line": 2265,
+        "replayed": false,
+        "t": 2.169
+       }
+      },
+      "url": "https://lava.infra.foundries.io/scheduler/job/595276#L2002"
+     }
+    ],
+    "device_type": "monaco-arduino-monza",
+    "median": {
+     "ebs": 4.918,
+     "hyp": 1.737,
+     "init": 10.911,
+     "linux": 5.291,
+     "loader": 0.606,
+     "loader_end": 1.613,
+     "login": 30.887,
+     "uefi": 2.168
+    }
+   }
+  },
+  "source": "LAVA health checks of the board's device type: its downstream firmware booting the lab's image",
+  "tool": "lava-boottime daf3b44940e8",
+  "version": 1
+ },
+ "host_checks": [
+  {
+   "name": "buildman",
+   "result": "pass",
+   "summary": "every snapdragon board built without warnings"
+  },
+  {
+   "name": "carry",
+   "result": "fail",
+   "summary": "config/carry.yaml is stale for [('lemans-evk', 'optee'), ('lemans-evk', 'tf-a'), ('qcs615-ride', 'optee'), ('qcs615-ride', 'tf-a'), ('rb3gen2', 'optee'), ('rb3gen2', 'tf-a'), ('shikra-iqs-evk', 'optee'), ('shikra-iqs-evk', 'tf-a'), ('uno-q', 'optee'), ('uno-q', 'tf-a'), ('ventuno-q', 'optee'), ('ventuno-q', 'tf-a')]; run python3 -m ubci.carry"
+  },
+  {
+   "name": "checkpatch",
+   "result": "pass",
+   "summary": "0 new commits: 0 with errors, 0 with warnings only"
+  },
+  {
+   "name": "docs",
+   "result": "pass",
+   "summary": "htmldocs built without warnings"
+  },
+  {
+   "name": "fragments",
+   "result": "pass",
+   "summary": "1 combinations built"
+  },
+  {
+   "name": "qemu_arm64",
+   "result": "pass",
+   "summary": "251 passed, 612 skipped, 2 deselected in 114.49s (0:01:54)"
+  },
+  {
+   "name": "sandbox",
+   "result": "pass",
+   "summary": "1457 passed, 229 skipped, 3 deselected, 1 xfailed in 921.56s (0:15:21)"
+  },
+  {
+   "name": "size",
+   "result": "pass",
+   "summary": "kaanapali-mtp-open 1688568 B, lemans-evk-open 1712864 B, lemans-evk-stock 1716752 B, qcs615-ride-open 1652088 B, qcs615-ride-stock 1622120 B, rb3gen2-open 1708248 B, rb3gen2-stock 1699504 B, sm8750-mtp-open 1684888 B, uno-q-open 1611616 B, uno-q-stock 0 B, ventuno-q-open 1693904 B, ventuno-q-stock 1704920 B"
+  }
+ ],
+ "linux": {
+  "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+  "config": "arch/arm64/configs/defconfig",
+  "image_sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+  "modules_sha256": "76119dc3efbd38ccb9daf12256fdcb10173bf68e867493ad62049735fe77e5a9",
+  "release": "7.4.0-rc3-next-20261120",
+  "tag": "next-20261120",
+  "tag_url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tag/?h=next-20261120",
+  "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+ },
  "project": "u-boot",
  "run": {
   "base": {
@@ -15,7 +2381,7 @@
   "kind": "nightly",
   "series": null,
   "title": "main e578056c766d",
-  "updated": "2026-11-23T09:18:23Z"
+  "updated": "2026-11-24T10:35:05Z"
  },
  "schema": "fwci-run/1",
  "state": "building",
@@ -56,7 +2422,7 @@
       {
        "name": "qcm6490_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       }
      ],
      "device_tree": "qcom/qcs6490-rb3gen2",
@@ -65,6 +2431,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "96ccdeb0c80cb616c7dca7dc86945e7b40e20cbb6c3c6b4419ac9317f5a3512b",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
     },
     {
@@ -99,10 +2466,39 @@
      "release": "QCM6490 boot binaries 00150",
      "role": "stock",
      "upstream": null
+    },
+    {
+     "boottime_case": null,
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtb_sha256": "5f7d4f9a12f9cbba326eb7caa8db1d0e22caf683e486c3e9a6c7c86e2d6e8f82",
+     "dtbs": [
+      {
+       "name": "qcom/qcs6490-rb3gen2.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-stock-rb3gen2",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": null,
+    "job_id": 607249,
+    "url": "https://lava.infra.foundries.io/scheduler/job/607249"
+   },
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
@@ -159,12 +2555,12 @@
       {
        "name": "qcom_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "tfa-optee.config",
        "optional": false,
-       "used": null
+       "used": true
       }
      ],
      "device_tree": "qcom/qcs6490-rb3gen2",
@@ -173,6 +2569,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "90784afeb4b2da3b07c76dfe4f207587fc08aded6861c6339110983afe5b25e6",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
     },
     {
@@ -1223,6 +3620,29 @@
      "sha256": "b2d34123ec9343855d045173bb016f42dad9dae3c26c9319acbeee44644d2abb",
      "upstream": null,
      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/c6dedc7baa16400fc084dc9ff5e6533fd796bcce"
+    },
+    {
+     "boottime_case": null,
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtb_sha256": "5f7d4f9a12f9cbba326eb7caa8db1d0e22caf683e486c3e9a6c7c86e2d6e8f82",
+     "dtbs": [
+      {
+       "name": "qcom/qcs6490-rb3gen2.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-open-rb3gen2",
@@ -1251,6 +3671,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
+    },
+    {
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/qcs6490-rb3gen2.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-spl-rb3gen2",
@@ -1265,7 +3706,8 @@
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board"
   },
   {
    "board": "ventuno-q",
@@ -1303,7 +3745,7 @@
       {
        "name": "qcom_monaco_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       }
      ],
      "device_tree": "qcom/monaco-arduino-monza",
@@ -1312,6 +3754,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "ff329a60fa6875bd3b47e323ca749138e397139b67028f9103c5956bbfa2133f",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
     },
     {
@@ -1353,10 +3796,39 @@
      "release": "QCS8300 boot binaries 00150",
      "role": "stock",
      "upstream": null
+    },
+    {
+     "boottime_case": null,
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtb_sha256": "5e0715e44af0e6b6f12eb17e90af1a651b3e04ff0d90f55e1e1dbf80d4e19b66",
+     "dtbs": [
+      {
+       "name": "qcom/monaco-arduino-monza.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-stock-ventuno-q",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": null,
+    "job_id": 607250,
+    "url": "https://lava.infra.foundries.io/scheduler/job/607250"
+   },
    "linux_boot": {
     "gaps": [
      "upstream U-Boot does not support this board yet: without the VENTUNO Q series (QCS8300 pinctrl, GCC SDCC clocks, board config) the eMMC does not probe and U-Boot finds nothing to boot"
@@ -1415,17 +3887,17 @@
       {
        "name": "qcom_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "tfa-optee.config",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "arduino-ventuno-q.config",
        "optional": true,
-       "used": null
+       "used": false
       }
      ],
      "device_tree": "qcom/monaco-arduino-monza",
@@ -1434,6 +3906,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "600e6e2040dacee88ea729b5a733edd02fdb848080b3f29de23fdcaf95a3e2df",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
     },
     {
@@ -2491,6 +4964,33 @@
      "sha256": "ed478a09a84f0178d0a8cf4ef5c10e9e4eb171c821a88283e7fc793e32e61288",
      "upstream": null,
      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/c6dedc7baa16400fc084dc9ff5e6533fd796bcce"
+    },
+    {
+     "boottime_case": null,
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtb_sha256": "24c0511b2fb135a1ea90c7b578d2dec2184702c63121d343b36bbcd188f6716a",
+     "dtbs": [
+      {
+       "name": "qcom/monaco-arduino-monza.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      },
+      {
+       "name": "qcom/monaco-el2.dtbo",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/monaco-el2.dtso?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-open-ventuno-q",
@@ -2519,6 +5019,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
+    },
+    {
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/monaco-arduino-monza.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-spl-ventuno-q",
@@ -2533,7 +5054,8 @@
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board"
   },
   {
    "board": "uno-q",
@@ -2575,7 +5097,7 @@
       {
        "name": "qcom_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       }
      ],
      "device_tree": "qcom/qrb2210-arduino-imola",
@@ -2584,6 +5106,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "d8d116b7da5b7b78d46c82fd52126d8ae7efa7f2934851c09c1a41668b21890a",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
     },
     {
@@ -2615,10 +5138,39 @@
      "release": "Arduino UNO Q boot firmware 251020",
      "role": "stock",
      "upstream": null
+    },
+    {
+     "boottime_case": null,
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtb_sha256": "31b43c9f8876253f62fbdb4d2a074e8846531ce0292d4fe830032fe4fc9fc764",
+     "dtbs": [
+      {
+       "name": "qcom/qrb2210-arduino-imola.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-stock-uno-q",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": null,
+    "job_id": 607251,
+    "url": "https://lava.infra.foundries.io/scheduler/job/607251"
+   },
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
@@ -2675,17 +5227,17 @@
       {
        "name": "qcom_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "tfa-optee.config",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "arduino-uno-q.config",
        "optional": true,
-       "used": null
+       "used": false
       }
      ],
      "device_tree": "qcom/qrb2210-arduino-imola",
@@ -2694,6 +5246,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "488f4cf71cdd882c1029246315c06ceefb5c93a9d9828241ff453fddb61aa413",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
     },
     {
@@ -3734,6 +6287,29 @@
      "sha256": "d3eeb033d55602e2c950e3afd3afde17d99ff33c2cf201d36c3f9b85708f0a53",
      "upstream": null,
      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/c6dedc7baa16400fc084dc9ff5e6533fd796bcce"
+    },
+    {
+     "boottime_case": null,
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtb_sha256": "31b43c9f8876253f62fbdb4d2a074e8846531ce0292d4fe830032fe4fc9fc764",
+     "dtbs": [
+      {
+       "name": "qcom/qrb2210-arduino-imola.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-open-uno-q",
@@ -3762,6 +6338,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
+    },
+    {
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/qrb2210-arduino-imola.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-spl-uno-q",
@@ -3776,7 +6373,8 @@
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board"
   },
   {
    "board": "qcs615-ride",
@@ -3814,7 +6412,7 @@
       {
        "name": "qcom_qcs615_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       }
      ],
      "device_tree": "qcom/qcs615-ride",
@@ -3823,6 +6421,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "954f4aca8fee8f0b6bb2874fa468119d67cbbe9356bc4b0c16054ac35498c2d5",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
     },
     {
@@ -3852,10 +6451,39 @@
      "release": "QCS615 boot binaries 00142",
      "role": "stock",
      "upstream": null
+    },
+    {
+     "boottime_case": null,
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtb_sha256": "3bfa5d37a2a26d6cf4013d3c6c313859d3fb8c2e87495e18919df0289b377e8b",
+     "dtbs": [
+      {
+       "name": "qcom/qcs615-ride.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qcs615-ride.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-stock-qcs615-ride",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": null,
+    "job_id": 607252,
+    "url": "https://lava.infra.foundries.io/scheduler/job/607252"
+   },
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
@@ -3912,17 +6540,17 @@
       {
        "name": "qcom_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "tfa-optee.config",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "qcs615-ride.config",
        "optional": true,
-       "used": null
+       "used": false
       }
      ],
      "device_tree": "qcom/qcs615-ride",
@@ -3931,6 +6559,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "abe96b5d1311cef26e78649a2ecb4485b7bab8b30905aed5df5d9105ac5bcdec",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
     },
     {
@@ -4976,6 +7605,33 @@
      "sha256": "5e2d730bcbd319c4e9ba9de6ba598bf55d32f9c419bb0403507c14a8b469c05a",
      "upstream": null,
      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/c6dedc7baa16400fc084dc9ff5e6533fd796bcce"
+    },
+    {
+     "boottime_case": null,
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtb_sha256": "d5c01918b63c5d602a09d9fa1e9bacfc567ef963d58c98ab5f72a3f89bc1b17b",
+     "dtbs": [
+      {
+       "name": "qcom/qcs615-ride.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qcs615-ride.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      },
+      {
+       "name": "qcom/talos-el2.dtbo",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/talos-el2.dtso?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-open-qcs615-ride",
@@ -5002,6 +7658,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
+    },
+    {
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/qcs615-ride.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/qcs615-ride.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-spl-qcs615-ride",
@@ -5016,7 +7693,8 @@
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board"
   },
   {
    "board": "lemans-evk",
@@ -5052,9 +7730,9 @@
      "commit": "e578056c766d653270b14557c2a9d8daec414c17",
      "configs": [
       {
-       "name": "qcom_lemans_defconfig",
+       "name": "qcom_qcs9100_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       }
      ],
      "device_tree": "qcom/lemans-evk",
@@ -5063,6 +7741,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "f73f910663248d115d26ab535c6b7f7ccebaa0adc8515c9db414ef2dbdeb1c7e",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
     },
     {
@@ -5097,10 +7776,39 @@
      "release": "QCS9100 boot binaries 00142",
      "role": "stock",
      "upstream": null
+    },
+    {
+     "boottime_case": null,
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtb_sha256": "fd818bb5e7eb965318676a1e1948c381b964e160616e31d31c45ee07307ff2f4",
+     "dtbs": [
+      {
+       "name": "qcom/lemans-evk.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/lemans-evk.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-stock-lemans-evk",
    "fingerprint_gate": "not-run",
+   "lava": {
+    "device": null,
+    "health": null,
+    "job_id": 607253,
+    "url": "https://lava.infra.foundries.io/scheduler/job/607253"
+   },
    "linux_boot": {
     "gaps": [],
     "stage": "not-reached",
@@ -5157,12 +7865,12 @@
       {
        "name": "qcom_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "tfa-optee.config",
        "optional": false,
-       "used": null
+       "used": true
       }
      ],
      "device_tree": "qcom/lemans-evk",
@@ -5171,6 +7879,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "c40856650765f136c699f729b4582ee0d87a559bbb244e84a1354fbfd0f81bda",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
     },
     {
@@ -6221,6 +8930,33 @@
      "sha256": "f93439ce34169eb61515e65a3c9a7ae506690851301affbe249654ce4ba2a5e3",
      "upstream": null,
      "url": "https://github.com/EmbeddedAndroid/arm-trusted-firmware/commit/c6dedc7baa16400fc084dc9ff5e6533fd796bcce"
+    },
+    {
+     "boottime_case": null,
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtb_sha256": "cb75a9ed8e2ed56ba3368ae6563a88eb9d7e15d5c6dc67e609105d37eb58c22f",
+     "dtbs": [
+      {
+       "name": "qcom/lemans-evk.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/lemans-evk.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      },
+      {
+       "name": "qcom/lemans-el2.dtbo",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/lemans-el2.dtso?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-open-lemans-evk",
@@ -7344,6 +10080,31 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
+    },
+    {
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/lemans-evk.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/lemans-evk.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      },
+      {
+       "name": "qcom/lemans-el2.dtbo",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/lemans-el2.dtso?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-spl-lemans-evk",
@@ -7395,7 +10156,8 @@
     ]
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no upstream SPL: qcom_lemans_spl_defconfig not in the tree; in flight: Enable U-Boot SPL support for Lemans EVK v4 <20260928-spl-lemans-v4-0-007635cc4667@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: ufs: add UFS boot support for Qualcomm Snapdragon in SPL v4 <20261019-spl_ufs-v4-0-61432d0b258c@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: Add NVMEM bitfield support and reboot-mode v5 <20261009181252.2334254-1-aswin.murugan@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>"
   },
   {
    "board": "shikra-iqs-evk",
@@ -7466,6 +10228,27 @@
      "release": "SHIKRA boot binaries 00093",
      "role": "stock",
      "upstream": null
+    },
+    {
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/shikra-iqs-evk.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/shikra-iqs-evk.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-stock-shikra-iqs-evk",
@@ -7476,7 +10259,8 @@
     "verdict": "not-run"
    },
    "stack": "stock",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "board not in this base: none of qcom_shikra_iqs_defconfig"
   },
   {
    "board": "shikra-iqs-evk",
@@ -7492,6 +10276,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
+    },
+    {
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/shikra-iqs-evk.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/shikra-iqs-evk.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-open-shikra-iqs-evk",
@@ -7502,7 +10307,8 @@
     "verdict": "not-run"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no open stack for this board: the Shikra open stack boots through U-Boot SPL (the spl stack): TF-A shikra_evk builds BL31 only, there is no BL2 for a FIP flow"
   },
   {
    "board": "shikra-iqs-evk",
@@ -7518,6 +10324,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
+    },
+    {
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/shikra-iqs-evk.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/shikra-iqs-evk.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-spl-shikra-iqs-evk",
@@ -7596,7 +10423,8 @@
     ]
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no posted Shikra SPL enablement (defconfig, config fragment or Kconfig select); no posted FIT template (the CI carries its own, ubci/fit.py); in flight: Initial Shikra SoC support v4 <20261021160916.3894471-1-aswin.murugan@oss.qualcomm.com>; Enable HS200/HS400 eMMC modes on Qualcomm v2 <20260902170559.3225833-1-aswin.murugan@oss.qualcomm.com>; tools: qcom: mkmbn: ipq5210 and multi-elf v3 <20261005-ipq5210-v3-0-e0ec14fb5796@oss.qualcomm.com>; Qualcomm IPQ5210 SoC bringup (mach-snapdragon SPL) v10 <20261005-spl-v10-0-c4ca29bf27ed@oss.qualcomm.com>; spl: qcom: make Qualcomm drivers buildable in SPL v1 <20261019-spl_qcom_phase-v1-0-2d8f7a1e6730@oss.qualcomm.com>; qcom: shikra: add eMMC SPL boot support v2 <20261013053244.2954876-1-abhilash.v@oss.qualcomm.com>; qcom: shikra: SPL SD card boot v2 <20261013053517.2955571-1-abhilash.v@oss.qualcomm.com>; qcom: spl: enable CDT for shikra v2 <20261023084019.3722376-1-abhilash.v@oss.qualcomm.com>; DDR training for Shikra SPL v1 <20261021102602.3815107-1-kr.sowmiya@oss.qualcomm.com>; mach-snapdragon: fix OP-TEE SPL link failure v1 <20261005060628.595146-1-aswin.murugan@oss.qualcomm.com>"
   },
   {
    "board": "sm8750-mtp",
@@ -7612,6 +10440,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
+    },
+    {
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/sm8750-mtp.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/sm8750-mtp.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-stock-sm8750-mtp",
@@ -7622,7 +10471,8 @@
     "verdict": "not-run"
    },
    "stack": "stock",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)"
   },
   {
    "board": "sm8750-mtp",
@@ -7675,17 +10525,17 @@
       {
        "name": "qcom_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "tfa-optee.config",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "sm8750-mtp.config",
        "optional": true,
-       "used": null
+       "used": false
       }
      ],
      "device_tree": "qcom/sm8750-mtp",
@@ -7694,6 +10544,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "bb03e1d40418970a009d1ce1e3a9952b51ff49560797cd68d34f68530985fd73",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
     },
     {
@@ -7748,6 +10599,29 @@
      "sha256": "9c904af409bb8fe77c3cfc1e19b17c61a54fe68a65d1881bac563beccba2e23d",
      "upstream": null,
      "url": null
+    },
+    {
+     "boottime_case": null,
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtb_sha256": "39f6c77692b11413852a93ca27f489fb98b321165ddf7d7365ef06dbc44956fa",
+     "dtbs": [
+      {
+       "name": "qcom/sm8750-mtp.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/sm8750-mtp.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-open-sm8750-mtp",
@@ -7760,7 +10634,8 @@
     "verdict": "not-run"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "private firmware not available: tz-sm8750-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set"
   },
   {
    "board": "sm8750-mtp",
@@ -7776,6 +10651,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
+    },
+    {
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/sm8750-mtp.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/sm8750-mtp.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-spl-sm8750-mtp",
@@ -7790,7 +10686,8 @@
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board"
   },
   {
    "board": "kaanapali-mtp",
@@ -7806,6 +10703,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
+    },
+    {
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/kaanapali-mtp.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-stock-kaanapali-mtp",
@@ -7816,7 +10734,8 @@
     "verdict": "not-run"
    },
    "stack": "stock",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no stock stack for this board: only the open stack is tested on this Wildcat board: its TF-A and OP-TEE come from private, pinned images (docs/private-firmware.md)"
   },
   {
    "board": "kaanapali-mtp",
@@ -7869,17 +10788,17 @@
       {
        "name": "qcom_defconfig",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "tfa-optee.config",
        "optional": false,
-       "used": null
+       "used": true
       },
       {
        "name": "kaanapali-mtp.config",
        "optional": true,
-       "used": null
+       "used": false
       }
      ],
      "device_tree": "qcom/kaanapali-mtp",
@@ -7888,6 +10807,7 @@
      "origin": "upstream",
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
+     "sha256": "683232130a195ec45ddc43f67452ca83a4392f7202b605ceb79ba3fa7c485749",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
     },
     {
@@ -7942,6 +10862,29 @@
      "sha256": "373376ae246c8a8619c14030a12b3273ea09ef9bfc8cc11a4e8dedd210c42072",
      "upstream": null,
      "url": null
+    },
+    {
+     "boottime_case": null,
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtb_sha256": "2115d58124e75194e4b2c66ba5a96a43d3261d2f99a490fc0c116fef28b94125",
+     "dtbs": [
+      {
+       "name": "qcom/kaanapali-mtp.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-open-kaanapali-mtp",
@@ -7954,7 +10897,8 @@
     "verdict": "not-run"
    },
    "stack": "open",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "private firmware not available: tz-kaanapali-mtp.mbn is not staged and UBCI_PRIVATE_TOKEN is not set"
   },
   {
    "board": "kaanapali-mtp",
@@ -7970,6 +10914,27 @@
      "repo": "https://git.u-boot-project.org/u-boot/u-boot.git",
      "role": "under-test",
      "url": "https://git.u-boot-project.org/u-boot/u-boot/-/commit/e578056c766d653270b14557c2a9d8daec414c17"
+    },
+    {
+     "branch": "next-20261120",
+     "commit": "909ef7a9a30fa139e69e555e3606680f5cca7726",
+     "config": {
+      "name": "arch/arm64/configs/defconfig",
+      "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/configs/defconfig?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+     },
+     "dtbs": [
+      {
+       "name": "qcom/kaanapali-mtp.dtb",
+       "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
+      }
+     ],
+     "name": "linux",
+     "origin": "upstream",
+     "release": "7.4.0-rc3-next-20261120",
+     "repo": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+     "role": "payload",
+     "sha256": "ed4ddf8656c88f6f3cc39d63b3f4bcae416d2c4e2e301c11b02067d98cbc1197",
+     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=909ef7a9a30fa139e69e555e3606680f5cca7726"
     }
    ],
    "fingerprint": "ubci-45144866893-1-main-spl-kaanapali-mtp",
@@ -7984,7 +10949,8 @@
     "in_flight": []
    },
    "stack": "spl",
-   "state": "queued"
+   "state": "skipped",
+   "state_detail": "no SPL stack for this board: no SPL in flight for this board"
   }
  ]
 }
